@@ -1,8 +1,58 @@
-<nav class="navbar">
-  <div class="logo">
-    <h1><a ui-sref="home">{{ $ctrl.name }}</a></h1>
+<div class="navbar">
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+
+      <nav class="tab-bar">
+
+        <section class="left tab-bar-section">
+          <h1 class="title"><a ui-sref="home">Potentiddsdssdalife</a></h1>
+        </section>
+        <div class="right-small">
+          <a role="button" aria-controls="idOfRightMenu"  class="left-off-canvas-toggle menu-icon" ><span></span></a>
+        </div>
+      </nav>
+
+
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list-bugfix">
+          <li><label>This is a title</label></li>
+          <ul class="off-canvas-list-bugfix">
+            <li class="has-submenu"><a href="">Cycle 1</a>
+              <ul class="left-submenu">
+                <li class="back"><a href="">Back Cycle 1</a></li>
+                <li><label>Cycle 1</label></li>
+                <li class="has-submenu"><a href="">Module 1</a>
+                  <ul class="left-submenu">
+                    <li class="back"><a href="">Back to Module 1</a></li>
+                    <li><label>Module 1: Your strength</label></li>
+                    <li><a ui-sref="about">Step 3: Leading with Health</a></li>
+                  </ul>
+                </li>
+                <li class="has-submenu"><a href="">Module 2</a>
+                  <ul class="left-submenu">
+                    <li class="back"><a href="">Back to Module 2</a></li>
+                    <li><label>Module 2: Your emotions</label></li>
+                    <li><a ui-sref="about">Step 1: How do you feel</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <li><a ui-sref="about">Cycle 2</a>
+
+        </ul>
+      </aside>
+
+      <section class="main-section">
+        <div class="content" ui-view></div>
+      </section>
+
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+
+    </div>
   </div>
-  <div class="nav-links">
-    <span><a ui-sref="about">about</a></span>
-  </div>
-</nav>
+</div>
+
+

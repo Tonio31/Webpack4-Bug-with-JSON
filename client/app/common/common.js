@@ -8,7 +8,7 @@ let commonModule = angular.module('app.common', [
   Hero,
   User
 ])
-  
+
 .name;
 
 export default commonModule;

@@ -3,7 +3,8 @@ import uiRouter from 'angular-ui-router';
 import homeComponent from './home.component';
 
 let homeModule = angular.module('home', [
-  uiRouter
+  uiRouter,
+  'user'
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
@@ -19,7 +20,7 @@ let homeModule = angular.module('home', [
 })
 
 .component('home', homeComponent)
-  
+
 .name;
 
 export default homeModule;

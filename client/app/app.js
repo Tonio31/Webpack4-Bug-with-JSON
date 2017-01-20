@@ -5,7 +5,10 @@ import Components from './components/components';
 import AppComponent from './app.component';
 import 'normalize.css';
 
+require('angular-foundation');
+
 angular.module('app', [
+    'mm.foundation',
     uiRouter,
     Common,
     Components

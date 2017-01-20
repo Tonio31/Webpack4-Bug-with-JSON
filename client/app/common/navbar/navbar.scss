@@ -1,9 +1,20 @@
 @import '../common';
 
+$canvasMenuLinkTextColor:  #FFFFFF;
+
 .navbar {
-  height: 6.5rem;
+  height: 600px;
   background-color: $primaryColor;
-  padding: 1rem;
+
+
+  .content {
+    padding: 1rem;
+  }
+
+  a {
+    color: $canvasMenuLinkTextColor;
+  }
+
 
   .nav-links,
   .logo {
@@ -19,4 +30,55 @@
     color: $lightTextColor;
     font-size: 1.6rem;
   }
+
+
+  //HACK
+  //There is a bug in the offCanvas with Angular, the submenu are not working properly
+  //as described here: https://github.com/pineconellc/angular-foundation/pull/137
+  //The workaround to fix this is to redefine the directive and the css associated
+
+  ul.off-canvas-list-bugfix {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.off-canvas-list-bugfix li label {
+    background: #444444;
+    border-bottom: none;
+    border-top: 1px solid #5e5e5e;
+    color: #999999;
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.3rem 0.9375rem;
+    text-transform: uppercase;
+  }
+  ul.off-canvas-list-bugfix li a {
+    border-bottom: 1px solid #262626;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    padding: 0.66667rem;
+    transition: background 300ms ease;
+  }
+  ul.off-canvas-list-bugfix li a:hover {
+    background: #242424;
+  }
+  ul.off-canvas-list-bugfix li a:active {
+    background: #242424;
+  }
+
+  .left-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu > a:after {
+    content: "\BB";
+    margin-left: .5rem;
+    display: inline;
+  }
+
+  .right-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu > a:before {
+    content: "\AB";
+    margin-right: .5rem;
+    display: inline;
+  }
+
 }
