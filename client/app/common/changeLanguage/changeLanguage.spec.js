@@ -1,6 +1,6 @@
-import NavbarModule from './navbar'
+import NavbarModule from './changeLanguage'
 
-describe('Navbar', () => {
+describe('ChangeLanguage', () => {
   let $rootScope, $state, $location, $componentController, $compile;
 
   beforeEach(window.module(NavbarModule));
@@ -21,7 +21,7 @@ describe('Navbar', () => {
     // controller specs
     let controller;
     beforeEach(() => {
-      controller = $componentController('navbar', {
+      controller = $componentController('changeLanguage', {
         $scope: $rootScope.$new()
       });
     });
@@ -37,12 +37,12 @@ describe('Navbar', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<navbar></navbar>')(scope);
+      template = $compile('<change-language></change-language>')(scope);
       scope.$apply();
     });
 
     it('has name in template', () => {
-      expect(template.find('h1').find('a').html()).to.eq('Potentialife');
+      expect(template.find('h1').html()).to.contain('language');
     });
 
   });

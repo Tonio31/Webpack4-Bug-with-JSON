@@ -1,14 +1,7 @@
 class NavbarController {
   constructor() {
-    this.name = 'navbar';
+    this.name = 'Potentialife';
   }
-
-
 }
 
 export default NavbarController;
-
-
-var test = function () {
-  return "dsad";
-};

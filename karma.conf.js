@@ -5,7 +5,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'sinon-chai'],
 
     // list of files/patterns to load in the browser
     files: [{ pattern: 'spec.bundle.js', watched: false }],
@@ -14,7 +14,7 @@ module.exports = function (config) {
     exclude: [],
 
     plugins: [
-      require("karma-chai"),
+      require("karma-sinon-chai"),
       require("karma-chrome-launcher"),
       require("karma-mocha"),
       require("karma-mocha-reporter"),
@@ -56,13 +56,13 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
 
     // toggle whether to watch files and rerun tests upon incurring changes
-    autoWatch: false,
+    autoWatch: true,
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
 
     // if true, Karma runs tests once and exits
-    singleRun: true
+    singleRun: false
   });
 };

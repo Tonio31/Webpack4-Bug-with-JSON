@@ -5,7 +5,7 @@
       <nav class="tab-bar">
 
         <section class="left tab-bar-section">
-          <h1 class="title"><a ui-sref="home">Potentiddsdssdalife</a></h1>
+          <h1 class="title"><a ui-sref="home">{{$ctrl.name}}</a></h1>
         </section>
         <div class="right-small">
           <a role="button" aria-controls="idOfRightMenu"  class="left-off-canvas-toggle menu-icon" ><span></span></a>
@@ -45,6 +45,8 @@
       </aside>
 
       <section class="main-section">
+
+        <change-language></change-language>
         <div class="content" ui-view></div>
       </section>
 

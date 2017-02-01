@@ -1,15 +1,17 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import homeComponent from './home.component';
+import angularTranslate from 'angular-translate';
+import User from '../../common/user/user';
 
 let homeModule = angular.module('home', [
   uiRouter,
-  'user'
+  angularTranslate,
+  User
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
   "ngInject";
-
   $urlRouterProvider.otherwise('/');
 
   $stateProvider

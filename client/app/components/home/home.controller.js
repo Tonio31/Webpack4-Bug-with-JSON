@@ -1,10 +1,7 @@
 
-
 class HomeController {
 
-
-
-  constructor($timeout, User) {
+  constructor($timeout, $translate, User) {
     "ngInject";
     this.name = 'home';
     this.$timeout = $timeout;
@@ -12,6 +9,19 @@ class HomeController {
 
     this.myName = User.getUser().name;
     console.log("myName=" + this.myName);
+
+    this.getName = function() {
+      return User.getUser().name;
+    };
+
+
+    $translate('TITLE').then( (headline) => {
+      this.headline = headline;
+    })
+      .catch( (translationId) => {
+      this.headline = translationId;
+    });
+
 
   }
 

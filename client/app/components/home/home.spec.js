@@ -1,7 +1,8 @@
 import HomeModule from './home'
 
+
 describe('Home', () => {
-  let $rootScope, $state, $location, $componentController, $compile;
+  let $rootScope, $state, $location, $componentController, $compile, User;
 
   beforeEach(window.module(HomeModule));
 
@@ -11,6 +12,7 @@ describe('Home', () => {
     $state = $injector.get('$state');
     $location = $injector.get('$location');
     $compile = $injector.get('$compile');
+    User = $injector.get('User');
   }));
 
   describe('Module', () => {
@@ -18,6 +20,7 @@ describe('Home', () => {
     it('default component should be home', () => {
       $location.url('/');
       $rootScope.$digest();
+      console.log("Test TONIO");
       expect($state.current.component).to.eq('home');
     });
   });
@@ -31,9 +34,20 @@ describe('Home', () => {
       });
     });
 
+    it('DOES A TEST', () => {
+      expect(controller.getName()).to.equal('Tonio');
+    });
+
+    it('has a name from User factory', () => { // erase if removing this.name from the controller
+      sinon.stub(User, 'getUser', () => ({ name: "Stub is Working" }));
+      expect(controller.getName()).to.equal('Stub is Working');
+    });
+
     it('has a name property', () => { // erase if removing this.name from the controller
       expect(controller).to.have.property('name');
     });
+
+
   });
 
   describe('View', () => {
@@ -47,7 +61,7 @@ describe('Home', () => {
     });
 
     it('has name in template', () => {
-      expect(template.find('h1').html()).to.eq('Found in home.html');
+      expect(template.find('p').html()).to.eq('I\'m testing the translate module: TITLE');
     });
 
   });
