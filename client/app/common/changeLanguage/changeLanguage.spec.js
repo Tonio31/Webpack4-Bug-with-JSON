@@ -1,9 +1,9 @@
-import NavbarModule from './changeLanguage'
+import ChangeLanguageModule from './changeLanguage'
 
 describe('ChangeLanguage', () => {
   let $rootScope, $state, $location, $componentController, $compile;
 
-  beforeEach(window.module(NavbarModule));
+  beforeEach(window.module(ChangeLanguageModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
@@ -41,8 +41,8 @@ describe('ChangeLanguage', () => {
       scope.$apply();
     });
 
-    it('has name in template', () => {
-      expect(template.find('h1').html()).to.contain('language');
+    it('has flag-iconfgdgvfgdfgdfdf in template', () => {
+      expect(template.find('span').attr('class').split(" ")).to.deep.equal(["flag-icon", "flag-icon-fr"]);
     });
 
   });

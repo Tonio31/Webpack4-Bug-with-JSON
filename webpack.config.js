@@ -7,10 +7,12 @@ module.exports = {
   entry: {},
   module: {
     loaders: [
-       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate?add=true&single_quotes=true!babel' },
-       { test: /\.html$/, loader: 'raw' },
-       { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
-       { test: /\.css$/, loader: 'style!css' }
+      { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate?add=true&single_quotes=true!babel' },
+      { test: /\.html$/, loader: 'raw' },
+      { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.svg/, loader: 'svg-url-loader' },
+      { test: /\.json$/, loader: 'json-loader' }
     ]
   },
   plugins: [

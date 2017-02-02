@@ -20,7 +20,6 @@ describe('Home', () => {
     it('default component should be home', () => {
       $location.url('/');
       $rootScope.$digest();
-      console.log("Test TONIO");
       expect($state.current.component).to.eq('home');
     });
   });

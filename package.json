@@ -5,8 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-cookies": "^1.6.1",
     "angular-foundation": "^0.8.0",
     "angular-translate": "^2.13.1",
+    "angular-translate-loader-static-files": "^2.13.1",
+    "angular-translate-storage-cookie": "^2.13.1",
+    "angular-translate-storage-local": "^2.13.1",
     "angular-ui-router": "1.0.0-rc.1",
     "foundation-sites": "^5.5.3",
     "normalize.css": "^3.0.3"
@@ -32,6 +36,7 @@
     "gulp-template": "^3.0.0",
     "gulp-util": "^3.0.7",
     "html-webpack-plugin": "^1.7.0",
+    "json-loader": "^0.5.4",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.0",
@@ -52,6 +57,7 @@
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.12.2",
     "supports-color": "^3.1.2",
+    "svg-url-loader": "^2.0.1",
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.6.0",
@@ -63,6 +69,7 @@
     "serve": "gulp serve",
     "start": "gulp serve",
     "test": "karma start",
+    "tdd": "karma start --auto-watch --no-single-run",
     "watch": "gulp serve",
     "webpack": "gulp webpack"
   },

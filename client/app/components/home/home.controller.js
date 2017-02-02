@@ -8,7 +8,6 @@ class HomeController {
     this.User = User;
 
     this.myName = User.getUser().name;
-    console.log("myName=" + this.myName);
 
     this.getName = function() {
       return User.getUser().name;
