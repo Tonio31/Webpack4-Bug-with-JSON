@@ -27,8 +27,7 @@ module.exports = function (config) {
     preprocessors: { 'spec.bundle.js': ['webpack', 'sourcemap'] },
 
     webpack: {
-      //devtool: 'inline-source-map',
-      devtool: 'source-map',
+      devtool: 'inline-source-map',
       module: {
         loaders: [
           { test: /\.js/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
