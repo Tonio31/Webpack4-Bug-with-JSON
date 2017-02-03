@@ -1,15 +1,16 @@
+//External Module
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import 'normalize.css';
+require('angular-foundation');
+
+//Potentialife module
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
-import 'normalize.css';
 
 
-require('angular-foundation');
-
-
-angular.module('app', [
+let appModule = angular.module('app', [
     'mm.foundation',
     uiRouter,
     Common,
@@ -22,4 +23,7 @@ angular.module('app', [
     $locationProvider.html5Mode(true).hashPrefix('!');
   })
 
-  .component('app', AppComponent);
+  .component('app', AppComponent)
+  .name;
+
+export default appModule;

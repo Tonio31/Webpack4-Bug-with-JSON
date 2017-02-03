@@ -2,7 +2,7 @@ import HomeModule from './home'
 
 
 describe('Home', () => {
-  let $rootScope, $state, $location, $componentController, $compile, User;
+  let $rootScope, $state, $location, $componentController, $compile, Data;
 
   beforeEach(window.module(HomeModule));
 
@@ -12,7 +12,7 @@ describe('Home', () => {
     $state = $injector.get('$state');
     $location = $injector.get('$location');
     $compile = $injector.get('$compile');
-    User = $injector.get('User');
+    Data = $injector.get('Data');
   }));
 
   describe('Module', () => {
@@ -37,8 +37,8 @@ describe('Home', () => {
       expect(controller.getName()).to.equal('Tonio');
     });
 
-    it('has a name from User factory', () => { // erase if removing this.name from the controller
-      sinon.stub(User, 'getUser', () => ({ name: "Stub is Working" }));
+    it('has a name from ResourceFactory factory', () => { // erase if removing this.name from the controller
+      sinon.stub(Data, 'getUser', () => ({ name: "Stub is Working" }));
       expect(controller.getName()).to.equal('Stub is Working');
     });
 

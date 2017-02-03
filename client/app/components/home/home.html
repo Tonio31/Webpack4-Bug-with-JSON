@@ -1,6 +1,22 @@
-<!--<navbar></navbar>-->
 
-<div>THIS IS THE home page</div>
+
+<h1>Potentialife</h1>
+<h3>{{ 'WELCOME' | translate }} {{$ctrl.firstName}}</h3>
+<h5>{{ 'YOUR_POTENTIALIFE_JOURNEY' | translate }}</h5>
+
+<button type="submit" ng-click="$ctrl.resumeProgress()">{{ 'RESUME_PROGRESS' | translate }}</button>
+
+
+
+
+
+
 <p>I'm testing the translate module: {{ $ctrl.headline }}</p>
 <p>I'm testing for the second time the translate module: {{ 'ANOTHER_TEXT' | translate }}</p>
 <p>Testing Integration with User Factory name={{$ctrl.myName}}</p>
+
+<p>Name from User Factory with Mock BackEnd = {{$ctrl.nameFromUserFactory}}</p>
+<p>Name for test = {{$ctrl.test}}</p>
+
+<button type="submit" ng-click="$ctrl.getAllUserData()">Resource</button>
+<button type="submit" ng-click="$ctrl.getAllUserData2()">Resource 2</button>

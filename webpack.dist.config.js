@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path    = require('path');
 var config  = require('./webpack.config');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 config.output = {
   filename: '[name].bundle.js',
@@ -9,6 +10,16 @@ config.output = {
 };
 
 config.plugins = config.plugins.concat([
+
+  // Injects bundles in your index.html instead of wiring all manually.
+  // It also adds hash to all injected assets so we don't have problems
+  // with cache purging during deployment.
+  new HtmlWebpackPlugin({
+    template: 'client/index.html',
+    inject: 'body',
+    hash: true
+  }),
+
 
   // Reduces bundles total size
   new webpack.optimize.UglifyJsPlugin({
