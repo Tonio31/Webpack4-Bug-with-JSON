@@ -1,9 +1,10 @@
 import NavbarModule from './navbar'
 
 describe('Navbar', () => {
-  let $rootScope, $state, $location, $componentController, $compile;
+  let $rootScope, $state, $location, $componentController, $compile, _;
 
-  beforeEach(window.module(NavbarModule));
+  beforeEach(window.module(NavbarModule),
+    window.module(global));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
@@ -11,6 +12,7 @@ describe('Navbar', () => {
     $state = $injector.get('$state');
     $location = $injector.get('$location');
     $compile = $injector.get('$compile');
+    _ = $injector.get('_');
   }));
 
   describe('Module', () => {

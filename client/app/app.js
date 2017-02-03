@@ -5,6 +5,7 @@ import 'normalize.css';
 require('angular-foundation');
 
 //Potentialife module
+import Global from './globalVariables';
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
@@ -14,7 +15,8 @@ let appModule = angular.module('app', [
     'mm.foundation',
     uiRouter,
     Common,
-    Components
+    Components,
+    Global
   ])
   .config(($locationProvider) => {
     "ngInject";

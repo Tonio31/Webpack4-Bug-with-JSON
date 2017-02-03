@@ -6,8 +6,7 @@ class HomeController {
     this.name = 'home';
     this.$timeout = $timeout;
 
-    console.log("This is executed");
-
+    console.log("TONIO This is executed");
 
     this.firstName = UserData.getFirstName();
 
