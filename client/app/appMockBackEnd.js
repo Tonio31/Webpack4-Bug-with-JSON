@@ -22,6 +22,13 @@ angular.module('appMockBackEnd', [
     return [200, games, {}];
   });
 
+  $httpBackend.whenGET(/\/menu\/\d+/).respond(function (method, url, data) {
+    // parse the matching URL to pull out the id (/games/:id)
+    var userid = url.split('/')[2];
+    console.log("MOCK BackEnd Response. Url=" + url +  ",  method=", method);
+    var menu = require('./mockBackEndResponse/menu-1.json');
+    return [200, menu, {}];
+  });
 
   $httpBackend.whenGET(/\/users\/\d+/).respond(function (method, url, data) {
     // parse the matching URL to pull out the id (/games/:id)

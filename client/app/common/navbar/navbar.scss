@@ -32,6 +32,10 @@ $canvasMenuLinkTextColor:  #FFFFFF;
   }
 
 
+  .left-submenu {
+    height: 100%;
+  }
+
   //HACK
   //There is a bug in the offCanvas with Angular, the submenu are not working properly
   //as described here: https://github.com/pineconellc/angular-foundation/pull/137

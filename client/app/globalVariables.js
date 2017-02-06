@@ -3,7 +3,7 @@ require('lodash/core');
 
 let globalVariablesModule = angular.module('globalVariables', [
 ])
-.service('_', function( $window ) {
+.factory('_', function( $window ) {
   "ngInject";
   var _ = $window._;
 

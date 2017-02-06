@@ -8,8 +8,8 @@ let UserFactory = function ($resource) {
     return user;
   };
 
-  let isSignedIn = () => {
-    return user.isSignedIn;
+  let getMenu = () => {
+    return $resource('/menu/:userid', {userid: '@userid'});
   };
 
   let getUserData = () => {
@@ -23,7 +23,8 @@ let UserFactory = function ($resource) {
     return $resource('/users/gdgfdsdfgsgfd');
   };
 
-  return { getUser, isSignedIn, getUserData, getUserData2 };
+
+  return { getUser, getMenu, getUserData, getUserData2 };
 };
 
 export default UserFactory;

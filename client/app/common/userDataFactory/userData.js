@@ -2,11 +2,11 @@ import angular from 'angular';
 import angularResource from 'angular-resource';
 import UserDataFactory from './userData.factory';
 
-let userDataModule = angular.module('userData', [
+let userDataModule = angular.module('userInfo', [
   angularResource
 ])
 
-  .factory('UserData', UserDataFactory)
+  .factory('UserInfo', UserDataFactory)
 
   .name;
 

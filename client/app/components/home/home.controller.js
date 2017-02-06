@@ -1,14 +1,14 @@
 
 class HomeController {
 
-  constructor($timeout, $translate, Data, UserData) {
+  constructor($timeout, $translate, Data, UserInfo) {
     "ngInject";
     this.name = 'home';
     this.$timeout = $timeout;
 
     console.log("TONIO This is executed");
 
-    this.firstName = UserData.getFirstName();
+    this.firstName = UserInfo.getFirstName();
 
     this.myName = Data.getUser().name;
 
@@ -44,7 +44,7 @@ class HomeController {
 
     this.getAllUserData2 = () => {
       console.log("this.getAllUserData2");
-      let data = UserData.get({}, (test) => {
+      let data = UserInfo.get({}, (test) => {
           console.log("sucess test=", test);
         },
         (error) => {
