@@ -1,8 +1,6 @@
 @import '../common';
-@import "~foundation-sites/scss/foundation";
 
 $canvasMenuLinkTextColor:  #FFFFFF;
-
 
 .navbar {
   height: 100%;
@@ -27,20 +25,11 @@ $canvasMenuLinkTextColor:  #FFFFFF;
 
   .main-section {
     overflow-y: auto;
-  }
-
- //Media query to add here to be able to scroll on destkop
-/*  body,
-  html {
-    height: 100%;
-    width: 100%;
-  }*/
-
-  .main-section {
     height: 100%;
     width: 100%;
   }
 
+  //For mobile: tab-bar is fixed, for the rest, we can scroll down
   @media #{$small-only} {
     .off-canvas-wrap,
     .off-canvas-wrap .inner-wrap{
@@ -48,17 +37,6 @@ $canvasMenuLinkTextColor:  #FFFFFF;
       width: 100%;
     }
   }
-
-  /*
-  .off-canvas-wrap,
-  .off-canvas-wrap .inner-wrap,
-  .main-section,
-  .row {
-    height: 100%;
-    width: 100%;
-  }
-  */
-
 
   .nav-links,
   .logo {

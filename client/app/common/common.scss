@@ -8,6 +8,8 @@ $lightBgColor:   #FFFFFF;
 $lightTextColor: #f5f5f5;
 $darkTextColor:  #212121;
 
+@import "./foundation-settings";
+
 body {
    height: 100%;
    // browsers default to 16px for font-size,
