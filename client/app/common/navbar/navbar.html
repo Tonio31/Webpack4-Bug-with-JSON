@@ -1,19 +1,18 @@
 <div class="navbar">
-  <div class="off-canvas-wrap" data-offcanvas>
-
-    <div class="sticky">
-    <nav class="tab-bar">
-
-      <section class="left tab-bar-section">
-        <h1 class="title"><a ui-sref="home">{{$ctrl.name}}</a></h1>
-      </section>
-      <div class="right-small">
-        <a role="button" aria-controls="idOfRightMenu"  class="left-off-canvas-toggle menu-icon" ><span></span></a>
-      </div>
-    </nav>
-    </div>
+  <div class="off-canvas-wrap" >
 
     <div class="inner-wrap">
+      <div class="header">
+        <nav class="tab-bar" data-offcanvas>
+
+          <section class="left tab-bar-section">
+            <h1 class="title"><a ui-sref="home">{{$ctrl.name}}</a></h1>
+          </section>
+          <div class="right-small">
+            <a role="button" aria-controls="idOfRightMenu" class="left-off-canvas-toggle menu-icon"><span></span></a>
+          </div>
+        </nav>
+      </div>
 
 
       <aside class="left-off-canvas-menu">
@@ -30,7 +29,6 @@
                   <li class="back"><a href="">Back {{module.title}}</a></li>
                   <li><label>{{module.title}}</label></li>
                   <li ng-repeat="step in module.children track by step.id">
-                    <!--<div><a ui-sref="about">{{step.title}}</a></div>-->
                     <menu-item item="step" wtf="something"></menu-item>
                   </li>
 
@@ -43,34 +41,32 @@
             <ul class="left-submenu">
 
               <div>
-              <li class="back"><a href="">TEST Back Cycle 1</a></li>
+                <li class="back"><a href="">TEST Back Cycle 1</a></li>
               </div>
-    <div>
-              <li><label>Cycle 1</label></li>
-    </div>
-    <div>
-              <li class="has-submenu"><a href=""> TEST Module 1</a>
-                <ul class="left-submenu">
-                  <li class="back"><a href="">TEST Back to Module 1</a></li>
-                  <li><label>TEST Module 1: Your strength</label></li>
-                  <li><a ui-sref="about">TEST Step 3: Leading with Health</a></li>
-                </ul>
-              </li>
-  </div>
-<div>
-              <li class="has-submenu"><a href="">Module 2</a>
-                <ul class="left-submenu">
-                  <li class="back"><a href="">Back to Module 2</a></li>
-                  <li><label>Module 2: Your emotions</label></li>
-                  <li><a ui-sref="about">Step 1: How do you feel</a></li>
-                </ul>
-              </li>
-</div>
+              <div>
+                <li><label>Cycle 1</label></li>
+              </div>
+              <div>
+                <li class="has-submenu"><a href=""> TEST Module 1</a>
+                  <ul class="left-submenu">
+                    <li class="back"><a href="">TEST Back to Module 1</a></li>
+                    <li><label>TEST Module 1: Your strength</label></li>
+                    <li><a ui-sref="about">TEST Step 3: Leading with Health</a></li>
+                  </ul>
+                </li>
+              </div>
+              <div>
+                <li class="has-submenu"><a href="">Module 2</a>
+                  <ul class="left-submenu">
+                    <li class="back"><a href="">Back to Module 2</a></li>
+                    <li><label>Module 2: Your emotions</label></li>
+                    <li><a ui-sref="about">Step 1: How do you feel</a></li>
+                  </ul>
+                </li>
+              </div>
             </ul>
           </li>
         </ul>
-
-
 
 
       </aside>
@@ -82,8 +78,6 @@
         <div ng-repeat="cycle in $ctrl.menu track by cycle.id">
           <p>{{cycle.title}}</p>
         </div>
-
-
 
 
         <div class="content" ui-view></div>

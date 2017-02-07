@@ -4,6 +4,14 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: {},
+  resolve: {
+    root: path.resolve(__dirname),
+    extensions: ['', '.js'],
+    alias: {
+      common: 'client/app/common',
+      components: 'client/app/components'
+    }
+  },
   module: {
     loaders: [
       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate?add=true&single_quotes=true!babel' },

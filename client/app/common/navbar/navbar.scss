@@ -1,9 +1,11 @@
 @import '../common';
+@import "~foundation-sites/scss/foundation";
 
 $canvasMenuLinkTextColor:  #FFFFFF;
 
+
 .navbar {
-  height: 600px;
+  height: 100%;
   background-color: $primaryColor;
 
 
@@ -14,6 +16,48 @@ $canvasMenuLinkTextColor:  #FFFFFF;
   a {
     color: $canvasMenuLinkTextColor;
   }
+
+  .header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+  }
+
+
+  .main-section {
+    overflow-y: auto;
+  }
+
+ //Media query to add here to be able to scroll on destkop
+/*  body,
+  html {
+    height: 100%;
+    width: 100%;
+  }*/
+
+  .main-section {
+    height: 100%;
+    width: 100%;
+  }
+
+  @media #{$small-only} {
+    .off-canvas-wrap,
+    .off-canvas-wrap .inner-wrap{
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  /*
+  .off-canvas-wrap,
+  .off-canvas-wrap .inner-wrap,
+  .main-section,
+  .row {
+    height: 100%;
+    width: 100%;
+  }
+  */
 
 
   .nav-links,

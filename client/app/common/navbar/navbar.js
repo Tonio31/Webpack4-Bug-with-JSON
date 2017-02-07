@@ -4,7 +4,6 @@ import globalVariable from '../../globalVariables';
 import navbarComponent from './navbar.component';
 import ResourceFactory from '../resourceService/resource';
 import UserData from '../userDataFactory/userData';
-require('quick-ng-repeat/quick-ng-repeat');
 import { itemTest, offCanvasListBugfixDef, menuItem } from './navbar.directive';
 
 require('angular-foundation');
@@ -14,7 +13,6 @@ let navbarModule = angular.module('navbar', [
   ResourceFactory,
   UserData,
   globalVariable,
-  'QuickList',
   'mm.foundation'
 ])
 
