@@ -25,13 +25,12 @@ let offCanvasListBugfixDef = function () {
   };
 };
 
-let itemTest = function () {
+let moveMenu = function () {
   "ngInject";
   return {
     require: '^offCanvasWrap',
     restrict: 'C',
     link: function ($scope, element, attrs, offCanvasWrap) {
-      console.log("item test directive");
       element.on('click', function (e) {
         e.stopPropagation();
         if (angular.element(this).hasClass('has-submenu')) {
@@ -56,18 +55,14 @@ let menuItem = function () {
     restrict: 'E',
     replace: true,
     scope: {
-      item: '=',
-      wtf: '@'
+      item: '='
     },
     template: `
-        <a ui-sref="about">{{item.title}}</a>
+        <a ui-sref="{{item.fullUrl}}">{{item.title}}</a>
     `,
     link: function ($scope, element, attrs, offCanvasWrap) {
-      console.log("menuItem directive");
       element.on('click', function (e) {
-
           offCanvasWrap.hide();
-
       });
     }
   };
@@ -75,4 +70,4 @@ let menuItem = function () {
 
 
 
-export { offCanvasListBugfixDef, itemTest, menuItem };
+export { offCanvasListBugfixDef, moveMenu, menuItem };

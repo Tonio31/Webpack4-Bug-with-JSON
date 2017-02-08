@@ -1,6 +1,8 @@
 class NavbarController {
-  constructor( _, Data, UserInfo) {
+  constructor( _, Data, UserInfo, Menu) {
     "ngInject";
+
+    this.testTonio = Menu.menu;
 
     this.name = 'Potentialife';
 
@@ -8,8 +10,14 @@ class NavbarController {
 
     if ( _.isEmpty(this.menu) ) {
       //Menu can be edited via the CMS on the Back End, so we need to build it dynamically
-      console.log("Menu is empty");
-      Data.getMenu().get({userid: UserInfo.getUserid()},
+      console.log("NavbarController:: Menu is empty");
+
+      Menu.getMenuPromise().then( (menuData) => {
+        this.menu = menuData.children;
+        console.log("TONIO NavbarController:: menu=", this.menu);
+      });
+
+/*      Data.getMenu().get({userid: UserInfo.getUserid()},
         (menuData) => {
           console.log("Menu Retrieved successfully menuData=", menuData);
           //For now, we only have one Potentialife course, so we pick the first item in the list
@@ -19,7 +27,7 @@ class NavbarController {
         (error) => {
 
           console.log("Error while retrieving Menu error=", error);
-        });
+        });*/
     }
     else {
       console.log("NavbarController menu is not empty");

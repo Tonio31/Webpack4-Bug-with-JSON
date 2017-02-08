@@ -16,10 +16,10 @@ angular.module('appMockBackEnd', [
 .run(function($httpBackend) {
   "ngInject";
 
-  $httpBackend.whenGET('/usersThatWorks').respond(function (method, url, data) {
-    console.log("$httpBackend.whenGET('/usersThatWorks')");
-    var games = {};
-    return [200, games, {}];
+  $httpBackend.whenGET('/potentialife-course/cycle-1/module-1/step-1').respond(function (method, url, data) {
+    console.log("$httpBackend.whenGET('/potentialife-course/cycle-1/module-1/step-1')");
+    var content = require('./mockBackEndResponse/courseContent_step1.json');
+    return [200, content, {}];
   });
 
   $httpBackend.whenGET(/\/menu\/\d+/).respond(function (method, url, data) {
@@ -34,14 +34,6 @@ angular.module('appMockBackEnd', [
     // parse the matching URL to pull out the id (/games/:id)
     var userid = url.split('/')[2];
     console.log("tibbfbfdb userid=", userid);
-    var user = { name: "Mock Reply"};
-    return [200, user, {}];
-  });
-
-  $httpBackend.whenGET('/\/users\/\d+/').respond(function (method, url, data) {
-    // parse the matching URL to pull out the id (/games/:id)
-    var userid = url.split('/')[2];
-    console.log("userid=", userid);
     var user = { name: "Mock Reply"};
     return [200, user, {}];
   });

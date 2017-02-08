@@ -1,10 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
-import globalVariable from '../../globalVariables';
+import globalVariable from 'app/globalVariables';
 import navbarComponent from './navbar.component';
-import ResourceFactory from '../resourceService/resource';
-import UserData from '../userDataFactory/userData';
-import { itemTest, offCanvasListBugfixDef, menuItem } from './navbar.directive';
+import ResourceFactory from 'common/resourceService/resource';
+import UserData from 'common/userDataFactory/userData';
+import MenuService from 'common/menuService/menu';
+import { moveMenu, offCanvasListBugfixDef, menuItem } from './navbar.directive';
 
 require('angular-foundation');
 
@@ -12,6 +13,7 @@ let navbarModule = angular.module('navbar', [
   uiRouter,
   ResourceFactory,
   UserData,
+  MenuService,
   globalVariable,
   'mm.foundation'
 ])
@@ -19,8 +21,8 @@ let navbarModule = angular.module('navbar', [
 .component('navbar', navbarComponent)
 .directive('menuItem', menuItem )
 .directive('offCanvasListBugfix', offCanvasListBugfixDef )
-.directive('hasSubmenu', itemTest )
-.directive('back', itemTest )
+.directive('hasSubmenu', moveMenu )
+.directive('back', moveMenu )
 .name;
 
 export default navbarModule;

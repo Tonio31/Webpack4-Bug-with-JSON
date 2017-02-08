@@ -1,5 +1,6 @@
 class <%= upCaseName %>Controller {
   constructor() {
+    "ngInject";
     this.name = '<%= name %>';
   }
 }

@@ -1,8 +1,11 @@
 class AboutController {
-  constructor() {
+  constructor($state) {
+    "ngInject";
     var self = this;
     this.name = 'about';
     this.oneAtATime = true;
+
+    console.log("AboutController $state=", $state);
 
     this.groups = [
       {

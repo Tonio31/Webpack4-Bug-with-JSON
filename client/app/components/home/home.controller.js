@@ -1,7 +1,7 @@
 
 class HomeController {
 
-  constructor($timeout, $translate, Data, UserInfo) {
+  constructor($timeout, $translate, Data, UserInfo, Menu) {
     "ngInject";
     this.name = 'home';
     this.$timeout = $timeout;
@@ -18,6 +18,11 @@ class HomeController {
 
     this.nameFromUserFactory = "NOT WORKING";
     this.test = "NOT WORKINGvdsvsvdsvdssdvdvdvs";
+
+
+    this.nameFromMenuServuce = Menu.menu;
+    this.nameFromMenuServiceFunction = Menu.getMenu();
+
 
     this.getName = function() {
       return Data.getUser().name;

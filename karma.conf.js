@@ -34,6 +34,7 @@ module.exports = function (config) {
         root: path.resolve(__dirname),
         extensions: ['', '.js'],
         alias: {
+          app: 'client/app',
           common: 'client/app/common',
           components: 'client/app/components'
         }

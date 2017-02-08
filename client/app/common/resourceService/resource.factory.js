@@ -1,4 +1,4 @@
-let UserFactory = function ($resource) {
+let ResourceFactory = function ($resource) {
   "ngInject";
   const user = {
     name: "Tonio"
@@ -9,22 +9,23 @@ let UserFactory = function ($resource) {
   };
 
   let getMenu = () => {
+    console.log("ResourceFactory::getMenu");
     return $resource('/menu/:userid', {userid: '@userid'});
   };
 
   let getUserData = () => {
-    console.log("getUserData");
+    console.log("ResourceFactory::getUserData");
     return $resource('/users/:userid', {userid: '@userid'});
   };
 
 
-  let getUserData2 = () => {
-    console.log("getUserData2");
-    return $resource('/users/gdgfdsdfgsgfd');
+  let getCourseContent = (url) => {
+    console.log("ResourceFactory::getCourseContent url=", url);
+    return $resource(url).get();
   };
 
 
-  return { getUser, getMenu, getUserData, getUserData2 };
+  return { getUser, getMenu, getUserData, getCourseContent };
 };
 
-export default UserFactory;
+export default ResourceFactory;

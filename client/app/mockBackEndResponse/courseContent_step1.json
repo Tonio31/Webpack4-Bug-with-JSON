@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": 1,
+    "title": "Step 1",
+    "name": "Module introduction ",
+    "description": "Approx. 5 mins",
+    "slug": "step-1",
+    "content": "<p>This is an example of content to be displayed in the page for Step 1</p>",
+    "status": 0,
+    "order": 0
+  }
+}
