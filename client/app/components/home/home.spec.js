@@ -60,7 +60,7 @@ describe('Home', () => {
     });
 
     it('has name in template', () => {
-      expect(template.find('p').html()).to.eq('I\'m testing the translate module: TITLE');
+      expect(template.find('h1').html()).to.eq('Potentialife');
     });
 
   });

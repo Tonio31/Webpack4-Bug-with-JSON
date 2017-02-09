@@ -9,8 +9,8 @@ import Global from './globalVariables';
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
+import NavBarComponent  from 'common/navbar/navbar';
 import MenuService from 'common/menuService/menu';
-import ResourceFactory from 'common/resourceService/resource';
 
 
 //This is a trick to be able to set up dynamic routing in run.
@@ -21,8 +21,8 @@ let appModule = angular.module('app', [
     uiRouter,
     Common,
     Components,
+    NavBarComponent,
     MenuService,
-    ResourceFactory,
     Global
   ])
   .config(($locationProvider, $stateProvider) => {
@@ -31,41 +31,35 @@ let appModule = angular.module('app', [
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
 
-    console.log("TONIO assigning $stateProviderRef");
     $stateProviderRef = $stateProvider;
   })
-  .constant('MENU_KEYS', {
-    'CHILDREN': 'children',
-    'SLUG': 'slug'
-  })
-  .run( (Data, Menu, MENU_KEYS) => {
+  .run( ($log, Menu) => {
     "ngInject";
+    $log.log("app::RUN()");
 
     let states = [];
 
-    let findFinalState = function ( iMenu, iCurrentUrl ) {
-      //console.log("findFinalState iCurrentUrl=", iCurrentUrl, "   iMenu=", iMenu);
-      let url = iCurrentUrl + '/' + iMenu[MENU_KEYS.SLUG];
+    //Find all the menu that doesn't have children (no Submenu) and create a state from it
+    let findFinalState = function ( iMenu ) {
 
-      if ( iMenu.hasOwnProperty(MENU_KEYS.CHILDREN) ) {
-        for( let child of iMenu[MENU_KEYS.CHILDREN] ) {
-          //console.log("child.title=", child.title);
-          findFinalState(child, url);
+      if ( iMenu.hasOwnProperty('children') ) {
+        for( let child of iMenu.children ) {
+          findFinalState(child);
         }
       }
       else {
         let state = {
-          name: url,
-          url: url,
+          name: iMenu.fullUrl,
+          url: iMenu.fullUrl,
           component: 'courseContent',
           resolve: {
             data: () => ({
-              name: url,
+              name: iMenu.fullUrl,
               title: iMenu.title
             }),
             content: (Data) => {
               "ngInject";
-              return Data.getCourseContent(url);
+              return Data.getCourseContent(iMenu.fullUrl);
             }
           }
         };
@@ -74,31 +68,22 @@ let appModule = angular.module('app', [
       }
     };
 
+    Menu.getMenuPromise().then( (menuData) => {
+      $log.log("app::RUN - menu retrieved successfully menuData=", menuData);
 
-
-
-
-    let menu = Menu.getMenuPromise().then( (menuData) => {
-      console.log("APP::RUN menu Retrieved successfully menuData=", menuData);
-      let url = '';
-      findFinalState(menuData, url);
-      //console.log("states=", states);
+      findFinalState(menuData);
+      $log.log("app::RUN states=", states);
 
       states.forEach(function(state) {
-        //console.log("state=", state);
         $stateProviderRef.state(state);
       });
-
-
     },
     (error) => {
-      console.log("APP::RUN   error Retrieving menu menuData=", error);
-
+      $log.log("app::RUN - error Retrieving menu menuData=", error);
     });
 
-
+    $log.log("app::RUN - END");
   })
-  //.run(AppRouting($stateProviderRef))
   .component('app', AppComponent)
   .name;
 

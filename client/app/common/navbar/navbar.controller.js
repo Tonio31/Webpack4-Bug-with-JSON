@@ -1,37 +1,20 @@
 class NavbarController {
-  constructor( _, Data, UserInfo, Menu) {
+  constructor( $log, _, Data, UserInfo, Menu) {
     "ngInject";
+    $log.log("NavbarController::constructor() - BEGIN");
 
-    this.testTonio = Menu.menu;
+    this.$onInit = () => {
+      $log.log("NavbarController::constructor()::$onInit - BEGIN");
+      $log.log("NavbarController::constructor()::$onInit - END");
+    };
 
-    this.name = 'Potentialife';
+    // This is a reference to the Menu stored in MenuService, When the menu is retrieved by app.js for
+    // defining the states dynamically, we use it to display
+    this.menu = Menu.getMenu();
 
-    this.menu = {};
+    this.companyName = 'Potentialife';
 
-    if ( _.isEmpty(this.menu) ) {
-      //Menu can be edited via the CMS on the Back End, so we need to build it dynamically
-      console.log("NavbarController:: Menu is empty");
-
-      Menu.getMenuPromise().then( (menuData) => {
-        this.menu = menuData.children;
-        console.log("TONIO NavbarController:: menu=", this.menu);
-      });
-
-/*      Data.getMenu().get({userid: UserInfo.getUserid()},
-        (menuData) => {
-          console.log("Menu Retrieved successfully menuData=", menuData);
-          //For now, we only have one Potentialife course, so we pick the first item in the list
-          this.menu = menuData.data[0].children;
-          console.log("TONIO menu =", this.menu);
-        },
-        (error) => {
-
-          console.log("Error while retrieving Menu error=", error);
-        });*/
-    }
-    else {
-      console.log("NavbarController menu is not empty");
-    }
+    $log.log("NavbarController::constructor() - END");
   }
 }
 

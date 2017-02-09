@@ -5,8 +5,6 @@ class AboutController {
     this.name = 'about';
     this.oneAtATime = true;
 
-    console.log("AboutController $state=", $state);
-
     this.groups = [
       {
         title: "Dynamic Group Header - 1",

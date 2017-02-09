@@ -28,8 +28,8 @@ describe('Navbar', () => {
       });
     });
 
-    it('has a name property', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
+    it('has a companyName property', () => { // erase if removing this.name from the controller
+      expect(controller).to.have.property('companyName');
     });
   });
 

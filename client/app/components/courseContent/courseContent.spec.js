@@ -1,5 +1,5 @@
 import CourseContentModule from './courseContent'
-import CourseContentController from './courseContent.changeLanguageController';
+import CourseContentController from './courseContent.controller';
 import CourseContentComponent from './courseContent.component';
 import CourseContentTemplate from './courseContent.html';
 
@@ -30,7 +30,7 @@ describe('CourseContent', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(CourseContentTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
+      expect(CourseContentTemplate).to.contain('this is our first content page');
     });
   });
 

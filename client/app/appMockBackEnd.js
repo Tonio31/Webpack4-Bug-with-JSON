@@ -13,11 +13,17 @@ angular.module('appMockBackEnd', [
   App,
   'ngMockE2E'
 ])
-.run(function($httpBackend) {
+.run(function($log, $httpBackend) {
   "ngInject";
 
-  $httpBackend.whenGET('/potentialife-course/cycle-1/module-1/step-1').respond(function (method, url, data) {
-    console.log("$httpBackend.whenGET('/potentialife-course/cycle-1/module-1/step-1')");
+  $httpBackend.whenGET(/\/potentialife-course\/cycle-\d+\/module-\d+\/step-\d+/).respond(function (method, url, data) {
+    $log.log("$httpBackend.whenGET('" + url + "')");
+    var content = require('./mockBackEndResponse/courseContent_step1.json');
+    return [200, content, {}];
+  });
+
+  $httpBackend.whenGET(/\/potentialife-course\/cycle-\d+\/lifemap/).respond(function (method, url, data) {
+    $log.log("$httpBackend.whenGET('" + url + "')");
     var content = require('./mockBackEndResponse/courseContent_step1.json');
     return [200, content, {}];
   });
@@ -25,7 +31,7 @@ angular.module('appMockBackEnd', [
   $httpBackend.whenGET(/\/menu\/\d+/).respond(function (method, url, data) {
     // parse the matching URL to pull out the id (/games/:id)
     var userid = url.split('/')[2];
-    console.log("MOCK BackEnd Response. Url=" + url +  ",  method=", method);
+    $log.log("MOCK BackEnd Response. Url=" + url +  ",  method=", method);
     var menu = require('./mockBackEndResponse/menu-1.json');
     return [200, menu, {}];
   });
@@ -33,7 +39,7 @@ angular.module('appMockBackEnd', [
   $httpBackend.whenGET(/\/users\/\d+/).respond(function (method, url, data) {
     // parse the matching URL to pull out the id (/games/:id)
     var userid = url.split('/')[2];
-    console.log("tibbfbfdb userid=", userid);
+    $log.log("tibbfbfdb userid=", userid);
     var user = { name: "Mock Reply"};
     return [200, user, {}];
   });

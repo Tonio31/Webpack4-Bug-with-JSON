@@ -41,7 +41,7 @@ describe('ChangeLanguage', () => {
       scope.$apply();
     });
 
-    it('has flag-iconfgdgvfgdfgdfdf in template', () => {
+    it('has flag-icon in template', () => {
       expect(template.find('span').attr('class').split(" ")).to.deep.equal(["flag-icon", "flag-icon-fr"]);
     });
 

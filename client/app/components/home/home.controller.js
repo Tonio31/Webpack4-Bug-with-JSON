@@ -21,7 +21,6 @@ class HomeController {
 
 
     this.nameFromMenuServuce = Menu.menu;
-    this.nameFromMenuServiceFunction = Menu.getMenu();
 
 
     this.getName = function() {
