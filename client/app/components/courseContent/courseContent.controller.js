@@ -1,10 +1,10 @@
 class CourseContentController {
-  constructor() {
+  constructor($log) {
     "ngInject";
     this.name = 'courseContent';
 
-    console.log('CourseContentController:: data=', this.data );
-    console.log('CourseContentController:: content=', this.content );
+    $log.log('CourseContentController:: data=', this.data );
+    $log.log('CourseContentController:: content=', this.content );
 
 
   }

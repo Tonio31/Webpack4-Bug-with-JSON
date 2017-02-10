@@ -8,8 +8,6 @@ import { moveMenu, offCanvasListBugfixDef, menuItem } from './navbar.directive';
 
 require('angular-foundation');
 
-var $stateProviderRef;
-
 let navbarModule = angular.module('navbar', [
   uiRouter,
   ResourceFactory,
@@ -17,22 +15,6 @@ let navbarModule = angular.module('navbar', [
   globalVariable,
   'mm.foundation'
 ])
-  .config(($stateProvider) => {
-    "ngInject";
-
-    console.log("navbarModule:: config BEGIN");
-    $stateProviderRef = $stateProvider;
-    console.log("navbarModule:: config END");
-  })
-  .run( ($log, Data, Menu) => {
-    "ngInject";
-    $log.log("navbarModule::run() BEGIN");
-
-
-
-    $log.log("navbarModule::END OF run() - END");
-  })
-
   .component('navbar', navbarComponent)
   .directive('menuItem', menuItem )
   .directive('offCanvasListBugfix', offCanvasListBugfixDef )

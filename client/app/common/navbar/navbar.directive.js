@@ -48,7 +48,7 @@ let moveMenu = function () {
 };
 
 
-let menuItem = function ($log) {
+let menuItem = function () {
   "ngInject";
   return {
     require: '^offCanvasWrap',
@@ -70,7 +70,7 @@ let menuItem = function ($log) {
             <li ng-if="!hasChildren(child)" ng-click="hideCanvas(child)"><a ui-sref="{{child.fullUrl}}">{{child.title}}</a></li>
         </div>
     `,
-    compile: function (tElem, tAttrs) {
+    compile: function () {
       return {
         post: function ($scope, iElem, iAttrs, offCanvasWrap) {
 

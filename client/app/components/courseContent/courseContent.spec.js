@@ -1,49 +1,54 @@
 import CourseContentModule from './courseContent'
-import CourseContentController from './courseContent.controller';
-import CourseContentComponent from './courseContent.component';
-import CourseContentTemplate from './courseContent.html';
 
 describe('CourseContent', () => {
-  let $rootScope, makeController;
+  let $rootScope, $state, $location, $componentController, $compile;
 
   beforeEach(window.module(CourseContentModule));
-  beforeEach(inject((_$rootScope_) => {
-    $rootScope = _$rootScope_;
-    makeController = () => {
-      return new CourseContentController();
-    };
+  beforeEach(inject(($injector) => {
+    $rootScope = $injector.get('$rootScope');
+    $componentController = $injector.get('$componentController');
+    $state = $injector.get('$state');
+    $location = $injector.get('$location');
+    $compile = $injector.get('$compile');
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
+/*    it('courseContent component should be visible when navigates to /courseContent', () => {
+      $location.url('/');
+      $rootScope.$digest();
+      expect($state.current.component).to.eq('courseContent');
+    });*/
   });
 
   describe('Controller', () => {
     // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      let controller = makeController();
+    let controller;
+    beforeEach(() => {
+      controller = $componentController('courseContent', {
+        $scope: $rootScope.$new()
+      });
+    });
+
+    it('has a name property', () => { // erase if removing this.name from the controller
       expect(controller).to.have.property('name');
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(CourseContentTemplate).to.contain('this is our first content page');
+  describe('View', () => {
+    // view layer specs.
+    let scope, template;
+
+    beforeEach(() => {
+      scope = $rootScope.$new();
+      template = $compile('<course-content></course-content>')(scope);
+      scope.$apply();
     });
+
+    it('has name in template', () => {
+      expect(template.find('h3').html()).to.eq('this is our first content page');
+    });
+
   });
 
-  describe('Component', () => {
-      // component/directive specs
-      let component = CourseContentComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(CourseContentTemplate);
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(CourseContentController);
-      });
-  });
 });

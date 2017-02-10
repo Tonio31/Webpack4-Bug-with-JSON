@@ -2,7 +2,8 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import 'normalize.css';
-require('angular-foundation');
+// require('angular-foundation');
+import 'angular-foundation';
 
 //Potentialife module
 import Global from './globalVariables';

@@ -1,19 +1,18 @@
 
 class HomeController {
 
-  constructor($timeout, $translate, Data, UserInfo, Menu) {
+  constructor($log, $translate, Data, UserInfo, Menu) {
     "ngInject";
     this.name = 'home';
-    this.$timeout = $timeout;
 
-    console.log("TONIO This is executed");
+    $log.log("TONIO This is executed");
 
     this.firstName = UserInfo.getFirstName();
 
     this.myName = Data.getUser().name;
 
     this.resumeProgress = () => {
-      console.log("Resume Progress, change state to current step");
+      $log.log("Resume Progress, change state to current step");
     };
 
     this.nameFromUserFactory = "NOT WORKING";
@@ -28,7 +27,7 @@ class HomeController {
     };
 
     this.getAllUserData = () => {
-      console.log("this.getAllUserData");
+      $log.log("this.getAllUserData");
       let userInfo = {
         userid: 12
       };
@@ -37,22 +36,22 @@ class HomeController {
 
 
       this.nameFromUserFactory = Data.getUserData().get(userInfo, (test) => {
-        console.log("sucess test=", test);
+          $log.log("sucess test=", test);
       },
         (error) => {
-        console.log("error=", error);
+          $log.log("error=", error);
         });
       return;
     };
 
 
     this.getAllUserData2 = () => {
-      console.log("this.getAllUserData2");
+      $log.log("this.getAllUserData2");
       let data = UserInfo.get({}, (test) => {
-          console.log("sucess test=", test);
+          $log.log("sucess test=", test);
         },
         (error) => {
-          console.log("error=", error);
+          $log.log("error=", error);
         });
       return data;
     };

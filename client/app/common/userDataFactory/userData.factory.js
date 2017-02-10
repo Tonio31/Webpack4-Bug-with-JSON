@@ -1,4 +1,4 @@
-let UserData = function ($resource) {
+let UserData = function () {
   "ngInject";
 
   let user = {

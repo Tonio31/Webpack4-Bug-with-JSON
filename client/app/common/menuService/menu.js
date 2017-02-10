@@ -10,7 +10,7 @@ let menuModule = angular.module('menu', [
   globalVariable
 ])
 
-.service('Menu', MenuService)
+.factory('Menu', MenuService)
 
 .name;
 

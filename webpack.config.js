@@ -14,14 +14,22 @@ module.exports = {
     }
   },
   module: {
+    preLoaders: [
+      { test: /\.js$/, loader: 'eslint', exclude: [/app\/lib/, /node_modules/] }
+    ],
     loaders: [
       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate?add=true&single_quotes=true!babel' },
       { test: /\.html$/, loader: 'raw' },
       { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
       { test: /\.css$/, loader: 'style!css' },
       { test: /\.svg/, loader: 'svg-url-loader' },
-      { test: /\.json$/, loader: 'json-loader' }
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=1024' }
     ]
+  },
+  eslint: {
+    failOnWarning: false,
+    failOnError: true
   },
   plugins: [
     // Automatically move all modules defined outside of application directory to vendor bundle.

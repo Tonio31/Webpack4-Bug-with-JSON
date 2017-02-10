@@ -1,5 +1,5 @@
 class AboutController {
-  constructor($state) {
+  constructor() {
     "ngInject";
     var self = this;
     this.name = 'about';

@@ -27,9 +27,9 @@ let MenuService = function ( $log, $q, _, Data, UserInfo) {
   //                                           Public Interface
   //********************************************************************************************************
 
-  this.getMenu = () => menu;
+  let getMenu = () => menu;
 
-  this.getMenuPromise = () => {
+  let getMenuPromise = () => {
     let deferred = $q.defer();
 
     if ( _.isEmpty(menu.data) ) {
@@ -59,6 +59,10 @@ let MenuService = function ( $log, $q, _, Data, UserInfo) {
     return deferred.promise;
   };
 
+  return {
+    getMenu,
+    getMenuPromise
+  };
 };
 
 export default MenuService;
