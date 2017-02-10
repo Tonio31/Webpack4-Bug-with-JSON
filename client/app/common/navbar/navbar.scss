@@ -22,10 +22,17 @@ $canvasMenuLinkTextColor:  #FFFFFF;
     z-index: 99;
   }
 
+  .left-off-canvas-menu {
+    margin-top: $tabbar-height;
+  }
+
+
+  .off-canvas-wrap .inner-wrap{
+    min-height: 700px;
+  }
 
   .main-section {
-    margin-top: $tabbar-height;
-    padding-bottom: $tabbar-height;
+    padding-top: $tabbar-height;
     overflow-y: auto;
     height: 100%;
     width: 100%;
@@ -39,6 +46,20 @@ $canvasMenuLinkTextColor:  #FFFFFF;
       width: 100%;
     }
   }
+
+  //For desktop: We put a min-height to solve a bug with the menu (module menu item appearing in step section)
+  /*
+  @media #{$medium-up} {
+    .off-canvas-wrap,
+    .off-canvas-wrap .inner-wrap{
+      height: 100%;
+    }
+
+    .off-canvas-wrap{
+      height: 100%;
+    }
+  }
+  */
 
   .nav-links,
   .logo {

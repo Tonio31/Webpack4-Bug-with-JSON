@@ -16,13 +16,7 @@ angular.module('appMockBackEnd', [
 .run(function($log, $httpBackend) {
   "ngInject";
 
-  $httpBackend.whenGET(/\/potentialife-course\/cycle-\d+\/module-\d+\/step-\d+/).respond(function (method, url, data) {
-    $log.log("$httpBackend.whenGET('" + url + "')");
-    var content = require('./mockBackEndResponse/courseContent_step1.json');
-    return [200, content, {}];
-  });
-
-  $httpBackend.whenGET(/\/potentialife-course\/cycle-\d+\/lifemap/).respond(function (method, url, data) {
+  $httpBackend.whenGET(/\/potentialife-course\/cycle-\d+\/(module-\d+|lifemap)(\/step-\d+)?/).respond(function (method, url, data) {
     $log.log("$httpBackend.whenGET('" + url + "')");
     var content = require('./mockBackEndResponse/courseContent_step1.json');
     return [200, content, {}];

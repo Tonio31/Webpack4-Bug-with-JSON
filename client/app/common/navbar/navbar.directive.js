@@ -48,24 +48,45 @@ let moveMenu = function () {
 };
 
 
-let menuItem = function () {
+let menuItem = function ($log) {
   "ngInject";
   return {
     require: '^offCanvasWrap',
     restrict: 'E',
-    replace: true,
+    replace: false,
     scope: {
       item: '='
     },
     template: `
-        <a ui-sref="{{item.fullUrl}}">{{item.title}}</a>
+        <div ng-repeat="child in item.children track by child.id">
+            <li ng-if="hasChildren(child)" class="has-submenu" >
+              <a href="">{{child.title}}</a>
+              <ul class="left-submenu">
+                <li class="back"><a href="">Back {{child.title}}</a></li>
+                <li><label>{{child.title}}</label></li>
+                <menu-item item="child"></menu-item>
+              </ul>
+            </li>
+            <li ng-if="!hasChildren(child)" ng-click="hideCanvas(child)"><a ui-sref="{{child.fullUrl}}">{{child.title}}</a></li>
+        </div>
     `,
-    link: function ($scope, element, attrs, offCanvasWrap) {
-      element.on('click', function (e) {
-          offCanvasWrap.hide();
-      });
+    compile: function (tElem, tAttrs) {
+      return {
+        post: function ($scope, iElem, iAttrs, offCanvasWrap) {
+
+          $scope.hasChildren = function(iObject) {
+            return iObject.hasOwnProperty('children');
+          };
+
+          $scope.hideCanvas = function(iObject) {
+            if (!$scope.hasChildren(iObject)) {
+              offCanvasWrap.hide();
+            }
+          };
+        }
+      }
     }
-  };
+  }
 };
 
 
