@@ -2,7 +2,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import 'normalize.css';
-// require('angular-foundation');
+//import 'angular-log-enhancer';
 import 'angular-foundation';
 
 //Potentialife module
@@ -11,7 +11,7 @@ import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
 import NavBarComponent  from 'common/navbar/navbar';
-import MenuService from 'common/menuService/menu';
+import MenuService from 'common/menuFactory/menu';
 
 
 //This is a trick to be able to set up dynamic routing in run.
@@ -36,7 +36,8 @@ let appModule = angular.module('app', [
   })
   .run( ($log, Menu) => {
     "ngInject";
-    $log.log("app::RUN()");
+    $log = $log.getInstance("app::RUN()");
+    $log.log("Start");
 
     let states = [];
 
@@ -70,10 +71,9 @@ let appModule = angular.module('app', [
     };
 
     Menu.getMenuPromise().then( (menuData) => {
-      $log.log("app::RUN - menu retrieved successfully menuData=", menuData);
+      $log.log("Menu retrieved successfully");
 
       findFinalState(menuData);
-      $log.log("app::RUN states=", states);
 
       states.forEach(function(state) {
         $stateProviderRef.state(state);

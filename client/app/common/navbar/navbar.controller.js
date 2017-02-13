@@ -8,7 +8,7 @@ class NavbarController {
       $log.log("NavbarController::constructor()::$onInit - END");
     };
 
-    // This is a reference to the Menu stored in MenuService, When the menu is retrieved by app.js for
+    // This is a reference to the Menu stored in MenuFactory, When the menu is retrieved by app.js for
     // defining the states dynamically, we use it to display
     this.menu = Menu.getMenu();
 

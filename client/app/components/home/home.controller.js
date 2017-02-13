@@ -3,9 +3,11 @@ class HomeController {
 
   constructor($log, $translate, Data, UserInfo, Menu) {
     "ngInject";
-    this.name = 'home';
+    $log = $log.getInstance( "Home" );
 
-    $log.log("TONIO This is executed");
+
+
+    this.name = 'home';
 
     this.firstName = UserInfo.getFirstName();
 
@@ -27,7 +29,7 @@ class HomeController {
     };
 
     this.getAllUserData = () => {
-      $log.log("this.getAllUserData");
+      $log.log("this.getAllUserData", "  several arguments");
       let userInfo = {
         userid: 12
       };

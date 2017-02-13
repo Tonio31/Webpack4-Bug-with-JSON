@@ -37,7 +37,7 @@ describe('Home', () => {
       expect(controller.getName()).to.equal('Tonio');
     });
 
-    it('has a name from ResourceFactory factory', () => { // erase if removing this.name from the controller
+    it('has a name from LogDecoratorFactory factory', () => { // erase if removing this.name from the controller
       sinon.stub(Data, 'getUser', () => ({ name: "Stub is Working" }));
       expect(controller.getName()).to.equal('Stub is Working');
     });

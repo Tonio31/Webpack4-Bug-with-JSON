@@ -1,5 +1,8 @@
 let ResourceFactory = function ($log, $resource) {
   "ngInject";
+
+  $log = $log.getInstance("ResourceFactory");
+
   const user = {
     name: "Tonio"
   };
@@ -9,18 +12,18 @@ let ResourceFactory = function ($log, $resource) {
   };
 
   let getMenu = () => {
-    $log.log("ResourceFactory::getMenu");
+    $log.log("getMenu");
     return $resource('/menu/:userid', {userid: '@userid'});
   };
 
   let getUserData = () => {
-    $log.log("ResourceFactory::getUserData");
+    $log.log("getUserData");
     return $resource('/users/:userid', {userid: '@userid'});
   };
 
 
   let getCourseContent = (url) => {
-    $log.log("ResourceFactory::getCourseContent url=", url);
+    $log.log("getCourseContent url=", url);
     return $resource(url).get();
   };
 

@@ -1,6 +1,11 @@
 class AboutController {
-  constructor() {
+  constructor($log) {
     "ngInject";
+
+    $log = $log.getInstance( "AboutController" );
+
+    $log.log('Executing')
+
     var self = this;
     this.name = 'about';
     this.oneAtATime = true;

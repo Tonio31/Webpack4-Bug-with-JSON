@@ -1,9 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import aboutComponent from './about.component';
+import LogDecorator from 'common/logDecorator/logDecorator';
 
 let aboutModule = angular.module('about', [
-  uiRouter
+  uiRouter,
+  LogDecorator
 ])
 
 .config(($stateProvider) => {
@@ -16,7 +18,7 @@ let aboutModule = angular.module('about', [
 })
 
 .component('about', aboutComponent)
-  
+
 .name;
 
 export default aboutModule;

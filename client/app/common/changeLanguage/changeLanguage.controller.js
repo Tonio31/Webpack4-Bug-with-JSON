@@ -1,6 +1,9 @@
 class changeLanguageController {
   constructor($log, $translate) {
     "ngInject";
+
+    $log = $log.getInstance( "changeLanguageController" );
+
     this.name = 'changeLanguage';
 
     this.changeLang = function(iLang) {

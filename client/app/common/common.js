@@ -2,15 +2,17 @@ import angular from 'angular';
 import Navbar from './navbar/navbar';
 import ChangeLanguage from './changeLanguage/changeLanguage';
 import Hero from './hero/hero';
-import RessourceFactory from './resourceService/resource';
+import ResourceFactory from './resourceFactory/resource';
 import UserDataFactory from './userDataFactory/userData';
-import MenuService from './menuService/menu';
+import MenuService from './menuFactory/menu';
+import LogDecorator from './logDecorator/logDecorator';
 
 let commonModule = angular.module('app.common', [
   Navbar,
   ChangeLanguage,
   Hero,
-  RessourceFactory,
+  LogDecorator,
+  ResourceFactory,
   MenuService,
   UserDataFactory
 ])

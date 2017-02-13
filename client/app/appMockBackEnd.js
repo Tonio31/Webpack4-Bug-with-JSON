@@ -16,6 +16,8 @@ angular.module('appMockBackEnd', [
 .run(function($log, $httpBackend) {
   "ngInject";
 
+  $log = $log.getInstance("appMockBackEnd::RUN");
+
   $httpBackend.whenGET(/\/potentialife-course\/cycle-\d+\/(module-\d+|lifemap)(\/step-\d+)?/).respond(function (method, url) {
     $log.log("$httpBackend.whenGET('" + url + "')");
     let content = require('./mockBackEndResponse/courseContent_step1.json');

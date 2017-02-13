@@ -2,6 +2,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import changeLanguageComponent from './changeLanguage.component';
 
+import LogDecorator from 'common/logDecorator/logDecorator';
 
 //Angular Translate, everything needed for translations
 import angularTranslate from 'angular-translate';
@@ -19,6 +20,7 @@ import localeChinese from './languages/locale-cn.json';
 let ChangeLanguage = angular.module('changeLanguage', [
   uiRouter,
   angularTranslate,
+  LogDecorator,
   angularCookie,
   angularTranslateStorageCookie,
   angularTranslateStorageLocal,

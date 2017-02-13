@@ -1,5 +1,7 @@
-let MenuService = function ( $log, $q, _, Data, UserInfo) {
+let MenuFactory = function ( $log, $q, _, Data, UserInfo) {
   "ngInject";
+
+  $log = $log.getInstance( "MenuFactory" );
 
   // This will be the container for the menu object, a ref to this object is used in other module,
   // so it's important to never re-assign the top level object (to don't loose the reference to it)
@@ -34,21 +36,20 @@ let MenuService = function ( $log, $q, _, Data, UserInfo) {
 
     if ( _.isEmpty(menu.data) ) {
       //Get the menu from back end
-      $log.log("MenuService::getMenuPromise() - Menu is empty, retrieve it from the backend");
+      $log.log("getMenuPromise() - Menu is empty, retrieve it from the backend");
 
       Data.getMenu().get({userid: UserInfo.getUserid()},
         (menuData) => {
-          $log.log("MenuService::getMenuPromise() - Menu Retrieved successfully menuData=", menuData);
+          $log.log("getMenuPromise() - Menu Retrieved successfully");
 
           //For now, we only have one Potentialife course, so we pick the first item in the list
           menu.data = convertMenuData(menuData.data[0]);
 
-          $log.log("MenuService::getMenuPromise() - menu=", menu);
           deferred.resolve(menu.data);
         },
         (error) => {
 
-          $log.log("MenuService::getMenuPromise() - Error while retrieving Menu error=", error);
+          $log.log("getMenuPromise() - Error while retrieving Menu error=", error);
           deferred.resolve(error);
         });
     }
@@ -65,4 +66,4 @@ let MenuService = function ( $log, $q, _, Data, UserInfo) {
   };
 };
 
-export default MenuService;
+export default MenuFactory;
