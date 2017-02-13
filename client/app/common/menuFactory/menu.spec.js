@@ -1,9 +1,9 @@
 import MenuModule from './menu'
 
 describe('Menu', () => {
-    let $rootScope, Menu, Data, $location, $componentController, $compile, $q;
+    let Menu, Data, UserInfo;
+    let $rootScope, $location, $componentController, $compile, $q;
     let scope;
-    let mockGetMenu;
 
     var menuData = require('app/mockBackEndResponse/menu-1.json');
 
@@ -17,11 +17,13 @@ describe('Menu', () => {
         $compile = $injector.get('$compile');
         Menu = $injector.get('Menu');
         Data = $injector.get('Data');
+        UserInfo = $injector.get('UserInfo');
         $q = $injector.get('$q');
 
 
+        sinon.stub(UserInfo, 'getUserid', () => 12 );
 
-        mockGetMenu = sinon.stub(Data, 'getMenu', () => {
+        sinon.stub(Data, 'getMenu', () => {
 
           var myObj = {
             get: function(input, callback){

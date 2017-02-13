@@ -1,7 +1,7 @@
 import ChangeLanguageModule from './changeLanguage'
 
 describe('ChangeLanguage', () => {
-  let $rootScope, $state, $location, $componentController, $compile;
+  let $rootScope, $state, $location, $componentController, $compile, $translate;
 
   beforeEach(window.module(ChangeLanguageModule));
 
@@ -10,6 +10,7 @@ describe('ChangeLanguage', () => {
     $componentController = $injector.get('$componentController');
     $state = $injector.get('$state');
     $location = $injector.get('$location');
+    $translate = $injector.get('$translate');
     $compile = $injector.get('$compile');
   }));
 
@@ -20,15 +21,28 @@ describe('ChangeLanguage', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+    let spyTranslate;
+
     beforeEach(() => {
       controller = $componentController('changeLanguage', {
         $scope: $rootScope.$new()
       });
+
+      spyTranslate = sinon.spy($translate, 'use');
     });
 
-    it('has a name property', () => { // erase if removing this.name from the controller
+    it('has a name property', () => {
       expect(controller).to.have.property('name');
     });
+
+
+    it('Calls $translate.use() when invoking changeLang function', () => {
+      var lang = 'en';
+      controller.changeLang('en');
+
+      assert(spyTranslate.calledWith(lang), "translate service should have been called with 'en' argument");
+    });
+
   });
 
   describe('View', () => {
