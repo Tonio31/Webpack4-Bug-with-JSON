@@ -46,12 +46,14 @@ let MenuFactory = function ( $log, $q, _, Data, UserInfo) {
           menu.data = convertMenuData(menuData.data[0]);
 
           deferred.resolve(menu.data);
+          //deferred.reject(menu.data);
         },
         (error) => {
 
           $log.log("getMenuPromise() - Error while retrieving Menu error=", error);
-          deferred.resolve(error);
+          deferred.reject(error);
         });
+
     }
     else {
       deferred.resolve(menu.data);
