@@ -1,11 +1,13 @@
 class NavbarController {
   constructor( $log, _, Data, UserInfo, Menu) {
     "ngInject";
-    $log.log("NavbarController::constructor() - BEGIN");
+    $log = $log.getInstance("NavbarController");
+
+    $log.log("constructor() - BEGIN");
 
     this.$onInit = () => {
-      $log.log("NavbarController::constructor()::$onInit - BEGIN");
-      $log.log("NavbarController::constructor()::$onInit - END");
+      $log.log("constructor()::$onInit - BEGIN");
+      $log.log("constructor()::$onInit - END");
     };
 
     // This is a reference to the Menu stored in MenuFactory, When the menu is retrieved by app.js for
@@ -14,7 +16,7 @@ class NavbarController {
 
     this.companyName = 'Potentialife';
 
-    $log.log("NavbarController::constructor() - END");
+    $log.log("constructor() - END");
   }
 }
 

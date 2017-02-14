@@ -1,4 +1,4 @@
-let ResourceFactory = function ($log, $resource) {
+let ResourceFactory = function ($log, $q, $resource) {
   "ngInject";
 
   $log = $log.getInstance("ResourceFactory");
@@ -24,7 +24,20 @@ let ResourceFactory = function ($log, $resource) {
 
   let getCourseContent = (url) => {
     $log.log("getCourseContent url=", url);
-    return $resource(url).get();
+
+
+    let deferred = $q.defer();
+
+    $resource(url).get().$promise.then( function(data){
+      deferred.resolve(data);
+    },
+    function(error){
+      $log.log("getCourseContent error=", error);
+
+      deferred.reject(error);
+    });
+
+    return deferred.promise;
   };
 
 

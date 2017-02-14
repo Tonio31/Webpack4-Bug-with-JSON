@@ -41,12 +41,12 @@ describe('CourseContent', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<course-content></course-content>')(scope);
+      template = $compile('<course-dynamicContent></course-dynamicContent>')(scope);
       scope.$apply();
     });
 
     it('has name in template', () => {
-      expect(template.find('h3').html()).to.eq('this is our first content page');
+      expect(template.find('h3').html()).to.eq('this is our first dynamicContent page');
     });
 
   });

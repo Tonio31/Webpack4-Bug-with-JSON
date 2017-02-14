@@ -3,6 +3,8 @@
   <p>URL to this page: {{$ctrl.data.name}}</p>
   <p>Title of this page: {{$ctrl.data.title}}</p>
   <p>$ctrl.data: {{ $ctrl.data }}</p>
-  <span> Content retrieved from the server: {{$ctrl.content}}</span>
+  <br/>
+  <span> dynamicContent testtonio: </span><span ng-bind-html="$ctrl.testtonio"></span>
+  <button type="submit" ng-click="$ctrl.logDynamicContent()">logStuff</button>
 
 </div>

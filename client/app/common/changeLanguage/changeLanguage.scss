@@ -8,7 +8,7 @@ $flag-icon-square-path: '/1x1' !default;
 
 
 .changeLanguage {
-  height: 60px;
+  height: $changeLanguageHeight;
   background-color: $primaryColor;
 
   .flag-icon-background {

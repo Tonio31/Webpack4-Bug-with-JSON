@@ -59,7 +59,7 @@ let appModule = angular.module('app', [
               name: iMenu.fullUrl,
               title: iMenu.title
             }),
-            content: (Data) => {
+            dynamicContent: (Data) => {
               "ngInject";
               return Data.getCourseContent(iMenu.fullUrl);
             }

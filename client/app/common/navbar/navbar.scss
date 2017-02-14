@@ -1,6 +1,7 @@
 @import '../common';
 
 $canvasMenuLinkTextColor:  #FFFFFF;
+$fullHeight: 100%;
 
 .navbar {
   height: 100%;
@@ -24,11 +25,6 @@ $canvasMenuLinkTextColor:  #FFFFFF;
 
   .left-off-canvas-menu {
     margin-top: $tabbar-height;
-  }
-
-
-  .off-canvas-wrap .inner-wrap{
-    min-height: 700px;
   }
 
   .main-section {

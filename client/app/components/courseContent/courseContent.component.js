@@ -6,7 +6,7 @@ let courseContentComponent = {
   restrict: 'E',
   bindings: {
     data: '<',
-    content: '<'
+    dynamicContent: '<'
   },
   template,
   controller
