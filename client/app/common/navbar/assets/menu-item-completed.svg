@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Tick Copy 33</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Nav/Complete" transform="translate(-13.000000, -14.000000)">
+            <g id="Group-13-Copy-4">
+                <g id="Tick-Copy-33" transform="translate(14.000000, 15.000000)">
+                    <g id="Group-4-Copy-3" transform="translate(15.000000, 15.000000) rotate(180.000000) translate(-15.000000, -15.000000) " stroke="#6CAD58" fill="#FFFFFF">
+                        <ellipse id="Oval-3-Copy-2" cx="15" cy="15" rx="15" ry="15"></ellipse>
+                    </g>
+                    <g id="Layer_1-Copy" transform="translate(5.000000, 8.000000)" fill="#6CAD58">
+                        <path d="M19.1940474,1.45395349 L18.3029297,0.58622093 C17.6815655,-0.0188372093 16.6750951,-0.0204069767 16.0551638,0.582906977 L7.0040952,9.39680233 L3.64758189,6.12837209 C3.02800883,5.52488372 2.02153846,5.52662791 1.39981597,6.13203488 L0.508877438,6.99959302 C-0.112665931,7.60482558 -0.114457122,8.58488372 0.505295056,9.18837209 L5.87510735,14.4169186 C6.18695375,14.7205814 6.59624095,14.8707558 7.00534904,14.868314 C7.41356153,14.8702326 7.82195313,14.7197093 8.13326218,14.4165698 L19.1976297,3.64255814 C19.8172028,3.03906977 19.8161281,2.05936047 19.1940474,1.45395349 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

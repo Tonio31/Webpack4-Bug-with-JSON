@@ -57,19 +57,7 @@ let menuItem = function () {
     scope: {
       item: '='
     },
-    template: `
-        <div ng-repeat="child in item.children track by child.id">
-            <li ng-if="hasChildren(child)" class="has-submenu" >
-              <a href="">{{child.title}}</a>
-              <ul class="left-submenu">
-                <li class="back"><a href="">Back {{child.title}}</a></li>
-                <li><label>{{child.title}}</label></li>
-                <menu-item item="child"></menu-item>
-              </ul>
-            </li>
-            <li ng-if="!hasChildren(child)" ng-click="hideCanvas(child)"><a ui-sref="{{child.fullUrl}}">{{child.title}}</a></li>
-        </div>
-    `,
+    template: require('./navbar.menuItem.template.html'),
     compile: function () {
       return {
         post: function ($scope, iElem, iAttrs, offCanvasWrap) {
@@ -78,11 +66,10 @@ let menuItem = function () {
             return iObject.hasOwnProperty('children');
           };
 
-          $scope.hideCanvas = function(iObject) {
-            if (!$scope.hasChildren(iObject)) {
+          $scope.hideCanvas = function() {
               offCanvasWrap.hide();
-            }
           };
+
         }
       }
     }
@@ -90,5 +77,36 @@ let menuItem = function () {
 };
 
 
+let menuButton = function () {
+  "ngInject";
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      data: '='
+    },
+    template: `
+      <div class="menu-button row small-collapse">
+        <div class="small-2 columns">
+          <span class="pl-menu-button"></span>
+        
+        </div>
+        <div class="small-10 columns">
+            <p class="top-title">{{data.title}}</p>
+            <p class="main-title">{{data.name}}</p>
+            <p class="below-title">{{data.description}}</p>
+          </div>
+      </div>
+    `,
+    link: function ($scope, element) {
 
-export { offCanvasListBugfixDef, moveMenu, menuItem };
+      angular.element(element).addClass($scope.data.status);
+    }
+  }
+};
+
+
+
+
+
+export { offCanvasListBugfixDef, moveMenu, menuItem, menuButton };

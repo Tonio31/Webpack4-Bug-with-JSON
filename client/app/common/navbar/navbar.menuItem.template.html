@@ -1,0 +1,14 @@
+
+<div ng-repeat="child in item.children track by child.id">
+  <li ng-if="hasChildren(child)" class="has-submenu" >
+    <a href=""><menu-button data="child"></menu-button></a>
+    <ul class="left-submenu">
+      <li class="back"><a href="">Back {{child.title}}</a></li>
+      <li><label>{{child.title}}</label></li>
+      <menu-item item="child"></menu-item>
+    </ul>
+  </li>
+  <li ng-if="!hasChildren(child)" ng-click="hideCanvas()">
+    <a ui-sref="{{child.fullUrl}}"><menu-button data="child"></menu-button></a>
+  </li>
+</div>
