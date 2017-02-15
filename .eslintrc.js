@@ -20,7 +20,7 @@ module.exports = exports = {
     "require": true
   },
   "rules": {
-    /*"accessor-pairs": [
+    "accessor-pairs": [
       ERROR, {
         "getWithoutSet": false,
         "setWithoutGet": true
@@ -43,18 +43,23 @@ module.exports = exports = {
     "guard-for-in": WARN,
     "handle-callback-err": WARN,
     "init-declarations": [ERROR, "always"],
+    "keyword-spacing": [
+      WARN, {
+        "before": true,
+        "after": true
+      }
+    ],
     "no-alert": ERROR,
-    "no-arrow-condition": ERROR,
     "no-caller": ERROR,
     "no-case-declarations": WARN,
     "no-catch-shadow": WARN,
+    "no-confusing-arrow": [ ERROR, {"allowParens": false}],
     "no-class-assign": ERROR,
     "no-const-assign": ERROR,
     "no-delete-var": ERROR,
     "no-div-regex": WARN,
     "no-dupe-class-members": ERROR,
     "no-else-return": WARN,
-    "no-empty-label": WARN,
     "no-empty-pattern": WARN,
     "no-eq-null": WARN,
     "no-eval": ERROR,
@@ -134,7 +139,7 @@ module.exports = exports = {
 // Style
     "array-bracket-spacing": [WARN, "always"],
     "block-spacing": [WARN, "always"],
-    "brace-style": [WARN, "1tbs", {"allowSingleLine": false}],
+    "brace-style": [WARN, "stroustrup", {"allowSingleLine": true}],
     "camelcase": WARN,
     "comma-spacing": [WARN, {"before": false, "after": true}],
     "comma-style": [WARN, "last"],
@@ -142,9 +147,9 @@ module.exports = exports = {
     "consistent-this": [WARN, "self"],
     "eol-last": WARN,
     "func-names": OFF,
-    "func-style": [WARN, "declaration"],
+    "func-style": [WARN, "expression"],
     "id-length": [WARN, {"min": 2, "max": 32}],
-    "indent": [WARN, 4],
+    "indent": [WARN, 2],
     "linebreak-style": OFF, // git fixes this for us on checkin
     "lines-around-comment": OFF,
     "max-depth": [WARN, 8],
@@ -173,25 +178,25 @@ module.exports = exports = {
     "one-var": OFF,
     "operator-assignment": [WARN, "never"],
     "operator-linebreak": [WARN, "after"],
-    "padded-blocks": [WARN, "never"],
+    "padded-blocks": OFF,
     "quote-props": [WARN, "consistent-as-needed"],
-    "quotes": [WARN, "single"],
+    "quotes": [WARN, "single", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }],
     "semi-spacing": [WARN, {"before": false, "after": true}],
     "semi": [ERROR, "always"],
     "sort-vars": OFF,
-    "space-after-keywords": [WARN, "always"],
     "space-before-blocks": [WARN, "always"],
     "space-before-function-paren": [WARN, {"anonymous": "always", "named": "never"}],
-    "space-before-keywords": [WARN, "always"],
-    "space-in-parens": [WARN, "never"],
+    "space-in-parens": OFF,
     "space-infix-ops": [WARN, {"int32Hint": true}],
-    "space-return-throw-case": ERROR,
     "space-unary-ops": ERROR,
     "spaced-comment": [WARN, "always"],
     "wrap-regex": WARN,
 // JSDoc Requirements
     "require-jsdoc": [
-      WARN, {
+      OFF, {
         "require": {
           "FunctionDeclaration": true,
           "MethodDefinition": true,
@@ -200,7 +205,7 @@ module.exports = exports = {
       }
     ],
     "valid-jsdoc": [
-      ERROR, {
+      OFF, {
         "requireReturn": true,
         "requireReturnDescription": true,
         "requireParamDescription": true,
@@ -208,6 +213,6 @@ module.exports = exports = {
           "return": "returns"
         }
       }
-    ]*/
+    ]
   }
 };

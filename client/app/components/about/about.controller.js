@@ -1,30 +1,31 @@
 class AboutController {
   constructor($log) {
-    "ngInject";
+    'ngInject';
 
-    $log = $log.getInstance( "AboutController" );
+    // eslint-disable-next-line no-param-reassign
+    $log = $log.getInstance( 'AboutController' );
 
-    $log.log('Executing')
+    $log.log('Executing');
 
-    var self = this;
+    let self = this;
     this.name = 'about';
     this.oneAtATime = true;
 
     this.groups = [
       {
-        title: "Dynamic Group Header - 1",
-        content: "Dynamic Group Body - 1"
+        title: 'Dynamic Group Header - 1',
+        content: 'Dynamic Group Body - 1'
       },
       {
-        title: "Dynamic Group Header - 2",
-        content: "Dynamic Group Body - 2"
+        title: 'Dynamic Group Header - 2',
+        content: 'Dynamic Group Body - 2'
       }
     ];
 
-    this.items = ['Item 1', 'Item 2', 'Item 3'];
+    this.items = [ 'Item 1', 'Item 2', 'Item 3' ];
 
-    this.addItem = function() {
-      var newItemNo = self.items.length + 1;
+    this.addItem = () => {
+      let newItemNo = self.items.length + 1;
       self.items.push('Item ' + newItemNo);
     };
   }

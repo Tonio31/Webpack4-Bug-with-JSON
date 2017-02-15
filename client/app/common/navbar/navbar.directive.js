@@ -77,7 +77,7 @@ let menuItem = function () {
 };
 
 
-let menuButton = function () {
+let menuButton = function ($log) {
   "ngInject";
   return {
     restrict: 'E',
@@ -101,6 +101,19 @@ let menuButton = function () {
     link: function ($scope, element) {
 
       angular.element(element).addClass($scope.data.status);
+
+      // This will be used to change the icon on the left side of the menu, this way we just need to
+      // update our menu inside menuFactory and the changes are propagated automatically
+      $scope.$watch('data.status', function(newValue, oldValue) {
+        if ( newValue !== oldValue ) {
+          angular.element(element).removeClass(oldValue);
+          angular.element(element).addClass(newValue);
+
+          $log.log('The value has changed, oldValue=', oldValue, '   newValue=', newValue);
+        }
+      }, false);
+
+
     }
   }
 };

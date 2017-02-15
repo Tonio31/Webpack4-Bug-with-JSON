@@ -11,9 +11,14 @@ let ResourceFactory = function ($log, $q, $resource) {
     return user;
   };
 
-  let getMenu = () => {
+  let getMenu = (iForceRetrieve) => {
     $log.log("getMenu");
-    return $resource('/menu/:userid', {userid: '@userid'});
+    if ( iForceRetrieve ) {
+      return $resource('/menu2/:userid', {userid: '@userid'});
+    }
+    else {
+      return $resource('/menu/:userid', {userid: '@userid'});
+    }
   };
 
   let getUserData = () => {
@@ -40,8 +45,13 @@ let ResourceFactory = function ($log, $q, $resource) {
     return deferred.promise;
   };
 
+  //This resource funciton is to be used with $save method only, because we return an instance of the function
+  //we can't use it to do get method
+  let updateStep = () => {
+    return new ($resource('/stepcompleted/:stepid', {stepid: '@stepid'}))();
+  }
 
-  return { getUser, getMenu, getUserData, getCourseContent };
+  return { getUser, getMenu, getUserData, getCourseContent, updateStep };
 };
 
 export default ResourceFactory;

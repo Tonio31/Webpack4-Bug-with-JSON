@@ -1,7 +1,7 @@
 
 class HomeController {
 
-  constructor($log, $translate, Data, UserInfo, Menu) {
+  constructor($log, $resource, $http, $translate, Data, UserInfo, Menu) {
     "ngInject";
     $log = $log.getInstance( "Home" );
 
@@ -16,6 +16,36 @@ class HomeController {
     this.resumeProgress = () => {
       $log.log("Resume Progress, change state to current step");
     };
+
+    this.updateStep = () => {
+      //Menu.getMenuPromise(true);
+
+      //Menu.setStepCompleted('/potentialife-course/cycle-1/module-1/step-7');
+
+
+      var test = Data.updateStep();
+
+      //var dataToSend = new test();
+      test.something = "something to send";
+
+      $log.log('About to send the POST request');
+      test.$save(function(user, putResponseHeaders) {
+        //user => saved user object
+        //putResponseHeaders => $http header getter
+
+        var wtf = putResponseHeaders()
+
+        $log.log("wtf=", wtf);
+
+        $log.log(user);
+        $log.log(putResponseHeaders);
+      });
+
+    };
+
+
+
+
 
     this.nameFromUserFactory = "NOT WORKING";
     this.test = "NOT WORKINGvdsvsvdsvdssdvdvdvs";

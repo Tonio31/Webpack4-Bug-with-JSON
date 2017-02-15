@@ -25,20 +25,35 @@ let MenuFactory = function ( $log, $q, _, Data, UserInfo) {
     return ioMenuData;
   };
 
+  let findAndUpdateStatus = ( ioMenuData, iFullUrl, iNewStatus ) => {
+    if ( ioMenuData.fullUrl === iFullUrl ) {
+      ioMenuData.status = iNewStatus;
+    }
+    else {
+      if ( ioMenuData.hasOwnProperty('children') ) {
+        for( let child of ioMenuData.children ) {
+          findAndUpdateStatus(child, iFullUrl, iNewStatus);
+        }
+      }
+    }
+  }
+
+
   //********************************************************************************************************
   //                                           Public Interface
   //********************************************************************************************************
 
   let getMenu = () => menu;
 
-  let getMenuPromise = () => {
+  let getMenuPromise = ( iForceRetrieve ) => {
     let deferred = $q.defer();
 
-    if ( _.isEmpty(menu.data) ) {
+    if ( _.isEmpty(menu.data) || iForceRetrieve ) {
       //Get the menu from back end
       $log.log("getMenuPromise() - Menu is empty, retrieve it from the backend");
 
-      Data.getMenu().get({userid: UserInfo.getUserid()},
+      //iForceRetrieve not needed here, hack to test TONIO
+      Data.getMenu(iForceRetrieve).get({userid: UserInfo.getUserid()},
         (menuData) => {
           $log.log("getMenuPromise() - Menu Retrieved successfully");
 
@@ -46,7 +61,6 @@ let MenuFactory = function ( $log, $q, _, Data, UserInfo) {
           menu.data = convertMenuData(menuData.data[0]);
 
           deferred.resolve(menu.data);
-          //deferred.reject(menu.data);
         },
         (error) => {
 
@@ -62,9 +76,21 @@ let MenuFactory = function ( $log, $q, _, Data, UserInfo) {
     return deferred.promise;
   };
 
+
+  let setStepCompleted = (iFullUrl) => {
+    if ( angular.isDefined(iFullUrl) && !_.isEmpty(iFullUrl) ) {
+      findAndUpdateStatus(menu.data, iFullUrl, 'completed');
+    }
+    else {
+      throw "Trying to set a completed Step without specifying the fullUrl";
+    }
+  };
+
+
   return {
     getMenu,
-    getMenuPromise
+    getMenuPromise,
+    setStepCompleted
   };
 };
 
