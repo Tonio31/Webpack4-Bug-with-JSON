@@ -43,7 +43,7 @@ let appModule = angular.module('app', [
     let states = [];
 
     // Find all the menu that doesn't have children (no Submenu) and create a state from it
-    let findFinalState = function ( iMenu ) {
+    let findFinalState = function( iMenu ) {
 
       if ( iMenu.hasOwnProperty('children') ) {
         for ( let child of iMenu.children ) {

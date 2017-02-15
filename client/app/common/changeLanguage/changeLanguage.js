@@ -4,7 +4,7 @@ import changeLanguageComponent from './changeLanguage.component';
 
 import LogDecorator from 'common/logDecorator/logDecorator';
 
-//Angular Translate, everything needed for translations
+// Angular Translate, everything needed for translations
 import angularTranslate from 'angular-translate';
 import angularTranslateStorageLocal from 'angular-translate-storage-local';
 import angularTranslateStorageCookie from 'angular-translate-storage-cookie';
@@ -27,27 +27,28 @@ let ChangeLanguage = angular.module('changeLanguage', [
   angularTranslateLoaderStaticFiles
 ])
 .config(($translateProvider) => {
-  "ngInject";
+  'ngInject';
 
   $translateProvider.translations('en', localeEnglish)
     .translations('fr', localeFrench)
     .translations('sp', localeSpanish)
     .translations('cn', localeChinese)
-    .registerAvailableLanguageKeys(['en', 'cn', 'fr', 'sp'], {
-      'gb': 'en',
-      'es': 'sp'
+    .registerAvailableLanguageKeys([ 'en', 'cn', 'fr', 'sp' ], {
+      gb: 'en',
+      es: 'sp'
     })
-    //Other languages are stored in a json file
+    // Other languages are stored in a json file
     .useStaticFilesLoader({
       prefix: './languages/locale-',
       suffix: '.json'
     })
     .preferredLanguage('en')
-    //See http://angular-translate.github.io/docs/#/guide/19_security for more details about Sanitize
+    // See http://angular-translate.github.io/docs/#/guide/19_security for more details about Sanitize
     .useSanitizeValueStrategy('escape')
-    //If a translation is not available in any language we default to english (https://angular-translate.github.io/docs/#/guide/08_fallback-languages)
+    // If a translation is not available in any language we default to english
+    // (https://angular-translate.github.io/docs/#/guide/08_fallback-languages)
     .fallbackLanguage('en')
-    //Remember the choice of Language in the local storage
+    // Remember the choice of Language in the local storage
     .useLocalStorage();
 
 })

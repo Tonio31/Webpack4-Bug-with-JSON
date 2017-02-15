@@ -1,11 +1,11 @@
 
 class HomeController {
 
-  constructor($log, $resource, $http, $translate, Data, UserInfo, Menu) {
-    "ngInject";
-    $log = $log.getInstance( "Home" );
+  constructor($log, $translate, Data, UserInfo, Menu) {
+    'ngInject';
 
-
+    // eslint-disable-next-line no-param-reassign
+    $log = $log.getInstance( 'Home' );
 
     this.name = 'home';
 
@@ -14,28 +14,23 @@ class HomeController {
     this.myName = Data.getUser().name;
 
     this.resumeProgress = () => {
-      $log.log("Resume Progress, change state to current step");
+      $log.log('Resume Progress, change state to current step');
     };
 
     this.updateStep = () => {
-      //Menu.getMenuPromise(true);
+      let test = Data.updateStep();
 
-      //Menu.setStepCompleted('/potentialife-course/cycle-1/module-1/step-7');
-
-
-      var test = Data.updateStep();
-
-      //var dataToSend = new test();
-      test.something = "something to send";
+      // let dataToSend = new test();
+      test.something = 'something to send';
 
       $log.log('About to send the POST request');
-      test.$save(function(user, putResponseHeaders) {
-        //user => saved user object
-        //putResponseHeaders => $http header getter
+      test.$save( (user, putResponseHeaders) => {
+        // user => saved user object
+        // putResponseHeaders => $http header getter
 
-        var wtf = putResponseHeaders()
+        let wtf = putResponseHeaders();
 
-        $log.log("wtf=", wtf);
+        $log.log('wtf=', wtf);
 
         $log.log(user);
         $log.log(putResponseHeaders);
@@ -43,23 +38,18 @@ class HomeController {
 
     };
 
-
-
-
-
-    this.nameFromUserFactory = "NOT WORKING";
-    this.test = "NOT WORKINGvdsvsvdsvdssdvdvdvs";
-
+    this.nameFromUserFactory = 'NOT WORKING';
+    this.test = 'NOT WORKINGvdsvsvdsvdssdvdvdvs';
 
     this.nameFromMenuServuce = Menu.menu;
 
 
-    this.getName = function() {
+    this.getName = () => {
       return Data.getUser().name;
     };
 
     this.getAllUserData = () => {
-      $log.log("this.getAllUserData", "  several arguments");
+      $log.log('this.getAllUserData', '  several arguments');
       let userInfo = {
         userid: 12
       };
@@ -68,22 +58,22 @@ class HomeController {
 
 
       this.nameFromUserFactory = Data.getUserData().get(userInfo, (test) => {
-          $log.log("sucess test=", test);
+        $log.log('sucess test=', test);
       },
         (error) => {
-          $log.log("error=", error);
+          $log.log('error=', error);
         });
       return;
     };
 
 
     this.getAllUserData2 = () => {
-      $log.log("this.getAllUserData2");
+      $log.log('this.getAllUserData2');
       let data = UserInfo.get({}, (test) => {
-          $log.log("sucess test=", test);
-        },
+        $log.log('sucess test=', test);
+      },
         (error) => {
-          $log.log("error=", error);
+          $log.log('error=', error);
         });
       return data;
     };
@@ -92,10 +82,8 @@ class HomeController {
       this.headline = headline;
     })
       .catch( (translationId) => {
-      this.headline = translationId;
-    });
-
-
+        this.headline = translationId;
+      });
   }
 
 }

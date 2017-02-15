@@ -1,11 +1,11 @@
-let UserData = function () {
-  "ngInject";
+let UserData = function() {
+  'ngInject';
 
   let user = {
-    userid: "12",
-    securityToken: "dbhk&*&(dsh^£{}FDSgy26vU*(£^$Qbfb",
-    firstName: "Matthew",
-    lastName: ""
+    userid: '12',
+    securityToken: 'dbhk&*&(dsh^£{}FDSgy26vU*(£^$Qbfb',
+    firstName: 'Matthew',
+    lastName: ''
   };
 
 

@@ -1,15 +1,16 @@
 class changeLanguageController {
   constructor($log, $translate) {
-    "ngInject";
+    'ngInject';
 
-    $log = $log.getInstance( "changeLanguageController" );
+    // eslint-disable-next-line no-param-reassign
+    $log = $log.getInstance( 'changeLanguageController' );
 
     this.name = 'changeLanguage';
 
     this.changeLang = function(iLang) {
-      $log.log("Change language to " + iLang);
+      $log.log(`Change language to ${iLang}`);
       $translate.use(iLang);
-    }
+    };
   }
 }
 

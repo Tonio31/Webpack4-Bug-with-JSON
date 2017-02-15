@@ -1,18 +1,19 @@
+/* eslint-disable no-shadow */
+
 import angular from 'angular';
 
 let resourceServiceModule = angular.module('logDecorator', [
 ])
-  .config( function($provide){
-    "ngInject";
-    $provide.decorator("$log", function( $filter, $delegate) {
-      "ngInject";
+  .config( ($provide) => {
+    'ngInject';
+    $provide.decorator('$log', ( $filter, $delegate) => {
+      'ngInject';
 
 
-      var enchanceLoggerFn = function( $log ) {
+      let enchanceLoggerFn = ( $log ) => {
 
 
-        var _$log = (function( $log )
-        {
+        let _$log = ( ( $log ) => {
           return {
             log   : $log.log,
             info  : $log.info,
@@ -23,7 +24,7 @@ let resourceServiceModule = angular.module('logDecorator', [
         })( $log );
 
 
-        var concatenateArgs = function(args) {
+        let concatenateArgs = (args) => {
           let output = '';
           for (let arg of args) {
 
@@ -31,13 +32,13 @@ let resourceServiceModule = angular.module('logDecorator', [
               output += `${arg}`;
             }
             else if ( angular.isDate(arg) ) {
-              output += $filter('date')(arg, "yyyy/MM/dd HH:mm:ss.sss").toString();
+              output += $filter('date')(arg, 'yyyy/MM/dd HH:mm:ss.sss').toString();
             }
             else if ( angular.isObject(arg) ) {
               output += angular.toJson(arg);
             }
             else {
-              //Numbers, boolean, null, undefined
+              // Numbers, boolean, null, undefined
               output += `${arg}`;
             }
 
@@ -45,31 +46,32 @@ let resourceServiceModule = angular.module('logDecorator', [
           }
 
           return output;
-        }
+        };
 
 
         /**
          * Partial application to pre-capture a logger function
          */
-        var prepareLogFn = function( logFn, className  ) {
+        let prepareLogFn = ( logFn, className ) => {
 
-          className = angular.isDefined(className) ? className : "";
+          // eslint-disable-next-line no-param-reassign
+          className = angular.isDefined(className) ? className : '';
 
           /**
            * Invoke the specified `logFn<` with the supplant functionality...
            */
-          var enhancedLogFn = function () {
-            var args = Array.prototype.slice.call(arguments);
-            let now  = $filter('date')(new Date(), "yyyy/MM/dd HH:mm:ss.sss", "UTC/GMT").toString();
+          let enhancedLogFn = function() {
+            let args = Array.prototype.slice.call(arguments);
+            let now = $filter('date')(new Date(), 'yyyy/MM/dd HH:mm:ss.sss', 'UTC/GMT').toString();
 
-              // prepend a timestamp to the original output message
-            //args[0] = supplant("{0} - {1}{2}", [ now, className, args[0] ]);
+            // prepend a timestamp to the original output message
+            // args[0] = supplant('{0} - {1}{2}', [ now, className, args[0] ]);
             args[0] = `${now} - ${className}${args[0]}`;
 
 
             let test2 = concatenateArgs(args);
 
-            logFn.call( null,  test2 );
+            logFn( test2 );
           };
 
           // Special... only needed to support angular-mocks expectations
@@ -84,21 +86,22 @@ let resourceServiceModule = angular.module('logDecorator', [
          * @param name
          * @returns Object wrapper facade to $log
          */
-        let getInstance = function( className ) {
-          className = angular.isDefined(className) ? className + "::" : "";
+        let getInstance = ( className ) => {
+          // eslint-disable-next-line no-param-reassign
+          className = angular.isDefined(className) ? `${className}::` : '';
 
           return {
-            log   : prepareLogFn( _$log.log,    className ),
-            info  : prepareLogFn( _$log.info,   className ),
-            warn  : prepareLogFn( _$log.warn,   className ),
-            debug : prepareLogFn( _$log.debug,  className ),
-            error : prepareLogFn( _$log.error,  className )
+            log : prepareLogFn( _$log.log, className ),
+            info : prepareLogFn( _$log.info, className ),
+            warn : prepareLogFn( _$log.warn, className ),
+            debug : prepareLogFn( _$log.debug, className ),
+            error : prepareLogFn( _$log.error, className )
           };
         };
 
-        $log.log   = prepareLogFn( $log.log );
-        $log.info  = prepareLogFn( $log.info );
-        $log.warn  = prepareLogFn( $log.warn );
+        $log.log = prepareLogFn( $log.log );
+        $log.info = prepareLogFn( $log.info );
+        $log.warn = prepareLogFn( $log.warn );
         $log.debug = prepareLogFn( $log.debug );
         $log.error = prepareLogFn( $log.error );
 
@@ -106,9 +109,6 @@ let resourceServiceModule = angular.module('logDecorator', [
 
         return $log;
       };
-
-
-
 
       enchanceLoggerFn( $delegate );
 

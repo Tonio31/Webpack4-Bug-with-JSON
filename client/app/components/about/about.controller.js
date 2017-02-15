@@ -26,14 +26,9 @@ class AboutController {
 
     this.addItem = () => {
       let newItemNo = self.items.length + 1;
-      self.items.push('Item ' + newItemNo);
+      self.items.push(`Item ${newItemNo}`);
     };
   }
-
-
-
-
-
 
 }
 

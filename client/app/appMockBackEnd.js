@@ -1,5 +1,3 @@
-/* eslint-disable global-require*/
-
 // External Module
 import angular from 'angular';
 import 'angular-mocks/ngMockE2E';
