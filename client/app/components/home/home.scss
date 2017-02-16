@@ -1,8 +1,33 @@
+@import '../../common/common';
+
 .home {
 
+  .cycle {
+    width: 100%;
+    height: 100%;
+  }
 
-  a {
-    color: black;
+  @media #{$medium-up} {
+    .y-center-parent {
+      display: flex;
+      align-items: center;
+    }
+
+    .y-center-child {
+      align-self: center;
+    }
+
+    .left-padding {
+      padding-left: rem_calc(10px);
+    }
+
+    #faq {
+      padding-right: 0.5rem;
+    }
+
+    #support {
+      padding-left: 0.5rem;
+    }
   }
 }
 

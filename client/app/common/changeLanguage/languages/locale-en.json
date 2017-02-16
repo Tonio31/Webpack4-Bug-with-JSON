@@ -1,9 +1,11 @@
 {
   "WELCOME": "Welcome",
-  "YOUR_POTENTIALIFE_JOURNEY": "Your Potentialife Journey",
-  "RESUME_PROGRESS": "Resume Progress",
-
-
-  "TITLE": "Translation is working",
-  "ANOTHER_TEXT": "But is it really working"
+  "WATCH_YOURSELF_PROGRESS": "Watch yourself progress here",
+  "CURRENT_LOCATION": "Your current location",
+  "PARTICIPANT_REFLECTION": "Participants reflexion",
+  "FAQS": "FAQs",
+  "FAQS_TEXT": "Check from a number of trouble shooting topics",
+  "SUPPORT": "Support",
+  "SUPPORT_TEXT": "Send us an email if you can't find what you're looking for within FAQs",
+  "EMAIL_US": "Email us"
 }

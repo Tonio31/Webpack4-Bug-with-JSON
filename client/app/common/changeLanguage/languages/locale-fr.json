@@ -1,4 +1,11 @@
 {
-  "TITLE": "La Traduction en Francais marche tres bien",
-  "ANOTHER_TEXT": "Et je confirme que ca marche en francais"
+  "WELCOME": "Bienvenue",
+  "WATCH_YOURSELF_PROGRESS": "Regardez vos progrets ici",
+  "CURRENT_LOCATION": "Votre progression",
+  "PARTICIPANT_REFLECTION": "Reflexion des participants",
+  "FAQS": "FAQ",
+  "FAQS_TEXT": "Des reponses a toutes vos questions",
+  "SUPPORT": "Support",
+  "SUPPORT_TEXT": "Envoyez nous un mail si vous ne trouvez pas de reponse dans la FAQ",
+  "EMAIL_US": "Contactez-nous"
 }

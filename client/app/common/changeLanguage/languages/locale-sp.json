@@ -1,4 +1,11 @@
 {
-  "TITLE": "Como estad en la casa?",
-  "ANOTHER_TEXT": "Quiero un poco de carne por favor"
+  "WELCOME": "Bienvenido",
+  "WATCH_YOURSELF_PROGRESS": "Mira une cosa",
+  "CURRENT_LOCATION": "Votre progression",
+  "PARTICIPANT_REFLECTION": "Reflexion des participants",
+  "FAQS": "FAQ",
+  "FAQS_TEXT": "Des reponses a toutes vos questions",
+  "SUPPORT": "Support",
+  "SUPPORT_TEXT": "Envoyez nous un mail si vous ne trouvez pas de reponse dans la FAQ",
+  "EMAIL_US": "Contactez-nous"
 }

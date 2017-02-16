@@ -149,7 +149,9 @@ module.exports = exports = {
     "func-names": OFF,
     "func-style": [WARN, "expression"],
     "id-length": [WARN, {"min": 1, "max": 36}],
-    "indent": [WARN, 2],
+    "indent": [WARN, 2, {
+      "SwitchCase": 1
+    }],
     "linebreak-style": OFF, // git fixes this for us on checkin
     "lines-around-comment": OFF,
     "max-depth": [WARN, 8],
@@ -164,7 +166,11 @@ module.exports = exports = {
     "no-inline-comments": OFF,
     "no-lonely-if": WARN,
     "no-mixed-spaces-and-tabs": WARN,
-    "no-multiple-empty-lines": WARN,
+    "no-multiple-empty-lines": [WARN, {
+      "max": 3,
+      "maxBOF": 1,
+      "maxEOF": 1
+    }],
     "no-negated-condition": OFF,
     "no-nested-ternary": WARN,
     "no-new-object": WARN,

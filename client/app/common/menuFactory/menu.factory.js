@@ -10,6 +10,11 @@ let MenuFactory = function( $log, $q, _, Data, UserInfo) {
     data: {}
   };
 
+  let currentProgression = {
+    data: {}
+  };
+
+
   // Each menu item needs to contain the full URL to access it.
   // This is because the full URL is used as the state name
   let convertMenuData = ( ioMenuData, iUrl = '' ) => {
@@ -26,17 +31,6 @@ let MenuFactory = function( $log, $q, _, Data, UserInfo) {
     return ioMenuData;
   };
 
-  let findAndUpdateStatus = ( ioMenuData, iFullUrl, iNewStatus ) => {
-    if ( ioMenuData.fullUrl === iFullUrl ) {
-      ioMenuData.status = iNewStatus;
-    }
-    else if ( ioMenuData.hasOwnProperty('children') ) {
-      for ( let child of ioMenuData.children ) {
-        findAndUpdateStatus(child, iFullUrl, iNewStatus);
-      }
-    }
-  };
-
 
   // ********************************************************************************************************
   //                                           Public Interface
@@ -51,15 +45,18 @@ let MenuFactory = function( $log, $q, _, Data, UserInfo) {
 
     if ( _.isEmpty(menu.data) || iForceRetrieve ) {
       // Get the menu from back end
-      $log.log('getMenuPromise() - Menu is empty, retrieve it from the backend');
+      $log.log(`getMenuPromise() - Menu is empty or iForceRetrieve=true 
+                (iForceRetrieve=${iForceRetrieve}, retrieve it from the backend`);
 
       // iForceRetrieve not needed here, hack to test TONIO
-      Data.getMenu(iForceRetrieve).get({ userid: UserInfo.getUserid() },
+      Data.getMenu().get({ userid: UserInfo.getUserid() },
         (menuData) => {
           $log.log('getMenuPromise() - Menu Retrieved successfully');
 
           // For now, we only have one Potentialife course, so we pick the first item in the list
-          menu.data = convertMenuData(menuData.data[0]);
+          menu.data = convertMenuData(menuData.menudata[0]);
+
+          currentProgression.data = menuData.current_progression;
 
           deferred.resolve(menu.data);
         },
@@ -77,21 +74,14 @@ let MenuFactory = function( $log, $q, _, Data, UserInfo) {
     return deferred.promise;
   };
 
-
-  let setStepCompleted = (iFullUrl) => {
-    if ( angular.isDefined(iFullUrl) && !_.isEmpty(iFullUrl) ) {
-      findAndUpdateStatus(menu.data, iFullUrl, 'completed');
-    }
-    else {
-      throw new Error('Trying to set a completed Step without specifying the fullUrl');
-    }
+  let getCurrentProgression = () => {
+    return currentProgression;
   };
-
 
   return {
     getMenu,
     getMenuPromise,
-    setStepCompleted
+    getCurrentProgression
   };
 };
 

@@ -7,7 +7,39 @@
   "prev_page_url":null,
   "from":1,
   "to":1,
-  "data":[
+  "current_progression":{
+    "current_cycle": {
+      "id":2,
+      "title":"Cycle 1",
+      "name":"Unfreze",
+      "fullUrl": "/potentialife-course/cycle-1",
+      "description":"10 \/ 10 Modules",
+      "slug":"cycle-1",
+      "order":1,
+      "status":"current"
+    },
+    "current_module": {
+      "id":5,
+      "title":"MODULE 1",
+      "name":"Encounter Strengths",
+      "fullUrl": "/potentialife-course/cycle-1/module-1",
+      "description":"Approx. 3 mins",
+      "slug":"module-1",
+      "order":1,
+      "status":"current"
+    },
+    "current_step": {
+      "id":7,
+      "title":"Step 7",
+      "name":"Exercise: The VIA strengths diagnostic",
+      "fullUrl": "/potentialife-course/cycle-1/module-1/step-7",
+      "description":"Approx. 12 mins",
+      "slug":"step-7",
+      "order":6,
+      "status":"current"
+    }
+  },
+  "menudata":[
     {
       "id":1,
       "title":"",
@@ -32,7 +64,7 @@
               "description":"7 DAYS",
               "slug":"lifemap",
               "order":0,
-              "status":"locked"
+              "status":"completed"
             },
             {
               "id":5,

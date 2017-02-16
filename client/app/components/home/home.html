@@ -1,38 +1,89 @@
-<div class="home">
+<div class="home row collapse">
 
-  <h1>Potentialife</h1>
-  <h3>{{ 'WELCOME' | translate }} {{$ctrl.firstName}}</h3>
-  <h5>{{ 'YOUR_POTENTIALIFE_JOURNEY' | translate }}</h5>
-
-  <button type="submit" ng-click="$ctrl.resumeProgress()">{{ 'RESUME_PROGRESS' | translate }}</button>
-  <button type="submit" ng-click="$ctrl.updateStep()">Update Step</button>
+  <div class="small-12 medium-8 small-centered columns">
+    <h1 class="text-center">{{ 'WELCOME' | translate }} {{$ctrl.firstName}}!</h1>
+    <h4 class="text-center">{{ 'WATCH_YOURSELF_PROGRESS' | translate }}</h4>
 
 
+    <div class="row collapse">
+      <div class="columns medium-4" ng-class="{'show-for-medium-up': cycle.status !== 'current'}" ng-repeat="cycle in $ctrl.menu.data.children track by cycle.id">
+        <div class="cycle text-center">
+          <div>
+            <p>Here will be displayed the doughout chart</p>
+          </div>
+          <h4>{{cycle.title | uppercase }}</h4>
+          <h3>{{cycle.name}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="row grey-bg collapse text-center">
+      <div class="columns small-12">
+        <h4>{{'CURRENT_LOCATION' | translate }}</h4>
+        <div class="show-for-small-only">
+          <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}</h3>
+          <h3>{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
+        </div>
+        <div class="show-for-medium-up">
+          <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}&nbsp;<span>&#x25CF;</span>&nbsp;{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
+        </div>
+        <button class="button radius success" type="submit" ng-click="$ctrl.resumeProgress()">
+          {{$ctrl.currentProgression.data.current_step.title | uppercase}} &#x25CF; {{$ctrl.currentProgression.data.current_step.name | uppercase}}
+        </button>
+
+      </div>
+    </div>
 
 
-  <p>This is a really long line, so we can see how it behaves when some text are longer than the screen size. Fun Fact: In the USA, there are more Chinese restaurants than all the McDonald’s, KFCs, Burger Kings and Wendy’s put together.</p>
-  <p>I'm testing the menu service: {{ $ctrl.nameFromMenuServuce }}</p>
-  <p>I'm testing the menu service function: {{ $ctrl.nameFromMenuServiceFunction }}</p>
-  <p>I'm testing the translate module: {{ $ctrl.headline }}</p>
-  <p>I'm testing for the second time the translate module: {{ 'ANOTHER_TEXT' | translate }}</p>
-  <p>Testing Integration with User Factory name={{$ctrl.myName}}</p>
+    <div class="row collapse">
+      <div class="columns small-12">
 
-  <p>Name from User Factory with Mock BackEnd = {{$ctrl.nameFromUserFactory}}</p>
-  <p>Name for test = {{$ctrl.test}}</p>
-  <p><a class="bold" ui-sref="/potentialife-course/cycle-2/module-11">module 11</a></p>
-  <button type="submit" ng-click="$ctrl.getAllUserData()">resource</button>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>etsts</h1>
-  <h1>Last one</h1>
+        <div class="row collapse">
+          <div class="columns small-12">
+            <h4>{{'PARTICIPANT_REFLECTION' | translate }}</h4>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="columns small-12">
+            <div class="row grey-bg collapse y-center-parent">
+
+              <div class="columns small-12 medium-2 medium-push-10 y-center-child">
+                <div class="left-padding">
+                  Picture of someone
+                </div>
+              </div>
+
+              <div class="columns small-12 medium-10 medium-pull-2">
+                <div><h3 class="quote text-justify">{{$ctrl.quote}}</h3></div>
+                <div class="text-center"><h3 class="quote-signature">{{$ctrl.dynamicContent.data.quoteNameGuy}}</h3></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="row collapse">
+        <div id="faq" class="small-12 medium-6 columns medium-margin-right">
+          <h4>{{'FAQS' | translate }}</h4>
+          <div class="grey-bg">
+            <p>{{'FAQS_TEXT' | translate }}</p>
+            <button class="radius secondary expand" type="submit" ng-click="$ctrl.goToFAQs()">{{'FAQS' | translate }}</button>
+
+          </div>
+        </div>
+        <div id="support" class="small-12 medium-6 columns medium-margin-left">
+          <h4>{{'SUPPORT' | translate }}</h4>
+          <div class="grey-bg">
+            <p>{{'SUPPORT_TEXT' | translate }}</p>
+            <button class="radius secondary expand" type="submit" ng-click="$ctrl.sendUsEmail()">{{'EMAIL_US' | translate }}</button>
+          </div>
+        </div>
+    </div>
+  </div>
 
 </div>

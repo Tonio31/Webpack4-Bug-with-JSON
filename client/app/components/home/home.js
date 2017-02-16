@@ -23,7 +23,13 @@ let homeModule = angular.module('home', [
   $stateProvider
     .state('home', {
       url: '/',
-      component: 'home'
+      component: 'home',
+      resolve: {
+        dynamicContent: (Data) => {
+          'ngInject';
+          return Data.getHomeContent();
+        }
+      }
     });
 })
 

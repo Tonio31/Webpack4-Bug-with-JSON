@@ -1,89 +1,49 @@
 
 class HomeController {
 
-  constructor($log, $translate, Data, UserInfo, Menu) {
+  constructor($log, $translate, $state, $sce, Data, UserInfo, Menu) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'Home' );
 
+
+    $log.log('constructor::Start');
+
     this.name = 'home';
 
     this.firstName = UserInfo.getFirstName();
+    this.currentProgression = Menu.getCurrentProgression();
+    this.menu = Menu.getMenu();
 
-    this.myName = Data.getUser().name;
 
     this.resumeProgress = () => {
-      $log.log('Resume Progress, change state to current step');
+      let currentStepUrl = Menu.getCurrentProgression().data.current_step.fullUrl;
+      $log.log(`Resume Progress, change state to current step: ${currentStepUrl}`);
+      $state.go(currentStepUrl);
     };
 
-    this.updateStep = () => {
-      let test = Data.updateStep();
+    $log.log('dynamicContent=', this.dynamicContent);
+    this.$onInit = () => {
+      $log.log('constructor()::$onInit - BEGIN');
 
-      // let dataToSend = new test();
-      test.something = 'something to send';
+      $log.log('dynamicContent=', this.dynamicContent);
 
-      $log.log('About to send the POST request');
-      test.$save( (user, putResponseHeaders) => {
-        // user => saved user object
-        // putResponseHeaders => $http header getter
+      this.quote = this.dynamicContent.data.quote;
 
-        let wtf = putResponseHeaders();
-
-        $log.log('wtf=', wtf);
-
-        $log.log(user);
-        $log.log(putResponseHeaders);
-      });
-
-    };
-
-    this.nameFromUserFactory = 'NOT WORKING';
-    this.test = 'NOT WORKINGvdsvsvdsvdssdvdvdvs';
-
-    this.nameFromMenuServuce = Menu.menu;
-
-
-    this.getName = () => {
-      return Data.getUser().name;
-    };
-
-    this.getAllUserData = () => {
-      $log.log('this.getAllUserData', '  several arguments');
-      let userInfo = {
-        userid: 12
-      };
-
-      this.test = Data.getUserData().get(userInfo);
-
-
-      this.nameFromUserFactory = Data.getUserData().get(userInfo, (test) => {
-        $log.log('sucess test=', test);
-      },
-        (error) => {
-          $log.log('error=', error);
-        });
-      return;
+      $log.log('constructor()::$onInit - END');
     };
 
 
-    this.getAllUserData2 = () => {
-      $log.log('this.getAllUserData2');
-      let data = UserInfo.get({}, (test) => {
-        $log.log('sucess test=', test);
-      },
-        (error) => {
-          $log.log('error=', error);
-        });
-      return data;
+    this.goToFAQs = () => {
+      $log.log('goToFAQs()');
     };
 
-    $translate('TITLE').then( (headline) => {
-      this.headline = headline;
-    })
-      .catch( (translationId) => {
-        this.headline = translationId;
-      });
+
+    this.sendUsEmail = () => {
+      $log.log('sendUsEmail()');
+    };
+
   }
 
 }
