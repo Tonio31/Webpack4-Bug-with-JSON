@@ -24,10 +24,16 @@ describe('CourseContent', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+    let bindings = {
+      content: {
+        data:'test'
+      }
+    };
+
     beforeEach(() => {
       controller = $componentController('courseContent', {
-        $scope: $rootScope.$new()
-      });
+        $scope: $rootScope.$new(),
+      }, bindings);
     });
 
     it('has a name property', () => { // erase if removing this.name from the controller
@@ -41,12 +47,17 @@ describe('CourseContent', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<course-dynamicContent></course-dynamicContent>')(scope);
+      scope.content = require('app/mockBackEndResponse/courseContent_step1.json');
+      scope.data = {
+        name: '/potentialife-course/cycle-1/module-1/step-7',
+        title: 'Step 7'
+      };
+      template = $compile('<course-content content="content" data="data"></course-content>')(scope);
       scope.$apply();
     });
 
-    it('has name in template', () => {
-      expect(template.find('h3').html()).to.eq('this is our first dynamicContent page');
+    it('has h3 title in page', () => {
+      expect(template.find('h3').html()).to.eq('this is our first content page');
     });
 
   });

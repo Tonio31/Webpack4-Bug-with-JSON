@@ -10,11 +10,10 @@ class HomeController {
 
     $log.log('constructor::Start');
 
-    this.name = 'home';
-
     this.firstName = UserInfo.getFirstName();
     this.currentProgression = Menu.getCurrentProgression();
     this.menu = Menu.getMenu();
+    this.quote = this.content;
 
 
     this.resumeProgress = () => {
@@ -23,13 +22,12 @@ class HomeController {
       $state.go(currentStepUrl);
     };
 
-    $log.log('dynamicContent=', this.dynamicContent);
     this.$onInit = () => {
       $log.log('constructor()::$onInit - BEGIN');
 
-      $log.log('dynamicContent=', this.dynamicContent);
+      $log.log('dynamicContent=', this.content);
 
-      this.quote = this.dynamicContent.data.quote;
+      this.quote = this.content.data.quote;
 
       $log.log('constructor()::$onInit - END');
     };
