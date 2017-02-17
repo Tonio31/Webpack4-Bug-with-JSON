@@ -10,9 +10,9 @@ class CourseContentController {
     this.$onInit = () => {
       $log.log('constructor()::$onInit - BEGIN');
 
-      $log.log('dynamicContent=', this.dynamicContent);
+      $log.log('dynamicContent=', this.content);
 
-      this.testtonio = $sce.trustAsHtml(this.dynamicContent.data.content);
+      this.testtonio = $sce.trustAsHtml(this.content.data.content);
 
       $log.log('constructor()::$onInit - END');
     };
@@ -21,7 +21,7 @@ class CourseContentController {
     this.nextStep = () => {
       let postData = Data.updateStep();
 
-      postData.stepId = this.dynamicContent.data.id;
+      postData.stepId = this.content.data.id;
       postData.tokenId = UserInfo.getSecurityToken();
 
       postData.$save( (dataBackFromServer, postResponseHeadersFn) => {

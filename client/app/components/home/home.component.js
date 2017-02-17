@@ -5,7 +5,7 @@ import './home.scss';
 let homeComponent = {
   restrict: 'E',
   bindings: {
-    dynamicContent: '<'
+    content: '<'
   },
   template,
   controller

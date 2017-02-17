@@ -25,7 +25,7 @@ let homeModule = angular.module('home', [
       url: '/',
       component: 'home',
       resolve: {
-        dynamicContent: (Data) => {
+        content: (Data) => {
           'ngInject';
           return Data.getHomeContent();
         }

@@ -5,7 +5,7 @@
     <h4 class="text-center">{{ 'WATCH_YOURSELF_PROGRESS' | translate }}</h4>
 
 
-    <div class="row collapse">
+    <div id="cycles" class="row collapse">
       <div class="columns medium-4" ng-class="{'show-for-medium-up': cycle.status !== 'current'}" ng-repeat="cycle in $ctrl.menu.data.children track by cycle.id">
         <div class="cycle text-center">
           <div>
@@ -35,7 +35,7 @@
     </div>
 
 
-    <div class="row collapse">
+    <div id="quote" class="row collapse">
       <div class="columns small-12">
 
         <div class="row collapse">
