@@ -75,6 +75,18 @@ describe('Home', () => {
     it('has a quote property', () => {
       expect(controller.quote).to.contain('Now I understand my strenghts');
     });
+
+    it('test getDonutTitle() function', () => {
+      // Cycle1 is not locked
+      let cycle1 = menuObject.data.children[0];
+
+      expect(controller.getDonutTitle(cycle1)).to.eq('31%');
+
+      // Cycle 2 is locked, see comment in home.controller.js to understand why we return 'l' when it's locked
+      let cycle2 = menuObject.data.children[1];
+      expect(controller.getDonutTitle(cycle2)).to.eq('l');
+    });
+
   });
 
   describe('View', () => {

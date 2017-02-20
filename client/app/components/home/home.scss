@@ -3,8 +3,23 @@
 .home {
 
   .cycle {
+    position: relative;
     width: 100%;
     height: 100%;
+  }
+
+  .cycle-title h4 {
+    margin-bottom: 0rem;
+  }
+
+  .cycle-title h3 {
+    margin-top: 0rem;
+    text-transform: none;
+  }
+
+  .cycle-title.locked h3,
+  .cycle-title.locked h4 {
+    color: $locked-grey;
   }
 
   @media #{$medium-up} {
@@ -29,5 +44,49 @@
       padding-left: 0.5rem;
     }
   }
+
+  .not-locked .c3-chart-arcs text {
+    fill: $success-color;
+    font-size: 1.8rem;
+    font-family: $font-family-sans-serif;
+    font-weight: $font-weight-bold;
+  }
+
+  .c3-shapes-completed path {
+    fill: $success-color !important;
+  }
+
+  .c3-shapes-remaining {
+    fill-opacity: 0;
+  }
+
+  .c3-chart-arc path {
+    stroke-dasharray: 5,5;
+    stroke: #C3C3C3;
+    stroke-width: 1;
+  }
+
+  .c3-chart-arcs text {
+    font-family: 'fontello';
+    fill: $locked-grey;
+    transform: translateY(rem_calc(6px));
+  }
+
+  @media #{$medium-only} {
+    .c3-chart-arcs text {
+      font-size: rem_calc(60px);
+    }
+  }
+
+  @media #{$large-up} {
+    .c3-chart-arcs text {
+      font-size: rem_calc(90px);
+    }
+  }
+
+  .c3-target text {
+    display: none;
+  }
+
 }
 

@@ -7,15 +7,30 @@
 
     <div id="cycles" class="row collapse">
       <div class="columns medium-4" ng-class="{'show-for-medium-up': cycle.status !== 'current'}" ng-repeat="cycle in $ctrl.menu.data.children track by cycle.id">
-        <div class="cycle text-center">
+        <div ng-class="{'not-locked': cycle.status !== 'locked'}" class="cycle text-center">
           <div>
-            <p>Here will be displayed the doughout chart</p>
+            <c3chart bindto-id="{{cycle.slug}}" sort-data="null">
+              <chart-column style="display:none" column-id="remaining"
+                            column-values="{{cycle.progress.remaining}}"
+                            column-type="donut"/>
+              <chart-column style="display:none"
+                column-id="completed"
+                            column-values="{{cycle.progress.completed}}"
+                            column-type="donut"/>
+              <chart-donut title="{{$ctrl.getDonutTitle(cycle)}}" width="40"/>
+              <chart-legend show-legend="false"></chart-legend>
+              <chart-tooltip show-tooltip="false"></chart-tooltip>
+              <chart-size chart-height="200px" />
+            </c3chart>
           </div>
-          <h4>{{cycle.title | uppercase }}</h4>
-          <h3>{{cycle.name}}</h3>
+          <div ng-class="{'locked': cycle.status === 'locked'}" class="cycle-title">
+            <h4>{{cycle.title | uppercase }}</h4>
+            <h3>{{cycle.name}}</h3>
+          </div>
         </div>
       </div>
     </div>
+
 
     <div class="row grey-bg collapse text-center">
       <div class="columns small-12">
