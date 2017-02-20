@@ -24,7 +24,11 @@ module.exports = {
       { test: /\.css$/, loader: 'style!css' },
       { test: /\.svg/, loader: 'svg-url-loader' },
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=1024' }
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=1024' },
+      { test: /\.woff$/, loader: 'url?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]' },
+      { test: /\.woff2$/, loader: 'url?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]' },
+      { test: /\.[ot]tf$/, loader: 'url?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]' },
+      { test: /\.eot$/, loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]' }
     ]
   },
   eslint: {
@@ -39,6 +43,10 @@ module.exports = {
       minChunks: function (module, count) {
         return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
       }
+    }),
+
+    new webpack.ProvidePlugin({
+      c3: 'c3'
     })
   ]
 };

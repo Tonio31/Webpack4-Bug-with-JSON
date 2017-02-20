@@ -29,6 +29,9 @@ angular.module( 'appMockBackEnd', [
 
     // Update menudata
     let cycle1 = menu.menudata[0].children[0];
+    cycle1.progress.completed += 1;
+    cycle1.progress.percent = 36;
+
     let module1 = cycle1.children[1];
     let step7 = module1.children[6];
     step7.status = 'completed';

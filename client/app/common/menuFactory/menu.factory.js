@@ -15,18 +15,28 @@ let MenuFactory = function( $log, $q, _, Data, UserInfo) {
   };
 
 
-  // Each menu item needs to contain the full URL to access it.
-  // This is because the full URL is used as the state name
-  let convertMenuData = ( ioMenuData, iUrl = '' ) => {
+  let buildFullUrls = ( ioMenuData, iUrl = '') => {
     let url = `${iUrl}/${ioMenuData.slug}`;
 
     ioMenuData.fullUrl = url;
 
+    // Recursive function to build the URL and calculate progression for all module
     if ( ioMenuData.hasOwnProperty('children') ) {
+
       for ( let child of ioMenuData.children ) {
-        convertMenuData(child, url);
+        buildFullUrls(child, url);
       }
     }
+
+    return ioMenuData;
+  };
+
+
+  // Each menu item needs to contain the full URL to access it.
+  // This is because the full URL is used as the state name
+  let convertMenuData = ( ioMenuData ) => {
+
+    buildFullUrls(ioMenuData);
 
     return ioMenuData;
   };

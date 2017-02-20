@@ -4,6 +4,11 @@ import uiRouter from 'angular-ui-router';
 import 'normalize.css';
 import 'angular-foundation';
 
+import 'common/fontello/css/fontello.css';
+
+import 'c3/c3.css';
+import 'c3-angular';
+
 // Potentialife module
 import Global from './globalVariables';
 import Common from './common/common';
@@ -18,6 +23,7 @@ let $stateProviderRef = null;
 
 let appModule = angular.module('app', [
   'mm.foundation',
+  'gridshore.c3js.chart',
   uiRouter,
   Common,
   Components,

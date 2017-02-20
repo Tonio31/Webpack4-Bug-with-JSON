@@ -56,6 +56,11 @@
           "slug":"cycle-1",
           "order":1,
           "status":"current",
+          "progress": {
+            "completed": 7,
+            "remaining": 15,
+            "percent": 31
+          },
           "children":[
             {
               "id":47,
@@ -295,6 +300,11 @@
           "description":"10 \/ 10 Modules",
           "slug":"cycle-2",
           "order":2,
+          "progress": {
+            "completed": 0,
+            "remaining": 10,
+            "percent": 0
+          },
           "status":"locked",
           "children":[
             {
@@ -396,6 +406,11 @@
           "description":"10 \/ 10 Modules",
           "slug":"cycle-3",
           "order":3,
+          "progress": {
+            "completed": 0,
+            "remaining": 10,
+            "percent": 0
+          },
           "status":"locked",
           "children":[
             {
