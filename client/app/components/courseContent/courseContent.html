@@ -1,11 +1,45 @@
-<div>
-  <h4 ng-bind-html="$ctrl.content.breadcrumbs | unsafe | uppercase"></h4>
-  <h1>{{$ctrl.content.name}}</h1>
-  <p>URL to this page: {{$ctrl.data.name}}</p>
-  <p>Title of this page: {{$ctrl.data.title}}</p>
-  <p>$ctrl.data: {{ $ctrl.data }}</p>
-  <br/>
-  <span> dynamicContent testtonio: </span><span ng-bind-html="$ctrl.testtonio"></span>
-  <button type="submit" ng-click="$ctrl.nextStep()">Next Step</button>
+<div class="course-content row collapse">
 
+
+  <div class="small-12 columns">
+
+    <div class="row collapse">
+
+      <div class="small-12 medium-8 small-centered columns">
+
+        <h4 ng-bind-html="$ctrl.content.breadcrumbs | unsafe | uppercase"></h4>
+        <h1>{{$ctrl.content.name}}</h1>
+
+        <div ng-repeat="block in $ctrl.content.blocks track by block.id">
+          <h1>This is a new block (block id={{block.id}})</h1>
+          <h3>Type: {{block.type}}</h3>
+          <h3>Element: {{block.element}}</h3>
+        </div>
+
+
+        <p>URL to this page: {{$ctrl.data.name}}</p>
+        <p>Title of this page: {{$ctrl.data.title}}</p>
+        <p>$ctrl.data: {{ $ctrl.data }}</p>
+        <br/>
+        <span> dynamicContent testtonio: </span><span ng-bind-html="$ctrl.testtonio"></span>
+        <button type="submit" ng-click="$ctrl.nextStep()">Next Step</button>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
 </div>
+
+
+
+<div class="navigation row collapse grey-bg">
+
+      <div class="small-12 medium-8 columns small-centered">
+        <button class="secondary radius left" type="submit" ng-click="$ctrl.previousStep()">Previous Step</button>
+        <button class="success radius right" type="submit" ng-click="$ctrl.nextStep()">Next Step</button>
+      </div>
+</div>
+
