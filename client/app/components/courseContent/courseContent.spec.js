@@ -3,7 +3,14 @@ import CourseContentModule from './courseContent'
 describe('CourseContent', () => {
   let $rootScope, $state, $location, $componentController, $compile;
 
-  beforeEach(window.module(CourseContentModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(CourseContentModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+  }));
+
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
