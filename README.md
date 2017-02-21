@@ -90,19 +90,20 @@ NG6 uses Gulp to build and launch the development environment. After you have in
 ### Tasks
 Here's a list of available tasks:
 
-* `npm run build`: runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `dist/bundle.js`. It also prepares `index.html` to be used as application entry point, links assets and created dist version of our application.
+* `npm start`: starts the dev webserver, it is the default task that runs when typing `gulp` without providing an argument
+    * `npm run serve`: alias of `npm start`
+    * `npm run watch`: alias of `npm start`
+  
+* `npm run build`: **Production build** runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `dist/bundle.js`. It also prepares `index.html` to be used as application entry point, links assets and created dist version of our application.
 
-* `npm run serve`
-  * starts a dev server via `webpack-dev-server`, serving the client folder.
-* `npm run watch`
-  * alias of `serve`
-* `npm start` (which is the default task that runs when typing `gulp` without providing an argument)
-  * runs `serve`.
-* `npm run component`
-  * scaffolds a new Angular component. [Read below](#generating-components) for usage details.
+* `npm run test`: run the unit test once
+
+* `npm run tdd`: Unit test in Test Driven Development, test will run every time there is a change in code or test files
+
+* `npm run component`: scaffolds a new Angular component. [Read below](#generating-components) for usage details.
   
 ### Testing
-To run the tests, run `npm test`.
+To run the tests, run `npm test` or `npm run tdd`.
 
 `Karma` combined with Webpack runs all files matching `*.spec.js` inside the `app` folder. This allows us to keep test files local to the component--which keeps us in good faith with continuing to build our app modularly. The file `spec.bundle.js` is the bundle file for **all** our spec files that Karma will run.
 
