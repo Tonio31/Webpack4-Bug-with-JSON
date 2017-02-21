@@ -5,6 +5,8 @@ import LogDecorator from 'common/logDecorator/logDecorator';
 import UserDataFactory from 'common/userDataFactory/userData';
 import ResourceFactory from 'common/resourceFactory/resource';
 import MenuService from 'common/menuFactory/menu';
+import { unsafeFilter } from '././courseContent.filter';
+
 
 let courseContentModule = angular.module('courseContent', [
   uiRouter,
@@ -15,7 +17,7 @@ let courseContentModule = angular.module('courseContent', [
 ])
 
 .component('courseContent', courseContentComponent)
-
+.filter('unsafe', unsafeFilter)
 .name;
 
 export default courseContentModule;

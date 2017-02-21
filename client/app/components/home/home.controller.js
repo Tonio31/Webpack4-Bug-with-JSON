@@ -35,9 +35,9 @@ class HomeController {
     };
 
     this.resumeProgress = () => {
-      let currentStepUrl = Menu.getCurrentProgression().data.current_step.fullUrl;
-      $log.log(`Resume Progress, change state to current step: ${currentStepUrl}`);
-      $state.go(currentStepUrl);
+      let currentStepStateName = Menu.getCurrentProgression().data.current_step.fullUrl;
+      $log.log(`Resume Progress, change state to current step: ${currentStepStateName}`);
+      $state.go(currentStepStateName);
     };
 
     this.$onInit = () => {
