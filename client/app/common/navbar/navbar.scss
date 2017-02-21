@@ -15,7 +15,7 @@ $mainTitleMenuColor: #A0A0A0;
 
 
   .content {
-    padding: 1rem;
+    height: 100%;
   }
 
   a {
@@ -50,7 +50,7 @@ $mainTitleMenuColor: #A0A0A0;
   }
 
   //For desktop: We put a min-height to solve a bug with the menu (module menu item appearing in step section)
-  /*
+
   @media #{$medium-up} {
     .off-canvas-wrap,
     .off-canvas-wrap .inner-wrap{
@@ -61,7 +61,7 @@ $mainTitleMenuColor: #A0A0A0;
       height: 100%;
     }
   }
-  */
+
 
 
   .menu-button.row:before, .menu-button.row:after {

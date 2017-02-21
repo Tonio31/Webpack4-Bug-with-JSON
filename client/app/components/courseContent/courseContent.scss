@@ -1,10 +1,26 @@
+@import '../../common/common';
+
 .course-content {
   color: red;
 
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
-  // DEBUG TONIO to delete in the future
-  * {
-    background-color: rgba(0,0,0,0.1);
+  .main {
+    flex: 1;
+    margin-top: 10px;
+  }
+
+  .navigation {
+    background-color: $light-grey;
+
+    button {
+      margin: 0.5rem 0;
+      font-size: $h3-18px;
+      font-weight: bold;
+      width: rem_calc(160px);
+    }
   }
 
 

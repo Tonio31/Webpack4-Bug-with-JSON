@@ -8,5 +8,9 @@
   "SUPPORT": "Support",
   "SUPPORT_TEXT": "Send us an email if you can't find what you're looking for within FAQs",
   "EMAIL_US": "Email us",
-  "ALL_RIGHT_RESERVED": "All rights reserved"
+  "ALL_RIGHT_RESERVED": "All rights reserved",
+
+  "PREVIOUS": "Previous",
+  "SAVE": "Save",
+  "COMPLETED": "Completed"
 }
