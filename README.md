@@ -92,7 +92,7 @@ Here's a list of available tasks:
 
 * `npm run build`
 
-        runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `dist/bundle.js`. It also prepares `index.html` to be used as application entry point, links assets and created dist version of our application.
+      runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `dist/bundle.js`. It also prepares `index.html` to be used as application entry point, links assets and created dist version of our application.
 
 * `npm run serve`
   * starts a dev server via `webpack-dev-server`, serving the client folder.
