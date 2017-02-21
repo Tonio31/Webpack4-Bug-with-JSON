@@ -111,9 +111,9 @@ $white       : #FFFFFF;
 // $steel       : #666666;
 // $charcoal    : #555555;
 // $tuatara     : #444444;
-// $oil         : #333333;
+$oil         : #333333;
 // $jet         : #222222;
-// $black       : #000000;
+$black       : #000000;
 $simon-black: #414042;
 $locked-grey: #B1B1B1;
 
@@ -841,7 +841,7 @@ $button-radius: $global-radius;
 // Off Canvas Tab Bar Variables
 // $include-html-off-canvas-classes: $include-html-classes;
 
-// $tabbar-bg: $oil;
+$tabbar-bg: $oil;
 $tabbar-height: rem-calc(45);
 // $tabbar-icon-width: $tabbar-height;
 // $tabbar-line-height: $tabbar-height;

@@ -47,7 +47,7 @@ describe('CourseContent', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      scope.content = require('app/mockBackEndResponse/courseContent_step1.json');
+      scope.content = require('app/mockBackEndResponse/genericContent.json');
       scope.data = {
         name: '/potentialife-course/cycle-1/module-1/step-7',
         title: 'Step 7'
@@ -57,7 +57,7 @@ describe('CourseContent', () => {
     });
 
     it('has h3 title in page', () => {
-      expect(template.find('h3').html()).to.eq('this is our first content page');
+      expect(template.find('h1').html()).to.eq('This is the title of this step');
     });
 
   });

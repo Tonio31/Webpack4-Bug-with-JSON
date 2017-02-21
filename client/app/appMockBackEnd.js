@@ -59,7 +59,7 @@ angular.module( 'appMockBackEnd', [
       if ( error.message.includes('Cannot find module') ) {
         // The json for this step is not yet imported in the project return the generic content
         $log.log('No json found for the specific step, returning generic content');
-        content = require('./mockBackEndResponse/courseContent_step1.json');
+        content = require('./mockBackEndResponse/genericContent.json');
       }
     }
 
