@@ -12,8 +12,6 @@ class CourseContentController {
 
       $log.log('dynamicContent=', this.content);
 
-      this.testtonio = $sce.trustAsHtml(this.content.data.content);
-
       $log.log('constructor()::$onInit - END');
     };
 

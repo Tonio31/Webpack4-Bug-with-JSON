@@ -1,16 +1,17 @@
 import <%= upCaseName %>Module from './<%= name %>'
-import <%= upCaseName %>Controller from './<%= name %>.changeLanguageController';
+import <%= upCaseName %>Controller from './<%= name %>.Controller';
 import <%= upCaseName %>Component from './<%= name %>.component';
 import <%= upCaseName %>Template from './<%= name %>.html';
 
 describe('<%= upCaseName %>', () => {
-  let $rootScope, $componentController;
+  let $rootScope, $componentController, $compile;
 
   beforeEach(window.module(<%= upCaseName %>Module));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
+    $compile = $injector.get('$compile');
   }));
 
   describe('Module', () => {
@@ -18,7 +19,6 @@ describe('<%= upCaseName %>', () => {
   });
 
   describe('Controller', () => {
-    // controller specs
     // controller specs
     let controller;
     beforeEach(() => {
@@ -39,7 +39,6 @@ describe('<%= upCaseName %>', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      scope.content = contentBindings;
       template = $compile('<<%= name %>></<%= name %>>')(scope);
       scope.$apply();
     });
