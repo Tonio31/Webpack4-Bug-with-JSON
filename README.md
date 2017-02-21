@@ -95,7 +95,7 @@ Here's a list of available tasks:
 
 * `npm start`: starts the dev webserver, it is the default task that runs when typing `gulp` without providing an argument
     * `npm run serve`: alias of `npm start`
-    * `npm run watch`: alias of `npm start`
+    * `npm run watch`: alias of `npm start`    
 
 
 
