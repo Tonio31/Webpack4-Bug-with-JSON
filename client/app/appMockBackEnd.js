@@ -48,7 +48,21 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenGET(/\/potentialife-course\/cycle-\d+\/(module-\d+|lifemap)(\/step-\d+)?/).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
-    let content = require('./mockBackEndResponse/courseContent_step1.json');
+
+    let fileName = url.substring(1).replace(/\//g, '_');
+    let content = {};
+    try {
+      content = require(`./mockBackEndResponse/${fileName}.json`);
+    }
+    catch (error) {
+      $log.log(error);
+      if ( error.message.includes('Cannot find module') ) {
+        // The json for this step is not yet imported in the project return the generic content
+        $log.log('No json found for the specific step, returning generic content');
+        content = require('./mockBackEndResponse/courseContent_step1.json');
+      }
+    }
+
     return [ 200, content, {} ];
   });
 

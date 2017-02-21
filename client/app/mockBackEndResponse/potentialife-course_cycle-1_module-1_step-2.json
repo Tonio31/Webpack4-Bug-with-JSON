@@ -1,0 +1,167 @@
+{
+  "id": 5,
+  "name": "Reflect on times you were at your best",
+  "slug": null,
+  "description": null,
+  "content": null,
+  "blocks": [
+    {
+      "id": 49,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Take five minutes to think about <b>two occasions<\/b> in your life when you were at your best. These stories can be from any time in your life, and from any work or non-work context. For each story, briefly write down what was going on by reflecting on the following questions:<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 49,
+        "order": 0
+      }
+    },
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<ul><li>What were you doing?<\/li><li>What strengths were you using?<\/li><li>How did you feel?<\/li><\/ul>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 51,
+      "type": "dynamic",
+      "element": "textarea",
+      "program_data_code": "c1.m1.s1.story_1",
+      "data": {
+        "label": "Story 1:",
+        "placeholder": "Please fill in the first story",
+        "value": null,
+        "name": "story_1"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 52,
+      "type": "dynamic",
+      "element": "textarea",
+      "program_data_code": "c1.m1.s1.story_2",
+      "data": {
+        "label": "Story 2:",
+        "placeholder": "Please fill in the second story",
+        "value": "When i was young i wasn't very old",
+        "name": "story_2"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 52,
+        "order": 0
+      }
+    },
+    {
+      "id": 53,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Can you identify any common themes in these two stories \u2013 e.g. location, work or non-work, alone or with others, using a particular strength? Note these below: <\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 53,
+        "order": 0
+      }
+    },
+    {
+      "id": 54,
+      "type": "dynamic",
+      "element": "textbox",
+      "program_data_code": "c1.m1.s1.textbox_1",
+      "data": {
+        "label": null,
+        "placeholder": null,
+        "value": null,
+        "name": "common_theme_1"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 54,
+        "order": 0
+      }
+    },
+    {
+      "id": 55,
+      "type": "dynamic",
+      "element": "textbox",
+      "program_data_code": "c1.m1.s1.textbox_2",
+      "data": {
+        "label": null,
+        "placeholder": null,
+        "value": null,
+        "name": "common_theme_2"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 55,
+        "order": 0
+      }
+    },
+    {
+      "id": 56,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>As you reflect on these stories and their common themes, can you already think of things you could do <b>more of or differently<\/b>? Note these down. <\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 56,
+        "order": 0
+      }
+    },
+    {
+      "id": 57,
+      "type": "dynamic",
+      "element": "textbox",
+      "program_data_code": "c1.m1.s1.textbox_1",
+      "data": {
+        "label": null,
+        "placeholder": null,
+        "value": null,
+        "name": "common_theme_3"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 57,
+        "order": 0
+      }
+    },
+    {
+      "id": 58,
+      "type": "dynamic",
+      "element": "textbox",
+      "program_data_code": "c1.m1.s1.textbox_4",
+      "data": {
+        "label": null,
+        "placeholder": null,
+        "value": null,
+        "name": "common_theme_4"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 58,
+        "order": 0
+      }
+    }
+  ]
+}

@@ -31,15 +31,22 @@ let appModule = angular.module('app', [
   MenuService,
   Global
 ])
-  .config(($locationProvider, $stateProvider) => {
+  .config(($locationProvider, $stateProvider, $urlRouterProvider) => {
     'ngInject';
+
+    // This is needed because we create our state dynamically, if we don't put this,
+    // When the user refresh the page, it will go to the home page, this works with
+    // $urlRouterProvider.deferIntercept(); defined in the config of this module
+    // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
+    $urlRouterProvider.deferIntercept();
+
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     $stateProviderRef = $stateProvider;
   })
-  .run( ($log, Menu) => {
+  .run( ($log, $urlRouter, Menu) => {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -87,6 +94,13 @@ let appModule = angular.module('app', [
       states.forEach( (state) => {
         $stateProviderRef.state(state);
       });
+
+      // This is needed because we create our state dynamically, if we don't put this,
+      // When the user refresh the page, it will go to the home page, this works with
+      // $urlRouterProvider.deferIntercept(); defined in the config of this module
+      // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
+      $urlRouter.sync();
+      $urlRouter.listen();
     },
     (error) => {
       $log.log('app::RUN - error Retrieving menu menuData=', error);
