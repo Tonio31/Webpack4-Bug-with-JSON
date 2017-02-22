@@ -1,5 +1,5 @@
 import <%= upCaseName %>Module from './<%= name %>'
-import <%= upCaseName %>Controller from './<%= name %>.Controller';
+import <%= upCaseName %>Controller from './<%= name %>.controller';
 import <%= upCaseName %>Component from './<%= name %>.component';
 import <%= upCaseName %>Template from './<%= name %>.html';
 

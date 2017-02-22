@@ -11,11 +11,24 @@
           <h4 ng-bind-html="$ctrl.content.breadcrumbs | unsafe | uppercase"></h4>
           <h1>{{$ctrl.content.name}}</h1>
 
+
           <div ng-repeat="block in $ctrl.content.blocks track by block.id">
-            <h1>This is a new block (block id={{block.id}})</h1>
-            <h3>Type: {{block.type}}</h3>
-            <h3>Element: {{block.element}}</h3>
+            <div ng-switch="block.element">
+
+              <div ng-switch-when="video">
+                <video-module data="block.data"></video-module>
+              </div>
+
+
+              <div ng-switch-default>
+                <h1>This is a new block (block id={{block.id}})</h1>
+                <h3>Type: {{block.type}}</h3>
+                <h3>Element: {{block.element}}</h3>
+              </div>
+
+            </div>
           </div>
+
         </div>
 
       </div>

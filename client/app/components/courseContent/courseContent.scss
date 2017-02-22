@@ -1,15 +1,17 @@
-@import '../../common/common';
+@import 'common/common';
 
 .course-content {
-  color: red;
-
   height: 100%;
   display: flex;
   flex-direction: column;
 
   .main {
     flex: 1;
-    margin-top: 10px;
+    padding: $padding-10px;
+  }
+
+  .main > div {
+    height: 100%;
   }
 
   .navigation {
@@ -23,6 +25,9 @@
     }
   }
 
+/*  * {
+    background-color: rgba(0,0,0,0.1);
+  }*/
 
 
 }

@@ -1,6 +1,9 @@
-@import '../../common/common';
+@import 'common/common';
 
 .home {
+
+  padding-top: $padding-10px;
+  padding-bottom: $padding-10px;
 
   .cycle {
     position: relative;

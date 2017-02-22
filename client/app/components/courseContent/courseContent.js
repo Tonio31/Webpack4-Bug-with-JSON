@@ -5,7 +5,8 @@ import LogDecorator from 'common/logDecorator/logDecorator';
 import UserDataFactory from 'common/userDataFactory/userData';
 import ResourceFactory from 'common/resourceFactory/resource';
 import MenuService from 'common/menuFactory/menu';
-import { unsafeFilter } from '././courseContent.filter';
+import videoModule from '../videoModule/videoModule';
+import { unsafeFilter } from './courseContent.filter';
 
 
 let courseContentModule = angular.module('courseContent', [
@@ -13,6 +14,7 @@ let courseContentModule = angular.module('courseContent', [
   UserDataFactory,
   ResourceFactory,
   MenuService,
+  videoModule,
   LogDecorator
 ])
 
