@@ -1,0 +1,10 @@
+@import 'common/common';
+
+.video-module {
+  color: $darkBgColor;
+
+  .vjs-video-wrap {
+    margin-left: -$padding-10px;
+    margin-right: -$padding-10px;
+  }
+}

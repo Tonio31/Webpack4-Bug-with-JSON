@@ -2,7 +2,6 @@ import angular from 'angular';
 import Navbar from './navbar/navbar';
 import Footer from './footer/footer';
 import ChangeLanguage from './changeLanguage/changeLanguage';
-import Hero from './hero/hero';
 import ResourceFactory from './resourceFactory/resource';
 import UserDataFactory from './userDataFactory/userData';
 import MenuService from './menuFactory/menu';
@@ -12,7 +11,6 @@ let commonModule = angular.module('app.common', [
   Navbar,
   Footer,
   ChangeLanguage,
-  Hero,
   LogDecorator,
   ResourceFactory,
   MenuService,

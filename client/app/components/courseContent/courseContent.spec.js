@@ -63,7 +63,7 @@ describe('CourseContent', () => {
       scope.$apply();
     });
 
-    it('has h3 title in page', () => {
+    it('has h1 title in page', () => {
       expect(template.find('h1').html()).to.eq('This is the title of this step');
     });
 

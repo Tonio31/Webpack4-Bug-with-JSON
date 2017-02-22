@@ -22,6 +22,9 @@ angular.module( 'appMockBackEnd', [
   $log = $log.getInstance('appMockBackEnd::RUN');
 
 
+  $httpBackend.whenGET(/(.*)\.mp4/).passThrough();
+  $httpBackend.whenGET(/(.*)\.jpg/).passThrough();
+
   let menu = require('./mockBackEndResponse/menu-1.json');
 
   // This function will update the current step on the menu, it is harcoded to simulate the fact that the backend will do this job

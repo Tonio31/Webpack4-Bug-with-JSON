@@ -31,6 +31,9 @@ module.exports = {
       { test: /\.eot$/, loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]' }
     ]
   },
+  sassLoader: {
+    includePaths: [path.resolve(__dirname, "./client/app")]
+  },
   eslint: {
     failOnWarning: false,
     failOnError: true
