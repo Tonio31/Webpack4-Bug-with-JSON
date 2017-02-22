@@ -13,12 +13,15 @@
 
 
           <div ng-repeat="block in $ctrl.content.blocks track by block.id">
-            <div ng-switch="block.element">
+            <div class="block" ng-switch="block.element">
 
               <div ng-switch-when="video">
                 <video-module data="block.data"></video-module>
               </div>
 
+              <div ng-switch-when="html">
+                <div ng-bind-html="block.data.value | unsafe"></div>
+              </div>
 
               <div ng-switch-default>
                 <h1>This is a new block (block id={{block.id}})</h1>

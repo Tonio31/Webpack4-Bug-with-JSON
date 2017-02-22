@@ -68,7 +68,7 @@ describe('Video', () => {
       template = $compile('<video-module data="data"></video-module>')(scope);
       scope.$apply();
     });
-    
+
     it('it contains a video tag', () => {
       expect(template.find('video').html()).to.contain(videoDataBindings.source);
     });
