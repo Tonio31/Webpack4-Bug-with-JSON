@@ -1,5 +1,5 @@
 class CourseContentController {
-  constructor($log, $filter, $state, Menu, Data, UserInfo) {
+  constructor($log, $filter, $state, Menu, Data) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -29,8 +29,6 @@ class CourseContentController {
 
       this.displayCongratsBanner = false;
 
-      $log.log('dynamicContent=', this.content);
-
       $log.log('$onInit - END');
     };
 
@@ -44,9 +42,8 @@ class CourseContentController {
         // First time user click on the button, display the green banner and change the label
         let postData = Data.updateStep({ stepid: this.content.id });
 
-        postData.stepId = this.content.id;
-        postData.tokenId = UserInfo.getSecurityToken();
         postData.fullUrl = this.content.slug;
+        postData.status = 'completed';
 
         postData.$save( (dataBackFromServer, postResponseHeadersFn) => {
           // user => saved user object

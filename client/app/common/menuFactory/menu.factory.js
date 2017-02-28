@@ -1,4 +1,4 @@
-let MenuFactory = function( $log, $q, _, Data, UserInfo) {
+let MenuFactory = function( $log, $q, _, Data) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -59,7 +59,7 @@ let MenuFactory = function( $log, $q, _, Data, UserInfo) {
                 (iForceRetrieve=${iForceRetrieve}, retrieve it from the backend`);
 
       // iForceRetrieve not needed here, hack to test TONIO
-      Data.getMenu().get({ userid: UserInfo.getUserid() },
+      Data.getMenu().get({},
         (menuData) => {
           $log.log('getMenuPromise() - Menu Retrieved successfully');
 

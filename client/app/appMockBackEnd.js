@@ -5,6 +5,7 @@ import angular from 'angular';
 import 'angular-mocks/ngMockE2E';
 
 import App from './app';
+import ResourceFactory from 'common/resourceFactory/resource';
 
 
 // This module is for local dev only, if we choose this file as the entry point, it will include ngMockE2E,
@@ -13,9 +14,10 @@ import App from './app';
 
 angular.module( 'appMockBackEnd', [
   App,
+  ResourceFactory,
   'ngMockE2E'
 ])
-.run( ($log, $httpBackend) => {
+.run( ($log, $httpBackend, Data) => {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -29,24 +31,38 @@ angular.module( 'appMockBackEnd', [
 
   let stepContent = {};
 
-  let getStepContent = (iFullUrl) => {
-    if ( !stepContent.hasOwnProperty(iFullUrl) ) {
+  // will take an URL and return a file name
+  // iFullUrlToServer: http://apipl.ciprianspiridon.com/v1/step?slug=%2Fpotentialife-course%2Fcycle-1%2Fmodule-1%2Fstep-1
+  // return:  potentialife-course_cycle-1_module-1_step-1
+  let getFileNameFromUrlOptions = (iFullUrlToServer) => {
 
-      let fileName = iFullUrl.substring(1).replace(/\//g, '_');
-      stepContent[iFullUrl] = require(`./mockBackEndResponse/${fileName}.json`);
+    let optionalParams = iFullUrlToServer.substring(iFullUrlToServer.indexOf('%2F') + '%2F'.length);
+    let fileName = optionalParams.replace(/%2F/g, '_');
+
+    return fileName;
+  };
+
+  let getStepContent = (iFullUrl) => {
+
+    let fileName = getFileNameFromUrlOptions(iFullUrl);
+
+    if ( !stepContent.hasOwnProperty(fileName) ) {
+      stepContent[fileName] = require(`./mockBackEndResponse/${fileName}.json`);
     }
 
-    return stepContent[iFullUrl];
+    return stepContent[fileName];
   };
 
   let updateStepStatus = (iFullUrl, iNewStatus) => {
-    if ( !stepContent.hasOwnProperty(iFullUrl) ) {
 
-      let fileName = iFullUrl.substring(1).replace(/\//g, '_');
-      stepContent[iFullUrl] = require(`./mockBackEndResponse/${fileName}.json`);
+    let fileName = iFullUrl.substring(1).replace(/\//g, '_');
+
+    if ( !stepContent.hasOwnProperty(fileName) ) {
+
+      stepContent[fileName] = require(`./mockBackEndResponse/${fileName}.json`);
     }
 
-    stepContent[iFullUrl].status = iNewStatus;
+    stepContent[fileName].status = iNewStatus;
   };
 
 
@@ -58,7 +74,7 @@ angular.module( 'appMockBackEnd', [
       // Update menudata
       let cycle1 = menu.menudata[0].children[0];
       cycle1.progress.completed += 1;
-      cycle1.progress.percent = 36;
+      cycle1.progress.percent = 10;
 
       let module1 = cycle1.children[1];
       let step1 = module1.children[0];
@@ -74,15 +90,14 @@ angular.module( 'appMockBackEnd', [
 
       // Update Step data to say current for step 2
       updateStepStatus('/potentialife-course/cycle-1/module-1/step-2', 'current');
-
     }
-
 
     $log.log('Fake menu object updated to set cycle1/module1/step8 as current step and step7 as completed');
   };
 
+  let regexpStep = new RegExp('http:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+  $httpBackend.whenGET(regexpStep).respond( (method, url) => {
 
-  $httpBackend.whenGET(/\/potentialife-course\/cycle-\d+\/(module-\d+|lifemap)(\/step-\d+)?/).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
 
     let content = {};
@@ -101,30 +116,22 @@ angular.module( 'appMockBackEnd', [
     return [ 200, content, {} ];
   });
 
-  $httpBackend.whenGET('home').respond( (method, url) => {
+  $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
-    let homeContent = require('./mockBackEndResponse/homeContent.json');
-    return [ 200, homeContent, {} ];
+
+    let reflexionParticipant = require('./mockBackEndResponse/reflexion.json');
+    return [ 200, reflexionParticipant, {} ];
   });
 
-  $httpBackend.whenGET(/\/menu\/\d+/).respond( (method, url) => {
-    let userid = url.split('/')[2];
-    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   userid=${userid}`);
+  $httpBackend.whenGET(Data.buildApiUrl('menu')).respond( (method, url) => {
+    $log.log('Data(menu)=', Data.buildApiUrl('menu'));
+
+    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method}`);
 
     return [ 200, menu, {} ];
   });
 
-
-  $httpBackend.whenGET(/\/menu2\/\d+/).respond( (method, url) => {
-    let userid = url.split('/')[2];
-    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   userid=${userid}`);
-
-    let content = require('./mockBackEndResponse/menu-2.json');
-    return [ 200, content, {} ];
-  });
-
-
-  $httpBackend.whenPOST('/stepcompleted').respond( (method, url, data, headers) => {
+  $httpBackend.whenPOST(Data.buildApiUrl('step')).respond( (method, url, data, headers) => {
     $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
 
     let dataObject = angular.fromJson(data);

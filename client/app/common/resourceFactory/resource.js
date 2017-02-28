@@ -6,8 +6,12 @@ let resourceServiceModule = angular.module('resourceService', [
   angularResource
 ])
 
-.factory('Data', ResourceFactory)
 
-.name;
+  .factory('Data', ResourceFactory)
+  .constant('config', {
+    apiUrl: 'http://apipl.ciprianspiridon.com/`',
+    apiVersion: 'v1'
+  })
+  .name;
 
 export default resourceServiceModule;
