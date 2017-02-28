@@ -29,6 +29,8 @@ angular.module( 'appMockBackEnd', [
 
   let menu = require('./mockBackEndResponse/menu-1.json');
 
+  let authenticate = require('./mockBackEndResponse/authenticateResponse.json');
+
   let stepContent = {};
 
   // will take an URL and return a file name
@@ -145,6 +147,17 @@ angular.module( 'appMockBackEnd', [
 
     return [ 200, { nextStepFullSlug: 'someData' }, responseHeaders ];
   });
+
+  $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
+    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
+
+    let responseHeaders = {
+      status: 'ok'
+    };
+
+    return [ 200, authenticate, responseHeaders ];
+  });
+
 
   $httpBackend.whenGET(/\/users\/\d+/).respond( (method, url) => {
     // parse the matching URL to pull out the id (/games/:id)

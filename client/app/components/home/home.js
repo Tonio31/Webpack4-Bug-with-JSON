@@ -6,6 +6,8 @@ import ResourceFactory from 'common/resourceFactory/resource';
 import UserDataFactory from 'common/userDataFactory/userData';
 import MenuService from 'common/menuFactory/menu';
 import LogDecorator from 'common/logDecorator/logDecorator';
+import ngStorage from 'ngstorage-webpack';
+
 
 let homeModule = angular.module('home', [
   uiRouter,
@@ -13,7 +15,8 @@ let homeModule = angular.module('home', [
   ResourceFactory,
   MenuService,
   LogDecorator,
-  UserDataFactory
+  UserDataFactory,
+  ngStorage
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
