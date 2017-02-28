@@ -22,9 +22,9 @@ let ResourceFactory = function($log, $q, $resource, config) {
     return $resource(buildApiUrl('menu'));
   };
 
-  let getUserData = () => {
-    $log.log('getUserData');
-    return $resource('/users/:userid', { userid: '@userid' });
+  let getUserAuthData = () => {
+    $log.log('getUserAuthData');
+    return new ($resource(buildApiUrl('authenticate')))();
   };
 
 
@@ -74,7 +74,7 @@ let ResourceFactory = function($log, $q, $resource, config) {
   return {
     getUser,
     getMenu,
-    getUserData,
+    getUserAuthData,
     getCourseContent,
     getHomeContent,
     updateStep,

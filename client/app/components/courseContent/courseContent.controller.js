@@ -40,14 +40,13 @@ class CourseContentController {
 
       if ( !this.isStepCompleted ) {
         // First time user click on the button, display the green banner and change the label
-        let postData = Data.updateStep({ stepid: this.content.id });
+        let postData = Data.updateStep();
 
         postData.fullUrl = this.content.slug;
         postData.status = 'completed';
 
         postData.$save( (dataBackFromServer, postResponseHeadersFn) => {
-          // user => saved user object
-          // putResponseHeaders => $http header getter
+
           let postResponseHeadersObject = postResponseHeadersFn();
 
           // TONIO This will probably have to change to match whatever the real back end will send me

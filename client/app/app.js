@@ -46,7 +46,7 @@ let appModule = angular.module('app', [
 
     $stateProviderRef = $stateProvider;
   })
-  .run( ($log, $urlRouter, Menu) => {
+  .run( ($log, $urlRouter, Menu, Data) => {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -69,7 +69,7 @@ let appModule = angular.module('app', [
           url: iMenu.fullUrl,
           component: 'courseContent',
           resolve: {
-            content: (Data) => {
+            content: () => {
               'ngInject';
               return Data.getCourseContent(iMenu.fullUrl);
             }
@@ -80,14 +80,29 @@ let appModule = angular.module('app', [
       }
     };
 
-    Menu.getMenuPromise().then( (menuData) => {
-      $log.log('Menu retrieved successfully');
+    let authPOSTRequest = Data.getUserAuthData();
 
-      findFinalState(menuData);
+    authPOSTRequest.email = 'myemail@gmail.com';
+    authPOSTRequest.password = 'whatever';
 
-      states.forEach( (state) => {
-        $stateProviderRef.state(state);
+    authPOSTRequest.$save( () => {
+
+      $log.log('No error during authentification');
+
+      Menu.getMenuPromise().then( (menuData) => {
+        $log.log('Menu retrieved successfully');
+
+        findFinalState(menuData);
+
+        states.forEach( (state) => {
+          $stateProviderRef.state(state);
+        });
+      },
+      (error) => {
+        $log.log('error during authentification error=', error);
       });
+
+
 
       // This is needed because we create our state dynamically, if we don't put this,
       // When the user refresh the page, it will go to the home page, this works with

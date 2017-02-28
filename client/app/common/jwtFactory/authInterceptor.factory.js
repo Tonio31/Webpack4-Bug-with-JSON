@@ -6,29 +6,25 @@ let AuthInterceptorFactory = function($log, JwtFactory) {
 
   // automatically attach Authorization header
   let request = (config) => {
-
-    // let token = JwtFactory.getToken();
-    let token = 'test TOKEN';
-    // let userId = JwtFactory.getUserid();
-    let userId = 'TEST USER ID';
-    config.headers.token = token;
-    config.headers.userId = userId;
+    let token = JwtFactory.getToken();
+    let userId = JwtFactory.getUserid();
+    config.headers.token = `Bearer ${token}`;
+    config.headers.user_id = userId;
 
     return config;
   };
 
   // If a token was sent back, save it
   let response = (res) => {
+    if ( res.hasOwnProperty('data') ) {
+      if ( res.data.hasOwnProperty('token') ) {
+        JwtFactory.saveToken(res.data.token);
+      }
 
-    if ( res.config.url.indexOf('api') === 0 && res.data.token) {
-      $log.log('TONIO SAVE token');
-      JwtFactory.saveToken(res.data.token);
-      JwtFactory.saveUserid(res.data.userId);
+      if ( res.data.hasOwnProperty('user_id') ) {
+        JwtFactory.saveUserid(res.data.user_id);
+      }
     }
-    else {
-      $log.log('TONIO dont save token');
-    }
-
     return res;
   };
 
