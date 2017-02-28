@@ -5,7 +5,6 @@ import './courseContent.scss';
 let courseContentComponent = {
   restrict: 'E',
   bindings: {
-    data: '<',
     content: '<'
   },
   template,
