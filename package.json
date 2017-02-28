@@ -19,6 +19,7 @@
     "d3": "^4.6.0",
     "foundation-sites": "^5.5.3",
     "lodash": "^4.17.4",
+    "ngstorage-webpack": "^2.2.2",
     "normalize.css": "^3.0.3",
     "vjs-video": "^0.1.10"
   },

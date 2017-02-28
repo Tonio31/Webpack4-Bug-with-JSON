@@ -1,4 +1,4 @@
-let ResourceFactory = function($log, $q, $resource) {
+let ResourceFactory = function($log, $q, $resource, config) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -8,13 +8,18 @@ let ResourceFactory = function($log, $q, $resource) {
     name: 'Tonio'
   };
 
+  let buildApiUrl = (iTypeOfApi) => {
+    let apiUrl = `${config.apiUrl}${config.apiVersion}/${iTypeOfApi}`;
+    return apiUrl;
+  };
+
   let getUser = () => {
     return user;
   };
 
   let getMenu = () => {
-    $log.log('getMenu');
-    return $resource('/menu/:userid', { userid: '@userid' });
+    $log.log('getMenu config=', config);
+    return $resource(buildApiUrl('menu'));
   };
 
   let getUserData = () => {
@@ -23,13 +28,14 @@ let ResourceFactory = function($log, $q, $resource) {
   };
 
 
-  let getCourseContent = (url) => {
-    $log.log('getCourseContent url=', url);
-
+  let getCourseContent = (iStepFullUrl) => {
+    $log.log('getCourseContent iStepFullUrl=', iStepFullUrl);
 
     let deferred = $q.defer();
 
-    $resource(url).get().$promise.then( (data) => {
+    $resource(buildApiUrl('step'), {
+      slug: iStepFullUrl
+    }).get().$promise.then( (data) => {
       deferred.resolve(data);
     },
     (error) => {
@@ -43,14 +49,26 @@ let ResourceFactory = function($log, $q, $resource) {
 
   let getHomeContent = () => {
     $log.log('getHomeContent');
-    return getCourseContent('home');
+
+    let deferred = $q.defer();
+
+    $resource(buildApiUrl('reflexion')).get().$promise.then( (data) => {
+      deferred.resolve(data);
+    },
+      (error) => {
+        $log.log('getCourseContent error=', error);
+
+        deferred.reject(error);
+      });
+
+    return deferred.promise;
   };
 
 
   // This resource funciton is to be used with $save method only, because we return an instance of the function
   // we can't use it to do get method
   let updateStep = () => {
-    return new ($resource('/stepcompleted'))();
+    return new ($resource(buildApiUrl('step')))();
   };
 
   return {
@@ -59,7 +77,8 @@ let ResourceFactory = function($log, $q, $resource) {
     getUserData,
     getCourseContent,
     getHomeContent,
-    updateStep
+    updateStep,
+    buildApiUrl
   };
 };
 

@@ -5,7 +5,7 @@ describe('Home', () => {
   let $rootScope, $httpBackend, $state, $location, $componentController, $compile;
   let UserInfo, Menu, Data;
 
-  let contentBindings = require('app/mockBackEndResponse/homeContent.json');
+  let contentBindings = require('app/mockBackEndResponse/reflexion.json');
 
   let currentProgressionObject = 'current Progression Object';
   let menuObject = {
