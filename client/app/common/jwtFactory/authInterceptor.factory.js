@@ -8,7 +8,7 @@ let AuthInterceptorFactory = function($log, JwtFactory) {
   let request = (config) => {
     let token = JwtFactory.getToken();
     let userId = JwtFactory.getUserid();
-    config.headers.token = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
     config.headers.user_id = userId;
 
     return config;
