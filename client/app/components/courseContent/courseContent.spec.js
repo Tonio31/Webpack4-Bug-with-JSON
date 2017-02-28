@@ -1,7 +1,13 @@
 import CourseContentModule from './courseContent'
 
 describe('CourseContent', () => {
-  let $rootScope, $state, $location, $componentController, $compile;
+  let $rootScope, $httpBackend, $state, $location, $componentController, $compile;
+
+  let Menu;
+
+  let goFn, getMenuPromiseFn;
+
+  let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-1.json');
 
   let mockTranslateFilter = (value) => {
     return value;
@@ -17,6 +23,11 @@ describe('CourseContent', () => {
     $state = $injector.get('$state');
     $location = $injector.get('$location');
     $compile = $injector.get('$compile');
+    $httpBackend = $injector.get('$httpBackend');
+    Menu = $injector.get('Menu');
+
+    goFn = sinon.stub($state, 'go');
+    getMenuPromiseFn = sinon.stub(Menu, 'getMenuPromise');
   }));
 
   describe('Module', () => {
@@ -32,16 +43,97 @@ describe('CourseContent', () => {
     // controller specs
     let controller;
     let bindings = {
-      content: {
-        data:'test'
-      }
+      content: contentBindings
     };
 
     beforeEach(() => {
       controller = $componentController('courseContent', {
         $scope: $rootScope.$new(),
       }, bindings);
+
     });
+
+    afterEach(() => {
+      controller.content.status = 'current';
+    });
+
+    it('test the onInit Function when the current status of the state is \'current\'', () => {
+      controller.$onInit();
+      expect(controller.nextStepButtonLabel).to.eq('COMPLETE');
+      expect(controller.displayPreviousButton).to.eq(false);
+      expect(controller.displayCongratsBanner).to.eq(false);
+    });
+
+    it('test the onInit Function when the current status of the state is \'completed\'', () => {
+      controller.content.status = 'completed';
+      controller.$onInit();
+      expect(controller.nextStepButtonLabel).to.eq('NEXT');
+      expect(controller.isStepCompleted).to.eq(true);
+      expect(controller.displayCongratsBanner).to.eq(false);
+    });
+
+    it('throw an exception if the status is not current or completed', () => {
+      controller.content.status = 'locked';
+      expect(controller.$onInit).to.throw(`Status of a step should always be current or completed. status=${controller.content.status}`);
+    });
+
+    it('previousStep() triggers a change of state using this.content.prev_page_url', sinon.test( () => {
+      controller.previousStep();
+      sinon.assert.calledWith(goFn, controller.content.prev_page_url);
+    }));
+
+    it('nextStep() sends a POST to save current step if it is not yet marked as completed', sinon.test( (done) => {
+
+      $httpBackend.whenPOST('/stepcompleted').respond( () => {
+        let responseHeaders = {
+          status: 'ok'
+        };
+        return [ 200, {}, responseHeaders ];
+      });
+
+      controller.$onInit();
+      controller.nextStep();
+
+      // Resolve promise, we have to do this in unit test when promise are involved
+      $httpBackend.flush();
+
+      sinon.assert.calledWith(getMenuPromiseFn, true);
+      expect(controller.nextStepButtonLabel).to.eq('NEXT');
+      expect(controller.isStepCompleted).to.eq(true);
+      expect(controller.displayCongratsBanner).to.eq(true);
+
+      // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
+      done();
+    }));
+
+    it('nextStep() sends a POST to save current step but we simulate error on back end side', sinon.test( (done) => {
+
+      $httpBackend.whenPOST('/stepcompleted').respond( () => {
+        let responseHeaders = {
+          status: 'NOT OK'
+        };
+        return [ 404, {errorMsg: 'There was an error'}, responseHeaders ];
+      });
+
+      controller.$onInit();
+      controller.nextStep();
+
+      // Resolve promise, we have to do this in unit test when promise are involved
+      $httpBackend.flush();
+
+      sinon.assert.notCalled(getMenuPromiseFn);
+
+      // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
+      done();
+    }));
+
+
+    it('nextStep() triggers a change of state using this.content.next_page_url if the step is already completed', sinon.test( () => {
+      controller.content.status = 'completed';
+      controller.$onInit();
+      controller.nextStep();
+      sinon.assert.calledWith(goFn, controller.content.next_page_url);
+    }));
 
     it('has a name property', () => { // erase if removing this.name from the controller
       expect(controller).to.have.property('name');
@@ -55,11 +147,7 @@ describe('CourseContent', () => {
     beforeEach(() => {
       scope = $rootScope.$new();
       scope.content = require('app/mockBackEndResponse/genericContent.json');
-      scope.data = {
-        name: '/potentialife-course/cycle-1/module-1/step-7',
-        title: 'Step 7'
-      };
-      template = $compile('<course-content content="content" data="data"></course-content>')(scope);
+      template = $compile('<course-content content="content"></course-content>')(scope);
       scope.$apply();
     });
 

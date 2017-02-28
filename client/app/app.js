@@ -69,12 +69,6 @@ let appModule = angular.module('app', [
           url: iMenu.fullUrl,
           component: 'courseContent',
           resolve: {
-            data: () => {
-              return {
-                name: iMenu.fullUrl,
-                title: iMenu.title
-              };
-            },
             content: (Data) => {
               'ngInject';
               return Data.getCourseContent(iMenu.fullUrl);

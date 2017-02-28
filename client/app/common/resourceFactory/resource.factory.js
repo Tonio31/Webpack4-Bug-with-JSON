@@ -50,7 +50,7 @@ let ResourceFactory = function($log, $q, $resource) {
   // This resource funciton is to be used with $save method only, because we return an instance of the function
   // we can't use it to do get method
   let updateStep = () => {
-    return new ($resource('/stepcompleted/:stepid', { stepid: '@stepid' }))();
+    return new ($resource('/stepcompleted'))();
   };
 
   return {

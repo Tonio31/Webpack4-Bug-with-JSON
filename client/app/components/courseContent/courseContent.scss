@@ -1,31 +1,76 @@
 @import 'common/common';
 
-.course-content {
+$height-navigation-banner: rem_calc(80px);
+$height-button-banner: rem_calc(45px);
+
+$tick-size: 3rem;
+
+.sticky-bottom-container {
   height: 100%;
   display: flex;
   flex-direction: column;
+}
 
-  .main {
-    flex: 1;
-    padding: $padding-10px;
-  }
+.sticky-bottom-main {
+  flex: 1;
+}
 
-  .main > div {
-    height: 100%;
-  }
+.course-content {
+  height: 100%;
 
   .block {
     padding: $padding-10px 0;
   }
 
+  .congrats-banner {
+    background-color: $success-color;
+    color: $white;
+    height: auto;
+
+    .congrats-content {
+      min-height: $height-navigation-banner;
+      padding: $padding-10px 0;
+
+      p {
+        margin-bottom: 0;
+        font-weight: bold;
+      }
+
+      .valid-tick {
+        font-family: 'fontello';
+        font-size: 3rem;
+        line-height: 3rem;
+      }
+    }
+  }
+
   .navigation {
     background-color: $light-grey;
+    height: $height-navigation-banner;
 
     button {
+      height: $height-button-banner;
+      padding: 0;
       margin: 0.5rem 0;
       font-size: $h3-18px;
       font-weight: bold;
-      width: rem_calc(160px);
+      width: rem_calc(136px);
+    }
+
+    button:focus {
+      outline: none;
     }
   }
+
+  .y-center-parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .y-center-child {
+    flex: 1;
+  }
+
+
 }

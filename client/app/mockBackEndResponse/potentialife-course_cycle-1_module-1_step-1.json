@@ -1,10 +1,14 @@
 {
   "id": 4,
   "name": "Video: Focus on strengths not weaknesses",
-  "slug": null,
+  "slug": "/potentialife-course/cycle-1/module-1/step-1",
   "description": null,
   "content": null,
+  "status": "current",
   "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 1 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-2",
+  "prev_page_url": null,
+  "congrats": "<p>Well done! Your progress has been saved. <\/p><p>You're now ready for the next step.<\/p>",
   "blocks": [
     {
       "id": 47,
