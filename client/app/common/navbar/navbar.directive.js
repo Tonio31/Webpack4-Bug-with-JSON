@@ -27,7 +27,7 @@ let offCanvasListBugfixDef = function() {
   };
 };
 
-let moveMenu = function() {
+let moveMenu = function($log) {
   'ngInject';
   return {
     require: '^offCanvasWrap',
@@ -93,19 +93,19 @@ let menuButton = function($log) {
       <div class='menu-button row small-collapse'>
         <div class='small-2 columns'>
           <span class='pl-menu-button'></span>
-        
+
         </div>
         <div class='small-10 columns'>
             <p class='top-title'>{{data.title}}</p>
             <p class='main-title'>{{data.name}}</p>
             <p class='below-title'>{{data.description}}</p>
           </div>
+          <i class='arrow'></i>
       </div>
     `,
     link: function($scope, element) {
 
       angular.element(element).addClass($scope.data.status);
-
       // This will be used to change the icon on the left side of the menu, this way we just need to
       // update our menu inside menuFactory and the changes are propagated automatically
       $scope.$watch('data.status', (newValue, oldValue) => {
