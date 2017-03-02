@@ -7,6 +7,8 @@ $fullHeight: 100%;
 $topTitleMenuColor: #FF8534;
 $mainTitleMenuColor: #A0A0A0;
 
+
+
 .navbar {
   height: 100%;
 
@@ -23,6 +25,9 @@ $mainTitleMenuColor: #A0A0A0;
     top: 0;
     width: 100%;
     z-index: 99;
+    @media #{$small-only} {
+      position: fixed; 
+    }
   }
 
   .left-off-canvas-menu {
@@ -34,6 +39,8 @@ $mainTitleMenuColor: #A0A0A0;
     overflow-y: auto;
     height: 100%;
     width: 100%;
+    transform: translate3d(0,0,0);
+    transition: transform 500ms;
   }
 
   //For mobile: tab-bar is fixed, for the rest, we can scroll down
@@ -56,6 +63,12 @@ $mainTitleMenuColor: #A0A0A0;
     .off-canvas-wrap{
       height: 100%;
     }
+
+    .move-right {
+      .main-section {
+        transform: translate3d(-($off-canvas-width / 2),0,0);
+      }
+    }
   }
 
 
@@ -69,55 +82,51 @@ $mainTitleMenuColor: #A0A0A0;
 
   .menu-button {
     width: 100%;
-    heigth: 60px;
-  }
+    height: 60px;// spelling issue
 
-  .menu-button p{
-    margin-bottom: 0px;
-  }
-
-
-  .menu-button p.top-title{
-    font-size: 10px;
-    color: $topTitleMenuColor;
-  }
-
-  .menu-button p.main-title{
-    font-size: 18px;
-    color: $mainTitleMenuColor;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 180px;
-  }
-
-  .menu-button p.below-title{
-    font-size: 10px;
-    color: $mainTitleMenuColor;
+    p {
+      margin-bottom: 0px;
+      &.top-title{
+        font-size: 10px;
+        color: $topTitleMenuColor;
+      }
+      &.main-title{
+        font-size: 18px;
+        color: $mainTitleMenuColor;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+      }
+      &.below-title{
+        font-size: 10px;
+        color: $mainTitleMenuColor;
+      }
+    }
   }
 
 
 
-  .left-off-canvas-menu .pl-menu-button{
-    height: 20px;
-    width: 20px;
-    background-size: contain;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    display: inline-block;
+  .left-off-canvas-menu {
+    .pl-menu-button{
+      width: 80%;
+      height: 50px;
+      background-size: contain;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      display: inline-block;
+    }
+    .current .pl-menu-button{
+      background-image: url('./assets/menu-item-current.svg');
+    }
+    .locked .pl-menu-button{
+      background-image: url('./assets/menu-item-locked.svg');
+    }
+    .completed .pl-menu-button{
+      background-image: url('./assets/menu-item-completed.svg');
+    }
   }
 
-  .left-off-canvas-menu .current .pl-menu-button{
-    background-image: url('./assets/menu-item-current.svg');
-  }
-
-  .left-off-canvas-menu .locked .pl-menu-button{
-    background-image: url('./assets/menu-item-locked.svg');
-  }
-
-  .left-off-canvas-menu .completed .pl-menu-button{
-    background-image: url('./assets/menu-item-completed.svg');
-  }
 
   .nav-links,
   .logo {
@@ -137,7 +146,21 @@ $mainTitleMenuColor: #A0A0A0;
 
   .left-submenu {
     height: 100%;
+    // overflow: visible;
+    .back a:hover {
+      border-bottom: 1px solid transparent;
+    }
   }
+
+  .menu-item {
+    display: flex;
+    width: 100%;
+
+    a {
+      width: 100%;
+    }
+  }
+
 
   //HACK
   //There is a bug in the offCanvas with Angular, the submenu are not working properly
@@ -176,16 +199,18 @@ $mainTitleMenuColor: #A0A0A0;
     background: #242424;
   }
 
-  .left-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu .menu-button:after {
-    content: "\BB";
-    margin-left: .5rem;
-    display: inline;
-  }
-
-  .right-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu > a:before {
-    content: "\AB";
-    margin-right: .5rem;
-    display: inline;
-  }
+  // .left-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu .menu-button:after {
+  //   content: "\BB";
+  //   margin-left: .5rem;
+  //   display: inline;
+  //   border: 1px solid red;
+  // }
+  //
+  // .right-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu > a:before {
+  //   content: "\AB";
+  //   margin-right: .5rem;
+  //   display: inline;
+  //   border: 1px solid blue;
+  // }
 
 }
