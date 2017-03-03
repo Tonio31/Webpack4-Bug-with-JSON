@@ -3,6 +3,7 @@
 // as described here: https://github.com/pineconellc/angular-foundation/pull/137
 // The workaround to fix this is to redefine the directive and the css associated
 
+
 let offCanvasListBugfixDef = function() {
   'ngInject';
   return {
@@ -38,10 +39,18 @@ let moveMenu = function($log) {
         if (angular.element(this).hasClass('has-submenu')) {
           angular.element(this.getElementsByClassName('left-submenu')[0]).addClass('move-right');
           angular.element(this.getElementsByClassName('right-submenu')[0]).addClass('move-left');
+
+          //fix for nav doubling up
+          angular.element(this.parentElement).addClass('show-this-nav');
+          angular.element(this.parentElement.parentElement).addClass('fix-nav-under');
         }
         else if (angular.element(this).hasClass('back')) {
           angular.element(this.parentElement).removeClass('move-right');
           angular.element(this.parentElement).removeClass('move-left');
+
+          //fix for nav doubling up
+          angular.element(this.parentElement.parentElement.parentElement).removeClass('show-this-nav');
+          angular.element(this.parentElement.parentElement.parentElement.parentElement).removeClass('fix-nav-under');
         }
         else {
           offCanvasWrap.hide();

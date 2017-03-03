@@ -1,11 +1,11 @@
 @import '../common';
 
 
-$canvasMenuLinkTextColor:  #FFFFFF;
+$canvasMenuLinkTextColor:  #fff;
 $fullHeight: 100%;
 
-$topTitleMenuColor: #FF8534;
-$mainTitleMenuColor: #A0A0A0;
+$topTitleMenuColor: #ff8534;
+$mainTitleMenuColor: #a0a0a0;
 
 
 
@@ -26,12 +26,39 @@ $mainTitleMenuColor: #A0A0A0;
     width: 100%;
     z-index: 99;
     @media #{$small-only} {
-      position: fixed; 
+      position: fixed;
     }
   }
 
   .left-off-canvas-menu {
     margin-top: $tabbar-height;
+
+    .pl-menu-button {
+      width: 80%;
+      height: 50px;
+      background-size: contain;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      display: inline-block;
+    }
+
+    .current {
+      .pl-menu-button {
+        background-image: url('./assets/menu-item-current.svg');
+      }
+    }
+
+    .locked {
+      .pl-menu-button {
+        background-image: url('./assets/menu-item-locked.svg');
+      }
+    }
+
+    .completed {
+      .pl-menu-button {
+        background-image: url('./assets/menu-item-completed.svg');
+      }
+    }
   }
 
   .main-section {
@@ -39,14 +66,14 @@ $mainTitleMenuColor: #A0A0A0;
     overflow-y: auto;
     height: 100%;
     width: 100%;
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     transition: transform 500ms;
   }
 
   //For mobile: tab-bar is fixed, for the rest, we can scroll down
   @media #{$small-only} {
     .off-canvas-wrap,
-    .off-canvas-wrap .inner-wrap{
+    .off-canvas-wrap .inner-wrap {
       height: 100%;
       width: 100%;
     }
@@ -56,41 +83,42 @@ $mainTitleMenuColor: #A0A0A0;
 
   @media #{$medium-up} {
     .off-canvas-wrap,
-    .off-canvas-wrap .inner-wrap{
+    .off-canvas-wrap .inner-wrap {
       height: 100%;
     }
 
-    .off-canvas-wrap{
+    .off-canvas-wrap {
       height: 100%;
     }
 
     .move-right {
       .main-section {
-        transform: translate3d(-($off-canvas-width / 2),0,0);
+        transform: translate3d(-($off-canvas-width / 2), 0, 0);
       }
     }
   }
 
-
-
-  .menu-button.row:before, .menu-button.row:after {
-    content: none;
-    //display: table;
-  }
-
-
-
   .menu-button {
     width: 100%;
-    height: 60px;// spelling issue
+    height: 60px;
+
+    &.row {
+      &::before,
+      &::after {
+        content: none;
+      }
+    }
 
     p {
-      margin-bottom: 0px;
-      &.top-title{
+      margin-bottom: 0;
+
+      &.top-title {
         font-size: 10px;
         color: $topTitleMenuColor;
+        text-transform: uppercase;
       }
-      &.main-title{
+
+      &.main-title {
         font-size: 18px;
         color: $mainTitleMenuColor;
         white-space: nowrap;
@@ -98,32 +126,20 @@ $mainTitleMenuColor: #A0A0A0;
         text-overflow: ellipsis;
         max-width: 180px;
       }
-      &.below-title{
+
+      &.below-title {
         font-size: 10px;
         color: $mainTitleMenuColor;
       }
     }
-  }
 
-
-
-  .left-off-canvas-menu {
-    .pl-menu-button{
-      width: 80%;
-      height: 50px;
-      background-size: contain;
-      background-position: 50%;
-      background-repeat: no-repeat;
-      display: inline-block;
-    }
-    .current .pl-menu-button{
-      background-image: url('./assets/menu-item-current.svg');
-    }
-    .locked .pl-menu-button{
-      background-image: url('./assets/menu-item-locked.svg');
-    }
-    .completed .pl-menu-button{
-      background-image: url('./assets/menu-item-completed.svg');
+    &.current {
+      p {
+        &.main-title,
+        &.below-title {
+          color: $white;
+        }
+      }
     }
   }
 
@@ -138,17 +154,21 @@ $mainTitleMenuColor: #A0A0A0;
     margin-right: 50%;
   }
 
-  .nav-links span {
-    color: $lightTextColor;
-    font-size: 1.6rem;
+  .nav-links {
+    span {
+      color: $lightTextColor;
+      font-size: 1.6rem;
+    }
   }
 
 
   .left-submenu {
     height: 100%;
-    // overflow: visible;
-    .back a:hover {
-      border-bottom: 1px solid transparent;
+
+    .back {
+      a:hover {
+        border-bottom: 1px solid transparent;
+      }
     }
   }
 
@@ -167,37 +187,57 @@ $mainTitleMenuColor: #A0A0A0;
   //as described here: https://github.com/pineconellc/angular-foundation/pull/137
   //The workaround to fix this is to redefine the directive and the css associated
 
-  ul.off-canvas-list-bugfix {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  ul {
+    &.off-canvas-list-bugfix {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &.off-canvas-list-bugfix {
+      li {
+        label {
+          background: #444;
+          border-bottom: 0;
+          border-top: 1px solid #5e5e5e;
+          color: #999;
+          display: block;
+          font-size: .75rem;
+          font-weight: bold;
+          margin: 0;
+          padding: .3rem .9375rem;
+          text-transform: uppercase;
+        }
+
+        a {
+          border-bottom: 1px solid #262626;
+          color: rgba(255, 255, 255, .7);
+          display: block;
+          padding: .66667rem;
+          transition: background 300ms ease;
+
+          &:hover,
+          &:active {
+            background: #242424;
+          }
+        }
+      }
+    }
   }
 
-  ul.off-canvas-list-bugfix li label {
-    background: #444444;
-    border-bottom: none;
-    border-top: 1px solid #5e5e5e;
-    color: #999999;
-    display: block;
-    font-size: 0.75rem;
-    font-weight: bold;
-    margin: 0;
-    padding: 0.3rem 0.9375rem;
-    text-transform: uppercase;
+  .fix-nav-under {
+    > div {
+      // opacity: 0;
+      // transition: opacity 500ms;
+      display: none;
+      &.show-this-nav {
+        display: block;
+        // opacity: 1;
+      }
+    }
   }
-  ul.off-canvas-list-bugfix li a {
-    border-bottom: 1px solid #262626;
-    color: rgba(255, 255, 255, 0.7);
-    display: block;
-    padding: 0.66667rem;
-    transition: background 300ms ease;
-  }
-  ul.off-canvas-list-bugfix li a:hover {
-    background: #242424;
-  }
-  ul.off-canvas-list-bugfix li a:active {
-    background: #242424;
-  }
+
+
 
   // .left-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu .menu-button:after {
   //   content: "\BB";

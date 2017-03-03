@@ -5,6 +5,7 @@ module.exports = exports = {
   "env": {
     "es6": true,
   },
+  "esversion": 6,
 
   "ecmaFeatures": {
     "modules": true
