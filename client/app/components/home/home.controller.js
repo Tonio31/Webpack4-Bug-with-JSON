@@ -45,7 +45,7 @@ class HomeController {
 
       $log.log('dynamicContent=', this.content);
 
-      this.quote = this.content.data.quote;
+      this.quote = this.content[0].reflection;
 
       $log.log('constructor()::$onInit - END');
     };
