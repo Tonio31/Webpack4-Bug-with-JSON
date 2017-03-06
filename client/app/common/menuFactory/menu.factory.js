@@ -32,7 +32,7 @@ let MenuFactory = function( $log, $q, _, Data) {
         resolve: {
           content: () => {
             'ngInject';
-            return Data.getDynamicContentPromise('step', { slug: iMenu.fullUrl });
+            return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
           }
         }
       };
@@ -57,7 +57,6 @@ let MenuFactory = function( $log, $q, _, Data) {
       $log.log(`retrieveMenuAndReturnStates() - _.isEmpty(menu.data)=${_.isEmpty(menu.data)} 
                   iForceRetrieve=${iForceRetrieve}, retrieve menu from the backend`);
 
-      // iForceRetrieve not needed here, hack to test TONIO
       Data.getMenu().get({},
         (menuData) => {
           $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully');

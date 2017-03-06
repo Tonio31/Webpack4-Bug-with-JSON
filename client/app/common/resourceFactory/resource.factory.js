@@ -24,19 +24,31 @@ let ResourceFactory = function($log, $q, $resource, config) {
   };
 
 
-  let getDynamicContentPromise = ( iEndPointUrl, iOptionalParameters = {} ) => {
+  let getDynamicContentPromise = ( iEndPointUrl, iIsArray, iOptionalParameters = {} ) => {
     $log.log('getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iOptionalParameters=', iOptionalParameters);
 
     let deferred = $q.defer();
 
-    $resource(buildApiUrl(iEndPointUrl), iOptionalParameters).get().$promise.then( (data) => {
-      deferred.resolve(data);
-    },
-    (error) => {
-      $log.log('getCourseContent error=', error);
+    if ( iIsArray ) {
+      $resource(buildApiUrl(iEndPointUrl), iOptionalParameters).query().$promise.then( (data) => {
+          deferred.resolve(data);
+        },
+        (error) => {
+          $log.log('getDynamicContentPromise error=', error);
 
-      deferred.reject(error);
-    });
+          deferred.reject(error);
+        });
+    }
+    else {
+      $resource(buildApiUrl(iEndPointUrl), iOptionalParameters).get().$promise.then( (data) => {
+          deferred.resolve(data);
+        },
+        (error) => {
+          $log.log('getDynamicContentPromise error=', error);
+
+          deferred.reject(error);
+        });
+    }
 
     return deferred.promise;
   };
