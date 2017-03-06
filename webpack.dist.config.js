@@ -1,7 +1,8 @@
-var webpack = require('webpack');
-var path    = require('path');
-var config  = require('./webpack.config');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const config = require('./webpack.config');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
 
 config.output = {
   filename: '[name].bundle.js',
@@ -31,7 +32,9 @@ config.plugins = config.plugins.concat([
       // angular global variable, so we should keep it unchanged
       except: ['$super', '$', 'exports', 'require', 'angular']
     }
-  })
+  }),
+
+  new CssSourcemapPlugin({ disable: true })
 ]);
 
 module.exports = config;

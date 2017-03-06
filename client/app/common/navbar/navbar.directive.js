@@ -28,7 +28,7 @@ let offCanvasListBugfixDef = function() {
   };
 };
 
-let moveMenu = function($log) {
+let moveMenu = function() {
   'ngInject';
   return {
     require: '^offCanvasWrap',
@@ -40,15 +40,16 @@ let moveMenu = function($log) {
           angular.element(this.getElementsByClassName('left-submenu')[0]).addClass('move-right');
           angular.element(this.getElementsByClassName('right-submenu')[0]).addClass('move-left');
 
-          //fix for nav doubling up
+          // fix for nav doubling up behind: adds fix
           angular.element(this.parentElement).addClass('show-this-nav');
           angular.element(this.parentElement.parentElement).addClass('fix-nav-under');
+
         }
         else if (angular.element(this).hasClass('back')) {
           angular.element(this.parentElement).removeClass('move-right');
           angular.element(this.parentElement).removeClass('move-left');
 
-          //fix for nav doubling up
+          // fix for nav doubling up behind: removes fix
           angular.element(this.parentElement.parentElement.parentElement).removeClass('show-this-nav');
           angular.element(this.parentElement.parentElement.parentElement.parentElement).removeClass('fix-nav-under');
         }
