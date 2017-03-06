@@ -1,86 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat|Open+Sans);
-
-@import "./foundation-settings";
-
-$accentColor:    #1de9b6;
-$bgColor:        #efefef;
-$darkBgColor:    #263238;
-$lightBgColor:   #FFFFFF;
-$lightTextColor: #f5f5f5;
-$darkTextColor:  #212121;
-
-$changeLanguageHeight: 20px;
-
-$defaultFont: 100% 'Montserrat', sans-serif;
-
-$h1-30px: 1.875rem;
-$h1-34px: 2.125rem;
-
-$h3-18px: 1.125rem;
-$h3-28px: 1.75rem;
-
-$h4-14px: 0.875rem;
-$h4-18px: 1.125rem;
-
-
-
-$padding-10px: rem_calc(10px);
-
-body {
-  height: 100%;
-  // browsers default to 16px for font-size,
-  // so setting top-level font-size to 62.5%
-  // scales 1rem to equal 10px.
-  font: $defaultFont;
-  line-height: 1.625rem;
-}
-
-#{headings()}, p {
-  font: $defaultFont;
-}
-
-h1 {
-  font-weight: bold;
-  font-size: $h1-30px;
-  line-height: $h1-34px;
-  color: #333333;
-}
-
-h3 {
-  color: #333333;
-  font-size: $h3-18px;
-  line-height: $h3-28px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-
-h4 {
-  color: #F06334;
-  font-size: $h4-14px;
-  line-height: $h4-18px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-h3.quote {
-  font-style: italic;
-  font-family: 'Open Sans', serif;
-  text-transform: none;
-}
-
-h3.quote-signature {
-  font-style: italic;
-  font-family: 'Open Sans', serif;
-  font-weight: 500;
-  text-transform: none;
-}
-
-.grey-bg {
-  background-color: $really-light-grey;
-  padding: 1rem;
-  color: #606060;
-}
-
-@import './scss/scrollbars';
-@import './scss/menu-item';
+@import './_foundation-settings';
+@import './scss/_vars';
+@import './scss/_colours';
+@import './scss/_typography';
+@import './scss/_generic';
+@import './scss/_colours';
+@import './scss/_scrollbars';
+@import './scss/_menu-item';
+@import './scss/_panels';

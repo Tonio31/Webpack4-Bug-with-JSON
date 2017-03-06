@@ -2,22 +2,14 @@
 
 
 footer {
-  padding: 0.2rem 1rem 0.5rem;
-  background-color: $tabbar-bg;
+  padding: rem_calc(10px);
+  background-color: $onyx;
 }
 
 .footer {
-
-  .hr-line {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-  }
-
   color: $white;
+
+  .hr {
+    border-top-color: transparentize($white, 0.6);
+  }
 }
-
-

@@ -7,6 +7,18 @@ $fullHeight: 100%;
 $topTitleMenuColor: #ff8534;
 $mainTitleMenuColor: #a0a0a0;
 
+.header {
+  .tab-bar {
+    background-color: $onyx;
+
+    .menu-icon {
+      // hide menu button on non-mobile
+      @media #{$large-up} {
+        display: none;
+      }
+    }
+  }
+}
 
 
 .navbar {
@@ -21,16 +33,24 @@ $mainTitleMenuColor: #a0a0a0;
   }
 
   .header {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 99;
-    @media #{$small-only} {
-      position: fixed;
+    @media #{$large-up} {
+      position: absolute;
     }
   }
 
   .left-off-canvas-menu {
+    @media #{$large-up} {
+      position: static;
+      transform: translate3d(0, 0, 0);
+      top: auto;
+      left: auto;
+      bottom: auto;
+      width: $off-canvas-width;
+    }
     margin-top: $tabbar-height;
 
     .pl-menu-button {
@@ -59,6 +79,13 @@ $mainTitleMenuColor: #a0a0a0;
         background-image: url('./assets/menu-item-completed.svg');
       }
     }
+
+    .back {
+      .pl-menu-button {
+        background-image: url('./assets/menu-item-back.svg');
+        width: 85%;
+      }
+    }
   }
 
   .main-section {
@@ -67,33 +94,64 @@ $mainTitleMenuColor: #a0a0a0;
     height: 100%;
     width: 100%;
     transform: translate3d(0, 0, 0);
-    transition: transform 500ms;
+    transition: transform $speed3;
+    @media #{$large-up} {
+      width: calc(100% - #{$off-canvas-width});
+    }
   }
 
-  //For mobile: tab-bar is fixed, for the rest, we can scroll down
-  @media #{$small-only} {
-    .off-canvas-wrap,
-    .off-canvas-wrap .inner-wrap {
+  .off-canvas-wrap,
+  .off-canvas-wrap .inner-wrap {
+    // For mobile: tab-bar is fixed, for the rest, we can scroll down
+    @media #{$small-only} {
       height: 100%;
       width: 100%;
     }
+    // For desktop: We put a min-height to solve a bug with the menu (module menu item appearing in step section)
+    @media #{$medium-up} {
+      height: 100%;
+    }
   }
 
-  //For desktop: We put a min-height to solve a bug with the menu (module menu item appearing in step section)
-
-  @media #{$medium-up} {
-    .off-canvas-wrap,
-    .off-canvas-wrap .inner-wrap {
+  .off-canvas-wrap {
+    @media #{$medium-up} {
       height: 100%;
     }
-
-    .off-canvas-wrap {
-      height: 100%;
+    .inner-wrap {
+      @media #{$medium-up} {
+        display: flex;
+      }
     }
+  }
 
-    .move-right {
-      .main-section {
-        transform: translate3d(-($off-canvas-width / 2), 0, 0);
+  // .main-section {
+  //     border: 1px solid red;
+  //     @media #{$medium-up} {
+  //       border: 1px solid green;
+  //     }
+  //     @media #{$large-up} {
+  //       border: 1px solid yellow;
+  //     }
+  //     @media #{$xlarge-up} {
+  //       border: 1px solid orange;
+  //     }
+  //     @media #{$xxlarge-up} {
+  //       border: 1px solid blue;
+  //     }
+  // }
+
+  .move-right {
+
+
+    // .main-section {
+    //   transform: translate3d(-($off-canvas-width / 2), 0, 0);
+    //   @media #{$medium-up} {
+    //     transform: translate3d(0, 0, 0);
+    //   }
+    // }
+    > .inner-wrap {
+      @media #{$large-up} {
+        transform: translate3d(0, 0, 0);
       }
     }
   }
@@ -101,15 +159,15 @@ $mainTitleMenuColor: #a0a0a0;
   .menu-button {
     width: 100%;
     height: auto;
-    border-bottom: 1px solid #262626;
+    border-bottom: 2px solid $onyx;
     color: rgba(255, 255, 255, .7);
     display: flex;
     padding: .66667rem;
-    transition: background 300ms ease;
+    transition: background-color $speed3 ease;
 
     &:hover,
     &:active {
-      background: #242424;
+      background-color: $onyx;
     }
 
     &.row {
@@ -194,10 +252,19 @@ $mainTitleMenuColor: #a0a0a0;
     .back {
       display: block;
       a {
+        background-color: $onyx;
+        padding: rem_calc(20px) 0.6667rem rem_calc(30px) rem_calc(5px);
+        align-items: flex-end;
         &::before {
           display: none;
         }
-
+        .small-2 {
+          width: 19%;
+        }
+      }
+      .main-title,
+      .below-title {
+        color: $white;
       }
     }
   }

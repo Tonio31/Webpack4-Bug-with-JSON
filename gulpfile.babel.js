@@ -1,5 +1,3 @@
-'use strict';
-
 import gulp     from 'gulp';
 import webpack  from 'webpack';
 import path     from 'path';
@@ -76,9 +74,9 @@ gulp.task('serve', () => {
     // application entry point
   ].concat(paths.entry);
 
-  console.log(config);
+  // console.log(config);
 
-  var compiler = webpack(config);
+  const compiler = webpack(config);
 
   serve({
     port: process.env.PORT || 3000,
