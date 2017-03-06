@@ -1,11 +1,11 @@
-import CourseContentModule from './courseContent'
+import CourseContentModule from './courseContent';
 
 describe('CourseContent', () => {
-  let $rootScope, $httpBackend, $state, $location, $componentController, $compile;
+  let $rootScope, $httpBackend, $state, $componentController, $compile;
 
-  let Menu;
+  let Menu, Data;
 
-  let goFn, getMenuPromiseFn;
+  let goFn, retrieveMenuAndReturnStatesFn;
 
   let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-1.json');
 
@@ -21,13 +21,13 @@ describe('CourseContent', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $state = $injector.get('$state');
-    $location = $injector.get('$location');
     $compile = $injector.get('$compile');
     $httpBackend = $injector.get('$httpBackend');
     Menu = $injector.get('Menu');
+    Data = $injector.get('Data');
 
     goFn = sinon.stub($state, 'go');
-    getMenuPromiseFn = sinon.stub(Menu, 'getMenuPromise');
+    retrieveMenuAndReturnStatesFn = sinon.stub(Menu, 'retrieveMenuAndReturnStates');
   }));
 
   describe('Module', () => {
@@ -84,7 +84,7 @@ describe('CourseContent', () => {
 
     it('nextStep() sends a POST to save current step if it is not yet marked as completed', sinon.test( (done) => {
 
-      $httpBackend.whenPOST('/stepcompleted').respond( () => {
+      $httpBackend.whenPOST(Data.buildApiUrl('step')).respond( () => {
         let responseHeaders = {
           status: 'ok'
         };
@@ -97,7 +97,7 @@ describe('CourseContent', () => {
       // Resolve promise, we have to do this in unit test when promise are involved
       $httpBackend.flush();
 
-      sinon.assert.calledWith(getMenuPromiseFn, true);
+      sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
       expect(controller.nextStepButtonLabel).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
       expect(controller.displayCongratsBanner).to.eq(true);
@@ -108,11 +108,8 @@ describe('CourseContent', () => {
 
     it('nextStep() sends a POST to save current step but we simulate error on back end side', sinon.test( (done) => {
 
-      $httpBackend.whenPOST('/stepcompleted').respond( () => {
-        let responseHeaders = {
-          status: 'NOT OK'
-        };
-        return [ 404, {errorMsg: 'There was an error'}, responseHeaders ];
+      $httpBackend.whenPOST(Data.buildApiUrl('step')).respond( () => {
+        return [ 401, { error: 'token_not_provided' }, {} ];
       });
 
       controller.$onInit();
@@ -121,7 +118,7 @@ describe('CourseContent', () => {
       // Resolve promise, we have to do this in unit test when promise are involved
       $httpBackend.flush();
 
-      sinon.assert.notCalled(getMenuPromiseFn);
+      sinon.assert.notCalled(retrieveMenuAndReturnStatesFn);
 
       // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();

@@ -1,9 +1,9 @@
-import FooterModule from './footer'
+import FooterModule from './footer';
 import FooterComponent from './footer.component';
 import FooterTemplate from './footer.html';
 
 describe('Footer', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope, $compile;
 
   let mockTranslateFilter = (value) => {
     return value;
@@ -15,7 +15,6 @@ describe('Footer', () => {
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
   }));
 
@@ -37,11 +36,11 @@ describe('Footer', () => {
   });
 
   describe('Component', () => {
-      // component/directive specs
-      let component = FooterComponent;
+    // component/directive specs
+    let component = FooterComponent;
 
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(FooterTemplate);
-      });
+    it('includes the intended template', () => {
+      expect(component.template).to.equal(FooterTemplate);
+    });
   });
 });

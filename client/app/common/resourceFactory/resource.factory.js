@@ -17,25 +17,19 @@ let ResourceFactory = function($log, $q, $resource, config) {
     return user;
   };
 
+  // **********************************  GET  *************************************** //
   let getMenu = () => {
     $log.log('getMenu config=', config);
     return $resource(buildApiUrl('menu'));
   };
 
-  let getUserAuthData = () => {
-    $log.log('getUserAuthData');
-    return new ($resource(buildApiUrl('authenticate')))();
-  };
 
-
-  let getCourseContent = (iStepFullUrl) => {
-    $log.log('getCourseContent iStepFullUrl=', iStepFullUrl);
+  let getDynamicContentPromise = ( iEndPointUrl, iOptionalParameters = {} ) => {
+    $log.log('getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iOptionalParameters=', iOptionalParameters);
 
     let deferred = $q.defer();
 
-    $resource(buildApiUrl('step'), {
-      slug: iStepFullUrl
-    }).get().$promise.then( (data) => {
+    $resource(buildApiUrl(iEndPointUrl), iOptionalParameters).get().$promise.then( (data) => {
       deferred.resolve(data);
     },
     (error) => {
@@ -47,27 +41,17 @@ let ResourceFactory = function($log, $q, $resource, config) {
     return deferred.promise;
   };
 
-  let getHomeContent = () => {
-    $log.log('getHomeContent');
+  // **********************************  POST  *************************************** //
+  // Theses resource are to be used with $save method only, because we return an instance
+  // of the function, we can't use it to do get method
 
-    let deferred = $q.defer();
-
-    $resource(buildApiUrl('reflexion')).get().$promise.then( (data) => {
-      deferred.resolve(data);
-    },
-      (error) => {
-        $log.log('getCourseContent error=', error);
-
-        deferred.reject(error);
-      });
-
-    return deferred.promise;
+  let getUserAuthData = () => {
+    $log.log('getUserAuthData');
+    return new ($resource(buildApiUrl('authenticate')))();
   };
 
-
-  // This resource funciton is to be used with $save method only, because we return an instance of the function
-  // we can't use it to do get method
   let updateStep = () => {
+    $log.log('updateStep');
     return new ($resource(buildApiUrl('step')))();
   };
 
@@ -75,8 +59,7 @@ let ResourceFactory = function($log, $q, $resource, config) {
     getUser,
     getMenu,
     getUserAuthData,
-    getCourseContent,
-    getHomeContent,
+    getDynamicContentPromise,
     updateStep,
     buildApiUrl
   };

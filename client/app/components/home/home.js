@@ -5,9 +5,9 @@ import angularTranslate from 'angular-translate';
 import ResourceFactory from 'common/resourceFactory/resource';
 import UserDataFactory from 'common/userDataFactory/userData';
 import MenuService from 'common/menuFactory/menu';
+import JwtModule from 'common/jwtFactory/jwt';
 import LogDecorator from 'common/logDecorator/logDecorator';
-import ngStorage from 'ngstorage-webpack';
-
+import constantModule from 'common/constants';
 
 let homeModule = angular.module('home', [
   uiRouter,
@@ -16,28 +16,30 @@ let homeModule = angular.module('home', [
   MenuService,
   LogDecorator,
   UserDataFactory,
-  ngStorage
+  JwtModule,
+  constantModule
 ])
 
-.config(($stateProvider, $urlRouterProvider) => {
-  'ngInject';
-  $urlRouterProvider.otherwise('/');
+  .config(($stateProvider, $urlRouterProvider, STATES) => {
+    'ngInject';
 
-  $stateProvider
-    .state('home', {
-      url: '/',
-      component: 'home',
-      resolve: {
-        content: (Data) => {
-          'ngInject';
-          return Data.getHomeContent();
+    $stateProvider
+      .state(STATES.HOME, {
+        url: `/`,
+        component: 'home',
+        resolve: {
+          content: (Data) => {
+            'ngInject';
+            return Data.getDynamicContentPromise('reflexion');
+          }
+        },
+        params: {
+          forceRedirect: null
         }
-      }
-    });
-})
+      });
+  })
 
-.component('home', homeComponent)
-
-.name;
+  .component('home', homeComponent)
+  .name;
 
 export default homeModule;

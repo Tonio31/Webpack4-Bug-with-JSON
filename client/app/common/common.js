@@ -7,6 +7,7 @@ import UserDataFactory from './userDataFactory/userData';
 import JwtFactory from './jwtFactory/jwt';
 import MenuService from './menuFactory/menu';
 import LogDecorator from './logDecorator/logDecorator';
+import ConstantModule from './constants';
 
 let commonModule = angular.module('app.common', [
   Navbar,
@@ -16,7 +17,8 @@ let commonModule = angular.module('app.common', [
   ResourceFactory,
   MenuService,
   JwtFactory,
-  UserDataFactory
+  UserDataFactory,
+  ConstantModule
 ])
 .name;
 

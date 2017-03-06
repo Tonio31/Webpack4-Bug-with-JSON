@@ -1,4 +1,4 @@
-import VideoModule from './videoModule'
+import VideoModule from './videoModule';
 import VideoController from './videoModule.controller';
 import VideoComponent from './videoModule.component';
 import VideoTemplate from './videoModule.html';
@@ -7,8 +7,8 @@ describe('Video', () => {
   let $rootScope, $componentController, $compile;
 
   let videoDataBindings = {
-      poster: "https://d2ahrnswp9nefw.cloudfront.net/videoplace.jpg",
-      source: "https://d2ahrnswp9nefw.cloudfront.net/s.1.1/S1-1-1-new.mp4"
+    poster: 'https://d2ahrnswp9nefw.cloudfront.net/videoplace.jpg',
+    source: 'https://d2ahrnswp9nefw.cloudfront.net/s.1.1/S1-1-1-new.mp4'
   };
 
   beforeEach(window.module(VideoModule));
@@ -45,11 +45,10 @@ describe('Video', () => {
     it('media info to be populated with the bindings form data', () => {
 
       let expectedMediaInfo = {
-        sources: [{
-            src: videoDataBindings.source,
-            type: 'video/mp4'
-          }
-        ],
+        sources: [ {
+          src: videoDataBindings.source,
+          type: 'video/mp4'
+        }],
         poster: videoDataBindings.poster
       };
 
@@ -64,7 +63,7 @@ describe('Video', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      scope.data = videoDataBindings,
+      scope.data = videoDataBindings;
       template = $compile('<video-module data="data"></video-module>')(scope);
       scope.$apply();
     });
@@ -75,15 +74,15 @@ describe('Video', () => {
   });
 
   describe('Component', () => {
-      // component/directive specs
-      let component = VideoComponent;
+    // component/directive specs
+    let component = VideoComponent;
 
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(VideoTemplate);
-      });
+    it('includes the intended template', () => {
+      expect(component.template).to.equal(VideoTemplate);
+    });
 
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(VideoController);
-      });
+    it('invokes the right controller', () => {
+      expect(component.controller).to.equal(VideoController);
+    });
   });
 });
