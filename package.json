@@ -37,11 +37,13 @@
     "chai": "^3.4.0",
     "connect-history-api-fallback": "^1.1.0",
     "css-loader": "^0.19.0",
+    "css-sourcemaps-webpack-plugin": "^1.0.3",
     "del": "^2.2.0",
     "eslint": "^3.15.0",
     "eslint-config-angular": "^0.5.0",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-angular": "^1.6.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "fs-walk": "0.0.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
@@ -105,5 +107,9 @@
       "es2015",
       "stage-0"
     ]
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }

@@ -1,14 +1,24 @@
 
 <div ng-repeat="child in item.children track by child.id">
-  <li ng-if="hasChildren(child)" class="has-submenu" >
+  <li ng-if="hasChildren(child)" class="has-submenu menu-item {{child.slug}}">
     <a href=""><menu-button data="child"></menu-button></a>
     <ul class="left-submenu">
-      <li class="back"><a href="">Back {{child.title}}</a></li>
-      <li><label>{{child.title}}</label></li>
+      <li class="back btn-back-home">
+        <a href="" class="menu-button">
+          <div class="small-2">
+            <span class="pl-menu-button"></span>
+          </div>
+          <div class="small-10">
+            <p class="top-title">{{child.title}}</p>
+            <p class="main-title">{{child.name}}</p>
+            <p class="below-title">Total - {{child.children.length + 1}} Steps</p>
+          </div>
+        </a>
+      </li>
       <menu-item item="child"></menu-item>
     </ul>
   </li>
-  <li ng-if="!hasChildren(child)" ng-click="hideCanvas()">
+  <li ng-if="!hasChildren(child)" ng-click="hideCanvas()" class="menu-item" ui-sref-active="active">
     <a ui-sref="{{child.fullUrl}}"><menu-button data="child"></menu-button></a>
   </li>
 </div>

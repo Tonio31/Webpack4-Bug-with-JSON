@@ -6,11 +6,15 @@ module.exports = exports = {
     "es6": true,
     "mocha": true
   },
+  "esversion": 6,
 
   "ecmaFeatures": {
     "modules": true
   },
-  "extends": ["eslint:recommended",  "angular"],
+  "extends": [
+    "eslint:recommended",
+    "angular"
+  ],
 
   "parserOptions": {
     "sourceType": "module",

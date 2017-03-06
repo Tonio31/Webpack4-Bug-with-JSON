@@ -1,6 +1,6 @@
 <div class="home row collapse">
 
-  <div class="small-12 medium-8 small-centered columns">
+  <div class="small-12 medium-10 xlarge-8 small-centered columns">
 
 
     <h1 class="text-center">{{ 'WELCOME' | translate }} {{$ctrl.firstName}}!</h1>
@@ -34,7 +34,7 @@
     </div>
 
 
-    <div class="row grey-bg collapse text-center">
+    <div class="row bgcolour-grey panel collapse text-center">
       <div class="columns small-12">
         <h4>{{'CURRENT_LOCATION' | translate }}</h4>
         <div class="show-for-small-only">
@@ -63,7 +63,7 @@
 
         <div class="row collapse">
           <div class="columns small-12">
-            <div class="row grey-bg collapse y-center-parent">
+            <div class="row bgcolour-grey panel collapse y-center-parent">
 
               <div class="columns small-12 medium-2 medium-push-10 y-center-child">
                 <div class="left-padding">
@@ -87,7 +87,7 @@
     <div class="row collapse">
         <div id="faq" class="small-12 medium-6 columns medium-margin-right">
           <h4>{{'FAQS' | translate }}</h4>
-          <div class="grey-bg">
+          <div class="bgcolour-grey panel">
             <p>{{'FAQS_TEXT' | translate }}</p>
             <button class="radius secondary expand" type="submit" ng-click="$ctrl.goToFAQs()">{{'FAQS' | translate }}</button>
 
@@ -95,7 +95,7 @@
         </div>
         <div id="support" class="small-12 medium-6 columns medium-margin-left">
           <h4>{{'SUPPORT' | translate }}</h4>
-          <div class="grey-bg">
+          <div class="bgcolour-grey panel">
             <p>{{'SUPPORT_TEXT' | translate }}</p>
             <button class="radius secondary expand" type="submit" ng-click="$ctrl.sendUsEmail()">{{'EMAIL_US' | translate }}</button>
           </div>

@@ -1,0 +1,40 @@
+#{headings()}, p {
+  font: $defaultFont;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: $h1-30px;
+  line-height: $h1-34px;
+  color: #333333;
+}
+
+h3 {
+  color: #333333;
+  font-size: $h3-18px;
+  line-height: $h3-28px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+h4 {
+  color: #F06334;
+  font-size: $h4-14px;
+  line-height: $h4-18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h3.quote {
+  font-style: italic;
+  font-family: 'Open Sans', serif;
+  text-transform: none;
+}
+
+h3.quote-signature {
+  font-style: italic;
+  font-family: 'Open Sans', serif;
+  font-weight: 500;
+  text-transform: none;
+}

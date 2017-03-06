@@ -1,11 +1,35 @@
 @import '../common';
 
 
-$canvasMenuLinkTextColor:  #FFFFFF;
+$canvasMenuLinkTextColor:  #fff;
 $fullHeight: 100%;
 
-$topTitleMenuColor: #FF8534;
-$mainTitleMenuColor: #A0A0A0;
+$topTitleMenuColor: #ff8534;
+$mainTitleMenuColor: #a0a0a0;
+
+.header {
+  .tab-bar {
+    background-color: $onyx;
+
+    .menu-icon {
+      // hide menu button on non-mobile
+      @media #{$large-up} {
+        display: none;
+      }
+    }
+  }
+  .logo-potential-life a {
+    display: inline-block;
+    background-image: url('./assets/logo-potential-life.svg');
+    background-repeat: no-repeat;
+    background-position: 1px 4px;
+    background-size: auto 80%;
+    text-indent: -9999em;
+    height: auto;
+    width: 270px;
+  }
+}
+
 
 .navbar {
   height: 100%;
@@ -19,14 +43,81 @@ $mainTitleMenuColor: #A0A0A0;
   }
 
   .header {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 99;
+    @media #{$large-up} {
+      position: absolute;
+    }
   }
 
   .left-off-canvas-menu {
+    @media #{$large-up} {
+      position: static;
+      transform: translate3d(0, 0, 0);
+      top: auto;
+      left: auto;
+      bottom: auto;
+      width: $off-canvas-width;
+    }
     margin-top: $tabbar-height;
+
+    .home {
+      display: flex;
+      background-color: $onyx;
+      border-top: 1px solid #5e5e5e;
+      cursor: pointer;
+      padding: 1.25rem 0.6667rem 1.875rem 0.3125rem;
+      .columns {
+        padding: 0;
+      }
+      .main-title,
+      .below-title {
+        color: $white;
+      }
+    }
+
+    .pl-menu-button {
+      width: 80%;
+      height: 50px;
+      background-size: contain;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      display: inline-block;
+    }
+
+    .current {
+      .pl-menu-button {
+        background-image: url('./assets/menu-item-current.svg');
+      }
+    }
+
+    .locked {
+      .pl-menu-button {
+        background-image: url('./assets/menu-item-locked.svg');
+      }
+    }
+
+    .completed {
+      .pl-menu-button {
+        background-image: url('./assets/menu-item-completed.svg');
+      }
+    }
+
+    .back {
+      .pl-menu-button {
+        background-image: url('./assets/menu-item-back.svg');
+        width: 85%;
+      }
+    }
+
+    .home {
+      .pl-menu-button {
+        width: 85%;
+        background-image: url('./assets/menu-item-home.svg');
+      }
+    }
   }
 
   .main-section {
@@ -34,90 +125,145 @@ $mainTitleMenuColor: #A0A0A0;
     overflow-y: auto;
     height: 100%;
     width: 100%;
+    transform: translate3d(0, 0, 0);
+    transition: transform $speed3;
+    @media #{$large-up} {
+      width: calc(100% - #{$off-canvas-width});
+    }
   }
 
-  //For mobile: tab-bar is fixed, for the rest, we can scroll down
-  @media #{$small-only} {
-    .off-canvas-wrap,
-    .off-canvas-wrap .inner-wrap{
+  .off-canvas-wrap,
+  .off-canvas-wrap .inner-wrap {
+    &::before,
+    &::after {
+      display: none;
+    }
+    // For mobile: tab-bar is fixed, for the rest, we can scroll down
+    @media #{$small-only} {
       height: 100%;
       width: 100%;
     }
-  }
-
-  //For desktop: We put a min-height to solve a bug with the menu (module menu item appearing in step section)
-
-  @media #{$medium-up} {
-    .off-canvas-wrap,
-    .off-canvas-wrap .inner-wrap{
-      height: 100%;
-    }
-
-    .off-canvas-wrap{
+    // For desktop: We put a min-height to solve a bug with the menu (module menu item appearing in step section)
+    @media #{$medium-up} {
       height: 100%;
     }
   }
 
-
-
-  .menu-button.row:before, .menu-button.row:after {
-    content: none;
-    //display: table;
+  .off-canvas-wrap {
+    @media #{$medium-up} {
+      height: 100%;
+    }
+    .inner-wrap {
+      @media #{$medium-up} {
+        display: flex;
+      }
+    }
   }
 
+  // .main-section {
+  //     border: 1px solid red;
+  //     @media #{$medium-up} {
+  //       border: 1px solid green;
+  //     }
+  //     @media #{$large-up} {
+  //       border: 1px solid yellow;
+  //     }
+  //     @media #{$xlarge-up} {
+  //       border: 1px solid orange;
+  //     }
+  //     @media #{$xxlarge-up} {
+  //       border: 1px solid blue;
+  //     }
+  // }
 
+  .move-right {
+
+
+    // .main-section {
+    //   transform: translate3d(-($off-canvas-width / 2), 0, 0);
+    //   @media #{$medium-up} {
+    //     transform: translate3d(0, 0, 0);
+    //   }
+    // }
+    > .inner-wrap {
+      @media #{$large-up} {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
 
   .menu-button {
     width: 100%;
-    heigth: 60px;
+    height: auto;
+    border-bottom: 2px solid $onyx;
+    color: rgba(255, 255, 255, .7);
+    display: flex;
+    padding: .66667rem;
+    transition: background-color $speed3 ease;
+
+    &:hover,
+    &:active {
+      background-color: $onyx;
+    }
+
+    &.row {
+      &::before,
+      &::after {
+        content: none;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+
+      &.top-title {
+        font-size: 10px;
+        color: $topTitleMenuColor;
+        text-transform: uppercase;
+      }
+
+      &.main-title {
+        font-size: 18px;
+        -webkit-font-smoothing: subpixel-antialiased;
+        color: $mainTitleMenuColor;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+      }
+
+      &.below-title {
+        font-size: 10px;
+        color: $mainTitleMenuColor;
+      }
+    }
+
+    &.current {
+      background-color: $black;
+      border-top: 1px solid $white;
+      border-bottom: 1px solid $white;
+      position: relative;
+
+      &::after {
+        content: '';
+        display: block;
+        border: 1px solid red;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 0;
+        right: -10px;
+      }
+
+      p {
+        &.main-title,
+        &.below-title {
+          color: $white;
+        }
+      }
+    }
   }
 
-  .menu-button p{
-    margin-bottom: 0px;
-  }
-
-
-  .menu-button p.top-title{
-    font-size: 10px;
-    color: $topTitleMenuColor;
-  }
-
-  .menu-button p.main-title{
-    font-size: 18px;
-    color: $mainTitleMenuColor;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 180px;
-  }
-
-  .menu-button p.below-title{
-    font-size: 10px;
-    color: $mainTitleMenuColor;
-  }
-
-
-
-  .left-off-canvas-menu .pl-menu-button{
-    height: 20px;
-    width: 20px;
-    background-size: contain;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    display: inline-block;
-  }
-
-  .left-off-canvas-menu .current .pl-menu-button{
-    background-image: url('./assets/menu-item-current.svg');
-  }
-
-  .left-off-canvas-menu .locked .pl-menu-button{
-    background-image: url('./assets/menu-item-locked.svg');
-  }
-
-  .left-off-canvas-menu .completed .pl-menu-button{
-    background-image: url('./assets/menu-item-completed.svg');
-  }
 
   .nav-links,
   .logo {
@@ -129,63 +275,98 @@ $mainTitleMenuColor: #A0A0A0;
     margin-right: 50%;
   }
 
-  .nav-links span {
-    color: $lightTextColor;
-    font-size: 1.6rem;
+  .nav-links {
+    span {
+      color: $lightTextColor;
+      font-size: 1.6rem;
+    }
   }
 
 
   .left-submenu {
     height: 100%;
+
+    .back {
+      display: block;
+      a {
+        background-color: $onyx;
+        padding: rem_calc(20px) 0.6667rem rem_calc(30px) rem_calc(5px);
+        align-items: flex-end;
+        &::before {
+          display: none;
+        }
+        .small-2 {
+          width: 19%;
+        }
+      }
+      .main-title,
+      .below-title {
+        color: $white;
+      }
+    }
+
   }
+
+  .menu-item {
+    display: flex;
+    width: 100%;
+
+    a {
+      width: 100%;
+    }
+  }
+
 
   //HACK
   //There is a bug in the offCanvas with Angular, the submenu are not working properly
   //as described here: https://github.com/pineconellc/angular-foundation/pull/137
   //The workaround to fix this is to redefine the directive and the css associated
 
-  ul.off-canvas-list-bugfix {
+  .off-canvas-list-bugfix {
     list-style-type: none;
     margin: 0;
     padding: 0;
+
+    label {
+      background: #444;
+      border-bottom: 0;
+      border-top: 1px solid #5e5e5e;
+      color: #999;
+      display: block;
+      font-size: .75rem;
+      font-weight: bold;
+      margin: 0;
+      padding: .3rem .9375rem;
+      text-transform: uppercase;
+    }
   }
 
-  ul.off-canvas-list-bugfix li label {
-    background: #444444;
-    border-bottom: none;
-    border-top: 1px solid #5e5e5e;
-    color: #999999;
-    display: block;
-    font-size: 0.75rem;
-    font-weight: bold;
-    margin: 0;
-    padding: 0.3rem 0.9375rem;
-    text-transform: uppercase;
-  }
-  ul.off-canvas-list-bugfix li a {
-    border-bottom: 1px solid #262626;
-    color: rgba(255, 255, 255, 0.7);
-    display: block;
-    padding: 0.66667rem;
-    transition: background 300ms ease;
-  }
-  ul.off-canvas-list-bugfix li a:hover {
-    background: #242424;
-  }
-  ul.off-canvas-list-bugfix li a:active {
-    background: #242424;
+  .fix-nav-under {
+    > div {
+      // opacity: 0;
+      // transition: opacity 500ms;
+      display: none;
+      &.show-this-nav {
+        display: block;
+        // opacity: 1;
+      }
+    }
   }
 
-  .left-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu .menu-button:after {
-    content: "\BB";
-    margin-left: .5rem;
-    display: inline;
-  }
 
-  .right-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu > a:before {
-    content: "\AB";
-    margin-right: .5rem;
-    display: inline;
-  }
+
+  // .left-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu .menu-button:after {
+  //   content: "\BB";
+  //   margin-left: .5rem;
+  //   display: inline;
+  //   border: 1px solid red;
+  // }
+  //
+  // .right-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu > a:before {
+  //   content: "\AB";
+  //   margin-right: .5rem;
+  //   display: inline;
+  //   border: 1px solid blue;
+  // }
 
 }

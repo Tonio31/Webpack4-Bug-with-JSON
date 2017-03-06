@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Button/Back/Square">
+            <g id="Group-2">
+                <rect id="Rectangle-3-Copy" fill="#414042" x="0" y="0" width="45" height="45" rx="4"></rect>
+                <path d="M15.7403911,22.0277513 L23.4518633,14.3572156 C24.1589762,13.6545833 25.3157774,13.6545833 26.0220859,14.3572156 L26.6664515,14.9974272 C27.3727599,15.6992593 27.3727599,16.8508399 26.6664515,17.5534722 L20.7818887,23.4074074 L26.6664515,29.2613426 C27.3727599,29.9639749 27.3727599,31.1155556 26.6664515,31.8173876 L26.0220859,32.4575992 C25.3157774,33.1610317 24.1589762,33.1610317 23.4518633,32.4575992 L15.7403911,24.785463 C15.36069,24.4093386 15.1925596,23.9035714 15.219911,23.4074074 C15.1925596,22.9112434 15.36069,22.4054762 15.7403911,22.0277513 Z" id="Shape" fill="#EDEDED"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,37 @@
+body {
+  height: 100%;
+  // browsers default to 16px for font-size,
+  // so setting top-level font-size to 62.5%
+  // scales 1rem to equal 10px.
+  font: $defaultFont;
+  line-height: 1.625rem;
+}
+
+.padding {
+  &-10px {
+    padding: rem_calc(10px);
+  }
+  &-20px {
+    padding: rem_calc(20px);
+  }
+}
+
+.move-right {
+  .exit-off-canvas {
+    box-shadow: none;
+    @media #{$large-up} {
+      display: none;
+      // background-color: rgba(255, 0, 0, .4);
+    }
+  }
+}
+
+
+.hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid $black;
+  margin: rem_calc(10px) 0;
+  padding: 0;
+}
