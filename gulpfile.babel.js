@@ -74,8 +74,6 @@ gulp.task('serve', () => {
     // application entry point
   ].concat(paths.entry);
 
-  // console.log(config);
-
   const compiler = webpack(config);
 
   serve({

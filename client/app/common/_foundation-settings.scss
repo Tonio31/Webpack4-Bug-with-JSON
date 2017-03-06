@@ -155,30 +155,11 @@ $global-radius: 10px;
 // d. Media Query Ranges
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// 320 small
-// 480 medium
-// 768 large
-// 1024 x-large
-
-// $small-breakpoint:  em-calc(640);
-// $medium-breakpoint: em-calc(1024);
-// $large-breakpoint:  em-calc(1440);
-
 $small-breakpoint:  em-calc(480);
 $medium-breakpoint: em-calc(768);
 $large-breakpoint:  em-calc(1024);
 $xlarge-breakpoint:  em-calc(1200);
 $xxlarge-breakpoint:  $xlarge-breakpoint;
-
-//// issue with grid
-//// small, medium are fine.
-////
-
-
-// $small-breakpoint:  em-calc(480 + 1);
-// $medium-breakpoint: em-calc(768 + 1);
-// $large-breakpoint:  em-calc(1024 + 1);
-// $xlarge-breakpoint: em-calc(1920);
 
 $small-range:   (0, $small-breakpoint);
 $medium-range:  ($small-breakpoint  + em-calc(1), $medium-breakpoint);
@@ -883,7 +864,6 @@ $tabbar-height: rem-calc(45);
 // $tabbar-header-margin: 0;
 
 // Off Canvas Menu Variables
-// $off-canvas-width: rem-calc(278);
 $off-canvas-width: 278px;
 // $off-canvas-bg: $oil;
 // $off-canvas-bg-hover: scale-color($tabbar-bg, $lightness: -30%);
