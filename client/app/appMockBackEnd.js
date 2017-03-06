@@ -17,7 +17,7 @@ angular.module( 'appMockBackEnd', [
   ResourceFactory,
   'ngMockE2E'
 ])
-.run( ($log, $httpBackend, Data) => {
+.run( ($log, $httpBackend, Data, JwtFactory) => {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -32,6 +32,10 @@ angular.module( 'appMockBackEnd', [
   let authenticate = require('./mockBackEndResponse/authenticateResponse.json');
 
   let stepContent = {};
+
+  let errorReply = [ 401, { error: 'token_not_provided' }, {} ];
+
+
 
   // will take an URL and return a file name
   // iFullUrlToServer: http://apipl.ciprianspiridon.com/v1/step?slug=%2Fpotentialife-course%2Fcycle-1%2Fmodule-1%2Fstep-1
@@ -102,50 +106,71 @@ angular.module( 'appMockBackEnd', [
 
     $log.log(`$httpBackend.whenGET(${url})`);
 
-    let content = {};
-    try {
-      content = getStepContent(url);
-    }
-    catch (error) {
-      $log.log(error);
-      if ( error.message.includes('Cannot find module') ) {
-        // The json for this step is not yet imported in the project return the generic content
-        $log.log('No json found for the specific step, returning generic content');
-        content = require('./mockBackEndResponse/genericContent.json');
+    if ( !JwtFactory.isAuthedExpired() ) {
+      let content = {};
+      try {
+        content = getStepContent(url);
       }
+      catch (error) {
+        $log.log(error);
+        if ( error.message.includes('Cannot find module') ) {
+          // The json for this step is not yet imported in the project return the generic content
+          $log.log('No json found for the specific step, returning generic content');
+          content = require('./mockBackEndResponse/genericContent.json');
+        }
+      }
+
+      return [ 200, content, {} ];
     }
 
-    return [ 200, content, {} ];
+    return errorReply;
   });
 
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
 
-    let reflexionParticipant = require('./mockBackEndResponse/reflexion.json');
-    return [ 200, reflexionParticipant, {} ];
+    if ( !JwtFactory.isAuthedExpired() ) {
+      let reflexionParticipant = require('./mockBackEndResponse/reflexion.json');
+      return [ 200, reflexionParticipant, {} ];
+    }
+
+    // Return error by default
+    return errorReply;
   });
 
-  $httpBackend.whenGET(Data.buildApiUrl('menu')).respond( (method, url) => {
-    $log.log('Data(menu)=', Data.buildApiUrl('menu'));
+  $httpBackend.whenGET(Data.buildApiUrl('menu')).respond( (method, url, data, headers) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
 
-    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method}`);
+    if ( !JwtFactory.isAuthedExpired() ) {
+      // Simulate the menu for a user that is logged in
+      return [ 200, menu, {} ];
+    }
 
-    return [ 200, menu, {} ];
+    // Return error by default
+    return errorReply;
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('step')).respond( (method, url, data, headers) => {
-    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
 
     let dataObject = angular.fromJson(data);
 
-    updateMenu(dataObject.fullUrl);
+    if ( !JwtFactory.isAuthedExpired() ) {
+      // Simulate a good answer
 
-    let responseHeaders = {
-      stepId: dataObject.stepId,
-      status: 'ok'
-    };
+      updateMenu(dataObject.fullUrl);
 
-    return [ 200, { nextStepFullSlug: 'someData' }, responseHeaders ];
+      let responseHeaders = {
+        stepId: dataObject.stepId,
+        status: 'ok'
+      };
+
+      return [ 200, {}, responseHeaders ];
+    }
+
+    // If the user is not logged in, returns error
+    return errorReply;
+
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {

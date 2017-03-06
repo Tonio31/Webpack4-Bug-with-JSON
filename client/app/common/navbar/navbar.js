@@ -5,6 +5,7 @@ import navbarComponent from './navbar.component';
 import ResourceFactory from 'common/resourceFactory/resource';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import MenuService from 'common/menuFactory/menu';
+import constantModule from 'common/constants';
 import { moveMenu, offCanvasListBugfixDef, menuItem, menuButton } from './navbar.directive';
 
 require('angular-foundation');
@@ -15,6 +16,7 @@ let navbarModule = angular.module('navbar', [
   MenuService,
   LogDecorator,
   globalVariable,
+  constantModule,
   'mm.foundation'
 ])
   .component('navbar', navbarComponent)

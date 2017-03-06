@@ -1,19 +1,27 @@
 import angular from 'angular';
+import uiRouter from 'angular-ui-router';
 import JwtFactory from './jwt.factory';
 import AuthInterceptorFactory from './authInterceptor.factory';
 import ngStorage from 'ngstorage-webpack';
+import LogDecorator from 'common/logDecorator/logDecorator';
+import constantModule from 'common/constants';
+
+
+// This module handles Authentication, it uses JWT (JSON Web Token)
+// Have a look at this tutorial to understand how it works:
+//   https://thinkster.io/tutorials/angularjs-jwt-auth
 
 let jwtServiceModule = angular.module('jwtService', [
-  ngStorage
+  uiRouter,
+  ngStorage,
+  LogDecorator,
+  constantModule
 ])
-  .constant('config', {
-    apiUrl: 'http://apipl.ciprianspiridon.com/',
-    apiVersion: 'v1'
-  })
   .factory('JwtFactory', JwtFactory)
   .factory('AuthInterceptor', AuthInterceptorFactory)
-  .config( ($httpProvider) => {
+  .config( ($httpProvider, $localStorageProvider) => {
     'ngInject';
+    $localStorageProvider.setKeyPrefix('pl2-');
     $httpProvider.interceptors.push('AuthInterceptor');
   })
   .name;

@@ -1,7 +1,7 @@
 
 class HomeController {
 
-  constructor($log, $translate, $localStorage, $state, $sce, Data, UserInfo, Menu) {
+  constructor($log, $state, UserInfo, Menu) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign

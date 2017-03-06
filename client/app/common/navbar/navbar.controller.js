@@ -1,11 +1,13 @@
 class NavbarController {
-  constructor( $log, _, Data, UserInfo, Menu) {
+  constructor( $log, STATES, Menu) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance('NavbarController');
 
     $log.log('constructor() - BEGIN');
+
+    this.homeState = STATES.HOME;
 
     this.$onInit = () => {
       $log.log('constructor()::$onInit - BEGIN');

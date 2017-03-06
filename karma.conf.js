@@ -12,6 +12,12 @@ module.exports = function (config) {
       'sinon-chai'
     ],
 
+    client : {
+      chai: {
+        truncateThreshold: 0
+      }
+    },
+
     // list of files/patterns to load in the browser
     files: [
       { pattern: 'spec.bundle.js', watched: false }
@@ -45,6 +51,9 @@ module.exports = function (config) {
         }
       },
       module: {
+        preLoaders: [
+          { test: /\.js$/, loader: 'eslint?{ configFile: ".eslintrc.spec.js" }', exclude: [/app\/lib/, /node_modules/] }
+        ],
         loaders: [
           { test: /\.js/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
           { test: /\.html$/, loader: 'raw' },

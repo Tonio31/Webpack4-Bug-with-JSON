@@ -1,12 +1,12 @@
-import <%= upCaseName %>Module from './<%= name %>';
-import <%= upCaseName %>Controller from './<%= name %>.controller';
-import <%= upCaseName %>Component from './<%= name %>.component';
-import <%= upCaseName %>Template from './<%= name %>.html';
+import PageNotFoundModule from './pageNotFound';
+import PageNotFoundController from './pageNotFound.controller';
+import PageNotFoundComponent from './pageNotFound.component';
+import PageNotFoundTemplate from './pageNotFound.html';
 
-describe('<%= upCaseName %>', () => {
+describe('PageNotFound', () => {
   let $rootScope, $componentController, $compile;
 
-  beforeEach(window.module(<%= upCaseName %>Module));
+  beforeEach(window.module(PageNotFoundModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
@@ -22,15 +22,11 @@ describe('<%= upCaseName %>', () => {
     // controller specs
     let controller;
     beforeEach(() => {
-      controller = $componentController('<%= name %>', {
+      controller = $componentController('pageNotFound', {
         $scope: $rootScope.$new()
       });
     });
 
-
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
-    });
   });
 
   describe('View', () => {
@@ -39,26 +35,26 @@ describe('<%= upCaseName %>', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<<%= name %>></<%= name %>>')(scope);
+      template = $compile('<page-not-found></page-not-found>')(scope);
       scope.$apply();
     });
 
 
     it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('<%= name %>');
+      expect(template.find('h1').html()).to.eq('Woops, sorry the page you tried to access does not exist');
     });
   });
 
   describe('Component', () => {
     // component/directive specs
-    let component = <%= upCaseName %>Component;
+    let component = PageNotFoundComponent;
 
     it('includes the intended template', () => {
-      expect(component.template).to.equal(<%= upCaseName %>Template);
+      expect(component.template).to.equal(PageNotFoundTemplate);
     });
 
     it('invokes the right controller', () => {
-      expect(component.controller).to.equal(<%= upCaseName %>Controller);
+      expect(component.controller).to.equal(PageNotFoundController);
     });
   });
 });
