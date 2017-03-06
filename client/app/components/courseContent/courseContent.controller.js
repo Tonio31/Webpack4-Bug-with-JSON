@@ -62,7 +62,7 @@ class CourseContentController {
             // This will resend a query to the backend to get the menu, the status of the step
             // will be updated and the directive menuButton will update automatically the menu
             let forceMenuRetrieval = true;
-            Menu.getMenuPromise(forceMenuRetrieval);
+            Menu.retrieveMenuAndReturnStates(forceMenuRetrieval);
 
           }
           $log.log('dataBackFromServer=', dataBackFromServer);

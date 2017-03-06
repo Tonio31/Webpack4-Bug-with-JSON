@@ -1,4 +1,4 @@
-let JwtFactory = function($log, $window, $localStorage) {
+let JwtFactory = function($log, $window, $localStorage, TOKEN, USER_ID) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -6,22 +6,22 @@ let JwtFactory = function($log, $window, $localStorage) {
 
   // Save Token Id to local Storage
   let saveToken = (iToken) => {
-    $localStorage[`pl2-token`] = iToken;
+    $localStorage[TOKEN] = iToken;
   };
 
   // Retrieve Token from local Storage
   let getToken = () => {
-    return $localStorage[`pl2-token`];
+    return $localStorage[TOKEN];
   };
 
   // Save userid to local Storage
   let saveUserid = (iUserid) => {
-    $localStorage[`pl2-userid`] = iUserid;
+    $localStorage[USER_ID] = iUserid;
   };
 
   // Retrieve userId from local Storage
   let getUserid = () => {
-    return $localStorage[`pl2-userid`];
+    return $localStorage[USER_ID];
   };
 
   let parseJwt = (iToken) => {
@@ -30,24 +30,23 @@ let JwtFactory = function($log, $window, $localStorage) {
     return angular.fromJson($window.atob(base64));
   };
 
-  let isAuthed = () => {
+  let isAuthedExpired = () => {
+
     let token = getToken();
+
     if ( token ) {
       let params = parseJwt(token);
 
-      // Unix Time is in seconds while JavaScript Date.now() returns milliseconds, so a conversion is necessary.
-      return Math.round(new Date().getTime() / 1000) <= params.exp;
+      return Math.round(new Date().getTime() / 1000) >= params.exp;
     }
 
-    return false;
+    return true;
   };
-
 
   let logout = () => {
-    delete $localStorage[`pl2-userid`];
-    delete $localStorage[`pl2-token`];
+    delete $localStorage[USER_ID];
+    delete $localStorage[TOKEN];
   };
-
 
   return {
     saveToken,
@@ -55,7 +54,7 @@ let JwtFactory = function($log, $window, $localStorage) {
     saveUserid,
     getUserid,
     parseJwt,
-    isAuthed,
+    isAuthedExpired,
     logout
   };
 };

@@ -1,0 +1,32 @@
+
+<div ng-repeat="child in item.children track by child.id">
+  <li ng-if="hasChildren(child)" class="has-submenu menu-item {{child.slug}}">
+    <a href=""><menu-button data="child"></menu-button></a>
+    <ul class="left-submenu">
+      <li class="back btn-back-home">
+        <a href="" class="menu-button">
+          <div class="small-2">
+<<<<<<< HEAD
+            <span class="pl-menu-button"></span>
+=======
+            &lt;
+>>>>>>> lost_changes
+          </div>
+          <div class="small-10">
+            <p class="top-title">{{child.title}}</p>
+            <p class="main-title">{{child.name}}</p>
+<<<<<<< HEAD
+            <p class="below-title">Total - {{child.children.length + 1}} Steps</p>
+=======
+            <p class="below-title">Step 1 of {{child.children.length + 1}}</p>
+>>>>>>> lost_changes
+          </div>
+        </a>
+      </li>
+      <menu-item item="child"></menu-item>
+    </ul>
+  </li>
+  <li ng-if="!hasChildren(child)" ng-click="hideCanvas()" class="menu-item" ui-sref-active="active">
+    <a ui-sref="{{child.fullUrl}}"><menu-button data="child"></menu-button></a>
+  </li>
+</div>

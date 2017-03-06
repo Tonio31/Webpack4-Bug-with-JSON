@@ -4,6 +4,7 @@ module.exports = exports = {
   "root": true,
   "env": {
     "es6": true,
+    "mocha": true
   },
   "esversion": 6,
 
@@ -161,7 +162,7 @@ module.exports = exports = {
     "max-depth": [WARN, 8],
     "max-len": [WARN, 132],
     "max-nested-callbacks": [WARN, 8],
-    "max-params": [WARN, 8],
+    "max-params": [WARN, 10],
     "new-cap": WARN,
     "new-parens": WARN,
     "no-array-constructor": WARN,

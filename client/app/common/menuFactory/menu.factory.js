@@ -10,37 +10,36 @@ let MenuFactory = function( $log, $q, _, Data) {
     data: {}
   };
 
+  // List of all the states computed from the menu that we register dynamically
+
+
   let currentProgression = {
     data: {}
   };
 
 
-  let buildFullUrls = ( ioMenuData, iUrl = '') => {
-    let url = `${iUrl}/${ioMenuData.slug}`;
-
-    ioMenuData.fullUrl = url;
-
-    // Recursive function to build the URL and calculate progression for all module
-    if ( ioMenuData.hasOwnProperty('children') ) {
-
-      for ( let child of ioMenuData.children ) {
-        buildFullUrls(child, url);
+  let findFinalState = ( iMenu, oStates ) => {
+    if ( iMenu.hasOwnProperty('children') ) {
+      for ( let child of iMenu.children ) {
+        findFinalState(child, oStates);
       }
     }
+    else {
+      let state = {
+        name: iMenu.fullUrl,
+        url: iMenu.fullUrl,
+        component: 'courseContent',
+        resolve: {
+          content: () => {
+            'ngInject';
+            return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
+          }
+        }
+      };
 
-    return ioMenuData;
+      oStates.push(state);
+    }
   };
-
-
-  // Each menu item needs to contain the full URL to access it.
-  // This is because the full URL is used as the state name
-  let convertMenuData = ( ioMenuData ) => {
-
-    buildFullUrls(ioMenuData);
-
-    return ioMenuData;
-  };
-
 
   // ********************************************************************************************************
   //                                           Public Interface
@@ -50,39 +49,45 @@ let MenuFactory = function( $log, $q, _, Data) {
     return menu;
   };
 
-  let getMenuPromise = ( iForceRetrieve ) => {
+  let retrieveMenuAndReturnStates = ( iForceRetrieve ) => {
     let deferred = $q.defer();
 
     if ( _.isEmpty(menu.data) || iForceRetrieve ) {
       // Get the menu from back end
-      $log.log(`getMenuPromise() - Menu is empty or iForceRetrieve=true 
-                (iForceRetrieve=${iForceRetrieve}, retrieve it from the backend`);
+      $log.log(`retrieveMenuAndReturnStates() - _.isEmpty(menu.data)=${_.isEmpty(menu.data)} 
+                  iForceRetrieve=${iForceRetrieve}, retrieve menu from the backend`);
 
-      // iForceRetrieve not needed here, hack to test TONIO
       Data.getMenu().get({},
         (menuData) => {
-          $log.log('getMenuPromise() - Menu Retrieved successfully');
+          $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully');
 
           // For now, we only have one Potentialife course, so we pick the first item in the list
-          menu.data = convertMenuData(menuData.menudata[0]);
+          menu.data = menuData.menudata[0];
+
+          let states = [];
+          findFinalState(menu.data, states);
 
           currentProgression.data = menuData.current_progression;
 
-          deferred.resolve(menu.data);
+          deferred.resolve(states);
         },
         (error) => {
 
-          $log.log('getMenuPromise() - Error while retrieving Menu error=', error);
+          $log.log('retrieveMenuAndReturnStates() - Error while retrieving Menu error=', error);
           deferred.reject(error);
         });
 
     }
     else {
-      deferred.resolve(menu.data);
+      // No need to return the states if the menu already exist, it means the states have already
+      // been defined, but we do need to resolve the promise, so we can redirect the user if
+      // necessary (look at interceptor on transitions in app.js)
+      deferred.resolve([]);
     }
 
     return deferred.promise;
   };
+
 
   let getCurrentProgression = () => {
     return currentProgression;
@@ -90,7 +95,7 @@ let MenuFactory = function( $log, $q, _, Data) {
 
   return {
     getMenu,
-    getMenuPromise,
+    retrieveMenuAndReturnStates,
     getCurrentProgression
   };
 };

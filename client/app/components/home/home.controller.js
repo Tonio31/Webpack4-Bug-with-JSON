@@ -1,7 +1,7 @@
 
 class HomeController {
 
-  constructor($log, $translate, $localStorage, $state, $sce, Data, UserInfo, Menu) {
+  constructor($log, $state, UserInfo, Menu) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -45,7 +45,7 @@ class HomeController {
 
       $log.log('dynamicContent=', this.content);
 
-      this.quote = this.content.data.quote;
+      this.quote = this.content[0].reflection;
 
       $log.log('constructor()::$onInit - END');
     };

@@ -111,7 +111,11 @@ $white       : #fff;
 // $steel       : #666666;
 // $charcoal    : #555555;
 // $tuatara     : #444444;
+<<<<<<< HEAD
+$oil         : #222;
+=======
 $oil         : #333;
+>>>>>>> lost_changes
 // $jet         : #222222;
 $black       : #000;
 $simon-black: #414042;
@@ -864,7 +868,11 @@ $tabbar-height: rem-calc(45);
 // $tabbar-header-margin: 0;
 
 // Off Canvas Menu Variables
+<<<<<<< HEAD
+$off-canvas-width: 278px;
+=======
 $off-canvas-width: rem-calc(278);
+>>>>>>> lost_changes
 // $off-canvas-bg: $oil;
 // $off-canvas-bg-hover: scale-color($tabbar-bg, $lightness: -30%);
 // $off-canvas-bg-active: scale-color($tabbar-bg, $lightness: -30%);

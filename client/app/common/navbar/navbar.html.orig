@@ -4,7 +4,11 @@
       <nav class="tab-bar" data-offcanvas>
 
         <section class="left tab-bar-section">
-          <h1 class="title logo-potential-life"><a ui-sref="{{$ctrl.homeState}}">{{$ctrl.companyName}}</a></h1>
+<<<<<<< HEAD
+          <h1 class="title logo-potential-life"><a ui-sref="home">{{$ctrl.companyName}}</a></h1>
+=======
+          <h1 class="title"><a ui-sref="{{$ctrl.homeState}}">{{$ctrl.companyName}}</a></h1>
+>>>>>>> lost_changes
         </section>
         <div class="right-small">
           <a role="button" aria-controls="idOfRightMenu" class="left-off-canvas-toggle menu-icon"><span></span></a>
@@ -16,7 +20,8 @@
 
       <aside class="left-off-canvas-menu">
         <ul class="off-canvas-list-bugfix">
-          <li class="home btn-back-home menu-button" ui-sref="{{$ctrl.homeState}}">
+<<<<<<< HEAD
+          <li class="home btn-back-home menu-button" ui-sref="home">
             <div class="small-2 columns">
               <span class="pl-menu-button"></span>
             </div>
@@ -26,6 +31,9 @@
               <p class="below-title">Cycle 1/3</p>
             </div>
           </li>
+=======
+          <li class="btn-back-home"><a ui-sref="{{$ctrl.homeState}}">Home</a></li>
+>>>>>>> lost_changes
           <menu-item item="$ctrl.menu.data"></menu-item>
         </ul>
       </aside>

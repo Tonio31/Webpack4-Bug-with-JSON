@@ -1,15 +1,13 @@
-import ChangeLanguageModule from './changeLanguage'
+import ChangeLanguageModule from './changeLanguage';
 
 describe('ChangeLanguage', () => {
-  let $rootScope, $state, $location, $componentController, $compile, $translate;
+  let $rootScope, $componentController, $compile, $translate;
 
   beforeEach(window.module(ChangeLanguageModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
-    $state = $injector.get('$state');
-    $location = $injector.get('$location');
     $translate = $injector.get('$translate');
     $compile = $injector.get('$compile');
   }));
@@ -37,7 +35,7 @@ describe('ChangeLanguage', () => {
 
 
     it('Calls $translate.use() when invoking changeLang function', () => {
-      var lang = 'en';
+      let lang = 'en';
       controller.changeLang('en');
 
       assert(spyTranslate.calledWith(lang), "translate service should have been called with 'en' argument");
@@ -56,7 +54,7 @@ describe('ChangeLanguage', () => {
     });
 
     it('has flag-icon in template', () => {
-      expect(template.find('span').attr('class').split(" ")).to.deep.equal(["flag-icon", "flag-icon-fr"]);
+      expect(template.find('span').attr('class').split(' ')).to.deep.equal(['flag-icon', 'flag-icon-fr']);
     });
 
   });

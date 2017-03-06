@@ -1,9 +1,9 @@
-import HomeModule from './home'
+import HomeModule from './home';
 
 
 describe('Home', () => {
-  let $rootScope, $httpBackend, $state, $location, $componentController, $compile;
-  let UserInfo, Menu, Data;
+  let $rootScope, $state, $location, $componentController, $compile;
+  let UserInfo, Menu;
 
   let contentBindings = require('app/mockBackEndResponse/reflexion.json');
 
@@ -18,18 +18,15 @@ describe('Home', () => {
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
-    $httpBackend = $injector.get('$httpBackend');
     $state = $injector.get('$state');
     $location = $injector.get('$location');
     $compile = $injector.get('$compile');
-    Data = $injector.get('Data');
     UserInfo = $injector.get('UserInfo');
     Menu = $injector.get('Menu');
 
-    sinon.stub(Menu, 'getCurrentProgression', () => currentProgressionObject);
-    sinon.stub(Menu, 'getMenu', () => menuObject);
-    sinon.stub(UserInfo, 'getFirstName', () => firstName);
-    sinon.stub(Data, 'getHomeContent', () => contentBindings);
+    sinon.stub(Menu, 'getCurrentProgression', () => { return currentProgressionObject; } );
+    sinon.stub(Menu, 'getMenu', () => { return menuObject; } );
+    sinon.stub(UserInfo, 'getFirstName', () => { return firstName; } );
   }));
 
   describe('Module', () => {

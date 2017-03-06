@@ -67,13 +67,13 @@
 
               <div class="columns small-12 medium-2 medium-push-10 y-center-child">
                 <div class="left-padding">
-                  Picture of someone
+                  <img ng-src="{{$ctrl.content[0].avatar}}" />
                 </div>
               </div>
 
               <div class="columns small-12 medium-10 medium-pull-2">
-                <div><h3 class="quote text-justify">{{$ctrl.quote}}</h3></div>
-                <div class="text-center"><h3 class="quote-signature">{{$ctrl.content.data.quoteNameGuy}}</h3></div>
+                <div><h3 class="quote text-justify">{{$ctrl.content[0].reflection}}</h3></div>
+                <div class="text-center"><h3 class="quote-signature">{{$ctrl.content[0].name}}</h3></div>
               </div>
 
             </div>
