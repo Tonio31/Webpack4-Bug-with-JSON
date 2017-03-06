@@ -18,6 +18,16 @@ $mainTitleMenuColor: #a0a0a0;
       }
     }
   }
+  .logo-potential-life a {
+    display: inline-block;
+    background-image: url('./assets/logo-potential-life.svg');
+    background-repeat: no-repeat;
+    background-position: 1px 4px;
+    background-size: auto 80%;
+    text-indent: -9999em;
+    height: auto;
+    width: 270px;
+  }
 }
 
 
@@ -53,6 +63,21 @@ $mainTitleMenuColor: #a0a0a0;
     }
     margin-top: $tabbar-height;
 
+    .home {
+      display: flex;
+      background-color: $onyx;
+      border-top: 1px solid #5e5e5e;
+      cursor: pointer;
+      padding: 1.25rem 0.6667rem 1.875rem 0.3125rem;
+      .columns {
+        padding: 0;
+      }
+      .main-title,
+      .below-title {
+        color: $white;
+      }
+    }
+
     .pl-menu-button {
       width: 80%;
       height: 50px;
@@ -86,6 +111,13 @@ $mainTitleMenuColor: #a0a0a0;
         width: 85%;
       }
     }
+
+    .home {
+      .pl-menu-button {
+        width: 85%;
+        background-image: url('./assets/menu-item-home.svg');
+      }
+    }
   }
 
   .main-section {
@@ -102,6 +134,10 @@ $mainTitleMenuColor: #a0a0a0;
 
   .off-canvas-wrap,
   .off-canvas-wrap .inner-wrap {
+    &::before,
+    &::after {
+      display: none;
+    }
     // For mobile: tab-bar is fixed, for the rest, we can scroll down
     @media #{$small-only} {
       height: 100%;
@@ -188,6 +224,7 @@ $mainTitleMenuColor: #a0a0a0;
 
       &.main-title {
         font-size: 18px;
+        -webkit-font-smoothing: subpixel-antialiased;
         color: $mainTitleMenuColor;
         white-space: nowrap;
         overflow: hidden;
@@ -267,6 +304,7 @@ $mainTitleMenuColor: #a0a0a0;
         color: $white;
       }
     }
+
   }
 
   .menu-item {
