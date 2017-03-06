@@ -10,7 +10,10 @@ module.exports = exports = {
   "ecmaFeatures": {
     "modules": true
   },
-  "extends": ["eslint:recommended",  "angular"],
+  "extends": [
+    "eslint:recommended",
+    "angular"
+  ],
 
   "parserOptions": {
     "sourceType": "module",
