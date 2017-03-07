@@ -1,5 +1,5 @@
 class CourseContentController {
-  constructor($log, $filter, $state, Menu, Data) {
+  constructor($log, $filter, $location, $anchorScroll, $state, Menu, Data, FORM_NAME_PREFIX) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -8,6 +8,7 @@ class CourseContentController {
     this.name = 'courseContent';
 
     this.isStepCompleted = false;
+
 
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
@@ -32,18 +33,47 @@ class CourseContentController {
       $log.log('$onInit - END');
     };
 
+    // This container is used to store all the inputs modified by the user, so we can send it back
+    // to the server when saving
+    let inputFields = {};
+
+    this.updateInputFields = (iIdentifier, iNewValue) => {
+      $log.log('updateInputFields iIdentifier=', iIdentifier, '    iNewValue=', iNewValue);
+      inputFields[iIdentifier] = iNewValue;
+    };
+
     this.previousStep = () => {
       $state.go(this.content.prev_page_url);
     };
 
-    this.nextStep = () => {
+    this.goToFieldInError = (iForm) => {
+      for ( let block of this.content.blocks ) {
+        let formName = `${FORM_NAME_PREFIX}${block.id}`;
+        if ( iForm.hasOwnProperty(formName) &&
+             iForm[formName].hasOwnProperty(block.data.name) &&
+             iForm[formName][block.data.name].$invalid ) {
 
-      if ( !this.isStepCompleted ) {
+          // Focus the user on the form in error
+          $location.hash(formName);
+          $anchorScroll();
+          return;
+        }
+      }
+    };
+
+    this.nextStep = (iForm) => {
+
+      if ( iForm.$invalid ) {
+        this.goToFieldInError(iForm);
+      }
+      else if ( !this.isStepCompleted ) {
         // First time user click on the button, display the green banner and change the label
         let postData = Data.updateStep();
 
         postData.fullUrl = this.content.slug;
         postData.status = 'completed';
+        postData.inputs = inputFields;
+
 
         postData.$save( (dataBackFromServer, postResponseHeadersFn) => {
 
@@ -75,9 +105,8 @@ class CourseContentController {
       else {
         $state.go(this.content.next_page_url);
       }
+
     };
-
-
   }
 }
 

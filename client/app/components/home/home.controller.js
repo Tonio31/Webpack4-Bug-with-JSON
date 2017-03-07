@@ -13,7 +13,6 @@ class HomeController {
     this.firstName = UserInfo.getFirstName();
     this.currentProgression = Menu.getCurrentProgression();
     this.menu = Menu.getMenu();
-    this.quote = this.content;
 
     this.getDonutTitle = (iCycle) => {
 
@@ -44,8 +43,6 @@ class HomeController {
       $log.log('constructor()::$onInit - BEGIN');
 
       $log.log('dynamicContent=', this.content);
-
-      this.quote = this.content[0].reflection;
 
       $log.log('constructor()::$onInit - END');
     };

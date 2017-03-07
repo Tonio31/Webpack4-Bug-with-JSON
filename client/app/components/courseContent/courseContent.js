@@ -5,7 +5,9 @@ import LogDecorator from 'common/logDecorator/logDecorator';
 import UserDataFactory from 'common/userDataFactory/userData';
 import ResourceFactory from 'common/resourceFactory/resource';
 import MenuService from 'common/menuFactory/menu';
-import videoModule from '../videoModule/videoModule';
+import videoModule from 'components/videoModule/videoModule';
+import textAreaModule from 'components/textArea/textArea';
+import constantModule from 'common/constants';
 import { unsafeFilter } from './courseContent.filter';
 
 
@@ -15,11 +17,12 @@ let courseContentModule = angular.module('courseContent', [
   ResourceFactory,
   MenuService,
   videoModule,
+  textAreaModule,
+  constantModule,
   LogDecorator
 ])
-
-.component('courseContent', courseContentComponent)
-.filter('unsafe', unsafeFilter)
-.name;
+  .component('courseContent', courseContentComponent)
+  .filter('unsafe', unsafeFilter)
+  .name;
 
 export default courseContentModule;

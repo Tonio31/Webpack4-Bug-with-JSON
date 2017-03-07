@@ -31,23 +31,23 @@ let ResourceFactory = function($log, $q, $resource, config) {
 
     if ( iIsArray ) {
       $resource(buildApiUrl(iEndPointUrl), iOptionalParameters).query().$promise.then( (data) => {
-          deferred.resolve(data);
-        },
-        (error) => {
-          $log.log('getDynamicContentPromise error=', error);
+        deferred.resolve(data);
+      },
+      (error) => {
+        $log.log('getDynamicContentPromise error=', error);
 
-          deferred.reject(error);
-        });
+        deferred.reject(error);
+      });
     }
     else {
       $resource(buildApiUrl(iEndPointUrl), iOptionalParameters).get().$promise.then( (data) => {
-          deferred.resolve(data);
-        },
-        (error) => {
-          $log.log('getDynamicContentPromise error=', error);
+        deferred.resolve(data);
+      },
+      (error) => {
+        $log.log('getDynamicContentPromise error=', error);
 
-          deferred.reject(error);
-        });
+        deferred.reject(error);
+      });
     }
 
     return deferred.promise;

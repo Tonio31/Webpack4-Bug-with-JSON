@@ -1,70 +1,80 @@
 <div class="course-content sticky-bottom-container">
-  <div class="sticky-bottom-main">
-    <div class="sticky-bottom-container">
-      <div class="sticky-bottom-main">
-        <div class="row">
-          <div class="small-12 medium-8 small-centered columns">
 
-            <!-- Beginning of main content in the page -->
-            <h4 ng-bind-html="$ctrl.content.breadcrumbs | unsafe | uppercase"></h4>
-            <h1>{{$ctrl.content.name}}</h1>
+  <form novalidate name="topLevelForm">
 
-            <div ng-repeat="block in $ctrl.content.blocks track by block.id">
-              <div class="block" ng-switch="block.element">
+    <div class="sticky-bottom-main">
+      <div class="sticky-bottom-container">
+        <div class="sticky-bottom-main">
+          <div class="row">
+            <div class="small-12 medium-8 small-centered columns">
 
-                <div ng-switch-when="video">
-                  <video-module data="block.data"></video-module>
-                </div>
+              <!-- Beginning of main content in the page -->
+              <h4 ng-bind-html="$ctrl.content.breadcrumbs | unsafe | uppercase"></h4>
+              <h1>{{$ctrl.content.name}}</h1>
 
-                <div ng-switch-when="html">
-                  <div ng-bind-html="block.data.value | unsafe"></div>
-                </div>
+                <div ng-repeat="block in $ctrl.content.blocks track by block.id">
+                  <div class="block" ng-switch="block.element">
 
-                <div ng-switch-default>
-                  <h1>This is a new block (block id={{block.id}})</h1>
-                  <h3>Type: {{block.type}}</h3>
-                  <h3>Element: {{block.element}}</h3>
-                </div>
+                    <div ng-switch-when="video">
+                      <video-module data="block.data"></video-module>
+                    </div>
 
-              </div> <!-- END .block -->
+                    <div ng-switch-when="html">
+                      <div ng-bind-html="block.data.value | unsafe"></div>
+                    </div>
 
-            </div> <!-- END ng-repeat -->
+                    <div ng-switch-when="textarea">
+                      <pl-text-area on-update="$ctrl.updateInputFields(block.program_data_code, value)"
+                                    is-top-level-form-submitted="topLevelForm.$submitted"
+                                    block="block">
+                      </pl-text-area>
+                    </div>
 
-          </div> <!-- END .small-12 medium-8 small-centered columns -->
-          <!-- END of main content in the page -->
+                    <div ng-switch-default>
+                      <h1>This is a new block (block id={{block.id}})</h1>
+                      <h3>Type: {{block.type}}</h3>
+                      <h3>Element: {{block.element}}</h3>
+                    </div>
 
-        </div>
-      </div>
+                  </div> <!-- END .block -->
 
-      <div ng-show="$ctrl.displayCongratsBanner" class="congrats-banner y-center-parent">
-        <div class="row y-center-child">
-          <div class="small-12 medium-8 columns small-centered">
-
-            <div class="row collapse y-center-parent congrats-content">
-              <div class="small-10 columns left">
-                <div ng-bind-html="$ctrl.content.congrats | unsafe" class="left"></div>
-              </div>
-              <div class="small-2 columns right y-center-child">
-                <span class="valid-tick">t</span>
-              </div>
-            </div> <!-- END .congrats-content -->
+                </div> <!-- END ng-repeat -->
+            </div> <!-- END .small-12 medium-8 small-centered columns -->
+            <!-- END of main content in the page -->
 
           </div>
-        </div> <!-- END .row -->
-      </div> <!-- END .congrats-banner -->
+        </div>
 
-    </div> <!-- END .sticky-bottom-container -->
-  </div> <!-- END .sticky-bottom-main -->
+        <div ng-show="$ctrl.displayCongratsBanner" class="congrats-banner y-center-parent">
+          <div class="row y-center-child">
+            <div class="small-12 medium-8 columns small-centered">
 
-  <div class="navigation y-center-parent">
-    <div class="row y-center-child">
-      <div class="small-12 medium-8 columns small-centered">
-        <button ng-show="$ctrl.displayPreviousButton" class="secondary radius left" type="submit" ng-click="$ctrl.previousStep()">&lt; {{ 'PREVIOUS' | translate }}</button>
-        <button class="success radius right" type="button" ng-click="$ctrl.nextStep()">{{$ctrl.nextStepButtonLabel}}</button>
+              <div class="row collapse y-center-parent congrats-content">
+                <div class="small-11 columns left">
+                  <div ng-bind-html="$ctrl.content.congrats | unsafe" class="left"></div>
+                </div>
+                <div class="small-1 columns y-center-child">
+                  <span class="valid-tick right">t</span>
+                </div>
+              </div> <!-- END .congrats-content -->
+
+            </div>
+          </div> <!-- END .row -->
+        </div> <!-- END .congrats-banner -->
+
+      </div> <!-- END .sticky-bottom-container -->
+    </div> <!-- END .sticky-bottom-main -->
+
+    <div class="navigation y-center-parent">
+      <div class="row y-center-child">
+        <div class="small-12 medium-8 columns small-centered">
+          <button ng-show="$ctrl.displayPreviousButton" class="secondary radius left" type="button" ng-click="$ctrl.previousStep()">&lt; {{ 'PREVIOUS' | translate }}</button>
+          <button class="success radius right" type="submit" ng-click="$ctrl.nextStep(topLevelForm)">{{$ctrl.nextStepButtonLabel}}</button>
+        </div>
       </div>
-    </div>
-  </div> <!-- END .navigation -->
+    </div> <!-- END .navigation -->
 
+  </form>
 </div> <!-- END .course-content .sticky-bottom-container -->
 
 

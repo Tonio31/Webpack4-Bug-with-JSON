@@ -34,32 +34,39 @@ module.exports = {
         loader: 'raw' },
       {
         test: /\.(scss|sass)$/,
-        loader: 'style!css!sass'
+        loader: 'style!css!postcss!sass'
       },
       {
-        test: /\.css$/, loader: 'style!css'
+        test: /\.css$/, loader: 'style!css!postcss'
       },
       {
         test: /\.svg/,
-        loader: 'svg-url-loader' },
+        loader: 'svg-url-loader'
+      },
       {
         test: /\.json$/,
-        loader: 'json-loader' },
+        loader: 'json-loader'
+      },
       {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=1024' },
+        loader: 'url-loader?limit=1024'
+      },
       {
         test: /\.woff$/,
-        loader: 'url?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]' },
+        loader: 'url?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]'
+      },
       {
         test: /\.woff2$/,
-        loader: 'url?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]' },
+        loader: 'url?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]'
+      },
       {
         test: /\.[ot]tf$/,
-        loader: 'url?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]' },
+        loader: 'url?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]'
+      },
       {
         test: /\.eot$/,
-        loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]' }
+        loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]'
+      }
     ]
   },
   sassLoader: {

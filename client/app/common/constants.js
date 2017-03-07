@@ -9,6 +9,7 @@ let constantModule = angular.module('app.common.constant', [
     LOGIN: '/login',
     PAGE_NOT_FOUND: '/404'
   })
+  .constant('FORM_NAME_PREFIX', 'myForm')
 .name;
 
 export default constantModule;

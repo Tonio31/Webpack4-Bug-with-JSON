@@ -1,0 +1,24 @@
+<div id="{{$ctrl.formName}}" class="textArea">
+  <ng-form name="{{$ctrl.formName}}">
+    <h3>{{ $ctrl.block.data.label }}</h3>
+    <div class="container">
+      <div class="text-area">
+
+        <textarea name="{{$ctrl.block.data.name}}"
+                  ng-model="$ctrl.text"
+                  ng-class="{ 'parent-submitted': $ctrl.isTopLevelFormSubmitted }"
+                  ng-model-options="$ctrl.modelOptions"
+                  ng-required="{{$ctrl.block.required}}"
+                  ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
+                  ng-change="$ctrl.onUpdate({value:$ctrl.text})">
+          {{$ctrl.text}}
+        </textarea>
+      </div>
+
+      <div class="validation-icon" ng-class="{ 'visibilityHidden': !this[$ctrl.formName][$ctrl.block.data.name].$dirty && !$ctrl.isTopLevelFormSubmitted}">
+        <span ng-class="{ 'invalid': this[$ctrl.formName][$ctrl.block.data.name].$invalid }" class="right valid-tick">t</span>
+      </div>
+
+    </div>
+  </ng-form>
+</div>
