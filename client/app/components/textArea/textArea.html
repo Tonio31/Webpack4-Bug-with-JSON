@@ -1,8 +1,8 @@
 <div id="{{$ctrl.formName}}" class="textArea">
   <ng-form name="{{$ctrl.formName}}">
     <h3>{{ $ctrl.block.data.label }}</h3>
-    <div class="row">
-      <div class="columns small-11">
+    <div class="container">
+      <div class="text-area">
 
         <textarea name="{{$ctrl.block.data.name}}"
                   ng-model="$ctrl.text"
@@ -15,7 +15,7 @@
         </textarea>
       </div>
 
-      <div ng-show="this[$ctrl.formName][$ctrl.block.data.name].$dirty || $ctrl.isTopLevelFormSubmitted" class="small-1 columns">
+      <div class="validation-icon" ng-class="{ 'visibilityHidden': !this[$ctrl.formName][$ctrl.block.data.name].$dirty && !$ctrl.isTopLevelFormSubmitted}">
         <span ng-class="{ 'invalid': this[$ctrl.formName][$ctrl.block.data.name].$invalid }" class="right valid-tick">t</span>
       </div>
 

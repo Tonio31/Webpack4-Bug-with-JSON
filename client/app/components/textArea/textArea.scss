@@ -2,6 +2,23 @@
 
 .textArea {
 
+  .container {
+    display: flex;
+
+    .text-area {
+      flex: 1;
+    }
+
+    .visibilityHidden {
+      visibility: hidden;
+    }
+
+    .validation-icon {
+      flex-basis: rem_calc(3rem);
+      padding-left: $padding-10px;
+    }
+  }
+
   textarea {
 
     min-height: rem_calc(150px);
