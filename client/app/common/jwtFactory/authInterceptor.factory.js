@@ -23,8 +23,6 @@ let AuthInterceptorFactory = function($log, $state, JwtFactory, STATES) {
 
   // If a token was sent back, save it
   let response = (res) => {
-    $log.log('Received a reply form the server with res.data=', res.data);
-
     if ( res.hasOwnProperty('data') ) {
       if ( res.data.hasOwnProperty('token') ) {
         JwtFactory.saveToken(res.data.token);

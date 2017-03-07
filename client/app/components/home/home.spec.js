@@ -69,10 +69,6 @@ describe('Home', () => {
       expect(controller.firstName).to.equal(firstName);
     });
 
-    it('has a quote property', () => {
-      expect(controller.quote).to.contain('Now I understand my strenghts');
-    });
-
     it('test getDonutTitle() function', () => {
       // Cycle1 is not locked
       let cycle1 = menuObject.data.children[0];

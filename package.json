@@ -1,8 +1,12 @@
 {
   "name": "ng6-starter",
-  "version": "0.0.1",
-  "description": "Starter for Angular + ES6 + (Webpack or JSPM)",
+  "version": "1.0.0",
+  "description": "Potentialife 2.0",
   "main": "index.js",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "dependencies": {
     "angular": "^1.6.1",
     "angular-cookies": "^1.6.1",
@@ -64,6 +68,7 @@
     "ng-annotate-loader": "0.0.10",
     "node-libs-browser": "^0.5.0",
     "node-sass": "^3.13.0",
+    "postcss-loader": "^1.3.3",
     "raw-loader": "^0.5.1",
     "run-sequence": "^1.1.0",
     "sass-loader": "^4.0.2",

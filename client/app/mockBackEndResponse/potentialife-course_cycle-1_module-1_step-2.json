@@ -43,6 +43,7 @@
       "type": "dynamic",
       "element": "textarea",
       "program_data_code": "c1.m1.s1.story_1",
+      "required": true,
       "data": {
         "label": "Story 1:",
         "placeholder": "Please fill in the first story",
@@ -60,6 +61,7 @@
       "type": "dynamic",
       "element": "textarea",
       "program_data_code": "c1.m1.s1.story_2",
+      "required": true,
       "data": {
         "label": "Story 2:",
         "placeholder": "Please fill in the second story",

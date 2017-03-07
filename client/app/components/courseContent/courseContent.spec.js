@@ -1,13 +1,13 @@
 import CourseContentModule from './courseContent';
 
 describe('CourseContent', () => {
-  let $rootScope, $httpBackend, $state, $componentController, $compile;
+  let $rootScope, $httpBackend, $state, $location, $componentController, $compile;
 
-  let Menu, Data;
+  let Menu, Data, FORM_NAME_PREFIX;
 
   let goFn, retrieveMenuAndReturnStatesFn;
 
-  let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-1.json');
+  let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json');
 
   let mockTranslateFilter = (value) => {
     return value;
@@ -20,11 +20,13 @@ describe('CourseContent', () => {
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
+    $location = $injector.get('$location');
     $state = $injector.get('$state');
     $compile = $injector.get('$compile');
     $httpBackend = $injector.get('$httpBackend');
     Menu = $injector.get('Menu');
     Data = $injector.get('Data');
+    FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
 
     goFn = sinon.stub($state, 'go');
     retrieveMenuAndReturnStatesFn = sinon.stub(Menu, 'retrieveMenuAndReturnStates');
@@ -58,6 +60,8 @@ describe('CourseContent', () => {
     });
 
     it('test the onInit Function when the current status of the state is \'current\'', () => {
+      controller.content.status = 'current';
+      controller.content.prev_page_url = null;
       controller.$onInit();
       expect(controller.nextStepButtonLabel).to.eq('COMPLETE');
       expect(controller.displayPreviousButton).to.eq(false);
@@ -82,20 +86,62 @@ describe('CourseContent', () => {
       sinon.assert.calledWith(goFn, controller.content.prev_page_url);
     }));
 
-    it('nextStep() sends a POST to save current step if it is not yet marked as completed', sinon.test( (done) => {
+    it('nextStep() focus the user on the field in error if the form is invalid', sinon.test( (done) => {
 
-      $httpBackend.whenPOST(Data.buildApiUrl('step')).respond( () => {
-        let responseHeaders = {
-          status: 'ok'
-        };
-        return [ 200, {}, responseHeaders ];
-      });
+      let topLevelForm = {
+        $invalid: true
+      };
+
+      let subFormName = `${FORM_NAME_PREFIX}51`;
+      topLevelForm[subFormName] = {
+        'story_1': {
+          $invalid: true
+        }
+      };
+
+      let locationSpy = sinon.spy($location, 'hash');
 
       controller.$onInit();
-      controller.nextStep();
+      controller.nextStep(topLevelForm);
 
-      // Resolve promise, we have to do this in unit test when promise are involved
-      $httpBackend.flush();
+      sinon.assert.calledWith(locationSpy, subFormName);
+      done();
+    }));
+
+
+    it('nextStep() sends a POST to save current step if it is not yet marked as completed', sinon.test( (done) => {
+
+      let postResponseHeadersFn = () => {
+        return {
+          status: 'ok'
+        };
+      };
+
+      let dataBackFromServer = {};
+
+      let updateStepPOSTRequest = {
+        $save: (callback) => {
+          return callback(dataBackFromServer, postResponseHeadersFn);
+        }
+      };
+
+      sinon.stub(Data, 'updateStep', () => {
+        return updateStepPOSTRequest;
+      });
+
+      let form = {
+        $invalid: false
+      };
+
+      // Add inputs to the saved input to submit to the server
+      controller.updateInputFields( 'c1.m1.s1.story_2', 'This is a text');
+
+      controller.$onInit();
+      controller.nextStep(form);
+
+      expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.slug);
+      expect(updateStepPOSTRequest.status).to.equal('completed');
+      expect(updateStepPOSTRequest.inputs).to.deep.equal( { 'c1.m1.s1.story_2': 'This is a text' } );
 
       sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
       expect(controller.nextStepButtonLabel).to.eq('NEXT');
@@ -108,15 +154,26 @@ describe('CourseContent', () => {
 
     it('nextStep() sends a POST to save current step but we simulate error on back end side', sinon.test( (done) => {
 
-      $httpBackend.whenPOST(Data.buildApiUrl('step')).respond( () => {
-        return [ 401, { error: 'token_not_provided' }, {} ];
+      let error = {
+        error: 'token_not_provided'
+      };
+
+      let updateStepPOSTRequest = {
+        $save: (callback, callbackError) => {
+          return callbackError(error);
+        }
+      };
+
+      sinon.stub(Data, 'updateStep', () => {
+        return updateStepPOSTRequest;
       });
 
-      controller.$onInit();
-      controller.nextStep();
+      let form = {
+        $invalid: false
+      };
 
-      // Resolve promise, we have to do this in unit test when promise are involved
-      $httpBackend.flush();
+      controller.$onInit();
+      controller.nextStep(form);
 
       sinon.assert.notCalled(retrieveMenuAndReturnStatesFn);
 
@@ -128,7 +185,12 @@ describe('CourseContent', () => {
     it('nextStep() triggers a change of state using this.content.next_page_url if the step is already completed', sinon.test( () => {
       controller.content.status = 'completed';
       controller.$onInit();
-      controller.nextStep();
+
+      let form = {
+        $invalid: false
+      };
+
+      controller.nextStep(form);
       sinon.assert.calledWith(goFn, controller.content.next_page_url);
     }));
 
