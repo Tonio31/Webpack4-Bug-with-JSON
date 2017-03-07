@@ -36,7 +36,6 @@ class CourseContentController {
     // This container is used to store all the inputs modified by the user, so we can send it back
     // to the server when saving
     let inputFields = {};
-    this.testtonio = inputFields;
     this.updateInputFields = (iIdentifier, iNewValue) => {
       $log.log('updateInputFields iIdentifier=', iIdentifier, '    iNewValue=', iNewValue);
       inputFields[iIdentifier] = iNewValue;
