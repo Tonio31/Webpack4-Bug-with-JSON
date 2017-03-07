@@ -52,6 +52,7 @@ angular.module( 'appMockBackEnd', [
 
     let fileName = getFileNameFromUrlOptions(iFullUrl);
 
+    $log.log(`getStepContent - iFullUrl=${iFullUrl}  fileName=${fileName}`);
     if ( !stepContent.hasOwnProperty(fileName) ) {
       stepContent[fileName] = require(`./mockBackEndResponse/${fileName}.json`);
     }

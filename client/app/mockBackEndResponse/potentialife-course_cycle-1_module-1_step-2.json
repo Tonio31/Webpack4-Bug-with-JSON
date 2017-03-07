@@ -93,10 +93,11 @@
       "type": "dynamic",
       "element": "textbox",
       "program_data_code": "c1.m1.s1.textbox_1",
+      "required": true,
       "data": {
-        "label": null,
-        "placeholder": null,
-        "value": null,
+        "label": "This is the label for the text box common_theme_1",
+        "placeholder": "Enter some data here",
+        "value": "Something inside",
         "name": "common_theme_1"
       },
       "pivot": {
@@ -111,8 +112,8 @@
       "element": "textbox",
       "program_data_code": "c1.m1.s1.textbox_2",
       "data": {
-        "label": null,
-        "placeholder": null,
+        "label": "This is the label for the text box common_theme_2",
+        "placeholder": "Plcaeholder",
         "value": null,
         "name": "common_theme_2"
       },

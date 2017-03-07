@@ -36,7 +36,7 @@ class CourseContentController {
     // This container is used to store all the inputs modified by the user, so we can send it back
     // to the server when saving
     let inputFields = {};
-
+    this.testtonio = inputFields;
     this.updateInputFields = (iIdentifier, iNewValue) => {
       $log.log('updateInputFields iIdentifier=', iIdentifier, '    iNewValue=', iNewValue);
       inputFields[iIdentifier] = iNewValue;
@@ -54,7 +54,7 @@ class CourseContentController {
              iForm[formName][block.data.name].$invalid ) {
 
           // Focus the user on the form in error
-          $location.hash(formName);
+          $location.hash(block.data.name);
           $anchorScroll();
           return;
         }

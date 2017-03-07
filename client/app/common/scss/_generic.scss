@@ -36,8 +36,56 @@ body {
   padding: 0;
 }
 
-.valid-tick {
+.fontello-icon {
   font-family: 'fontello';
   font-size: 3rem;
   line-height: 3rem;
+
+  color: $success-color;
+  &.invalid {
+    color: $alert-color;
+  }
+}
+
+.visibilityHidden {
+  visibility: hidden;
+}
+
+.flex-container {
+  display: flex;
+
+  .flex-expand-left {
+    flex: 1;
+  }
+
+  .validation-icon-right {
+    flex-basis: rem_calc(3rem);
+    padding-left: $padding-10px;
+  }
+}
+
+@mixin inputsBorderStyling() {
+  &:focus {
+    border: 2px solid $blue-focus;
+  }
+
+  &.parent-submitted,
+  &.ng-dirty {
+    &.ng-invalid-required {
+      border: 2px solid $alert-color;
+      color: $alert-color;
+
+      &::placeholder {
+        color: $alert-color;
+      }
+    }
+
+    &.ng-valid-required {
+      border: 2px solid $success-color;
+      &::placeholder {
+        color: $success-color;
+      }
+    }
+
+  }
 }

@@ -1,7 +1,9 @@
+/* eslint-disable camelcase */
+
 import CourseContentModule from './courseContent';
 
 describe('CourseContent', () => {
-  let $rootScope, $httpBackend, $state, $location, $componentController, $compile;
+  let $rootScope, $state, $location, $componentController, $compile;
 
   let Menu, Data, FORM_NAME_PREFIX;
 
@@ -23,7 +25,6 @@ describe('CourseContent', () => {
     $location = $injector.get('$location');
     $state = $injector.get('$state');
     $compile = $injector.get('$compile');
-    $httpBackend = $injector.get('$httpBackend');
     Menu = $injector.get('Menu');
     Data = $injector.get('Data');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
@@ -31,15 +32,6 @@ describe('CourseContent', () => {
     goFn = sinon.stub($state, 'go');
     retrieveMenuAndReturnStatesFn = sinon.stub(Menu, 'retrieveMenuAndReturnStates');
   }));
-
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-/*    it('courseContent component should be visible when navigates to /courseContent', () => {
-      $location.url('/');
-      $rootScope.$digest();
-      expect($state.current.component).to.eq('courseContent');
-    });*/
-  });
 
   describe('Controller', () => {
     // controller specs
@@ -94,7 +86,7 @@ describe('CourseContent', () => {
 
       let subFormName = `${FORM_NAME_PREFIX}51`;
       topLevelForm[subFormName] = {
-        'story_1': {
+        story_1: {
           $invalid: true
         }
       };
@@ -104,7 +96,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       controller.nextStep(topLevelForm);
 
-      sinon.assert.calledWith(locationSpy, subFormName);
+      sinon.assert.calledWith(locationSpy, 'story_1');
       done();
     }));
 
