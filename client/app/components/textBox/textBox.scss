@@ -1,0 +1,9 @@
+@import 'common/common';
+
+.textBox {
+   input[type="text"] {
+     height: 3rem;
+
+     @include inputsBorderStyling();
+   }
+}

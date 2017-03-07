@@ -1,15 +1,16 @@
-import TextAreaModule from './textArea';
-import TextAreaController from './textArea.controller';
-import TextAreaComponent from './textArea.component';
-import TextAreaTemplate from './textArea.html';
+import TextBoxModule from './textBox';
+import TextBoxController from './textBox.controller';
+import TextBoxComponent from './textBox.component';
+import TextBoxTemplate from './textBox.html';
 
-describe('TextArea', () => {
+describe('TextBox', () => {
   let $rootScope, $componentController, $compile;
   let FORM_NAME_PREFIX, ICON_FONTELLO;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[3];
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[5];
 
-  beforeEach(window.module(TextAreaModule));
+
+  beforeEach(window.module(TextBoxModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
@@ -33,7 +34,7 @@ describe('TextArea', () => {
     };
 
     beforeEach(() => {
-      controller = $componentController('plTextArea', {
+      controller = $componentController('textBox', {
         $scope: $rootScope.$new()
       }, bindings);
 
@@ -41,7 +42,7 @@ describe('TextArea', () => {
     });
 
 
-    it('has initialise text & formName with the good value', () => {
+    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
       expect(controller.text).to.equal(bindings.block.data.value);
       expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
       expect(controller.iconText).to.equal(ICON_FONTELLO.VALID_TICK);
@@ -56,7 +57,7 @@ describe('TextArea', () => {
       scope = $rootScope.$new();
       scope.block = blockBinding;
       scope.isTopLevelFormSubmitted = true;
-      template = $compile('<pl-text-area block="block" is-top-level-form-submitted="isTopLevelFormSubmitted"></pl-text-area>')(scope);
+      template = $compile('<text-box block="block" is-top-level-form-submitted="isTopLevelFormSubmitted"></text-box>')(scope);
       scope.$apply();
     });
 
@@ -65,25 +66,24 @@ describe('TextArea', () => {
       expect(template.find('h3').html()).to.eq(blockBinding.data.label);
     });
 
-    it('has a textarea with properties', () => {
-      let textAreaTag = template.find('textarea');
-      expect(textAreaTag.html().trim()).to.eq(blockBinding.data.value);
+    it('has a input with properties', () => {
+      let textAreaTag = template.find('input');
+      expect(textAreaTag.val()).to.eq(blockBinding.data.value);
       expect(textAreaTag.hasClass('parent-submitted')).to.eq(true);
       expect(textAreaTag.attr('ng-attr-placeholder')).to.eq('{{$ctrl.block.data.placeholder}}');
     });
-
   });
 
   describe('Component', () => {
     // component/directive specs
-    let component = TextAreaComponent;
+    let component = TextBoxComponent;
 
     it('includes the intended template', () => {
-      expect(component.template).to.equal(TextAreaTemplate);
+      expect(component.template).to.equal(TextBoxTemplate);
     });
 
     it('invokes the right controller', () => {
-      expect(component.controller).to.equal(TextAreaController);
+      expect(component.controller).to.equal(TextBoxController);
     });
   });
 });

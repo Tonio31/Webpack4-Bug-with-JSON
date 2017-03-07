@@ -14,21 +14,6 @@ describe('PageNotFound', () => {
     $compile = $injector.get('$compile');
   }));
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-  });
-
-  describe('Controller', () => {
-    // controller specs
-    let controller;
-    beforeEach(() => {
-      controller = $componentController('pageNotFound', {
-        $scope: $rootScope.$new()
-      });
-    });
-
-  });
-
   describe('View', () => {
     // view specs
     let scope, template;
