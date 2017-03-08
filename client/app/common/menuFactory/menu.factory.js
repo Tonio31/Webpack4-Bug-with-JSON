@@ -25,16 +25,25 @@ let MenuFactory = function( $log, $q, _, Data) {
       }
     }
     else {
+
+      let componentName = 'courseContent';
+      let resolveObject = {
+        content: () => {
+          'ngInject';
+          return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
+        }
+      };
+
+      if ( iMenu.status === 'locked' ) {
+        componentName = 'lockedPage';
+        resolveObject = {};
+      }
+
       let state = {
         name: iMenu.fullUrl,
         url: iMenu.fullUrl,
-        component: 'courseContent',
-        resolve: {
-          content: () => {
-            'ngInject';
-            return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
-          }
-        }
+        component: componentName,
+        resolve: resolveObject
       };
 
       oStates.push(state);
