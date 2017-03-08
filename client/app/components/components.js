@@ -3,6 +3,7 @@ import Home from './home/home';
 import About from './about/about';
 import Login from './login/login';
 import PageNotFound from './pageNotFound/pageNotFound';
+import LockedPage from './lockedPage/lockedPage';
 import CourseContent from './courseContent/courseContent';
 
 let componentModule = angular.module('app.components', [
@@ -10,6 +11,7 @@ let componentModule = angular.module('app.components', [
   About,
   Login,
   PageNotFound,
+  LockedPage,
   CourseContent
 ])
 

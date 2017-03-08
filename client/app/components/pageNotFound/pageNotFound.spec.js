@@ -4,13 +4,12 @@ import PageNotFoundComponent from './pageNotFound.component';
 import PageNotFoundTemplate from './pageNotFound.html';
 
 describe('PageNotFound', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope, $compile;
 
   beforeEach(window.module(PageNotFoundModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
   }));
 
