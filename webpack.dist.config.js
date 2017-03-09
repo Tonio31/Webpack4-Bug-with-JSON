@@ -22,7 +22,7 @@ config.plugins = config.plugins.concat([
   }),
 
   new webpack.DefinePlugin({
-    ENVIRONMENT: 'production'
+    ENVIRONMENT: JSON.stringify('production')
   }),
 
   // Reduces bundles total size
