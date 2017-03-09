@@ -5,7 +5,6 @@ import angularTranslate from 'angular-translate';
 import ResourceFactory from 'common/resourceFactory/resource';
 import UserDataFactory from 'common/userDataFactory/userData';
 import MenuService from 'common/menuFactory/menu';
-import JwtModule from 'common/jwtFactory/jwt';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import constantModule from 'common/constants';
 
@@ -16,7 +15,6 @@ let homeModule = angular.module('home', [
   MenuService,
   LogDecorator,
   UserDataFactory,
-  JwtModule,
   constantModule
 ])
 

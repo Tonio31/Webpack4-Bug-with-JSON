@@ -21,6 +21,9 @@ config.plugins = config.plugins.concat([
     hash: true
   }),
 
+  new webpack.DefinePlugin({
+    ENVIRONMENT: 'production'
+  }),
 
   // Reduces bundles total size
   new webpack.optimize.UglifyJsPlugin({

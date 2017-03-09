@@ -31,10 +31,10 @@ describe('JSON Web Token', () => {
 
     beforeEach(() => {
       sinon.stub(JwtFactory, 'getToken', () => { return authDetails.token; });
-      sinon.stub(JwtFactory, 'getUserid', () => { return authDetails.user_id; });
+      sinon.stub(JwtFactory, 'getUserId', () => { return authDetails.user_id; });
 
       saveTokenSpy = sinon.spy(JwtFactory, 'saveToken');
-      saveUserIdSpy = sinon.spy(JwtFactory, 'saveUserid');
+      saveUserIdSpy = sinon.spy(JwtFactory, 'saveUserId');
       goSpy = sinon.stub($state, 'go');
     });
 
@@ -61,7 +61,7 @@ describe('JSON Web Token', () => {
 
       AuthInterceptorFactory.response(response);
       sinon.assert.calledWith(saveTokenSpy, response.data.token);
-      sinon.assert.calledWith(saveUserIdSpy, response.data.user_id);
+      sinon.assert.callCount(saveUserIdSpy, 0);
     }));
 
     it('response interceptor (no error) dont save the token if the server dont send it back', sinon.test( () => {
@@ -106,13 +106,13 @@ describe('JSON Web Token', () => {
 
     it('save a UserID in local Storage', () => {
       let userId = 'userID to save';
-      JwtFactory.saveUserid(userId);
+      JwtFactory.saveUserId(userId);
       expect(mockLocalStorage[USER_ID]).to.equal(userId);
     });
 
     it('get a UserID from local Storage', () => {
       mockLocalStorage[USER_ID] = 'userId to retrieve';
-      expect(JwtFactory.getUserid()).to.equal(mockLocalStorage[USER_ID]);
+      expect(JwtFactory.getUserId()).to.equal(mockLocalStorage[USER_ID]);
     });
 
 

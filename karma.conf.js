@@ -73,8 +73,10 @@ module.exports = function (config) {
       }
     },
 
-    webpackServer: {
-      noInfo: true // prevent console spamming when running in Karma!
+    webpackMiddleware: {
+      stats: {
+        chunks: false,
+      },
     },
 
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
@@ -88,7 +90,7 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_DISABLE,
 
     // toggle whether to watch files and rerun tests upon incurring changes
     autoWatch: false,

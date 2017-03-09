@@ -41,9 +41,12 @@ describe('Login', () => {
 
 
     it('sends an authentication request when user click on login button', () => {
+
+      let authDataBackFromServer = require('app/mockBackEndResponse/authenticateResponse.json');
+
       let authPOSTRequestResource = {
         $save: (callback) => {
-          return callback();
+          return callback(authDataBackFromServer);
         }
       };
 

@@ -23,32 +23,6 @@ let resourceServiceModule = angular.module('logDecorator', [
           };
         })( $log );
 
-
-        let concatenateArgs = (args) => {
-          let output = '';
-          for (let arg of args) {
-
-            if ( angular.isString(arg) ) {
-              output += `${arg}`;
-            }
-            else if ( angular.isDate(arg) ) {
-              output += $filter('date')(arg, 'yyyy/MM/dd HH:mm:ss.sss').toString();
-            }
-            else if ( angular.isObject(arg) ) {
-              output += angular.toJson(arg);
-            }
-            else {
-              // Numbers, boolean, null, undefined
-              output += `${arg}`;
-            }
-
-
-          }
-
-          return output;
-        };
-
-
         /**
          * Partial application to pre-capture a logger function
          */
@@ -65,13 +39,11 @@ let resourceServiceModule = angular.module('logDecorator', [
             let now = $filter('date')(new Date(), 'yyyy/MM/dd HH:mm:ss.sss', 'UTC/GMT').toString();
 
             // prepend a timestamp to the original output message
-            // args[0] = supplant('{0} - {1}{2}', [ now, className, args[0] ]);
-            args[0] = `${now} - ${className}${args[0]}`;
+            let prefix = `${now} - ${className}`;
+            args.unshift(prefix);
 
-
-            let test2 = concatenateArgs(args);
-
-            logFn( test2 );
+            // spread operator, equivalent to logFn.apply(null, args)
+            logFn(...args);
           };
 
           // Special... only needed to support angular-mocks expectations

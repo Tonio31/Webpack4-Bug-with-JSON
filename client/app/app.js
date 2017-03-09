@@ -48,7 +48,18 @@ let appModule = angular.module('app', [
 
     $stateProviderRef = $stateProvider;
   })
-  .run( ($log, $urlRouter, Menu, $trace, $state, $location, $transitions, JwtFactory, STATES) => {
+  // eslint-disable-next-line max-params
+  .run( ( $log,
+          $urlRouter,
+          Menu,
+          $trace,
+          $state,
+          $location,
+          $transitions,
+          User,
+          JwtFactory,
+          Data,
+          STATES ) => {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -138,6 +149,10 @@ let appModule = angular.module('app', [
 
 
     if ( !JwtFactory.isAuthedExpired() ) {
+
+      User.setUser({ id: JwtFactory.getUserId() });
+      Data.getParticipantDetails();
+
       Menu.retrieveMenuAndReturnStates().then( (states) => {
         $log.log('Menu retrieved successfully');
 

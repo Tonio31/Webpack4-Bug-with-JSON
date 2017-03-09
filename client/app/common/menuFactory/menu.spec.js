@@ -1,7 +1,7 @@
 import MenuModule from './menu';
 
 describe('Menu', () => {
-  let Menu, Data, UserInfo;
+  let Menu, Data, User;
   let $rootScope;
   let scope;
 
@@ -13,9 +13,9 @@ describe('Menu', () => {
     scope = $rootScope.$new();
     Menu = $injector.get('Menu');
     Data = $injector.get('Data');
-    UserInfo = $injector.get('UserInfo');
+    User = $injector.get('User');
 
-    sinon.stub(UserInfo, 'getUserid', () => { return 12; } );
+    sinon.stub(User, 'getUserId', () => { return 12; } );
 
     sinon.stub(Data, 'getMenu', () => {
 

@@ -1,7 +1,7 @@
 
 class HomeController {
 
-  constructor($log, $state, UserInfo, Menu) {
+  constructor($log, $state, User, Menu) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -10,7 +10,9 @@ class HomeController {
 
     $log.log('constructor::Start');
 
-    this.firstName = UserInfo.getFirstName();
+    this.firstName = User.getFirstName();
+    $log.log('User.getFirstName()=', User.getFirstName());
+
     this.currentProgression = Menu.getCurrentProgression();
     this.menu = Menu.getMenu();
 
@@ -50,6 +52,7 @@ class HomeController {
 
     this.goToFAQs = () => {
       $log.log('goToFAQs()');
+      $log.log('User.getFirstName()=', User.getFirstName());
     };
 
 
