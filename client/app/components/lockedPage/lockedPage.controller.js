@@ -6,8 +6,6 @@ class LockedPageController {
     $log = $log.getInstance( 'LockedPageController' );
 
     $log.log('Nothing to initialize or do for the lockedPage');
-
-    // throw new Error('TONIO This is a test to see in Bugsnag');
   }
 }
 
