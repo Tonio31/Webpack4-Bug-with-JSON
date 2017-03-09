@@ -326,19 +326,6 @@ $mainTitleMenuColor: #a0a0a0;
     list-style-type: none;
     margin: 0;
     padding: 0;
-
-    label {
-      background: #444;
-      border-bottom: 0;
-      border-top: 1px solid #5e5e5e;
-      color: #999;
-      display: block;
-      font-size: .75rem;
-      font-weight: bold;
-      margin: 0;
-      padding: .3rem .9375rem;
-      text-transform: uppercase;
-    }
   }
 
   .fix-nav-under {
@@ -352,21 +339,4 @@ $mainTitleMenuColor: #a0a0a0;
       }
     }
   }
-
-
-
-  // .left-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu .menu-button:after {
-  //   content: "\BB";
-  //   margin-left: .5rem;
-  //   display: inline;
-  //   border: 1px solid red;
-  // }
-  //
-  // .right-off-canvas-menu ul.off-canvas-list-bugfix li.has-submenu > a:before {
-  //   content: "\AB";
-  //   margin-right: .5rem;
-  //   display: inline;
-  //   border: 1px solid blue;
-  // }
-
 }

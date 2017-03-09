@@ -6,7 +6,7 @@ import ResourceFactory from 'common/resourceFactory/resource';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import MenuService from 'common/menuFactory/menu';
 import constantModule from 'common/constants';
-import { moveMenu, offCanvasListBugfixDef, menuItem, menuButton } from './navbar.directive';
+import { syncMenuAndState, menuItem, menuButton } from './navbar.directive';
 
 require('angular-foundation');
 
@@ -22,9 +22,7 @@ let navbarModule = angular.module('navbar', [
   .component('navbar', navbarComponent)
   .directive('menuItem', menuItem )
   .directive('menuButton', menuButton )
-  .directive('offCanvasListBugfix', offCanvasListBugfixDef )
-  .directive('hasSubmenu', moveMenu )
-  .directive('back', moveMenu )
+  .directive('syncState', syncMenuAndState )
   .name;
 
 export default navbarModule;

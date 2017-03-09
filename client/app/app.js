@@ -49,7 +49,9 @@ let appModule = angular.module('app', [
     $stateProviderRef = $stateProvider;
   })
   // eslint-disable-next-line max-params
-  .run( ( $log,
+  .run( ( $rootScope,
+          $log,
+          $timeout,
           $urlRouter,
           Menu,
           $trace,
@@ -126,6 +128,20 @@ let appModule = angular.module('app', [
 
       return true;
     });
+
+
+    // On every route change, we need to update the menu in order to display the good page
+    // The event we emit here is catched by the directive sync-state
+    $transitions.onSuccess( {}, (trans) => {
+      let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+      // Without $timeout, the $rootscope.on won't pick up the event because the directive is not yet created
+      // see http://stackoverflow.com/questions/15676072/angularjs-broadcast-not-working-on-first-controller-load
+      $timeout( () => {
+        $rootScope.$emit('stateChangeSuccess', toState);
+      });
+      return true;
+    });
+
 
 
     // ui-router by default reports an error when we start a transition but we don't finish it and superseed it for another one

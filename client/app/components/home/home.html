@@ -11,7 +11,7 @@
       <div class="columns medium-4" ng-class="{'show-for-medium-up': cycle.status !== 'current'}" ng-repeat="cycle in $ctrl.menu.data.children track by cycle.id">
         <div ng-class="{'not-locked': cycle.status !== 'locked'}" class="cycle text-center">
           <div>
-            <c3chart bindto-id="{{cycle.slug}}" sort-data="null">
+            <c3chart bindto-id="_{{cycle.slug}}" sort-data="null">
               <chart-column style="display:none" column-id="remaining"
                             column-values="{{cycle.progress.remaining}}"
                             column-type="donut"/>
