@@ -48,7 +48,18 @@ let appModule = angular.module('app', [
 
     $stateProviderRef = $stateProvider;
   })
-  .run( ($log, $urlRouter, Menu, $trace, $state, $location, $transitions, JwtFactory, STATES) => {
+  // eslint-disable-next-line max-params
+  .run( ( $log,
+          $urlRouter,
+          Menu,
+          $trace,
+          $state,
+          $location,
+          $transitions,
+          User,
+          JwtFactory,
+          Data,
+          STATES ) => {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -138,6 +149,13 @@ let appModule = angular.module('app', [
 
 
     if ( !JwtFactory.isAuthedExpired() ) {
+
+      // In case the user is already logged in (token is not expired), we need to set his user ID
+      // form local storage in the User factory as the id will be used to retrieve participant information
+      // from server that is used on the home page and in expections reports to bugsnag
+      User.setUser({ id: JwtFactory.getUserId() });
+      Data.getParticipantDetails();
+
       Menu.retrieveMenuAndReturnStates().then( (states) => {
         $log.log('Menu retrieved successfully');
 

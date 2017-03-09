@@ -89,6 +89,10 @@ module.exports = {
       }
     }),
 
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(require("./package.json").version)
+    }),
+
     new webpack.ProvidePlugin({
       c3: 'c3'
     }),

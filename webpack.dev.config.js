@@ -21,6 +21,9 @@ config.plugins = config.plugins.concat([
     hash: true
   }),
 
+  new webpack.DefinePlugin({
+    ENVIRONMENT: JSON.stringify('development')
+  }),
 
   // Adds webpack HMR support. It act's like livereload,
   // reloading page after webpack rebuilt modules.

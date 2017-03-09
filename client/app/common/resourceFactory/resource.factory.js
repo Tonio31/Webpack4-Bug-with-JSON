@@ -1,26 +1,42 @@
-let ResourceFactory = function($log, $q, $resource, config) {
+let ResourceFactory = function($log, $q, $resource, User, config) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
   $log = $log.getInstance('ResourceFactory');
 
-  const user = {
-    name: 'Tonio'
-  };
-
-  let buildApiUrl = (iTypeOfApi) => {
+  let buildApiUrl = (iTypeOfApi, iUserId = false) => {
     let apiUrl = `${config.apiUrl}${config.apiVersion}/${iTypeOfApi}`;
-    return apiUrl;
-  };
 
-  let getUser = () => {
-    return user;
+    if ( iUserId ) {
+      apiUrl += `/${User.getUserId()}`;
+    }
+
+    return apiUrl;
   };
 
   // **********************************  GET  *************************************** //
   let getMenu = () => {
     $log.log('getMenu config=', config);
-    return $resource(buildApiUrl('menu'));
+    return $resource(buildApiUrl('menu', true));
+  };
+
+  let getParticipantDetails = () => {
+    $log.log('getMenu config=', config);
+    return $resource(buildApiUrl('participants', true)).get( (userData) => {
+      $log.log('getParticipantDetails() retrieved successfully userData.data=', userData.data );
+
+      let userToSave = {
+        id: userData.data.id,
+        firstName: userData.data['first_name'], // eslint-disable-line dot-notation
+        lastName: userData.data['last_name'], // eslint-disable-line dot-notation
+        email: userData.data.email
+      };
+
+      User.setUser(userToSave);
+    },
+      (error) => {
+        $log.log('getParticipantDetails() error=', error);
+      });
   };
 
 
@@ -68,10 +84,10 @@ let ResourceFactory = function($log, $q, $resource, config) {
   };
 
   return {
-    getUser,
     getMenu,
     getUserAuthData,
     getDynamicContentPromise,
+    getParticipantDetails,
     updateStep,
     buildApiUrl
   };

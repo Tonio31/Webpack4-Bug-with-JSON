@@ -3,7 +3,7 @@ import HomeModule from './home';
 
 describe('Home', () => {
   let $rootScope, $state, $location, $componentController, $compile;
-  let UserInfo, Menu;
+  let Data, User, Menu;
 
   let contentBindings = require('app/mockBackEndResponse/reflexion.json');
 
@@ -21,12 +21,15 @@ describe('Home', () => {
     $state = $injector.get('$state');
     $location = $injector.get('$location');
     $compile = $injector.get('$compile');
-    UserInfo = $injector.get('UserInfo');
+    User = $injector.get('User');
+    Data = $injector.get('Data');
     Menu = $injector.get('Menu');
 
     sinon.stub(Menu, 'getCurrentProgression', () => { return currentProgressionObject; } );
     sinon.stub(Menu, 'getMenu', () => { return menuObject; } );
-    sinon.stub(UserInfo, 'getFirstName', () => { return firstName; } );
+    sinon.stub(User, 'getFirstName', () => { return firstName; } );
+
+    sinon.stub(Data, 'getDynamicContentPromise', () => { return contentBindings; } );
   }));
 
   describe('Module', () => {
@@ -65,7 +68,7 @@ describe('Home', () => {
     });
 
 
-    it('has a name from UserInfo factory', () => {
+    it('has a name from User factory', () => {
       expect(controller.firstName).to.equal(firstName);
     });
 

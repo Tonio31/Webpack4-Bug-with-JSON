@@ -30,6 +30,7 @@ angular.module( 'appMockBackEnd', [
   let menu = require('./mockBackEndResponse/menu-1.json');
 
   let authenticate = require('./mockBackEndResponse/authenticateResponse.json');
+  let participant = require('./mockBackEndResponse/participants.json');
 
   let stepContent = {};
 
@@ -139,7 +140,7 @@ angular.module( 'appMockBackEnd', [
     return errorReply;
   });
 
-  $httpBackend.whenGET(Data.buildApiUrl('menu')).respond( (method, url, data, headers) => {
+  $httpBackend.whenGET(Data.buildApiUrl('menu', true)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
 
     if ( !JwtFactory.isAuthedExpired() ) {
@@ -184,16 +185,11 @@ angular.module( 'appMockBackEnd', [
     return [ 200, authenticate, responseHeaders ];
   });
 
+  $httpBackend.whenGET(Data.buildApiUrl('participants', true)).respond( (method, url) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method}`);
 
-  $httpBackend.whenGET(/\/users\/\d+/).respond( (method, url) => {
-    // parse the matching URL to pull out the id (/games/:id)
-    let userid = url.split('/')[2];
-    $log.log(`userid=${userid}`);
-    let user = {
-      name: 'Mock Reply',
-      userid: userid
-    };
-    return [ 200, user, {} ];
+
+    return [ 200, participant, {} ];
   });
 
 });

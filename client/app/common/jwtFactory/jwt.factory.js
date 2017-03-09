@@ -9,18 +9,19 @@ let JwtFactory = function($log, $window, $localStorage, TOKEN, USER_ID) {
     $localStorage[TOKEN] = iToken;
   };
 
-  // Retrieve Token from local Storage
+
+  let saveUserId = (iUserId) => {
+    $localStorage[USER_ID] = iUserId;
+  };
+
+
+  // Retrieve Token from memory or local Storage if not yet stored in memory
   let getToken = () => {
     return $localStorage[TOKEN];
   };
 
-  // Save userid to local Storage
-  let saveUserid = (iUserid) => {
-    $localStorage[USER_ID] = iUserid;
-  };
-
-  // Retrieve userId from local Storage
-  let getUserid = () => {
+  // Retrieve userId from memory or local Storage if not yet stored in memory
+  let getUserId = () => {
     return $localStorage[USER_ID];
   };
 
@@ -50,9 +51,9 @@ let JwtFactory = function($log, $window, $localStorage, TOKEN, USER_ID) {
 
   return {
     saveToken,
+    saveUserId,
     getToken,
-    saveUserid,
-    getUserid,
+    getUserId,
     parseJwt,
     isAuthedExpired,
     logout
