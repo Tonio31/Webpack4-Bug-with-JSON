@@ -16,14 +16,14 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
 
   // **********************************  GET  *************************************** //
   let getMenu = () => {
-    $log.log('getMenu config=', config);
+    $log.log('getMenu()');
     return $resource(buildApiUrl('menu', true));
   };
 
   let getParticipantDetails = () => {
-    $log.log('getMenu config=', config);
+    $log.log('getParticipantDetails()');
     return $resource(buildApiUrl('participants', true)).get( (userData) => {
-      $log.log('getParticipantDetails() retrieved successfully userData.data=', userData.data );
+      $log.log('getParticipantDetails() retrieved successfully');
 
       let userToSave = {
         id: userData.data.id,
@@ -35,13 +35,13 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
       User.setUser(userToSave);
     },
       (error) => {
-        $log.log('getParticipantDetails() error=', error);
+        $log.error('getParticipantDetails() error=', error);
       });
   };
 
 
   let getDynamicContentPromise = ( iEndPointUrl, iIsArray, iOptionalParameters = {} ) => {
-    $log.log('getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iOptionalParameters=', iOptionalParameters);
+    $log.log('getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iIsArray=', iIsArray, '  iOptionalParameters=', iOptionalParameters); // eslint-disable-line max-len
 
     let deferred = $q.defer();
 
@@ -50,7 +50,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
         deferred.resolve(data);
       },
       (error) => {
-        $log.log('getDynamicContentPromise error=', error);
+        $log.error('getDynamicContentPromise error=', error);
 
         deferred.reject(error);
       });
@@ -60,7 +60,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
         deferred.resolve(data);
       },
       (error) => {
-        $log.log('getDynamicContentPromise error=', error);
+        $log.error('getDynamicContentPromise error=', error);
 
         deferred.reject(error);
       });
@@ -74,12 +74,12 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
   // of the function, we can't use it to do get method
 
   let getUserAuthData = () => {
-    $log.log('getUserAuthData');
+    $log.log('getUserAuthData()');
     return new ($resource(buildApiUrl('authenticate')))();
   };
 
   let updateStep = () => {
-    $log.log('updateStep');
+    $log.log('updateStep()');
     return new ($resource(buildApiUrl('step')))();
   };
 

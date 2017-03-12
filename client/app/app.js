@@ -125,7 +125,6 @@ let appModule = angular.module('app', [
         $log.log('error Retrieving menu error=', error);
       });
 
-
       return true;
     });
 
@@ -137,6 +136,7 @@ let appModule = angular.module('app', [
       // Without $timeout, the $rootscope.on won't pick up the event because the directive is not yet created
       // see http://stackoverflow.com/questions/15676072/angularjs-broadcast-not-working-on-first-controller-load
       $timeout( () => {
+        $log.log('About to emit the event: stateChangeSuccess      toState=', toState);
         $rootScope.$emit('stateChangeSuccess', toState);
       });
       return true;
