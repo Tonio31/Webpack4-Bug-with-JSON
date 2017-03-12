@@ -1,25 +1,24 @@
-<div><!-- fix-nav-under class will be inserted here -->
-  <div ng-repeat="child in item.children track by child.id"> <!-- show-this-nav class will be inserted here -->
-    <li sync-state id="{{child.fullUrl}}" ng-if="hasChildren(child)" class="has-submenu menu-item">
-      <a href=""><menu-button data="child"></menu-button></a>
-      <ul class="left-submenu"> <!-- move-right class will be inserted here -->
-        <li class="back btn-back-home">
-          <a href="" class="menu-button">
-            <div class="small-2">
-              <span class="pl-menu-button"></span>
-            </div>
-            <div class="small-10">
-              <p class="top-title">{{child.title}}</p>
-              <p class="main-title">{{child.name}}</p>
-              <p class="below-title">Total - {{child.children.length + 1}} Steps</p>
-            </div>
-          </a>
-        </li>
-        <menu-item item="child"></menu-item>
-      </ul>
-    </li>
-    <li ng-if="!hasChildren(child)" ng-click="hideCanvas()" class="menu-item" ui-sref-active="active">
-      <a ui-sref="{{child.fullUrl}}"><menu-button data="child"></menu-button></a>
-    </li>
-  </div>
+<!-- fix-nav-under class will be inserted in <menu-item> tag -->
+<div ng-repeat="child in item.children track by child.id"> <!-- show-this-nav class will be inserted here -->
+  <li sync-state id="{{child.fullUrl}}" ng-if="hasChildren(child)" class="has-submenu menu-item">
+    <a href=""><menu-button data="child"></menu-button></a>
+    <ul class="left-submenu"> <!-- move-right class will be inserted here -->
+      <li class="back btn-back-home">
+        <a href="" class="menu-button">
+          <div class="small-2">
+            <span class="pl-menu-button"></span>
+          </div>
+          <div class="small-10">
+            <p class="top-title">{{child.title}}</p>
+            <p class="main-title">{{child.name}}</p>
+            <p class="below-title">Total - {{child.children.length + 1}} Steps</p>
+          </div>
+        </a>
+      </li>
+      <menu-item item="child"></menu-item>
+    </ul>
+  </li>
+  <li ng-if="!hasChildren(child)" ng-click="hideCanvas()" class="menu-item" ui-sref-active="active">
+    <a ui-sref="{{child.fullUrl}}"><menu-button data="child"></menu-button></a>
+  </li>
 </div>
