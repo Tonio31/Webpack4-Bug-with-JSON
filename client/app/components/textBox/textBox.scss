@@ -3,6 +3,7 @@
 .textBox {
    input[type="text"] {
      height: 3rem;
+     width: calc(100% - 58px);
 
      @include inputsBorderStyling();
    }

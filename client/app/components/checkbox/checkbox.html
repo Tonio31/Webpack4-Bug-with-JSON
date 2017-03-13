@@ -1,0 +1,11 @@
+<div class="radio-checkbox checkbox">
+  <h3>{{ $ctrl.name }}</h3>
+  <ul>
+    <li ng-repeat="item in checkboxData.items">
+      <label for="checkboxName-{{$index + 1}}">
+        <span>{{item}}</span>
+        <input type="checkbox" name="checkbox_group-1" id="checkboxName-{{$index + 1}}">
+      </label>
+    </li>
+  </ul>
+</div>

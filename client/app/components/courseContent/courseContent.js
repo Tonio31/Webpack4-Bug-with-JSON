@@ -8,6 +8,8 @@ import MenuService from 'common/menuFactory/menu';
 import videoModule from 'components/videoModule/videoModule';
 import textAreaModule from 'components/textArea/textArea';
 import textBoxModule from 'components/textBox/textBox';
+import checkbox from 'components/checkbox/checkbox';
+import radioList from 'components/radioList/radioList';
 import constantModule from 'common/constants';
 import { unsafeFilter } from './courseContent.filter';
 
@@ -20,6 +22,8 @@ let courseContentModule = angular.module('courseContent', [
   videoModule,
   textAreaModule,
   textBoxModule,
+  checkbox,
+  radioList,
   constantModule,
   LogDecorator
 ])

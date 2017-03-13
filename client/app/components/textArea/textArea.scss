@@ -3,10 +3,9 @@
 .textArea {
 
   textarea {
-
-    min-height: rem_calc(150px);
     border-radius: $global-radius;
-
+    min-height: rem_calc(150px);
+    width: calc(100% - 58px); 
     @include inputsBorderStyling();
   }
 }

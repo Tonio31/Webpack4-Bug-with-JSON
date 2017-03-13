@@ -1,5 +1,5 @@
 class TextBoxController {
-  constructor($log, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
+  constructor($log, $scope, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -10,6 +10,10 @@ class TextBoxController {
 
       this.iconText = ICON_FONTELLO.VALID_TICK;
       this.text = this.block.data.value;
+    };
+
+    this.toggleFocus = () => {
+      $log.log('this focus', this);
     };
 
 

@@ -5,3 +5,12 @@
     color: #606060;
   }
 }
+
+.fgcolour {
+  &-grey {
+    color: $really-light-grey;
+  }
+  &-success {
+    color: $success-color;
+  }
+}
