@@ -1,0 +1,15 @@
+.blockquote {
+  padding-left: rem_calc(10px);
+  color: $locked-grey;
+  p {
+    border-left: 1px solid $locked-grey;
+    margin-left: rem_calc(10px);
+    padding-left: rem_calc(10px);
+  }
+
+  &.fgcolour-success {
+    p {
+      border-color: $success-color;
+    }
+  }
+}

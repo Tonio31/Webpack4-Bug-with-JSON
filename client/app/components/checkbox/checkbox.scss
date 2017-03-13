@@ -1,0 +1,8 @@
+@import 'common/common';
+
+.checkbox {
+
+  [type="checkbox"] {
+    border-radius: $global-radius;
+  }
+}
