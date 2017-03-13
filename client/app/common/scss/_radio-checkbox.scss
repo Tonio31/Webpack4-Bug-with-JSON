@@ -1,0 +1,85 @@
+.radio-checkbox {
+  header {
+    @media #{$small-only} {
+      margin-left: rem_calc(-15px);
+      margin-right: rem_calc(-15px);
+    }
+    background-color: $light-grey;
+    padding: rem_calc(10px);
+  }
+  ul {
+    @media #{$small-only} {
+      margin-left: rem_calc(-15px);
+      margin-right: rem_calc(-15px);
+    }
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 2px 0;
+    }
+  }
+
+  label {
+    background-color: lighten($light-grey, 3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem_calc(10px);
+    transition: background-color $speed3;
+
+    // &:hover {
+    //   background-color: lighten($light-grey, 2);
+    // }
+  }
+
+  [type="radio"],
+  [type="checkbox"] {
+    appearance: none;
+    border: 1px solid $ship-grey;
+    background-color: $white;
+    margin: 0;
+    width: 45px;
+    height: 45px;
+    position: relative;
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
+// not sure if it's worth detecting touch, dont want to use modernizr so if we need then maybe something like this:  https://ctrlq.org/code/19616-detect-touch-screen-javascript
+
+    // &:hover {
+    //   &::after {
+    //     content: 'x'; // requires svg font icon: 'tick'
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     color: $ship-grey;
+    //     opacity: .5;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //   }
+    // }
+
+    &:checked {
+      border-color: $success-color;
+      &::after {
+        content: 'x'; // requires svg font icon: 'tick'
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: $success-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
