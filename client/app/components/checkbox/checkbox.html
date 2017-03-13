@@ -1,5 +1,8 @@
 <div class="radio-checkbox checkbox">
-  <h3>{{ $ctrl.name }}</h3>
+  <header>
+    <p><strong>{{ $ctrl.name }}</strong></p>
+    <p class="note">(Please select 1 option below)</p>
+  </header>
   <ul>
     <li ng-repeat="item in checkboxData.items">
       <label for="checkboxName-{{$index + 1}}">
