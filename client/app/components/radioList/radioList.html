@@ -1,0 +1,18 @@
+<div class="radio-checkbox radioList">
+  <header class="">
+    <p><strong>{{ $ctrl.name }}</strong></p>
+    <p class="note">(Please select 1 option below)</p>
+  </header>
+  <ul>
+    <li ng-repeat="item in radioData.items">
+      <label for="radioName-{{$index + 1}}">
+        <span>{{item}}</span>
+        <input type="radio" name="radio_group-1" id="radioName-{{$index + 1}}">
+      </label>
+      <!-- one of the screens shows a succes-coloured message such as: -->
+      <!-- <label class="blockquote fgcolour-success">
+        <p>some text here</p>
+      </label> -->
+    </li>
+  </ul>
+</div>

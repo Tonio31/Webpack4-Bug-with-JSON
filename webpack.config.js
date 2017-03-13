@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
-
+const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
   devtool: 'source-map',
@@ -97,6 +97,9 @@ module.exports = {
       c3: 'c3'
     }),
 
-    new CssSourcemapPlugin()
+    new CssSourcemapPlugin(),
+
+    // displays desktop notifications on MacOS
+    new WebpackNotifierPlugin()
   ]
 };

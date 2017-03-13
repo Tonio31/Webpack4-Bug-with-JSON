@@ -103,7 +103,7 @@ class CourseContentController {
           Menu.retrieveMenuAndReturnStates(forceMenuRetrieval);
 
         }, (error) => {
-          // TODO Display error Banner for the user (to be defined with Matt how it will look like)
+          // TO DO Display error Banner for the user (to be defined with Matt how it will look like)
           $log.log('Error saving the current step. error=', error);
         });
       }
