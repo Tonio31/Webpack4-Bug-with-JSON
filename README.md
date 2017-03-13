@@ -14,7 +14,7 @@
     * [Running the App](#running-the-app)
         * [Gulp Tasks](#gulp-tasks)
         * [Testing](#testing)
-		* [Generating Components](#generating-components)		
+		* [Generating Components](https://bitbucket.org/Tonio31/program_2_0/overview#generating-components)		
 * [Starter Kit Support and Questions](#starter-kit-support-and-questions)
 
 # Walkthrough
