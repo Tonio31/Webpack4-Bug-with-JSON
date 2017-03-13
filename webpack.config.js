@@ -95,5 +95,9 @@ module.exports = {
       c3: 'c3'
     }),
 
+    new CssSourcemapPlugin(),
+
+    // displays desktop notifications on MacOS
+    new WebpackNotifierPlugin()
   ]
 };
