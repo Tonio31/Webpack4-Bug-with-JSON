@@ -16,6 +16,10 @@ Object.assign(eslintConfig.globals, globalsToAdd);
 eslintConfig.rules["init-declarations"] = OFF;
 eslintConfig.rules["angular/window-service"] = OFF;
 eslintConfig.rules["array-bracket-spacing"] = OFF;
-eslintConfig.rules["max-len"] = [WARN, 200];
+eslintConfig.rules["max-len"] = [ WARN, {
+  "code": 200,
+  "ignorePattern": "^\\s*it\\(\\'.*\\{",
+  "ignoreComments": true
+}];
 
 module.exports = exports = eslintConfig;

@@ -41,7 +41,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
 
 
   let getDynamicContentPromise = ( iEndPointUrl, iIsArray, iOptionalParameters = {} ) => {
-    $log.log('getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iIsArray=', iIsArray, '  iOptionalParameters=', iOptionalParameters); // eslint-disable-line max-len
+    $log.log('getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iIsArray=', iIsArray, '  iOptionalParameters=', iOptionalParameters);
 
     let deferred = $q.defer();
 

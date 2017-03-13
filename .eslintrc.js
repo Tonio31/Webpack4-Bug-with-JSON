@@ -160,7 +160,11 @@ module.exports = exports = {
     "linebreak-style": OFF, // git fixes this for us on checkin
     "lines-around-comment": OFF,
     "max-depth": [WARN, 8],
-    "max-len": [WARN, 132],
+    "max-len": [WARN, {
+      "code": 132,
+      "ignorePattern": "^\\s*\\$log\\.log\\(\\'.*;",
+      "ignoreComments": true
+    }],
     "max-nested-callbacks": [WARN, 8],
     "max-params": [WARN, 10],
     "new-cap": WARN,
