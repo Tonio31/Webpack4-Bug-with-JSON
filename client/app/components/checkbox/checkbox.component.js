@@ -5,7 +5,9 @@ import './checkbox.scss';
 let checkboxComponent = {
   restrict: 'E',
   bindings: {
-    data: '<'
+    data: '<',
+    isTopLevelFormSubmitted: '<',
+    onUpdate: '&'
   },
   template,
   controller

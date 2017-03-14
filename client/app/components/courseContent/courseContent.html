@@ -19,11 +19,11 @@
                     </div>
 
                     <div ng-switch-when="checkbox">
-                      <checkbox data="block.data"></checkbox>
+                      <checkbox on-update="$ctrl.updateInputFields(block.program_data_code, value)" data="block.data"></checkbox>
                     </div>
 
                     <div ng-switch-when="radiobox">
-                      <radio-list data="block.data"></radio-list>
+                      <radio-list on-update="$ctrl.updateInputFields(block.program_data_code, value)" data="block.data"></radio-list>
                     </div>
 
                     <div ng-switch-when="html">
