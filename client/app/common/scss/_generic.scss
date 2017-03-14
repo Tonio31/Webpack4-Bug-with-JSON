@@ -36,17 +36,6 @@ body {
   padding: 0;
 }
 
-.fontello-icon {
-  font-family: 'fontello';
-  font-size: rem_calc(18px);
-  line-height: rem_calc(18px);
-
-  color: $success-color;
-  &.invalid {
-    color: $alert-color;
-  }
-}
-
 .visibilityHidden {
   visibility: hidden;
 }
@@ -56,55 +45,5 @@ body {
 
   .flex-expand-left {
     flex: 1;
-  }
-
-  .validation-icon-right {
-    // flex-basis: rem_calc(3rem);
-    padding: rem_calc(10px);
-    width: 45px;
-    height: 45px;
-    border: 1px solid $onyx;
-    border-radius: 50%;
-    margin-left: rem_calc(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.ng-invalid-required ~ .validation-icon-right {
-  border-color: $alert-color;
-}
-.ng-valid-required ~ .validation-icon-right {
-  border-color: $success-color;
-}
-.ng-valid-required ~ .validation-icon-right.has-focus {
-  border-color: $blue-focus;
-}
-
-//noinspection CssInvalidPseudoSelector
-@mixin inputsBorderStyling() {
-  &:focus {
-    border: 2px solid $blue-focus;
-  }
-
-  &.parent-submitted,
-  &.ng-dirty {
-    &.ng-invalid-required {
-      border: 2px solid $alert-color;
-      color: $alert-color;
-
-      &::placeholder {
-        color: $alert-color;
-      }
-    }
-
-    &.ng-valid-required {
-      border: 2px solid $success-color;
-      &::placeholder {
-        color: $success-color;
-      }
-    }
-
   }
 }
