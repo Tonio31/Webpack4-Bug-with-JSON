@@ -29,6 +29,10 @@
     padding: rem_calc(10px);
     transition: background-color $speed3;
 
+    span {
+      -webkit-touch-callout: none;
+      user-select: none;
+    }
     // &:hover {
     //   background-color: lighten($light-grey, 2);
     // }
@@ -44,6 +48,24 @@
     height: 45px;
     position: relative;
     cursor: pointer;
+    transition: all $speed3 / 2;
+
+    &::after {
+      content: '';
+      font-family: 'fontello';
+      font-size: rem_calc(0px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: $success-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all $speed3 / 2;
+    }
 
     &:focus {
       outline: 0;
@@ -52,7 +74,7 @@
 
     // &:hover {
     //   &::after {
-    //     content: 'x'; // requires svg font icon: 'tick'
+    //     content: 't'; // requires svg font icon: 'tick'
     //     position: absolute;
     //     top: 0;
     //     left: 0;
@@ -69,16 +91,9 @@
     &:checked {
       border-color: $success-color;
       &::after {
-        content: 'x'; // requires svg font icon: 'tick'
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        color: $success-color;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        content: 't'; // requires svg font icon: 'tick'
+        font-size: rem_calc(18px);
+        opacity: 1;
       }
     }
   }

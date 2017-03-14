@@ -23,8 +23,13 @@ let constantModule = angular.module('app.common.constant', [
   })
   .constant('ICON_FONTELLO', {
     VALID_TICK: 't',
-    WARNING: 'w',
-    LOCK: 'l'
+    WARNING: '!',
+    LOCK: 'l',
+    EYE: 'e',
+    ARROW_RIGHT: '>',
+    ARROW_LEFT: '<',
+    PDF_ICON: 'p',
+    PL_ICON: 'u'
   })
 .name;
 
