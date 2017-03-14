@@ -20,7 +20,7 @@
       </div>
 
       <div class="validation-icon-right" ng-hide="!this[$ctrl.formName][$ctrl.block.data.name].$dirty && !$ctrl.isTopLevelFormSubmitted" aria-hidden="true">
-        <span ng-class="{ 'invalid': this[$ctrl.formName][$ctrl.block.data.name].$invalid }" class="right fontello-icon" aria-hidden="true">{{$ctrl.iconText}}</span>
+        <span ng-class="{ 'invalid': this[$ctrl.formName][$ctrl.block.data.name].$invalid }" class="right fontello-icon" aria-hidden="true">{{!this[$ctrl.formName][$ctrl.block.data.name].$invalid ? $ctrl.icons.VALID_TICK : $ctrl.icons.WARNING}}</span>
       </div>
 
     </div>

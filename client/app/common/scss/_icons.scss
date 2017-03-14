@@ -1,3 +1,14 @@
+.fontello-icon {
+  font-family: 'fontello';
+  font-size: rem_calc(18px);
+  line-height: rem_calc(18px);
+
+  color: $success-color;
+  &.invalid {
+    color: $alert-color;
+  }
+}
+
 .has-focus .fontello-icon {
   color: $blue-focus;
 }
