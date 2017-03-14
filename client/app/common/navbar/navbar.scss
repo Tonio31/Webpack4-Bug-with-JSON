@@ -123,7 +123,6 @@ $mainTitleMenuColor: #a0a0a0;
 
   .main-section {
     padding-top: $tabbar-height;
-    // overflow-y: auto; //took this off because it was creating an overflow in the main-section
     height: 100%;
     width: 100%;
     transform: translate3d(0, 0, 0);
@@ -201,7 +200,7 @@ $mainTitleMenuColor: #a0a0a0;
 
       &.main-title {
         font-size: 18px;
-        -webkit-font-smoothing: subpixel-antialiased;
+        font-smoothing: subpixel-antialiased;
         color: $mainTitleMenuColor;
         white-space: nowrap;
         overflow: hidden;
