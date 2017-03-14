@@ -14,10 +14,6 @@ class TextBoxController {
       this.text = this.block.data.value;
     };
 
-    this.toggleFocus = () => {
-      $log.log('this focus', this);
-    };
-
     this.actionOnUserInput = (iIsFormValid) => {
       $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}` );
 
