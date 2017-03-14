@@ -39,16 +39,13 @@ describe('Navbar Directive Test', () => {
     });
 
 
-    it('find soimething', () => {
+    it('Count the number of element that have .menu-button class', () => {
       let module1 = angular.element(template[0].querySelector('#\\/potentialife-course\\/cycle-1\\/module-1'));
-      // expect(module1.html()).to.eq(5);
       expect(module1.hasClass('menu-item')).to.eq(true);
 
       let menuButtonClass = angular.element(module1[0].querySelectorAll('.menu-button'));
       expect(menuButtonClass.length).to.eq(14);
     });
-
-
 
   });
 
