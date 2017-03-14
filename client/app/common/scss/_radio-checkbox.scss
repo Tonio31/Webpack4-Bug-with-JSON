@@ -33,9 +33,6 @@
       -webkit-touch-callout: none;
       user-select: none;
     }
-    // &:hover {
-    //   background-color: lighten($light-grey, 2);
-    // }
   }
 
   [type="radio"],
@@ -74,28 +71,11 @@
         color: $blue-focus !important;
       }
     }
-// not sure if it's worth detecting touch, dont want to use modernizr so if we need then maybe something like this:  https://ctrlq.org/code/19616-detect-touch-screen-javascript
-
-    // &:hover {
-    //   &::after {
-    //     content: 't'; // requires svg font icon: 'tick'
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     color: $ship-grey;
-    //     opacity: .5;
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //   }
-    // }
 
     &:checked {
       border-color: $success-color;
       &::after {
-        content: 't'; // requires svg font icon: 'tick'
+        content: 't';
         font-size: rem_calc(18px);
         opacity: 1;
       }
