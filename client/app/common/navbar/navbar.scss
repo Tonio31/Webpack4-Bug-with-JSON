@@ -124,7 +124,6 @@ $mainTitleMenuColor: #a0a0a0;
 
   .main-section {
     padding-top: $tabbar-height;
-    // overflow-y: auto; //took this off because it was creating an overflow in the main-section
     height: 100%;
     width: 100%;
     transform: translate3d(0, 0, 0);
@@ -162,31 +161,7 @@ $mainTitleMenuColor: #a0a0a0;
     }
   }
 
-  // .main-section {
-  //     border: 1px solid red;
-  //     @media #{$medium-up} {
-  //       border: 1px solid green;
-  //     }
-  //     @media #{$large-up} {
-  //       border: 1px solid yellow;
-  //     }
-  //     @media #{$xlarge-up} {
-  //       border: 1px solid orange;
-  //     }
-  //     @media #{$xxlarge-up} {
-  //       border: 1px solid blue;
-  //     }
-  // }
-
   .move-right {
-
-
-    // .main-section {
-    //   transform: translate3d(-($off-canvas-width / 2), 0, 0);
-    //   @media #{$medium-up} {
-    //     transform: translate3d(0, 0, 0);
-    //   }
-    // }
     > .inner-wrap {
       @media #{$large-up} {
         transform: translate3d(0, 0, 0);
@@ -198,7 +173,7 @@ $mainTitleMenuColor: #a0a0a0;
     width: 100%;
     height: auto;
     border-bottom: 2px solid $onyx;
-    color: rgba(255, 255, 255, .7);
+    color: transparentize($white, .3);
     display: flex;
     padding: .66667rem;
     transition: background-color $speed3 ease;
@@ -226,7 +201,7 @@ $mainTitleMenuColor: #a0a0a0;
 
       &.main-title {
         font-size: 18px;
-        -webkit-font-smoothing: subpixel-antialiased;
+        font-smoothing: subpixel-antialiased;
         color: $mainTitleMenuColor;
         white-space: nowrap;
         overflow: hidden;
@@ -266,7 +241,7 @@ $mainTitleMenuColor: #a0a0a0;
       display: block;
       a {
         background-color: $onyx;
-        padding: rem_calc(20px) 0.6667rem rem_calc(30px) rem_calc(5px);
+        padding: rem_calc(20px) .6667rem rem_calc(30px) rem_calc(5px);
         align-items: flex-end;
         &::before {
           display: none;
@@ -280,7 +255,6 @@ $mainTitleMenuColor: #a0a0a0;
         color: $white;
       }
     }
-
   }
 
   .menu-item {
@@ -291,10 +265,7 @@ $mainTitleMenuColor: #a0a0a0;
       width: 100%;
     }
 
-
-
     &.active {
-
       .menu-button {
         background-color: $black;
         border-top: 1px solid $white;
@@ -336,12 +307,9 @@ $mainTitleMenuColor: #a0a0a0;
 
   .fix-nav-under {
     > div {
-      // opacity: 0;
-      // transition: opacity 500ms;
       display: none;
       &.show-this-nav {
         display: block;
-        // opacity: 1;
       }
     }
   }
