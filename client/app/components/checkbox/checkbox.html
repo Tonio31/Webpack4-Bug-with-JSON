@@ -5,9 +5,15 @@
   </header>
   <ul>
     <li ng-repeat="item in checkboxData.items">
-      <label for="checkboxName-{{$index + 1}}">
+      <label for="checkboxName-{{$index}}">
         <span>{{item}}</span>
-        <input type="checkbox" name="checkbox_group-1" id="checkboxName-{{$index + 1}}">
+        <input id="checkboxName-{{$index}}"
+          type="checkbox"
+          name="checkbox_group-1"
+          value="{{item}}"
+          ng-checked="selection.indexOf(item) > -1"
+          ng-model='selection'
+          ng-change="$ctrl.toggleSelection(item)">
       </label>
     </li>
   </ul>
