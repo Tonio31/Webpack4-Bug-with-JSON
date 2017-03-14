@@ -41,7 +41,7 @@
   [type="radio"],
   [type="checkbox"] {
     appearance: none;
-    border: 1px solid $ship-grey;
+    border: 2px solid $ship-grey;
     background-color: $white;
     margin: 0;
     width: 45px;
@@ -69,6 +69,10 @@
 
     &:focus {
       outline: 0;
+      border-color: $blue-focus !important;
+      &::after {
+        color: $blue-focus !important;
+      }
     }
 // not sure if it's worth detecting touch, dont want to use modernizr so if we need then maybe something like this:  https://ctrlq.org/code/19616-detect-touch-screen-javascript
 
