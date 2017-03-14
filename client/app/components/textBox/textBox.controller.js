@@ -5,6 +5,8 @@ class TextBoxController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'TextBoxController' );
 
+    this.icons = ICON_FONTELLO;
+
     this.$onInit = () => {
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
 
@@ -15,7 +17,6 @@ class TextBoxController {
     this.toggleFocus = () => {
       $log.log('this focus', this);
     };
-
 
     this.actionOnUserInput = (iIsFormValid) => {
       $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}` );
