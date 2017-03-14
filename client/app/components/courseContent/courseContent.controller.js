@@ -97,7 +97,7 @@ class CourseContentController {
           $log.log('dataBackFromServer=', dataBackFromServer);
           $log.log('postResponseHeadersObject=', postResponseHeadersObject);
         }, (error) => {
-          // TO DO Display error Banner for the user (to be defined with Matt how it will look like)
+          // TODO Display error Banner for the user (to be defined with Matt how it will look like)
           $log.log('Error saving the current step. error=', error);
         });
       }
