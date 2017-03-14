@@ -47,6 +47,12 @@ let appModule = angular.module('app', [
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     $stateProviderRef = $stateProvider;
+
+    $stateProvider.state(STATES.APP, {
+      abstract: true,
+      component: 'app'
+    });
+
   })
   // eslint-disable-next-line max-params
   .run( ( $rootScope,

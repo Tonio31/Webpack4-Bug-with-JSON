@@ -1,4 +1,4 @@
-let MenuFactory = function( $log, $q, _, Data) {
+let MenuFactory = function( $log, $q, _, Data, STATES) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -42,6 +42,7 @@ let MenuFactory = function( $log, $q, _, Data) {
       let state = {
         name: iMenu.fullUrl,
         url: iMenu.fullUrl,
+        parent: STATES.APP,
         component: componentName,
         resolve: resolveObject
       };
