@@ -14,7 +14,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?11954243#fontello') format('svg');
+    src: url('../font/fontello.svg?85100120#fontello') format('svg');
   }
 }
 */
@@ -54,5 +54,11 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-lock:before { content: '\6c'; } /* 'l' */
-.icon-tick-final:before { content: '\74'; } /* 't' */
+.icon-pl-exclamation:before { content: '\21'; } /* '!' */
+.icon-pl-lt:before { content: '\3c'; } /* '&lt;' */
+.icon-pl-gt:before { content: '\3e'; } /* '&gt;' */
+.icon-pl-eye:before { content: '\65'; } /* 'e' */
+.icon-pl-lock:before { content: '\6c'; } /* 'l' */
+.icon-pl-pdf:before { content: '\70'; } /* 'p' */
+.icon-pl-tick:before { content: '\74'; } /* 't' */
+.icon-pl-logo:before { content: '\e807'; } /* '' */
