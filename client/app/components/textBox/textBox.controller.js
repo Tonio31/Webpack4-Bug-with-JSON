@@ -1,5 +1,5 @@
 class TextBoxController {
-  constructor($log, $scope, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
+  constructor($log, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
