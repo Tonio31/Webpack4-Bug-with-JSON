@@ -5,7 +5,9 @@ import './radioList.scss';
 let radioListComponent = {
   restrict: 'E',
   bindings: {
-    data: '<'
+    data: '<',
+    isTopLevelFormSubmitted: '<',
+    onUpdate: '&'
   },
   template,
   controller

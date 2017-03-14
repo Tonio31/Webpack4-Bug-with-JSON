@@ -7,7 +7,12 @@
     <li ng-repeat="item in radioData.items">
       <label for="radioName-{{$index + 1}}">
         <span>{{item}}</span>
-        <input type="radio" name="radio_group-1" id="radioName-{{$index + 1}}">
+        <input id="radioName-{{$index + 1}}"
+          type="radio"
+          name="radio_group-1"
+          value="{{item}}"
+          ng-model="$ctrl.selected"
+          ng-change="$ctrl.actionOnUserInput()">
       </label>
       <!-- one of the screens shows a succes-coloured message such as: -->
       <!-- <label class="blockquote fgcolour-success">
