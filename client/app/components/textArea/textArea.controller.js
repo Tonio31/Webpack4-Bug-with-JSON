@@ -22,9 +22,6 @@ class TextAreaController {
 
       // Update parent with the change
       this.onUpdate({ value: this.text });
-
-      // Update the text that will change the icon (display exclamation mark if it's in error
-      this.iconText = iIsFormValid ? ICON_FONTELLO.VALID_TICK : ICON_FONTELLO.WARNING;
     };
   }
 }
