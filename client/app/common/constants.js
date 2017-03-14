@@ -5,6 +5,7 @@ let constantModule = angular.module('app.common.constant', [
   .constant( 'TOKEN', 'token' )
   .constant( 'USER_ID', 'user_id' )
   .constant( 'STATES', {
+    APP: 'app',
     HOME: '/home',
     LOGIN: '/login',
     PAGE_NOT_FOUND: '/404'

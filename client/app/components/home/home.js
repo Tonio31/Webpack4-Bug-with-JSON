@@ -25,6 +25,7 @@ let homeModule = angular.module('home', [
       .state(STATES.HOME, {
         url: `/`,
         component: 'home',
+        parent: STATES.APP,
         resolve: {
           content: (Data) => {
             'ngInject';
