@@ -44,7 +44,7 @@ describe('TextArea', () => {
     it('has initialise text & formName with the good value', () => {
       expect(controller.text).to.equal(bindings.block.data.value);
       expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
-      console.log(`${FORM_NAME_PREFIX}${bindings.block.id}`);
+      // console.log(`${FORM_NAME_PREFIX}${bindings.block.id}`);
       expect(controller.iconText).to.equal(ICON_FONTELLO.VALID_TICK);
     });
   });
