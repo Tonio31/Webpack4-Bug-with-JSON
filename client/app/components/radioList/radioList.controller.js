@@ -1,9 +1,11 @@
 class RadioListController {
-  constructor($log, $scope, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
+  constructor($log, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'RadioListController' );
+
+    $log.info (this);
 
     this.name = 'radioList';
     this.icons = ICON_FONTELLO;
@@ -13,6 +15,9 @@ class RadioListController {
     this.$onInit = () => {
       $log.info('radio ', this);
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
+
+      this.text = this.block.data.value;
+      this.iconText = ICON_FONTELLO.VALID_TICK;
     };
 
     this.actionOnUserInput = (iIsFormValid) => {
