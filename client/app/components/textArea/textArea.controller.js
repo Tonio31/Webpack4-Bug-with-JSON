@@ -11,6 +11,7 @@ class TextAreaController {
     this.modelOptions = MODEL_OPTIONS;
 
     this.$onInit = () => {
+      $log.info('textarea ', this);
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
 
       this.text = this.block.data.value;
@@ -19,6 +20,7 @@ class TextAreaController {
 
     this.actionOnUserInput = (iIsFormValid) => {
       $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}` );
+      $log.log(iIsFormValid);
 
       // Update parent with the change
       this.onUpdate({ value: this.text });

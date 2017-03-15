@@ -7,6 +7,12 @@
     background-color: $light-grey;
     padding: rem_calc(10px);
   }
+  .header-inner {
+    width: calc(100% - 48px);
+  }
+  .note.invalid {
+    color: $alert-color;
+  }
   ul {
     @media #{$small-only} {
       margin-left: rem_calc(-15px);
