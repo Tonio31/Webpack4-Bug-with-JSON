@@ -1,4 +1,5 @@
-@import 'common/common';
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
 
 $height-navigation-banner: rem_calc(80px);
 $height-button-banner: rem_calc(45px);

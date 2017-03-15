@@ -6,6 +6,8 @@ import RadioListTemplate from './radioList.html';
 describe('RadioList', () => {
   let $rootScope, $componentController, $compile;
 
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[3];
+
   beforeEach(window.module(RadioListModule));
 
   beforeEach(inject(($injector) => {
@@ -21,16 +23,19 @@ describe('RadioList', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+
+    let bindings = {
+      block: blockBinding,
+      isTopLevelFormSubmitted: false
+    };
+
     beforeEach(() => {
       controller = $componentController('radioList', {
         $scope: $rootScope.$new()
-      });
+      }, bindings);
     });
 
-
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
-    });
+    controller.$onInit();
   });
 
   describe('View', () => {
@@ -39,13 +44,15 @@ describe('RadioList', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
+      scope.block = blockBinding;
+      scope.isTopLevelFormSubmitted = true;
       template = $compile('<radioList></radioList>')(scope);
       scope.$apply();
     });
 
 
-    it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('radioList');
+    it('has a radioList', () => {
+      expect(template.find('p.note').html()).to.eq('(Please select 1 option below)');
     });
   });
 
