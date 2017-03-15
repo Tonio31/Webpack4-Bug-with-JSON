@@ -20,6 +20,32 @@ $modules: () !default;
   }
 }
 
+@mixin inputsBorderStyling() {
+  &:focus {
+    border: 2px solid $blue-focus;
+  }
+
+  &.parent-submitted,
+  &.ng-dirty {
+    &.ng-invalid-required {
+      border: 2px solid $alert-color;
+      color: $alert-color;
+
+      &::placeholder {
+        color: $alert-color;
+      }
+    }
+
+    &.ng-valid-required {
+      border: 2px solid $success-color;
+      &::placeholder {
+        color: $success-color;
+      }
+    }
+
+  }
+}
+
 //
 // @functions
 //

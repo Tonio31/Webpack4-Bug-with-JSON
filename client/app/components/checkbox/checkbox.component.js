@@ -5,7 +5,7 @@ import './checkbox.scss';
 let checkboxComponent = {
   restrict: 'E',
   bindings: {
-    data: '<',
+    block: '<',
     isTopLevelFormSubmitted: '<',
     onUpdate: '&'
   },

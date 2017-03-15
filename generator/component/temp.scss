@@ -1,5 +1,5 @@
-@import 'common/common';
-
+@import '../scss/_vars';
+@import '../_foundation-settings';
 .<%= name %> {
   color: red;
 }

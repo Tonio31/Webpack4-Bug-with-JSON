@@ -1,11 +1,11 @@
-@import 'common/common';
-
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
 .textArea {
 
   textarea {
     border-radius: $global-radius;
     min-height: rem_calc(150px);
-    width: calc(100% - 58px); 
+    width: calc(100% - 58px);
     @include inputsBorderStyling();
   }
 }

@@ -1,20 +1,30 @@
 <div class="radio-checkbox checkbox">
-  <header>
-    <p><strong>{{ $ctrl.name }}</strong></p>
-    <p class="note">(Please select 1 option below)</p>
-  </header>
-  <ul>
-    <li ng-repeat="item in checkboxData.items">
-      <label for="checkboxName-{{$index}}">
-        <span>{{item}}</span>
-        <input id="checkboxName-{{$index}}"
-          type="checkbox"
-          name="checkbox_group-1"
-          value="{{item}}"
-          ng-checked="selection.indexOf(item) > -1"
-          ng-model='selection'
-          ng-change="$ctrl.toggleSelection(item)">
-      </label>
-    </li>
-  </ul>
+  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.formName}}">
+    <header class="flex-container">
+      <div class="header-inner">
+        <p><strong>{{ $ctrl.name }}</strong></p>
+        <p class="note" ng-class="{ 'invalid': this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted }">(Please select 1 option below)</p>
+      </div>
+{{ $ctrl.formInvalid }}
+      <div class="validation-icon-right" ng-show="this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted" aria-hidden="true">
+        <span ng-class="{ 'invalid': this[$ctrl.formName].$invalid }" class="right fontello-icon" aria-hidden="true">{{!this[$ctrl.formName] ? $ctrl.icons.VALID_TICK : $ctrl.icons.WARNING}}</span>
+      </div>
+    </header>
+    <ul>
+      <li ng-repeat="item in $ctrl.block.data.items">
+        <label for="checkboxName-{{$index}}">
+          <span>{{item}}</span>
+          <input id="checkboxName-{{$index}}"
+            type="checkbox"
+            name="checkbox_group-1"
+            value="{{item}}"
+            ng-required="selection.length === 0"
+            ng-checked="selection.indexOf(item) > -1"
+            ng-model='selection'
+            ng-model-options="{allowInvalid: true}"
+            ng-change="$ctrl.actionOnUserInput(item)">
+        </label>
+      </li>
+    </ul>
+  </ng-form>
 </div>
