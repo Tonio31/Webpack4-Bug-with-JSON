@@ -6,6 +6,8 @@ import CheckboxTemplate from './checkbox.html';
 describe('Checkbox', () => {
   let $rootScope, $componentController, $compile;
 
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[3];
+
   beforeEach(window.module(CheckboxModule));
 
   beforeEach(inject(($injector) => {
@@ -21,16 +23,18 @@ describe('Checkbox', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+
+    let bindings = {
+      block: blockBinding,
+      isTopLevelFormSubmitted: false
+    };
+
     beforeEach(() => {
       controller = $componentController('checkbox', {
         $scope: $rootScope.$new()
-      });
+      }, bindings);
     });
 
-
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
-    });
   });
 
   describe('View', () => {
@@ -39,14 +43,17 @@ describe('Checkbox', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
+      scope.block = blockBinding;
+      scope.isTopLevelFormSubmitted = true;
       template = $compile('<checkbox></checkbox>')(scope);
       scope.$apply();
     });
 
 
-    it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('checkbox');
-    });
+    // it('has a checkbox', () => {
+    //   expect(true).to.be.true;
+    //   // expect(template.find('p.note').html()).to.eq('(Please select 1 option below)');
+    // });
   });
 
   describe('Component', () => {
