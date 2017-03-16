@@ -1,13 +1,61 @@
 <div class="login">
 
+  <div class="text-center">
+    <h1>{{ 'LOGIN' | translate }}</h1>
+  </div>
 
-  <h1>Potentialife</h1>
-  <h3>Log In</h3>
+  <br/>
+  <br/>
 
-  <input type="text" ng-model="$ctrl.email" placeholder="email"><br>
-  <input type="password" ng-model="$ctrl.password" placeholder="password"><br>
-  <br>
+  <form novalidate name="login">
 
-  <button ng-click="$ctrl.login()">Login</button>
+    <small class="error" ng-show="$ctrl.invalidLogin">{{ 'LOGIN_FAILED' | translate }}</small>
+
+
+    <h3>{{ 'USERNAME_OR_EMAIL' | translate }}</h3>
+    <input type="text"
+           name="username"
+           ng-class="{ 'parent-submitted': login.$submitted }"
+           required
+           ng-model="$ctrl.username">
+    <small class="error" ng-show="login.$submitted && login.username.$error.required">{{ 'USERNAME_OR_EMAIL_REQUIRED' | translate }}</small>
+
+    <div class="clearfix">
+      <div class="left">
+        <h3>{{ 'PASSWORD' | translate }}</h3>
+      </div>
+      <div class="right">
+        <a ng-click="$ctrl.showPassword = !$ctrl.showPassword">Show</a>
+      </div>
+    </div>
+    <input ng-attr-type="{{ $ctrl.showPassword ? 'text' : 'password' }}"
+           name="password"
+           ng-class="{ 'parent-submitted': login.$submitted }"
+           required
+           ng-model="$ctrl.password">
+    <small class="error" ng-show="login.$submitted && login.password.$error.required">{{ 'PASSWORD_REQUIRED' | translate }}</small>
+
+    <button class="expand radius" type="submit" ng-click="$ctrl.login(login)">{{ 'LOGIN' | translate }}</button>
+
+    <br/>
+
+    <div class="text-center keep-me-logged">
+      <label>
+        <input type="checkbox"
+               ng-model="$ctrl.keepLoggedIn"
+               name="keepMeLoggedIn">
+        <span>{{ 'KEEP_ME_LOGGED_IN' | translate }}</span>
+      </label>
+
+      <a ng-click="$ctrl.forgotCredentials()">{{ 'FORGOT_CREDENTIALS' | translate }}</a>
+
+    </div>
+
+  </form>
+
 
 </div>
+
+
+
+

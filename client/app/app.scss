@@ -5,14 +5,12 @@
 .app {
   background-color: $lightBgColor;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  .navbarWrap {
-    flex: 1;
-  }
 }
 
-html {
+html, body {
+  min-height: 100%;
+}
+
+.top-level-container {
   height: 100%;
 }

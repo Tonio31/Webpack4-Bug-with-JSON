@@ -42,7 +42,7 @@ let MenuFactory = function( $log, $q, _, Data, STATES) {
       let state = {
         name: iMenu.fullUrl,
         url: iMenu.fullUrl,
-        parent: STATES.APP,
+        parent: STATES.MAIN,
         component: componentName,
         resolve: resolveObject
       };

@@ -72,7 +72,7 @@ body {
 
   &.parent-submitted,
   &.ng-dirty {
-    &.ng-invalid-required {
+    &.ng-invalid {
       border: 2px solid $alert-color;
       color: $alert-color;
 
@@ -81,7 +81,7 @@ body {
       }
     }
 
-    &.ng-valid-required {
+    &.ng-valid {
       border: 2px solid $success-color;
       &::placeholder {
         color: $success-color;

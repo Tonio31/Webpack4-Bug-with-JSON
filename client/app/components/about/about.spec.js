@@ -1,9 +1,10 @@
 import AboutModule from './about';
+import Main from 'components/main/main';
 
 describe('About', () => {
   let $rootScope, $state, $location, $componentController, $compile;
 
-  beforeEach(window.module(AboutModule));
+  beforeEach(window.module(Main, AboutModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');

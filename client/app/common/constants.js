@@ -5,9 +5,12 @@ let constantModule = angular.module('app.common.constant', [
   .constant( 'TOKEN', 'token' )
   .constant( 'USER_ID', 'user_id' )
   .constant( 'STATES', {
-    APP: 'app',
+    MAIN: 'main',
+    LOGIN_ROOT: 'loginRoot',
     HOME: '/home',
     LOGIN: '/login',
+    RESET_PASSWORD: '/reset_password',
+    RETRIEVE_CREDENTIALS: '/retrieve_credentials',
     PAGE_NOT_FOUND: '/404'
   })
   .constant('FORM_NAME_PREFIX', 'myForm')

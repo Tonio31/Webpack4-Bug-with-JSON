@@ -185,6 +185,26 @@ angular.module( 'appMockBackEnd', [
     return [ 200, authenticate, responseHeaders ];
   });
 
+  $httpBackend.whenPOST(Data.buildApiUrl('forgotlogin')).respond( (method, url) => {
+    $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
+
+    return [ 200, {}, {} ];
+  });
+
+  $httpBackend.whenPOST(Data.buildApiUrl('resetPassword')).respond( (method, url, data) => {
+    $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
+
+    let dataObject = angular.fromJson(data);
+
+    if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('user_id') && dataObject.hasOwnProperty('password') ) {
+      return [ 200, authenticate, {} ];
+    }
+
+    // If token or user_id is not provided, simulate that the server will returns an error
+    return [ 400, { error: 'token_not_provided' }, {} ];
+  });
+
+
   $httpBackend.whenGET(Data.buildApiUrl('participants', true)).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method}`);
 

@@ -1,0 +1,40 @@
+@import 'common/common';
+
+.login-root {
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .login-panel {
+    min-width: $small-breakpoint;
+    margin: auto;
+  }
+
+  .image-login {
+    background-color: red;
+    height: 100%;
+    width: 100%;
+  }
+
+  .logo-potentialife {
+    display: inline-block;
+    background-image: url('../../common/navbar/assets/logo-potential-life.svg');
+    background-repeat: no-repeat;
+    background-position: 1px 4px;
+    background-size: auto 80%;
+    height: 6rem;
+    width: 6rem;
+  }
+
+  h3 {
+    text-transform: none;
+  }
+
+  small.error {
+    margin-top: -1rem;
+  }
+
+}
