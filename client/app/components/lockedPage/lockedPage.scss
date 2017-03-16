@@ -2,30 +2,46 @@
 
 .locked-page {
 
+  $locked-icon-size: 10rem;
+  $margin-right-locked-icon: 2rem;
+
   .flex-parent {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
+    h3 {
+      text-transform: none;
+    }
+
     .locked-icon {
       color: $black;
-      font-size: 10rem;
-      line-height: 10rem;
+      font-size: $locked-icon-size;
+      line-height: $locked-icon-size;
 
-      width: 10rem;
+      width: $locked-icon-size;
 
-      border-radius: 10px;
-      border: 3px solid #BADA55;
+      border-radius: 50%;
+      border: 5px solid $black;
+    }
+
+    @media #{$small-only}, #{$medium-only} {
+      .locked-content {
+        padding-top: 1rem;
+        text-align: center;
+      }
 
 
     }
 
-
     @media #{$large-up} {
       .locked-content {
-        min-width: 10rem;
-        max-width: calc(100% - 10rem);
-        border: 3px solid #BADA55;
+        min-width: $locked-icon-size;
+        max-width: calc(100% - #{$locked-icon-size} - #{$margin-right-locked-icon});
+      }
+
+      .locked-icon {
+        margin-right: $margin-right-locked-icon;
       }
     }
 

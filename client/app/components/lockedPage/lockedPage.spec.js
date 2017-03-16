@@ -1,17 +1,61 @@
+/* eslint-disable camelcase */
+
 import LockedPageModule from './lockedPage';
 import LockedPageController from './lockedPage.controller';
 import LockedPageComponent from './lockedPage.component';
 import LockedPageTemplate from './lockedPage.html';
 
 describe('LockedPage', () => {
-  let $rootScope, $compile;
+  let $rootScope, $componentController, $state, $compile;
+  let Menu;
+  let goSpy;
+  let currentStepUrl = '/potentialife-course/cycle-1/module-1/step-1';
 
-  beforeEach(window.module(LockedPageModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(LockedPageModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
+    $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    $state = $injector.get('$state');
+    Menu = $injector.get('Menu');
+
+    sinon.stub(Menu, 'getCurrentProgression', () => {
+      return {
+        data: {
+          current_step: {
+            fullUrl: currentStepUrl
+          }
+        }
+      };
+    });
+
+
+    goSpy = sinon.spy($state, 'go');
   }));
+
+  describe('Controller', () => {
+    // controller specs
+    let controller;
+    beforeEach(() => {
+      controller = $componentController('lockedPage', {
+        $scope: $rootScope.$new()
+      });
+    });
+
+    it('change state when we click on Resume Progress', sinon.test( () => {
+      controller.resumeProgress();
+
+      sinon.assert.calledWith(goSpy, currentStepUrl);
+    }));
+
+  });
 
   describe('View', () => {
     // view specs
@@ -25,7 +69,7 @@ describe('LockedPage', () => {
 
 
     it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('THIS PAGE IS LOCKED, YOU SHOULD NOT BE HERE');
+      expect(template.find('h1').html()).to.eq('CONTENT_LOCKED');
     });
   });
 

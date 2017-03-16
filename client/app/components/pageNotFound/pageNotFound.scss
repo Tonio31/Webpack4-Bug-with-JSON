@@ -1,5 +1,7 @@
 @import 'common/common';
 
 .pageNotFound {
-  color: red;
+  h3 {
+    text-transform: none;
+  }
 }

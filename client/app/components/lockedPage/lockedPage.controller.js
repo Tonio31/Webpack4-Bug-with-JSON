@@ -1,5 +1,5 @@
 class LockedPageController {
-  constructor($log, ICON_FONTELLO) {
+  constructor($log, $state, ICON_FONTELLO, Menu) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -7,7 +7,13 @@ class LockedPageController {
 
     this.ICON_FONTELLO = ICON_FONTELLO;
 
-    $log.log('Nothing to initialize or do for the lockedPage');
+    this.resumeProgress = () => {
+      let currentStep = Menu.getCurrentProgression().data.current_step.fullUrl;
+      $log.log('ResumeProgress(), go to currentStep: ', currentStep);
+
+      $state.go(currentStep);
+    };
+
   }
 }
 

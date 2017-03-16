@@ -65,8 +65,7 @@ class CourseContentController {
 
       let programData = [];
 
-      Object.entries(iInputFields).forEach(([key, value]) => {
-        $log.debug(key + ' ' + value); // "a 5", "b 7", "c 9"
+      Object.entries(iInputFields).forEach( ([ key, value ]) => {
         programData.push({
           code: key,
           value: value

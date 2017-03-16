@@ -186,8 +186,28 @@ describe('CourseContent', () => {
       sinon.assert.calledWith(goFn, controller.content.next_page_url);
     }));
 
-    it('has a name property', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
+    it('convertInputFieldForPOST convert the user inputs for sending into the POST request', () => {
+
+      let inputFields = {
+        'c1.m1.s1.story_2': 'This is a text',
+        'c1.m1.s1.story_4': ['first value', 'second value']
+      };
+
+      let expectedConvertedInputs = [
+        {
+          code: 'c1.m1.s1.story_2',
+          value: 'This is a text'
+        },
+        {
+          code: 'c1.m1.s1.story_4',
+          value: ['first value', 'second value']
+        }
+      ];
+
+
+      let inputConverted = controller.convertInputFieldForPOST(inputFields);
+
+      expect(inputConverted).to.deep.eq(expectedConvertedInputs);
     });
   });
 
