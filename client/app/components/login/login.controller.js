@@ -24,7 +24,7 @@ class LoginController {
       if ( iLoginForm.$valid ) {
         let authPOSTRequest = Data.getUserAuthData();
 
-        authPOSTRequest.username = this.username;
+        authPOSTRequest.email = this.username;
         authPOSTRequest.password = this.password;
 
         authPOSTRequest.$save( (dataBackFromServer) => {
