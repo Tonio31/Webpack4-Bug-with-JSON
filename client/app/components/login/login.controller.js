@@ -5,42 +5,58 @@ class LoginController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'LoginController' );
 
-    this.email = 'myemail@gmail.com';
-    this.password = 'whatever';
+    this.username = 'myemail@gmail.com';
+    this.password = '';
+    this.keepLoggedIn = false;
+    this.showPassword = false;
 
-    this.login = () => {
-      $log.log('$stateParams=', $stateParams);
+    this.invalidLogin = false;
 
-      let authPOSTRequest = Data.getUserAuthData();
-
-      authPOSTRequest.email = this.email;
-      authPOSTRequest.password = this.password;
-
-      authPOSTRequest.$save( (dataBackFromServer) => {
+    this.forgotCredentials = () => {
+      $log.log('forgotCredentials()');
+      $state.go(STATES.RETRIEVE_CREDENTIALS);
+    };
 
 
-        $log.log('No error during authentification dataBackFromServer=', dataBackFromServer);
+    this.login = (iLoginForm) => {
+      $log.log('login()');
 
-        let userToSave = {
-          id: dataBackFromServer.user.id,
-          firstName: dataBackFromServer.user['first_name'], // eslint-disable-line dot-notation
-          lastName: dataBackFromServer.user['last_name'], // eslint-disable-line dot-notation
-          email: dataBackFromServer.user.email,
-          token: dataBackFromServer.token,
-        };
+      if ( iLoginForm.$valid ) {
+        let authPOSTRequest = Data.getUserAuthData();
 
-        // Save to local Storage
-        JwtFactory.saveToken(dataBackFromServer.token);
-        JwtFactory.saveUserId(dataBackFromServer.user.id);
+        authPOSTRequest.username = this.username;
+        authPOSTRequest.password = this.password;
 
-        // Save User Informtation
-        User.setUser(userToSave);
+        authPOSTRequest.$save( (dataBackFromServer) => {
+          $log.log('No error during authentification');
 
-        $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
-      },
-      (error) => {
-        $log.log('error during authentification error=', error);
-      });
+          let userToSave = {
+            id: dataBackFromServer.user.id,
+            firstName: dataBackFromServer.user['first_name'], // eslint-disable-line dot-notation
+            lastName: dataBackFromServer.user['last_name'], // eslint-disable-line dot-notation
+            email: dataBackFromServer.user.email,
+            token: dataBackFromServer.token,
+          };
+
+          // Save to local Storage
+          JwtFactory.saveToken(dataBackFromServer.token);
+          JwtFactory.saveUserId(dataBackFromServer.user.id);
+
+          // Save User Information
+          User.setUser(userToSave);
+
+          $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
+        },
+        (error) => {
+          $log.log('error during authentification error=', error);
+          this.invalidLogin = true;
+        });
+      }
+      else {
+        // Invalid login form
+        $log.log('Login form is invalid');
+      }
+
     };
   }
 }

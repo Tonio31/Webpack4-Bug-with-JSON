@@ -14,7 +14,6 @@ import Global from './globalVariables';
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
-import NavBarComponent from 'common/navbar/navbar';
 import MenuService from 'common/menuFactory/menu';
 
 
@@ -27,7 +26,6 @@ let appModule = angular.module('app', [
   uiRouter,
   Common,
   Components,
-  NavBarComponent,
   MenuService,
   Global
 ])
@@ -47,12 +45,6 @@ let appModule = angular.module('app', [
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     $stateProviderRef = $stateProvider;
-
-    $stateProvider.state(STATES.APP, {
-      abstract: true,
-      component: 'app'
-    });
-
   })
   // eslint-disable-next-line max-params
   .run( ( $rootScope,
@@ -85,7 +77,7 @@ let appModule = angular.module('app', [
     //     the user to the good step
 
     let matchFromLoginToHome = {
-      from: STATES.LOGIN,
+      from: `${STATES.LOGIN_ROOT}.**`,
       to: STATES.HOME
     };
 
@@ -198,13 +190,15 @@ let appModule = angular.module('app', [
         $log.log('error Retrieving menu error=', error);
       });
     }
+    else if ( $location.url().includes(STATES.RESET_PASSWORD) ) {
+      $urlRouter.sync();
+    }
     else {
-
       // If the user access the URL login ('/login'), we should not redirect him to the login page
       // after (infinite loop), hence the below check
       let firstStateRequested = STATES.HOME;
       if ( $location.url() !== $state.get(STATES.HOME).url &&
-           $location.url() !== $state.get(STATES.LOGIN).url ) {
+        $location.url() !== $state.get(STATES.LOGIN).url ) {
         firstStateRequested = $location.url();
       }
 

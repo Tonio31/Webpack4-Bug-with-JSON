@@ -74,28 +74,18 @@ class CourseContentController {
         postData.inputs = inputFields;
 
 
-        postData.$save( (dataBackFromServer, postResponseHeadersFn) => {
+        postData.$save( (dataBackFromServer) => {
+          $log.log('Response OK from the backend, retrieving the updated menu from backend dataBackFromServer=', dataBackFromServer);
 
-          let postResponseHeadersObject = postResponseHeadersFn();
+          this.nextStepButtonLabel = $filter('translate')('NEXT').toString();
+          this.isStepCompleted = true;
+          this.displayCongratsBanner = true;
 
-          // TONIO This will probably have to change to match whatever the real back end will send me
-          if ( postResponseHeadersObject.status === 'ok' ) {
+          // This will resend a query to the backend to get the menu, the status of the step
+          // will be updated and the directive menuButton will update automatically the menu
+          let forceMenuRetrieval = true;
+          Menu.retrieveMenuAndReturnStates(forceMenuRetrieval);
 
-            $log.log('Response OK from the backend, retrieving the updated menu from backend');
-
-
-            this.nextStepButtonLabel = $filter('translate')('NEXT').toString();
-            this.isStepCompleted = true;
-            this.displayCongratsBanner = true;
-
-            // This will resend a query to the backend to get the menu, the status of the step
-            // will be updated and the directive menuButton will update automatically the menu
-            let forceMenuRetrieval = true;
-            Menu.retrieveMenuAndReturnStates(forceMenuRetrieval);
-
-          }
-          $log.log('dataBackFromServer=', dataBackFromServer);
-          $log.log('postResponseHeadersObject=', postResponseHeadersObject);
         }, (error) => {
           // TODO Display error Banner for the user (to be defined with Matt how it will look like)
           $log.log('Error saving the current step. error=', error);

@@ -19,18 +19,19 @@ let loginModule = angular.module('login', [
 ])
 
 .component('login', loginComponent)
-  .config(($stateProvider, STATES) => {
-    'ngInject';
+.config(($stateProvider, STATES) => {
+  'ngInject';
 
-    $stateProvider
-      .state(STATES.LOGIN, {
-        url: STATES.LOGIN,
-        component: 'login',
-        params: {
-          stateToRedirect: STATES.HOME
-        }
-      });
-  })
+  $stateProvider
+    .state(STATES.LOGIN, {
+      url: STATES.LOGIN,
+      parent: STATES.LOGIN_ROOT,
+      component: 'login',
+      params: {
+        stateToRedirect: STATES.HOME
+      }
+    });
+})
 
 .name;
 

@@ -1,4 +1,5 @@
 import HomeModule from './home';
+import Main from 'components/main/main';
 
 
 describe('Home', () => {
@@ -13,7 +14,7 @@ describe('Home', () => {
   };
   let firstName = 'Tonio';
 
-  beforeEach(window.module(HomeModule));
+  beforeEach(window.module(Main, HomeModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');

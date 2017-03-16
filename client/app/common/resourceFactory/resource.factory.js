@@ -78,6 +78,16 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
     return new ($resource(buildApiUrl('authenticate')))();
   };
 
+  let sendRecoverPasswordEmail = () => {
+    $log.log('sendRecoverPasswordEmail()');
+    return new ($resource(buildApiUrl('forgotlogin')))();
+  };
+
+  let resetPassword = () => {
+    $log.log('resetPassword()');
+    return new ($resource(buildApiUrl('resetPassword')))();
+  };
+
   let updateStep = () => {
     $log.log('updateStep()');
     return new ($resource(buildApiUrl('step')))();
@@ -86,6 +96,8 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
   return {
     getMenu,
     getUserAuthData,
+    sendRecoverPasswordEmail,
+    resetPassword,
     getDynamicContentPromise,
     getParticipantDetails,
     updateStep,

@@ -9,7 +9,17 @@ describe('Login', () => {
   let Data, STATES;
   let goFn;
 
-  beforeEach(window.module(LoginModule));
+  let formLogin = {
+    $valid: true
+  };
+
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(LoginModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
@@ -39,6 +49,12 @@ describe('Login', () => {
       });
     });
 
+    it('change state when we click on Forgot Login Details', () => {
+      controller.forgotCredentials();
+
+      sinon.assert.calledWith(goFn, STATES.RETRIEVE_CREDENTIALS);
+    });
+
 
     it('sends an authentication request when user click on login button', () => {
 
@@ -54,9 +70,10 @@ describe('Login', () => {
         return authPOSTRequestResource;
       });
 
-      controller.login();
 
-      expect(authPOSTRequestResource.email).to.equal(controller.email);
+      controller.login(formLogin);
+
+      expect(authPOSTRequestResource.username).to.equal(controller.username);
       expect(authPOSTRequestResource.password).to.equal(controller.password);
 
       sinon.assert.calledWith(goFn, STATES.HOME, { forceRedirect: stateParams.stateToRedirect });
@@ -74,9 +91,9 @@ describe('Login', () => {
         return authPOSTRequestResourceFail;
       });
 
-      controller.login();
+      controller.login(formLogin);
 
-      expect(authPOSTRequestResourceFail.email).to.equal(controller.email);
+      expect(authPOSTRequestResourceFail.username).to.equal(controller.username);
       expect(authPOSTRequestResourceFail.password).to.equal(controller.password);
 
       sinon.assert.callCount(goFn, 0);
@@ -96,7 +113,7 @@ describe('Login', () => {
 
 
     it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('Potentialife');
+      expect(template.find('h1').html()).to.eq('LOGIN');
     });
   });
 

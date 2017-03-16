@@ -16,7 +16,7 @@ let aboutModule = angular.module('about', [
     .state('about', {
       url: '/about',
       component: 'about',
-      parent: STATES.APP
+      parent: STATES.MAIN
     });
 })
 

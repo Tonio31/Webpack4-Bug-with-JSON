@@ -1,6 +1,6 @@
 import NavbarModule from './navbar';
 
-describe('Navbar Directive Test', () => {
+describe('Navbar Directive', () => {
   let $rootScope, $compile;
 
   let menuJson = require('app/mockBackEndResponse/menu-1.json');
@@ -118,7 +118,7 @@ describe('Navbar Directive Test', () => {
       scope.$apply();
     });
 
-    it('insert and remove css classes when a menuButton is clicked and Back button is clicked after', () => {
+    it('insert and remove css classes when a menuButton is clicked and Back button is clicked after', (done) => {
 
       // Click on the menu Item button
       let syncStateTag = angular.element(template[0].querySelector('#\\/potentialife-course\\/cycle-1\\/module-1'));
@@ -143,6 +143,8 @@ describe('Navbar Directive Test', () => {
       expect(showNav1.hasClass('show-this-nav')).to.eq(false);
       expect(fixNav.hasClass('fix-nav-under')).to.eq(false);
       expect(leftSubMenu.hasClass('move-right')).to.eq(false);
+
+      done();
     });
 
     it('insert good css classes when stateChangeSuccess Event is triggered', () => {

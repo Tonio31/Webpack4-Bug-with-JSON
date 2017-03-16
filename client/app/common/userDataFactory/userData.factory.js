@@ -26,8 +26,8 @@ let UserData = function() {
       user.lastName = iUserObject.lastName;
     }
 
-    if ( iUserObject.hasOwnProperty('email') && iUserObject.email ) {
-      user.email = iUserObject.email;
+    if ( iUserObject.hasOwnProperty('email') && iUserObject.username ) {
+      user.username = iUserObject.username;
     }
   };
 
@@ -48,7 +48,7 @@ let UserData = function() {
   };
 
   let getEmail = () => {
-    return user.email;
+    return user.username;
   };
 
   return {
