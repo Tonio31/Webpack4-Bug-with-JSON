@@ -133,7 +133,7 @@ describe('CourseContent', () => {
 
       expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.slug);
       expect(updateStepPOSTRequest.status).to.equal('completed');
-      expect(updateStepPOSTRequest.inputs).to.deep.equal( { 'c1.m1.s1.story_2': 'This is a text' } );
+      expect(updateStepPOSTRequest.programData).to.deep.equal( [{ code: 'c1.m1.s1.story_2', value: 'This is a text' }] );
 
       sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
       expect(controller.nextStepButtonLabel).to.eq('NEXT');

@@ -129,7 +129,7 @@ describe('Resource', () => {
 
     it('updateStep() return a promise', sinon.test( (done) => {
 
-      $httpBackend.whenPOST(Data.buildApiUrl('step')).respond( () => {
+      $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( () => {
         return [ 200, {}, {} ];
       });
 
