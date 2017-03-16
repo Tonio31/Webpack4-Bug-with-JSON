@@ -38,7 +38,11 @@ let appModule = angular.module('app', [
     // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
     $urlRouterProvider.deferIntercept();
 
-    $urlRouterProvider.otherwise(STATES.PAGE_NOT_FOUND);
+    $urlRouterProvider.otherwise( ($injector, $location) => {
+      let $state = $injector.get('$state');
+      let intendedUrl = $location.url();
+      $state.go(STATES.PAGE_NOT_FOUND, { intendedUrl: intendedUrl } );
+    });
 
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
@@ -104,7 +108,7 @@ let appModule = angular.module('app', [
 
         let stateToRedirect = trans.params().forceRedirect;
 
-        if ( stateToRedirect !== STATES.HOME && stateToRedirect !== STATES.LOGIN ) {
+        if ( stateToRedirect && stateToRedirect !== STATES.HOME && stateToRedirect !== STATES.LOGIN ) {
 
           // If it's a valid state, we redirect to this state, otherwise, go to 404 page
           if ( $state.href(stateToRedirect) !== null ) {
@@ -167,6 +171,8 @@ let appModule = angular.module('app', [
 
     if ( !JwtFactory.isAuthedExpired() ) {
 
+      $log.log(`User Auth did NOT expired, retrieve Menu and redirect to the good state`);
+
       // In case the user is already logged in (token is not expired), we need to set his user ID
       // form local storage in the User factory as the id will be used to retrieve participant information
       // from server that is used on the home page and in expections reports to bugsnag
@@ -193,7 +199,8 @@ let appModule = angular.module('app', [
         $log.log('error Retrieving menu error=', error);
       });
     }
-    else if ( $location.url().includes(STATES.RESET_PASSWORD) ) {
+    else if ( $location.path() === STATES.RESET_PASSWORD ) {
+      $log.log(`User Auth expired, Target page is reset password`);
       $urlRouter.sync();
     }
     else {

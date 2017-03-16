@@ -10,9 +10,15 @@
   "EMAIL_US": "Email us",
   "ALL_RIGHT_RESERVED": "All rights reserved",
 
+  "RESUME_YOUR_PROGRESS": "Resume your progress",
   "PREVIOUS": "Previous",
   "NEXT": "Next",
   "COMPLETE": "Complete",
+
+  "CONTENT_LOCKED": "This content is locked!",
+  "CONTENT_LOCKED_DETAILS": "Unfortunately you'll need to do the previous steps before you'll be able to gain access to this one.",
+  "WOOPS_UNEXPECTED": "Wooops, That was unexpected",
+  "PAGE_DONT_EXIST": "The page {{url}} doesn't exist.",
 
   "USERNAME_OR_EMAIL": "Username or Email",
   "USERNAME_OR_EMAIL_REQUIRED": "Please enter your username or email address",

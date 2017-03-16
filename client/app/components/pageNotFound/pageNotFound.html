@@ -1,7 +1,12 @@
 <div class="pageNotFound">
   <div class="row">
-    <div class="small-12 medium-8 small-centered columns">
-      <h1>Woops, sorry the page you tried to access does not exist</h1>
+    <div class="small-12 medium-10 xlarge-8 small-centered columns text-center">
+      <br/>
+      <br/>
+      <h1>{{ 'WOOPS_UNEXPECTED' | translate }}</h1>
+      <h3>{{ 'PAGE_DONT_EXIST' | translate:$ctrl.intendedUrl }}</h3>
+
+      <button class="radius" type="button" ng-click="$ctrl.resumeProgress()">{{ 'RESUME_YOUR_PROGRESS' | translate }}</button>
     </div>
   </div>
 </div>

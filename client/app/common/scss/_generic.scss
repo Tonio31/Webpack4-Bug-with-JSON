@@ -26,6 +26,15 @@ body {
   }
 }
 
+.y-center-parent {
+  display: flex;
+  align-items: center;
+}
+
+.y-center-child {
+  align-self: center;
+}
+
 
 .hr {
   display: block;
