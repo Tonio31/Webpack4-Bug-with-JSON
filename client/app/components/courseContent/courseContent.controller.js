@@ -60,6 +60,23 @@ class CourseContentController {
       }
     };
 
+
+    this.convertInputFieldForPOST = (iInputFields) => {
+
+      let programData = [];
+
+      Object.entries(iInputFields).forEach(([key, value]) => {
+        $log.debug(key + ' ' + value); // "a 5", "b 7", "c 9"
+        programData.push({
+          code: key,
+          value: value
+        });
+      });
+
+      return programData;
+    };
+
+
     this.nextStep = (iForm) => {
 
       if ( iForm.$invalid ) {
@@ -71,7 +88,7 @@ class CourseContentController {
 
         postData.fullUrl = this.content.slug;
         postData.status = 'completed';
-        postData.inputs = inputFields;
+        postData.programData = this.convertInputFieldForPOST(inputFields);
 
 
         postData.$save( (dataBackFromServer) => {
