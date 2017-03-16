@@ -76,14 +76,17 @@ let appModule = angular.module('app', [
     //     So we need first to go to any state defined (I choose home), intercept the transition, retrieve the menu, and redirect
     //     the user to the good step
 
+
     let matchFromLoginToHome = {
-      from: `${STATES.LOGIN_ROOT}.**`,
+      from: (state) => {
+        return ( state.name === STATES.LOGIN || state.name === STATES.RESET_PASSWORD );
+      },
       to: STATES.HOME
     };
 
     $transitions.onStart( matchFromLoginToHome, (trans) => {
 
-      $log.log('Im coming from login Page');
+      $log.log('Coming From login Page or reset password state');
 
       // Find all the menu that doesn't have children (no Submenu) and create a state from it
       Menu.retrieveMenuAndReturnStates().then( (states) => {

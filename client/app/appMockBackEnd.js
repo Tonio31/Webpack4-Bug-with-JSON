@@ -6,6 +6,7 @@ import 'angular-mocks/ngMockE2E';
 
 import App from './app';
 import ResourceFactory from 'common/resourceFactory/resource';
+import UserData from 'common/userDataFactory/userData';
 
 
 // This module is for local dev only, if we choose this file as the entry point, it will include ngMockE2E,
@@ -15,9 +16,10 @@ import ResourceFactory from 'common/resourceFactory/resource';
 angular.module( 'appMockBackEnd', [
   App,
   ResourceFactory,
+  UserData,
   'ngMockE2E'
 ])
-.run( ($log, $httpBackend, Data, JwtFactory) => {
+.run( ($log, $httpBackend, User, Data, JwtFactory) => {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -36,7 +38,8 @@ angular.module( 'appMockBackEnd', [
 
   let errorReply = [ 401, { error: 'token_not_provided' }, {} ];
 
-
+  // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
+  User.setUser({ id: authenticate.user.id });
 
   // will take an URL and return a file name
   // iFullUrlToServer: http://apipl.ciprianspiridon.com/v1/step?slug=%2Fpotentialife-course%2Fcycle-1%2Fmodule-1%2Fstep-1
