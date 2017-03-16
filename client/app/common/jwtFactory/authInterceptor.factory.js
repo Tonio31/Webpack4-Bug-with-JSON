@@ -40,7 +40,7 @@ let AuthInterceptorFactory = function($log, $state, $q, JwtFactory, STATES) {
 
     // If we receive 401, it means the user is not logged in, redirect him to the login page
     // and specify where we have to redirect after login
-    if ( error.status === 401 ) {
+    if ( error.status === 401 && $state.$current.name !== STATES.LOGIN ) {
       return $state.go(STATES.LOGIN, { stateToRedirect: $state.$current.name });
     }
 

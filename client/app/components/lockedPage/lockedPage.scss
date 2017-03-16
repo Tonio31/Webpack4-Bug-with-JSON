@@ -1,5 +1,36 @@
 @import 'common/common';
 
-.lockedPage {
-  color: red;
+.locked-page {
+
+  .flex-parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .locked-icon {
+      color: $black;
+      font-size: 10rem;
+      line-height: 10rem;
+
+      width: 10rem;
+
+      border-radius: 10px;
+      border: 3px solid #BADA55;
+
+
+    }
+
+
+    @media #{$large-up} {
+      .locked-content {
+        min-width: 10rem;
+        max-width: calc(100% - 10rem);
+        border: 3px solid #BADA55;
+      }
+    }
+
+
+
+  }
+
 }
