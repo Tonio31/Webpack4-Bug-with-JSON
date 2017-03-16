@@ -90,7 +90,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
 
   let updateStep = () => {
     $log.log('updateStep()');
-    return new ($resource(buildApiUrl('programDatas')))();
+    return new ($resource(buildApiUrl('program_data')))();
   };
 
   return {

@@ -155,7 +155,7 @@ angular.module( 'appMockBackEnd', [
     return errorReply;
   });
 
-  $httpBackend.whenPOST(Data.buildApiUrl('programDatas')).respond( (method, url, data, headers) => {
+  $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
 
     let dataObject = angular.fromJson(data);
