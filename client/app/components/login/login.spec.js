@@ -73,7 +73,7 @@ describe('Login', () => {
 
       controller.login(formLogin);
 
-      expect(authPOSTRequestResource.username).to.equal(controller.username);
+      expect(authPOSTRequestResource.email).to.equal(controller.username);
       expect(authPOSTRequestResource.password).to.equal(controller.password);
 
       sinon.assert.calledWith(goFn, STATES.HOME, { forceRedirect: stateParams.stateToRedirect });
@@ -93,7 +93,7 @@ describe('Login', () => {
 
       controller.login(formLogin);
 
-      expect(authPOSTRequestResourceFail.username).to.equal(controller.username);
+      expect(authPOSTRequestResourceFail.email).to.equal(controller.username);
       expect(authPOSTRequestResourceFail.password).to.equal(controller.password);
 
       sinon.assert.callCount(goFn, 0);
