@@ -26,7 +26,7 @@ describe('User', () => {
       expect(User.getLastName()).to.equal(userToStore.lastName);
       expect(User.getSecurityToken()).to.equal(userToStore.token);
       expect(User.getUserId()).to.equal(userToStore.id);
-      expect(User.getEmail()).to.equal(userToStore.username);
+      expect(User.getEmail()).to.equal(userToStore.email);
     });
 
   });
