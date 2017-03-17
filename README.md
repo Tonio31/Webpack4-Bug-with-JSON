@@ -98,8 +98,10 @@ Here's a list of available tasks:
 * `npm run serve`: alias of `npm start`
 
 * `npm run watch`: alias of `npm start`  
+
+* `npm run build -- --phase PROD`: **Production build** runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `dist/bundle.js`. It also prepares `index.html` to be used as application entry point, links assets and created dist version of our application.
   
-* `npm run build`: **Production build** runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `dist/bundle.js`. It also prepares `index.html` to be used as application entry point, links assets and created dist version of our application.
+* `npm run build`: **UAT build**, same as above but errors reported in Bugsnag will have the flag UAT (
 
 * `npm run test`: run the unit test once
 
