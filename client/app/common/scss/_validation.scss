@@ -1,10 +1,13 @@
+@import '../../common/scss/_vars';
+// @import '../../common/_foundation-settings';
+
 .validation-icon-right {
-  padding: rem_calc(10px);
-  width: 45px;
-  height: 45px;
+  padding: $default-padding;
+  width: $validation-icon-right;
+  height: $validation-icon-right;
   border: 2px solid $onyx;
   border-radius: 50%;
-  margin-left: rem_calc(10px);
+  margin-left: $default-padding;
   display: flex;
   align-items: center;
   justify-content: center;
