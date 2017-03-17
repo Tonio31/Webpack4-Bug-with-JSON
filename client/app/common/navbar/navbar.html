@@ -5,6 +5,7 @@
 
         <section class="left tab-bar-section">
           <h1 class="title logo-potential-life"><a ui-sref="{{$ctrl.homeState}}">{{$ctrl.companyName}}</a></h1>
+          <p class="accessible-link"><a href="#content">Skip to content</a></p>
         </section>
         <div class="right-small">
           <a role="button" aria-controls="idOfRightMenu" class="left-off-canvas-toggle menu-icon"><span></span></a>
@@ -31,7 +32,7 @@
       </aside>
 
       <section class="main-section">
-          <div class="content" ui-view></div>
+          <div id="content" class="content" ui-view></div>
       </section>
 
       <!-- close the off-canvas menu -->

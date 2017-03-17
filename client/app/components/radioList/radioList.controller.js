@@ -13,16 +13,14 @@ class RadioListController {
     this.selected = '';
 
     this.$onInit = () => {
-      $log.info('radio ', this);
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
 
       this.text = this.block.data.value;
-      this.iconText = ICON_FONTELLO.VALID_TICK;
     };
 
     this.actionOnUserInput = (iIsFormValid) => {
       this.onUpdate({ value: this.selected });
-      $log.log(iIsFormValid);
+      $log.log('actionOnUserInput() - iIsFormValid=', iIsFormValid);
     };
 
   }
