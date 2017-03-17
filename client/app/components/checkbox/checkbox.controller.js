@@ -16,7 +16,7 @@ class CheckboxController {
     };
 
     this.checkIfRequired = () => {
-      for ( let [key, value] of Object.entries(this.selection) ) {
+      for ( let [ key, value ] of Object.entries(this.selection) ) {
         if ( value === true ) {
           return false;
         }
@@ -25,14 +25,13 @@ class CheckboxController {
     };
 
     this.actionOnUserInput = () => {
-        let checkedInput = [];
-        for ( let [key, value] of Object.entries(this.selection) ) {
-          if ( value === true ) {
-            checkedInput.push(key);
-          }
+      let checkedInput = [];
+      for ( let [ key, value ] of Object.entries(this.selection) ) {
+        if ( value === true ) {
+          checkedInput.push(key);
         }
-        this.onUpdate({ value: checkedInput });
-
+      }
+      this.onUpdate({ value: checkedInput });
     };
 
   }

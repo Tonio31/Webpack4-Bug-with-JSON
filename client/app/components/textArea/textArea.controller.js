@@ -18,8 +18,8 @@ class TextAreaController {
     };
 
     this.actionOnUserInput = (iIsFormValid) => {
-      $log.log(iIsFormValid);
-      $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}` );
+      $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}`,
+      'iIsFormValid: ', iIsFormValid);
 
       // Update parent with the change
       this.onUpdate({ value: this.text });

@@ -5,7 +5,6 @@ class RadioListController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'RadioListController' );
 
-    $log.info (this);
 
     this.name = 'radioList';
     this.icons = ICON_FONTELLO;

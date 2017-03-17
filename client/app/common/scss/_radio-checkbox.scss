@@ -8,7 +8,7 @@
     padding: rem_calc(10px);
   }
   .header-inner {
-    width: calc(100% - (#{$validation-icon-right} - 10px));
+    width: calc(100% - (#{$validation-icon-right} - #{$default-padding}));
   }
   .note.invalid {
     color: $alert-color;
