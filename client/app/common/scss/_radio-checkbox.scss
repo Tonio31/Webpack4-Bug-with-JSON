@@ -1,3 +1,44 @@
+.input-checkbox {
+  &[type="checkbox"] {
+    appearance: none;
+    border: 1px solid $ship-grey;
+    border-radius: 2px;
+    background-color: $white;
+    margin: 0;
+    width: rem_calc($validation-icon-right) / 2;
+    height: rem_calc($validation-icon-right) / 2;
+    position: relative;
+    cursor: pointer;
+    transition: all $speed3 / 2;
+
+    &::after {
+      content: '';
+      font-family: 'fontello';
+      font-size: rem_calc(0px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: $success-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all $speed3 / 2;
+    }
+
+    &:checked {
+      border-color: $success-color;
+      &::after {
+        content: 't';
+        font-size: rem_calc(12px);
+        opacity: 1;
+      }
+    }
+  }
+}
+
 .radio-checkbox {
   header {
     @media #{$small-only} {

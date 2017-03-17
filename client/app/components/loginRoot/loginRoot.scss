@@ -1,4 +1,5 @@
-@import 'common/common';
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
 
 .login-root {
 
@@ -11,22 +12,32 @@
   .login-panel {
     min-width: $small-breakpoint;
     margin: auto;
+
+    h1 {
+      font-weight: 100;
+      color: lighten($ship-grey, 30);
+    }
+
+    h2 {
+      font-weight: 400;
+      color: $onyx;
+    }
   }
 
   .image-login {
-    background: url('assets/bg.jpg') center right / 100% auto no-repeat;
+    background-image: url('assets/bg.jpg');
+    background-position: center right ;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100%;
     width: 100%;
   }
 
   .logo-potentialife {
-    display: inline-block;
-    background-image: url('../../common/navbar/assets/logo-potential-life.svg');
-    background-repeat: no-repeat;
-    background-position: 1px 4px;
-    background-size: auto 80%;
-    height: 6rem;
-    width: 6rem;
+    font-family: 'fontello';
+    font-size: 55px;
+    line-height: 55px;
+    color: $logoColor;
   }
 
   h3 {
