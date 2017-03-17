@@ -6,7 +6,7 @@ import CheckboxTemplate from './checkbox.html';
 describe('Checkbox', () => {
   let $rootScope, $componentController, $compile;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[3];
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[13];
 
   beforeEach(window.module(CheckboxModule));
 
@@ -45,15 +45,25 @@ describe('Checkbox', () => {
       scope = $rootScope.$new();
       scope.block = blockBinding;
       scope.isTopLevelFormSubmitted = true;
-      template = $compile('<checkbox></checkbox>')(scope);
+      template = $compile('<checkbox on-update="$ctrl.updateInputFields(block.program_data_code, value)" is-top-level-form-submitted="topLevelForm.$submitted" block="block"></checkbox>')(scope);
       scope.$apply();
     });
 
 
-    // it('has a checkbox', () => {
-    //   expect(true).to.be.true;
-    //   // expect(template.find('p.note').html()).to.eq('(Please select 1 option below)');
-    // });
+    it('has the correct id on the form', () => {
+      expect(template.find('ng-form').attr('id')).to.eq(blockBinding.data.name);
+    });
+
+    it('has a list item with the correct data in the label', () => {
+      let obj = blockBinding.data.items;
+      let labelText = angular.element(template[0].querySelector('.checkbox-label'));
+      expect(labelText.html()).to.eq(obj[Object.keys(obj)[0]]);
+    });
+
+    it('has a list item with the correct data in the input=value', () => {
+      let obj = blockBinding.data.items;
+      expect(template.find('input').attr('value')).to.eq(obj[Object.keys(obj)[0]]);
+    });
   });
 
   describe('Component', () => {

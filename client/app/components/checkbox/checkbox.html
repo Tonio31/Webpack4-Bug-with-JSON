@@ -12,11 +12,11 @@
     </header>
     <ul>
       <li ng-repeat="(key, value) in $ctrl.block.data.items">
-        <label for="checkboxName-{{$index}}">
-          <span>{{value}}</span>
-          <input id="checkboxName-{{$index}}"
+        <label for="checkboxName-{{key}}">
+          <span class="checkbox-label">{{value}}</span>
+          <input id="checkboxName-{{key}}"
             type="checkbox"
-            name="checkbox_group-1"
+            name="checkbox_group-{{$ctrl.formName}}"
             value="{{value}}"
             ng-required="$ctrl.checkIfRequired()"
             ng-model="$ctrl.selection[key]"

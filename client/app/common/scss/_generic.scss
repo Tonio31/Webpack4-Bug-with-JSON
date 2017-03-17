@@ -69,12 +69,12 @@ body {
 
   .validation-icon-right {
     // flex-basis: rem_calc(3rem);
-    padding: rem_calc(10px);
-    width: 45px;
-    height: 45px;
+    padding: rem_calc(#{$default-padding});
+    width: rem_calc($validation-icon-right);
+    height: rem_calc($validation-icon-right);
     border: 2px solid $onyx;
     border-radius: 50%;
-    margin-left: rem_calc(10px);
+    margin-left: rem_calc(#{$default-padding});
     display: flex;
     align-items: center;
     justify-content: center;

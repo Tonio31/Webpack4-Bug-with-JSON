@@ -3,7 +3,7 @@
 .textBox {
    input[type="text"] {
      height: 3rem;
-     width: calc(100% - 58px);
+     width: calc(100% - (#{$validation-icon-right} + #{$default-padding}));
 
      @include inputsBorderStyling();
    }

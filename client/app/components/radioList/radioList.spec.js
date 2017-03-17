@@ -62,14 +62,21 @@ describe('RadioList', () => {
       scope.$apply();
     });
 
-    it('has the correct id on the form', () => {
+    it('has the correct id on the form 12', () => {
       expect(template.find('ng-form').attr('id')).to.eq(blockBinding.data.name);
     });
 
-    it('has a list item with the correct data in the label and input=value', () => {
-      expect(template.find('li span').html()).to.eq(blockBinding.data.items[0]);
-      expect(template.find('[type="checkbox"]').attr('value')).to.eq(blockBinding.data.items[0]);
+    it('has a list item with the correct data in the label', () => {
+      let obj = blockBinding.data.items;
+      let labelText = angular.element(template[0].querySelector('.radio-label'));
+      expect(labelText.html()).to.eq(obj[Object.keys(obj)[0]]);
     });
+
+    it('has a list item with the correct data in the input=value', () => {
+      let obj = blockBinding.data.items;
+      expect(template.find('input').attr('value')).to.eq(obj[Object.keys(obj)[0]]);
+    });
+
   });
 
   describe('Component', () => {

@@ -5,7 +5,7 @@
   textarea {
     border-radius: $global-radius;
     min-height: rem_calc(150px);
-    width: calc(100% - 58px);
+    width: calc(100% - (#{$validation-icon-right} + #{$default-padding}));
     @include inputsBorderStyling();
   }
 }

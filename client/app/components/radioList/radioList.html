@@ -12,17 +12,17 @@
     </header>
     <ul>
       <li ng-repeat="item in $ctrl.block.data.items">
-        <label for="radioName-{{$index}}">
-          <span>{{item}}</span>
-          <input id="radioName-{{$index}}"
+        <label for="radioName-{{$ctrl.formName}}-{{$index}}">
+          <span class="radio-label">{{item}}</span>
+          <input id="radioName-{{$ctrl.formName}}-{{$index}}"
             type="radio"
-            name="radio_group-1"
+            name="radio_group-{{$ctrl.formName}}"
             value="{{item}}"
             ng-required="{{$ctrl.block.required || true}}"
             ng-model="$ctrl.selected"
             ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid)">
         </label>
-        <!-- one of the screens shows a succes-coloured message such as: -->
+        <!-- MARK one of the screens shows a succes-coloured message such as: -->
         <label class="blockquote fgcolour-success">
           <p>some text here</p>
         </label>
