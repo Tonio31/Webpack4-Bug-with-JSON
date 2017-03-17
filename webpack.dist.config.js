@@ -8,7 +8,7 @@ const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
 module.exports = (iPhase) => {
   config.output = {
     filename: '[name].bundle.js',
-    publicPath: '',
+    publicPath: 'http://webpl.ciprianspiridon.com/',
     path: path.resolve(__dirname, 'dist')
   };
 
