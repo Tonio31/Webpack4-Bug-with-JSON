@@ -47,7 +47,11 @@ let paths = {
 
 // use webpack.config.js to build modules
 gulp.task('webpack', ['clean'], (cb) => {
-  const config = require('./webpack.dist.config');
+
+  // Phase is used by Bugsnag to know if the error happened on UAT (default) or PROD
+  let phase = yargs.argv.phase || 'UAT';
+
+  const config = require('./webpack.dist.config')(phase);
   config.entry.app = paths.entry;
 
   webpack(config, (err, stats) => {
@@ -66,7 +70,7 @@ gulp.task('webpack', ['clean'], (cb) => {
 });
 
 gulp.task('serve', () => {
-  const config = require('./webpack.dev.config');
+  const config = require('./webpack.dev.config')();
   config.entry.app = [
     // this modules required to make HRM working
     // it responsible for all this webpack magic

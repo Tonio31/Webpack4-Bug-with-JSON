@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 import 'bugsnag-js';
 
 import angular from 'angular';
