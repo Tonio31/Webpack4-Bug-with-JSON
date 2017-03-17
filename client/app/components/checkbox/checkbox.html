@@ -11,18 +11,17 @@
       </div>
     </header>
     <ul>
-      <li ng-repeat="item in $ctrl.block.data.items">
+      <li ng-repeat="(key, value) in $ctrl.block.data.items">
         <label for="checkboxName-{{$index}}">
-          <span>{{item}}</span>
+          <span>{{value}}</span>
           <input id="checkboxName-{{$index}}"
             type="checkbox"
             name="checkbox_group-1"
-            value="{{item}}"
-            ng-required="selection.length === 0"
-            ng-checked="selection.indexOf(item) > -1"
-            ng-model='selection'
+            value="{{value}}"
+            ng-required="$ctrl.checkIfRequired()"
+            ng-model="$ctrl.selection[key]"
             ng-model-options="{allowInvalid: true}"
-            ng-change="$ctrl.actionOnUserInput(item)">
+            ng-change="$ctrl.actionOnUserInput()">
         </label>
       </li>
     </ul>
