@@ -72,19 +72,37 @@
 
   .c3-chart-arcs text {
     font-family: 'fontello';
+    font-size: 1rem;
     fill: $locked-grey;
-    transform: translateY(rem_calc(6px));
   }
 
   @media #{$medium-only} {
+    .not-locked .c3-chart-arcs text {
+      font-size: 1.3rem;
+    }
+
     .c3-chart-arcs text {
-      font-size: rem_calc(60px);
+      font-size: 2.6rem;
     }
   }
 
   @media #{$large-up} {
+    .not-locked .c3-chart-arcs text {
+      font-size: 1.2rem;
+    }
+
     .c3-chart-arcs text {
-      font-size: rem_calc(90px);
+      font-size: 2.2rem;
+    }
+  }
+
+  @media #{$xlarge-up} {
+    .not-locked .c3-chart-arcs text {
+      font-size: 1.8rem;
+    }
+
+    .c3-chart-arcs text {
+      font-size: 3.5rem;
     }
   }
 
