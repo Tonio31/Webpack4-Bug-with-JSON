@@ -22,7 +22,9 @@ module.exports = exports = {
   "globals": {
     "angular": true,
     "_": true,
-    "require": true
+    "require": true,
+    "ENVIRONMENT": true,
+    "VERSION": true
   },
   "rules": {
     "accessor-pairs": [
