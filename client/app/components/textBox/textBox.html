@@ -2,7 +2,6 @@
   <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.formName}}">
     <h3>{{ $ctrl.block.data.label }}</h3>
     <div class="flex-container">
-      <div class="flex-expand-left">
 
         <input type="text"
                name="{{$ctrl.block.data.name}}"
@@ -11,12 +10,17 @@
                ng-model-options="$ctrl.modelOptions"
                ng-required="{{$ctrl.block.required}}"
                ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
+               ng-focus="$ctrl.hasFocus = true"
+               ng-blur="$ctrl.hasFocus = false"
                ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid)">
         </input>
+
+      <div class="validation-icon-right has-focus" ng-show="$ctrl.hasFocus && !$ctrl.isTopLevelFormSubmitted && !this[$ctrl.formName][$ctrl.block.data.name].$dirty" aria-hidden="true">
+        <span class="right fontello-icon" aria-hidden="true">&lt;</span>
       </div>
 
-      <div class="validation-icon-right" ng-class="{ 'visibilityHidden': !this[$ctrl.formName][$ctrl.block.data.name].$dirty && !$ctrl.isTopLevelFormSubmitted}">
-        <span ng-class="{ 'invalid': this[$ctrl.formName][$ctrl.block.data.name].$invalid }" class="right fontello-icon">{{$ctrl.iconText}}</span>
+      <div class="validation-icon-right" ng-hide="!this[$ctrl.formName][$ctrl.block.data.name].$dirty && !$ctrl.isTopLevelFormSubmitted" aria-hidden="true">
+        <span ng-class="{ 'invalid': this[$ctrl.formName][$ctrl.block.data.name].$invalid }" class="right fontello-icon" aria-hidden="true">{{!this[$ctrl.formName][$ctrl.block.data.name].$invalid ? $ctrl.icons.VALID_TICK : $ctrl.icons.WARNING}}</span>
       </div>
 
     </div>

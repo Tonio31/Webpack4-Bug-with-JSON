@@ -1,12 +1,11 @@
-@import 'common/common';
-
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
 .textArea {
 
   textarea {
-
-    min-height: rem_calc(150px);
     border-radius: $global-radius;
-
+    min-height: rem_calc(150px);
+    width: calc(100% - (#{$validation-icon-right} + #{$default-padding}));
     @include inputsBorderStyling();
   }
 }

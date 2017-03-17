@@ -1,0 +1,8 @@
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
+.checkbox {
+
+  [type="checkbox"] {
+    border-radius: $global-radius;
+  }
+}

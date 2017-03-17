@@ -1,0 +1,29 @@
+<div class="radio-checkbox checkbox">
+  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.formName}}">
+    <header class="flex-container">
+      <div class="header-inner">
+        <p><strong>{{ $ctrl.name }}</strong></p>
+        <p class="note" ng-class="{ 'invalid': this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted }">(Please select 1 option below)</p>
+      </div>
+{{ $ctrl.formInvalid }}
+      <div class="validation-icon-right" ng-show="this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted" aria-hidden="true">
+        <span ng-class="{ 'invalid': this[$ctrl.formName].$invalid }" class="right fontello-icon" aria-hidden="true">{{!this[$ctrl.formName] ? $ctrl.icons.VALID_TICK : $ctrl.icons.WARNING}}</span>
+      </div>
+    </header>
+    <ul>
+      <li ng-repeat="(key, value) in $ctrl.block.data.items">
+        <label for="checkboxName-{{key}}">
+          <span class="checkbox-label">{{value}}</span>
+          <input id="checkboxName-{{key}}"
+            type="checkbox"
+            name="checkbox_group-{{$ctrl.formName}}"
+            value="{{value}}"
+            ng-required="$ctrl.checkIfRequired()"
+            ng-model="$ctrl.selection[key]"
+            ng-model-options="{allowInvalid: true}"
+            ng-change="$ctrl.actionOnUserInput()">
+        </label>
+      </li>
+    </ul>
+  </ng-form>
+</div>

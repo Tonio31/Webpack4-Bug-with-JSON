@@ -1,0 +1,27 @@
+@import '../../common/scss/_vars';
+// @import '../../common/_foundation-settings';
+
+.validation-icon-right {
+  padding: $default-padding;
+  width: $validation-icon-right;
+  height: $validation-icon-right;
+  border: 2px solid $onyx;
+  border-radius: 50%;
+  margin-left: $default-padding;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ng-invalid-required ~ .validation-icon-right {
+  border-color: $alert-color;
+}
+
+.ng-valid-required ~ .validation-icon-right {
+  border-color: $success-color;
+}
+
+.ng-invalid-required ~ .validation-icon-right.has-focus,
+.ng-valid-required ~ .validation-icon-right.has-focus {
+  border-color: $blue-focus;
+}

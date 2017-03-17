@@ -1,8 +1,9 @@
-@import 'common/common';
-
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
 .textBox {
    input[type="text"] {
      height: 3rem;
+     width: calc(100% - (#{$validation-icon-right} + #{$default-padding}));
 
      @include inputsBorderStyling();
    }

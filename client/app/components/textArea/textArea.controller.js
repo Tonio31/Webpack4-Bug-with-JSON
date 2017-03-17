@@ -5,6 +5,11 @@ class TextAreaController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'TextAreaController' );
 
+    this.icons = ICON_FONTELLO;
+
+    // ng-model-options applied to the textarea
+    this.modelOptions = MODEL_OPTIONS;
+
     this.$onInit = () => {
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
 
@@ -12,17 +17,12 @@ class TextAreaController {
       this.iconText = ICON_FONTELLO.VALID_TICK;
     };
 
-    // ng-model-options applied to the textarea
-    this.modelOptions = MODEL_OPTIONS;
-
     this.actionOnUserInput = (iIsFormValid) => {
-      $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}` );
+      $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}`,
+      'iIsFormValid: ', iIsFormValid);
 
       // Update parent with the change
       this.onUpdate({ value: this.text });
-
-      // Update the text that will change the icon (display exclamation mark if it's in error
-      this.iconText = (iIsFormValid) ? ICON_FONTELLO.VALID_TICK : ICON_FONTELLO.WARNING;
     };
   }
 }

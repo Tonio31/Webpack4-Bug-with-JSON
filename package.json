@@ -83,6 +83,7 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.6.0",
+    "webpack-notifier": "^1.5.0",
     "yargs": "^3.9.0"
   },
   "scripts": {

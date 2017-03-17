@@ -1,0 +1,8 @@
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
+.radioList {
+
+  [type="radio"] {
+    border-radius: 50%;
+  }
+}

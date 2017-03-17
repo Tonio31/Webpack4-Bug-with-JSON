@@ -1,7 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
-
 
 module.exports = {
   devtool: 'source-map',
@@ -97,6 +95,5 @@ module.exports = {
       c3: 'c3'
     }),
 
-    new CssSourcemapPlugin()
   ]
 };

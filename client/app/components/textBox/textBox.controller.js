@@ -5,13 +5,14 @@ class TextBoxController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'TextBoxController' );
 
+    this.icons = ICON_FONTELLO;
+
     this.$onInit = () => {
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
 
       this.iconText = ICON_FONTELLO.VALID_TICK;
       this.text = this.block.data.value;
     };
-
 
     this.actionOnUserInput = (iIsFormValid) => {
       $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}` );

@@ -1,0 +1,32 @@
+<div class="radio-checkbox radioList">
+  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.formName}}">
+    <header class="flex-container">
+      <div class="header-inner">
+        <p><strong>{{ $ctrl.name }}</strong></p>
+        <p class="note" ng-class="{ 'invalid': this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted }">(Please select 1 option below)</p>
+      </div>
+
+      <div class="validation-icon-right" ng-show="this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted" aria-hidden="true">
+        <span ng-class="{ 'invalid': this[$ctrl.formName].$invalid }" class="right fontello-icon" aria-hidden="true">{{!this[$ctrl.formName] ? $ctrl.icons.VALID_TICK : $ctrl.icons.WARNING}}</span>
+      </div>
+    </header>
+    <ul>
+      <li ng-repeat="item in $ctrl.block.data.items">
+        <label for="radioName-{{$ctrl.formName}}-{{$index}}">
+          <span class="radio-label">{{item}}</span>
+          <input id="radioName-{{$ctrl.formName}}-{{$index}}"
+            type="radio"
+            name="radio_group-{{$ctrl.formName}}"
+            value="{{item}}"
+            ng-required="{{$ctrl.block.required || true}}"
+            ng-model="$ctrl.selected"
+            ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid)">
+        </label>
+        <!-- MARK one of the screens shows a succes-coloured message such as: -->
+        <label class="blockquote fgcolour-success">
+          <p>some text here</p>
+        </label>
+      </li>
+    </ul>
+  </ng-form>
+</div>
