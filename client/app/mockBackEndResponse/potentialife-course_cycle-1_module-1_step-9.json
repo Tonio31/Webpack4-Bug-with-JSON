@@ -1,0 +1,40 @@
+{
+  "id": 9,
+  "name": "Video: Module summary",
+  "slug": "/potentialife-course/cycle-1/module-1/step-9",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 9 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-10",
+  "prev_page_url": "/potentialife-course/cycle-1/module-1/step-8",
+  "blocks": [
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Testing list Block check <a href=\"https:\/\/collaborate.uxpin.com\/69fb976f422eb50dd86157b43f74d68b194afda7#\/pages\/66287055\/sitemap\">here<\/a> for sketch<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c1.m1.s1.ul_1",
+      "data": {
+        "name": "Your chosen VIA character strengths",
+        "items": [
+          "Reflexion",
+          "Power",
+          "Good in Bed"
+        ]
+      }
+    }
+  ]
+}

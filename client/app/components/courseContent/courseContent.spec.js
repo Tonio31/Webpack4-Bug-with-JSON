@@ -57,7 +57,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       expect(controller.nextStepButtonLabel).to.eq('COMPLETE');
       expect(controller.displayPreviousButton).to.eq(false);
-      expect(controller.displayCongratsBanner).to.eq(false);
+      expect(controller.congratsBannerText).to.eq('');
     });
 
     it('test the onInit Function when the current status of the state is \'completed\'', () => {
@@ -65,7 +65,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       expect(controller.nextStepButtonLabel).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
-      expect(controller.displayCongratsBanner).to.eq(false);
+      expect(controller.congratsBannerText).to.eq('');
     });
 
     it('throw an exception if the status is not current or completed', () => {
@@ -109,7 +109,9 @@ describe('CourseContent', () => {
         };
       };
 
-      let dataBackFromServer = {};
+      let dataBackFromServer = {
+        congrats: '<p>Congratulations for finishing this module, you\'re a star<\/p>'
+      };
 
       let updateStepPOSTRequest = {
         $save: (callback) => {
@@ -138,7 +140,7 @@ describe('CourseContent', () => {
       sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
       expect(controller.nextStepButtonLabel).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
-      expect(controller.displayCongratsBanner).to.eq(true);
+      expect(controller.congratsBannerText).to.eq('<p>Congratulations for finishing this module, you\'re a star<\/p>');
 
       // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();

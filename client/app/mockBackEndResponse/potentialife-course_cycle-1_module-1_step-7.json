@@ -1,0 +1,43 @@
+{
+  "id": 7,
+  "name": "Exercise: The VIA strengths diagnostic",
+  "slug": "/potentialife-course/cycle-1/module-1/step-7",
+  "description": null,
+  "content": null,
+  "status": "completed",
+  "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 7 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-8",
+  "prev_page_url": "/potentialife-course/cycle-1/module-1/step-6",
+  "blocks": [
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Testing icon_text Block<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "l",
+          "color": "success"
+        },
+        "text": "You will now complete the VIA strengths finder, This will help you understand your unique character strengths - what's best about who you are. It should take approximately 10 minutes.",
+        "button": {
+          "href": "https:\/\/www.surveymonkey.co.uk\/",
+          "color": "success",
+          "label": "Go to VIA Survey Now"
+        }
+      }
+    }
+  ]
+}

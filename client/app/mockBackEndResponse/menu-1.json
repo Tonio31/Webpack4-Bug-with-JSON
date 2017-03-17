@@ -29,14 +29,14 @@
       "status":"current"
     },
     "current_step": {
-      "id":7,
-      "title":"Step 1",
-      "name":"Video: Strengths or weaknesses?",
-      "fullUrl": "/potentialife-course/cycle-1/module-1/step-1",
-      "description":"Approx. 12 mins",
-      "slug":"step-2",
-      "order":6,
-      "status":"current"
+      "id": 4,
+      "title": "Step 9",
+      "name": "Video: Module summary",
+      "description": "Approx. 5 mins",
+      "slug": "step-9",
+      "order": 3,
+      "status": "current",
+      "fullUrl": "/potentialife-course/cycle-1/module-1/step-9"
     }
   },
   "menudata":[
@@ -57,9 +57,9 @@
           "order": 1,
           "status": "current",
           "progress": {
-            "completed": 1,
-            "remaining": 21,
-            "percent": 5
+            "completed": 9,
+            "remaining": 13,
+            "percent": 40
           },
           "children": [
             {
@@ -94,11 +94,11 @@
                 {
                   "id": 2,
                   "title": "Step 2",
-                  "name": "Video: Strengths or weaknesses?",
+                  "name": "Reflect on times you were at your best",
                   "description": "Approx. 2 mins",
                   "slug": "step-2",
                   "order": 1,
-                  "status": "current",
+                  "status": "completed",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-2"
                 },
                 {
@@ -108,7 +108,7 @@
                   "description": "Approx. 2 mins",
                   "slug": "step-3",
                   "order": 2,
-                  "status": "locked",
+                  "status": "completed",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-3"
                 },
                 {
@@ -118,7 +118,7 @@
                   "description": "Approx. 5 mins",
                   "slug": "step-4",
                   "order": 3,
-                  "status": "locked",
+                  "status": "completed",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-4"
                 },
                 {
@@ -128,7 +128,7 @@
                   "description": "Approx. 3 mins",
                   "slug": "step-5",
                   "order": 4,
-                  "status": "locked",
+                  "status": "completed",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-5"
                 },
                 {
@@ -138,7 +138,7 @@
                   "description": "Approx. 3 mins",
                   "slug": "step-6",
                   "order": 5,
-                  "status": "locked",
+                  "status": "completed",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-6"
                 },
                 {
@@ -148,7 +148,7 @@
                   "description": "Approx. 12 mins",
                   "slug": "step-7",
                   "order": 6,
-                  "status": "locked",
+                  "status": "completed",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-7"
                 },
                 {
@@ -158,7 +158,7 @@
                   "description": "Approx. 5 mins",
                   "slug": "step-8",
                   "order": 7,
-                  "status": "locked",
+                  "status": "completed",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-8"
                 },
                 {
@@ -168,7 +168,7 @@
                   "description": "Approx. 2 mins",
                   "slug": "step-9",
                   "order": 8,
-                  "status": "locked",
+                  "status": "current",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-9"
                 },
                 {
@@ -184,8 +184,8 @@
                 {
                   "id": 11,
                   "title": "Step 11",
-                  "name": "Step 11",
-                  "description": "This is the description of step 11",
+                  "name": "Hakunamatata",
+                  "description": "Approx. 20 mins",
                   "slug": "step-11",
                   "order": 10,
                   "status": "locked",
@@ -194,8 +194,8 @@
                 {
                   "id": 12,
                   "title": "Step 12",
-                  "name": "Step 12",
-                  "description": "This is the description of step 12",
+                  "name": "Enjoy your life",
+                  "description": "Approx. 25 mins",
                   "slug": "step-12",
                   "order": 11,
                   "status": "locked",

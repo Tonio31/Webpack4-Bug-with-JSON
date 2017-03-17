@@ -170,7 +170,11 @@ angular.module( 'appMockBackEnd', [
         status: 'ok'
       };
 
-      return [ 200, {}, responseHeaders ];
+      let responseContent = {
+        congrats: '<p>Congratulations for finishing this module, you\'re a star<\/p>'
+      };
+
+      return [ 200, responseContent, responseHeaders ];
     }
 
     // If the user is not logged in, returns error
