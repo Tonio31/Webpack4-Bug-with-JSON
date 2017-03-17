@@ -12,8 +12,6 @@ class RadioListController {
     this.modelOptions = MODEL_OPTIONS;
     this.selected = '';
 
-    this.selected = '';
-
     this.$onInit = () => {
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
 
