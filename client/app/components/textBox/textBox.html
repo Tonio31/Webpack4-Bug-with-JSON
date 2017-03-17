@@ -15,7 +15,7 @@
                ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid)">
         </input>
 
-      <div class="validation-icon-right has-focus" ng-show="$ctrl.hasFocus && !$ctrl.isTopLevelFormSubmitted" aria-hidden="true">
+      <div class="validation-icon-right has-focus" ng-show="$ctrl.hasFocus && !$ctrl.isTopLevelFormSubmitted && !this[$ctrl.formName][$ctrl.block.data.name].$dirty" aria-hidden="true">
         <span class="right fontello-icon" aria-hidden="true">&lt;</span>
       </div>
 
