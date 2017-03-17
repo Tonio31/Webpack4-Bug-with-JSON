@@ -1,0 +1,62 @@
+{
+  "id": 8,
+  "name": "Exercise: When are you playing to your strengths?",
+  "slug": "/potentialife-course/cycle-1/module-1/step-8",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 8 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-9",
+  "prev_page_url": "/potentialife-course/cycle-1/module-1/step-7",
+  "blocks": [
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Testing radio Block<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 62,
+      "type": "dynamic",
+      "element": "radio",
+      "program_data_code": "c1.m1.s1.radiobox_1",
+      "data": {
+        "name": "this is the name",
+        "items": [
+          {
+            "label": "Meeting with Con",
+            "sub_label": "work",
+            "value": "12312",
+            "checked": false
+          },
+          {
+            "label": "Meeting with Con",
+            "sub_label": "work",
+            "value": "12312",
+            "checked": false
+          },
+          {
+            "label": "Meeting with Con",
+            "sub_label": "work",
+            "value": "12312",
+            "checked": true
+          },
+          {
+            "label":"Meeting with Con",
+            "sub_label":"work",
+            "value":"12312",
+            "checked": false
+          }
+        ]
+      }
+    }
+  ]
+}

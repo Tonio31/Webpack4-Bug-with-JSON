@@ -1,0 +1,42 @@
+{
+  "id": 5,
+  "name": "Video: Managing your weaknesses",
+  "slug": "/potentialife-course/cycle-1/module-1/step-5",
+  "description": null,
+  "content": null,
+  "status": "completed",
+  "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 5 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-6",
+  "prev_page_url": "/potentialife-course/cycle-1/module-1/step-4",
+  "blocks": [
+    {
+      "id": 47,
+      "type": "static",
+      "element": "video",
+      "program_data_code": null,
+      "data": {
+        "poster": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/videoplace.jpg",
+        "source": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/s.1.1\/S1-1-1-new.mp4"
+      },
+      "pivot": {
+        "step_id": 4,
+        "block_id": 47,
+        "order": 0
+      }
+    },
+    {
+      "id": 48,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>The video highlights the importance of focusing on your strengths rather than your weaknesses to achieve greater levels of success and well-being. <\/p><p>When you have watched it and are ready to proceed, please mark this step as complete and move on to the next step.<\/p>"
+      },
+      "pivot": {
+        "step_id": 4,
+        "block_id": 48,
+        "order": 0
+      }
+    }
+  ]
+}

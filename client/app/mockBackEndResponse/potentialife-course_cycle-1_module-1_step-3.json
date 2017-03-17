@@ -1,0 +1,62 @@
+{
+  "id": 3,
+  "name": "Exercise: Your strengths and weaknesses - part 1",
+  "slug": "/potentialife-course/cycle-1/module-1/step-3",
+  "description": null,
+  "content": null,
+  "status": "completed",
+  "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 3 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-4",
+  "prev_page_url": "/potentialife-course/cycle-1/module-1/step-2",
+  "blocks": [
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Testing checkbox Block<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 62,
+      "type": "dynamic",
+      "element": "checkbox",
+      "program_data_code": "c1.m1.s1.checkbox_1",
+      "data": {
+        "label": "<h3>Your Strength Activities<\/h3><h3>From your list of activities, select 3 that resonates with you<\/h3><p>(Select 3 Options)<\/p>",
+        "items": [
+          {
+            "label": "Meeting with Con",
+            "sub_label": "con",
+            "value": "12312",
+            "checked": true
+          },
+          {
+            "label": "Meeting with Dan",
+            "sub_label": "non-work",
+            "value": "dan",
+            "checked": false
+          },
+          {
+            "label": "Meeting with an Alien",
+            "sub_label": "work",
+            "value": "alien",
+            "checked": true
+          },
+          {
+            "label": "Meeting with my bed",
+            "sub_label": "sleep",
+            "value": "bed",
+            "checked": false
+          }
+        ]
+      }
+    }
+  ]
+}

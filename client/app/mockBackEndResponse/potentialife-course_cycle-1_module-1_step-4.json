@@ -1,0 +1,46 @@
+{
+  "id": 4,
+  "name": "Exercise: Your strengths and weaknesses part 2",
+  "slug": "/potentialife-course/cycle-1/module-1/step-4",
+  "description": null,
+  "content": null,
+  "status": "completed",
+  "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 4 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-5",
+  "prev_page_url": "/potentialife-course/cycle-1/module-1/step-3",
+  "blocks": [
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Testing bar_chart Block<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "type":"static",
+      "element":"bar_chart",
+      "data": {
+        "title":"",
+        "bars":[
+          {
+            "title": "Work",
+            "color": "#d3d3d3",
+            "value": 21
+          },
+          {
+            "title": "Non-Work",
+            "color": "#d3d3d3",
+            "value": 31
+          }
+        ]
+      }
+    }
+  ]
+}

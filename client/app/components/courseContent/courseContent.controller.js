@@ -8,7 +8,7 @@ class CourseContentController {
     this.name = 'courseContent';
 
     this.isStepCompleted = false;
-
+    this.congratsBannerText = '';
 
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
@@ -27,8 +27,6 @@ class CourseContentController {
       }
 
       this.displayPreviousButton = ( this.content.prev_page_url !== null );
-
-      this.displayCongratsBanner = false;
 
       $log.log('$onInit - END');
     };
@@ -95,7 +93,7 @@ class CourseContentController {
 
           this.nextStepButtonLabel = $filter('translate')('NEXT').toString();
           this.isStepCompleted = true;
-          this.displayCongratsBanner = true;
+          this.congratsBannerText = dataBackFromServer.congrats;
 
           // This will resend a query to the backend to get the menu, the status of the step
           // will be updated and the directive menuButton will update automatically the menu

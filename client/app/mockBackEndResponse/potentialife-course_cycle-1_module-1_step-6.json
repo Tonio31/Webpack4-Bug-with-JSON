@@ -1,0 +1,60 @@
+{
+  "id": 6,
+  "name": "Exercise: How often are you using your strengths?",
+  "slug": "/potentialife-course/cycle-1/module-1/step-4",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 4 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-5",
+  "prev_page_url": "/potentialife-course/cycle-1/module-1/step-3",
+  "blocks": [
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Testing Panel Block, a block of blocks with a grey background<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "type":"composed",
+      "element":"container",
+      "blocks":[
+        {
+          "type":"static",
+          "element":"icon_text",
+          "data": {
+            "icon":"L",
+            "text":"ldsadas dsa d as da sd asd d as"
+          }
+        },
+        {
+          "type":"static",
+          "element":"bar_chart",
+          "data": {
+            "title":"",
+            "bars":[
+              {
+                "title":"Bla",
+                "color":"#d3d3d3",
+                "value":21
+              },
+              {
+                "title":"Bla",
+                "color":"#d3d3d3",
+                "value":31
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

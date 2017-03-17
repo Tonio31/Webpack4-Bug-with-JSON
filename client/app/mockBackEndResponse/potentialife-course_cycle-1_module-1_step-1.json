@@ -1,6 +1,6 @@
 {
-  "id": 4,
-  "name": "Video: Focus on strengths not weaknesses",
+  "id": 1,
+  "name": "Module introduction",
   "slug": "/potentialife-course/cycle-1/module-1/step-1",
   "description": null,
   "content": null,
@@ -8,35 +8,100 @@
   "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 1 / 10",
   "next_page_url": "/potentialife-course/cycle-1/module-1/step-2",
   "prev_page_url": null,
-  "congrats": "<p>Well done! Your progress has been saved. <\/p><p>You're now ready for the next step.<\/p>",
   "blocks": [
     {
-      "id": 47,
-      "type": "static",
-      "element": "video",
-      "program_data_code": null,
-      "data": {
-        "poster": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/videoplace.jpg",
-        "source": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/s.1.1\/S1-1-1-new.mp4"
-      },
-      "pivot": {
-        "step_id": 4,
-        "block_id": 47,
-        "order": 0
-      }
-    },
-    {
-      "id": 48,
+      "id": 50,
       "type": "static",
       "element": "html",
       "program_data_code": null,
       "data": {
-        "value": "<p>The video highlights the importance of focusing on your strengths rather than your weaknesses to achieve greater levels of success and well-being. <\/p><p>When you have watched it and are ready to proceed, please mark this step as complete and move on to the next step.<\/p>"
+        "value": "<p>Testing module_overview Block, an overview of the whole module<\/p>"
       },
       "pivot": {
-        "step_id": 4,
-        "block_id": 48,
+        "step_id": 5,
+        "block_id": 50,
         "order": 0
+      }
+    },
+    {
+      "type":"static",
+      "element":"module_overview",
+      "data": {
+        "title": "",
+        "steps": [
+          {
+            "title": "Step 1",
+            "name": "Module introduction",
+            "description": "2 minutes",
+            "status": "completed"
+          },
+          {
+            "title": "Step 2",
+            "name": "Reflect on times you were at your best",
+            "description": "10 minutes",
+            "status": "completed"
+          },
+          {
+            "title": "Step 3",
+            "name": "Exercise: Your strengths and weaknesses - part 1",
+            "description": "5 minutes",
+            "status": "completed"
+          },
+          {
+            "title": "Step 4",
+            "name": "Exercise: Your strengths and weaknesses - part 2",
+            "description": "5 minutes",
+            "status": "completed"
+          },
+          {
+            "title": "Step 5",
+            "name": "Video: Managing your weaknesses",
+            "description": "3 minutes",
+            "status": "completed"
+          },
+          {
+            "title": "Step 6",
+            "name": "Exercise: How often are you using your strengths?",
+            "description": "3 minutes",
+            "status": "completed"
+          },
+          {
+            "title": "Step 7",
+            "name": "Exercise: The VIA strengths diagnostic",
+            "description": "12 mins",
+            "status": "completed"
+          },
+          {
+            "title": "Step 8",
+            "name": "Exercise: When are you playing to your strengths?",
+            "description": "3 minutes",
+            "status": "completed"
+          },
+          {
+            "title": "Step 9",
+            "name": "Video: Module summary",
+            "description": "3 minutes",
+            "status": "current"
+          },
+          {
+            "title": "Step 10",
+            "name": "Your module actions",
+            "description": "3 minutes",
+            "status": "locked"
+          },
+          {
+            "title": "Step 11",
+            "name": "Hakunamatata",
+            "description": "20 minutes",
+            "status": "locked"
+          },
+          {
+            "title": "Step 12",
+            "name": "Enjoy your life",
+            "description": "25 minutes",
+            "status": "locked"
+          }
+        ]
       }
     }
   ]

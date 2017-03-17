@@ -77,7 +77,7 @@ describe('Home', () => {
       // Cycle1 is not locked
       let cycle1 = menuObject.data.children[0];
 
-      expect(controller.getDonutTitle(cycle1)).to.eq('5%');
+      expect(controller.getDonutTitle(cycle1)).to.eq('40%');
 
       // Cycle 2 is locked, see comment in home.controller.js to understand why we return 'l' when it's locked
       let cycle2 = menuObject.data.children[1];
