@@ -87,4 +87,9 @@
       }
     }
   }
+  .ng-invalid-required {
+    .validation-icon-right {
+      border-color: $alert-color;
+    }
+  }
 }
