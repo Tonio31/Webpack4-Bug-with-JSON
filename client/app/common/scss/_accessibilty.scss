@@ -1,6 +1,15 @@
 .accessible {
-  &-links {
-    text-indent: -9999em;
-    float: left; 
+  &-link {
+    display: inline-block;
+    position: absolute;
+    float: none;
+    left: -9999em;
+
+    &:focus {
+      position: static;
+      float: right;
+      left: auto;
+      background-color: transparentize($white, .1);
+    }
   }
 }
