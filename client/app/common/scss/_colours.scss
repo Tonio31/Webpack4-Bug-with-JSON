@@ -13,4 +13,10 @@
   &-success {
     color: $success-color;
   }
+  &-active {
+    color: $blue-focus;
+  }
+  &-inactive {
+    color: $really-light-grey;
+  }
 }

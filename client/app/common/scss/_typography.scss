@@ -47,6 +47,10 @@ h3.quote-signature {
   @extend h3;
 }
 
+.h4-style {
+  @extend h4;
+}
+
 .subheading {
   @extend h1;
 }
