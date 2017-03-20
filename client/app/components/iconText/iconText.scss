@@ -69,8 +69,6 @@
         &.alert {
           color: $alert-color;
         }
-
-
       }
     }
 
@@ -79,23 +77,6 @@
         padding-top: 1rem;
         text-align: center;
       }
-
-
     }
-
-    @media #{$large-up} {
-      .text-content {
-        // min-width: $icon-size;
-        // max-width: calc(100% - #{$locked-icon-size} - #{$margin-right-locked-icon});
-        // max-width: calc(100% - #{$iconContainerSize} - #{$margin-right-locked-icon});
-      }
-
-      .icon-left {
-        // margin-right: $margin-right-locked-icon;
-      }
-    }
-
-
-
   }
 }
