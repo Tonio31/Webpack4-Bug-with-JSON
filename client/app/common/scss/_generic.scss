@@ -92,28 +92,28 @@ body {
 }
 
 //noinspection CssInvalidPseudoSelector
-@mixin inputsBorderStyling() {
-  &:focus {
-    border: 2px solid $blue-focus;
-  }
-
-  &.parent-submitted,
-  &.ng-dirty {
-    &.ng-invalid {
-      border: 2px solid $alert-color;
-      color: $alert-color;
-
-      &::placeholder {
-        color: $alert-color;
-      }
-    }
-
-    &.ng-valid {
-      border: 2px solid $success-color;
-      &::placeholder {
-        color: $success-color;
-      }
-    }
-
-  }
-}
+// @mixin inputsBorderStyling() {
+//   &:focus {
+//     border: 2px solid $blue-focus;
+//   }
+//
+//   &.parent-submitted,
+//   &.ng-dirty {
+//     &.ng-invalid {
+//       border: 2px solid $alert-color;
+//       color: $alert-color;
+//
+//       &::placeholder {
+//         color: $alert-color;
+//       }
+//     }
+//
+//     &.ng-valid {
+//       border: 2px solid $success-color;
+//       &::placeholder {
+//         color: $success-color;
+//       }
+//     }
+//
+//   }
+// }

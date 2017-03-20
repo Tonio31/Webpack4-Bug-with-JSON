@@ -77,8 +77,7 @@
     transition: background-color $speed3;
 
     span {
-      -webkit-touch-callout: none;
-      user-select: none;
+      @include noSelect;
     }
   }
 

@@ -1,9 +1,16 @@
 @import '../scss/_vars';
+@import '../../common/_foundation-functions';
+@import "../../common/foundation-settings";
 
 
 footer {
-  padding: rem_calc(10px);
   background-color: $onyx;
+  padding-left: rem-calc(5px);
+  padding-right: rem-calc(5px);
+  @media #{$medium-up} {
+    padding-left: rem-calc(10px);
+    padding-right: rem-calc(10px);
+  }
 }
 
 .footer {
