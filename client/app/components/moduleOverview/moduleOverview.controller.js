@@ -5,9 +5,6 @@ class ModuleOverviewController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'ModuleOverviewController' );
 
-    $log.info('moduleOverview this:', this);
-    
-
     this.name = 'Module 1 - Overview';
   }
 }

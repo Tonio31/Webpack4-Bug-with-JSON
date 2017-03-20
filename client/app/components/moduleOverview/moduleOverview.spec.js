@@ -5,6 +5,9 @@ import ModuleOverviewTemplate from './moduleOverview.html';
 
 describe('ModuleOverview', () => {
   let $rootScope, $componentController, $compile;
+  let ICON_FONTELLO;
+
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-1.json').blocks[1];
 
   beforeEach(window.module(ModuleOverviewModule));
 
@@ -21,16 +24,17 @@ describe('ModuleOverview', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+
+    let bindings = {
+      block: blockBinding
+    };
+
     beforeEach(() => {
       controller = $componentController('moduleOverview', {
         $scope: $rootScope.$new()
-      });
+      }, bindings);
     });
 
-
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
-    });
   });
 
   describe('View', () => {
@@ -39,13 +43,20 @@ describe('ModuleOverview', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<moduleOverview></moduleOverview>')(scope);
+      scope.block = blockBinding;
+      template = $compile('<module-overview block="block"></module-overview>')(scope);
       scope.$apply();
     });
 
 
     it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('moduleOverview');
+      expect(template.find('h1').html()).to.eq('Module 1 - Overview');
+    });
+
+    it('has a list item with the correct data in the label', () => {
+      let obj = blockBinding.data.steps;
+      let labelText = angular.element(template[0].querySelector('.h4-style'));
+      expect(labelText.html()).to.eq(obj[Object.keys(obj)[0]].title);
     });
   });
 
