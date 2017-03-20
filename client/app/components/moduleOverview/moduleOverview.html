@@ -1,0 +1,18 @@
+<div class="module-overview">
+  <h1>{{ $ctrl.name }}</h1>
+
+  <ul class="no-list">
+    <li ng-repeat="step in $ctrl.block.data.steps track by $index">
+      <div class="icon-wrap">
+        <span class="fontello-icon icon-pl-tick icon-success" ng-if="step.status === 'completed'"></span>
+        <span class="fontello-icon icon-pl-eye icon-active" ng-if="step.status === 'current'"></span>
+        <span class="fontello-icon icon-pl-lock icon-inactive" ng-if="step.status === 'locked'"></span>
+      </div>
+      <div class="text-wrap">
+        <h2 class="h4-style">{{step.title}}</h2>
+        <p>{{step.name}}</p>
+        <p class="duration">{{step.description}}</p>
+      </div>
+    </li>
+  </ul>
+</div>

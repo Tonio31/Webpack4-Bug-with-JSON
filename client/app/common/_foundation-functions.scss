@@ -201,3 +201,14 @@ $modules: () !default;
     @return 'h#{$from},' + headings($from+1, $to);
   }
 }
+
+@mixin makeIcon {
+  border: 2px solid $onyx;
+  border-radius: 50%;
+  width: $validation-icon-right;
+  height: $validation-icon-right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}

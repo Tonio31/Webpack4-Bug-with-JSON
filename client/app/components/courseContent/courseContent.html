@@ -18,6 +18,10 @@
                       <video-module data="block.data"></video-module>
                     </div>
 
+                    <div ng-switch-when="module_overview">
+                      <module-overview block="block"></module-overview>
+                    </div>
+
                     <div ng-switch-when="checkbox">
                       <checkbox on-update="$ctrl.updateInputFields(block.program_data_code, value)" is-top-level-form-submitted="topLevelForm.$submitted" block="block"></checkbox>
                     </div>
