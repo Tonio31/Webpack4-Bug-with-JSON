@@ -7,6 +7,33 @@
   &.invalid {
     color: $alert-color;
   }
+
+  &.icon-success {
+    &::before {
+      @include makeIcon;
+      background-color: $white;
+      border-color: $success-color;
+      color: $success-color;
+    }
+  }
+
+  &.icon-active {
+    &::before {
+      @include makeIcon;
+      background-color: $white;
+      border-color: $blue-focus;
+      color: $blue-focus;
+    }
+  }
+
+  &.icon-inactive {
+    &::before {
+      @include makeIcon;
+      background-color: $locked-grey;
+      border-color: $locked-grey;
+      color: $white;
+    }
+  }
 }
 
 .has-focus .fontello-icon {
