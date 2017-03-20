@@ -20,7 +20,15 @@ $modules: () !default;
   }
 }
 
+@mixin noSelect() {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
 @mixin inputsBorderStyling() {
+  border: 2px solid $onyx;
+  border-radius: $global-radius - 2px;
+
   &:focus {
     border: 2px solid $blue-focus;
   }
@@ -42,7 +50,6 @@ $modules: () !default;
         color: $success-color;
       }
     }
-
   }
 }
 

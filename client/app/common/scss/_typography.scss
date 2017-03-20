@@ -39,6 +39,14 @@ h3.quote-signature {
   text-transform: none;
 }
 
+.h1-style {
+  @extend h1;
+}
+
+.h3-style {
+  @extend h3;
+}
+
 .subheading {
   @extend h1;
 }

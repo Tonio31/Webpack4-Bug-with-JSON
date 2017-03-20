@@ -6,50 +6,58 @@
 
   <form novalidate name="login">
 
-    <small class="error" ng-show="$ctrl.invalidLogin">{{ 'LOGIN_FAILED' | translate }}</small>
+    <small class="error" ng-if="$ctrl.invalidLogin">{{ 'LOGIN_FAILED' | translate }}</small>
 
 
-    <h3>{{ 'USERNAME_OR_EMAIL' | translate }}</h3>
-    <input type="text"
-           name="username"
-           ng-class="{ 'parent-submitted': login.$submitted }"
-           required
-           ng-model="$ctrl.username">
-    <small class="error" ng-show="login.$submitted && login.username.$error.required">{{ 'USERNAME_OR_EMAIL_REQUIRED' | translate }}</small>
+    <ul class="no-list">
+      <li>
+        <label class="h3-style" for="username">{{ 'USERNAME_OR_EMAIL' | translate }}</label>
+        <input type="text"
+               id="username"
+               name="username"
+               ng-class="{ 'parent-submitted': login.$submitted }"
+               required
+               ng-model="$ctrl.username">
+        <small class="error" ng-show="login.$submitted && login.username.$error.required">{{ 'USERNAME_OR_EMAIL_REQUIRED' | translate }}</small>
+      </li>
+      <li>
+        <div class="clearfix">
+          <div class="left">
+            <label class="h3-style" for="password">{{ 'PASSWORD' | translate }}</label>
+          </div>
+          <div class="right show-password">
+            <a ng-click="$ctrl.showPassword = !$ctrl.showPassword">
+              <span aria-hidden="true" class="fontello-icon">e</span>
+              <span ng-if="!$ctrl.showPassword">Show</span>
+              <span ng-if="$ctrl.showPassword">Hide</span>
+            </a>
+          </div>
+        </div>
+        <input ng-attr-type="{{ $ctrl.showPassword ? 'text' : 'password' }}"
+              id="password"
+               name="password"
+               ng-class="{ 'parent-submitted': login.$submitted }"
+               required
+               ng-model="$ctrl.password">
+        <small class="error" ng-show="login.$submitted && login.password.$error.required">{{ 'PASSWORD_REQUIRED' | translate }}</small>
+      </li>
+      <li>
+        <button class="expand radius" type="submit" ng-click="$ctrl.login(login)">{{ 'LOGIN' | translate }}</button>
+      </li>
+      <li class="text-center keep-me-logged">
+        <label for="keepMeLoggedIn">
+          <input type="checkbox"
+                 class="input-checkbox"
+                 id="keepMeLoggedIn"
+                 ng-model="$ctrl.keepLoggedIn"
+                 name="keepMeLoggedIn">
+          <span class="checkbox-label">{{ 'KEEP_ME_LOGGED_IN' | translate }}</span>
+        </label>
 
-    <div class="clearfix">
-      <div class="left">
-        <h3>{{ 'PASSWORD' | translate }}</h3>
-      </div>
-      <div class="right">
-        <a ng-click="$ctrl.showPassword = !$ctrl.showPassword">Show</a>
-      </div>
-    </div>
-    <input ng-attr-type="{{ $ctrl.showPassword ? 'text' : 'password' }}"
-           name="password"
-           ng-class="{ 'parent-submitted': login.$submitted }"
-           required
-           ng-model="$ctrl.password">
-    <small class="error" ng-show="login.$submitted && login.password.$error.required">{{ 'PASSWORD_REQUIRED' | translate }}</small>
+        <p><a ng-click="$ctrl.forgotCredentials()">{{ 'FORGOT_CREDENTIALS' | translate }}</a></p>
+      </li>
+    </ul>
 
-    <button class="expand radius" type="submit" ng-click="$ctrl.login(login)">{{ 'LOGIN' | translate }}</button>
-
-    <br/>
-
-    <div class="text-center keep-me-logged">
-      <label>
-        <input type="checkbox"
-        class="input-checkbox"
-               ng-model="$ctrl.keepLoggedIn"
-               name="keepMeLoggedIn">
-        <span>{{ 'KEEP_ME_LOGGED_IN' | translate }}</span>
-      </label>
-
-      <a ng-click="$ctrl.forgotCredentials()">{{ 'FORGOT_CREDENTIALS' | translate }}</a>
-
-    </div>
 
   </form>
-
-
 </div>
