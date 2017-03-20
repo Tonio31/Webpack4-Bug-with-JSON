@@ -5,7 +5,7 @@
       <div class="sticky-bottom-container">
         <div class="sticky-bottom-main">
           <div class="row">
-            <div class="small-12 medium-8 small-centered columns">
+            <div class="small-12 medium-10 xlarge-8 small-centered columns">
 
               <!-- Beginning of main content in the page -->
               <h4 ng-bind-html="$ctrl.content.breadcrumbs | unsafe | uppercase"></h4>
@@ -44,6 +44,10 @@
                       </text-box>
                     </div>
 
+                    <div ng-switch-when="icon_text">
+                      <icon-text data="block.data"></icon-text>
+                    </div>
+
                     <div ng-switch-default>
                       <h1>This is a new block (block id={{block.id}})</h1>
                       <h3>Type: {{block.type}}</h3>
@@ -52,7 +56,7 @@
 
                   </div> <!-- END .block -->
                 </div> <!-- END ng-repeat -->
-            </div> <!-- END .small-12 medium-8 small-centered columns -->
+            </div> <!-- END .small-12 medium-10 xlarge-8 small-centered columns -->
             <!-- END of main content in the page -->
 
           </div> <!-- END .row -->
@@ -60,7 +64,7 @@
 
         <div ng-show="$ctrl.congratsBannerText" class="congrats-banner y-center-parent">
           <div class="row y-center-child">
-            <div class="small-12 medium-8 columns small-centered">
+            <div class="small-12 medium-10 xlarge-8 columns small-centered">
 
               <div class="row collapse y-center-parent congrats-content">
                 <div class="small-11 columns left">
@@ -71,7 +75,7 @@
                 </div>
               </div> <!-- END .congrats-content -->
 
-            </div> <!-- END .small-12 medium-8 columns small-centered -->
+            </div> <!-- END .small-12 medium-10 xlarge-8 columns small-centered -->
           </div> <!-- END .row -->
         </div> <!-- END .congrats-banner -->
 

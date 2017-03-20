@@ -109,9 +109,21 @@ gulp.task('component', () => {
   const parentPath = yargs.argv.parent || '';
   const destPath = path.join(resolveToComponents(), parentPath, name);
 
+  let reDetectUpperCase = new RegExp('[A-Z]', 'g');
+  let convertUppercase = (matchSubString, offset, wholeString) => {
+    let returnString = '';
+    if ( offset > 0 ) {
+      // add '-' only if it is not the first letter in the word
+      returnString += '-';
+    }
+    returnString += matchSubString.toLowerCase()
+    return returnString;
+  };
+
   return gulp.src(paths.blankTemplates)
     .pipe(template({
       name: name,
+      dashCaseName: name.replace(reDetectUpperCase, convertUppercase),
       upCaseName: cap(name)
     }))
     .pipe(rename((path) => {

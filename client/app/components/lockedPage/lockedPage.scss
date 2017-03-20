@@ -1,11 +1,12 @@
-@import 'common/common';
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
 
 .locked-page {
 
   $locked-icon-size: 8rem;
   $margin-right-locked-icon: 2rem;
 
-  .flex-parent {
+/*  .flex-parent {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -47,6 +48,6 @@
 
 
 
-  }
+  }*/
 
 }
