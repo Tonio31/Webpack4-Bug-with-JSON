@@ -1,4 +1,5 @@
-@import 'common/common';
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
 
 .login-root {
 
@@ -9,24 +10,48 @@
   align-items: center;
 
   .login-panel {
-    min-width: $small-breakpoint;
+    min-width: 100%;
     margin: auto;
+    @media #{$medium-up} {
+      min-width: $small-breakpoint;
+    }
+
+    h1 {
+      font-weight: 100;
+      color: lighten($ship-grey, 30);
+    }
+
+    h2 {
+      font-weight: 400;
+      color: $onyx;
+    }
+
+    input {
+      margin: 0;
+    }
+
+    label {
+      text-transform: none;
+    }
   }
 
   .image-login {
-    background: url('assets/bg.jpg') center right / 100% auto no-repeat;
+    // better to have this in a media query because we dont want this to load for mobile users
+    @media #{$medium-up} {
+      background-image: url('assets/bg.jpg');
+      background-position: center right ;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
     height: 100%;
     width: 100%;
   }
 
   .logo-potentialife {
-    display: inline-block;
-    background-image: url('../../common/navbar/assets/logo-potential-life.svg');
-    background-repeat: no-repeat;
-    background-position: 1px 4px;
-    background-size: auto 80%;
-    height: 6rem;
-    width: 6rem;
+    font-family: 'fontello';
+    font-size: 55px;
+    line-height: 55px;
+    color: $logoColor;
   }
 
   h3 {
@@ -35,6 +60,35 @@
 
   small.error {
     margin-top: -1rem;
+  }
+
+  .show-password .fontello-icon {
+    color: $blue-focus;
+  }
+
+  .keep-me-logged {
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: rem_calc(30px);
+
+      .checkbox-label {
+        @include noSelect;
+        font-size: rem_calc(18px);
+        padding-left: rem_calc(10px);
+      }
+
+      [type="checkbox"] {
+        border-radius: $global-radius / 2;
+        width: rem_calc(25px);
+        height: rem_calc(25px);
+      }
+    }
+
+    p {
+      font-size: rem_calc(16px);
+    }
   }
 
 }

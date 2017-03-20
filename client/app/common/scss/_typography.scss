@@ -13,7 +13,7 @@ h3 {
   color: #333333;
   font-size: $h3-18px;
   line-height: $h3-28px;
-  font-weight: bold;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -37,6 +37,18 @@ h3.quote-signature {
   font-family: 'Open Sans', serif;
   font-weight: 500;
   text-transform: none;
+}
+
+.h1-style {
+  @extend h1;
+}
+
+.h3-style {
+  @extend h3;
+}
+
+.subheading {
+  @extend h1;
 }
 
 .note {

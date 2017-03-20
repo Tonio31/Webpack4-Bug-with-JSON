@@ -1,5 +1,7 @@
 @import '../../common/scss/_vars';
 @import '../../common/_foundation-settings';
+// @import '../../common/_foundation-functions';
+
 .login {
 
   height: 100%;
@@ -10,6 +12,10 @@
     a {
       text-decoration: underline;
     }
+  }
+
+  form {
+    padding-top: rem_calc(20px);
   }
 
   input[type="text"],

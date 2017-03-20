@@ -1,5 +1,6 @@
-@import 'common/common';
-
+@import '../../common/scss/_vars';
+@import '../../common/_foundation-settings';
+// @import '../../common/_foundation-functions';
 main {
   height: 100%;
 
@@ -14,5 +15,3 @@ main {
   }
 
 }
-
-

@@ -1,0 +1,13 @@
+.no-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    margin-bottom: $default-padding * 3;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

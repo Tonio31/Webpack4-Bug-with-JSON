@@ -6,6 +6,7 @@
 .app {
   background-color: $lightBgColor;
   height: 100%;
+  min-width: $smallest-breakpoint;
 }
 
 html, body {

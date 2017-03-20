@@ -155,6 +155,7 @@ $global-radius: 8px;
 
 // d. Media Query Ranges
 // - - - - - - - - - - - - - - - - - - - - - - - - -
+$smallest-breakpoint: em-calc(320);
 
 $small-breakpoint:  em-calc(480);
 $medium-breakpoint: em-calc(768);

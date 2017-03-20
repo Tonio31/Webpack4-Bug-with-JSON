@@ -21,7 +21,6 @@ body {
     box-shadow: none;
     @media #{$large-up} {
       display: none;
-      // background-color: rgba(255, 0, 0, .4);
     }
   }
 }
@@ -68,7 +67,6 @@ body {
   }
 
   .validation-icon-right {
-    // flex-basis: rem_calc(3rem);
     padding: $default-padding;
     width: rem_calc($validation-icon-right);
     height: rem_calc($validation-icon-right);
@@ -89,31 +87,4 @@ body {
 }
 .ng-valid-required ~ .validation-icon-right.has-focus {
   border-color: $blue-focus;
-}
-
-//noinspection CssInvalidPseudoSelector
-@mixin inputsBorderStyling() {
-  &:focus {
-    border: 2px solid $blue-focus;
-  }
-
-  &.parent-submitted,
-  &.ng-dirty {
-    &.ng-invalid {
-      border: 2px solid $alert-color;
-      color: $alert-color;
-
-      &::placeholder {
-        color: $alert-color;
-      }
-    }
-
-    &.ng-valid {
-      border: 2px solid $success-color;
-      &::placeholder {
-        color: $success-color;
-      }
-    }
-
-  }
 }
