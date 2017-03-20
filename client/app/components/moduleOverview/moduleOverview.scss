@@ -66,10 +66,12 @@
     p {
       color: lighten($simon-black, 10);
       margin: 0;
+      padding: 4px 0;
 
       &.duration {
         font-size: 12px;
         font-weight: 600;
+        padding: 0;
       }
     }
   }
