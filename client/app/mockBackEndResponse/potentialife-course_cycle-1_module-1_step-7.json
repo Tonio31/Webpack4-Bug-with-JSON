@@ -24,6 +24,7 @@
       }
     },
     {
+      "id": 51,
       "type": "static",
       "element": "icon_text",
       "data": {
@@ -31,12 +32,94 @@
           "type": "l",
           "color": "success"
         },
-        "text": "You will now complete the VIA strengths finder, This will help you understand your unique character strengths - what's best about who you are. It should take approximately 10 minutes.",
+        "text": "<h1>This content is locked!<\/p>",
+        "button": {
+          "href": "/potentialife-course/cycle-1/module-1/step-9",
+          "color": "primary",
+          "label": "Resume your progress"
+        }
+      }
+    },
+    {
+      "id": 52,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "!",
+          "color": "alert"
+        },
+        "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
+      }
+    },
+    {
+      "id": 53,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "R",
+          "color": ""
+        },
+        "text": "<p>If you don't see a button under this text, you should worry, the whole world is going crazy, the button should absolutely be here and in addition, it should be red.<\/p>",
         "button": {
           "href": "https:\/\/www.surveymonkey.co.uk\/",
-          "color": "success",
-          "label": "Go to VIA Survey Now"
+          "color": "alert",
+          "label": "Button in Red"
         }
+      }
+    },
+    {
+      "id": 73,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "l",
+          "color": ""
+        },
+        "text": "<h1>This content is locked!<\/h1><h3>Unfortunately you'll need to do the previous steps before you'll be able to gain access to this one.<\/h3>",
+        "button": {
+          "href": "https:\/\/www.surveymonkey.co.uk\/",
+          "color": "primary",
+          "label": "Button in Red"
+        }
+      }
+    },
+    {
+      "id": 54,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "D",
+          "color": "primary"
+        },
+        "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
+      }
+    },
+    {
+      "id": 55,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "M",
+          "color": ""
+        },
+        "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
+      }
+    },
+    {
+      "id": 56,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "s",
+          "color": "alert"
+        },
+        "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
       }
     }
   ]

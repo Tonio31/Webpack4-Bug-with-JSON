@@ -1,0 +1,33 @@
+<div class="icon-text">
+
+  <div class="flex-parent">
+    <div class="y-center-parent icon-container" ng-class="{
+             'hide-border': $ctrl.isBorderPartOfIcon($ctrl.data.icon.type),
+             'big-icon': $ctrl.isIconBig($ctrl.data.icon.type)
+           }">
+      <div class="fontello-icon icon-left y-center-child"
+           ng-class="{
+             '{{$ctrl.data.icon.color}}': $ctrl.data.icon.color
+           }">
+        {{$ctrl.data.icon.type}}
+      </div>
+    </div>
+    <div class="text-content y-center-parent">
+
+      <div class="y-center-child">
+        <div ng-bind-html="$ctrl.data.text | unsafe"></div>
+
+        <button ng-if="$ctrl.data.button"
+                ng-class="$ctrl.data.button.color"
+                class="radius"
+                type="button"
+                ng-click="$ctrl.goToButtonLink($ctrl.data.button.href)">
+          {{ $ctrl.data.button.label }}
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

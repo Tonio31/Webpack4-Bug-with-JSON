@@ -2,8 +2,12 @@
 .icon-pl-exclamation:before { content: '\21'; } /* '!' */
 .icon-pl-lt:before { content: '\3c'; } /* '&lt;' */
 .icon-pl-gt:before { content: '\3e'; } /* '&gt;' */
+.icon-badge-self-discovery:before { content: '\44'; } /* 'D' */
+.icon-badge-lifemap:before { content: '\4d'; } /* 'M' */
+.icon-badge-time-to-reflect:before { content: '\52'; } /* 'R' */
 .icon-pl-eye:before { content: '\65'; } /* 'e' */
 .icon-pl-lock:before { content: '\6c'; } /* 'l' */
 .icon-pl-pdf:before { content: '\70'; } /* 'p' */
+.icon-assignment_strengths-copy-2:before { content: '\73'; } /* 's' */
 .icon-pl-tick:before { content: '\74'; } /* 't' */
 .icon-pl-logo:before { content: '\75'; } /* 'u' */

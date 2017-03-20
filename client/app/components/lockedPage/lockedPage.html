@@ -5,18 +5,8 @@
       <br/>
       <br/>
 
-      <div class="flex-parent">
-        <div class="y-center-parent">
-          <div class="fontello-icon locked-icon y-center-child">
-            {{$ctrl.ICON_FONTELLO.LOCK}}
-          </div>
-        </div>
-        <div class="locked-content">
-          <h1>{{ 'CONTENT_LOCKED' | translate }}</h1>
-          <h3>{{ 'CONTENT_LOCKED_DETAILS' | translate }}</h3>
-          <button class="radius" type="button" ng-click="$ctrl.resumeProgress()">{{ 'RESUME_YOUR_PROGRESS' | translate }}</button>
-        </div>
-      </div>
+      <icon-text data="$ctrl.iconTextDataBinding"></icon-text>
+
 
     </div>
   </div>

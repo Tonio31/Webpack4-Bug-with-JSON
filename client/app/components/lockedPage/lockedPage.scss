@@ -1,54 +1,7 @@
-@import '../../common/scss/_vars';
-@import '../../common/_foundation-settings';
-// @import '../../common/_foundation-functions';
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+// @import '~client/app/common/_foundation-functions';
+
 
 .locked-page {
-
-  $locked-icon-size: 8rem;
-  $margin-right-locked-icon: 2rem;
-
-  .flex-parent {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    h3 {
-      text-transform: none;
-    }
-
-    .locked-icon {
-      color: $black;
-      font-size: 5rem;
-      line-height: $locked-icon-size;
-      text-align: center;
-      width: $locked-icon-size;
-
-      border-radius: 50%;
-      border: 5px solid $black;
-    }
-
-    @media #{$small-only}, #{$medium-only} {
-      .locked-content {
-        padding-top: 1rem;
-        text-align: center;
-      }
-
-
-    }
-
-    @media #{$large-up} {
-      .locked-content {
-        min-width: $locked-icon-size;
-        max-width: calc(100% - #{$locked-icon-size} - #{$margin-right-locked-icon});
-      }
-
-      .locked-icon {
-        margin-right: $margin-right-locked-icon;
-      }
-    }
-
-
-
-  }
-
 }

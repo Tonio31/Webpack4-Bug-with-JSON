@@ -103,6 +103,7 @@ module.exports = exports = {
     "no-param-reassign": ERROR,
     "no-path-concat": ERROR,
     "no-process-env": WARN,
+    "no-fallthrough": ERROR,
     "no-process-exit": ERROR,
     "no-proto": ERROR,
     "no-redeclare": ERROR,

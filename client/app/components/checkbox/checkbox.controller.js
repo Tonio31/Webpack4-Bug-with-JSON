@@ -16,6 +16,7 @@ class CheckboxController {
     };
 
     this.checkIfRequired = () => {
+      // eslint-disable-next-line no-unused-vars
       for ( let [ key, value ] of Object.entries(this.selection) ) {
         if ( value === true ) {
           return false;

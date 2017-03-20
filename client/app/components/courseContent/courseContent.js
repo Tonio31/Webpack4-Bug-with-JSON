@@ -8,10 +8,11 @@ import MenuService from 'common/menuFactory/menu';
 import videoModule from 'components/videoModule/videoModule';
 import textAreaModule from 'components/textArea/textArea';
 import textBoxModule from 'components/textBox/textBox';
+import iconTextModule from 'components/iconText/iconText';
 import checkbox from 'components/checkbox/checkbox';
 import radioList from 'components/radioList/radioList';
 import constantModule from 'common/constants';
-import { unsafeFilter } from './courseContent.filter';
+import filtersModule from 'common/filters/filters';
 
 
 let courseContentModule = angular.module('courseContent', [
@@ -22,13 +23,14 @@ let courseContentModule = angular.module('courseContent', [
   videoModule,
   textAreaModule,
   textBoxModule,
+  iconTextModule,
   checkbox,
   radioList,
   constantModule,
+  filtersModule,
   LogDecorator
 ])
   .component('courseContent', courseContentComponent)
-  .filter('unsafe', unsafeFilter)
   .name;
 
 export default courseContentModule;
