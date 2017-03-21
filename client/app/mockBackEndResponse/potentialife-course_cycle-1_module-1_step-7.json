@@ -29,7 +29,7 @@
       "element": "icon_text",
       "data": {
         "icon": {
-          "type": "l",
+          "type": "icon-pl-lock",
           "color": "success"
         },
         "text": "<h1>This content is locked!<\/p>",
@@ -46,7 +46,7 @@
       "element": "icon_text",
       "data": {
         "icon": {
-          "type": "!",
+          "type": "icon-pl-exclamation",
           "color": "alert"
         },
         "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
@@ -58,7 +58,7 @@
       "element": "icon_text",
       "data": {
         "icon": {
-          "type": "R",
+          "type": "icon-badge-time-to-reflect",
           "color": ""
         },
         "text": "<p>If you don't see a button under this text, you should worry, the whole world is going crazy, the button should absolutely be here and in addition, it should be red.<\/p>",
@@ -75,7 +75,7 @@
       "element": "icon_text",
       "data": {
         "icon": {
-          "type": "l",
+          "type": "icon-pl-lock",
           "color": ""
         },
         "text": "<h1>This content is locked!<\/h1><h3>Unfortunately you'll need to do the previous steps before you'll be able to gain access to this one.<\/h3>",
@@ -92,7 +92,7 @@
       "element": "icon_text",
       "data": {
         "icon": {
-          "type": "D",
+          "type": "icon-badge-self-discovery",
           "color": "primary"
         },
         "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
@@ -104,7 +104,7 @@
       "element": "icon_text",
       "data": {
         "icon": {
-          "type": "M",
+          "type": "icon-badge-lifemap",
           "color": ""
         },
         "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
@@ -116,7 +116,7 @@
       "element": "icon_text",
       "data": {
         "icon": {
-          "type": "s",
+          "type": "icon-badge-strengths",
           "color": "alert"
         },
         "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"

@@ -1,5 +1,5 @@
 class IconTextController {
-  constructor($log, $state, $window, ICON_FONTELLO) {
+  constructor($log, $state, $window) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -9,9 +9,9 @@ class IconTextController {
 
     this.isBorderPartOfIcon = (iIconType) => {
       switch (iIconType) {
-        case ICON_FONTELLO.SELF_DISCOVERY:
-        case ICON_FONTELLO.TIME_REFLECT:
-        case ICON_FONTELLO.LIFE_MAP:
+        case 'icon-badge-lifemap':
+        case 'icon-badge-self-discovery':
+        case 'icon-badge-time-to-reflect':
           return true;
         default:
           return false;
@@ -19,7 +19,7 @@ class IconTextController {
     };
 
     this.isIconBig = (iIconType) => {
-      if ( iIconType === ICON_FONTELLO.LIFE_MAP) {
+      if ( iIconType === 'icon-badge-lifemap' ) {
         return true;
       }
 
