@@ -7,8 +7,6 @@
   $icon-size: 9rem;
   $margin-right-locked-icon: 2rem;
 
-  padding: rem_calc(10px) 0;
-
   .flex-parent {
     display: flex;
     flex-wrap: wrap;
@@ -27,13 +25,15 @@
 
       min-width: $icon-size;
       width: $icon-size;
-      margin: rem_calc(10px);
-
 
       &.hide-border > .icon-left {
         border: none;
         font-size: $icon-size;
         max-width: $icon-size;
+
+        &::before {
+          margin: 0;
+        }
       }
 
       &.big-icon {
@@ -55,6 +55,10 @@
         border-radius: 50%;
         border: 5px solid;
 
+        &::before {
+          width: auto;
+        }
+
         &.success {
           color: $success-color;
         }
@@ -71,6 +75,10 @@
           color: $alert-color;
         }
       }
+    }
+
+    .text-content {
+      padding-left: 1rem;
     }
 
     @media #{$small-only}, #{$medium-only} {

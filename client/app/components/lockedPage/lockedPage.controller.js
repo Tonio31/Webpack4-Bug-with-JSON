@@ -1,5 +1,5 @@
 class LockedPageController {
-  constructor($log, $filter, ICON_FONTELLO, Menu) {
+  constructor($log, $filter, Menu) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -7,7 +7,7 @@ class LockedPageController {
 
     this.iconTextDataBinding = {
       icon: {
-        type: ICON_FONTELLO.LOCK,
+        type: 'icon-pl-lock',
         color: ''
       },
       text: `<h1>${$filter('translate')('CONTENT_LOCKED')}<\/h1>
