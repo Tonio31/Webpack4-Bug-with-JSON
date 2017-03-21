@@ -1,3 +1,5 @@
+@import '../_foundation-functions';
+
 // colours
 $accentColor: #1de9b6;
 $logoColor: #ec754e;
@@ -25,8 +27,8 @@ $h4-14px: 0.875rem;
 $h4-18px: 1.125rem;
 
 // gives padding
-$padding-10px: rem_calc(10px);
-$default-padding: rem_calc(10px);
+$padding-10px: rem_calc(10);
+$default-padding: rem_calc(10);
 
 // animation speed
 $speed3: 333ms;

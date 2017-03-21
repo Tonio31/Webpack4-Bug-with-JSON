@@ -16,15 +16,31 @@
       text-transform: none;
     }
 
-    .locked-icon {
-      color: $black;
-      font-size: 5rem;
-      line-height: $locked-icon-size;
-      text-align: center;
-      width: $locked-icon-size;
+    // .locked-icon {
+    //   color: $black;
+    //   font-size: 5rem;
+    //   line-height: $locked-icon-size;
+    //   text-align: center;
+    //   width: $locked-icon-size;
+    //
+    //   border-radius: 50%;
+    //   border: 5px solid $black;
+    // }
 
+    .icon-pl-lock {
+      font-size: rem_calc(88);
+      border: 2px solid $onyx;
       border-radius: 50%;
-      border: 5px solid $black;
+
+      &::before {
+        background-color: transparent;
+        border-color: $black;
+        color: $black;
+        width: rem_calc(150);
+        height: rem_calc(150);
+        padding-bottom: 4px;
+        padding-right: 1px;
+      }
     }
 
     @media #{$small-only}, #{$medium-only} {
