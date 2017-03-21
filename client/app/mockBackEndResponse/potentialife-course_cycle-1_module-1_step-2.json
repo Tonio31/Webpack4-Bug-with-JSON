@@ -247,22 +247,32 @@
         "items": [
           {
             "label": "this is the label 1",
+            "value": "this_is_the_label_1",
+            "checked": false,
             "feedback": null
           },
           {
             "label": "this is the label 2",
+            "value": "this_is_the_label_2",
+            "checked": false,
             "feedback": null
           },
           {
             "label": "this is the label 3",
+            "value": "this_is_the_label_3",
+            "checked": false,
             "feedback": null
           },
           {
             "label": "this is the label 4",
+            "value": "this_is_the_label_4",
+            "checked": false,
             "feedback": "this answer has feedback"
           },
           {
             "label": "this is the label 5",
+            "value": "this is the label 5",
+            "checked": false,
             "feedback": null
           }
         ]

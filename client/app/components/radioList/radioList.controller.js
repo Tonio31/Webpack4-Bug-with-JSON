@@ -18,7 +18,7 @@ class RadioListController {
     };
 
     this.actionOnUserInput = (iIsFormValid) => {
-      this.onUpdate({ value: this.selected });
+      this.onUpdate({ value: this.selected, checked: true });
       $log.log('actionOnUserInput() - iIsFormValid=', iIsFormValid);
     };
 
