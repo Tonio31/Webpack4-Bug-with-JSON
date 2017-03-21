@@ -36,6 +36,24 @@
   }
 }
 
+.icon-pl {
+  &-tick {
+    padding-top: 2px;
+    padding-right: 2px; 
+  }
+}
+
 .has-focus .fontello-icon {
   color: $blue-focus;
+}
+
+.congrats-banner {
+  .icon-success {
+    &::before {
+      @include makeIcon;
+      background-color: transparent;
+      border-color: $white;
+      color: $white;
+    }
+  }
 }

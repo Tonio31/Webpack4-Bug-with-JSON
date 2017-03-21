@@ -205,8 +205,8 @@ $modules: () !default;
 @mixin makeIcon {
   border: 2px solid $onyx;
   border-radius: 50%;
-  width: $validation-icon-right;
-  height: $validation-icon-right;
+  width: $validation-icon-right + 1;
+  height: $validation-icon-right + 1;
   display: flex;
   align-items: center;
   justify-content: center;

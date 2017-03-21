@@ -244,13 +244,43 @@
         "label": "this is the label",
         "placeholder": "this is the placholder",
         "name": "this is the name",
-        "items": {
-          "this_is_the_value_1": "this is the label 1",
-          "this_is_the_value_2": "this is the label 2",
-          "this_is_the_value_3": "this is the label 3",
-          "this_is_the_value_4": "this is the label 4",
-          "this_is_the_value_5": "this is the label 5"
-        }
+        "items": [
+          {
+            "label": "this is the label 1",
+            "value": "this_is_the_label_1",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 2",
+            "value": "this_is_the_label_2",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 3",
+            "value": "this_is_the_label_3",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 4",
+            "value": "this_is_the_label_4",
+            "sub_label": null,
+            "checked": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "this is the label 5",
+            "value": "this is the label 5",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          }
+        ]
       },
       "pivot": {
         "step_id": 6,
