@@ -1,9 +1,11 @@
 class ModuleOverviewController {
-  constructor($log, ICON_FONTELLO) {
+  constructor($log) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'ModuleOverviewController' );
+
+    $log.log('ModuleOverviewController');
 
   }
 }
