@@ -33,7 +33,6 @@ class CheckboxController {
         }
       }
       this.onUpdate({ value: checkedInput, checked: true });
-      $log.info("value: checkedInput", checkedInput);
     };
 
   }
