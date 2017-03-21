@@ -29,7 +29,11 @@ let constantModule = angular.module('app.common.constant', [
     ARROW_RIGHT: '>',
     ARROW_LEFT: '<',
     PDF_ICON: 'p',
-    PL_ICON: 'u'
+    PL_ICON: 'u',
+    TIME_REFLECT: 'R',
+    SELF_DISCOVERY: 'D',
+    STRENGTHS: 's',
+    LIFE_MAP: 'M',
   })
 .name;
 

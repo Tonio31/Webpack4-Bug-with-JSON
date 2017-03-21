@@ -8,7 +8,6 @@ import LockedPageTemplate from './lockedPage.html';
 describe('LockedPage', () => {
   let $rootScope, $componentController, $state, $compile;
   let Menu;
-  let goSpy;
   let currentStepUrl = '/potentialife-course/cycle-1/module-1/step-1';
 
   let mockTranslateFilter = (value) => {
@@ -35,27 +34,8 @@ describe('LockedPage', () => {
         }
       };
     });
-
-
-    goSpy = sinon.spy($state, 'go');
   }));
 
-  describe('Controller', () => {
-    // controller specs
-    let controller;
-    beforeEach(() => {
-      controller = $componentController('lockedPage', {
-        $scope: $rootScope.$new()
-      });
-    });
-
-    it('change state when we click on Resume Progress', sinon.test( () => {
-      controller.resumeProgress();
-
-      sinon.assert.calledWith(goSpy, currentStepUrl);
-    }));
-
-  });
 
   describe('View', () => {
     // view specs

@@ -1,5 +1,5 @@
-@import '../../common/scss/_vars';
-@import '../../common/_foundation-settings';
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
 
 $height-navigation-banner: rem_calc(80px);
 $height-button-banner: rem_calc(45px);
@@ -57,16 +57,4 @@ $tick-size: 3rem;
       outline: none;
     }
   }
-
-  .y-center-parent {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .y-center-child {
-    flex: 1;
-  }
-
-
 }

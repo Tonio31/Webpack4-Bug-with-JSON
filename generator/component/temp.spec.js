@@ -39,7 +39,7 @@ describe('<%= upCaseName %>', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<<%= name %>></<%= name %>>')(scope);
+      template = $compile('<<%= dashCaseName %>></<%= dashCaseName %>>')(scope);
       scope.$apply();
     });
 

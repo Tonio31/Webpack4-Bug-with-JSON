@@ -1,0 +1,83 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+
+.icon-text {
+
+  $bigIconContainerSize: 12.5rem;
+  $icon-size: 9rem;
+  $margin-right-locked-icon: 2rem;
+
+  padding: rem_calc(10px) 0;
+
+  .flex-parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media #{$medium-up} {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
+
+    h3 {
+      text-transform: none;
+    }
+
+    .icon-container {
+
+      min-width: $icon-size;
+      width: $icon-size;
+      margin: rem_calc(10px);
+
+
+      &.hide-border > .icon-left {
+        border: none;
+        font-size: $icon-size;
+        max-width: $icon-size;
+      }
+
+      &.big-icon {
+        justify-content: flex-start;
+        min-width: $bigIconContainerSize;
+      }
+
+
+      .icon-left {
+        box-sizing: border-box;
+        color: $black;
+        font-size: 5rem;
+        line-height: calc(#{$icon-size} - .5rem);
+        text-align: center;
+        height: $icon-size;
+        width: $icon-size;
+        max-width: $icon-size;
+
+        border-radius: 50%;
+        border: 5px solid;
+
+        &.success {
+          color: $success-color;
+        }
+
+        &.primary {
+          color: $primary-color;
+        }
+
+        &.secondary {
+          color: $secondary-color;
+        }
+
+        &.alert {
+          color: $alert-color;
+        }
+      }
+    }
+
+    @media #{$small-only}, #{$medium-only} {
+      .text-content {
+        padding-top: 1rem;
+        text-align: center;
+      }
+    }
+  }
+}
