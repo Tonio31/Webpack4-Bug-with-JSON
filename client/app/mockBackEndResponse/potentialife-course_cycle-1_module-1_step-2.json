@@ -222,13 +222,28 @@
         "label": "this is the label",
         "placeholder": "this is the placholder",
         "name": "this is the name",
-        "items": {
-          "this_is_the_value_1": "this is the label 1",
-          "this_is_the_value_2": "this is the label 2",
-          "this_is_the_value_3": "this is the label 3",
-          "this_is_the_value_4": "this is the label 4",
-          "this_is_the_value_5": "this is the label 5"
-        }
+        "items": [
+          {
+            "label": "Meeting with Con",
+            "value": "12312",
+            "checked": false
+          },
+          {
+            "label": "Meeting with Dan",
+            "value": "dan",
+            "checked": false
+          },
+          {
+            "label": "Meeting with an Alien",
+            "value": "alien",
+            "checked": true
+          },
+          {
+            "label": "Meeting with my bed",
+            "value": "bed",
+            "checked": false
+          }
+        ]
       },
       "pivot": {
         "step_id": 6,

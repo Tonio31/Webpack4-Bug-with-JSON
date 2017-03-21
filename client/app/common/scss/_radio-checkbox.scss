@@ -76,7 +76,8 @@
     padding: rem_calc(10px);
     transition: background-color $speed3;
 
-    span {
+    span, strong {
+      display: block;
       @include noSelect;
     }
   }
