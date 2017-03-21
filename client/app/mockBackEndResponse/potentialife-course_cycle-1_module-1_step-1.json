@@ -27,7 +27,7 @@
       "type":"static",
       "element":"module_overview",
       "data": {
-        "title": "",
+        "title": "Module 1 - Overview",
         "steps": [
           {
             "title": "Step 1",

@@ -123,6 +123,7 @@
       &::after {
         content: 't';
         font-size: rem_calc(18px);
+        padding-top: 3px;
         opacity: 1;
       }
     }
@@ -131,5 +132,11 @@
     .validation-icon-right {
       border-color: $alert-color;
     }
+  }
+
+  .blockquote {
+    @extend label;
+    cursor: default;
+    padding: 0;
   }
 }
