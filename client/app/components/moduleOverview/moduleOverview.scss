@@ -1,5 +1,5 @@
-@import '../../common/scss/_vars';
-@import '../../common/_foundation-settings';
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
 
 .module-overview {
 
@@ -30,6 +30,7 @@
 
     .fontello-icon {
       $icon-border: 1px; //border width of icon
+      padding: 0;
 
       &::after {
         content: '';
