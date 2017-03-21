@@ -23,7 +23,7 @@
             ng-model="$ctrl.selected"
             ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid)">
         </label>
-        <blockquote ng-if="item.feedback" ng-show="$ctrl.selected === item.label" class="blockquote fgcolour-success">
+        <blockquote ng-if="item.feedback" ng-show="$ctrl.selected === item.value" class="blockquote fgcolour-success">
           <p>{{item.feedback}}</p>
         </blockquote>
       </li>
