@@ -24,6 +24,7 @@
       }
     },
     {
+      "id": 52,
       "type":"static",
       "element":"bar_chart",
       "data": {
@@ -32,7 +33,7 @@
           {
             "title": "Work",
             "color": "#d3d3d3",
-            "value": 21
+            "value": 0
           },
           {
             "title": "Non-Work",
@@ -42,12 +43,42 @@
           {
             "title": "Sleep",
             "color": "blue",
-            "value": 25
+            "value": 95
           },
           {
             "title": "Whatever",
             "color": "red",
-            "value": 90
+            "value": 100
+          }
+        ]
+      }
+    },
+    {
+      "id": 58,
+      "type":"static",
+      "element":"bar_chart",
+      "data": {
+        "title":"Your SECOND strengths breakdown",
+        "bars":[
+          {
+            "title": "Work",
+            "color": "#d3d3d3",
+            "value": 52
+          },
+          {
+            "title": "Non-Work",
+            "color": "green",
+            "value": 75
+          },
+          {
+            "title": "Sleep",
+            "color": "blue",
+            "value": 95
+          },
+          {
+            "title": "Whatever",
+            "color": "red",
+            "value": 0
           }
         ]
       }

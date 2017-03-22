@@ -5,7 +5,6 @@ import ModuleOverviewTemplate from './moduleOverview.html';
 
 describe('ModuleOverview', () => {
   let $rootScope, $componentController, $compile;
-  let ICON_FONTELLO;
 
   let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-1.json').blocks[1];
 

@@ -5,7 +5,7 @@ import './barChart.scss';
 let barChartComponent = {
   restrict: 'E',
   bindings: {
-    data: '<'
+    block: '<'
   },
   template,
   controller

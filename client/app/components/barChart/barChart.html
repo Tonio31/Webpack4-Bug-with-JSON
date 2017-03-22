@@ -1,14 +1,15 @@
 <div class="bar-chart">
 
-  <h3 class="text-center">{{ $ctrl.data.title }}</h3>
+  <p class="bar-char-title text-center">{{ $ctrl.block.data.title }}</p>
 
-  <c3chart bindto-id="stacked-bar-plot1-chart"
-           padding-top="-30"
+  <c3chart bindto-id="barChart-{{$ctrl.block.id}}"
+           padding-top="-60"
            labels-format-function="$ctrl.formatLabels"
+           sort-data="null"
            chart-data="$ctrl.chartData"
-           chart-columns="$ctrl.chartColumns"
-           callback-function="$ctrl.handleCallback">
-    <chart-axes values-x="x-label"/>
+           chart-columns="$ctrl.chartColumns">
+    <chart-bar ratio="0.8"/>
+    <chart-axes values-x="{{$ctrl.COLUMN_ID.xLabels}}"/>
     <chart-group group-values="{{$ctrl.chartGroup}}"/>
     <chart-axis>
       <chart-axis-x axis-type="category">
