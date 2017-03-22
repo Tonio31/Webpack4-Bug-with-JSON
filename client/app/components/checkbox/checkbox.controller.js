@@ -32,7 +32,7 @@ class CheckboxController {
           checkedInput.push(key);
         }
       }
-      this.onUpdate({ value: checkedInput });
+      this.onUpdate({ value: checkedInput, checked: true });
     };
 
   }
