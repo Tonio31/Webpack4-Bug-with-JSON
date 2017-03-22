@@ -225,6 +225,7 @@
         "items": [
           {
             "label": "Meeting with Con",
+            "sub_label": "non-work",
             "value": "12312",
             "checked": false
           },
