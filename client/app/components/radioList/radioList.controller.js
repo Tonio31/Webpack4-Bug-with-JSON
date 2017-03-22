@@ -5,7 +5,7 @@ class RadioListController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'RadioListController' );
 
-    let listIndex = 0;
+    this.listIndex = 0;
 
     this.name = 'radioList';
     this.icons = ICON_FONTELLO;
@@ -14,17 +14,19 @@ class RadioListController {
     this.limit = 5;
     this.showingMore = false;
 
+    // if greater than 5 then show all items, and hide hide less button
+
 
     this.toggleMore = () => {
-      $log.info('index', listIndex);
+      $log.info('index', this.listIndex);
       this.showingMore = !this.showingMore;
       if (this.showingMore) {
         this.limitStart = 0;
         this.limit = 100;
       }
       else {
-        if (listIndex >= 2) {
-          this.limitStart = listIndex - 2;
+        if (this.listIndex >= 2) {
+          this.limitStart = this.listIndex - 2;
         }
         else {
           this.limitStart = 0;
@@ -40,7 +42,7 @@ class RadioListController {
     };
 
     this.actionOnUserInput = (iIsFormValid, index) => {
-      listIndex = index;
+      this.listIndex = index;
       this.onUpdate({ value: this.selected, checked: true });
       $log.log('actionOnUserInput() - iIsFormValid=', iIsFormValid);
     };

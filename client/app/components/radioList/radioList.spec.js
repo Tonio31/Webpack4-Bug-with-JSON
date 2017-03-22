@@ -47,6 +47,24 @@ describe('RadioList', () => {
       expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
     });
 
+    it('has toggleMore() which shows all items', () => {
+      controller.toggleMore();
+      expect(controller.showingMore).to.eq(true);
+    });
+
+    it('has toggleMore() and second time which shows less items', () => {
+      controller.showingMore = true;
+      controller.toggleMore();
+      expect(controller.showingMore).to.eq(false);
+    });
+
+    it('has toggleMore() which shows less, with items before and after the selected item', () => {
+      controller.showingMore = true;
+      controller.listIndex = 12;
+      controller.toggleMore();
+      expect(controller.limitStart).to.eq(10);
+    });
+
   });
 
   describe('View', () => {
