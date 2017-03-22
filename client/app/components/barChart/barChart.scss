@@ -1,0 +1,33 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+// @import '~client/app/common/_foundation-functions';
+
+.bar-chart {
+
+  h3 {
+    text-transform: none;
+  }
+
+  .c3-bars-remaining path {
+    stroke-dasharray: 5,5;
+    stroke: #C3C3C3 !important;
+    stroke-width: 1;
+  }
+
+  .c3-axis-x {
+    tspan {
+      fill: $simon-black;
+      font: $defaultFont;
+      font-size: $h3-18px;
+    }
+  }
+
+  .c3-texts text {
+    transform: translate3d(0, -1rem, 0);
+    fill: $simon-black !important;
+    font: $defaultFont;
+    font-size: $h1-34px;
+    font-weight: 500;
+  }
+
+}

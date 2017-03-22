@@ -1,0 +1,24 @@
+<div class="bar-chart">
+
+  <h3 class="text-center">{{ $ctrl.data.title }}</h3>
+
+  <c3chart bindto-id="stacked-bar-plot1-chart"
+           padding-top="-30"
+           labels-format-function="$ctrl.formatLabels"
+           chart-data="$ctrl.chartData"
+           chart-columns="$ctrl.chartColumns"
+           callback-function="$ctrl.handleCallback">
+    <chart-axes values-x="x-label"/>
+    <chart-group group-values="{{$ctrl.chartGroup}}"/>
+    <chart-axis>
+      <chart-axis-x axis-type="category">
+        <chart-axis-x-tick tick-outer="false"
+                           tick-centered="false"
+                           tick-fit="true"/>
+      </chart-axis-x>
+      <chart-axis-y show="false"/>
+    </chart-axis>
+    <chart-legend show-legend="false"></chart-legend>
+    <chart-tooltip show-tooltip="false"></chart-tooltip>
+  </c3chart>
+</div>

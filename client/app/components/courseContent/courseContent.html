@@ -51,6 +51,10 @@
                       <icon-text data="block.data"></icon-text>
                     </div>
 
+                    <div ng-switch-when="bar_chart">
+                      <bar-chart data="block.data"></bar-chart>
+                    </div>
+
                     <div ng-switch-default>
                       <h1>This is a new block (block id={{block.id}})</h1>
                       <h3>Type: {{block.type}}</h3>

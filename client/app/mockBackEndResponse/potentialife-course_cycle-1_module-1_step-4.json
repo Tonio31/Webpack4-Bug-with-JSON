@@ -27,7 +27,7 @@
       "type":"static",
       "element":"bar_chart",
       "data": {
-        "title":"",
+        "title":"Your strengths breakdown",
         "bars":[
           {
             "title": "Work",
@@ -36,8 +36,18 @@
           },
           {
             "title": "Non-Work",
-            "color": "#d3d3d3",
+            "color": "green",
             "value": 31
+          },
+          {
+            "title": "Sleep",
+            "color": "blue",
+            "value": 25
+          },
+          {
+            "title": "Whatever",
+            "color": "red",
+            "value": 90
           }
         ]
       }
