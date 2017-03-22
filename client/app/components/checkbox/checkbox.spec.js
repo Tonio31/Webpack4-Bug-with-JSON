@@ -4,7 +4,9 @@ import CheckboxComponent from './checkbox.component';
 import CheckboxTemplate from './checkbox.html';
 
 describe('Checkbox', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope;
+  // let $componentController;
+  let $compile;
 
   let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[13];
 
@@ -12,7 +14,7 @@ describe('Checkbox', () => {
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
+    // $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
   }));
 
@@ -20,22 +22,22 @@ describe('Checkbox', () => {
     // top-level specs: i.e., routes, injection, naming
   });
 
-  describe('Controller', () => {
-    // controller specs
-    let controller;
-
-    let bindings = {
-      block: blockBinding,
-      isTopLevelFormSubmitted: false
-    };
-
-    beforeEach(() => {
-      controller = $componentController('checkbox', {
-        $scope: $rootScope.$new()
-      }, bindings);
-    });
-
-  });
+  // describe('Controller', () => {
+  //   // controller specs
+  //   let controller;
+  //
+  //   let bindings = {
+  //     block: blockBinding,
+  //     isTopLevelFormSubmitted: false
+  //   };
+  //
+  //   beforeEach(() => {
+  //     controller = $componentController('checkbox', {
+  //       $scope: $rootScope.$new()
+  //     }, bindings);
+  //   });
+  //
+  // });
 
   describe('View', () => {
     // view specs
@@ -56,13 +58,13 @@ describe('Checkbox', () => {
 
     it('has a list item with the correct data in the label', () => {
       let obj = blockBinding.data.items;
-      let labelText = angular.element(template[0].querySelector('.checkbox-label'));
-      expect(labelText.html()).to.eq(obj[Object.keys(obj)[0]]);
+      let labelText = angular.element(template[0].querySelector('.checkbox-label span'));
+      expect(labelText.html()).to.eq(obj[0].label);
     });
 
     it('has a list item with the correct data in the input=value', () => {
       let obj = blockBinding.data.items;
-      expect(template.find('input').attr('value')).to.eq(obj[Object.keys(obj)[0]]);
+      expect(template.find('input').attr('value')).to.eq(obj[0].value);
     });
   });
 

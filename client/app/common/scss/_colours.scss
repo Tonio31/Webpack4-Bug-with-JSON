@@ -7,6 +7,9 @@
 }
 
 .fgcolour {
+  &-black {
+    color: $black;
+  }
   &-grey {
     color: $really-light-grey;
   }
