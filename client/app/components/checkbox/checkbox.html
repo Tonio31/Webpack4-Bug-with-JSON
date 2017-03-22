@@ -6,8 +6,8 @@
         <p class="note" ng-class="{ 'invalid': this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted }">(Please select 1 option below)</p>
       </div>
 {{ $ctrl.formInvalid }}
-      <div class="validation-icon-right" ng-show="this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted" aria-hidden="true">
-        <span ng-class="{ 'invalid': this[$ctrl.formName].$invalid }" class="right fontello-icon" aria-hidden="true">{{!this[$ctrl.formName] ? $ctrl.icons.VALID_TICK : $ctrl.icons.WARNING}}</span>
+      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted" aria-hidden="true">
+        <span ng-class="{ 'invalid icon-pl-exclamation': this[$ctrl.formName].$invalid, 'icon-pl-tick': !this[$ctrl.formName].$invalid }" class="right fontello-icon"></span>
       </div>
     </header>
     <ul>

@@ -135,6 +135,12 @@
     }
   }
 
+  .ng-valid-required {
+    .validation-icon-right {
+      border-color: $success-color;
+    }
+  }
+
   .blockquote {
     @extend label;
     cursor: default;
