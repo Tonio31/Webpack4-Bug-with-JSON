@@ -76,7 +76,8 @@
     padding: rem_calc(10px);
     transition: background-color $speed3;
 
-    span {
+    span, strong {
+      display: block;
       @include noSelect;
     }
   }
@@ -131,6 +132,12 @@
   .ng-invalid-required {
     .validation-icon-right {
       border-color: $alert-color;
+    }
+  }
+
+  .ng-valid-required {
+    .validation-icon-right {
+      border-color: $success-color;
     }
   }
 

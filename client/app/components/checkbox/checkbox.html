@@ -6,20 +6,24 @@
         <p class="note" ng-class="{ 'invalid': this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted }">(Please select 1 option below)</p>
       </div>
 {{ $ctrl.formInvalid }}
-      <div class="validation-icon-right" ng-show="this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted" aria-hidden="true">
-        <span ng-class="{ 'invalid': this[$ctrl.formName].$invalid }" class="right fontello-icon" aria-hidden="true">{{!this[$ctrl.formName] ? $ctrl.icons.VALID_TICK : $ctrl.icons.WARNING}}</span>
+      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted" aria-hidden="true">
+        <span ng-class="{ 'invalid icon-pl-exclamation': this[$ctrl.formName].$invalid, 'icon-pl-tick': !this[$ctrl.formName].$invalid }" class="right fontello-icon"></span>
       </div>
     </header>
     <ul>
-      <li ng-repeat="(key, value) in $ctrl.block.data.items">
-        <label for="checkboxName-{{key}}">
-          <span class="checkbox-label">{{value}}</span>
-          <input id="checkboxName-{{key}}"
+      <li ng-repeat="item in $ctrl.block.data.items">
+        <label for="checkboxName-{{item.value}}">
+          <div class="checkbox-label">
+            <span>{{item.label}}</span>
+            <strong ng-if="item.sub_label">- {{item.sub_label}}</strong>
+          </div>
+          <input id="checkboxName-{{item.value}}"
             type="checkbox"
             name="checkbox_group-{{$ctrl.formName}}"
-            value="{{value}}"
+            value="{{item.value}}"
+            ng-checked="{{item.checked}}"
             ng-required="$ctrl.checkIfRequired()"
-            ng-model="$ctrl.selection[key]"
+            ng-model="$ctrl.selection[item.value]"
             ng-model-options="{allowInvalid: true}"
             ng-change="$ctrl.actionOnUserInput()">
         </label>
