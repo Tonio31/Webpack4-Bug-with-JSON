@@ -65,7 +65,7 @@
         "button": {
           "href": "https:\/\/www.surveymonkey.co.uk\/",
           "color": "alert",
-          "label": "Button in Red"
+          "label": "Go to survey Monkey (Red)"
         }
       }
     },
@@ -81,21 +81,9 @@
         "text": "<h1>This content is locked!<\/h1><h3>Unfortunately you'll need to do the previous steps before you'll be able to gain access to this one.<\/h3>",
         "button": {
           "href": "https:\/\/www.surveymonkey.co.uk\/",
-          "color": "primary",
-          "label": "Button in Red"
+          "color": "success",
+          "label": "Go to survey Monkey (Blue)"
         }
-      }
-    },
-    {
-      "id": 54,
-      "type": "static",
-      "element": "icon_text",
-      "data": {
-        "icon": {
-          "type": "icon-badge-self-discovery",
-          "color": "primary"
-        },
-        "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
       }
     },
     {
@@ -120,6 +108,167 @@
           "color": "alert"
         },
         "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>"
+      }
+    },
+    {
+      "id": 100,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-pl-tick",
+          "color": ""
+        },
+        "text": "<p>icon-pl-tick<\/p>"
+      }
+    },
+    {
+      "id": 101,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-pl-eye",
+          "color": ""
+        },
+        "text": "<p>icon-pl-eye<\/p>"
+      }
+    },
+    {
+      "id": 102,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-pl-gt",
+          "color": ""
+        },
+        "text": "<p>icon-pl-gt<\/p>"
+      }
+    },
+    {
+      "id": 103,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-pl-lock",
+          "color": ""
+        },
+        "text": "<p>icon-pl-lock<\/p>"
+      }
+    },
+    {
+      "id": 104,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-pl-pdf",
+          "color": ""
+        },
+        "text": "<p>icon-pl-pdf<\/p>"
+      }
+    },
+    {
+      "id": 105,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-pl-lt",
+          "color": ""
+        },
+        "text": "<p>icon-pl-lt<\/p>"
+      }
+    },
+    {
+      "id": 106,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-pl-exclamation",
+          "color": ""
+        },
+        "text": "<p>icon-pl-exclamation<\/p>"
+      }
+    },
+    {
+      "id": 107,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-pl-logo",
+          "color": "pl-logo-color"
+        },
+        "text": "<p>icon-pl-logo<\/p>"
+      }
+    },
+    {
+      "id": 108,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-badge-time-to-reflect",
+          "color": ""
+        },
+        "text": "<p>icon-badge-time-to-reflect<\/p>"
+      }
+    },
+    {
+      "id": 109,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-badge-self-discovery",
+          "color": ""
+        },
+        "text": "<p>icon-badge-self-discovery<\/p>"
+      }
+    },
+    {
+      "id": 110,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-badge-lifemap",
+          "color": ""
+        },
+        "text": "<p>icon-badge-lifemap<\/p>"
+      }
+    },
+    {
+      "id": 111,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-badge-strengths",
+          "color": ""
+        },
+        "text": "<p>icon-badge-strengths<\/p>"
+      }
+    },
+    {
+      "id": 54,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-badge-self-discovery",
+          "color": "primary"
+        },
+        "text": "<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\/p>",
+        "button": {
+          "href": "https:\/\/www.surveymonkey.co.uk\/",
+          "color": "primary",
+          "label": "Go to survey Monkey (Blue)"
+        }
       }
     }
   ]

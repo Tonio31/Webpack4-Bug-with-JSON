@@ -9,6 +9,7 @@ import videoModule from 'components/videoModule/videoModule';
 import textAreaModule from 'components/textArea/textArea';
 import textBoxModule from 'components/textBox/textBox';
 import iconTextModule from 'components/iconText/iconText';
+import barChartModule from 'components/barChart/barChart';
 import checkbox from 'components/checkbox/checkbox';
 import radioList from 'components/radioList/radioList';
 import constantModule from 'common/constants';
@@ -24,6 +25,7 @@ let courseContentModule = angular.module('courseContent', [
   textAreaModule,
   textBoxModule,
   iconTextModule,
+  barChartModule,
   checkbox,
   radioList,
   constantModule,

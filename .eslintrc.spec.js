@@ -7,12 +7,15 @@ let globalsToAdd = {
   "expect": true,
   "sinon": true,
   "inject": true,
-  "assert": true
+  "assert": true,
+  "console": true
 };
 
 Object.assign(eslintConfig.globals, globalsToAdd);
 
 
+eslintConfig.rules["angular/log"] = OFF;
+eslintConfig.rules["no-console"] = OFF;
 eslintConfig.rules["init-declarations"] = OFF;
 eslintConfig.rules["angular/window-service"] = OFF;
 eslintConfig.rules["array-bracket-spacing"] = OFF;

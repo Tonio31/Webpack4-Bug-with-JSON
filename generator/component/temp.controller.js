@@ -5,6 +5,8 @@ class <%= upCaseName %>Controller {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( '<%= upCaseName %>Controller' );
 
+    $log.log('constructor - START');
+
     this.name = '<%= name %>';
   }
 }

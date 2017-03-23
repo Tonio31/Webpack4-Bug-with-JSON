@@ -6,7 +6,7 @@ import LockedPageComponent from './lockedPage.component';
 import LockedPageTemplate from './lockedPage.html';
 
 describe('LockedPage', () => {
-  let $rootScope, $componentController, $state, $compile;
+  let $rootScope, $compile;
   let Menu;
   let currentStepUrl = '/potentialife-course/cycle-1/module-1/step-1';
 
@@ -20,9 +20,7 @@ describe('LockedPage', () => {
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
-    $state = $injector.get('$state');
     Menu = $injector.get('Menu');
 
     sinon.stub(Menu, 'getCurrentProgression', () => {

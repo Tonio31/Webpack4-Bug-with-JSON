@@ -11,7 +11,6 @@ let moduleOverviewModule = angular.module('moduleOverview', [
 ])
 
 .component('moduleOverview', moduleOverviewComponent)
-
 .name;
 
 export default moduleOverviewModule;
