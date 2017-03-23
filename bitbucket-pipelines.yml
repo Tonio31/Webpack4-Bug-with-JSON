@@ -11,4 +11,5 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - npm install
           - npm run build
+          - npm run setKarmaGlobals -- --browser PhantomJS
           - npm run test/phantomjs

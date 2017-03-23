@@ -1,10 +1,11 @@
 var path    = require('path');
 
 module.exports = function (config) {
+
+
   config.set({
     // base path used to resolve all patterns
     basePath: '',
-
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter

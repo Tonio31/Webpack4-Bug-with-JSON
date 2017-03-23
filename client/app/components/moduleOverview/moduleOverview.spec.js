@@ -51,7 +51,7 @@ describe('ModuleOverview', () => {
 
 
     it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('Module 1 - Overvie');
+      expect(template.find('h1').html()).to.eq('Module 1 - Overview');
     });
 
     it('has a list item with the correct data in the label', () => {
