@@ -12,12 +12,10 @@
         <div ng-class="{'not-locked': cycle.status !== 'locked'}" class="cycle text-center">
           <div>
             <c3chart bindto-id="_{{cycle.slug}}" sort-data="null">
-              <chart-column style="display:none"
-                            column-id="remaining"
+              <chart-column column-id="remaining"
                             column-values="{{cycle.progress.remaining}}"
                             column-type="donut"/>
-              <chart-column style="display:none"
-                            column-id="completed"
+              <chart-column column-id="completed"
                             column-values="{{cycle.progress.completed}}"
                             column-type="donut"/>
               <chart-donut title="{{$ctrl.getDonutTitle(cycle)}}" width="40"/>
