@@ -5,6 +5,11 @@ module.exports = function (config) {
     // base path used to resolve all patterns
     basePath: '',
 
+    plugins: [
+      'karma-jasmine',
+      'karma-phantomjs-launcher'
+    ],
+
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: [
