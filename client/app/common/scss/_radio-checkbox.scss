@@ -68,6 +68,33 @@
     }
   }
 
+  li.ng-enter-stagger,
+  li.ng-leave-stagger {
+    transition-delay: 50ms;
+  }
+
+  li.ng-leave,
+  li.ng-move,
+  li.ng-enter {
+    transition: all linear $speed3;
+  }
+
+  li.ng-leave.ng-leave-active, //if you want leave animation
+  li.ng-move,
+  li.ng-enter {
+    opacity: 0;
+    height: 0;
+    transform: translateY(-10px); // scale(1.1);
+  }
+
+  li.ng-leave, //if you want leave animation
+  li.ng-move.ng-move-active,
+  li.ng-enter.ng-enter-active {
+    opacity: 1;
+    height: 65px;
+    transform: translateY(0); // scale(1);
+  }
+
   label {
     background-color: lighten($light-grey, 3);
     display: flex;
@@ -76,7 +103,8 @@
     padding: rem_calc(10px);
     transition: background-color $speed3;
 
-    span {
+    span, strong {
+      display: block;
       @include noSelect;
     }
   }
@@ -131,6 +159,12 @@
   .ng-invalid-required {
     .validation-icon-right {
       border-color: $alert-color;
+    }
+  }
+
+  .ng-valid-required {
+    .validation-icon-right {
+      border-color: $success-color;
     }
   }
 

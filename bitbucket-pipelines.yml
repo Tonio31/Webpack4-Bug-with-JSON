@@ -6,9 +6,10 @@
 image: node:7.4.0
 
 pipelines:
-  branches: # Pipelines that run automatically on a commit to a branch
-    dev:
-      - step:
-          script: # Modify the commands below to build your repository.
-            - npm install
-            - npm run test --silent
+  default: # Pipelines that run automatically on a commit to a branch
+    - step:
+        script: # Modify the commands below to build your repository.
+          - npm install
+          - npm run build
+          - npm run setKarmaGlobals -- --browser PhantomJS
+          - npm run test/phantomjs --silent

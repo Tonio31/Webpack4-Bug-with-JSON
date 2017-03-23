@@ -1,0 +1,25 @@
+<div class="bar-chart">
+
+  <p class="bar-char-title text-center">{{ $ctrl.block.data.title }}</p>
+
+  <c3chart bindto-id="barChart-{{$ctrl.block.id}}"
+           padding-top="-60"
+           labels-format-function="$ctrl.formatLabels"
+           sort-data="null"
+           chart-data="$ctrl.chartData"
+           chart-columns="$ctrl.chartColumns">
+    <chart-bar ratio="0.8"/>
+    <chart-axes values-x="{{$ctrl.COLUMN_ID.xLabels}}"/>
+    <chart-group group-values="{{$ctrl.chartGroup}}"/>
+    <chart-axis>
+      <chart-axis-x axis-type="category">
+        <chart-axis-x-tick tick-outer="false"
+                           tick-centered="false"
+                           tick-fit="true"/>
+      </chart-axis-x>
+      <chart-axis-y show="false"/>
+    </chart-axis>
+    <chart-legend show-legend="false"></chart-legend>
+    <chart-tooltip show-tooltip="false"></chart-tooltip>
+  </c3chart>
+</div>

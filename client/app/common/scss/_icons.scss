@@ -39,7 +39,7 @@
 .icon-pl {
   &-tick {
     padding-top: 2px;
-    padding-right: 2px; 
+    padding-right: 2px;
   }
 }
 
@@ -47,8 +47,8 @@
   color: $blue-focus;
 }
 
-.congrats-banner {
-  .icon-success {
+.banner {
+  .fontello-icon {
     &::before {
       @include makeIcon;
       background-color: transparent;

@@ -222,13 +222,59 @@
         "label": "this is the label",
         "placeholder": "this is the placholder",
         "name": "this is the name",
-        "items": {
-          "this_is_the_value_1": "this is the label 1",
-          "this_is_the_value_2": "this is the label 2",
-          "this_is_the_value_3": "this is the label 3",
-          "this_is_the_value_4": "this is the label 4",
-          "this_is_the_value_5": "this is the label 5"
-        }
+        "items": [
+          {
+            "label": "Meeting with Con",
+            "sub_label": "non-work",
+            "value": "12312",
+            "checked": false
+          },
+          {
+            "label": "Meeting with Dan1",
+            "value": "dan1",
+            "checked": false
+          },
+          {
+            "label": "Meeting with an Alien2",
+            "value": "alien2",
+            "checked": false
+          },
+          {
+            "label": "Meeting with my bed3",
+            "value": "bed3",
+            "checked": false
+          },
+          {
+            "label": "Meeting with Dan4",
+            "value": "dan4",
+            "checked": false
+          },
+          {
+            "label": "Meeting with an Alien5",
+            "value": "alien5",
+            "checked": false
+          },
+          {
+            "label": "Meeting with my bed6",
+            "value": "bed6",
+            "checked": true
+          },
+          {
+            "label": "Meeting with Dan7",
+            "value": "dan7",
+            "checked": false
+          },
+          {
+            "label": "Meeting with an Alien8",
+            "value": "alien8",
+            "checked": false
+          },
+          {
+            "label": "Meeting with my bed9",
+            "value": "bed9",
+            "checked": false
+          }
+        ]
       },
       "pivot": {
         "step_id": 6,
@@ -244,13 +290,99 @@
         "label": "this is the label",
         "placeholder": "this is the placholder",
         "name": "this is the name",
-        "items": {
-          "this_is_the_value_1": "this is the label 1",
-          "this_is_the_value_2": "this is the label 2",
-          "this_is_the_value_3": "this is the label 3",
-          "this_is_the_value_4": "this is the label 4",
-          "this_is_the_value_5": "this is the label 5"
-        }
+        "items": [
+          {
+            "label": "this is the label 1",
+            "value": "this_is_the_label_1",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 2",
+            "value": "this_is_the_label_2",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 3",
+            "value": "this_is_the_label_3",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 4",
+            "value": "this_is_the_label_4",
+            "sub_label": null,
+            "checked": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "this is the label 5",
+            "value": "this_is_the_label_5",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 6",
+            "value": "this_is_the_label_6",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 7",
+            "value": "this_is_the_label_7",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 8",
+            "value": "this_is_the_label_8",
+            "sub_label": null,
+            "checked": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "this is the label 9",
+            "value": "this_is_the_label_9",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 12",
+            "value": "this_is_the_label_12",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 13",
+            "value": "this_is_the_label_13",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 14",
+            "value": "this_is_the_label_14",
+            "sub_label": null,
+            "checked": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "this is the label 15",
+            "value": "this_is_the_label_15",
+            "sub_label": null,
+            "checked": false,
+            "feedback": null
+          }
+        ]
       },
       "pivot": {
         "step_id": 6,

@@ -4,8 +4,9 @@ import ModuleOverviewComponent from './moduleOverview.component';
 import ModuleOverviewTemplate from './moduleOverview.html';
 
 describe('ModuleOverview', () => {
-  let $rootScope, $componentController, $compile;
-  let ICON_FONTELLO;
+  let $rootScope;
+  // let $componentController;
+  let $compile;
 
   let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-1.json').blocks[1];
 
@@ -13,7 +14,7 @@ describe('ModuleOverview', () => {
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
+    // $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
   }));
 
@@ -21,21 +22,21 @@ describe('ModuleOverview', () => {
     // top-level specs: i.e., routes, injection, naming
   });
 
-  describe('Controller', () => {
-    // controller specs
-    let controller;
-
-    let bindings = {
-      block: blockBinding
-    };
-
-    beforeEach(() => {
-      controller = $componentController('moduleOverview', {
-        $scope: $rootScope.$new()
-      }, bindings);
-    });
-
-  });
+  // describe('Controller', () => {
+  //   // controller specs
+  //   let controller;
+  //
+  //   let bindings = {
+  //     block: blockBinding
+  //   };
+  //
+  //   beforeEach(() => {
+  //     controller = $componentController('moduleOverview', {
+  //       $scope: $rootScope.$new()
+  //     }, bindings);
+  //   });
+  //
+  // });
 
   describe('View', () => {
     // view specs

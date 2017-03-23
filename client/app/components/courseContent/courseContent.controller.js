@@ -10,6 +10,9 @@ class CourseContentController {
     this.isStepCompleted = false;
     this.congratsBannerText = '';
 
+    this.errorBannerText = false;
+    this.errorBannerText = 'Error saving steps. Please <a href="#">save it here</a>.';
+
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
 
@@ -101,7 +104,8 @@ class CourseContentController {
           Menu.retrieveMenuAndReturnStates(forceMenuRetrieval);
 
         }, (error) => {
-          // TODO Display error Banner for the user (to be defined with Matt how it will look like)
+          // Display error Banner for the user (to be defined with Matt how it will look like)
+          // this.errorBannerText = dataBackFromServer.error;
           $log.log('Error saving the current step. error=', error);
         });
       }

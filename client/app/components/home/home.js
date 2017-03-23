@@ -7,10 +7,12 @@ import UserDataFactory from 'common/userDataFactory/userData';
 import MenuService from 'common/menuFactory/menu';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import constantModule from 'common/constants';
+import 'c3-angular';
 
 let homeModule = angular.module('home', [
   uiRouter,
   angularTranslate,
+  'gridshore.c3js.chart',
   ResourceFactory,
   MenuService,
   LogDecorator,

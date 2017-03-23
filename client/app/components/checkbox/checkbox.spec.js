@@ -5,6 +5,7 @@ import CheckboxTemplate from './checkbox.html';
 
 describe('Checkbox', () => {
   let $rootScope, $componentController, $compile;
+  let FORM_NAME_PREFIX;
 
   let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[13];
 
@@ -14,6 +15,7 @@ describe('Checkbox', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
   }));
 
   describe('Module', () => {
@@ -33,7 +35,29 @@ describe('Checkbox', () => {
       controller = $componentController('checkbox', {
         $scope: $rootScope.$new()
       }, bindings);
+
+      controller.$onInit();
     });
+
+    it('has initialised text with the correct value', () => {
+      expect(controller.text).to.equal(bindings.block.data.value);
+    });
+
+    it('has initialised formName with the correct value', () => {
+      expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
+    });
+
+    it('has toggleMore() which shows all items', () => {
+      controller.toggleMore();
+      expect(controller.showingMore).to.eq(true);
+    });
+
+    it('has toggleMore() and second time which shows less items', () => {
+      controller.showingMore = true;
+      controller.toggleMore();
+      expect(controller.showingMore).to.eq(false);
+    });
+
 
   });
 
@@ -56,13 +80,13 @@ describe('Checkbox', () => {
 
     it('has a list item with the correct data in the label', () => {
       let obj = blockBinding.data.items;
-      let labelText = angular.element(template[0].querySelector('.checkbox-label'));
-      expect(labelText.html()).to.eq(obj[Object.keys(obj)[0]]);
+      let labelText = angular.element(template[0].querySelector('.checkbox-label span'));
+      expect(labelText.html()).to.eq(obj[0].label);
     });
 
     it('has a list item with the correct data in the input=value', () => {
       let obj = blockBinding.data.items;
-      expect(template.find('input').attr('value')).to.eq(obj[Object.keys(obj)[0]]);
+      expect(template.find('input').attr('value')).to.eq(obj[0].value);
     });
   });
 

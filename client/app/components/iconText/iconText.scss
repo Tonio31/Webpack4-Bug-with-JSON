@@ -30,13 +30,9 @@
         border: none;
         font-size: $icon-size;
         max-width: $icon-size;
-
-        &::before {
-          margin: 0;
-        }
       }
 
-      &.big-icon {
+      &.wide-icon {
         justify-content: flex-start;
         min-width: $bigIconContainerSize;
       }
@@ -57,6 +53,7 @@
 
         &::before {
           width: auto;
+          margin: 0;
         }
 
         &.success {
@@ -74,6 +71,11 @@
         &.alert {
           color: $alert-color;
         }
+
+        &.pl-logo-color {
+          color: $logoColor;
+        }
+
       }
     }
 

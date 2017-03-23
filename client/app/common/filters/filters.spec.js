@@ -1,7 +1,7 @@
 import FiltersModule from './filters';
 
 describe('Filters', () => {
-  let $rootScope, $sce, $componentController, $compile;
+  let $sce;
   let unsafe;
   let trustAsHtmlSpy;
 
@@ -9,9 +9,6 @@ describe('Filters', () => {
   beforeEach(window.module(FiltersModule));
 
   beforeEach(inject(($injector) => {
-    $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
-    $compile = $injector.get('$compile');
     $sce = $injector.get('$sce');
     unsafe = $injector.get('unsafeFilter');
 
