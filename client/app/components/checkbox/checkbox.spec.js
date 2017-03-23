@@ -4,9 +4,8 @@ import CheckboxComponent from './checkbox.component';
 import CheckboxTemplate from './checkbox.html';
 
 describe('Checkbox', () => {
-  let $rootScope;
-  // let $componentController;
-  let $compile;
+  let $rootScope, $componentController, $compile;
+  let FORM_NAME_PREFIX;
 
   let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[13];
 
@@ -14,30 +13,53 @@ describe('Checkbox', () => {
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    // $componentController = $injector.get('$componentController');
+    $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
   });
 
-  // describe('Controller', () => {
-  //   // controller specs
-  //   let controller;
-  //
-  //   let bindings = {
-  //     block: blockBinding,
-  //     isTopLevelFormSubmitted: false
-  //   };
-  //
-  //   beforeEach(() => {
-  //     controller = $componentController('checkbox', {
-  //       $scope: $rootScope.$new()
-  //     }, bindings);
-  //   });
-  //
-  // });
+  describe('Controller', () => {
+    // controller specs
+    let controller;
+
+    let bindings = {
+      block: blockBinding,
+      isTopLevelFormSubmitted: false
+    };
+
+    beforeEach(() => {
+      controller = $componentController('checkbox', {
+        $scope: $rootScope.$new()
+      }, bindings);
+
+      controller.$onInit();
+    });
+
+    it('has initialised text with the correct value', () => {
+      expect(controller.text).to.equal(bindings.block.data.value);
+    });
+
+    it('has initialised formName with the correct value', () => {
+      expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
+    });
+
+    it('has toggleMore() which shows all items', () => {
+      controller.toggleMore();
+      expect(controller.showingMore).to.eq(true);
+    });
+
+    it('has toggleMore() and second time which shows less items', () => {
+      controller.showingMore = true;
+      controller.toggleMore();
+      expect(controller.showingMore).to.eq(false);
+    });
+
+
+  });
 
   describe('View', () => {
     // view specs

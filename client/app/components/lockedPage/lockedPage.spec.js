@@ -6,7 +6,10 @@ import LockedPageComponent from './lockedPage.component';
 import LockedPageTemplate from './lockedPage.html';
 
 describe('LockedPage', () => {
-  let $rootScope, $componentController, $state, $compile;
+  let $rootScope;
+  let $componentController;
+  let $state;
+  let $compile;
   let Menu;
   let currentStepUrl = '/potentialife-course/cycle-1/module-1/step-1';
 

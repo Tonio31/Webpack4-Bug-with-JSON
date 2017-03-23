@@ -1,7 +1,10 @@
 import FiltersModule from './filters';
 
 describe('Filters', () => {
-  let $rootScope, $sce, $componentController, $compile;
+  let $rootScope;
+  let $sce;
+  let $componentController;
+  let $compile;
   let unsafe;
   let trustAsHtmlSpy;
 

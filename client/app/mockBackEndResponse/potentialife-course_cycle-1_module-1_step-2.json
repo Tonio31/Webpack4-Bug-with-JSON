@@ -230,18 +230,48 @@
             "checked": false
           },
           {
-            "label": "Meeting with Dan",
-            "value": "dan",
+            "label": "Meeting with Dan1",
+            "value": "dan1",
             "checked": false
           },
           {
-            "label": "Meeting with an Alien",
-            "value": "alien",
+            "label": "Meeting with an Alien2",
+            "value": "alien2",
+            "checked": false
+          },
+          {
+            "label": "Meeting with my bed3",
+            "value": "bed3",
+            "checked": false
+          },
+          {
+            "label": "Meeting with Dan4",
+            "value": "dan4",
+            "checked": false
+          },
+          {
+            "label": "Meeting with an Alien5",
+            "value": "alien5",
+            "checked": false
+          },
+          {
+            "label": "Meeting with my bed6",
+            "value": "bed6",
             "checked": true
           },
           {
-            "label": "Meeting with my bed",
-            "value": "bed",
+            "label": "Meeting with Dan7",
+            "value": "dan7",
+            "checked": false
+          },
+          {
+            "label": "Meeting with an Alien8",
+            "value": "alien8",
+            "checked": false
+          },
+          {
+            "label": "Meeting with my bed9",
+            "value": "bed9",
             "checked": false
           }
         ]
