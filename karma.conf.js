@@ -5,10 +5,6 @@ module.exports = function (config) {
     // base path used to resolve all patterns
     basePath: '',
 
-    plugins: [
-      'karma-jasmine',
-      'karma-phantomjs-launcher'
-    ],
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -31,14 +27,6 @@ module.exports = function (config) {
     // files to exclude
     exclude: [],
 
-    plugins: [
-      require("karma-sinon-chai"),
-      require("karma-chrome-launcher"),
-      require("karma-mocha"),
-      require("karma-mocha-reporter"),
-      require("karma-sourcemap-loader"),
-      require("karma-webpack")
-    ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -85,7 +73,7 @@ module.exports = function (config) {
     },
 
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['dots'],
+    reporters: ['mocha'],
 
     mochaReporter: {
       output: 'autowatch'
