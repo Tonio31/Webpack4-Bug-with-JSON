@@ -24,12 +24,19 @@ $tick-size: 3rem;
     padding: $padding-10px 0;
   }
 
-  .congrats-banner {
-    background-color: $success-color;
+  .banner {
     color: $white;
     height: auto;
 
-    .congrats-content {
+    &-congrats {
+      background-color: $success-color;
+    }
+
+    &-error {
+      background-color: $alert-color;
+    }
+
+    .banner-content {
       min-height: $height-navigation-banner;
       padding: $padding-10px 0;
 
@@ -37,8 +44,16 @@ $tick-size: 3rem;
         margin-bottom: 0;
         font-weight: bold;
       }
+
+      a {
+        text-decoration: underline;
+        &:hover {
+          color: transparentize($white, .2);
+        }
+      }
     }
   }
+
 
   .navigation {
     background-color: $light-grey;

@@ -47,8 +47,8 @@
   color: $blue-focus;
 }
 
-.congrats-banner {
-  .icon-success {
+.banner {
+  .fontello-icon {
     &::before {
       @include makeIcon;
       background-color: transparent;

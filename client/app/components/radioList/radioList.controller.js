@@ -5,14 +5,16 @@ class RadioListController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'RadioListController' );
 
-    this.listIndex = 0;
+    let radio = null;
 
+    this.listIndex = 0;
     this.name = 'radioList';
     this.icons = ICON_FONTELLO;
     this.modelOptions = MODEL_OPTIONS;
     this.selected = '';
     this.limit = 5;
     this.showingMore = false;
+    this.checkboxIsChecked = false; // assume checkboxes havent been checked
 
     // if greater than 5 then show all items, and hide hide less button
 
@@ -35,10 +37,21 @@ class RadioListController {
       }
     };
 
+    let isChecked = () => {
+      angular.forEach(radio, (value) => {
+        if (value.checked === true) {
+          this.checkboxIsChecked = true; // hide show more/less
+          this.limitStart = 0;
+          this.limit = 100;
+        }
+      });
+    };
+
     this.$onInit = () => {
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
-
       this.text = this.block.data.value;
+      radio = this.block.data.items;
+      isChecked(radio);
     };
 
     this.actionOnUserInput = (iIsFormValid, index) => {

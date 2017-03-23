@@ -28,7 +28,7 @@
         </blockquote>
       </li>
     </ul>
-    <div class="toggle-show-more">
+    <div class="toggle-show-more" ng-if="$ctrl.block.data.items.length > 5">
       <p class="button radius secondary" ng-click="$ctrl.toggleMore()">
         <span ng-hide="$ctrl.showingMore"><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-r"></i> Show more</span>
         <span ng-show="$ctrl.showingMore"><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-l"></i> Show less</span>
