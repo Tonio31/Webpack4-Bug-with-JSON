@@ -1,6 +1,7 @@
 // External Module
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import ngAnimate from 'angular-animate';
 import 'normalize.css';
 import 'angular-foundation';
 
@@ -21,6 +22,7 @@ let $stateProviderRef = null;
 let appModule = angular.module('app', [
   'mm.foundation',
   uiRouter,
+  ngAnimate,
   Common,
   Components,
   MenuService,
@@ -113,7 +115,7 @@ let appModule = angular.module('app', [
             $state.go(stateToRedirect);
           }
           else {
-            $log.log(`Redirect to 404 PageNotFound because stateToRedirect=${stateToRedirect}   
+            $log.log(`Redirect to 404 PageNotFound because stateToRedirect=${stateToRedirect}
                       $state.href(stateToRedirect)=${$state.href(stateToRedirect)}`);
             $state.go(STATES.PAGE_NOT_FOUND);
           }

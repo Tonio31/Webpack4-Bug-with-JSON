@@ -113,7 +113,7 @@ describe('Login', () => {
 
 
     it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('LOGIN');
+      expect(template.find('h2').html()).to.eq('LOGIN');
     });
   });
 

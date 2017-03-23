@@ -5,7 +5,7 @@ import RadioListTemplate from './radioList.html';
 
 describe('RadioList', () => {
   let $rootScope, $componentController, $compile;
-  let FORM_NAME_PREFIX, ICON_FONTELLO;
+  let FORM_NAME_PREFIX;
 
   let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[14];
 
@@ -16,7 +16,6 @@ describe('RadioList', () => {
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
-    ICON_FONTELLO = $injector.get('ICON_FONTELLO');
   }));
 
   describe('Module', () => {
@@ -48,6 +47,24 @@ describe('RadioList', () => {
       expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
     });
 
+    it('has toggleMore() which shows all items', () => {
+      controller.toggleMore();
+      expect(controller.showingMore).to.eq(true);
+    });
+
+    it('has toggleMore() and second time which shows less items', () => {
+      controller.showingMore = true;
+      controller.toggleMore();
+      expect(controller.showingMore).to.eq(false);
+    });
+
+    it('has toggleMore() which shows less, with items before and after the selected item', () => {
+      controller.showingMore = true;
+      controller.listIndex = 12;
+      controller.toggleMore();
+      expect(controller.limitStart).to.eq(10);
+    });
+
   });
 
   describe('View', () => {
@@ -69,12 +86,12 @@ describe('RadioList', () => {
     it('has a list item with the correct data in the label', () => {
       let obj = blockBinding.data.items;
       let labelText = angular.element(template[0].querySelector('.radio-label'));
-      expect(labelText.html()).to.eq(obj[Object.keys(obj)[0]]);
+      expect(labelText.html()).to.eq(obj[0].label);
     });
 
     it('has a list item with the correct data in the input=value', () => {
       let obj = blockBinding.data.items;
-      expect(template.find('input').attr('value')).to.eq(obj[Object.keys(obj)[0]]);
+      expect(template.find('input').attr('value')).to.eq(obj[0].value);
     });
 
   });
