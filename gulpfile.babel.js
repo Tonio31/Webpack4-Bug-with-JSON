@@ -4,6 +4,7 @@ import path     from 'path';
 import sync     from 'run-sequence';
 import rename   from 'gulp-rename';
 import template from 'gulp-template';
+import jeditor  from 'gulp-json-editor';
 import fs       from 'fs';
 import yargs    from 'yargs';
 import lodash   from 'lodash';
@@ -67,6 +68,19 @@ gulp.task('webpack', ['clean'], (cb) => {
 
     cb();
   });
+});
+
+gulp.task('setKarmaGlobals', () => {
+
+  let browser = yargs.argv.browser || 'Chrome';
+
+  gutil.log("browser=", browser);
+
+  gulp.src("./karmaGlobals.json")
+    .pipe(jeditor({
+      'browser': browser
+    }))
+    .pipe(gulp.dest("."));
 });
 
 gulp.task('serve', () => {

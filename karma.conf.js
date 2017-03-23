@@ -1,6 +1,8 @@
 var path    = require('path');
 
 module.exports = function (config) {
+
+
   config.set({
     // base path used to resolve all patterns
     basePath: '',
@@ -26,14 +28,6 @@ module.exports = function (config) {
     // files to exclude
     exclude: [],
 
-    plugins: [
-      require("karma-sinon-chai"),
-      require("karma-chrome-launcher"),
-      require("karma-mocha"),
-      require("karma-mocha-reporter"),
-      require("karma-sourcemap-loader"),
-      require("karma-webpack")
-    ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -82,6 +76,10 @@ module.exports = function (config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['mocha'],
 
+    mochaReporter: {
+      output: 'autowatch'
+    },
+
     // web server port
     port: 9876,
 
@@ -90,7 +88,7 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DISABLE,
+    logLevel: config.LOG_INFO,
 
     // toggle whether to watch files and rerun tests upon incurring changes
     autoWatch: false,

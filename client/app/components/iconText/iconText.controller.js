@@ -12,13 +12,14 @@ class IconTextController {
         case 'icon-badge-lifemap':
         case 'icon-badge-self-discovery':
         case 'icon-badge-time-to-reflect':
+        case 'icon-pl-logo':
           return true;
         default:
           return false;
       }
     };
 
-    this.isIconBig = (iIconType) => {
+    this.isIconWider = (iIconType) => {
       if ( iIconType === 'icon-badge-lifemap' ) {
         return true;
       }
