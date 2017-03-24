@@ -11,7 +11,7 @@ class CourseContentController {
     this.congratsBannerText = '';
 
     this.errorBannerText = false;
-    this.errorBannerText = 'Error saving steps. Please <a href="#">save it here</a>.';
+    // this.errorBannerText = 'Error saving steps. Please <a href="#">save it here</a>.';
 
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
