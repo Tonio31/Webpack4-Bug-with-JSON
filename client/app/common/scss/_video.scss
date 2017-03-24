@@ -38,6 +38,7 @@ $buttonXY: 8rem;
     .vjs-play-progress {
       background-color: $video-colour-highlight;
       border-radius: 2em;
+      min-width: 1em;
 
       &::before {
         display: none;
