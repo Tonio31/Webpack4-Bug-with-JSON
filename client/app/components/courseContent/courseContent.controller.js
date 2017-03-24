@@ -49,9 +49,31 @@ class CourseContentController {
     this.goToFieldInError = (iForm) => {
       for ( let block of this.content.blocks ) {
         let formName = `${FORM_NAME_PREFIX}${block.id}`;
+
+        try {
+
+          $log.log('iForm=', iForm);
+          $log.log('formName=', formName);
+          $log.log('iForm.hasOwnProperty(formName)=', iForm.hasOwnProperty(formName));
+          $log.log('iForm[formName].hasOwnProperty(block.data.name)=', iForm[formName].hasOwnProperty(block.data.name));
+          $log.log('iForm[formName][block.data.name].$invalid=', iForm[formName][block.data.name].$invalid);
+        }
+        catch (e) {
+          $log.log('error=', e);
+        }
+
+/*        if ( iForm.hasOwnProperty(formName) &&
+          iForm[formName].hasOwnProperty(block.data.name) &&
+          iForm[formName][block.data.name].$invalid ) {
+
+          // Focus the user on the form in error
+          $location.hash(block.data.name);
+          $anchorScroll();
+          return;
+        }*/
+
         if ( iForm.hasOwnProperty(formName) &&
-             iForm[formName].hasOwnProperty(block.data.name) &&
-             iForm[formName][block.data.name].$invalid ) {
+             iForm[formName].$invalid ) {
 
           // Focus the user on the form in error
           $location.hash(block.data.name);
