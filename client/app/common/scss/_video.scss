@@ -16,12 +16,14 @@ $buttonXY: 8rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: rem_calc(120);
     }
   }
 
   .vjs-progress-holder {
-    height: 1em;
+    height: calc(1em + 4px);
     border-radius: 2em;
+    border: 2px solid $video-colour-accent;
     background-color: $video-colour-accent;
 
     .vjs-play-progress,
@@ -47,10 +49,16 @@ $buttonXY: 8rem;
       }
     }
   }
+
   .vjs-progress-control {
     &:hover .vjs-progress-holder {
       font-size: 1.3em;
     }
+  }
+
+  .vjs-big-play-button,
+  .vjs-control-bar {
+    background-color: transparentize($black, .9);
   }
 
   .vjs-control,
