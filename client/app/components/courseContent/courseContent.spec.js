@@ -86,9 +86,7 @@ describe('CourseContent', () => {
 
       let subFormName = `${FORM_NAME_PREFIX}51`;
       topLevelForm[subFormName] = {
-        story_1: {
-          $invalid: true
-        }
+        $invalid: true
       };
 
       let locationSpy = sinon.spy($location, 'hash');

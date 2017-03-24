@@ -7,7 +7,6 @@ class CheckboxController {
 
     let checkboxes = null;
 
-    this.name = 'checkbox';
     this.icons = ICON_FONTELLO;
     this.modelOptions = MODEL_OPTIONS;
     this.selection = {};
@@ -38,6 +37,7 @@ class CheckboxController {
 
     this.$onInit = () => {
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
+      this.name = this.block.data.label;
       checkboxes = this.block.data.items;
       isChecked(checkboxes);
     };

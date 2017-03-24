@@ -49,9 +49,9 @@ class CourseContentController {
     this.goToFieldInError = (iForm) => {
       for ( let block of this.content.blocks ) {
         let formName = `${FORM_NAME_PREFIX}${block.id}`;
+
         if ( iForm.hasOwnProperty(formName) &&
-             iForm[formName].hasOwnProperty(block.data.name) &&
-             iForm[formName][block.data.name].$invalid ) {
+             iForm[formName].$invalid ) {
 
           // Focus the user on the form in error
           $location.hash(block.data.name);

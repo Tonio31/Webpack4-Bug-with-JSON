@@ -8,7 +8,6 @@ class RadioListController {
     let radio = null;
 
     this.listIndex = 0;
-    this.name = 'radioList';
     this.icons = ICON_FONTELLO;
     this.modelOptions = MODEL_OPTIONS;
     this.selected = '';
@@ -49,6 +48,7 @@ class RadioListController {
 
     this.$onInit = () => {
       this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
+      this.name = this.block.data.label;
       this.text = this.block.data.value;
       radio = this.block.data.items;
       isChecked(radio);
