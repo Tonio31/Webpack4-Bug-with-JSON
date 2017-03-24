@@ -1,4 +1,7 @@
 .blockquote {
+  &.list-wrap {
+    min-height: rem_calc(44px);
+  }
   padding: 0;
   padding-left: rem_calc(10px);
   color: $locked-grey;
