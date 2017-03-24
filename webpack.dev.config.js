@@ -3,7 +3,7 @@ const path = require('path');
 const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
-const WebpackNotifierPlugin = require('webpack-notifier');
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 module.exports = () => {
 
@@ -37,7 +37,13 @@ module.exports = () => {
     new CssSourcemapPlugin(),
 
     // displays desktop notifications on MacOS
-    new WebpackNotifierPlugin()
+    new WebpackBuildNotifierPlugin({
+      warningIcon: './buildnotifications/warning.png',
+      failureIcon: './buildnotifications/failure.png',
+      successSound: 'Frog',
+      failureSound: 'Glass',
+      suppressWarning: true
+    })
 
   ]);
 

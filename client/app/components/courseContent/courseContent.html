@@ -59,6 +59,10 @@
                       <unordered-list block="block" />
                     </div>
 
+                    <div ng-switch-when="container">
+                      <composed block="block" />
+                    </div>
+
                     <div ng-switch-default>
                       <h1>This is a new block (block id={{block.id}})</h1>
                       <h3>Type: {{block.type}}</h3>

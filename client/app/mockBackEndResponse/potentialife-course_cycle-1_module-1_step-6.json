@@ -31,25 +31,33 @@
           "type":"static",
           "element":"icon_text",
           "data": {
-            "icon":"L",
-            "text":"ldsadas dsa d as da sd asd d as"
+            "icon": {
+              "type": "icon-pl-lock",
+              "color": "success"
+            },
+            "text": "<h1>This content is locked!<\/p>",
+            "button": {
+              "href": "/potentialife-course/cycle-1/module-1/step-9",
+              "color": "primary",
+              "label": "Resume your progress"
+            }
           }
         },
         {
           "type":"static",
           "element":"bar_chart",
           "data": {
-            "title":"",
+            "title":"Your strengths breakdown",
             "bars":[
               {
-                "title":"Bla",
-                "color":"#d3d3d3",
-                "value":21
+                "title": "Work",
+                "color": "blue",
+                "value": 25
               },
               {
-                "title":"Bla",
-                "color":"#d3d3d3",
-                "value":31
+                "title": "Whatever",
+                "color": "red",
+                "value": 75
               }
             ]
           }

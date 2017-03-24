@@ -1,0 +1,15 @@
+<div class="composed" style="border: 1px solid red;">
+  <div ng-repeat="block in $ctrl.blockData track by $index">
+    <div class="block" ng-switch="block.element">
+
+      <div ng-switch-when="icon_text">
+        <icon-text data="block.data"></icon-text>
+      </div>
+
+      <div ng-switch-when="bar_chart">
+        <bar-chart block="block"></bar-chart>
+      </div>
+
+    </div>
+  </div>
+</div>
