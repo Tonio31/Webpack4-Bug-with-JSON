@@ -18,20 +18,19 @@ describe('Composed', () => {
     // top-level specs: i.e., routes, injection, naming
   });
 
-  describe('Controller', () => {
-    // controller specs
-    let controller;
-    beforeEach(() => {
-      controller = $componentController('composed', {
-        $scope: $rootScope.$new()
-      });
-    });
-
-
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
-    });
-  });
+  // describe('Controller', () => {
+  //   // controller specs
+  //   let controller;
+  //   beforeEach(() => {
+  //     controller = $componentController('composed', {
+  //       $scope: $rootScope.$new()
+  //     });
+  //   });
+  //
+  //
+  //   it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
+  //   });
+  // });
 
   describe('View', () => {
     // view specs
@@ -39,14 +38,14 @@ describe('Composed', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<composed></composed>')(scope);
+      template = $compile('<composed block="block" />')(scope);
       scope.$apply();
     });
 
 
-    it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('composed');
-    });
+    // it('has a h1 title', () => {
+    //   expect(template.find('h1').html()).to.eq('composed');
+    // });
   });
 
   describe('Component', () => {
