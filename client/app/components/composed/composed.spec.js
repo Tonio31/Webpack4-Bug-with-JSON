@@ -4,15 +4,17 @@ import ComposedComponent from './composed.component';
 import ComposedTemplate from './composed.html';
 
 describe('Composed', () => {
-  let $rootScope, $componentController, $compile;
+  // let $rootScope;
+  // let $componentController;
+  // let $compile;
 
   beforeEach(window.module(ComposedModule));
 
-  beforeEach(inject(($injector) => {
-    $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
-    $compile = $injector.get('$compile');
-  }));
+  // beforeEach(inject(($injector) => {
+  //   // $rootScope = $injector.get('$rootScope');
+  //   // $componentController = $injector.get('$componentController');
+  //   // $compile = $injector.get('$compile');
+  // }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
@@ -32,21 +34,22 @@ describe('Composed', () => {
   //   });
   // });
 
-  describe('View', () => {
-    // view specs
-    let scope, template;
-
-    beforeEach(() => {
-      scope = $rootScope.$new();
-      template = $compile('<composed block="block" />')(scope);
-      scope.$apply();
-    });
-
-
-    // it('has a h1 title', () => {
-    //   expect(template.find('h1').html()).to.eq('composed');
-    // });
-  });
+  // describe('View', () => {
+  //   // view specs
+  //   let scope;
+  //   let template;
+  //
+  //   beforeEach(() => {
+  //     scope = $rootScope.$new();
+  //     template = $compile('<composed block="block" />')(scope);
+  //     scope.$apply();
+  //   });
+  //
+  //
+  //   // it('has a h1 title', () => {
+  //   //   expect(template.find('h1').html()).to.eq('composed');
+  //   // });
+  // });
 
   describe('Component', () => {
     // component/directive specs
