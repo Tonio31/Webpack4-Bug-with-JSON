@@ -1,0 +1,19 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+// @import '~client/app/common/_foundation-functions';
+
+.button-module {
+  display: flex;
+
+  &.btn-center {
+    justify-content: center;
+  }
+
+  &.btn-left {
+    justify-content: flex-start;
+  }
+
+  &.btn-right {
+    justify-content: flex-end;
+  }
+}

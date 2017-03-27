@@ -7,7 +7,7 @@ describe('Checkbox', () => {
   let $rootScope, $componentController, $compile;
   let FORM_NAME_PREFIX;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[5];
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[7];
 
   beforeEach(window.module(CheckboxModule));
 
