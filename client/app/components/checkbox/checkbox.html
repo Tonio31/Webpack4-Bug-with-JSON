@@ -10,8 +10,9 @@
         <span ng-class="{ 'invalid icon-pl-exclamation': this[$ctrl.formName].$invalid, 'icon-pl-tick': !this[$ctrl.formName].$invalid }" class="right fontello-icon"></span>
       </div>
     </header>
+
     <ul class="no-list">
-      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart" ng-class="{'checked': $ctrl.checkboxIsChecked}">
+      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart">
         <label class="list-wrap" for="checkboxName-{{item.value}}">
           <div class="checkbox-label">
             <span>{{item.label}}</span>
@@ -21,14 +22,14 @@
             type="checkbox"
             name="checkbox_group-{{$ctrl.formName}}"
             value="{{item.value}}"
-            ng-checked="{{item.checked}}"
+            ng-checked="item.checked"
             ng-required="$ctrl.checkIfRequired()"
             ng-model="$ctrl.selection[item.value]"
             ng-model-options="{allowInvalid: true}"
             ng-change="$ctrl.actionOnUserInput();">
           <span class="shim"></span>
         </label>
-        <blockquote ng-if="item.feedback" ng-show="{{item.checked}}" class="blockquote list-wrap fgcolour-success">
+        <blockquote ng-if="item.feedback" ng-show="$ctrl.selection[item.value]" class="blockquote list-wrap fgcolour-success">
           <p>{{item.feedback}}</p>
         </blockquote>
       </li>
