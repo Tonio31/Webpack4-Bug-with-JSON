@@ -1,0 +1,77 @@
+{
+  "id": 1,
+  "name": "BarChart",
+  "slug": "/potentialife-course/cycle-3/module-31/step-5",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 5 / 10",
+  "next_page_url": "/potentialife-course/cycle-3/module-31/step-6",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-4",
+  "blocks": [
+    {
+      "id": 30,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: bar_chart<\/h1>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 52,
+      "type":"static",
+      "element":"bar_chart",
+      "data": {
+        "title":"Your strengths breakdown",
+        "bars":[
+          {
+            "title": "Work",
+            "color": "#d3d3d3",
+            "value": 0
+          },
+          {
+            "title": "Non-Work",
+            "color": "green",
+            "value": 31
+          },
+          {
+            "title": "Sleep",
+            "color": "blue",
+            "value": 95
+          },
+          {
+            "title": "Whatever",
+            "color": "red",
+            "value": 100
+          }
+        ]
+      }
+    },
+    {
+      "id": 58,
+      "type":"static",
+      "element":"bar_chart",
+      "data": {
+        "title":"Your SECOND strengths breakdown",
+        "bars":[
+          {
+            "title": "Work",
+            "color": "#d3d3d3",
+            "value": 25
+          },
+          {
+            "title": "Non-Work",
+            "color": "green",
+            "value": 75
+          }
+        ]
+      }
+    }
+  ]
+}

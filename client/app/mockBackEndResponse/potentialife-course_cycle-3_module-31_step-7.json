@@ -1,0 +1,137 @@
+{
+  "id": 1,
+  "name": "Composed",
+  "slug": "/potentialife-course/cycle-3/module-31/step-7",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 7 / 10",
+  "next_page_url": "/potentialife-course/cycle-3/module-31/step-8",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-6",
+  "blocks": [
+    {
+      "id": 30,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: composed<\/h1><p>This is a block made of other blocks, it will build everything with a grey panal in background<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "type":"composed",
+      "element":"container",
+      "blocks":[
+        {
+          "id": 51,
+          "type": "static",
+          "element": "icon_text",
+          "data": {
+            "icon": {
+              "type": "icon-pl-lock",
+              "color": "success"
+            },
+            "text": "<h1>This content is locked!<\/p>",
+            "button": {
+              "href": "/potentialife-course/cycle-1/module-1/step-9",
+              "color": "primary",
+              "label": "Resume your progress"
+            }
+          }
+        },
+        {
+          "type":"static",
+          "element":"bar_chart",
+          "data": {
+            "title":"This is a Bar chart",
+            "bars":[
+              {
+                "title": "SOmething",
+                "color": "#d3d3d3",
+                "value": 21
+              },
+              {
+                "title": "Impressive",
+                "color": "#d3d3d3",
+                "value": 46
+              }
+            ]
+          }
+        },
+        {
+          "id": 40,
+          "type": "static",
+          "element": "html",
+          "program_data_code": null,
+          "data": {
+            "value": "<h1>Block: textbox<\/h1>"
+          },
+          "pivot": {
+            "step_id": 5,
+            "block_id": 50,
+            "order": 0
+          }
+        },
+        {
+          "id": 44,
+          "type": "dynamic",
+          "element": "textbox",
+          "program_data_code": "c1.m1.s1.textbox_1",
+          "required": true,
+          "data": {
+            "label": "Label: This is the label for the text box common_theme_1",
+            "placeholder": "placeholder: Enter some data here",
+            "value": "Value: Something inside",
+            "name": "common_theme_1"
+          },
+          "pivot": {
+            "step_id": 5,
+            "block_id": 51,
+            "order": 0
+          }
+        },
+        {
+          "id": 45,
+          "type": "dynamic",
+          "element": "textbox",
+          "program_data_code": "c1.m1.s1.textbox_2",
+          "required": true,
+          "data": {
+            "label": "Label: This is the label for the text box common_theme_2",
+            "placeholder": "placeholder: Enter some data here",
+            "value": "Value: Something inside",
+            "name": "common_theme_2"
+          },
+          "pivot": {
+            "step_id": 5,
+            "block_id": 51,
+            "order": 0
+          }
+        },
+        {
+          "id": 46,
+          "type": "dynamic",
+          "element": "textbox",
+          "program_data_code": "c1.m1.s1.textbox_3",
+          "required": true,
+          "data": {
+            "label": "Label: This is the label for the text box common_theme_3",
+            "placeholder": "placeholder: Enter some data here",
+            "value": "Value: Something inside",
+            "name": "common_theme_3"
+          },
+          "pivot": {
+            "step_id": 5,
+            "block_id": 51,
+            "order": 0
+          }
+        }
+      ]
+    }
+  ]
+}

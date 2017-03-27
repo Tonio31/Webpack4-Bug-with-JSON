@@ -7,7 +7,7 @@ describe('TextArea', () => {
   let $rootScope, $componentController, $compile;
   let FORM_NAME_PREFIX, ICON_FONTELLO;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[3];
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[1];
 
   beforeEach(window.module(TextAreaModule));
 

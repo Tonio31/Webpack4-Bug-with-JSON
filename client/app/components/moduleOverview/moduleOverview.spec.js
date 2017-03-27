@@ -8,7 +8,7 @@ describe('ModuleOverview', () => {
   // let $componentController;
   let $compile;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-1.json').blocks[1];
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-1.json').blocks[1];
 
   beforeEach(window.module(ModuleOverviewModule));
 

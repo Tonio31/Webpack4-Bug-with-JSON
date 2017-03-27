@@ -10,7 +10,7 @@ describe('CourseContent', () => {
   let goFn, retrieveMenuAndReturnStatesFn;
   let stateRegistryGetFn, stateRegistryDeregisterFn, stateRegistryRegisterFn;
 
-  let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json');
+  let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json');
 
   let stateNotLocked = {
     name: '/potentialife-course/cycle-1/module-1/step-9',
@@ -109,7 +109,7 @@ describe('CourseContent', () => {
         $invalid: true
       };
 
-      let subFormName = `${FORM_NAME_PREFIX}51`;
+      let subFormName = `${FORM_NAME_PREFIX}52`;
       topLevelForm[subFormName] = {
         $invalid: true
       };
@@ -119,7 +119,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       controller.nextStep(topLevelForm);
 
-      sinon.assert.calledWith(locationSpy, 'story_1');
+      sinon.assert.calledWith(locationSpy, 'name: this is the name');
       done();
     }));
 
