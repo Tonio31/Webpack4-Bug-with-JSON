@@ -3,13 +3,22 @@
 import CourseContentModule from './courseContent';
 
 describe('CourseContent', () => {
-  let $rootScope, $state, $location, $componentController, $compile;
+  let $rootScope, $state, $stateRegistry, $q, $location, $componentController, $compile;
 
   let Menu, Data, FORM_NAME_PREFIX;
 
   let goFn, retrieveMenuAndReturnStatesFn;
+  let stateRegistryGetFn, stateRegistryDeregisterFn, stateRegistryRegisterFn;
 
   let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json');
+
+  let stateNotLocked = {
+    name: '/potentialife-course/cycle-1/module-1/step-9',
+    url: '/potentialife-course/cycle-1/module-1/step-9',
+    parent: 'main',
+    component: 'courseContent',
+    resolve: {}
+  };
 
   let mockTranslateFilter = (value) => {
     return value;
@@ -24,13 +33,29 @@ describe('CourseContent', () => {
     $componentController = $injector.get('$componentController');
     $location = $injector.get('$location');
     $state = $injector.get('$state');
+    $stateRegistry = $injector.get('$stateRegistry');
+    $q = $injector.get('$q');
     $compile = $injector.get('$compile');
     Menu = $injector.get('Menu');
     Data = $injector.get('Data');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
 
     goFn = sinon.stub($state, 'go');
-    retrieveMenuAndReturnStatesFn = sinon.stub(Menu, 'retrieveMenuAndReturnStates');
+    retrieveMenuAndReturnStatesFn = sinon.stub(Menu, 'retrieveMenuAndReturnStates', () => {
+      let deferred = $q.defer();
+
+      deferred.resolve([stateNotLocked]);
+      return deferred.promise;
+    });
+
+    stateRegistryGetFn = sinon.stub($stateRegistry, 'get', () => {
+      let stateLocked = angular.copy(stateNotLocked);
+      stateLocked.component = 'lockedPage';
+      return stateLocked;
+    });
+
+    stateRegistryDeregisterFn = sinon.stub( $stateRegistry, 'deregister', () => {} );
+    stateRegistryRegisterFn = sinon.spy($stateRegistry, 'register');
   }));
 
   describe('Controller', () => {
@@ -131,11 +156,16 @@ describe('CourseContent', () => {
       controller.$onInit();
       controller.nextStep(form);
 
+      $rootScope.$digest();
+
       expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.slug);
       expect(updateStepPOSTRequest.status).to.equal('completed');
       expect(updateStepPOSTRequest.programData).to.deep.equal( [{ code: 'c1.m1.s1.story_2', value: 'This is a text' }] );
 
       sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
+      sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
+      sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
+      sinon.assert.calledWith(stateRegistryRegisterFn, stateNotLocked);
       expect(controller.nextStepButtonLabel).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
       expect(controller.congratsBannerText).to.eq('<p>Congratulations for finishing this module, you\'re a star<\/p>');
