@@ -5,13 +5,13 @@
         <p><strong>{{ $ctrl.name }}</strong></p>
         <p class="note" ng-class="{ 'invalid': this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted }">(Please select 1 option below)</p>
       </div>
-{{ $ctrl.formInvalid }}
-      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted" aria-hidden="true">
+
+      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted">
         <span ng-class="{ 'invalid icon-pl-exclamation': this[$ctrl.formName].$invalid, 'icon-pl-tick': !this[$ctrl.formName].$invalid }" class="right fontello-icon"></span>
       </div>
     </header>
     <ul class="no-list">
-      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart">
+      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart" ng-class="{'checked': $ctrl.checkboxIsChecked}">
         <label class="list-wrap" for="checkboxName-{{item.value}}">
           <div class="checkbox-label">
             <span>{{item.label}}</span>
@@ -26,7 +26,11 @@
             ng-model="$ctrl.selection[item.value]"
             ng-model-options="{allowInvalid: true}"
             ng-change="$ctrl.actionOnUserInput();">
+          <span class="shim"></span>
         </label>
+        <blockquote ng-if="item.feedback" ng-show="{{item.checked}}" class="blockquote list-wrap fgcolour-success">
+          <p>{{item.feedback}}</p>
+        </blockquote>
       </li>
     </ul>
     <div class="list-footer" ng-if="$ctrl.block.data.items.length > 5" ng-hide="$ctrl.checkboxIsChecked">

@@ -237,7 +237,8 @@
           {
             "label": "Meeting with an Alien2",
             "value": "alien2",
-            "checked": false
+            "checked": false,
+            "feedback": "this answer has feedback"
           },
           {
             "label": "Meeting with my bed3",
@@ -255,9 +256,10 @@
             "checked": false
           },
           {
-            "label": "Meeting with my bed6",
-            "value": "bed6",
-            "checked": true
+            "label": "this has feedback",
+            "value": "this_has_feedback",
+            "checked": true,
+            "feedback": "this answer has feedback"
           },
           {
             "label": "Meeting with Dan7",

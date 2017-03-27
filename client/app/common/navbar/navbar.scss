@@ -154,6 +154,7 @@ $mainTitleMenuColor: #a0a0a0;
       height: 100%;
     }
     .inner-wrap {
+      min-height: calc(100vh - 48px);
       @media #{$medium-up} {
         display: flex;
       }
