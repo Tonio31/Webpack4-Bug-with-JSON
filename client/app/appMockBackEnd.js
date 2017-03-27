@@ -80,7 +80,7 @@ angular.module( 'appMockBackEnd', [
   // This function will update the current step on the menu, it is harcoded to simulate the fact that the backend will do this job
   let updateMenu = (iFullUrlStepCompleted) => {
 
-    if ( iFullUrlStepCompleted === '/potentialife-course/cycle-1/module-1/step-1' ) {
+    if ( iFullUrlStepCompleted === '/potentialife-course/cycle-1/module-1/step-9' ) {
 
       // Update menudata
       let cycle1 = menu.menudata[0].children[0];
@@ -88,22 +88,22 @@ angular.module( 'appMockBackEnd', [
       cycle1.progress.percent = 10;
 
       let module1 = cycle1.children[1];
-      let step1 = module1.children[0];
-      step1.status = 'completed';
-      let step2 = module1.children[1];
-      step2.status = 'current';
+      let step9 = module1.children[8];
+      step9.status = 'completed';
+      let step10 = module1.children[9];
+      step10.status = 'current';
 
       // Update Current Step
-      menu.current_progression.current_step = step2;
+      menu.current_progression.current_step = step10;
 
       // Update Step data to say completed for step 1
-      updateStepStatus('/potentialife-course/cycle-1/module-1/step-1', 'completed');
+      updateStepStatus('/potentialife-course/cycle-1/module-1/step-9', 'completed');
 
       // Update Step data to say current for step 2
-      updateStepStatus('/potentialife-course/cycle-1/module-1/step-2', 'current');
+      updateStepStatus('/potentialife-course/cycle-1/module-1/step-10', 'current');
     }
 
-    $log.log('Fake menu object updated to set cycle1/module1/step8 as current step and step7 as completed');
+    $log.log('Fake menu object updated to set cycle1/module1/step10 as current step and step9 as completed');
   };
 
   let regexpStep = new RegExp('http:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
