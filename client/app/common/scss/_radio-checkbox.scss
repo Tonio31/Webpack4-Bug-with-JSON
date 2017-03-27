@@ -40,9 +40,15 @@
 }
 
 .radio-checkbox {
+  width: 100%;
 
   .note.invalid {
     color: $alert-color;
+  }
+
+  .checkbox-label,
+  .radio-label {
+    width: calc(100% - (#{$validation-icon-right} + 1em));
   }
 
   [type="radio"],
