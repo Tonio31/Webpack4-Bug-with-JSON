@@ -1,0 +1,13 @@
+<div class="unordered-list">
+  <header>
+    <div class="header-inner">
+      <p><strong>{{ $ctrl.blockData.name }}</strong></p>
+    </div>
+  </header>
+  <ul class="no-list">
+    <li ng-repeat="item in $ctrl.blockData.items track by $index">
+      <div class="list-wrap">{{item}}</div>
+    </li>
+  </ul>
+  <div class="list-footer"></div>
+</div>

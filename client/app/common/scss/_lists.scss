@@ -11,3 +11,97 @@
     }
   }
 }
+
+.unordered-list {
+  header {
+    @media #{$small-only} {
+      margin-left: rem_calc(-15px);
+      margin-right: rem_calc(-15px);
+    }
+    background-color: $light-grey;
+    padding: rem_calc(10px);
+
+    .header-inner {
+      width: calc(100% - (#{$validation-icon-right} - #{$default-padding}));
+      padding: rem_calc(10px) 0;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .list-wrap {
+    background-color: lighten($light-grey, 3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem_calc(10px);
+    transition: background-color $speed3;
+    min-height: rem_calc(88px);
+
+    span, strong {
+      display: block;
+      @include noSelect;
+    }
+  }
+
+
+
+  .no-list {
+    @media #{$small-only} {
+      margin-left: rem_calc(-15px);
+      margin-right: rem_calc(-15px);
+    }
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: rem_calc(2px) 0;
+    }
+  }
+
+  li.ng-enter-stagger,
+  li.ng-leave-stagger {
+    transition-delay: 50ms;
+  }
+
+  li.ng-leave,
+  li.ng-move,
+  li.ng-enter {
+    transition: all linear $speed3;
+  }
+
+  li.ng-leave.ng-leave-active, //if you want leave animation
+  li.ng-move,
+  li.ng-enter {
+    opacity: 0;
+    height: 0;
+    transform: translateY(-10px); // scale(1.1);
+  }
+
+  li.ng-leave, //if you want leave animation
+  li.ng-move.ng-move-active,
+  li.ng-enter.ng-enter-active {
+    opacity: 1;
+    height: 65px;
+    transform: translateY(0); // scale(1);
+  }
+
+  .list-footer {
+    @media #{$small-only} {
+      margin-left: rem_calc(-15px);
+      margin-right: rem_calc(-15px);
+    }
+    background-color: $light-grey;
+    margin: 0;
+    padding: $default-padding;
+
+    .button {
+      font-size: rem_calc(16px);
+      margin: 0;
+      padding: $default-padding;
+    }
+  }
+}

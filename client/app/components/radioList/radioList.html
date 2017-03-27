@@ -1,4 +1,4 @@
-<div class="radio-checkbox radioList">
+<div class="radio-checkbox radioList unordered-list">
   <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.formName}}">
     <header class="flex-container">
       <div class="header-inner">
@@ -10,9 +10,9 @@
         <span ng-class="{ 'invalid icon-pl-exclamation': this[$ctrl.formName].$invalid, 'icon-pl-tick': !this[$ctrl.formName].$invalid }" class="right fontello-icon"></span>
       </div>
     </header>
-    <ul ng-class="{'animate': $ctrl.showAnimation}">
+    <ul class="no-list" ng-class="{'animate': $ctrl.showAnimation}">
       <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart">
-        <label for="radioName-{{$ctrl.formName}}-{{$index}}">
+        <label class="list-wrap" for="radioName-{{$ctrl.formName}}-{{$index}}">
           <span class="radio-label">{{item.label}}</span>
           <input id="radioName-{{$ctrl.formName}}-{{$index}}"
             type="radio"
@@ -23,12 +23,12 @@
             ng-model="$ctrl.selected"
             ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid, $index)">
         </label>
-        <blockquote ng-if="item.feedback" ng-show="$ctrl.selected === item.value" class="blockquote fgcolour-success">
+        <blockquote ng-if="item.feedback" ng-show="$ctrl.selected === item.value" class="blockquote list-wrap fgcolour-success">
           <p>{{item.feedback}}</p>
         </blockquote>
       </li>
     </ul>
-    <div class="toggle-show-more" ng-if="$ctrl.block.data.items.length > 5">
+    <div class="list-footer" ng-if="$ctrl.block.data.items.length > 5">
       <p class="button radius secondary" ng-click="$ctrl.toggleMore()">
         <span ng-hide="$ctrl.showingMore"><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-r"></i> Show more</span>
         <span ng-show="$ctrl.showingMore"><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-l"></i> Show less</span>
