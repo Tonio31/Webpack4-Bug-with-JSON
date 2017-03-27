@@ -35,7 +35,7 @@ describe('Navbar Directive', () => {
 
     it('Count the number of tags that have the class has-submenu', () => {
       let hasSubMenuTags = angular.element(template[0].querySelectorAll('.has-submenu'));
-      expect(hasSubMenuTags.length).to.eq(5);
+      expect(hasSubMenuTags.length).to.eq(6);
     });
 
 
@@ -44,7 +44,7 @@ describe('Navbar Directive', () => {
       expect(module1.hasClass('menu-item')).to.eq(true);
 
       let menuButtonClass = angular.element(module1[0].querySelectorAll('.menu-button'));
-      expect(menuButtonClass.length).to.eq(14);
+      expect(menuButtonClass.length).to.eq(12);
     });
 
   });

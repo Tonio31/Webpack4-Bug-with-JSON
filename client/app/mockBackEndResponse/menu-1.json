@@ -76,7 +76,7 @@
               "id": 5,
               "title": "MODULE 1",
               "name": "Encounter Strengths",
-              "description": "Approx. 3 mins",
+              "description": "Approx. 30 mins",
               "slug": "module-1",
               "order": 1,
               "status": "current",
@@ -180,26 +180,6 @@
                   "order": 9,
                   "status": "locked",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-10"
-                },
-                {
-                  "id": 11,
-                  "title": "Step 11",
-                  "name": "Hakunamatata",
-                  "description": "Approx. 20 mins",
-                  "slug": "step-11",
-                  "order": 10,
-                  "status": "locked",
-                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-11"
-                },
-                {
-                  "id": 12,
-                  "title": "Step 12",
-                  "name": "Enjoy your life",
-                  "description": "Approx. 25 mins",
-                  "slug": "step-12",
-                  "order": 11,
-                  "status": "locked",
-                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-12"
                 }
               ],
               "fullUrl": "/potentialife-course/cycle-1/module-1"
@@ -452,13 +432,85 @@
           "children": [
             {
               "id": 25,
-              "title": "Module 21",
-              "name": "Module 21",
+              "title": "Module 31",
+              "name": "Module 31",
               "description": null,
               "slug": "module-21",
               "order": 0,
               "status": "locked",
-              "fullUrl": "/potentialife-course/cycle-3/module-21"
+              "fullUrl": "/potentialife-course/cycle-3/module-31",
+              "children": [
+                {
+                  "id": 3311,
+                  "title": "Step 1",
+                  "name": "Module Overview",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-1",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-1"
+                },
+                {
+                  "id": 3312,
+                  "title": "Step 2",
+                  "name": "Inputs",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-2",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-2"
+                },
+                {
+                  "id": 3313,
+                  "title": "Step 3",
+                  "name": "Video",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-3",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-3"
+                },
+                {
+                  "id": 3314,
+                  "title": "Step 4",
+                  "name": "icon_text",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-4",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-4"
+                },
+                {
+                  "id": 3315,
+                  "title": "Step 5",
+                  "name": "bar_chart",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-5",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-5"
+                },
+                {
+                  "id": 3316,
+                  "title": "Step 6",
+                  "name": "Unordered List",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-6",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-6"
+                },
+                {
+                  "id": 3317,
+                  "title": "Step 7",
+                  "name": "Composed",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-7",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-7"
+                }
+              ]
             },
             {
               "id": 26,

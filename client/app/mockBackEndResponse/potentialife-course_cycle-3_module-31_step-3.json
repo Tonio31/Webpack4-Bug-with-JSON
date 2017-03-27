@@ -1,0 +1,54 @@
+{
+  "id": 1,
+  "name": "Video",
+  "slug": "/potentialife-course/cycle-3/module-31/step-3",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 3 / 10",
+  "next_page_url": "/potentialife-course/cycle-3/module-31/step-4",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-2",
+  "blocks": [
+    {
+      "id": 30,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: video<\/h1>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 59,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>The video highlights the importance of focusing on your strengths rather than your weaknesses to achieve greater levels of success and well-being. <\/p><p>When you have watched it and are ready to proceed, please mark this step as complete and move on to the next step.<\/p>"
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 59
+      }
+    },
+    {
+      "id": 60,
+      "type": "static",
+      "element": "video",
+      "program_data_code": null,
+      "data": {
+        "poster": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/videoplace.jpg",
+        "source": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/s.1.1\/S1-1-1-new.mp4"
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 60
+      }
+    }
+  ]
+}

@@ -7,7 +7,7 @@ describe('IconText', () => {
   let $rootScope, $state, $componentController, $compile;
   let goSpy;
 
-  let blocksBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-7.json').blocks;
+  let blocksBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-4.json').blocks;
 
 
   let mockWindow = {
