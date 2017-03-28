@@ -36,8 +36,8 @@ module.exports = () => {
 
     new CssSourcemapPlugin(),
 
+    // displays desktop notifications on MacOS
     new WebpackNotifierPlugin()
-
 
   ]);
 
