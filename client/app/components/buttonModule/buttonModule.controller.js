@@ -11,6 +11,10 @@ class ButtonModuleController {
       this.data = this.block.data;
     };
 
+    this.getPositionClass = () => {
+      return `button-${this.data.position}`;
+    };
+
     this.goToButtonLink = (iUrl) => {
       Utility.goToLink(iUrl);
     };

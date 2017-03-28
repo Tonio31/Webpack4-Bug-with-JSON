@@ -2,18 +2,17 @@
 @import '~client/app/common/_foundation-settings';
 // @import '~client/app/common/_foundation-functions';
 
-.button-module {
-  display: flex;
-
-  &.btn-center {
+.button {
+  &-module {
+    display: flex
+  }
+  &-center {
     justify-content: center;
   }
-
-  &.btn-left {
+  &-left {
     justify-content: flex-start;
   }
-
-  &.btn-right {
+  &-right {
     justify-content: flex-end;
   }
 }

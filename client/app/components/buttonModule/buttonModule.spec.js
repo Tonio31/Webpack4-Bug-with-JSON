@@ -17,7 +17,7 @@ describe('ButtonModule', () => {
       href: '/potentialife-course/cycle-1/module-1/step-9',
       color: 'primary',
       label: 'Resume your progress',
-      position: 'btn-center'
+      position: 'center'
     }
   };
 
@@ -40,16 +40,22 @@ describe('ButtonModule', () => {
       controller = $componentController('buttonModule', {
         $scope: $rootScope.$new()
       }, bindings);
+      controller.$onInit();
     });
 
 
-    it('goToButtonLink calls Utility.goToLink()', sinon.test( () => { // erase if removing this.name from the controller
+    it('goToButtonLink calls Utility.goToLink()', sinon.test( () => {
 
       goToLinkSpy = sinon.spy(Utility, 'goToLink');
       controller.goToButtonLink('whatever');
 
       sinon.assert.calledWith(goToLinkSpy, 'whatever');
     }));
+
+    it('getPositionClass build correct class from input', sinon.test( () => {
+      expect(controller.getPositionClass()).to.eq('button-center');
+    }));
+
   });
 
   describe('View', () => {
@@ -66,7 +72,7 @@ describe('ButtonModule', () => {
 
     it('Has the good css classes depending on input', () => {
       let buttonModule = angular.element(template[0].querySelector('.button-module'));
-      expect(buttonModule.hasClass('btn-center')).to.eq(true);
+      expect(buttonModule.hasClass('button-center')).to.eq(true);
 
       expect(template.find('button').hasClass('primary')).to.eq(true);
     });
