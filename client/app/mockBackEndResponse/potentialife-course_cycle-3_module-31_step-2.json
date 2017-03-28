@@ -10,6 +10,35 @@
   "prev_page_url": "/potentialife-course/cycle-3/module-31/step-1",
   "blocks": [
     {
+      "id": 20,
+      "type": "static",
+      "element": "html",
+      "data": {
+        "value": "<h1>Block: button<\/h1>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 21,
+      "type": "dynamic",
+      "element": "button",
+      "data": {
+        "href": "/potentialife-course/cycle-1/module-1/step-9",
+        "color": "primary",
+        "label": "Resume your progress",
+        "position": "right"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
       "id": 30,
       "type": "static",
       "element": "html",

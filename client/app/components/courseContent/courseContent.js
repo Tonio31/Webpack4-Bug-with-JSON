@@ -6,6 +6,7 @@ import UserDataFactory from 'common/userDataFactory/userData';
 import ResourceFactory from 'common/resourceFactory/resource';
 import MenuService from 'common/menuFactory/menu';
 import videoModule from 'components/videoModule/videoModule';
+import buttonModule from 'components/buttonModule/buttonModule';
 import textAreaModule from 'components/textArea/textArea';
 import textBoxModule from 'components/textBox/textBox';
 import iconTextModule from 'components/iconText/iconText';
@@ -22,6 +23,7 @@ let courseContentModule = angular.module('courseContent', [
   UserDataFactory,
   ResourceFactory,
   MenuService,
+  buttonModule,
   videoModule,
   textAreaModule,
   textBoxModule,
