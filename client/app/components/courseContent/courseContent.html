@@ -16,12 +16,10 @@
             <div class="block" ng-switch="block.element">
 
              <div ng-switch-when="container" class="composed panel">
-               <p>composed: {{block}}</p>
               <composed block="block" is-top-level-form-submitted="topLevelForm.$submitted" update-parent="$ctrl.updateInputFields(programDataCode, courseContentValue)"></composed>
              </div>
 
              <div ng-switch-default>
-               <p>normal</p>
                <block-manager block="block" is-top-level-form-submitted="topLevelForm.$submitted" on-update="$ctrl.updateInputFields(block.program_data_code, value)"></block-manager>
              </div>
 
