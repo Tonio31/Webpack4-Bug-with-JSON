@@ -17,6 +17,7 @@ class CheckboxController {
     this.toggleMore = () => {
       this.showingMore = !this.showingMore;
       if (this.showingMore) {
+        this.checkboxIsChecked = true; // hide show more/less
         this.limitStart = 0;
         this.limit = 100;
       }
@@ -26,11 +27,12 @@ class CheckboxController {
     };
 
     let isChecked = () => {
-      angular.forEach(checkboxes, (value) => {
-        if (value.checked === true) {
+      angular.forEach(checkboxes, (checkbox) => {
+        if (checkbox.checked === true) {
           this.checkboxIsChecked = true; // hide show more/less
           this.limitStart = 0;
           this.limit = 100;
+          this.selection[checkbox.value] = checkbox.checked;
         }
       });
     };
@@ -52,10 +54,10 @@ class CheckboxController {
       return true;
     };
 
+
     this.actionOnUserInput = () => {
+
       let checkedInput = [];
-      this.checkboxIsChecked = true;
-      this.limit = 100;
       for ( let [ key, value ] of Object.entries(this.selection) ) {
         if ( value === true ) {
           checkedInput.push(key);

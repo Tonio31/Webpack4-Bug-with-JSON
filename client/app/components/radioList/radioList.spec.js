@@ -85,7 +85,7 @@ describe('RadioList', () => {
 
     it('has a list item with the correct data in the label', () => {
       let obj = blockBinding.data.items;
-      let labelText = angular.element(template[0].querySelector('.radio-label'));
+      let labelText = angular.element(template[0].querySelector('.radio-label span'));
       expect(labelText.html()).to.eq(obj[0].label);
     });
 
