@@ -12,7 +12,7 @@
     </header>
 
     <ul class="no-list">
-      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart">
+      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart" ng-class="{'selected': $ctrl.selection[item.value]}">
         <label class="list-wrap" for="checkboxName-{{item.value}}">
           <div class="checkbox-label">
             <span>{{item.label}}</span>

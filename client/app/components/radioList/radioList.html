@@ -11,7 +11,7 @@
       </div>
     </header>
     <ul class="no-list">
-      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart">
+      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart" ng-class="{'selected': item.checked}">
         <label class="list-wrap" for="radioName-{{$ctrl.formName}}-{{$index}}">
           <div class="radio-label">
             <span>{{item.label}}</span>

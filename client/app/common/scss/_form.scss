@@ -1,0 +1,30 @@
+fieldset {
+  &[disabled] {
+
+    textarea,
+    [type="text"] {
+      width: 100%;
+      border-color: lighten($ship-grey, 10);
+      cursor: default;
+    }
+
+    .radio-checkbox {
+      .checkbox-label,
+      .radio-label,
+      .shim {
+        opacity: .3;
+      }
+      .selected {
+        .checkbox-label,
+        .radio-label,
+        .shim {
+          opacity: 1;
+        }
+      }
+      label,
+      .shim {
+        cursor: default;
+      }
+    }
+  }
+}
