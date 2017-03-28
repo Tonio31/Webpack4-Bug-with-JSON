@@ -7,7 +7,7 @@ describe('RadioList', () => {
   let $rootScope, $componentController, $compile;
   let FORM_NAME_PREFIX;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[14];
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[7];
 
   beforeEach(window.module(RadioListModule));
 
@@ -85,7 +85,7 @@ describe('RadioList', () => {
 
     it('has a list item with the correct data in the label', () => {
       let obj = blockBinding.data.items;
-      let labelText = angular.element(template[0].querySelector('.radio-label'));
+      let labelText = angular.element(template[0].querySelector('.radio-label span'));
       expect(labelText.html()).to.eq(obj[0].label);
     });
 

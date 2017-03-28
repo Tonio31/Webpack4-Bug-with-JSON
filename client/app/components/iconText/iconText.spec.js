@@ -4,17 +4,11 @@ import IconTextComponent from './iconText.component';
 import IconTextTemplate from './iconText.html';
 
 describe('IconText', () => {
-  let $rootScope, $state, $componentController, $compile;
-  let goSpy;
+  let $rootScope, $componentController, $compile;
+  let Utility;
 
-  let blocksBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-7.json').blocks;
+  let blocksBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-4.json').blocks;
 
-
-  let mockWindow = {
-    location: {
-      href: 'http://this-should-change.com'
-    }
-  };
 
   beforeEach(window.module(IconTextModule));
 
@@ -22,7 +16,7 @@ describe('IconText', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
-    $state = $injector.get('$state');
+    Utility = $injector.get('Utility');
   }));
 
   describe('Module', () => {
@@ -34,31 +28,16 @@ describe('IconText', () => {
     let controller;
     beforeEach(() => {
       controller = $componentController('iconText', {
-        $scope: $rootScope.$new(),
-        $window: mockWindow
+        $scope: $rootScope.$new()
       });
-
-      goSpy = sinon.spy($state, 'go');
     });
 
+    it('Redirect to external URL if url is of type http:// or https://', sinon.test( () => {
+      let goToLinkSpy = sinon.spy(Utility, 'goToLink');
+      controller.goToButtonLink('whatever');
 
-    it('Redirect to external URL if url is of type http:// or https://', () => {
-
-      let url = 'http://iamtestingifthisworks.com';
-      controller.goToButtonLink(url);
-
-      expect(mockWindow.location.href).to.eq(url);
-    });
-
-
-    it('Change State if the url is not an external URL', () => {
-
-      let url = '/potentialife-course/cycle-1/module-1/step-9';
-      controller.goToButtonLink(url);
-
-      sinon.assert.calledWith(goSpy, url);
-    });
-
+      sinon.assert.calledWith(goToLinkSpy, 'whatever');
+    }));
   });
 
   describe('View', () => {

@@ -24,6 +24,24 @@
       }
     },
     {
+      "id": 61,
+      "type": "dynamic",
+      "element": "textarea",
+      "required": true,
+      "program_data_code": "c1.m1.s1.story_1",
+      "data": {
+        "label": "Story 1:",
+        "placeholder": "Please fill in the first story",
+        "value": null,
+        "name": "story_1"
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 61
+      }
+    },
+    {
+      "id": 67,
       "type": "static",
       "element": "ul",
       "program_data_code": "c1.m1.s1.ul_1",

@@ -10,10 +10,13 @@
         <span ng-class="{ 'invalid icon-pl-exclamation': this[$ctrl.formName].$invalid, 'icon-pl-tick': !this[$ctrl.formName].$invalid }" class="right fontello-icon"></span>
       </div>
     </header>
-    <ul class="no-list" ng-class="{'animate': $ctrl.showAnimation}">
+    <ul class="no-list">
       <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart">
         <label class="list-wrap" for="radioName-{{$ctrl.formName}}-{{$index}}">
-          <span class="radio-label">{{item.label}}</span>
+          <div class="radio-label">
+            <span>{{item.label}}</span>
+            <strong ng-if="item.sub_label">- {{item.sub_label}}</strong>
+          </div>
           <input id="radioName-{{$ctrl.formName}}-{{$index}}"
             type="radio"
             name="radio_group-{{$ctrl.formName}}"
@@ -21,7 +24,8 @@
             ng-checked="{{item.checked}}"
             ng-required="{{$ctrl.block.required || true}}"
             ng-model="$ctrl.selected"
-            ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid, $index)">
+            ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid, $index);">
+          <div class="shim"></div>
         </label>
         <blockquote ng-if="item.feedback" ng-show="$ctrl.selected === item.value" class="blockquote list-wrap fgcolour-success">
           <p>{{item.feedback}}</p>

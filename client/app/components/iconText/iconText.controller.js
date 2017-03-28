@@ -1,5 +1,5 @@
 class IconTextController {
-  constructor($log, $state, $window) {
+  constructor($log, $state, $window, Utility) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -29,13 +29,7 @@ class IconTextController {
 
 
     this.goToButtonLink = (iUrl) => {
-      let reExternalUrl = /^https?:\/\/.*$/;
-      if ( iUrl.match(reExternalUrl) ) {
-        $window.location.href = iUrl;
-      }
-      else {
-        $state.go(iUrl);
-      }
+      Utility.goToLink(iUrl);
     };
   }
 }

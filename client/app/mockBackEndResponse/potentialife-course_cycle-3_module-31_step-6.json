@@ -1,0 +1,43 @@
+{
+  "id": 1,
+  "name": "Unordered List",
+  "slug": "/potentialife-course/cycle-3/module-31/step-6",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 6 / 10",
+  "next_page_url": "/potentialife-course/cycle-3/module-31/step-7",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-5",
+  "blocks": [
+    {
+      "id": 30,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 67,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "name": "Your chosen VIA character strengths",
+        "items": [
+          "Reflexion",
+          "Power",
+          "Love",
+          "Good in Bed",
+          "Hakunamatata"
+        ]
+      }
+    }
+  ]
+}

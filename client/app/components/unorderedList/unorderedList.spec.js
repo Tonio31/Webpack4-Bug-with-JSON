@@ -8,7 +8,7 @@ describe('UnorderedList', () => {
   // let $componentController;
   let $compile;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-9.json').blocks[1];
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-6.json').blocks[1];
 
   beforeEach(window.module(UnorderedListModule));
 
@@ -25,7 +25,7 @@ describe('UnorderedList', () => {
     beforeEach(() => {
       scope = $rootScope.$new();
       scope.block = blockBinding;
-      template = $compile('<unordered-list block="block" />')(scope);
+      template = $compile('<unordered-list block="block"/>')(scope);
       scope.$apply();
     });
 

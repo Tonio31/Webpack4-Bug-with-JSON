@@ -1,5 +1,5 @@
 class CourseContentController {
-  constructor($log, $filter, $location, $anchorScroll, $state, Menu, Data, FORM_NAME_PREFIX) {
+  constructor($log, $filter, $location, $anchorScroll, $state, $stateRegistry, Menu, Data, FORM_NAME_PREFIX, STATES) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -13,16 +13,30 @@ class CourseContentController {
     this.errorBannerText = false;
     // this.errorBannerText = 'Error saving steps. Please <a href="#">save it here</a>.';
 
+    this.updateStepCompleted = ( iIsStepCompleted, iNextState ) => {
+      if ( iIsStepCompleted ) {
+        this.isStepCompleted = true;
+        if ( iNextState === STATES.HOME ) {
+          this.nextStepButtonLabel = $filter('translate')('HOME').toString();
+        }
+        else {
+          this.nextStepButtonLabel = $filter('translate')('NEXT').toString();
+        }
+      }
+      else {
+        this.isStepCompleted = false;
+        this.nextStepButtonLabel = $filter('translate')('COMPLETE').toString();
+      }
+    };
+
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
 
       if ( this.content.status === 'current' ) {
-        this.isStepCompleted = false;
-        this.nextStepButtonLabel = $filter('translate')('COMPLETE').toString();
+        this.updateStepCompleted(false);
       }
       else if ( this.content.status === 'completed' ) {
-        this.isStepCompleted = true;
-        this.nextStepButtonLabel = $filter('translate')('NEXT').toString();
+        this.updateStepCompleted(true, this.content.next_page_url);
       }
       else {
         // We should never request a course for a locked module, throw an error if the status is not completed or current
@@ -94,14 +108,29 @@ class CourseContentController {
         postData.$save( (dataBackFromServer) => {
           $log.log('Response OK from the backend, retrieving the updated menu from backend dataBackFromServer=', dataBackFromServer);
 
-          this.nextStepButtonLabel = $filter('translate')('NEXT').toString();
-          this.isStepCompleted = true;
+          this.updateStepCompleted(true, this.content.next_page_url);
           this.congratsBannerText = dataBackFromServer.congrats;
 
           // This will resend a query to the backend to get the menu, the status of the step
           // will be updated and the directive menuButton will update automatically the menu
           let forceMenuRetrieval = true;
-          Menu.retrieveMenuAndReturnStates(forceMenuRetrieval);
+          Menu.retrieveMenuAndReturnStates(forceMenuRetrieval).then( (states) => {
+            // Modify state to check that state that are no more locked does not point to locked component
+            $log.log('Menu updated successfully');
+            states.forEach( (stateDefinition) => {
+              let uiRouterState = $stateRegistry.get(stateDefinition.name);
+
+              // Update Old Locked state to point to courseContent component
+              if ( uiRouterState.component !== stateDefinition.component ) {
+                $log.log(`About to deregister and re-register state ${stateDefinition.name}. uiRouterState=`, uiRouterState, '  stateDefinition=', stateDefinition);
+                $stateRegistry.deregister(stateDefinition.name);
+                $stateRegistry.register(stateDefinition);
+              }
+            });
+          },
+          (error) => {
+            $log.log('error Retrieving menu error=', error);
+          });
 
         }, (error) => {
           // Display error Banner for the user (to be defined with Matt how it will look like)
