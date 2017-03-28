@@ -16,6 +16,7 @@ import radioList from 'components/radioList/radioList';
 import constantModule from 'common/constants';
 import filtersModule from 'common/filters/filters';
 import unorderedList from 'components/unorderedList/unorderedList';
+import blockManager from 'components/blockManager/blockManager';
 import composed from 'components/composed/composed';
 
 
@@ -33,10 +34,11 @@ let courseContentModule = angular.module('courseContent', [
   checkbox,
   radioList,
   constantModule,
-  composed,
+  blockManager,
   filtersModule,
   unorderedList,
-  LogDecorator
+  LogDecorator,
+  composed
 ])
   .component('courseContent', courseContentComponent)
   .name;

@@ -28,6 +28,7 @@
       "element":"container",
       "blocks":[
         {
+          "id": 50,
           "type":"static",
           "element":"icon_text",
           "data": {
@@ -44,6 +45,25 @@
           }
         },
         {
+          "id": 54,
+          "type": "dynamic",
+          "element": "textbox",
+          "program_data_code": "c1.m1.s1.textbox_1",
+          "required": true,
+          "data": {
+            "label": "This is the label for the text box common_theme_1",
+            "placeholder": "Enter some data here",
+            "value": "Something inside",
+            "name": "common_theme_1"
+          },
+          "pivot": {
+            "step_id": 5,
+            "block_id": 54,
+            "order": 0
+          }
+        },
+        {
+          "id": 56,
           "type":"static",
           "element":"bar_chart",
           "data": {

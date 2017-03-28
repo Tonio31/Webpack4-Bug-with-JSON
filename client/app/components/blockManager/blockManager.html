@@ -1,0 +1,64 @@
+  <div class="block" ng-switch="$ctrl.blockData.element">
+
+    <div ng-switch-when="video">
+      <video-module data="$ctrl.blockData.data"></video-module>
+    </div>
+
+    <div ng-switch-when="module_overview">
+      <module-overview block="$ctrl.blockData"></module-overview>
+    </div>
+
+    <div ng-switch-when="checkbox">
+      <checkbox
+        on-update="$ctrl.onUpdate(value)"
+        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        block="$ctrl.blockData">
+      </checkbox>
+    </div>
+
+    <div ng-switch-when="radio">
+      <radio-list
+        on-update="$ctrl.onUpdate(value)"
+        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        block="$ctrl.blockData">
+      </radio-list>
+    </div>
+
+    <div ng-switch-when="html">
+      <div ng-bind-html="$ctrl.blockData.data.value | unsafe"></div>
+    </div>
+
+    <div ng-switch-when="textarea">
+      <pl-text-area
+        on-update="$ctrl.onUpdate(value)"
+        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        block="$ctrl.blockData">
+      </pl-text-area>
+    </div>
+
+    <div ng-switch-when="textbox">
+      <text-box
+        update-block-manager="$ctrl.onUpdate(blockManagerValue)"
+        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        block="$ctrl.blockData">
+      </text-box>
+    </div>
+
+    <div ng-switch-when="icon_text">
+      <icon-text data="$ctrl.blockData.data"></icon-text>
+    </div>
+
+    <div ng-switch-when="bar_chart">
+      <bar-chart block="$ctrl.blockData"></bar-chart>
+    </div>
+
+    <div ng-switch-when="ul">
+      <unordered-list block="$ctrl.blockData" />
+    </div>
+
+    <div ng-switch-when="button">
+      <button-module block="$ctrl.blockData" />
+    </div>
+
+
+</div>

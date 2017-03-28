@@ -18,7 +18,7 @@ class TextBoxController {
       $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}` );
 
       // Update parent with the change
-      this.onUpdate({ value: this.text });
+      this.updateBlockManager({ blockManagerValue: this.text });
 
       // Update the text that will change the icon (display exclamation mark if it's in error
       this.iconText = (iIsFormValid) ? ICON_FONTELLO.VALID_TICK : ICON_FONTELLO.WARNING;

@@ -7,6 +7,8 @@ class ModuleOverviewController {
 
     $log.log('ModuleOverviewController');
 
+    $log.info('MODULE OVERVIEW CTRL: ', this);
+
   }
 }
 

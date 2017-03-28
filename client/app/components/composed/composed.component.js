@@ -5,7 +5,9 @@ import './composed.scss';
 let composedComponent = {
   restrict: 'E',
   bindings: {
-    block: '<'
+    block: '<',
+    isTopLevelFormSubmitted: '<',
+    updateParent: '&'
   },
   template,
   controller
