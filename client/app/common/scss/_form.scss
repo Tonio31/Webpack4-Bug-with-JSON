@@ -21,9 +21,16 @@ fieldset {
           opacity: 1;
         }
       }
+
       label,
       .shim {
         cursor: default;
+      }
+
+      &.radioList {
+        .list-footer .button {
+          display: none;
+        }
       }
     }
   }
