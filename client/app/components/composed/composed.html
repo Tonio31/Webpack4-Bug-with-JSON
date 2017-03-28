@@ -1,6 +1,40 @@
-<div class="composed">
+<div class="composed panel">
   <div ng-repeat="block in $ctrl.blockData track by $index">
     <div class="block" ng-switch="block.element">
+
+      <div ng-switch-when="video">
+        <video-module data="block.data"></video-module>
+      </div>
+
+      <div ng-switch-when="module_overview">
+        <module-overview block="block"></module-overview>
+      </div>
+
+      <div ng-switch-when="checkbox">
+        <checkbox on-update="$ctrl.updateInputFields(block.program_data_code, value)" is-top-level-form-submitted="topLevelForm.$submitted" block="block"></checkbox>
+      </div>
+
+      <div ng-switch-when="radiobox">
+        <radio-list on-update="$ctrl.updateInputFields(block.program_data_code, value)" is-top-level-form-submitted="topLevelForm.$submitted" block="block"></radio-list>
+      </div>
+
+      <div ng-switch-when="html">
+        <div ng-bind-html="block.data.value | unsafe"></div>
+      </div>
+
+      <div ng-switch-when="textarea">
+        <pl-text-area on-update="$ctrl.updateInputFields(block.program_data_code, value)"
+                      is-top-level-form-submitted="topLevelForm.$submitted"
+                      block="block">
+        </pl-text-area>
+      </div>
+
+      <div ng-switch-when="textbox">
+        <text-box on-update="$ctrl.updateInputFields(block.program_data_code, value)"
+                  is-top-level-form-submitted="topLevelForm.$submitted"
+                  block="block">
+        </text-box>
+      </div>
 
       <div ng-switch-when="icon_text">
         <icon-text data="block.data"></icon-text>
@@ -8,6 +42,10 @@
 
       <div ng-switch-when="bar_chart">
         <bar-chart block="block"></bar-chart>
+      </div>
+
+      <div ng-switch-when="ul">
+        <unordered-list block="block" />
       </div>
 
     </div>

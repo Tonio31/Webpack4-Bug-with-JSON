@@ -6,6 +6,7 @@ import ComposedTemplate from './composed.html';
 describe('Composed', () => {
   let $rootScope, $componentController, $compile;
 
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-6.json').blocks[1];
   beforeEach(window.module(ComposedModule));
 
   beforeEach(inject(($injector) => {
@@ -34,18 +35,22 @@ describe('Composed', () => {
 
   describe('View', () => {
     // view specs
-    let scope, template;
+    let scope;
+    let template;
+
 
     beforeEach(() => {
       scope = $rootScope.$new();
+      scope.block = blockBinding;
       template = $compile('<composed block="block" />')(scope);
       scope.$apply();
     });
 
-
-    // it('has a h1 title', () => {
-    //   expect(template.find('h1').html()).to.eq('composed');
-    // });
+    it('has the correct amount of block as per the data', () => {
+      const blockElements = angular.element(template[0].querySelectorAll('.composed .block'));
+      const blockData = blockBinding.blocks.length;
+      expect(blockElements.length).to.eq(blockData);
+    });
   });
 
   describe('Component', () => {
