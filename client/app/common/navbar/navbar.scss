@@ -12,22 +12,86 @@ $mainTitleMenuColor: #a0a0a0;
   .tab-bar {
     background-color: $onyx;
 
-    .menu-icon {
-      // hide menu button on non-mobile
-      @media #{$large-up} {
-        display: none;
-      }
+    .right-small {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .logo-potential-life a {
     display: inline-block;
     background-image: url('./assets/logo-potential-life.svg');
     background-repeat: no-repeat;
-    background-position: 1px 4px;
+    background-position: center left;
     background-size: auto 80%;
     text-indent: -9999em;
     height: auto;
     width: 270px;
+  }
+}
+
+.menu-toggle-button {
+
+  $menu-size: 45px;
+  $radius: 4px;
+  $speed: 500ms;
+
+  @include noSelect();
+
+  border: 1px solid $white;
+  border-radius: $radius;
+  cursor: pointer;
+  width: $menu-size;
+  height: $menu-size;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .line-wrap {
+    display: block;
+    width: $menu-size - 14px;
+    height: $menu-size - 15px;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+  }
+
+  i {
+    background-color: $white;
+    border-radius: $radius;
+    width: 100%;
+    height: 3px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform $speed, opacity $speed;
+
+    &:nth-child(2) {
+      top: 8px;
+    }
+
+    &:nth-child(3) {
+      top: 16px;
+    }
+  }
+  .text {
+    color: $white;
+    display: block;
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    transform: translateZ(0);
+
+    &-hide {
+      display: none;
+    }
   }
 }
 
@@ -39,7 +103,23 @@ $mainTitleMenuColor: #a0a0a0;
     height: 100%;
   }
 
+  .logout {
+    position: fixed;
+    bottom: 20px;
+    left: 130px;
+    margin: 0;
+    opacity: 0;
+    transform: translateX(-340px);
+    transition: transform $speed3 / 2, opacity $speed3 / 2;
+    transition-delay: 0;
 
+    &.hide {
+      opacity: 0;
+      transform: translateX(-340px);
+      transition: transform $speed3 / 2, opacity $speed3 / 2;
+      transition-delay: 0;
+    }
+  }
 
   .header {
     position: fixed;
@@ -52,15 +132,6 @@ $mainTitleMenuColor: #a0a0a0;
   }
 
   .left-off-canvas-menu {
-    @media #{$large-up} {
-      position: static;
-      transform: translate3d(0, 0, 0);
-      top: auto;
-      left: auto;
-      bottom: auto;
-      width: $off-canvas-width;
-    }
-
     margin-top: $tabbar-height;
 
     a {
@@ -72,7 +143,7 @@ $mainTitleMenuColor: #a0a0a0;
       background-color: $onyx;
       border-top: 1px solid #5e5e5e;
       cursor: pointer;
-      padding: 1.25rem 0.6667rem 1.875rem 0.3125rem;
+      padding: 1.25rem .6667rem .6667rem .6667rem;
       .columns {
         padding: 0;
       }
@@ -129,10 +200,8 @@ $mainTitleMenuColor: #a0a0a0;
     height: 100%;
     width: 100%;
     transform: translate3d(0, 0, 0);
+    // transition: transform $speed3, width $speed3;
     transition: transform $speed3;
-    @media #{$large-up} {
-      width: calc(100% - #{$off-canvas-width});
-    }
   }
 
   .off-canvas-wrap,
@@ -165,10 +234,39 @@ $mainTitleMenuColor: #a0a0a0;
   }
 
   .move-right {
-    > .inner-wrap {
+    .main-section {
       @media #{$large-up} {
-        transform: translate3d(0, 0, 0);
+        // width: calc(100% - #{$off-canvas-width});
+        transform: translateX(-#{$off-canvas-width / 2});
       }
+    }
+
+    .menu-toggle-button {
+      .text-menu {
+        display: none;
+      }
+      .text-hide {
+        display: block;
+      }
+
+      i {
+        &:nth-child(1) {
+          transform: rotate(45deg) translateX(6px) translateY(5px);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:nth-child(3) {
+          transform: rotate(-45deg) translateX(6px) translateY(-6px);
+         }
+      }
+    }
+
+    ~ .logout {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity $speed3, transform $speed3;
+      transition-delay: $speed3 / 2;
     }
   }
 

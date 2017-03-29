@@ -16,6 +16,7 @@ let syncMenuAndState = function($rootScope, $log) {
 
         angular.element(el.parentElement).addClass('show-this-nav');
         angular.element(el.parentElement.parentElement).addClass('fix-nav-under');
+
       };
 
       let hideMenuPanel = (el, removeFixNavBar) => {
@@ -24,6 +25,7 @@ let syncMenuAndState = function($rootScope, $log) {
 
         // fix for nav doubling up behind: adds fix
         angular.element(el.parentElement).removeClass('show-this-nav');
+
 
         if ( removeFixNavBar ) {
           angular.element(el.parentElement.parentElement).removeClass('fix-nav-under');
