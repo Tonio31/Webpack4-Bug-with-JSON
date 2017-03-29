@@ -6,42 +6,42 @@ class RadioListController {
     $log = $log.getInstance( 'RadioListController' );
 
     let radio = null;
+    let limitAmount = 5; // list limit
+    let limitMax = 100; // list max limit (when showing more)
 
-    this.listIndex = 0;
+    this.listIndex = 0; // select item
     this.icons = ICON_FONTELLO;
     this.modelOptions = MODEL_OPTIONS;
-    this.selected = '';
-    this.limit = 5;
-    this.showingMore = false;
-    this.checkboxIsChecked = false; // assume checkboxes havent been checked
+    this.selected = ''; // current selected item
+    this.limit = limitAmount; // limit the amount shown in the list
+    this.showingMore = false; // is the list showing all items?
+    this.checkboxIsChecked = false; // assume radios havent been checked
 
     // if greater than 5 then show all items, and hide hide less button
-
-
     this.toggleMore = () => {
-      $log.info('index', this.listIndex);
-      this.showingMore = !this.showingMore;
-      if (this.showingMore) {
-        this.limitStart = 0;
-        this.limit = 100;
+      this.showingMore = !this.showingMore; // switch the state
+      if (this.showingMore) { // if user clicks 'show more'
+        this.limitStart = 0; // set the limitStart to beginning
+        this.limit = limitMax; // set the limit to 100
       }
-      else {
-        if (this.listIndex >= 2) {
-          this.limitStart = this.listIndex - 2;
+      else { // if user clicks 'show less'
+        if (this.listIndex >= 2) { // if selected item is greater than/ equal to 2
+          this.limitStart = this.listIndex - 2; // reduce the limitStart by 2 (show it shows items before and after the current selected item)
         }
         else {
-          this.limitStart = 0;
+          this.limitStart = 0; // otherwise reset the limitStart
         }
-        this.limit = 5;
+        this.limit = limitAmount; // limit the amount back to 5;
       }
     };
 
+    // goes through the radios to see if checked, if it item is checked show all
     let isChecked = () => {
       angular.forEach(radio, (value) => {
         if (value.checked === true) {
           this.checkboxIsChecked = true; // hide show more/less
           this.limitStart = 0;
-          this.limit = 100;
+          this.limit = limitMax;
         }
       });
     };
@@ -56,7 +56,8 @@ class RadioListController {
 
     this.actionOnUserInput = (iIsFormValid, index) => {
       this.listIndex = index;
-      this.onUpdate({ value: this.selected, checked: true });
+      // Update parent with the change
+      this.updateBlockManager({ blockManagerValue: this.selected, checked: true });
       $log.log('actionOnUserInput() - iIsFormValid=', iIsFormValid);
     };
 

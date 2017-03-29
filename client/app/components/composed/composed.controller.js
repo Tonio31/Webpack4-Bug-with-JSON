@@ -9,6 +9,14 @@ class ComposedController {
       this.blockData = this.block.blocks;
       $log.info('this.blockData', this.blockData);
     };
+
+    this.onUpdate = (iProgramDataCode, value) => {
+      $log.log('onUpdate value=', value);
+      this.updateParent({
+        courseContentValue: value,
+        programDataCode: iProgramDataCode
+      });
+    };
   }
 }
 

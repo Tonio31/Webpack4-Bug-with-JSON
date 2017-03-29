@@ -4,17 +4,18 @@ import ComposedComponent from './composed.component';
 import ComposedTemplate from './composed.html';
 
 describe('Composed', () => {
-  // let $rootScope;
+  let $rootScope;
   // let $componentController;
-  // let $compile;
+  let $compile;
 
+  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-6.json').blocks[1];
   beforeEach(window.module(ComposedModule));
 
-  // beforeEach(inject(($injector) => {
-  //   // $rootScope = $injector.get('$rootScope');
-  //   // $componentController = $injector.get('$componentController');
-  //   // $compile = $injector.get('$compile');
-  // }));
+  beforeEach(inject(($injector) => {
+    $rootScope = $injector.get('$rootScope');
+    // $componentController = $injector.get('$componentController');
+    $compile = $injector.get('$compile');
+  }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
@@ -34,22 +35,25 @@ describe('Composed', () => {
   //   });
   // });
 
-  // describe('View', () => {
-  //   // view specs
-  //   let scope;
-  //   let template;
-  //
-  //   beforeEach(() => {
-  //     scope = $rootScope.$new();
-  //     template = $compile('<composed block="block" />')(scope);
-  //     scope.$apply();
-  //   });
-  //
-  //
-  //   // it('has a h1 title', () => {
-  //   //   expect(template.find('h1').html()).to.eq('composed');
-  //   // });
-  // });
+  describe('View', () => {
+    // view specs
+    let scope;
+    let template;
+
+
+    beforeEach(() => {
+      scope = $rootScope.$new();
+      scope.block = blockBinding;
+      template = $compile('<composed block="block" />')(scope);
+      scope.$apply();
+    });
+
+    it('has the correct amount of block as per the data', () => {
+      const blockElements = angular.element(template[0].querySelectorAll('.composed > div'));
+      const blockData = blockBinding.blocks.length;
+      expect(blockElements.length).to.eq(blockData);
+    });
+  });
 
   describe('Component', () => {
     // component/directive specs

@@ -39,9 +39,7 @@ $mainTitleMenuColor: #a0a0a0;
     height: 100%;
   }
 
-  a {
-    color: $canvasMenuLinkTextColor;
-  }
+
 
   .header {
     position: fixed;
@@ -62,7 +60,12 @@ $mainTitleMenuColor: #a0a0a0;
       bottom: auto;
       width: $off-canvas-width;
     }
+
     margin-top: $tabbar-height;
+
+    a {
+      color: $canvasMenuLinkTextColor;
+    }
 
     .home {
       display: flex;

@@ -22,7 +22,7 @@ class TextAreaController {
       'iIsFormValid: ', iIsFormValid);
 
       // Update parent with the change
-      this.onUpdate({ value: this.text });
+      this.updateBlockManager({ blockManagerValue: this.text });
     };
   }
 }

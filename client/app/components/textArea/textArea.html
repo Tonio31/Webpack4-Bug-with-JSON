@@ -8,9 +8,9 @@
                   ng-class="{ 'parent-submitted': $ctrl.isTopLevelFormSubmitted }"
                   ng-model-options="$ctrl.modelOptions"
                   ng-required="{{$ctrl.block.required}}"
+                  ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
                   ng-focus="$ctrl.hasFocus = true"
                   ng-blur="$ctrl.hasFocus = false"
-                  ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
                   ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid)">
           {{$ctrl.text}}
         </textarea>

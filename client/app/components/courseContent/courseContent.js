@@ -5,17 +5,9 @@ import LogDecorator from 'common/logDecorator/logDecorator';
 import UserDataFactory from 'common/userDataFactory/userData';
 import ResourceFactory from 'common/resourceFactory/resource';
 import MenuService from 'common/menuFactory/menu';
-import videoModule from 'components/videoModule/videoModule';
-import buttonModule from 'components/buttonModule/buttonModule';
-import textAreaModule from 'components/textArea/textArea';
-import textBoxModule from 'components/textBox/textBox';
-import iconTextModule from 'components/iconText/iconText';
-import barChartModule from 'components/barChart/barChart';
-import checkbox from 'components/checkbox/checkbox';
-import radioList from 'components/radioList/radioList';
+import blockManager from 'components/blockManager/blockManager';
 import constantModule from 'common/constants';
 import filtersModule from 'common/filters/filters';
-import unorderedList from 'components/unorderedList/unorderedList';
 
 
 let courseContentModule = angular.module('courseContent', [
@@ -23,17 +15,9 @@ let courseContentModule = angular.module('courseContent', [
   UserDataFactory,
   ResourceFactory,
   MenuService,
-  buttonModule,
-  videoModule,
-  textAreaModule,
-  textBoxModule,
-  iconTextModule,
-  barChartModule,
-  checkbox,
-  radioList,
   constantModule,
+  blockManager,
   filtersModule,
-  unorderedList,
   LogDecorator
 ])
   .component('courseContent', courseContentComponent)
