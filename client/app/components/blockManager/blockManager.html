@@ -10,15 +10,15 @@
 
     <div ng-switch-when="checkbox">
       <checkbox
-        on-update="$ctrl.onUpdate(value)"
+        update-block-manager="$ctrl.onUpdate(blockManagerValue)"
         is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
         block="$ctrl.blockData">
       </checkbox>
     </div>
 
-    <div ng-switch-when="radio">
+    <div ng-switch-when="radiobox">
       <radio-list
-        on-update="$ctrl.onUpdate(value)"
+        update-block-manager="$ctrl.onUpdate(blockManagerValue)"
         is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
         block="$ctrl.blockData">
       </radio-list>
@@ -30,7 +30,7 @@
 
     <div ng-switch-when="textarea">
       <pl-text-area
-        on-update="$ctrl.onUpdate(value)"
+        update-block-manager="$ctrl.onUpdate(blockManagerValue)"
         is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
         block="$ctrl.blockData">
       </pl-text-area>

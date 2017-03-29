@@ -12,7 +12,7 @@ class BlockManagerController {
 
     this.onUpdate = (value) => {
       $log.log('onUpdateTest value=', value);
-      this.updateParent({composedValue: value});
+      this.updateParent({ composedValue: value });
     };
 
   }
