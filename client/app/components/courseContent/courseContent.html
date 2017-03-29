@@ -15,7 +15,7 @@
           <div ng-repeat="block in $ctrl.content.blocks track by block.id">
             <div class="block" ng-switch="block.element">
 
-             <div ng-switch-when="container" class="composed panel">
+             <div ng-switch-when="container">
               <composed block="block" is-top-level-form-submitted="topLevelForm.$submitted" update-parent="$ctrl.updateInputFields(programDataCode, courseContentValue)"></composed>
              </div>
 

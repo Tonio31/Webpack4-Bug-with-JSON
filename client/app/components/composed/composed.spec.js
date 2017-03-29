@@ -47,7 +47,7 @@ describe('Composed', () => {
     });
 
     it('has the correct amount of block as per the data', () => {
-      const blockElements = angular.element(template[0].querySelectorAll('.composed .block'));
+      const blockElements = angular.element(template[0].querySelectorAll('.composed > div'));
       const blockData = blockBinding.blocks.length;
       expect(blockElements.length).to.eq(blockData);
     });
