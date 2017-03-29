@@ -1,18 +1,18 @@
-  <div class="block" ng-switch="$ctrl.blockData.element">
+  <div class="block" ng-switch="$ctrl.block.element">
 
     <div ng-switch-when="video">
-      <video-module data="$ctrl.blockData.data"></video-module>
+      <video-module data="$ctrl.block.data"></video-module>
     </div>
 
     <div ng-switch-when="module_overview">
-      <module-overview block="$ctrl.blockData"></module-overview>
+      <module-overview block="$ctrl.block"></module-overview>
     </div>
 
     <div ng-switch-when="checkbox">
       <checkbox
         update-block-manager="$ctrl.onUpdate(blockManagerValue)"
         is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
-        block="$ctrl.blockData">
+        block="$ctrl.block">
       </checkbox>
     </div>
 
@@ -20,19 +20,19 @@
       <radio-list
         update-block-manager="$ctrl.onUpdate(blockManagerValue)"
         is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
-        block="$ctrl.blockData">
+        block="$ctrl.block">
       </radio-list>
     </div>
 
     <div ng-switch-when="html">
-      <div ng-bind-html="$ctrl.blockData.data.value | unsafe"></div>
+      <div ng-bind-html="$ctrl.block.data.value | unsafe"></div>
     </div>
 
     <div ng-switch-when="textarea">
       <pl-text-area
         update-block-manager="$ctrl.onUpdate(blockManagerValue)"
         is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
-        block="$ctrl.blockData">
+        block="$ctrl.block">
       </pl-text-area>
     </div>
 
@@ -40,24 +40,24 @@
       <text-box
         update-block-manager="$ctrl.onUpdate(blockManagerValue)"
         is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
-        block="$ctrl.blockData">
+        block="$ctrl.block">
       </text-box>
     </div>
 
     <div ng-switch-when="icon_text">
-      <icon-text data="$ctrl.blockData.data"></icon-text>
+      <icon-text data="$ctrl.block.data"></icon-text>
     </div>
 
     <div ng-switch-when="bar_chart">
-      <bar-chart block="$ctrl.blockData"></bar-chart>
+      <bar-chart block="$ctrl.block"></bar-chart>
     </div>
 
     <div ng-switch-when="ul">
-      <unordered-list block="$ctrl.blockData" />
+      <unordered-list block="$ctrl.block" />
     </div>
 
     <div ng-switch-when="button">
-      <button-module block="$ctrl.blockData" />
+      <button-module block="$ctrl.block" />
     </div>
 
 
