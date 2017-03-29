@@ -39,7 +39,9 @@ describe('BlockManager', () => {
     beforeEach(() => {
       scope = $rootScope.$new();
       scope.block = blockBinding;
-      template = $compile('<block-manager block="block" is-top-level-form-submitted="topLevelForm.$submitted" on-update="$ctrl.updateInputFields(block.program_data_code, value)"></block-manager>')(scope);
+      scope.isTopLevelFormSubmitted = true;
+      scope.updateParent = () => {};
+      template = $compile('<block-manager block="block" is-top-level-form-submitted="isTopLevelFormSubmitted" update-parent="updateParent()"></block-manager>')(scope);
       scope.$apply();
     });
 

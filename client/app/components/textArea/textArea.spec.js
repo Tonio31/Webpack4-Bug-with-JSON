@@ -5,9 +5,22 @@ import TextAreaTemplate from './textArea.html';
 
 describe('TextArea', () => {
   let $rootScope, $componentController, $compile;
-  let FORM_NAME_PREFIX, ICON_FONTELLO;
+  let Utility;
+  let FORM_NAME_PREFIX;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[3];
+  let blockBinding = {
+    id: 31,
+    type: 'dynamic',
+    element: 'textarea',
+    program_data_code: 'c1.m1.s1.story_1',
+    required: true,
+    data: {
+      label: 'Label: Story 1:',
+      placeholder: 'placeholder: Please fill in the first story',
+      value: 'Something',
+      name: 'name: story_1'
+    }
+  };
 
   beforeEach(window.module(TextAreaModule));
 
@@ -16,7 +29,7 @@ describe('TextArea', () => {
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
-    ICON_FONTELLO = $injector.get('ICON_FONTELLO');
+    Utility = $injector.get('Utility');
   }));
 
   describe('Module', () => {
@@ -27,9 +40,12 @@ describe('TextArea', () => {
     // controller specs
     let controller;
 
+    let updateBlockManagerSpy;
+
     let bindings = {
       block: blockBinding,
-      isTopLevelFormSubmitted: false
+      isTopLevelFormSubmitted: false,
+      updateBlockManager: () => {}
     };
 
     beforeEach(() => {
@@ -37,14 +53,32 @@ describe('TextArea', () => {
         $scope: $rootScope.$new()
       }, bindings);
 
-      controller.$onInit();
+      updateBlockManagerSpy = sinon.spy(controller, 'updateBlockManager');
     });
 
 
-    it('has initialise text & formName with the good value', () => {
+    it('$onInit() - initialise text & FORM_NAME from the input', () => {
+      controller.$onInit();
       expect(controller.text).to.equal(bindings.block.data.value);
-      expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
-      expect(controller.iconText).to.equal(ICON_FONTELLO.VALID_TICK);
+      expect(controller.FORM_NAME).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
+
+      sinon.assert.notCalled(updateBlockManagerSpy);
+    });
+
+
+    it('$onInit() - initialise text & FORM_NAME from the local storage', () => {
+
+      bindings.block.data.value = '';
+      let getUserInputFromLocalStorageStub = sinon.stub(Utility, 'getUserInputFromLocalStorage', () => {
+        return 'Some Text';
+      });
+
+      controller.$onInit();
+      expect(controller.text).to.equal('Some Text');
+      expect(controller.FORM_NAME).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
+
+      sinon.assert.calledWith(getUserInputFromLocalStorageStub, controller.block.program_data_code);
+      sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: 'Some Text' });
     });
   });
 

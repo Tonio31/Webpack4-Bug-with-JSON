@@ -1,5 +1,5 @@
 <div class="textArea">
-  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.formName}}">
+  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.FORM_NAME}}">
     <h3>{{ $ctrl.block.data.label }}</h3>
     <div class="flex-container">
 
@@ -11,16 +11,16 @@
                   ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
                   ng-focus="$ctrl.hasFocus = true"
                   ng-blur="$ctrl.hasFocus = false"
-                  ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid)">
+                  ng-change="$ctrl.actionOnUserInput()">
           {{$ctrl.text}}
         </textarea>
 
-      <div class="validation-icon-right has-focus" ng-show="$ctrl.hasFocus && !$ctrl.isTopLevelFormSubmitted && !this[$ctrl.formName][$ctrl.block.data.name].$dirty">
+      <div class="validation-icon-right has-focus" ng-show="$ctrl.hasFocus && !$ctrl.isTopLevelFormSubmitted && !this[$ctrl.FORM_NAME][$ctrl.block.data.name].$dirty">
         <span class="right fontello-icon icon-pl-lt"></span>
       </div>
 
-      <div class="validation-icon-right" ng-hide="!this[$ctrl.formName][$ctrl.block.data.name].$dirty && !$ctrl.isTopLevelFormSubmitted">
-        <span ng-class="{ 'icon-pl-exclamation invalid': this[$ctrl.formName][$ctrl.block.data.name].$invalid, 'icon-pl-tick': !this[$ctrl.formName][$ctrl.block.data.name].$invalid }" class="right fontello-icon"></span>
+      <div class="validation-icon-right" ng-show="this[$ctrl.FORM_NAME][$ctrl.block.data.name].$dirty || $ctrl.isTopLevelFormSubmitted">
+        <span ng-class="this[$ctrl.FORM_NAME][$ctrl.block.data.name].$invalid ? 'icon-pl-exclamation invalid' : 'icon-pl-tick'" class="right fontello-icon"></span>
       </div>
 
     </div>

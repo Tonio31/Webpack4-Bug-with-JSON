@@ -14,6 +14,7 @@ import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
 import MenuService from 'common/menuFactory/menu';
+import ngStorage from 'ngstorage-webpack';
 
 
 // This is a trick to be able to set up dynamic routing in run.
@@ -22,13 +23,14 @@ let $stateProviderRef = null;
 let appModule = angular.module('app', [
   'mm.foundation',
   uiRouter,
+  ngStorage,
   ngAnimate,
   Common,
   Components,
   MenuService,
   Global
 ])
-  .config(($locationProvider, $stateProvider, $urlRouterProvider, STATES) => {
+  .config(($locationProvider, $stateProvider, $localStorageProvider, $urlRouterProvider, STATES) => {
     'ngInject';
 
     // This is needed because we create our state dynamically, if we don't put this,
@@ -46,6 +48,8 @@ let appModule = angular.module('app', [
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
+
+    $localStorageProvider.setKeyPrefix('pl2-');
 
     $stateProviderRef = $stateProvider;
   })

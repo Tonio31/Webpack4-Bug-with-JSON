@@ -5,17 +5,25 @@ import CheckboxTemplate from './checkbox.html';
 
 describe('Checkbox', () => {
   let $rootScope, $componentController, $compile;
+  let Utility;
   let FORM_NAME_PREFIX;
 
   let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[7];
 
-  beforeEach(window.module(CheckboxModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(CheckboxModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
+    Utility = $injector.get('Utility');
   }));
 
   describe('Module', () => {
@@ -25,38 +33,170 @@ describe('Checkbox', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+    let updateBlockManagerSpy;
 
-    let bindings = {
-      block: blockBinding,
-      isTopLevelFormSubmitted: false
-    };
 
     beforeEach(() => {
+      let bindings = {
+        block: blockBinding,
+        isTopLevelFormSubmitted: false,
+        updateBlockManager: () => {}
+      };
+
       controller = $componentController('checkbox', {
         $scope: $rootScope.$new()
       }, bindings);
 
+
+      updateBlockManagerSpy = sinon.spy(controller, 'updateBlockManager');
+
+    });
+
+    it('$onInit() - constant are initialised', () => {
       controller.$onInit();
+      expect(controller.FORM_NAME).to.equal(`${FORM_NAME_PREFIX}${controller.block.id}`);
+      expect(controller.CHECKBOX_GROUP_NAME).to.equal(`checkbox_group-${controller.FORM_NAME}`);
+      expect(controller.NB_MIN_CHECKBOX_SELECTED).to.equal(blockBinding.data.config.min_selected);
+      expect(controller.NB_MAX_CHECKBOX_SELECTED).to.equal(blockBinding.data.config.max_selected);
     });
 
-    it('has initialised text with the correct value', () => {
-      expect(controller.text).to.equal(bindings.block.data.value);
+
+    it('$onInit() - this.selection is initialised from input data if input have checked checkbox', () => {
+
+      // Choosing the item number 8 will cause displayAllCheckbox() to be called
+      controller.block.data.items[8].checked = true;
+
+      controller.$onInit();
+
+      expect(controller.areAllCheckBoxDisplayed).to.equal(true);
+      expect(controller.limit).to.equal(undefined);
+      expect(controller.selection).to.deep.equal({ alien8: true });
+
+      // Revert the change to don't impact other test
+      controller.block.data.items[8].checked = false;
     });
 
-    it('has initialised formName with the correct value', () => {
-      expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
+
+    it('$onInit() - this.selection is initialised from localStorage  if input DOESN\'T have checked checkbox', sinon.test( () => {
+
+      let getUserInputFromLocalStorageStub = sinon.stub(Utility, 'getUserInputFromLocalStorage', () => {
+        return ['dan'];
+      });
+
+
+      controller.$onInit();
+
+      expect(controller.areAllCheckBoxDisplayed).to.equal(true);
+      expect(controller.limit).to.equal(undefined);
+      expect(controller.selection).to.deep.equal({ dan: true });
+
+      sinon.assert.calledWith(getUserInputFromLocalStorageStub, controller.block.program_data_code);
+      sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: ['dan'] });
+
+    }));
+
+    it('getPleaseSelectMessage() for min=max=1', () => {
+      expect(controller.getPleaseSelectMessage(1, 1)).to.equal('PLEASE_SELECT_1_OPTION');
     });
 
-    it('has toggleMore() which shows all items', () => {
-      controller.toggleMore();
-      expect(controller.showingMore).to.eq(true);
+    it('getPleaseSelectMessage() for min=max=2', () => {
+      expect(controller.getPleaseSelectMessage(2, 2)).to.equal('PLEASE_SELECT_X_OPTIONS');
     });
 
-    it('has toggleMore() and second time which shows less items', () => {
-      controller.showingMore = true;
-      controller.toggleMore();
-      expect(controller.showingMore).to.eq(false);
+    it('getPleaseSelectMessage() for min=2 max=4', () => {
+      expect(controller.getPleaseSelectMessage(2, 4)).to.equal('PLEASE_SELECT_RANGE_OPTIONS');
     });
+
+    it('checkIfValid() returns false if the number of checkbox checked is not less than min', () => {
+      controller.NB_MIN_CHECKBOX_SELECTED = 2;
+
+      // Only 1 checked
+      controller.selection = {
+        dan: true
+      };
+
+      let oListChecked = [];
+
+      let isValid = controller.checkIfValid(oListChecked);
+      expect(isValid).to.eq(false);
+      expect(oListChecked).to.deep.eq([ 'dan' ]);
+    });
+
+    it('checkIfValid() returns false if the number of checkbox checked is not more than max', () => {
+      controller.NB_MAX_CHECKBOX_SELECTED = 1;
+
+      // Only 1 checked
+      controller.selection = {
+        dan: true,
+        alien: true
+      };
+
+      let oListChecked = [];
+
+      let isValid = controller.checkIfValid(oListChecked);
+      expect(isValid).to.eq(false);
+      expect(oListChecked).to.deep.eq([ 'dan', 'alien' ]);
+    });
+
+    it('checkIfValid() returns true if the number of checkbox checked is not between min and max', () => {
+      controller.NB_MIN_CHECKBOX_SELECTED = 2;
+      controller.NB_MAX_CHECKBOX_SELECTED = 2;
+
+      // Simulate 2 checked
+      controller.selection = {
+        dan: true,
+        alien: true
+      };
+
+      let oListChecked = [];
+
+      let isValid = controller.checkIfValid(oListChecked);
+      expect(isValid).to.eq(true);
+      expect(oListChecked).to.deep.eq([ 'dan', 'alien' ]);
+    });
+
+    it('actionOnUserInput() will set the HTML input element to VALID and call updateBlockManager()', sinon.test( () => {
+      controller.NB_MIN_CHECKBOX_SELECTED = 2;
+      controller.NB_MAX_CHECKBOX_SELECTED = 2;
+
+      // Simulate 2 checked
+      controller.selection = {
+        dan: true,
+        alien: true
+      };
+
+      let checkBoxGroupElement = {
+        $setValidity: () => {}
+      };
+
+      let $setValiditySpy = sinon.spy(checkBoxGroupElement, '$setValidity');
+
+      controller.actionOnUserInput(checkBoxGroupElement);
+
+      sinon.assert.calledWith($setValiditySpy, 'nbOptionSelected', true);
+      sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: ['dan', 'alien'] });
+    }));
+
+    it('actionOnUserInput() will set the HTML input element to INVALID and call updateBlockManager()', sinon.test( () => {
+      controller.NB_MIN_CHECKBOX_SELECTED = 2;
+      controller.NB_MAX_CHECKBOX_SELECTED = 2;
+
+      // Only 1 checked
+      controller.selection = {
+        dan: true
+      };
+
+      let checkBoxGroupElement = {
+        $setValidity: () => {}
+      };
+
+      let $setValiditySpy = sinon.spy(checkBoxGroupElement, '$setValidity');
+
+      controller.actionOnUserInput(checkBoxGroupElement);
+
+      sinon.assert.calledWith($setValiditySpy, 'nbOptionSelected', false);
+      sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: ['dan'] });
+    }));
 
 
   });
@@ -69,7 +209,7 @@ describe('Checkbox', () => {
       scope = $rootScope.$new();
       scope.block = blockBinding;
       scope.isTopLevelFormSubmitted = true;
-      template = $compile('<checkbox on-update="$ctrl.updateInputFields(block.program_data_code, value)" is-top-level-form-submitted="topLevelForm.$submitted" block="block"></checkbox>')(scope);
+      template = $compile('<checkbox is-top-level-form-submitted="isTopLevelFormSubmitted" block="block"></checkbox>')(scope);
       scope.$apply();
     });
 
@@ -88,6 +228,18 @@ describe('Checkbox', () => {
       let obj = blockBinding.data.items;
       expect(template.find('input').attr('value')).to.eq(obj[0].value);
     });
+
+    it('Display all checkbox when clicking on ShowMore', () => {
+      // Click on Show More
+      let showMoreButton = angular.element(template[0].querySelector('.list-footer p'));
+      showMoreButton.triggerHandler('click');
+      scope.$apply();
+
+      // Now the list starts at the first element in the obj array
+      let checkboxes = angular.element(template[0].querySelectorAll('input'));
+      expect(checkboxes.length).to.eq(10);
+    });
+
   });
 
   describe('Component', () => {

@@ -1,25 +1,28 @@
 class TextAreaController {
-  constructor($log, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
+  constructor($log, Utility, FORM_NAME_PREFIX, MODEL_OPTIONS) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'TextAreaController' );
 
-    this.icons = ICON_FONTELLO;
-
     // ng-model-options applied to the textarea
     this.modelOptions = MODEL_OPTIONS;
 
     this.$onInit = () => {
-      this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
+      this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
 
-      this.text = this.block.data.value;
-      this.iconText = ICON_FONTELLO.VALID_TICK;
+      if ( this.block.data.value ) {
+        this.text = this.block.data.value;
+      }
+      else {
+        this.text = Utility.getUserInputFromLocalStorage(this.block.program_data_code);
+        this.updateBlockManager({ blockManagerValue: this.text });
+      }
+
     };
 
-    this.actionOnUserInput = (iIsFormValid) => {
-      $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}`,
-      'iIsFormValid: ', iIsFormValid);
+    this.actionOnUserInput = () => {
+      $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}`);
 
       // Update parent with the change
       this.updateBlockManager({ blockManagerValue: this.text });

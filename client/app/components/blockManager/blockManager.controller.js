@@ -6,8 +6,8 @@ class BlockManagerController {
     $log = $log.getInstance( 'BlockManagerController' );
 
     this.onUpdate = (value) => {
-      $log.log('onUpdateTest value=', value);
-      this.updateParent({ composedValue: value });
+      $log.log('onUpdate value=', value);
+      this.updateParent({ parentValue: value });
     };
 
   }

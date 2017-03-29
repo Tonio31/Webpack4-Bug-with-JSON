@@ -156,9 +156,9 @@ angular.module( 'appMockBackEnd', [
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
-    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    let dataObject = angular.fromJson(data);
+/*    let dataObject = angular.fromJson(data);
 
     if ( !JwtFactory.isAuthedExpired() ) {
       // Simulate a good answer
@@ -175,10 +175,11 @@ angular.module( 'appMockBackEnd', [
       };
 
       return [ 200, responseContent, responseHeaders ];
-    }
+    }*/
 
     // If the user is not logged in, returns error
-    return errorReply;
+    // return errorReply;
+    return [ 404, { error: 'token_not_provided' }, {} ];
 
   });
 
