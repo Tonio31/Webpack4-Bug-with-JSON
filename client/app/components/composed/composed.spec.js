@@ -4,14 +4,16 @@ import ComposedComponent from './composed.component';
 import ComposedTemplate from './composed.html';
 
 describe('Composed', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope;
+  // let $componentController;
+  let $compile;
 
   let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-6.json').blocks[1];
   beforeEach(window.module(ComposedModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
+    // $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
   }));
 
