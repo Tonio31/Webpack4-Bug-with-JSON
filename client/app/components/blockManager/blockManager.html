@@ -25,7 +25,7 @@
     </div>
 
     <div ng-switch-when="html">
-      <div ng-bind-html="$ctrl.block.data.value | unsafe"></div>
+      <html-module data="$ctrl.block.data"></html-module>
     </div>
 
     <div ng-switch-when="textarea">

@@ -13,6 +13,7 @@ import checkbox from 'components/checkbox/checkbox';
 import radioList from 'components/radioList/radioList';
 import unorderedList from 'components/unorderedList/unorderedList';
 import composed from 'components/composed/composed';
+import htmlModule from 'components/htmlModule/htmlModule';
 
 
 let blockManagerModule = angular.module('blockManager', [
@@ -28,7 +29,8 @@ let blockManagerModule = angular.module('blockManager', [
   checkbox,
   radioList,
   unorderedList,
-  composed
+  composed,
+  htmlModule
 ])
 
 .component('blockManager', blockManagerComponent)
