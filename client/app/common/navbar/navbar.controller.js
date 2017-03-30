@@ -21,6 +21,7 @@ class NavbarController {
     this.companyName = 'Potentialife';
 
     $log.log('constructor() - END');
+
   }
 }
 

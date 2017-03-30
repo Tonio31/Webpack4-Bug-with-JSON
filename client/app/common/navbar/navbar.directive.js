@@ -26,7 +26,6 @@ let syncMenuAndState = function($rootScope, $log) {
         // fix for nav doubling up behind: adds fix
         angular.element(el.parentElement).removeClass('show-this-nav');
 
-
         if ( removeFixNavBar ) {
           angular.element(el.parentElement.parentElement).removeClass('fix-nav-under');
         }
@@ -35,6 +34,7 @@ let syncMenuAndState = function($rootScope, $log) {
       let showHideMenuPanel = (el, iShowMenuPanel, isToStateCourseStep) => {
         if ( iShowMenuPanel ) {
           showMenuPanel(el);
+          $log.info('zzz showMenuPanel', el);
         }
         else {
           hideMenuPanel(el, !isToStateCourseStep);
@@ -71,6 +71,7 @@ let syncMenuAndState = function($rootScope, $log) {
       element.on('click', (event) => {
         event.stopPropagation();
         showMenuPanel(element[0]);
+        $log.info('menu item, element is a: ', element);
         $log.log('Menu Item Clicked!! element=', element[0].id, '   event=', event);
       });
 
@@ -78,6 +79,7 @@ let syncMenuAndState = function($rootScope, $log) {
       angular.element(element[0].getElementsByClassName('back')[0]).on('click', (event) => {
         event.stopPropagation();
         hideMenuPanel(element[0], true);
+        $log.info('back item, should be LI with ID: ', element.parentElement.parentElement);
         $log.log('BACK Clicked!! element=', element[0].id, '   event=', event);
       });
     }
