@@ -48,6 +48,14 @@
   "RE_ENTER_EMAIL": "Click on button below, re-enter your email address and try again.",
   "EMAIL_SUPPORT": "Need help? Contact support at support@potentialife.com",
 
+  "SHOW_MORE": "Show more",
+  "SHOW_LESS": "Show less",
+  "PLEASE_SELECT_X_OPTIONS": "(Please select {{nbOptions}} options below)",
+  "PLEASE_SELECT_RANGE_OPTIONS": "(Please select between {{nbMinOptions}} and {{nbMaxOptions}} options below)",
+  "PLEASE_SELECT_1_OPTION": "(Please select 1 option below)",
+
+  "ERROR_SAVING_RETRY": "Whoops, we are sorry, there was an error while saving data, please refresh the page and retry or contact support if error persists.",
+
   "ERROR_WITH_BACKEND": "Whoops, Unexpected error while changing your password.",
   "PLEASE_TRY_AGAIN": "Please try again",
   "PLEASE_EMAIL_SUPPORT": "Please contact support at support@potentialife.com, sorry for the inconvenience"

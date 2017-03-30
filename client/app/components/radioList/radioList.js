@@ -3,11 +3,13 @@ import uiRouter from 'angular-ui-router';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import constantModule from 'common/constants';
 import radioListComponent from './radioList.component';
+import UtilityFactory from 'common/utility/utility';
 
 let radioListModule = angular.module('radioList', [
   uiRouter,
   constantModule,
-  LogDecorator
+  LogDecorator,
+  UtilityFactory
 ])
 
 .component('radioList', radioListComponent)

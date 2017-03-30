@@ -1,64 +1,88 @@
 class RadioListController {
-  constructor($log, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
+  constructor($log, Utility, FORM_NAME_PREFIX) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'RadioListController' );
 
-    let radio = null;
-    let limitAmount = 5; // list limit
-    let limitMax = 100; // list max limit (when showing more)
+    this.MIN_NB_RADIO_BUTTON_DISPLAYED = 5;
 
-    this.listIndex = 0; // select item
-    this.icons = ICON_FONTELLO;
-    this.modelOptions = MODEL_OPTIONS;
-    this.selected = ''; // current selected item
-    this.limit = limitAmount; // limit the amount shown in the list
-    this.showingMore = false; // is the list showing all items?
-    this.checkboxIsChecked = false; // assume radios havent been checked
+    this.selected = '';
 
-    // if greater than 5 then show all items, and hide hide less button
-    this.toggleMore = () => {
-      this.showingMore = !this.showingMore; // switch the state
-      if (this.showingMore) { // if user clicks 'show more'
-        this.limitStart = 0; // set the limitStart to beginning
-        this.limit = limitMax; // set the limit to 100
+    this.limitStart = 0;
+    this.limit = this.MIN_NB_RADIO_BUTTON_DISPLAYED;
+
+    this.showMoreButtonDisplayed = true;
+
+    this.updateLimit = (iIndexSelected) => {
+      $log.debug('iIndexSelected=', iIndexSelected);
+      if (iIndexSelected >= ( this.block.data.items.length - 2 ) ) {
+        this.limitStart = -this.MIN_NB_RADIO_BUTTON_DISPLAYED;
       }
-      else { // if user clicks 'show less'
-        if (this.listIndex >= 2) { // if selected item is greater than/ equal to 2
-          this.limitStart = this.listIndex - 2; // reduce the limitStart by 2 (show it shows items before and after the current selected item)
-        }
-        else {
-          this.limitStart = 0; // otherwise reset the limitStart
-        }
-        this.limit = limitAmount; // limit the amount back to 5;
+      else if (iIndexSelected >= 2) {
+        this.limitStart = iIndexSelected - 2;
+      }
+      else {
+        this.limitStart = 0;
+      }
+      this.limit = this.MIN_NB_RADIO_BUTTON_DISPLAYED;
+    };
+
+    this.toggleMore = () => {
+      this.showMoreButtonDisplayed = !this.showMoreButtonDisplayed;
+
+      if ( this.showMoreButtonDisplayed ) {
+        this.updateLimit(this.findSelectedIndex());
+      }
+      else {
+        this.limitStart = 0;
+        this.limit = undefined; // see limitTo docs: "If limit is undefined, the input will be returned unchanged."
       }
     };
 
-    // goes through the radios to see if checked, if it item is checked show all
-    let isChecked = () => {
-      angular.forEach(radio, (value) => {
-        if (value.checked === true) {
-          this.checkboxIsChecked = true; // hide show more/less
-          this.limitStart = 0;
-          this.limit = limitMax;
+    let setSelectedRadio = (iRadioItems) => {
+      for (let i = 0; i < iRadioItems.length; i++) {
+        let item = iRadioItems[i];
+        if (item.selected === true) {
+          this.selected = item.value;
+          this.updateLimit(i);
+          return;
         }
-      });
+      }
+
+      // Nothing is selected from the back End response, check if we have some data in local Storage
+      let selectedFromLocalStorage = Utility.getUserInputFromLocalStorage(this.block.program_data_code);
+      if ( selectedFromLocalStorage ) {
+        $log.log('Reloading data from local storage. selectedFromLocalStorage=', selectedFromLocalStorage);
+        this.selected = selectedFromLocalStorage;
+        this.updateLimit(this.findSelectedIndex());
+        this.updateBlockManager({ blockManagerValue: this.selected });
+        return;
+      }
+
     };
 
     this.$onInit = () => {
-      this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
-      this.name = this.block.data.label;
-      this.text = this.block.data.value;
-      radio = this.block.data.items;
-      isChecked(radio);
+      this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
+      setSelectedRadio(this.block.data.items);
     };
 
-    this.actionOnUserInput = (iIsFormValid, index) => {
-      this.listIndex = index;
-      // Update parent with the change
-      this.updateBlockManager({ blockManagerValue: this.selected, checked: true });
-      $log.log('actionOnUserInput() - iIsFormValid=', iIsFormValid);
+    this.findSelectedIndex = () => {
+      for (let i = 0; i < this.block.data.items.length; i++) {
+        let item = this.block.data.items[i];
+        if ( item.value === this.selected ) {
+          return i;
+        }
+      }
+
+      // Default, nothing is selected
+      return 0;
+    };
+
+
+    this.actionOnUserInput = (iIsFormValid) => {
+      this.updateBlockManager({ blockManagerValue: this.selected });
+      $log.log('actionOnUserInput() - iIsFormValid=', iIsFormValid, '  this.selected=', this.selected);
     };
 
   }

@@ -156,7 +156,7 @@ angular.module( 'appMockBackEnd', [
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
-    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     let dataObject = angular.fromJson(data);
 
@@ -179,6 +179,7 @@ angular.module( 'appMockBackEnd', [
 
     // If the user is not logged in, returns error
     return errorReply;
+    // return [ 404, { error: 'token_not_provided' }, {} ]; // switch with the line above if you want to simulate an other error than "Not logged in"
 
   });
 
