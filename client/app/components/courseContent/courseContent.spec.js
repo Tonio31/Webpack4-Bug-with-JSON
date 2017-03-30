@@ -5,9 +5,9 @@ import CourseContentModule from './courseContent';
 describe('CourseContent', () => {
   let $rootScope, $state, $stateRegistry, $q, $location, $componentController, $compile;
 
-  let Menu, Data, FORM_NAME_PREFIX;
+  let Menu, Data, Utility, FORM_NAME_PREFIX;
 
-  let goFn, retrieveMenuAndReturnStatesFn;
+  let goFn, retrieveMenuAndReturnStatesFn, removeUserInputSpy, saveUserInputSpy;
   let stateRegistryGetFn, stateRegistryDeregisterFn, stateRegistryRegisterFn;
 
   let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json');
@@ -38,6 +38,7 @@ describe('CourseContent', () => {
     $compile = $injector.get('$compile');
     Menu = $injector.get('Menu');
     Data = $injector.get('Data');
+    Utility = $injector.get('Utility');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
 
     goFn = sinon.stub($state, 'go');
@@ -56,6 +57,9 @@ describe('CourseContent', () => {
 
     stateRegistryDeregisterFn = sinon.stub( $stateRegistry, 'deregister', () => {} );
     stateRegistryRegisterFn = sinon.spy($stateRegistry, 'register');
+
+    removeUserInputSpy = sinon.spy(Utility, 'removeUserInputFromLocalStorage');
+    saveUserInputSpy = sinon.spy(Utility, 'saveUserInputToLocalStorage');
   }));
 
   describe('Controller', () => {
@@ -82,7 +86,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       expect(controller.nextStepButtonLabel).to.eq('COMPLETE');
       expect(controller.displayPreviousButton).to.eq(false);
-      expect(controller.congratsBannerText).to.eq('');
+      expect(controller.banner.text).to.eq('');
     });
 
     it('test the onInit Function when the current status of the state is \'completed\'', () => {
@@ -90,7 +94,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       expect(controller.nextStepButtonLabel).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
-      expect(controller.congratsBannerText).to.eq('');
+      expect(controller.banner.text).to.eq('');
     });
 
     it('throw an exception if the status is not current or completed', () => {
@@ -163,12 +167,13 @@ describe('CourseContent', () => {
       expect(updateStepPOSTRequest.programData).to.deep.equal( [{ code: 'c1.m1.s1.story_2', value: 'This is a text' }] );
 
       sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
+      sinon.assert.calledWith(removeUserInputSpy, { 'c1.m1.s1.story_2': 'This is a text' });
       sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryRegisterFn, stateNotLocked);
       expect(controller.nextStepButtonLabel).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
-      expect(controller.congratsBannerText).to.eq('<p>Congratulations for finishing this module, you\'re a star<\/p>');
+      expect(controller.banner.text).to.eq('<p>Congratulations for finishing this module, you\'re a star<\/p>');
 
       // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();
@@ -194,10 +199,18 @@ describe('CourseContent', () => {
         $invalid: false
       };
 
+
+      // Add inputs to be saved in local storage
+      controller.updateInputFields( 'c1.m1.s1.story_2', 'This is a text');
+
       controller.$onInit();
       controller.nextStep(form);
 
       sinon.assert.notCalled(retrieveMenuAndReturnStatesFn);
+
+      sinon.assert.calledWith( saveUserInputSpy, { 'c1.m1.s1.story_2': 'This is a text' } );
+      expect(controller.banner.class).to.eq('banner-error');
+
 
       // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();

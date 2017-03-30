@@ -19,9 +19,8 @@ let jwtServiceModule = angular.module('jwtService', [
 ])
   .factory('JwtFactory', JwtFactory)
   .factory('AuthInterceptor', AuthInterceptorFactory)
-  .config( ($httpProvider, $localStorageProvider) => {
+  .config( ($httpProvider) => {
     'ngInject';
-    $localStorageProvider.setKeyPrefix('pl2-');
     $httpProvider.interceptors.push('AuthInterceptor');
   })
   .name;

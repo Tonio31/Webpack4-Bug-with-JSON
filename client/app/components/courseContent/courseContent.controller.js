@@ -1,5 +1,17 @@
 class CourseContentController {
-  constructor($log, $filter, $location, $anchorScroll, $state, $stateRegistry, Menu, Data, FORM_NAME_PREFIX, STATES) {
+
+  // eslint-disable-next-line max-params
+  constructor( $log,
+               $filter,
+               $location,
+               $anchorScroll,
+               $state,
+               $stateRegistry,
+               Menu,
+               Data,
+               Utility,
+               FORM_NAME_PREFIX,
+               STATES ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -8,10 +20,30 @@ class CourseContentController {
     this.name = 'courseContent';
 
     this.isStepCompleted = false;
-    this.congratsBannerText = '';
 
-    this.errorBannerText = false;
-    // this.errorBannerText = 'Error saving steps. Please <a href="#">save it here</a>.';
+
+    // This container is used to store all the inputs modified by the user, so we can
+    // send it back to the server when saving
+    let inputFields = {};
+
+
+    this.banner = {
+      text: '',
+      class: '',
+      icon: ''
+    };
+
+    this.setBannerSuccess = (iSuccessMessage) => {
+      this.banner.text = iSuccessMessage;
+      this.banner.class = 'banner-congrats';
+      this.banner.icon = 'icon-pl-tick';
+    };
+
+    this.setBannerError = () => {
+      this.banner.text = `<p>${ $filter('translate')('ERROR_SAVING_RETRY').toString() }</p>`;
+      this.banner.class = 'banner-error';
+      this.banner.icon = 'icon-pl-exclamation';
+    };
 
     this.updateStepCompleted = ( iIsStepCompleted, iNextState ) => {
       if ( iIsStepCompleted ) {
@@ -48,9 +80,6 @@ class CourseContentController {
       $log.log('$onInit - END');
     };
 
-    // This container is used to store all the inputs modified by the user, so we can send it back
-    // to the server when saving
-    let inputFields = {};
     this.updateInputFields = (iIdentifier, iNewValue) => {
       $log.log('updateInputFields iIdentifier=', iIdentifier, '    iNewValue=', iNewValue);
       inputFields[iIdentifier] = iNewValue;
@@ -109,7 +138,10 @@ class CourseContentController {
           $log.log('Response OK from the backend, retrieving the updated menu from backend dataBackFromServer=', dataBackFromServer);
 
           this.updateStepCompleted(true, this.content.next_page_url);
-          this.congratsBannerText = dataBackFromServer.congrats;
+          this.setBannerSuccess(dataBackFromServer.congrats);
+
+          // If there was user input saved in local storage, delete it as it has been successfully saved on server side
+          Utility.removeUserInputFromLocalStorage(inputFields);
 
           // This will resend a query to the backend to get the menu, the status of the step
           // will be updated and the directive menuButton will update automatically the menu
@@ -133,8 +165,12 @@ class CourseContentController {
           });
 
         }, (error) => {
-          // Display error Banner for the user (to be defined with Matt how it will look like)
-          // this.errorBannerText = dataBackFromServer.error;
+          // Display error Banner for the user
+          this.setBannerError();
+
+          // Save user input to locasl storage so we can restore fit when he refresh the page
+          Utility.saveUserInputToLocalStorage(inputFields);
+
           $log.log('Error saving the current step. error=', error);
         });
       }

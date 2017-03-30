@@ -105,6 +105,10 @@ let menuItem = function() {
             return iObject.hasOwnProperty('children');
           };
 
+          $scope.hideMenuItem = (iObject) => {
+            return iObject.hasOwnProperty('hideStepInMenu') && iObject.hideStepInMenu;
+          };
+
           $scope.hideCanvas = () => {
             offCanvasWrap.hide();
           };
