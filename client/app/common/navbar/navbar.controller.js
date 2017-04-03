@@ -1,5 +1,5 @@
 class NavbarController {
-  constructor( $log, STATES, Menu) {
+  constructor( $log, $state, STATES, Menu, JwtFactory) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -12,6 +12,11 @@ class NavbarController {
     this.$onInit = () => {
       $log.log('constructor()::$onInit - BEGIN');
       $log.log('constructor()::$onInit - END');
+    };
+
+    this.logout = () => {
+      JwtFactory.logout();
+      $state.go(STATES.LOGIN);
     };
 
     // This is a reference to the Menu stored in MenuFactory, When the menu is retrieved by app.js for

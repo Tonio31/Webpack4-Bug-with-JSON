@@ -13,7 +13,6 @@ let syncMenuAndState = function($rootScope, $log) {
       let showMenuPanel = (el) => {
         angular.element(el.getElementsByClassName('left-submenu')[0]).addClass('move-right');
         angular.element(el.getElementsByClassName('right-submenu')[0]).addClass('move-left');
-
         angular.element(el.parentElement).addClass('show-this-nav');
         angular.element(el.parentElement.parentElement).addClass('fix-nav-under');
 
@@ -34,7 +33,6 @@ let syncMenuAndState = function($rootScope, $log) {
       let showHideMenuPanel = (el, iShowMenuPanel, isToStateCourseStep) => {
         if ( iShowMenuPanel ) {
           showMenuPanel(el);
-          $log.info('zzz showMenuPanel', el);
         }
         else {
           hideMenuPanel(el, !isToStateCourseStep);
@@ -71,16 +69,23 @@ let syncMenuAndState = function($rootScope, $log) {
       element.on('click', (event) => {
         event.stopPropagation();
         showMenuPanel(element[0]);
-        $log.info('menu item, element is a: ', element);
         $log.log('Menu Item Clicked!! element=', element[0].id, '   event=', event);
+        // $log.info('[menu item] TOP OF THE MENU, send `false` to logout button');
       });
 
       // If we click on Back button, we need to hide the menu
       angular.element(element[0].getElementsByClassName('back')[0]).on('click', (event) => {
+        // let grandParent = element[0].parentElement.parentElement.parentElement;
         event.stopPropagation();
         hideMenuPanel(element[0], true);
-        $log.info('back item, should be LI with ID: ', element.parentElement.parentElement);
         $log.log('BACK Clicked!! element=', element[0].id, '   event=', event);
+
+        // if (grandParent.classList.contains('off-canvas-list-bugfix')) {
+        //   $log.info('TOP OF THE MENU, send `true` to logout button');
+        // }
+        // else {
+        //   $log.info('[back] TOP OF THE MENU, send `false` to logout button');
+        // }
       });
     }
   };

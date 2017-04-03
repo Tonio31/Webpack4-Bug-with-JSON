@@ -220,6 +220,10 @@
       "program_data_code": "c1.m1.s1.checkbox_1",
       "data": {
         "label": "this is the label",
+        "config": {
+          "min_selected": 2,
+          "max_selected": 3
+        },
         "placeholder": "this is the placholder",
         "name": "this is the name",
         "items": [

@@ -103,24 +103,6 @@ $mainTitleMenuColor: #a0a0a0;
     height: 100%;
   }
 
-  .logout {
-    position: fixed;
-    bottom: 20px;
-    left: 130px;
-    margin: 0;
-    opacity: 0;
-    transform: translateX(-340px);
-    transition: transform $speed3 / 2, opacity $speed3 / 2;
-    transition-delay: 0;
-
-    &.hide {
-      opacity: 0;
-      transform: translateX(-340px);
-      transition: transform $speed3 / 2, opacity $speed3 / 2;
-      transition-delay: 0;
-    }
-  }
-
   .header {
     position: fixed;
     top: 0;
@@ -193,6 +175,18 @@ $mainTitleMenuColor: #a0a0a0;
         background-image: url('./assets/menu-item-home.svg');
       }
     }
+
+    .logout {
+      background-color: $ship-grey;
+      border-bottom: 0;
+      cursor: pointer;
+      position: absolute;
+      bottom: 0;
+      .pl-menu-button {
+        font-size: rem_calc(30);
+        // background-image: url('./assets/menu-item-logout.svg');
+      }
+    }
   }
 
   .main-section {
@@ -200,8 +194,8 @@ $mainTitleMenuColor: #a0a0a0;
     height: 100%;
     width: 100%;
     transform: translate3d(0, 0, 0);
-    // transition: transform $speed3, width $speed3;
     transition: transform $speed3;
+    padding-bottom: $footerHeight;
   }
 
   .off-canvas-wrap,
@@ -226,17 +220,18 @@ $mainTitleMenuColor: #a0a0a0;
       height: 100%;
     }
     .inner-wrap {
-      min-height: calc(100vh - 48px);
+      min-height: 100vh;
       @media #{$medium-up} {
         display: flex;
+        flex-wrap: wrap;
       }
     }
   }
 
   .move-right {
-    .main-section {
-      @media #{$large-up} {
-        // width: calc(100% - #{$off-canvas-width});
+    .main-section,
+    footer {
+      @media #{$xlarge-up} {
         transform: translateX(-#{$off-canvas-width / 2});
       }
     }
@@ -260,13 +255,6 @@ $mainTitleMenuColor: #a0a0a0;
           transform: rotate(-45deg) translateX(6px) translateY(-6px);
          }
       }
-    }
-
-    ~ .logout {
-      opacity: 1;
-      transform: translateX(0);
-      transition: opacity $speed3, transform $speed3;
-      transition-delay: $speed3 / 2;
     }
   }
 
@@ -342,8 +330,8 @@ $mainTitleMenuColor: #a0a0a0;
       display: block;
       a {
         background-color: $onyx;
-        padding: rem_calc(20px) .6667rem rem_calc(30px) rem_calc(5px);
-        align-items: flex-end;
+        padding: 1.25rem .6667rem .6667rem rem_calc(5px);
+        align-items: center;
         &::before {
           display: none;
         }
@@ -374,14 +362,27 @@ $mainTitleMenuColor: #a0a0a0;
         position: relative;
 
         &::after {
-          content: '';
-          display: block;
-          border: 1px solid red;
-          width: 10px;
-          height: 10px;
+          content: '\3e';
+          height: 30px;
           position: absolute;
-          top: 0;
-          right: -10px;
+          top: calc(50% - 10px);
+          right: 10px;
+          color: $white;
+          font-family: "fontello";
+          font-style: normal;
+          font-weight: normal;
+          speak: none;
+          display: inline-block;
+          text-decoration: inherit;
+          width: 1em;
+          margin-right: .2em;
+          text-align: center;
+          font-variant: normal;
+          text-transform: none;
+          line-height: 1em;
+          margin-left: .2em;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
 
         p {
@@ -401,7 +402,11 @@ $mainTitleMenuColor: #a0a0a0;
   //The workaround to fix this is to redefine the directive and the css associated
 
   .off-canvas-list-bugfix {
-    list-style-type: none;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
+    // list-style-type: none;
+    // height: 100%;
     margin: 0;
     padding: 0;
   }
