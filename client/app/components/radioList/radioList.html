@@ -11,7 +11,7 @@
       </div>
     </header>
     <ul class="no-list">
-      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart">
+      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart" ng-class="{'selected': item.checked}">
         <label class="list-wrap" for="radioName-{{$ctrl.FORM_NAME}}-{{$index}}">
           <div class="radio-label">
             <span>{{item.label}}</span>
@@ -22,6 +22,7 @@
             name="radio_group-{{$ctrl.FORM_NAME}}"
             value="{{item.value}}"
             ng-required="$ctrl.block.data.config.required && !$ctrl.selected"
+            ng-checked="item.checked"
             ng-model="$ctrl.selected"
             ng-change="$ctrl.actionOnUserInput(this[$ctrl.FORM_NAME].$valid);">
           <div class="shim"></div>
