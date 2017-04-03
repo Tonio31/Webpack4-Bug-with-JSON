@@ -134,7 +134,7 @@
             "label": "label: Meeting with Con",
             "sub_label": "sub_label: non-work",
             "value": "Con",
-            "checked": false,
+            "checked": true,
             "feedback": "this answer has feedback"
           },
           {

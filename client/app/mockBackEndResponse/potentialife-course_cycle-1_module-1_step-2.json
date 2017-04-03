@@ -219,11 +219,11 @@
       "element": "checkbox",
       "program_data_code": "c1.m1.s1.checkbox_1",
       "data": {
-        "label": "this is the label",
         "config": {
           "min_selected": 2,
           "max_selected": 3
         },
+        "label": "this is the label",
         "placeholder": "this is the placholder",
         "name": "this is the name",
         "items": [
@@ -231,7 +231,7 @@
             "label": "Meeting with Con",
             "sub_label": "non-work",
             "value": "12312",
-            "checked": false
+            "checked": true
           },
           {
             "label": "Meeting with Dan1",
@@ -308,84 +308,84 @@
             "label": "this is the label 2",
             "value": "this_is_the_label_2",
             "sub_label": null,
-            "checked": true,
+            "selected": true,
             "feedback": null
           },
           {
             "label": "this is the label 3",
             "value": "this_is_the_label_3",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": null
           },
           {
             "label": "this is the label 4",
             "value": "this_is_the_label_4",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": "this answer has feedback"
           },
           {
             "label": "this is the label 5",
             "value": "this_is_the_label_5",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": null
           },
           {
             "label": "this is the label 6",
             "value": "this_is_the_label_6",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": null
           },
           {
             "label": "this is the label 7",
             "value": "this_is_the_label_7",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": null
           },
           {
             "label": "this is the label 8",
             "value": "this_is_the_label_8",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": "this answer has feedback"
           },
           {
             "label": "this is the label 9",
             "value": "this_is_the_label_9",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": null
           },
           {
             "label": "this is the label 12",
             "value": "this_is_the_label_12",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": null
           },
           {
             "label": "this is the label 13",
             "value": "this_is_the_label_13",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": null
           },
           {
             "label": "this is the label 14",
             "value": "this_is_the_label_14",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": "this answer has feedback"
           },
           {
             "label": "this is the label 15",
             "value": "this_is_the_label_15",
             "sub_label": null,
-            "checked": false,
+            "selected": false,
             "feedback": null
           }
         ]
