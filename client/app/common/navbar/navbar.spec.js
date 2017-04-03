@@ -3,7 +3,13 @@ import NavbarModule from './navbar';
 describe('Navbar', () => {
   let $rootScope, $componentController, $compile;
 
-  beforeEach(window.module(NavbarModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(NavbarModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');

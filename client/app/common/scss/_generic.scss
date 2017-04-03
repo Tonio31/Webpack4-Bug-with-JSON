@@ -19,7 +19,7 @@ body {
 .move-right {
   .exit-off-canvas {
     box-shadow: none;
-    @media #{$large-up} {
+    @media #{$xlarge-up} {
       display: none;
     }
   }

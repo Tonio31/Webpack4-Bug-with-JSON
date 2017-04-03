@@ -7,9 +7,19 @@
           <h1 class="title logo-potential-life"><a ui-sref="{{$ctrl.homeState}}">{{$ctrl.companyName}}</a></h1>
           <a href="#content" class="accessible-link">Skip to content</a>
         </section>
+
         <div class="right-small">
-          <a role="button" aria-controls="idOfRightMenu" class="left-off-canvas-toggle menu-icon"><span></span></a>
+          <div class="menu-toggle-button left-off-canvas-toggle" ng-click="$ctrl.toggleMenu($event)">
+            <span class="line-wrap">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+            <span class="text text-menu">menu</span>
+            <span class="text text-hide">hide</span>
+          </div>
         </div>
+
       </nav>
     </div>
 
@@ -28,6 +38,16 @@
             </div>
           </li>
           <menu-item item="$ctrl.menu.data"></menu-item>
+          <li class="logout menu-button row small-collapse" ng-click="$ctrl.logout()">
+            <div class="small-2 columns">
+              <span class="pl-menu-button icon-logout"></span>
+            </div>
+            <div class="small-10 columns">
+              <p class="top-title">&nbsp;</p>
+              <p class="main-title">{{'LOGOUT' | translate}}</p>
+              <p class="below-title">&nbsp;</p>
+            </div>
+          </li>
         </ul>
       </aside>
 
@@ -37,7 +57,7 @@
 
       <!-- close the off-canvas menu -->
       <a class="exit-off-canvas"></a>
-
+      <footer></footer>
     </div>
   </div>
 </div>

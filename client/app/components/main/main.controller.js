@@ -1,6 +1,9 @@
 class MainController {
-  constructor() {
+  constructor($log) {
     'ngInject';
+
+    $log.info('main controller');
+
   }
 }
 

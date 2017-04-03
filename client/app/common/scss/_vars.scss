@@ -1,3 +1,5 @@
+@import '~client/app/common/_foundation-functions';
+
 // colours
 $accentColor: #1de9b6;
 $logoColor: #ec754e;
@@ -15,6 +17,7 @@ $video-colour-highlight: $logoColor;
 
 // changeLanguageHeight
 $changeLanguageHeight: 20px;
+$footerHeight: rem_calc(70px);
 
 // default font
 $defaultFont: 100% 'Montserrat', sans-serif;

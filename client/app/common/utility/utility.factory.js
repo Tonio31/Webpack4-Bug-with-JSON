@@ -18,6 +18,7 @@ let UtilityFactory = function( $log, $state, $window, $localStorage, User ) {
     return `${User.getUserId()}-${iKey}`;
   };
 
+
   // This function is used when the server returns an error when saving the data from a courseContent
   // We save the user input to local storage so we can restore it when they refresh the page
   let saveUserInputToLocalStorage = (iInputFields) => {

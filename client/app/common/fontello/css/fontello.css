@@ -14,7 +14,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?98204282#fontello') format('svg');
+    src: url('../font/fontello.svg?60464699#fontello') format('svg');
   }
 }
 */
@@ -66,3 +66,4 @@
 .icon-badge-strengths:before { content: '\73'; } /* 's' */
 .icon-pl-tick:before { content: '\74'; } /* 't' */
 .icon-pl-logo:before { content: '\75'; } /* 'u' */
+.icon-logout:before { content: '\e815'; } /* '' */
