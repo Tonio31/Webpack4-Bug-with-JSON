@@ -176,7 +176,7 @@
     },
     {
       "uid": "55716fce2a64271857416aaf8cb95cf1",
-      "css": "logou_messing",
+      "css": "logout",
       "code": 59413,
       "src": "custom_icons",
       "selected": true,
@@ -185,7 +185,7 @@
         "width": 1000
       },
       "search": [
-        "logou_messing"
+        "logout"
       ]
     }
   ]

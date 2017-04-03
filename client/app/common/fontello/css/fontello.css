@@ -1,8 +1,7 @@
 @font-face {
   font-family: 'fontello';
   src: url('../font/fontello.eot');
-  src: url('../font/fontello.eot') format('embedded-opentype'),
-       url('../font/fontello.woff2') format('woff2'),
+  src: url('../font/fontello.woff2') format('woff2'),
        url('../font/fontello.woff') format('woff'),
        url('../font/fontello.ttf') format('truetype'),
        url('../font/fontello.svg') format('svg');
@@ -67,4 +66,4 @@
 .icon-badge-strengths:before { content: '\73'; } /* 's' */
 .icon-pl-tick:before { content: '\74'; } /* 't' */
 .icon-pl-logo:before { content: '\75'; } /* 'u' */
-.icon-logou_messing:before { content: '\e815'; } /* '' */
+.icon-logout:before { content: '\e815'; } /* '' */
