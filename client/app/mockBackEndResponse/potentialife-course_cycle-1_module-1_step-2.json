@@ -308,7 +308,7 @@
             "label": "this is the label 2",
             "value": "this_is_the_label_2",
             "sub_label": null,
-            "checked": false,
+            "checked": true,
             "feedback": null
           },
           {
