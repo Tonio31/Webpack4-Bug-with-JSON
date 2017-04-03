@@ -27,7 +27,7 @@ $tick-size: 3rem;
   }
 
   .block {
-    padding: $padding-10px 0;
+    padding: $default-padding 0;
   }
 
   .banner {
@@ -44,7 +44,7 @@ $tick-size: 3rem;
 
     .banner-content {
       min-height: $height-navigation-banner;
-      padding: $padding-10px 0;
+      padding: $default-padding 0;
 
       p {
         margin-bottom: 0;

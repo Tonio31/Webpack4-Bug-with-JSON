@@ -57,8 +57,10 @@
       "type": "dynamic",
       "element": "textarea",
       "program_data_code": "c1.m1.s1.story_1",
-      "required": true,
       "data": {
+        "config": {
+          "required": true
+        },
         "label": "Label: Story 1:",
         "placeholder": "placeholder: Please fill in the first story",
         "value": "",
@@ -89,8 +91,11 @@
       "type": "dynamic",
       "element": "textbox",
       "program_data_code": "c1.m1.s1.textbox_1",
-      "required": true,
       "data": {
+        "config": {
+          "type": "text",
+          "required": true
+        },
         "label": "Label: This is the label for the text box common_theme_1",
         "placeholder": "placeholder: Enter some data here",
         "value": "",
