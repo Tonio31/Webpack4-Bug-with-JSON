@@ -3,17 +3,17 @@
     <h3>{{ $ctrl.block.data.label }}</h3>
     <div class="flex-container">
 
-        <input type="text"
-               name="{{$ctrl.block.data.name}}"
-               ng-model="$ctrl.text"
-               ng-class="{ 'parent-submitted': $ctrl.isTopLevelFormSubmitted }"
-               ng-model-options="$ctrl.modelOptions"
-               ng-required="{{$ctrl.block.required}}"
-               ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
-               ng-focus="$ctrl.hasFocus = true"
-               ng-blur="$ctrl.hasFocus = false"
-               ng-change="$ctrl.actionOnUserInput()">
-        </input>
+      <input type="{{$ctrl.block.data.config.type}}"
+             name="{{$ctrl.block.data.name}}"
+             ng-model="$ctrl.text"
+             ng-class="{ 'parent-submitted': $ctrl.isTopLevelFormSubmitted }"
+             ng-model-options="$ctrl.modelOptions"
+             ng-required="{{$ctrl.block.data.config.required}}"
+             ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
+             ng-focus="$ctrl.hasFocus = true"
+             ng-blur="$ctrl.hasFocus = false"
+             ng-change="$ctrl.actionOnUserInput()">
+      </input>
 
       <div class="validation-icon-right has-focus" ng-show="$ctrl.hasFocus && !$ctrl.isTopLevelFormSubmitted && !this[$ctrl.FORM_NAME][$ctrl.block.data.name].$dirty">
         <span class="right fontello-icon icon-pl-lt"></span>
@@ -24,5 +24,7 @@
       </div>
 
     </div>
+
+    <p class="sublabel" ng-if="$ctrl.block.data.subLabel">{{$ctrl.block.data.subLabel}}</p>
   </ng-form>
 </div>

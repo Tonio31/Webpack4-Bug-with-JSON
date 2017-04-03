@@ -1,4 +1,4 @@
-  <div class="block" ng-switch="$ctrl.block.element">
+  <div class="block" ng-class="$ctrl.block.data.config.padding" ng-switch="$ctrl.block.element">
 
     <div ng-switch-when="video">
       <video-module data="$ctrl.block.data"></video-module>

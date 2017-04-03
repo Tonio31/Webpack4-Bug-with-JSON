@@ -20,6 +20,7 @@ class CourseContentController {
     this.name = 'courseContent';
 
     this.isStepCompleted = false;
+    this.skipShowingBanner = false;
 
 
     // This container is used to store all the inputs modified by the user, so we can
@@ -33,10 +34,17 @@ class CourseContentController {
       icon: ''
     };
 
-    this.setBannerSuccess = (iSuccessMessage) => {
-      this.banner.text = iSuccessMessage;
-      this.banner.class = 'banner-congrats';
-      this.banner.icon = 'icon-pl-tick';
+    this.nextStepButton = {
+      label: '',
+      class: ''
+    };
+
+    this.setBannerSuccess = (iSkipShowingBanner, iSuccessMessage) => {
+      if ( !iSkipShowingBanner ) {
+        this.banner.text = iSuccessMessage;
+        this.banner.class = 'banner-congrats';
+        this.banner.icon = 'icon-pl-tick';
+      }
     };
 
     this.setBannerError = () => {
@@ -45,35 +53,27 @@ class CourseContentController {
       this.banner.icon = 'icon-pl-exclamation';
     };
 
-    this.updateStepCompleted = ( iIsStepCompleted, iNextState ) => {
-      if ( iIsStepCompleted ) {
-        this.isStepCompleted = true;
+    this.updateNextStepButtonStyle = (iIsStepCompleted, iSkipShowingBanner, iNextState ) => {
+      if ( iIsStepCompleted || iSkipShowingBanner ) {
+        this.nextStepButton.class = 'primary';
         if ( iNextState === STATES.HOME ) {
-          this.nextStepButtonLabel = $filter('translate')('HOME').toString();
+          this.nextStepButton.label = $filter('translate')('HOME').toString();
         }
         else {
-          this.nextStepButtonLabel = $filter('translate')('NEXT').toString();
+          this.nextStepButton.label = $filter('translate')('NEXT').toString();
         }
       }
       else {
-        this.isStepCompleted = false;
-        this.nextStepButtonLabel = $filter('translate')('COMPLETE').toString();
+        this.nextStepButton.class = 'success';
+        this.nextStepButton.label = $filter('translate')('COMPLETE').toString();
       }
     };
 
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
-
-      if ( this.content.status === 'current' ) {
-        this.updateStepCompleted(false);
-      }
-      else if ( this.content.status === 'completed' ) {
-        this.updateStepCompleted(true, this.content.next_page_url);
-      }
-      else {
-        // We should never request a course for a locked module, throw an error if the status is not completed or current
-        throw new Error(`Status of a step should always be current or completed. status=${this.content.status}`);
-      }
+      this.skipShowingBanner = this.content.skipShowingBanner;
+      this.isStepCompleted = ( this.content.status === 'completed' );
+      this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
 
       this.displayPreviousButton = ( this.content.prev_page_url !== null );
 
@@ -125,7 +125,7 @@ class CourseContentController {
       if ( iForm.$invalid ) {
         this.goToFieldInError(iForm);
       }
-      else if ( !this.isStepCompleted ) {
+      else if ( !this.isStepCompleted || this.skipShowingBanner ) {
         // First time user click on the button, display the green banner and change the label
         let postData = Data.updateStep();
 
@@ -137,8 +137,9 @@ class CourseContentController {
         postData.$save( (dataBackFromServer) => {
           $log.log('Response OK from the backend, retrieving the updated menu from backend dataBackFromServer=', dataBackFromServer);
 
-          this.updateStepCompleted(true, this.content.next_page_url);
-          this.setBannerSuccess(dataBackFromServer.congrats);
+          this.isStepCompleted = true;
+          this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
+          this.setBannerSuccess(this.skipShowingBanner, dataBackFromServer.congrats);
 
           // If there was user input saved in local storage, delete it as it has been successfully saved on server side
           Utility.removeUserInputFromLocalStorage(inputFields);
@@ -159,6 +160,11 @@ class CourseContentController {
                 $stateRegistry.register(stateDefinition);
               }
             });
+
+            if ( this.skipShowingBanner ) {
+              // If we skip showing banner, we need to change state just after updating the menu
+              $state.go(this.content.next_page_url);
+            }
           },
           (error) => {
             $log.log('error Retrieving menu error=', error);
@@ -175,6 +181,7 @@ class CourseContentController {
         });
       }
       else {
+        $log.debug('About to change state to go to: ', this.content.next_page_url);
         $state.go(this.content.next_page_url);
       }
 

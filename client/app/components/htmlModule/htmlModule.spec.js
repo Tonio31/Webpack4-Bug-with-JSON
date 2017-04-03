@@ -7,7 +7,9 @@ describe('HtmlModule', () => {
   let $rootScope, $componentController, $compile;
 
   let dataBlock = {
-    bgColor: 'dark-grey',
+    config: {
+      bgColor: 'dark-grey'
+    },
     value: '<h1>Block: HTML with background<\/h1><p>This is a HTML block with a personalised background<\/p>'
   };
 
@@ -39,7 +41,7 @@ describe('HtmlModule', () => {
 
 
     it('getBackGroundColour() returns the cool css class', () => {
-      expect(controller.getBackGroundColour()).to.eq(`bgcolour-${dataBlock.bgColor}`);
+      expect(controller.getBackGroundColour()).to.eq(`bgcolour-${dataBlock.config.bgColor}`);
     });
   });
 

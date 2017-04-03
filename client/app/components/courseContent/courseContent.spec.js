@@ -84,7 +84,7 @@ describe('CourseContent', () => {
       controller.content.status = 'current';
       controller.content.prev_page_url = null;
       controller.$onInit();
-      expect(controller.nextStepButtonLabel).to.eq('COMPLETE');
+      expect(controller.nextStepButton.label).to.eq('COMPLETE');
       expect(controller.displayPreviousButton).to.eq(false);
       expect(controller.banner.text).to.eq('');
     });
@@ -92,14 +92,9 @@ describe('CourseContent', () => {
     it('test the onInit Function when the current status of the state is \'completed\'', () => {
       controller.content.status = 'completed';
       controller.$onInit();
-      expect(controller.nextStepButtonLabel).to.eq('NEXT');
+      expect(controller.nextStepButton.label).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
       expect(controller.banner.text).to.eq('');
-    });
-
-    it('throw an exception if the status is not current or completed', () => {
-      controller.content.status = 'locked';
-      expect(controller.$onInit).to.throw(`Status of a step should always be current or completed. status=${controller.content.status}`);
     });
 
     it('previousStep() triggers a change of state using this.content.prev_page_url', sinon.test( () => {
@@ -130,19 +125,13 @@ describe('CourseContent', () => {
 
     it('nextStep() sends a POST to save current step if it is not yet marked as completed', sinon.test( (done) => {
 
-      let postResponseHeadersFn = () => {
-        return {
-          status: 'ok'
-        };
-      };
-
       let dataBackFromServer = {
         congrats: '<p>Congratulations for finishing this module, you\'re a star<\/p>'
       };
 
       let updateStepPOSTRequest = {
         $save: (callback) => {
-          return callback(dataBackFromServer, postResponseHeadersFn);
+          return callback(dataBackFromServer);
         }
       };
 
@@ -171,9 +160,53 @@ describe('CourseContent', () => {
       sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryRegisterFn, stateNotLocked);
-      expect(controller.nextStepButtonLabel).to.eq('NEXT');
+      expect(controller.nextStepButton.label).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
       expect(controller.banner.text).to.eq('<p>Congratulations for finishing this module, you\'re a star<\/p>');
+
+      // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
+      done();
+    }));
+
+    it('nextStep() sends a POST to save current step & change state if the flag skipShowingBanner is true', sinon.test( (done) => {
+
+      let dataBackFromServer = {};
+
+      let updateStepPOSTRequest = {
+        $save: (callback) => {
+          return callback(dataBackFromServer);
+        }
+      };
+
+      sinon.stub(Data, 'updateStep', () => {
+        return updateStepPOSTRequest;
+      });
+
+      let form = {
+        $invalid: false
+      };
+
+
+      controller.$onInit();
+      controller.skipShowingBanner = true; // Simulate a step where we don't show the banner
+
+      controller.nextStep(form);
+
+      $rootScope.$digest();
+
+      expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.slug);
+      expect(updateStepPOSTRequest.status).to.equal('completed');
+      expect(updateStepPOSTRequest.programData).to.deep.equal( [] );
+
+      sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
+      sinon.assert.calledWith(removeUserInputSpy, {});
+      sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
+      sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
+      sinon.assert.calledWith(stateRegistryRegisterFn, stateNotLocked);
+      sinon.assert.calledWith(goFn, controller.content.next_page_url);
+      expect(controller.nextStepButton.label).to.eq('NEXT');
+      expect(controller.isStepCompleted).to.eq(true);
+      expect(controller.banner.text).to.eq('');
 
       // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();

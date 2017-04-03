@@ -1,4 +1,4 @@
-<div class="composed panel">
+<div class="composed">
   <div ng-repeat="block in $ctrl.blockData track by $index">
     <block-manager block="block" is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted" update-parent="$ctrl.onUpdate(block.program_data_code, parentValue)"></block-manager>
   </div>

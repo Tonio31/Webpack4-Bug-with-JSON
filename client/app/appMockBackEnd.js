@@ -80,10 +80,19 @@ angular.module( 'appMockBackEnd', [
   // This function will update the current step on the menu, it is harcoded to simulate the fact that the backend will do this job
   let updateMenu = (iFullUrlStepCompleted) => {
 
+    let cycle1 = menu.menudata[0].children[0];
+    // let cycle2 = menu.menudata[0].children[1];
+    let cycle3 = menu.menudata[0].children[2];
+    let C3_module31 = cycle3.children[0];
+
+    let C3_M31_step8_1 = C3_module31.children[7];
+    let C3_M31_step8_2 = C3_module31.children[8];
+    let C3_M31_step8_3 = C3_module31.children[9];
+    let C3_M31_step9 = C3_module31.children[10];
+
     if ( iFullUrlStepCompleted === '/potentialife-course/cycle-1/module-1/step-9' ) {
 
       // Update menudata
-      let cycle1 = menu.menudata[0].children[0];
       cycle1.progress.completed += 1;
       cycle1.progress.percent = 10;
 
@@ -101,6 +110,26 @@ angular.module( 'appMockBackEnd', [
 
       // Update Step data to say current for step 2
       updateStepStatus('/potentialife-course/cycle-1/module-1/step-10', 'current');
+    }
+    else if ( iFullUrlStepCompleted === '/potentialife-course/cycle-3/module-31/step-8/1' ) {
+      C3_M31_step8_1.status = 'completed';
+      C3_M31_step8_2.status = 'current';
+
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/1', 'completed');
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/2', 'current');
+    }
+    else if ( iFullUrlStepCompleted === '/potentialife-course/cycle-3/module-31/step-8/2' ) {
+      C3_M31_step8_2.status = 'completed';
+      C3_M31_step8_3.status = 'current';
+
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/2', 'completed');
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/3', 'current');
+    }
+    else if ( iFullUrlStepCompleted === '/potentialife-course/cycle-3/module-31/step-8/3' ) {
+      C3_M31_step8_3.status = 'completed';
+      C3_M31_step9.status = 'current';
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/3', 'completed');
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-9', 'current');
     }
 
     $log.log('Fake menu object updated to set cycle1/module1/step10 as current step and step9 as completed');
