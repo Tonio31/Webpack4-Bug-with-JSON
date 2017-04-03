@@ -184,7 +184,6 @@ $mainTitleMenuColor: #a0a0a0;
       bottom: 0;
       .pl-menu-button {
         font-size: rem_calc(30);
-        // background-image: url('./assets/menu-item-logout.svg');
       }
     }
   }
@@ -402,11 +401,6 @@ $mainTitleMenuColor: #a0a0a0;
   //The workaround to fix this is to redefine the directive and the css associated
 
   .off-canvas-list-bugfix {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
-    // list-style-type: none;
-    // height: 100%;
     margin: 0;
     padding: 0;
   }
