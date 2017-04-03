@@ -53,7 +53,7 @@
       <div class="row y-center-child">
         <div class="small-12 medium-8 columns small-centered">
           <button ng-show="$ctrl.displayPreviousButton" class="secondary radius left" type="button" ng-click="$ctrl.previousStep()">&lt; {{ 'PREVIOUS' | translate }}</button>
-          <button class="success radius right" type="submit" ng-click="$ctrl.nextStep(topLevelForm)">{{$ctrl.nextStepButtonLabel}}</button>
+          <button ng-class="$ctrl.nextStepButton.class" class="radius right" type="submit" ng-click="$ctrl.nextStep(topLevelForm)">{{$ctrl.nextStepButton.label}}</button>
         </div>
       </div>
     </div> <!-- END .navigation -->

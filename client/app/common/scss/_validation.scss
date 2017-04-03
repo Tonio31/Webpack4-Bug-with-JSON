@@ -13,15 +13,15 @@
   justify-content: center;
 }
 
-.ng-invalid-required ~ .validation-icon-right {
+.ng-invalid ~ .validation-icon-right {
   border-color: $alert-color;
 }
 
-.ng-valid-required ~ .validation-icon-right {
+.ng-valid ~ .validation-icon-right {
   border-color: $success-color;
 }
 
-.ng-invalid-required ~ .validation-icon-right.has-focus,
-.ng-valid-required ~ .validation-icon-right.has-focus {
+.ng-invalid ~ .validation-icon-right.has-focus,
+.ng-valid ~ .validation-icon-right.has-focus {
   border-color: $blue-focus;
 }

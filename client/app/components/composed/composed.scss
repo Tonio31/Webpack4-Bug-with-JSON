@@ -1,3 +1,19 @@
 @import '~client/app/common/scss/_vars';
 @import '~client/app/common/_foundation-settings';
 // @import '~client/app/common/_foundation-functions';
+
+.composed {
+
+  margin-bottom: 1.25rem;
+  background: $really-light-grey;
+  padding: 0;
+  color: $oil;
+
+  .block {
+    padding: 0;
+
+    &:not(.no-bg-padding) {
+      padding: 0 $side-block-padding;
+    }
+  }
+}

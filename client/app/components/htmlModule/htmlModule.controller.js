@@ -8,8 +8,8 @@ class HtmlModuleController {
     $log.log('constructor - START');
 
     this.getBackGroundColour = () => {
-      if ( this.data.hasOwnProperty('bgColor') ) {
-        return `bgcolour-${this.data.bgColor}`;
+      if ( this.data.hasOwnProperty('config') && this.data.config.hasOwnProperty('bgColor') ) {
+        return `bgcolour-${this.data.config.bgColor}`;
       }
 
       return '';

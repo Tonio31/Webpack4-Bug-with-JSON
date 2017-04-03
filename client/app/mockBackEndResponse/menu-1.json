@@ -513,11 +513,11 @@
                 {
                   "id": 33181,
                   "title": "Step 8",
-                  "name": "Email Overview",
+                  "name": "360 Feedback",
                   "description": "Approx. 9999 mins",
-                  "slug": "step-1",
+                  "slug": "step-8/1",
                   "order": 0,
-                  "status": "completed",
+                  "status": "current",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/1"
                 },
                 {
@@ -525,9 +525,9 @@
                   "title": "Step 8 - 2",
                   "name": "Enter emails",
                   "description": "Approx. 9999 mins",
-                  "slug": "step-2",
+                  "slug": "step-8/2",
                   "order": 0,
-                  "status": "completed",
+                  "status": "current",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/2",
                   "hideStepInMenu": true
                 },
@@ -536,11 +536,22 @@
                   "title": "Step 8 - 3",
                   "name": "Your emails are sent",
                   "description": "Approx. 9999 mins",
-                  "slug": "step-3",
+                  "slug": "step-8/3",
                   "order": 0,
-                  "status": "completed",
+                  "status": "current",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/3",
                   "hideStepInMenu": true
+                },
+                {
+                  "id": 3319,
+                  "title": "Step 9",
+                  "name": "The last one",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-9",
+                  "order": 0,
+                  "status": "locked",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-9",
+                  "hideStepInMenu": false
                 }
               ]
             },
