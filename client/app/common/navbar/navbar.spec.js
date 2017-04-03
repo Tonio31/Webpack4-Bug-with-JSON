@@ -11,8 +11,6 @@ describe('Navbar', () => {
     $provide.value('translateFilter', mockTranslateFilter );
   }));
 
-  beforeEach(window.module(NavbarModule));
-
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
