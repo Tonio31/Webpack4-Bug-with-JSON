@@ -40,7 +40,6 @@ class CheckboxController {
       return message;
     };
 
-
     this.$onInit = () => {
       this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
       this.CHECKBOX_GROUP_NAME = `checkbox_group-${this.FORM_NAME}`;

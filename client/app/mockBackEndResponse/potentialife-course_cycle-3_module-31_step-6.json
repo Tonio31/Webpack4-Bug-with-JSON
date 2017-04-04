@@ -24,11 +24,15 @@
       }
     },
     {
-      "id": 67,
+      "id": 31,
       "type": "static",
       "element": "ul",
       "program_data_code": "c3.m1.s1.ul_1",
       "data": {
+        "config": {
+          "minItemsDisplayed": 5,
+          "showMoreButtonAtStart": true
+        },
         "name": "Your chosen VIA character strengths",
         "items": [
           "Reflexion",
@@ -43,16 +47,166 @@
       }
     },
     {
-      "id": 68,
+      "id": 32,
       "type": "static",
       "element": "ul",
       "program_data_code": "c3.m1.s1.ul_1",
       "data": {
+        "config": {
+          "minItemsDisplayed": 5,
+          "showMoreButtonAtStart": true
+        },
         "name": "Your chosen VIA character strengths",
         "items": [
           "Reflexion",
           "Power",
           "Love"
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Accordian close by default<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 41,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": true
+        },
+        "name": "Your chosen VIA character strengths",
+        "items": [
+          "One exemple might be ti seize the opportunity to deliver a presentation at an upcoming meeting (because you realized that public speaking is a PPZ activity for you).",
+          "Another might be to remind yourself to spend an extra few minutes coaching an underperforming colleague (because you love coaching)",
+          "Or maybe the change is simple to be more systematic about going for a run in the morning (because you have realized this is when you are at your creative best"
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Accordian open by default<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 45,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": false
+        },
+        "name": "Your chosen VIA character strengths",
+        "items": [
+          "One exemple might be ti seize the opportunity to deliver a presentation at an upcoming meeting (because you realized that public speaking is a PPZ activity for you).",
+          "Another might be to remind yourself to spend an extra few minutes coaching an underperforming colleague (because you love coaching)",
+          "Or maybe the change is simple to be more systematic about going for a run in the morning (because you have realized this is when you are at your creative best"
+        ]
+      }
+    },
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Accordian close by default<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 51,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": true
+        },
+        "name": "Your chosen VIA character strengths",
+        "items": [
+          "Drink More water",
+          "Eat less processed food",
+          "Bring your own lunch to work",
+          "PLan what to eat before you are hungry",
+          "Eat out less",
+          "Reduce alcohol consumption",
+          "Restrict yourself to one treat a day",
+          "Eat little and often",
+          "Eat More fruits and vegetables",
+          "Consume less caffeine",
+          "Reduce the number of unhealthy temptations around you",
+          "Increase the number of healthy snacks around you"
+        ]
+      }
+    },
+    {
+      "id": 54,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Accordian open by default<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 55,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": false
+        },
+        "name": "Your chosen VIA character strengths",
+        "items": [
+          "Drink More water",
+          "Eat less processed food",
+          "Bring your own lunch to work",
+          "PLan what to eat before you are hungry",
+          "Eat out less",
+          "Reduce alcohol consumption",
+          "Restrict yourself to one treat a day",
+          "Eat little and often",
+          "Eat More fruits and vegetables",
+          "Consume less caffeine",
+          "Reduce the number of unhealthy temptations around you",
+          "Increase the number of healthy snacks around you"
         ]
       }
     }
