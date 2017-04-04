@@ -4,7 +4,7 @@
   "slug": "/potentialife-course/cycle-1/module-1/step-8",
   "description": null,
   "content": null,
-  "status": "current",
+  "status": "completed",
   "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 8 / 10",
   "next_page_url": "/potentialife-course/cycle-1/module-1/step-9",
   "prev_page_url": "/potentialife-course/cycle-1/module-1/step-7",
@@ -24,38 +24,114 @@
       }
     },
     {
-      "id": 62,
+      "id": 63,
       "type": "dynamic",
-      "element": "radio",
-      "program_data_code": "c1.m1.s1.radiobox_1",
+      "element": "radiobox",
+      "program_data_code": "c1.m1.s1.radio_1",
       "data": {
+        "config": {
+          "required": true
+        },
+        "label": "this is the label",
+        "placeholder": "this is the placholder",
         "name": "this is the name",
         "items": [
           {
-            "label": "Meeting with Con",
-            "sub_label": "work",
-            "value": "12312",
-            "checked": false
+            "label": "this is the label 1",
+            "value": "this_is_the_label_1",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
           },
           {
-            "label": "Meeting with Con",
-            "sub_label": "work",
-            "value": "12312",
-            "checked": false
+            "label": "this is the label 2",
+            "value": "this_is_the_label_2",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
           },
           {
-            "label": "Meeting with Con",
-            "sub_label": "work",
-            "value": "12312",
-            "checked": true
+            "label": "this is the label 3",
+            "value": "this_is_the_label_3",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
           },
           {
-            "label":"Meeting with Con",
-            "sub_label":"work",
-            "value":"12312",
-            "checked": false
+            "label": "this is the label 4",
+            "value": "this_is_the_label_4",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "this is the label 5",
+            "value": "this_is_the_label_5",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 6",
+            "value": "this_is_the_label_6",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 7",
+            "value": "this_is_the_label_7",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 8",
+            "value": "this_is_the_label_8",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "this is the label 9",
+            "value": "this_is_the_label_9",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 12",
+            "value": "this_is_the_label_12",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 13",
+            "value": "this_is_the_label_13",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "this is the label 14",
+            "value": "this_is_the_label_14",
+            "sub_label": null,
+            "selected": true,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "this is the label 15",
+            "value": "this_is_the_label_15",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
           }
         ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
       }
     }
   ]

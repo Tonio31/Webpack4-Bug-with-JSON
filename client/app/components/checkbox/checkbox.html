@@ -6,13 +6,13 @@
         <p class="note" ng-class="{ 'invalid': this[$ctrl.FORM_NAME].$invalid && $ctrl.isTopLevelFormSubmitted }">{{$ctrl.PLEASE_SELECT_MSG}}</p>
       </div>
 
-      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted">
+      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted && this[$ctrl.FORM_NAME].$dirty">
         <span ng-class="this[$ctrl.FORM_NAME].$invalid ? 'invalid icon-pl-exclamation': 'icon-pl-tick'" class="right fontello-icon"></span>
       </div>
     </header>
 
     <ul class="no-list">
-      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit" ng-class="{'selected': item.checked}">
+      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit" ng-class="{'selected': $ctrl.selection[item.value]}">
         <label class="list-wrap" for="checkboxName-{{item.value}}">
           <div class="checkbox-label">
             <span>{{item.label}}</span>

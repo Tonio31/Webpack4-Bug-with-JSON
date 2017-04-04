@@ -13,7 +13,7 @@
     <p class="button radius secondary" ng-click="$ctrl.toggleMore()">
         <span><i class="fontello-icon fgcolour-black icon-pl-gt"
                  ng-class="$ctrl.showMoreButtonDisplayed ? 'rotate-90-r' : 'rotate-90-l'"></i>
-          {{$ctrl.showMoreButtonDisplayed ? ( 'SHOW_MORE' | translate ) : ( 'SHOW_LESS' | translate ) }}
+          {{$ctrl.showMoreButtonDisplayed ? $ctrl.showMoreLabel : $ctrl.hideLabel }}
         </span>
     </p>
   </div>
