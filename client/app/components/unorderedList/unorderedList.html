@@ -5,9 +5,16 @@
     </div>
   </header>
   <ul class="no-list">
-    <li ng-repeat="item in $ctrl.blockData.items track by $index">
+    <li ng-repeat="item in $ctrl.blockData.items | limitTo : $ctrl.limit track by $index ">
       <div class="list-wrap">{{item}}</div>
     </li>
   </ul>
-  <div class="list-footer"></div>
+  <div class="list-footer" ng-if="$ctrl.block.data.items.length > $ctrl.MIN_ELEMENTS_DISPLAYED">
+    <p class="button radius secondary" ng-click="$ctrl.toggleMore()">
+        <span><i class="fontello-icon fgcolour-black icon-pl-gt"
+                 ng-class="$ctrl.showMoreButtonDisplayed ? 'rotate-90-r' : 'rotate-90-l'"></i>
+          {{$ctrl.showMoreButtonDisplayed ? ( 'SHOW_MORE' | translate ) : ( 'SHOW_LESS' | translate ) }}
+        </span>
+    </p>
+  </div>
 </div>
