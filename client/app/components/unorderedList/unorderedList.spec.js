@@ -15,6 +15,10 @@ describe('UnorderedList', () => {
       element: 'ul',
       program_data_code: 'c3.m1.s1.ul_1',
       data: {
+        config: {
+          minItemsDisplayed: 0,
+          showMoreButtonAtStart: true
+        },
         name: 'Your chosen VIA character strengths',
         items: [
           'Reflexion',
@@ -59,14 +63,38 @@ describe('UnorderedList', () => {
 
     });
 
-    it('constant are initialised', () => {
+    it('$onInit() - constant are initialised when MIN_ELEMENTS_DISPLAYED=0', () => {
+      controller.$onInit();
+      expect(controller.MIN_ELEMENTS_DISPLAYED).to.equal(0);
+      expect(controller.showMoreButtonDisplayed).to.equal(true);
+      expect(controller.limit).to.equal(controller.MIN_ELEMENTS_DISPLAYED);
+      expect(controller.showMoreLabel).to.equal('SHOW');
+      expect(controller.hideLabel).to.equal('HIDE');
+    });
+
+    it('$onInit() - constant are initialised when MIN_ELEMENTS_DISPLAYED != 0', () => {
+
+      // Faking other input data
+      controller.block.data.config.minItemsDisplayed = 5;
+
+      controller.$onInit();
+      expect(controller.MIN_ELEMENTS_DISPLAYED).to.equal(5);
+      expect(controller.showMoreButtonDisplayed).to.equal(true);
+      expect(controller.limit).to.equal(controller.MIN_ELEMENTS_DISPLAYED);
+      expect(controller.showMoreLabel).to.equal('SHOW_MORE');
+      expect(controller.hideLabel).to.equal('SHOW_LESS');
+    });
+
+    it('$onInit() - constant are initialised', () => {
       controller.$onInit();
       expect(controller.MIN_ELEMENTS_DISPLAYED).to.equal(5);
       expect(controller.showMoreButtonDisplayed).to.equal(true);
       expect(controller.limit).to.equal(controller.MIN_ELEMENTS_DISPLAYED);
     });
 
+
     it('toggleMore() modify controller.limit', () => {
+      controller.$onInit();
       controller.toggleMore();
       expect(controller.showMoreButtonDisplayed).to.equal(false);
       expect(controller.limit).to.equal(undefined);
