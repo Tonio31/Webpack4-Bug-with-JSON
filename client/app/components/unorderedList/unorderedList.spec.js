@@ -5,18 +5,80 @@ import UnorderedListTemplate from './unorderedList.html';
 
 describe('UnorderedList', () => {
   let $rootScope;
-  // let $componentController;
+  let $componentController;
   let $compile;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-6.json').blocks[1];
+  let blockBinding =
+    {
+      id: 67,
+      type: 'static',
+      element: 'ul',
+      program_data_code: 'c3.m1.s1.ul_1',
+      data: {
+        name: 'Your chosen VIA character strengths',
+        items: [
+          'Reflexion',
+          'Power',
+          'Love',
+          'Good in Bed',
+          'Hakunamatata',
+          'Mars',
+          'Sun',
+          'Hate'
+        ]
+      }
+    };
 
-  beforeEach(window.module(UnorderedListModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(UnorderedListModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    // $componentController = $injector.get('$componentController');
+    $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
   }));
+
+
+  describe('Controller', () => {
+    // controller specs
+    let controller;
+
+    beforeEach(() => {
+      let bindings = {
+        block: blockBinding
+      };
+
+      controller = $componentController('unorderedList', {
+        $scope: $rootScope.$new()
+      }, bindings);
+
+    });
+
+    it('constant are initialised', () => {
+      controller.$onInit();
+      expect(controller.MIN_ELEMENTS_DISPLAYED).to.equal(5);
+      expect(controller.showMoreButtonDisplayed).to.equal(true);
+      expect(controller.limit).to.equal(controller.MIN_ELEMENTS_DISPLAYED);
+    });
+
+    it('toggleMore() modify controller.limit', () => {
+      controller.toggleMore();
+      expect(controller.showMoreButtonDisplayed).to.equal(false);
+      expect(controller.limit).to.equal(undefined);
+
+      controller.toggleMore();
+      expect(controller.showMoreButtonDisplayed).to.equal(true);
+      expect(controller.limit).to.equal(controller.MIN_ELEMENTS_DISPLAYED);
+    });
+
+
+  });
+
 
   describe('View', () => {
     // view specs
@@ -33,6 +95,19 @@ describe('UnorderedList', () => {
       let obj = blockBinding.data.items;
       let listItem = angular.element(template[0].querySelector('li .list-wrap'));
       expect(listItem.html()).to.eq(obj[0]);
+    });
+
+
+    it('has a correct number of items displayed', () => {
+      let listItems = angular.element(template[0].querySelectorAll('li .list-wrap'));
+      expect(listItems.length).to.eq(5);
+
+      let showMoreButton = angular.element(template[0].querySelector('.list-footer p'));
+      showMoreButton.triggerHandler('click');
+      scope.$apply();
+
+      listItems = angular.element(template[0].querySelectorAll('li .list-wrap'));
+      expect(listItems.length).to.eq(blockBinding.data.items.length);
     });
 
   });

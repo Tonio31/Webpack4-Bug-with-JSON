@@ -15,7 +15,7 @@
       "element": "html",
       "program_data_code": null,
       "data": {
-        "value": "<h1>Block: ul<\/h1>"
+        "value": "<h1>Block: ul<\/h1><p>Unordered list<\/p>"
       },
       "pivot": {
         "step_id": 5,
@@ -35,7 +35,24 @@
           "Power",
           "Love",
           "Good in Bed",
-          "Hakunamatata"
+          "Hakunamatata",
+          "Mars",
+          "Sun",
+          "Hate"
+        ]
+      }
+    },
+    {
+      "id": 68,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "name": "Your chosen VIA character strengths",
+        "items": [
+          "Reflexion",
+          "Power",
+          "Love"
         ]
       }
     }

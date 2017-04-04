@@ -83,7 +83,7 @@ let syncMenuAndState = function($rootScope, $log) {
 };
 
 
-let menuItem = function() {
+let menuItem = function($window) {
   'ngInject';
   return {
     require: '^offCanvasWrap',
@@ -97,6 +97,8 @@ let menuItem = function() {
       return {
         post: function($scope, iElem, iAttrs, offCanvasWrap) {
 
+          let screenWidth = $window.innerWidth;
+
           $scope.hasChildren = (iObject) => {
             return iObject.hasOwnProperty('children');
           };
@@ -106,7 +108,10 @@ let menuItem = function() {
           };
 
           $scope.hideCanvas = () => {
-            offCanvasWrap.hide();
+            // prevent large screens from closing menu automatically after clicking a menuitem
+            if (screenWidth <= 1024) {
+              offCanvasWrap.hide();
+            }
           };
 
         }
