@@ -102,7 +102,7 @@
       font-size: rem_calc(16px);
       margin: 0;
       padding: $default-padding;
-      width: 9rem;
+      min-width: 9rem;
     }
   }
 }
