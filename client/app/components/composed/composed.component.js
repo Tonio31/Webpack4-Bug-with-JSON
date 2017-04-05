@@ -7,6 +7,7 @@ let composedComponent = {
   bindings: {
     block: '<',
     isTopLevelFormSubmitted: '<',
+    isStepCompleted: '<',
     updateParent: '&'
   },
   template,

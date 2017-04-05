@@ -168,6 +168,10 @@ let appModule = angular.module('app', [
       }
     });
 
+    // Registers a OnInvalidCallback function to be invoked when StateService.transitionTo has been called with an invalid state reference parameter
+    $state.onInvalid( (to, from) => {
+      $log.debug('Invalid transition from ', from, '  to ', to);
+    });
 
     $log.log('Start');
 

@@ -7,6 +7,7 @@ let textBoxComponent = {
   bindings: {
     block: '<',
     isTopLevelFormSubmitted: '<',
+    isStepCompleted: '<',
     updateBlockManager: '&'
   },
   template,

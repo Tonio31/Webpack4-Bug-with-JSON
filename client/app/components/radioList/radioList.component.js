@@ -7,6 +7,7 @@ let radioListComponent = {
   bindings: {
     block: '<',
     isTopLevelFormSubmitted: '<',
+    isStepCompleted: '<',
     updateBlockManager: '&'
   },
   template,
