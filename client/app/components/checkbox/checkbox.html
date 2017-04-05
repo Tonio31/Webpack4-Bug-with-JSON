@@ -6,7 +6,7 @@
         <p class="note" ng-class="{ 'invalid': this[$ctrl.FORM_NAME].$invalid && $ctrl.isTopLevelFormSubmitted }">{{$ctrl.PLEASE_SELECT_MSG}}</p>
       </div>
 
-      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted && this[$ctrl.FORM_NAME].$dirty">
+      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted || $ctrl.isStepCompleted">
         <span ng-class="this[$ctrl.FORM_NAME].$invalid ? 'invalid icon-pl-exclamation': 'icon-pl-tick'" class="right fontello-icon"></span>
       </div>
     </header>

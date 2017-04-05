@@ -5,6 +5,11 @@ class TextBoxController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'TextBoxController' );
 
+    // ng-model-options applied to the input
+    this.modelOptions = MODEL_OPTIONS;
+    this.hasFocus = false;
+    this.icon = '';
+
     this.$onInit = () => {
       this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
 
@@ -24,8 +29,6 @@ class TextBoxController {
       this.updateBlockManager({ blockManagerValue: this.text });
     };
 
-    // ng-model-options applied to the input
-    this.modelOptions = MODEL_OPTIONS;
   }
 }
 

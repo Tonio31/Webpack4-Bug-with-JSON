@@ -6,6 +6,7 @@ let blockManagerComponent = {
   bindings: {
     block: '<',
     isTopLevelFormSubmitted: '<',
+    isStepCompleted: '<',
     updateParent: '&'
   },
   template,

@@ -2,8 +2,7 @@ fieldset {
   &[disabled] {
 
     textarea,
-    [type="text"] {
-      width: 100%;
+    [type] {
       border-color: lighten($ship-grey, 10);
       cursor: default;
     }

@@ -7,6 +7,7 @@ let checkboxComponent = {
   bindings: {
     block: '<',
     isTopLevelFormSubmitted: '<',
+    isStepCompleted: '<',
     updateBlockManager: '&'
   },
   template,
