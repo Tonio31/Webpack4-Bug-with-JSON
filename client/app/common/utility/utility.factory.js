@@ -7,9 +7,11 @@ let UtilityFactory = function( $log, $state, $window, $localStorage, User ) {
   let goToLink = (iUrl) => {
     let reExternalUrl = /^https?:\/\/.*$/;
     if ( iUrl.match(reExternalUrl) ) {
+      $log.log('About to redirect to different URL: ', iUrl);
       $window.location.href = iUrl;
     }
     else {
+      $log.log('About to change state to go to: ', iUrl);
       $state.go(iUrl);
     }
   };

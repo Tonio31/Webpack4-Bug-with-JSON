@@ -33,8 +33,7 @@ $modules: () !default;
     border: 2px solid $blue-focus;
   }
 
-  &.parent-submitted,
-  &.ng-dirty {
+  &.parent-submitted {
     &.ng-invalid {
       border: 2px solid $alert-color;
       color: $alert-color;
@@ -43,7 +42,10 @@ $modules: () !default;
         color: $alert-color;
       }
     }
+  }
 
+  &.parent-submitted,
+  &.ng-dirty {
     &.ng-valid {
       border: 2px solid $success-color;
       &::placeholder {
