@@ -5,7 +5,7 @@ import PieChartTemplate from './pieChart.html';
 
 describe('PieChart', () => {
   let $rootScope;
-  // let $componentController;
+  let $componentController;
   let $compile;
 
   let dataBindings = {
@@ -43,7 +43,7 @@ describe('PieChart', () => {
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    // $componentController = $injector.get('$componentController');
+    $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
   }));
 
@@ -51,22 +51,38 @@ describe('PieChart', () => {
     // top-level specs: i.e., routes, injection, naming
   });
 
-  // describe('Controller', () => {
-  //   // controller specs
-  //   let controller;
-  //
-  //   let bindings = {
-  //     block: dataBindings
-  //   };
-  //
-  //   beforeEach(() => {
-  //     controller = $componentController('pieChart', {
-  //       $scope: $rootScope.$new()
-  //     }, bindings);
-  //   });
-  //
-  //
-  // });
+  describe('Controller', () => {
+    // controller specs
+    let controller;
+
+    let bindings = {
+      block: dataBindings
+    };
+
+    beforeEach(() => {
+      controller = $componentController('pieChart', {
+        $scope: $rootScope.$new()
+      }, bindings);
+    });
+
+    it('$onInit creates the data needed for displaying the pie chart', () => {
+      controller.$onInit();
+      expect(controller.chartData).to.deep.eq( [
+        {
+          'looks delicious': 124
+        },
+        {
+          'Easy to Eat': 65
+        },
+        {
+          'Fruit/Savoury': 35
+        },
+        {
+          'Fits in most pockets': 18
+        }
+      ] );
+    });
+  });
 
   describe('View', () => {
     // view specs
