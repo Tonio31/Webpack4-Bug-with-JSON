@@ -56,6 +56,10 @@
       <bar-chart block="$ctrl.block"></bar-chart>
     </div>
 
+    <div ng-switch-when="pie_chart">
+      <pie-chart block="$ctrl.block"></pie-chart>
+    </div>
+
     <div ng-switch-when="ul">
       <unordered-list block="$ctrl.block" />
     </div>

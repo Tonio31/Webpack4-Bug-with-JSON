@@ -1,0 +1,9 @@
+<div class="pie-chart">
+  <p class="pie-char-title text-center">{{ $ctrl.block.data.title }}</p>
+  <c3chart bindto-id="pieChart-{{$ctrl.block.id}}"
+  sort-data="null"
+  chart-data="$ctrl.chartData"
+  chart-columns="$ctrl.chartColumns">
+    <chart-pie expand="true"/>
+  </c3chart>
+</div>

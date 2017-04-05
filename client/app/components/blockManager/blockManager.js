@@ -9,6 +9,7 @@ import textAreaModule from 'components/textArea/textArea';
 import textBoxModule from 'components/textBox/textBox';
 import iconTextModule from 'components/iconText/iconText';
 import barChartModule from 'components/barChart/barChart';
+import pieChartModule from 'components/pieChart/pieChart';
 import checkbox from 'components/checkbox/checkbox';
 import radioList from 'components/radioList/radioList';
 import unorderedList from 'components/unorderedList/unorderedList';
@@ -26,6 +27,7 @@ let blockManagerModule = angular.module('blockManager', [
   textBoxModule,
   iconTextModule,
   barChartModule,
+  pieChartModule,
   checkbox,
   radioList,
   unorderedList,

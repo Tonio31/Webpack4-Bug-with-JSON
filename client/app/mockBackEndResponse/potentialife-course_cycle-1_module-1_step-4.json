@@ -82,6 +82,66 @@
           }
         ]
       }
+    },
+    {
+      "id": 59,
+      "type":"static",
+      "element":"pie_chart",
+      "data": {
+        "title":"this is a pie chart",
+        "segments":[
+          {
+            "title": "Chicken",
+            "color": "#CD473D",
+            "value": 52
+          },
+          {
+            "title": "Pastry",
+            "color": "#384856",
+            "value": 22
+          },
+          {
+            "title": "Gravy",
+            "color": "#2A343D",
+            "value": 35
+          },
+          {
+            "title": "Veges",
+            "color": "#2684BD",
+            "value": 18
+          }
+        ]
+      }
+    },
+    {
+      "id": 60,
+      "type":"static",
+      "element":"pie_chart",
+      "data": {
+        "title":"why people should use pie charts",
+        "segments":[
+          {
+            "title": "looks delicious",
+            "color": "#B0F566",
+            "value": 124
+          },
+          {
+            "title": "Easy to Eat",
+            "color": "#4AF2A1",
+            "value": 65
+          },
+          {
+            "title": "Fruit/Savoury",
+            "color": "#5CC9F5",
+            "value": 35
+          },
+          {
+            "title": "Fits in most pockets",
+            "color": "#6638F0",
+            "value": 18
+          }
+        ]
+      }
     }
   ]
 }
