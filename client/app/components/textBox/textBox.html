@@ -15,14 +15,15 @@
              ng-change="$ctrl.actionOnUserInput()">
       </input>
 
-      <div class="validation-icon-right has-focus" ng-show="$ctrl.hasFocus && !$ctrl.isTopLevelFormSubmitted && !this[$ctrl.FORM_NAME][$ctrl.block.data.name].$dirty">
-        <span class="right fontello-icon icon-pl-lt"></span>
+      <div class="validation-icon-right"
+           ng-show="$ctrl.hasFocus || $ctrl.isStepCompleted || $ctrl.isTopLevelFormSubmitted || ( this[$ctrl.FORM_NAME].$valid && $ctrl.text.length )"
+           ng-class="{ 'has-focus': !$ctrl.isTopLevelFormSubmitted && $ctrl.hasFocus && ( this[$ctrl.FORM_NAME].$invalid || !$ctrl.text.length ) }">
+        <span class="right fontello-icon"
+              ng-class="{ 'icon-pl-exclamation invalid': $ctrl.isTopLevelFormSubmitted && this[$ctrl.FORM_NAME].$invalid,
+                          'icon-pl-tick' : $ctrl.isStepCompleted || ( this[$ctrl.FORM_NAME].$valid ),
+                          'icon-pl-lt' : !$ctrl.isTopLevelFormSubmitted && $ctrl.hasFocus && ( this[$ctrl.FORM_NAME].$invalid || !$ctrl.text.length ) }">
+        </span>
       </div>
-
-      <div class="validation-icon-right" ng-show="this[$ctrl.FORM_NAME][$ctrl.block.data.name].$dirty || $ctrl.isTopLevelFormSubmitted">
-        <span ng-class="this[$ctrl.FORM_NAME][$ctrl.block.data.name].$invalid ? 'icon-pl-exclamation invalid' : 'icon-pl-tick'" class="right fontello-icon"></span>
-      </div>
-
     </div>
 
     <p class="sublabel" ng-if="$ctrl.block.data.subLabel">{{$ctrl.block.data.subLabel}}</p>

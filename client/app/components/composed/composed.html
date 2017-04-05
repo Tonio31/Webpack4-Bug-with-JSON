@@ -1,5 +1,9 @@
 <div class="composed">
   <div ng-repeat="block in $ctrl.blockData track by $index">
-    <block-manager block="block" is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted" update-parent="$ctrl.onUpdate(block.program_data_code, parentValue)"></block-manager>
+    <block-manager block="block"
+                   is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+                   is-step-completed="$ctrl.isStepCompleted"
+                   update-parent="$ctrl.onUpdate(block.program_data_code, parentValue)">
+    </block-manager>
   </div>
 </div>

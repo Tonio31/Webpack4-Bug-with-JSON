@@ -6,7 +6,7 @@
   "content": null,
   "status": "current",
   "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 7 / 10",
-  "next_page_url": "/potentialife-course/cycle-3/module-31/step-8",
+  "next_page_url": "/potentialife-course/cycle-3/module-31/step-8/1",
   "prev_page_url": "/potentialife-course/cycle-3/module-31/step-6",
   "blocks": [
     {
@@ -82,8 +82,11 @@
           "type": "dynamic",
           "element": "textbox",
           "program_data_code": "c1.m1.s1.textbox_1",
-          "required": true,
           "data": {
+            "config": {
+              "type": "text",
+              "required": true
+            },
             "label": "Label: This is the label for the text box common_theme_1",
             "placeholder": "placeholder: Enter some data here",
             "value": "Value: Something inside",
@@ -100,8 +103,11 @@
           "type": "dynamic",
           "element": "textbox",
           "program_data_code": "c1.m1.s1.textbox_2",
-          "required": true,
           "data": {
+            "config": {
+              "type": "text",
+              "required": true
+            },
             "label": "Label: This is the label for the text box common_theme_2",
             "placeholder": "placeholder: Enter some data here",
             "value": "Value: Something inside",
@@ -118,8 +124,11 @@
           "type": "dynamic",
           "element": "textbox",
           "program_data_code": "c1.m1.s1.textbox_3",
-          "required": true,
           "data": {
+            "config": {
+              "type": "text",
+              "required": true
+            },
             "label": "Label: This is the label for the text box common_theme_3",
             "placeholder": "placeholder: Enter some data here",
             "value": "Value: Something inside",
