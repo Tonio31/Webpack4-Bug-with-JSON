@@ -42,34 +42,19 @@
       "type": "dynamic",
       "element": "textarea",
       "program_data_code": "c1.m1.s1.story_1",
-      "required": true,
       "data": {
+        "config": {
+          "type": "email",
+          "required": true
+        },
         "label": "Story 1:",
         "placeholder": "Please fill in the first story",
-        "value": null,
+        "value": "the first story",
         "name": "story_1"
       },
       "pivot": {
         "step_id": 5,
         "block_id": 51,
-        "order": 0
-      }
-    },
-    {
-      "id": 52,
-      "type": "dynamic",
-      "element": "textarea",
-      "program_data_code": "c1.m1.s1.story_2",
-      "required": true,
-      "data": {
-        "label": "Story 2:",
-        "placeholder": "Please fill in the second story",
-        "value": "When i was young i wasn't very old",
-        "name": "story_2"
-      },
-      "pivot": {
-        "step_id": 5,
-        "block_id": 52,
         "order": 0
       }
     },
@@ -88,21 +73,24 @@
       }
     },
     {
-      "id": 54,
+      "id": 165,
       "type": "dynamic",
       "element": "textbox",
-      "program_data_code": "c1.m1.s1.textbox_1",
-      "required": true,
+      "program_data_code": "c1.m1.s1.textbox_2",
       "data": {
-        "label": "This is the label for the text box common_theme_1",
-        "placeholder": "Enter some data here",
-        "value": "Something inside",
-        "name": "common_theme_1"
+        "config": {
+          "type": "email",
+          "required": false
+        },
+        "label": "enter e required email",
+        "placeholder": "this is the placholder",
+        "subLabel": "e.g. yourname@gmail.com",
+        "value": "",
+        "name": "an email"
       },
       "pivot": {
-        "step_id": 5,
-        "block_id": 54,
-        "order": 0
+        "step_id": 6,
+        "block_id": 65
       }
     },
     {
@@ -111,9 +99,13 @@
       "element": "textbox",
       "program_data_code": "c1.m1.s1.textbox_2",
       "data": {
+        "config": {
+          "type": "text",
+          "required": true
+        },
         "label": "This is the label for the text box common_theme_2",
         "placeholder": "Placeholder",
-        "value": null,
+        "value": "something",
         "name": "common_theme_2"
       },
       "pivot": {
@@ -134,83 +126,6 @@
         "step_id": 5,
         "block_id": 56,
         "order": 0
-      }
-    },
-    {
-      "id": 57,
-      "type": "dynamic",
-      "element": "textbox",
-      "program_data_code": "c1.m1.s1.textbox_1",
-      "data": {
-        "label": null,
-        "placeholder": null,
-        "value": null,
-        "name": "common_theme_3"
-      },
-      "pivot": {
-        "step_id": 5,
-        "block_id": 57,
-        "order": 0
-      }
-    },
-    {
-      "id": 58,
-      "type": "dynamic",
-      "element": "textbox",
-      "program_data_code": "c1.m1.s1.textbox_4",
-      "data": {
-        "label": null,
-        "placeholder": null,
-        "value": null,
-        "name": "common_theme_4"
-      },
-      "pivot": {
-        "step_id": 5,
-        "block_id": 58,
-        "order": 0
-      }
-    },
-    {
-      "id": 59,
-      "type": "static",
-      "element": "html",
-      "program_data_code": null,
-      "data": {
-        "value": "<p>The video highlights the importance of focusing on your strengths rather than your weaknesses to achieve greater levels of success and well-being. <\/p><p>When you have watched it and are ready to proceed, please mark this step as complete and move on to the next step.<\/p>"
-      },
-      "pivot": {
-        "step_id": 6,
-        "block_id": 59
-      }
-    },
-    {
-      "id": 60,
-      "type": "static",
-      "element": "video",
-      "program_data_code": null,
-      "data": {
-        "poster": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/videoplace.jpg",
-        "source": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/s.1.1\/S1-1-1-new.mp4"
-      },
-      "pivot": {
-        "step_id": 6,
-        "block_id": 60
-      }
-    },
-    {
-      "id": 61,
-      "type": "dynamic",
-      "element": "textarea",
-      "program_data_code": "c1.m1.s1.story_1",
-      "data": {
-        "label": "Story 1:",
-        "placeholder": "Please fill in the first story",
-        "value": null,
-        "name": "story_1"
-      },
-      "pivot": {
-        "step_id": 6,
-        "block_id": 61
       }
     },
     {
@@ -293,22 +208,25 @@
       "element": "radiobox",
       "program_data_code": "c1.m1.s1.radio_1",
       "data": {
+        "config": {
+          "required": true
+        },
         "label": "this is the label",
         "placeholder": "this is the placholder",
-        "name": "this is the name",
+        "name": "radioBox",
         "items": [
           {
             "label": "this is the label 1",
             "value": "this_is_the_label_1",
             "sub_label": null,
-            "checked": false,
+            "selected": true,
             "feedback": null
           },
           {
             "label": "this is the label 2",
             "value": "this_is_the_label_2",
             "sub_label": null,
-            "selected": true,
+            "selected": false,
             "feedback": null
           },
           {
@@ -401,10 +319,14 @@
       "element": "textbox",
       "program_data_code": "c1.m1.s1.textbox_1",
       "data": {
-        "label": null,
+        "config": {
+          "type": "text",
+          "required": true
+        },
+        "label": "This one is required",
         "placeholder": null,
-        "value": null,
-        "name": "common_theme_1"
+        "value": "dsa",
+        "name": "this one is required"
       },
       "pivot": {
         "step_id": 6,
@@ -417,10 +339,15 @@
       "element": "textbox",
       "program_data_code": "c1.m1.s1.textbox_2",
       "data": {
-        "label": "this is the label",
+        "config": {
+          "type": "email",
+          "required": false
+        },
+        "label": "enter e required email",
         "placeholder": "this is the placholder",
-        "value": "this is the value",
-        "name": "this is the name"
+        "subLabel": "e.g. yourname@gmail.com",
+        "value": "",
+        "name": "an email"
       },
       "pivot": {
         "step_id": 6,

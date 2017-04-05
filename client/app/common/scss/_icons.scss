@@ -3,11 +3,6 @@
   font-size: rem_calc(18px);
   line-height: rem_calc(18px);
 
-  color: $success-color;
-  &.invalid {
-    color: $alert-color;
-  }
-
   &.icon-success {
     &::before {
       @include makeIcon;
@@ -43,9 +38,6 @@
   }
 }
 
-.has-focus .fontello-icon {
-  color: $blue-focus;
-}
 
 .banner {
   .fontello-icon {
@@ -55,5 +47,21 @@
       border-color: $white;
       color: $white;
     }
+  }
+}
+
+
+.flex-container {
+  display: flex;
+
+  .validation-icon-right {
+    padding: $default-padding;
+    width: rem_calc($validation-icon-right);
+    height: rem_calc($validation-icon-right);
+    border-radius: 50%;
+    margin-left: $default-padding;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

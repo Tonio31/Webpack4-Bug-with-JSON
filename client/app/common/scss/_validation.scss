@@ -2,26 +2,41 @@
 // @import '~client/app/common/_foundation-settings';
 
 .validation-icon-right {
-  padding: $default-padding;
-  width: $validation-icon-right;
-  height: $validation-icon-right;
   border: 2px solid $onyx;
-  border-radius: 50%;
-  margin-left: $default-padding;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.ng-invalid ~ .validation-icon-right {
-  border-color: $alert-color;
+.step-frozen .flex-container > .validation-icon-right {
+  border-color: $onyx;
+  .fontello-icon {
+    color: $onyx;
+  }
 }
 
-.ng-valid ~ .validation-icon-right {
-  border-color: $success-color;
+.ng-invalid {
+  ~ .validation-icon-right,
+  .validation-icon-right {
+    border-color: $alert-color;
+    .fontello-icon {
+      color: $alert-color;
+    }
+  }
+}
+
+.ng-valid {
+  ~ .validation-icon-right,
+  .validation-icon-right {
+    border-color: $success-color;
+    .fontello-icon {
+      color: $success-color;
+    }
+  }
 }
 
 .ng-invalid ~ .validation-icon-right.has-focus,
 .ng-valid ~ .validation-icon-right.has-focus {
   border-color: $blue-focus;
+
+  .fontello-icon {
+    color: $blue-focus;
+  }
 }

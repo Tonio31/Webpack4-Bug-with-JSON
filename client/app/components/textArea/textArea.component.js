@@ -7,6 +7,7 @@ let textAreaComponent = {
   bindings: {
     block: '<',
     isTopLevelFormSubmitted: '<',
+    isStepCompleted: '<',
     updateBlockManager: '&'
   },
   template,
