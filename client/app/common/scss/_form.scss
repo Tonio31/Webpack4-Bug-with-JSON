@@ -8,6 +8,10 @@ fieldset {
       cursor: default;
     }
 
+    textarea {
+      resize: none;
+    }
+
     .radio-checkbox {
       .checkbox-label,
       .radio-label,
