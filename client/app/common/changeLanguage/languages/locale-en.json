@@ -49,6 +49,8 @@
   "RE_ENTER_EMAIL": "Click on button below, re-enter your email address and try again.",
   "EMAIL_SUPPORT": "Need help? Contact support at support@potentialife.com",
 
+  "SHOW": "Show",
+  "HIDE": "Hide",
   "SHOW_MORE": "Show more",
   "SHOW_LESS": "Show less",
   "PLEASE_SELECT_X_OPTIONS": "(Please select {{nbOptions}} options below)",
