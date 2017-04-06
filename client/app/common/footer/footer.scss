@@ -20,6 +20,7 @@ footer {
 
   .footer {
     color: $white;
+    padding: 0 rem_calc(15px);
 
     @media #{$small-up} {
       max-width: 100%;

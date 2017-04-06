@@ -328,11 +328,15 @@ $mainTitleMenuColor: #a0a0a0;
     .back {
       display: block;
       a {
-        background-color: $onyx;
-        padding: 1.25rem .6667rem .6667rem rem_calc(5px);
         align-items: center;
+        background-color: $onyx;
+        border-bottom: 2px solid $onyx;
+        padding: 1.25rem .6667rem .6667rem rem_calc(5px);
         &::before {
           display: none;
+        }
+        &:hover {
+          border-bottom: 2px solid $onyx;
         }
         .small-2 {
           width: 19%;
