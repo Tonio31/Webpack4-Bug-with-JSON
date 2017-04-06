@@ -11,7 +11,7 @@ let resourceServiceModule = angular.module('resourceService', [
 ])
   .factory('Data', ResourceFactory)
   .constant('config', {
-    apiUrl: 'http://apipl.ciprianspiridon.com/',
+    apiUrl: 'https://apipl.ciprianspiridon.com/',
     apiVersion: 'v1'
   })
   .name;

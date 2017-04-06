@@ -29,7 +29,8 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
         id: userData.data.id,
         firstName: userData.data['first_name'], // eslint-disable-line dot-notation
         lastName: userData.data['last_name'], // eslint-disable-line dot-notation
-        email: userData.data.email
+        email: userData.data.email,
+        companyBanner: userData.data.companyBanner
       };
 
       User.setUser(userToSave);

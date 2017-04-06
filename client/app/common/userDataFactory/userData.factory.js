@@ -6,7 +6,8 @@ let UserData = function() {
     token: '',
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
+    companyBanner: {}
   };
 
   let setUser = (iUserObject) => {
@@ -28,6 +29,10 @@ let UserData = function() {
 
     if ( iUserObject.hasOwnProperty('email') && iUserObject.email ) {
       user.email = iUserObject.email;
+    }
+
+    if ( iUserObject.hasOwnProperty('companyBanner') && iUserObject.companyBanner ) {
+      user.companyBanner = iUserObject.companyBanner;
     }
   };
 
@@ -51,13 +56,18 @@ let UserData = function() {
     return user.email;
   };
 
+  let getCompanyBanner = () => {
+    return user.companyBanner;
+  };
+
   return {
     setUser,
     getFirstName,
     getLastName,
     getUserId,
     getSecurityToken,
-    getEmail
+    getEmail,
+    getCompanyBanner
   };
 
 };
