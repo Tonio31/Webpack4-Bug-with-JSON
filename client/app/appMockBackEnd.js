@@ -28,6 +28,7 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenGET(/(.*)\.mp4/).passThrough();
   $httpBackend.whenGET(/(.*)\.jpg/).passThrough();
+  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
 
   let menu = require('./mockBackEndResponse/menu-1.json');
 

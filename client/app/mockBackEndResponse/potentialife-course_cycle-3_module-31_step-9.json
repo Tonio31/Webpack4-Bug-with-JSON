@@ -1,18 +1,18 @@
 {
   "id": 1,
-  "name": "The last one",
+  "name": "Via Survey",
   "slug": "/potentialife-course/cycle-3/module-31/step-9",
   "description": null,
   "content": null,
   "status": "current",
-  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 8 / 10",
-  "next_page_url": "/potentialife-course/cycle-3/module-31/step-9",
-  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-8/2",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 9 / 10",
+  "next_page_url": "/home",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-8/1",
   "blocks": [
     {
       "id": 30,
       "type": "static",
-      "element": "html",
+      "element": "via_survey",
       "program_data_code": null,
       "data": {
         "value": "<h1>Finish<\/p>"
