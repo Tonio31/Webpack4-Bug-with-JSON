@@ -60,7 +60,14 @@ describe('Resource', () => {
         email: 'tonio.mandela@usertest.com',
         firstName: 'tonio',
         id: 4,
-        lastName: 'mandela'
+        lastName: 'mandela',
+        companyBanner: {
+          bgColor: 'orange',
+          header: 'Inspiring Leadership',
+          logo: 'https://logos.keycdn.com/keycdn-logo.png',
+          subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
+          textColor: 'white'
+        }
       });
 
       done();
@@ -69,7 +76,7 @@ describe('Resource', () => {
 
     it('getDynamicContentPromise() return a resolved promise if the server returns no error', sinon.test( (done) => {
 
-      let regexpStep = new RegExp('http:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+      let regexpStep = new RegExp('https:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 200, { data: 'some data' }, {} ];
       });
@@ -89,7 +96,7 @@ describe('Resource', () => {
 
     it('getDynamicContentPromise() return a rejected promise if the server returns an error', sinon.test( (done) => {
 
-      let regexpStep = new RegExp('http:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+      let regexpStep = new RegExp('https:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 404, { data: 'some data' }, {} ];
       });
