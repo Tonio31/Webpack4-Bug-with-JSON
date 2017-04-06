@@ -54,7 +54,7 @@
 
       <section class="main-section">
         <div>
-          <company-banner></company-banner>
+          <company-banner ng-if="$ctrl.isBannerExist()"></company-banner>
           <div id="content" class="content" ui-view></div>
         </div>
       </section>

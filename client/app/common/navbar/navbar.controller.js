@@ -1,5 +1,5 @@
 class NavbarController {
-  constructor( $log, $state, STATES, Menu, JwtFactory) {
+  constructor( $log, $state, STATES, Menu, JwtFactory, User) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -17,6 +17,10 @@ class NavbarController {
     this.logout = () => {
       JwtFactory.logout();
       $state.go(STATES.LOGIN);
+    };
+
+    this.isBannerExist = () => {
+       return Object.keys(User.getCompanyBanner()).length;
     };
 
     // This is a reference to the Menu stored in MenuFactory, When the menu is retrieved by app.js for

@@ -17,13 +17,18 @@ h3 {
   text-transform: uppercase;
 }
 
-
 h4 {
   color: #F06334;
   font-size: $h4-14px;
   line-height: $h4-18px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.block {
+  p {
+    line-height: rem_calc(28px);
+  }
 }
 
 .quote {
