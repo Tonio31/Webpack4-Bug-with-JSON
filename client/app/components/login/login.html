@@ -44,7 +44,7 @@
       <li>
         <button class="expand radius" type="submit" ng-click="$ctrl.login(login)">{{ 'LOGIN' | translate }}</button>
       </li>
-      <li class="text-center keep-me-logged">
+      <!--li class="text-center keep-me-logged">
         <label for="keepMeLoggedIn">
           <input type="checkbox"
                  class="input-checkbox"
@@ -53,8 +53,9 @@
                  name="keepMeLoggedIn">
           <span class="checkbox-label">{{ 'KEEP_ME_LOGGED_IN' | translate }}</span>
         </label>
-
-        <p><a ng-click="$ctrl.forgotCredentials()">{{ 'FORGOT_CREDENTIALS' | translate }}</a></p>
+      </li -->
+      <li>
+        <p class="text-center"><a ng-click="$ctrl.forgotCredentials()">{{ 'FORGOT_CREDENTIALS' | translate }}</a></p>
       </li>
     </ul>
 

@@ -31,7 +31,7 @@ describe('Footer', () => {
 
     it('has a text called support', () => {
       let footerElement = angular.element(template[0].querySelector('.footer'));
-      expect(footerElement.html()).to.contain('SUPPORT');
+      expect(footerElement.html()).to.contain('ALL_RIGHT_RESERVED');
     });
   });
 

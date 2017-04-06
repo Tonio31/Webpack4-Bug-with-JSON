@@ -8,8 +8,9 @@
   }
 
   .checkbox-label,
-  .radio-label {
-    width: calc(100% - (#{$validation-icon-right} + 1em));
+  .radio-label,
+  .blockquote p {
+    width: calc(100% - (#{$validation-icon-right} + 1.5rem));
   }
 
   [type="radio"],

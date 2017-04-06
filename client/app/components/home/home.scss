@@ -2,9 +2,22 @@
 @import '~client/app/common/_foundation-settings';
 
 .home {
-
   padding-top: $padding-10px;
   padding-bottom: $padding-10px;
+
+  h4 {
+    padding-left: $default-padding * 2;
+    @media #{$medium-up} {
+      padding-left: 0;
+    }
+  }
+
+  .user-avatar {
+    img {
+      border-radius: 50%;
+      border: 2px solid $logoColor;
+    }
+  }
 
   .cycle {
     position: relative;
@@ -108,6 +121,12 @@
 
   .c3-target text {
     display: none;
+  }
+
+  .row {
+    &.row.panel {
+      margin-bottom: rem_calc(18px);
+    }
   }
 
 }
