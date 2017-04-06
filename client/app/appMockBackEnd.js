@@ -135,7 +135,7 @@ angular.module( 'appMockBackEnd', [
     $log.log('Fake menu object updated to set cycle1/module1/step10 as current step and step9 as completed');
   };
 
-  let regexpStep = new RegExp('http:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+  let regexpStep = new RegExp('https:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
   $httpBackend.whenGET(regexpStep).respond( (method, url) => {
 
     $log.log(`$httpBackend.whenGET(${url})`);

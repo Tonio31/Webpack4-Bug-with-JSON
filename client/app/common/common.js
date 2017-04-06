@@ -1,6 +1,7 @@
 import angular from 'angular';
 import Navbar from './navbar/navbar';
 import Footer from './footer/footer';
+import CompanyBanner from './companyBanner/companyBanner';
 import ChangeLanguage from './changeLanguage/changeLanguage';
 import ResourceFactory from './resourceFactory/resource';
 import UserDataFactory from './userDataFactory/userData';
@@ -13,6 +14,7 @@ import ConstantModule from './constants';
 let commonModule = angular.module('app.common', [
   Navbar,
   Footer,
+  CompanyBanner,
   ChangeLanguage,
   LogDecorator,
   ResourceFactory,
