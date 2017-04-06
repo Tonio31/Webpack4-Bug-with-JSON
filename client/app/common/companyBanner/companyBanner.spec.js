@@ -45,6 +45,11 @@ describe('CompanyBanner', () => {
       });
     });
 
+
+    it('isBannerExist() return a truthy expression is some data exists', () => {
+      expect(controller.isBannerExist()).to.not.eq(0 );
+    });
+
     it('controller.data is initialised from User object', () => {
       expect(controller.data).to.deep.eq(mockUser.getCompanyBanner());
     });
