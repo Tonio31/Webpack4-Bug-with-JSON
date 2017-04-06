@@ -19,6 +19,7 @@ class NavbarController {
       $state.go(STATES.LOGIN);
     };
 
+    // check if the banner exists, returns true/false
     this.isBannerExist = () => {
        return Object.keys(User.getCompanyBanner()).length;
     };
