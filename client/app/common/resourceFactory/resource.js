@@ -12,7 +12,8 @@ let resourceServiceModule = angular.module('resourceService', [
   .factory('Data', ResourceFactory)
   .constant('config', {
     apiUrl: 'https://apipl.ciprianspiridon.com/',
-    apiVersion: 'v1'
+    apiVersion: 'v1',
+    apiViaSurvey: 'https://www.viacharacter.org/survey/api1/'
   })
   .name;
 

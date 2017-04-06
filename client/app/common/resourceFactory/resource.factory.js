@@ -94,6 +94,12 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
     return new ($resource(buildApiUrl('program_data')))();
   };
 
+  // The following is used by ViaSurvey module
+  let viaSurvey = (iEndPointApi) => {
+    $log.log('viaSurvey()  iEndPointApi=', iEndPointApi);
+    return new ($resource(`${config.apiViaSurvey}${iEndPointApi}`))();
+  };
+
   return {
     getMenu,
     getUserAuthData,
@@ -102,7 +108,8 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
     getDynamicContentPromise,
     getParticipantDetails,
     updateStep,
-    buildApiUrl
+    buildApiUrl,
+    viaSurvey
   };
 };
 

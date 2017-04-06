@@ -15,6 +15,7 @@ import radioList from 'components/radioList/radioList';
 import unorderedList from 'components/unorderedList/unorderedList';
 import composed from 'components/composed/composed';
 import htmlModule from 'components/htmlModule/htmlModule';
+import viaSurvey from 'components/viaSurvey/viaSurvey';
 
 
 let blockManagerModule = angular.module('blockManager', [
@@ -32,7 +33,8 @@ let blockManagerModule = angular.module('blockManager', [
   radioList,
   unorderedList,
   composed,
-  htmlModule
+  htmlModule,
+  viaSurvey
 ])
 
 .component('blockManager', blockManagerComponent)

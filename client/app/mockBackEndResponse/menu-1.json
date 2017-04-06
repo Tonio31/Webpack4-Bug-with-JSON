@@ -545,11 +545,11 @@
                 {
                   "id": 3319,
                   "title": "Step 9",
-                  "name": "The last one",
+                  "name": "Via Survey",
                   "description": "Approx. 9999 mins",
                   "slug": "step-9",
                   "order": 0,
-                  "status": "locked",
+                  "status": "current",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-9",
                   "hideStepInMenu": false
                 }
