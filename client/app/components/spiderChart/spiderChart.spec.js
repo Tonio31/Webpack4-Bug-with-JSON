@@ -4,49 +4,49 @@ import SpiderChartComponent from './spiderChart.component';
 import SpiderChartTemplate from './spiderChart.html';
 
 describe('SpiderChart', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope;
+  // let $componentController;
+  // let $compile;
 
   beforeEach(window.module(SpiderChartModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
-    $compile = $injector.get('$compile');
+    // $componentController = $injector.get('$componentController');
+    // $compile = $injector.get('$compile');
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
   });
 
-  describe('Controller', () => {
-    // controller specs
-    let controller;
-    beforeEach(() => {
-      controller = $componentController('spiderChart', {
-        $scope: $rootScope.$new()
-      });
-    });
-
-
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
-    });
-  });
+  // describe('Controller', () => {
+  //   // controller specs
+  //   let controller;
+  //   beforeEach(() => {
+  //     controller = $componentController('spiderChart', {
+  //       $scope: $rootScope.$new()
+  //     });
+  //   });
+  //
+  //
+  // });
 
   describe('View', () => {
     // view specs
-    let scope, template;
+    let scope;
+    // let template;
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<spider-chart></spider-chart>')(scope);
+      // template = $compile('<spider-chart></spider-chart>')(scope);
       scope.$apply();
     });
 
 
-    it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('spiderChart');
-    });
+    // it('has a h1 title', () => {
+    //   expect(template.find('h1').html()).to.eq('spiderChart');
+    // });
   });
 
   describe('Component', () => {

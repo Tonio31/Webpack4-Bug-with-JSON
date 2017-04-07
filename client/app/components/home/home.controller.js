@@ -1,7 +1,7 @@
 
 class HomeController {
 
-  constructor($log, $state, User, Menu) {
+  constructor($log, $state, User, Menu, ZendeskWidget) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -55,9 +55,16 @@ class HomeController {
       $log.log('User.getFirstName()=', User.getFirstName());
     };
 
+    $log.info('User', User);
 
     this.sendUsEmail = () => {
-      $log.log('sendUsEmail()');
+      $log.info('sendUsEmail');
+      ZendeskWidget.identify({
+        name: `${User.getFirstName()} ${User.getLastName()}`,
+        email: User.getEmail(),
+        externalId: '1234',
+      });
+      ZendeskWidget.activate();
     };
 
   }

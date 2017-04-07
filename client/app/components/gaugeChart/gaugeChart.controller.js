@@ -1,5 +1,5 @@
 class GaugeChartController {
-  constructor($log, $timeout) {
+  constructor($log) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign

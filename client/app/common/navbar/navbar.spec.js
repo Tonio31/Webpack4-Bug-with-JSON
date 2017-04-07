@@ -7,8 +7,21 @@ describe('Navbar', () => {
     return value;
   };
 
+  let mockUser = {
+    getCompanyBanner: () => {
+      return {
+        bgColor: 'orange',
+        header: 'Inspiring Leadership',
+        logo: 'https://logos.keycdn.com/keycdn-logo.png',
+        subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
+        textColor: 'white'
+      };
+    }
+  };
+
   beforeEach(window.module(NavbarModule, ($provide) => {
     $provide.value('translateFilter', mockTranslateFilter );
+    $provide.value('User', mockUser );
   }));
 
   beforeEach(inject(($injector) => {
@@ -28,6 +41,10 @@ describe('Navbar', () => {
       controller = $componentController('navbar', {
         $scope: $rootScope.$new()
       });
+    });
+
+    it('isBannerExist() return a truthy expression is some data exists', () => {
+      expect(controller.isBannerExist()).to.not.eq(0 );
     });
 
     it('has a companyName property', () => { // erase if removing this.name from the controller
