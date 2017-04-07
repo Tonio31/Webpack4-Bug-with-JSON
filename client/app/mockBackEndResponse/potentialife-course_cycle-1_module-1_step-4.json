@@ -144,33 +144,18 @@
       }
     },
     {
-      "id": 61,
+      "id": 62,
       "type":"static",
-      "element":"spider_chart",
+      "element":"gauge_chart",
       "data": {
-        "title":"spider chart",
-        "legs":[
-          {
-            "axis": "Sleep",
-            "value": 50
-          },
-          {
-            "axis": "Nutrition",
-            "value": 14
-          },
-          {
-            "axis": "Exercise",
-            "value": 74
-          },
-          {
-            "axis": "Depletion management",
-            "value": 80
-          },
-          {
-            "axis": "Recovery management",
-            "value": 36
-          }
-        ]
+        "title":"gauge chart",
+        "gauge": {
+          "unit": "progress",
+          "colour" : "#6638F0",
+          "value": 50,
+          "min": 0,
+          "max": 70
+        }
       }
     }
   ]

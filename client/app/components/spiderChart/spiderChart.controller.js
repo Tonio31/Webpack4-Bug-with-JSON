@@ -1,6 +1,5 @@
-import d3 from 'd3/build/d3.min.js';
-import RadarChart from 'radar-chart-d3/src/radar-chart.min.js';
-
+import d3 from 'd3';
+import * as RadarChart from 'radar-chart-d3';
 
 class SpiderChartController {
   constructor($log) {
@@ -71,9 +70,10 @@ class SpiderChartController {
     this.$onInit = () => {
       $log.info('this.block.data', this.block.data);
 
-      RadarChart.draw('.chart-container', this.spiderData);
+      // RadarChart.draw('.chart-container', this.spiderData);
 
-      $log.info('d3', d3, RadarChart);
+      $log.info('RadarChart', RadarChart);
+
 
     };
 
