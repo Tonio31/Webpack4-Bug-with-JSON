@@ -44,7 +44,7 @@
           <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}&nbsp;<span>&bull;</span>&nbsp;{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
         </div>
         <button class="button radius success" type="submit" ng-click="$ctrl.resumeProgress()">
-          {{$ctrl.currentProgression.data.current_step.title | uppercase}} &bull; {{$ctrl.currentProgression.data.current_step.name | uppercase}}
+          {{$ctrl.currentProgression.data.current_step.title | uppercase}} &bull; {{$ctrl.currentProgression.data.current_step.name | uppercase | limitTo: 25 }}<span ng-if="$ctrl.currentProgression.data.current_step.name.length > 25">...</span>
         </button>
 
       </div>
