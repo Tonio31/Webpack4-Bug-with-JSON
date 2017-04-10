@@ -14,7 +14,12 @@ describe('Home', () => {
   };
   let firstName = 'Tonio';
 
-  beforeEach(window.module(Main, HomeModule));
+  let ZendeskWidget;
+
+
+  beforeEach(window.module(Main, HomeModule, ($provide) => {
+    $provide.value('ZendeskWidget', ZendeskWidget);
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');

@@ -4,7 +4,6 @@ const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
 
-
 module.exports = (iPhase) => {
   config.output = {
     filename: '[name].bundle.js',
@@ -20,8 +19,10 @@ module.exports = (iPhase) => {
     new HtmlWebpackPlugin({
       template: 'client/index.html',
       inject: 'body',
-      hash: true
+      hash: true,
+      favicon: 'client/app/common/favicon/apple-touch-icon.png'
     }),
+
 
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify(iPhase)

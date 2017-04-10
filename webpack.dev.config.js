@@ -22,8 +22,10 @@ module.exports = () => {
       template: 'client/indexMockBackEnd.html',
       //template: 'client/index.html',
       inject: 'body',
-      hash: true
+      hash: true,
+      favicon: 'client/app/common/favicon/apple-touch-icon.png'
     }),
+
 
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify('development')

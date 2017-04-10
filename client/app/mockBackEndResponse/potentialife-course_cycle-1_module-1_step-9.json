@@ -52,9 +52,18 @@
         },
         "name": "Your chosen VIA character strengths",
         "items": [
-          "Reflexion",
-          "Power",
-          "Good in Bed"
+          {
+            "text": "Reflexion",
+            "takeaways": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          },
+          {
+            "text": "Power",
+            "takeaways": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          },
+          {
+            "text": "Good in Bed",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+          }
         ]
       }
     }

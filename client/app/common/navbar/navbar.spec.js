@@ -7,6 +7,8 @@ describe('Navbar', () => {
     return value;
   };
 
+  let ZendeskWidget;
+
   let mockUser = {
     getCompanyBanner: () => {
       return {
@@ -22,6 +24,7 @@ describe('Navbar', () => {
   beforeEach(window.module(NavbarModule, ($provide) => {
     $provide.value('translateFilter', mockTranslateFilter );
     $provide.value('User', mockUser );
+    $provide.value('ZendeskWidget', ZendeskWidget);
   }));
 
   beforeEach(inject(($injector) => {
@@ -37,6 +40,7 @@ describe('Navbar', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+
     beforeEach(() => {
       controller = $componentController('navbar', {
         $scope: $rootScope.$new()

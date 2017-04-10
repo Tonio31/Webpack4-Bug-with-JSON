@@ -21,14 +21,30 @@ describe('UnorderedList', () => {
         },
         name: 'Your chosen VIA character strengths',
         items: [
-          'Reflexion',
-          'Power',
-          'Love',
-          'Good in Bed',
-          'Hakunamatata',
-          'Mars',
-          'Sun',
-          'Hate'
+          {
+            text: 'Reflexion'
+          },
+          {
+            text: 'Power'
+          },
+          {
+            text: 'Love'
+          },
+          {
+            text: 'Good in Bed'
+          },
+          {
+            text: 'Hakunamatata'
+          },
+          {
+            text: 'Mars'
+          },
+          {
+            text: 'Sun'
+          },
+          {
+            text: 'Hate'
+          }
         ]
       }
     };
@@ -122,7 +138,7 @@ describe('UnorderedList', () => {
     it('has a list item with the correct data in the text', () => {
       let obj = blockBinding.data.items;
       let listItem = angular.element(template[0].querySelector('li .list-wrap'));
-      expect(listItem.html()).to.eq(obj[0]);
+      expect(listItem.html()).to.eq(obj[0].text);
     });
 
 
