@@ -95,7 +95,8 @@ describe('TextBox', () => {
 
 
     it('has a h3 title', () => {
-      expect(template.find('h3').html()).to.eq(blockBinding.data.label);
+      let labelText = angular.element(template[0].querySelector('h3 label'));
+      expect(labelText.to.eq(blockBinding.data.label);
     });
 
     it('has a input with properties', () => {

@@ -146,7 +146,7 @@ describe('UnorderedList', () => {
       let listItems = angular.element(template[0].querySelectorAll('li .list-wrap'));
       expect(listItems.length).to.eq(5);
 
-      let showMoreButton = angular.element(template[0].querySelector('.list-footer p'));
+      let showMoreButton = angular.element(template[0].querySelector('.list-footer button'));
       showMoreButton.triggerHandler('click');
       scope.$apply();
 

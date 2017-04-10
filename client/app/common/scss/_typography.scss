@@ -3,24 +3,31 @@
 }
 
 h1 {
-  font-weight: bold;
-  font-size: $h1-30px;
-  line-height: $h1-34px;
   color: #333333;
+  font-size: $h1-30px;
+  font-weight: bold;
+  line-height: $h1-34px;
 }
 
 h3 {
   color: #333333;
   font-size: $h3-18px;
-  line-height: $h3-28px;
   font-weight: 500;
+  line-height: $h3-28px;
+  label {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: inherit;
+  }
 }
 
 h4 {
   color: #F06334;
   font-size: $h4-14px;
-  line-height: $h4-18px;
   font-weight: bold;
+  line-height: $h4-18px;
   text-transform: uppercase;
 }
 
