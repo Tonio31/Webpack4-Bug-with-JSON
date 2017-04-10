@@ -28,6 +28,7 @@ fieldset {
       label,
       .shim {
         cursor: default;
+        line-height: rem_calc(28px);
       }
 
       &.radioList {

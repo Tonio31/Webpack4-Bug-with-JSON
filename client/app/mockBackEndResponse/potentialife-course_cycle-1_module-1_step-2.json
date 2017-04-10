@@ -4,7 +4,7 @@
   "slug": "/potentialife-course/cycle-1/module-1/step-2",
   "description": null,
   "content": null,
-  "status": "completed",
+  "status": "incomplete",
   "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 2 / 10",
   "next_page_url": "/potentialife-course/cycle-1/module-1/step-3",
   "prev_page_url": "/potentialife-course/cycle-1/module-1/step-1",
@@ -76,7 +76,7 @@
       "id": 165,
       "type": "dynamic",
       "element": "textbox",
-      "program_data_code": "c1.m1.s1.textbox_2",
+      "program_data_code": "c1.m1.s1.textbox_3",
       "data": {
         "config": {
           "type": "email",
@@ -337,7 +337,7 @@
       "id": 65,
       "type": "dynamic",
       "element": "textbox",
-      "program_data_code": "c1.m1.s1.textbox_2",
+      "program_data_code": "c1.m1.s1.textbox_4",
       "data": {
         "config": {
           "type": "email",

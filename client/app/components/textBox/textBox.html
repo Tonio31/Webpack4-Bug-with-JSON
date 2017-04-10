@@ -1,10 +1,11 @@
 <div class="textBox">
   <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.FORM_NAME}}">
-    <h3>{{ $ctrl.block.data.label }}</h3>
+    <label for="{{$ctrl.block.program_data_code}}" class="h3-style">{{ $ctrl.block.data.label }}</label>
     <div class="flex-container">
 
       <input type="{{$ctrl.block.data.config.type}}"
              name="{{$ctrl.block.data.name}}"
+             id="{{$ctrl.block.program_data_code}}"
              ng-model="$ctrl.text"
              ng-class="{ 'parent-submitted': $ctrl.isTopLevelFormSubmitted }"
              ng-model-options="$ctrl.modelOptions"
