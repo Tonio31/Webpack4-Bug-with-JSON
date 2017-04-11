@@ -9,7 +9,7 @@ class MainController {
       email: User.getEmail()
     });
 
-    ZendeskWidget.show(); 
+    ZendeskWidget.show();
 
   }
 }
