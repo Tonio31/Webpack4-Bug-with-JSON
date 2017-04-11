@@ -130,7 +130,7 @@ class CourseContentController {
         // First time user click on the button, display the green banner and change the label
         let postData = Data.updateStep();
 
-        postData.fullUrl = this.content.slug;
+        postData.fullUrl = this.content.fullUrl;
         postData.status = 'completed';
         postData.programData = this.convertInputFieldForPOST(inputFields);
 
