@@ -3,12 +3,11 @@
 
 $height-navigation-banner: rem_calc(80px);
 $height-button-banner: rem_calc(45px);
-$height-footer-nav-banner: rem_calc(130px);
 
 $tick-size: 3rem;
 
 .course-content {
-  height: 100%;
+  // height: 100%;
   min-height: calc(100vh - #{$height-footer-nav-banner});
   display: flex;
   flex-direction: column;

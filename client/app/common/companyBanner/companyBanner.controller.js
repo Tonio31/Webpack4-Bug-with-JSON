@@ -9,11 +9,6 @@ class CompanyBannerController {
 
     this.data = User.getCompanyBanner();
 
-    this.isBannerExist = () => {
-      return Object.keys(this.data).length;
-    };
-
-
     this.getCssStyle = () => {
       let style = {
         'background-color': this.data.bgColor,

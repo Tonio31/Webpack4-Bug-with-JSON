@@ -21,14 +21,30 @@ describe('UnorderedList', () => {
         },
         name: 'Your chosen VIA character strengths',
         items: [
-          'Reflexion',
-          'Power',
-          'Love',
-          'Good in Bed',
-          'Hakunamatata',
-          'Mars',
-          'Sun',
-          'Hate'
+          {
+            text: 'Reflexion'
+          },
+          {
+            text: 'Power'
+          },
+          {
+            text: 'Love'
+          },
+          {
+            text: 'Good in Bed'
+          },
+          {
+            text: 'Hakunamatata'
+          },
+          {
+            text: 'Mars'
+          },
+          {
+            text: 'Sun'
+          },
+          {
+            text: 'Hate'
+          }
         ]
       }
     };
@@ -122,7 +138,7 @@ describe('UnorderedList', () => {
     it('has a list item with the correct data in the text', () => {
       let obj = blockBinding.data.items;
       let listItem = angular.element(template[0].querySelector('li .list-wrap'));
-      expect(listItem.html()).to.eq(obj[0]);
+      expect(listItem.html()).to.eq(obj[0].text);
     });
 
 
@@ -130,7 +146,7 @@ describe('UnorderedList', () => {
       let listItems = angular.element(template[0].querySelectorAll('li .list-wrap'));
       expect(listItems.length).to.eq(5);
 
-      let showMoreButton = angular.element(template[0].querySelector('.list-footer p'));
+      let showMoreButton = angular.element(template[0].querySelector('.list-footer button'));
       showMoreButton.triggerHandler('click');
       scope.$apply();
 

@@ -34,9 +34,9 @@
       </li>
     </ul>
     <div class="list-footer" ng-if="$ctrl.block.data.items.length > $ctrl.NB_MIN_CHECKBOX_DISPLAYED" ng-hide="$ctrl.areAllCheckBoxDisplayed">
-      <p class="button radius secondary" ng-click="$ctrl.displayAllCheckBox()">
+      <button class="button radius secondary" ng-click="$ctrl.displayAllCheckBox()">
         <span><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-r"></i>{{'SHOW_MORE' | translate}}</span>
-      </p>
+      </button>
     </div>
   </ng-form>
 </div>

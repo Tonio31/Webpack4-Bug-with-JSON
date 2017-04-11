@@ -231,7 +231,7 @@ describe('Checkbox', () => {
 
     it('Display all checkbox when clicking on ShowMore', () => {
       // Click on Show More
-      let showMoreButton = angular.element(template[0].querySelector('.list-footer p'));
+      let showMoreButton = angular.element(template[0].querySelector('.list-footer button'));
       showMoreButton.triggerHandler('click');
       scope.$apply();
 

@@ -143,6 +143,21 @@
           }
         ]
       }
+    },
+    {
+      "id": 62,
+      "type":"static",
+      "element":"gauge_chart",
+      "data": {
+        "title":"gauge chart",
+        "gauge": {
+          "unit": "progress",
+          "colour" : "#6638F0",
+          "value": 50,
+          "min": 0,
+          "max": 70
+        }
+      }
     }
   ]
 }

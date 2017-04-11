@@ -60,6 +60,10 @@
       <pie-chart block="$ctrl.block"></pie-chart>
     </div>
 
+    <div ng-switch-when="gauge_chart">
+      <gauge-chart block="$ctrl.block"></gauge-chart>
+    </div>
+
     <div ng-switch-when="ul">
       <unordered-list block="$ctrl.block" />
     </div>

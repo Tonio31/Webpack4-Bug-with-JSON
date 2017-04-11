@@ -112,7 +112,7 @@ describe('RadioList', () => {
 
     it('Change limitStart and see the change on the template', () => {
       // Click on Show More
-      let showMoreButton = angular.element(template[0].querySelector('.list-footer p'));
+      let showMoreButton = angular.element(template[0].querySelector('.list-footer button'));
       showMoreButton.triggerHandler('click');
       scope.$apply();
 

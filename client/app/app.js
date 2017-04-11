@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import 'normalize.css';
 import 'angular-foundation';
+import 'angular-zendesk-widget';
 
 import 'common/fontello/css/fontello.css';
 import 'c3/c3.css';
@@ -17,11 +18,13 @@ import MenuService from 'common/menuFactory/menu';
 import ngStorage from 'ngstorage-webpack';
 
 
+
 // This is a trick to be able to set up dynamic routing in run.
 let $stateProviderRef = null;
 
 let appModule = angular.module('app', [
   'mm.foundation',
+  'zendeskWidget',
   uiRouter,
   ngStorage,
   ngAnimate,
@@ -30,7 +33,7 @@ let appModule = angular.module('app', [
   MenuService,
   Global
 ])
-  .config(($locationProvider, $stateProvider, $localStorageProvider, $urlRouterProvider, STATES) => {
+  .config(($locationProvider, $stateProvider, $localStorageProvider, $urlRouterProvider, ZendeskWidgetProvider, STATES) => {
     'ngInject';
 
     // This is needed because we create our state dynamically, if we don't put this,
@@ -50,6 +53,14 @@ let appModule = angular.module('app', [
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     $localStorageProvider.setKeyPrefix('pl2-');
+
+    ZendeskWidgetProvider.init({
+      accountUrl: 'potentialifehelp.zendesk.com',
+      beforePageLoad: function(zE) {
+        zE.setHelpCenterSuggestions({ url: true });
+        zE.hide();
+      }
+    });
 
     $stateProviderRef = $stateProvider;
   })

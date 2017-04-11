@@ -32,12 +32,12 @@
       </li>
     </ul>
     <div class="list-footer" ng-if="$ctrl.block.data.items.length > $ctrl.MIN_NB_RADIO_BUTTON_DISPLAYED">
-      <p class="button radius secondary" ng-click="$ctrl.toggleMore()">
+      <button class="button radius secondary" ng-click="$ctrl.toggleMore()">
         <span><i class="fontello-icon fgcolour-black icon-pl-gt"
                  ng-class="$ctrl.showMoreButtonDisplayed ? 'rotate-90-r' : 'rotate-90-l'"></i>
           {{$ctrl.showMoreButtonDisplayed ? ( 'SHOW_MORE' | translate ) : ( 'SHOW_LESS' | translate ) }}
         </span>
-      </p>
+      </button>
     </div>
   </ng-form>
 </div>
