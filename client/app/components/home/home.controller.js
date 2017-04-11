@@ -53,7 +53,7 @@ class HomeController {
     this.goToFAQs = () => {
       $log.log('goToFAQs()');
       $log.log('User.getFirstName()=', User.getFirstName());
-      $window.location.href = 'https://support.potentialife.com';
+      $window.open('https://support.potentialife.com', '_blank');
     };
 
     this.sendUsEmail = () => {
