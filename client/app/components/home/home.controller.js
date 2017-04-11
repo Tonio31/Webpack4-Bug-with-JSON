@@ -1,7 +1,7 @@
 
 class HomeController {
 
-  constructor($log, $state, User, Menu, ZendeskWidget) {
+  constructor($log, $state, User, Menu, ZendeskWidget, $window) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -53,6 +53,7 @@ class HomeController {
     this.goToFAQs = () => {
       $log.log('goToFAQs()');
       $log.log('User.getFirstName()=', User.getFirstName());
+      $window.location.href = 'https://support.potentialife.com';
     };
 
     $log.info('User', User);
