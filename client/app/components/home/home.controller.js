@@ -56,8 +56,6 @@ class HomeController {
       $window.location.href = 'https://support.potentialife.com';
     };
 
-    $log.info('User', User);
-
     this.sendUsEmail = () => {
       $log.info('sendUsEmail');
       ZendeskWidget.identify({
