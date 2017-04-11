@@ -1,7 +1,8 @@
 {
   "id": 1,
   "name": "Module introduction",
-  "slug": "/potentialife-course/cycle-1/module-1/step-1",
+  "fullUrl": "/potentialife-course/cycle-1/module-1/step-1",
+  "slug": "step-1",
   "description": null,
   "content": null,
   "status": "completed",

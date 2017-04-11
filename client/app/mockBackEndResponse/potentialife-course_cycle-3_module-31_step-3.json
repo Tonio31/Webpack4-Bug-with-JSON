@@ -1,7 +1,8 @@
 {
   "id": 1,
   "name": "Video",
-  "slug": "/potentialife-course/cycle-3/module-31/step-3",
+  "fullUrl": "/potentialife-course/cycle-3/module-31/step-3",
+  "slug": "step-3",
   "description": null,
   "content": null,
   "status": "completed",
