@@ -151,7 +151,7 @@ describe('CourseContent', () => {
 
       $rootScope.$digest();
 
-      expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.slug);
+      expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.fullUrl);
       expect(updateStepPOSTRequest.status).to.equal('completed');
       expect(updateStepPOSTRequest.programData).to.deep.equal( [{ code: 'c1.m1.s1.story_2', value: 'This is a text' }] );
 
@@ -194,7 +194,7 @@ describe('CourseContent', () => {
 
       $rootScope.$digest();
 
-      expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.slug);
+      expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.fullUrl);
       expect(updateStepPOSTRequest.status).to.equal('completed');
       expect(updateStepPOSTRequest.programData).to.deep.equal( [] );
 
