@@ -7,10 +7,10 @@
   <ul class="no-list">
     <li ng-repeat="item in $ctrl.blockData.items | limitTo : $ctrl.limit track by $index ">
       <div class="list-wrap">{{item.text}}</div>
-      <div class="takeaways fgcolour-active" ng-if="item.takeaways">
-        <p>Your notes: </p>
-        <div class="takeaways fgcolour-active" ng-if="item.takeaways">
-          <p>{{item.takeaways}}</p>
+      <div class="takeaways" ng-if="item.takeaways">
+        <p class="fgcolour-active title">Your notes: </p>
+        <div class="takeaways" ng-if="item.takeaways">
+          <p class="fgcolour-active">{{item.takeaways}}</p>
         </div>
       </div>
     </li>

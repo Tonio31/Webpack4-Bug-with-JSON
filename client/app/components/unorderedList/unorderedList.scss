@@ -4,6 +4,11 @@
 
 .unordered-list {
   .takeaways {
+    background-color: lighten($light-grey, 3);
     padding: .625rem;
+
+    .title {
+      margin-bottom: 0;
+    }
   }
 }

@@ -29,6 +29,9 @@ $tick-size: 3rem;
 
     &-congrats {
       background-color: $success-color;
+      p {
+        color: $white;
+      }
     }
 
     &-error {

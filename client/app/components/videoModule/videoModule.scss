@@ -8,6 +8,15 @@
     margin-left: -$padding-10px;
     margin-right: -$padding-10px;
   }
+
+  .vjs-text-track-display {
+    [title="Angus"] {
+      color: $video-colour-highlight;
+    }
+    [title="Tal"] {
+      color: $blue-focus;
+    }
+  }
 }
 
 $buttonXY: 8rem;

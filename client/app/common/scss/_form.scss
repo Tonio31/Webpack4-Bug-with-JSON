@@ -1,45 +1,12 @@
 fieldset {
-
-  input {
-    &[type="text"],
-    &[type="password"],
-    &[type="date"],
-    &[type="datetime"],
-    &[type="datetime-local"],
-    &[type="month"],
-    &[type="week"],
-    &[type="email"],
-    &[type="number"],
-    &[type="search"],
-    &[type="tel"],
-    &[type="time"],
-    &[type="url"],
-    &[type="color"] {
-      padding: rem_calc(10px);
-    }
-  }
-
-  textarea {
+  textarea,
+  input:not([type='button']):not([type='checkbox']):not([type='radio']) {
     padding: rem_calc(10px);
   }
 
   &[disabled] {
-
     textarea,
-    input[type="text"],
-    input[type="password"],
-    input[type="date"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="month"],
-    input[type="week"],
-    input[type="email"],
-    input[type="number"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="time"],
-    input[type="url"],
-    input[type="color"] {
+    input:not([type='button']):not([type='checkbox']):not([type='radio']) {
       border-color: $oil;
       background-color: $light-grey;
       cursor: default;
