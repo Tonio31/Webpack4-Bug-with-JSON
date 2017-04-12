@@ -1,5 +1,6 @@
 @import '~client/app/common/scss/_vars';
 @import '~client/app/common/_foundation-settings';
+@import '~client/app/common/_foundation-functions';
 
 .video-module {
   color: $darkBgColor;
@@ -11,6 +12,7 @@
 
   .vjs-text-track-display {
     [title="Angus"] {
+      font-family: $defaultFont !important;
       color: $video-colour-highlight;
     }
     [title="Tal"] {

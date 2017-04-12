@@ -25,6 +25,14 @@ $modules: () !default;
   user-select: none;
 }
 
+@mixin defaultParagraph() {
+  color: $very-dark-grey;
+  font: $defaultFont;
+  font-size: rem_calc(18px);
+  font-weight: normal;
+  line-height: rem_calc(28px);
+}
+
 @mixin inputsBorderStyling() {
   border: 2px solid $onyx;
   border-radius: $global-radius - 2px;

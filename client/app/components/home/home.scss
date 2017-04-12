@@ -129,4 +129,22 @@
     }
   }
 
+  @media #{$medium-up} {
+    .equal-columns { //
+      display: flex;
+
+      > .columns {
+        height: auto;
+
+        .panel {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 84%;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
 }

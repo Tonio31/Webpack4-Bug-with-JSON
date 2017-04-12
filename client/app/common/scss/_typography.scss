@@ -51,10 +51,7 @@ textarea,
 label,
 blockquote,
 input:not([type='button']):not([type='checkbox']):not([type='radio']) {
-  color: $very-dark-grey;
-  font-size: rem_calc(18px);
-  font-weight: normal;
-  line-height: rem_calc(28px);
+  @include defaultParagraph();
 
   &:last-child {
     margin-bottom: 0;
