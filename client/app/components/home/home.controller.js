@@ -11,7 +11,7 @@ class HomeController {
     $log.log('constructor::Start');
 
     this.firstName = User.getFirstName();
-    $log.log('User.getFirstName()=', User.getFirstName());
+
 
     this.currentProgression = Menu.getCurrentProgression();
     this.menu = Menu.getMenu();

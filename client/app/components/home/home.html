@@ -64,14 +64,13 @@
           <div class="columns small-12">
             <div class="row bgcolour-grey panel collapse">
 
-              <div class="user-avatar columns small-12 medium-2 medium-push-10">
+              <div class="user-avatar columns small-12 medium-2 medium-push-10" ng-if="$ctrl.content[0].avatar">
                 <div class="left-padding text-center">
-                  <!-- hidden due to ticket POT-53 -->
-                  <!-- <img ng-src="{{$ctrl.content[0].avatar}}" /> -->
+                  <img ng-src="{{$ctrl.content[0].avatar}}" />
                 </div>
               </div>
 
-              <div class="columns small-12 medium-10 medium-pull-2">
+              <div class="columns small-12" ng-class="{'medium-pull-2 medium-10': $ctrl.content[0].avatar}">
                 <p class="quote text-center">&ldquo;{{$ctrl.content[0].reflection}}&rdquo;</p>
                 <p class="quote-signature text-center">
                   {{$ctrl.content[0].name}} <br>
