@@ -22,6 +22,7 @@
              <block-manager block="block"
                             is-top-level-form-submitted="topLevelForm.$submitted"
                             is-step-completed="$ctrl.isStepCompleted"
+                            disable-next-button="$ctrl.disableNextButton(disableNextButton)"
                             update-parent="$ctrl.updateInputFields(block.program_data_code, parentValue)">
              </block-manager>
            </div>
@@ -53,8 +54,19 @@
     <div class="navigation y-center-parent">
       <div class="row y-center-child">
         <div class="small-12 medium-8 columns small-centered">
-          <button ng-show="$ctrl.displayPreviousButton" class="secondary radius left" type="button" ng-click="$ctrl.previousStep()">&lt; {{ 'PREVIOUS' | translate }}</button>
-          <button ng-class="$ctrl.nextStepButton.class" class="radius right" type="submit" ng-click="$ctrl.nextStep(topLevelForm)">{{$ctrl.nextStepButton.label}}</button>
+          <button ng-show="$ctrl.displayPreviousButton"
+                  class="secondary radius left"
+                  type="button"
+                  ng-click="$ctrl.previousStep()">
+            &lt; {{ 'PREVIOUS' | translate }}
+          </button>
+          <button ng-class="$ctrl.nextStepButton.class"
+                  class="radius right"
+                  type="submit"
+                  ng-disabled="$ctrl.isNextButtonDisable"
+                  ng-click="$ctrl.nextStep(topLevelForm)">
+            {{$ctrl.nextStepButton.label}}
+          </button>
         </div>
       </div>
     </div> <!-- END .navigation -->

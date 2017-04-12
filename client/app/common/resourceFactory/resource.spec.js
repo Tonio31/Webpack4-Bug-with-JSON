@@ -57,8 +57,9 @@ describe('Resource', () => {
       Data.getParticipantDetails();
       $httpBackend.flush();
       sinon.assert.calledWith(setUserSpy, {
-        email: 'tonio.mandela@usertest.com',
+        email: 'tonio.mandela26@usertest.com',
         firstName: 'tonio',
+        gender: 'M',
         id: 4,
         lastName: 'mandela',
         companyBanner: {

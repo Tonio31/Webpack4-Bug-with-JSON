@@ -6,6 +6,35 @@ import ViaSurveyTemplate from './viaSurvey.html';
 describe('ViaSurvey', () => {
   let $rootScope, $componentController, $compile;
 
+/*  let question = {
+    QuestionID: 11436,
+    QuestionNumber: 1,
+    Text: 'Being able to come up with new and different ideas is one of my strong points.',
+    AnswerChoices: [
+      {
+        ChoiceID: 274,
+        Text: 'Very Much Like Me'
+      },
+      {
+        ChoiceID: 275,
+        Text: 'Like Me'
+      },
+      {
+        ChoiceID: 276,
+        Text: 'Neutral'
+      },
+      {
+        ChoiceID: 277,
+        Text: 'Unlike Me'
+      },
+      {
+        ChoiceID: 278,
+        Text: 'Very Much Unlike Me'
+      }
+    ]
+  };*/
+
+
   beforeEach(window.module(ViaSurveyModule));
 
   beforeEach(inject(($injector) => {
@@ -27,10 +56,6 @@ describe('ViaSurvey', () => {
       });
     });
 
-
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
-    });
   });
 
   describe('View', () => {
@@ -44,9 +69,6 @@ describe('ViaSurvey', () => {
     });
 
 
-    it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('viaSurvey');
-    });
   });
 
   describe('Component', () => {

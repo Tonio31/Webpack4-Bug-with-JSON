@@ -30,6 +30,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
         firstName: userData.data['first_name'], // eslint-disable-line dot-notation
         lastName: userData.data['last_name'], // eslint-disable-line dot-notation
         email: userData.data.email,
+        gender: userData.data.gender,
         companyBanner: userData.data.companyBanner
       };
 
@@ -95,9 +96,55 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
   };
 
   // The following is used by ViaSurvey module
-  let viaSurvey = (iEndPointApi) => {
-    $log.log('viaSurvey()  iEndPointApi=', iEndPointApi);
-    return new ($resource(`${config.apiViaSurvey}${iEndPointApi}`))();
+  let viaSurvey = () => {
+    return new ($resource('', {}, {
+      register: {
+        method: 'POST',
+        url: `${config.apiViaSurvey}RegisterUser`,
+        transformResponse: (userId) => {
+          return {
+            userId: userId
+          };
+        }
+      },
+      login: {
+        method: 'POST',
+        url: `${config.apiViaSurvey}LoginUser`,
+        transformResponse: (loginKeyRawString) => {
+          return {
+            loginKey: angular.fromJson(loginKeyRawString)
+          };
+        }
+      },
+      startSurvey: {
+        method: 'POST',
+        url: `${config.apiViaSurvey}StartSurvey`,
+        transformResponse: (sessionKeyRawString) => {
+          return {
+            sessionKey: angular.fromJson(sessionKeyRawString)
+          };
+        }
+      },
+      getQuestions: {
+        method: 'POST',
+        url: `${config.apiViaSurvey}GetQuestions`,
+        transformResponse: (questions) => {
+          return {
+            questionsList: angular.fromJson(questions)
+          };
+        }
+      },
+      submitAnswers: {
+        method: 'POST',
+        url: `${config.apiViaSurvey}SubmitAnswers`,
+        transformResponse: (response) => {
+          $log.log('SubmitAnswers response=', response);
+          return {
+            response: angular.fromJson(response)
+          };
+        }
+      }
+    }))();
   };
 
   return {

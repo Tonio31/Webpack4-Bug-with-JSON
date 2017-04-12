@@ -10,6 +10,11 @@ class BlockManagerController {
       this.updateParent({ parentValue: value });
     };
 
+    this.disableNextButtonBM = (iDisable) => {
+      $log.log('disableNextButtonBM iDisable=', iDisable);
+      this.disableNextButton({ disableNextButton: iDisable });
+    };
+
   }
 }
 

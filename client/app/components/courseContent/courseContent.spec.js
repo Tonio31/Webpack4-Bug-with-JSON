@@ -118,7 +118,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       controller.nextStep(topLevelForm);
 
-      sinon.assert.calledWith(locationSpy, 'name: this is the name');
+      sinon.assert.calledWith(locationSpy, subFormName);
       done();
     }));
 

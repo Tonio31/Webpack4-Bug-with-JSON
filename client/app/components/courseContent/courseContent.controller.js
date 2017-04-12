@@ -23,6 +23,7 @@ class CourseContentController {
     this.isStepCompletedOnPageLoading = false;
     this.skipShowingBanner = false;
 
+    this.isNextButtonDisable = false;
 
     // This container is used to store all the inputs modified by the user, so we can
     // send it back to the server when saving
@@ -90,17 +91,24 @@ class CourseContentController {
       $state.go(this.content.prev_page_url);
     };
 
+    this.disableNextButton = (iDisable) => {
+      $log.log('Disable next Button: ', iDisable);
+      this.isNextButtonDisable = iDisable;
+    };
+
     this.goToFieldInError = (iForm) => {
-      for ( let block of this.content.blocks ) {
-        let formName = `${FORM_NAME_PREFIX}${block.id}`;
 
-        if ( iForm.hasOwnProperty(formName) &&
-             iForm[formName].$invalid ) {
-
-          // Focus the user on the form in error
-          $location.hash(block.data.name);
-          $anchorScroll();
-          return;
+      $log.debug('iForm=', iForm);
+      for ( let [ key, value ] of Object.entries(iForm) ) {
+        if ( key.includes('myForm') ) {
+          let currentForm = value;
+          if ( currentForm.$invalid ) {
+            $log.debug('The invalid form is:', key);
+            // Focus the user on the form in error
+            $location.hash(key);
+            $anchorScroll();
+            return;
+          }
         }
       }
     };

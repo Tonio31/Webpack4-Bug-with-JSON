@@ -4,7 +4,13 @@ import './viaSurvey.scss';
 
 let viaSurveyComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    block: '<',
+    isTopLevelFormSubmitted: '<',
+    isStepCompleted: '<',
+    updateBlockManager: '&',
+    disableNextButton: '&'
+  },
   template,
   controller
 };

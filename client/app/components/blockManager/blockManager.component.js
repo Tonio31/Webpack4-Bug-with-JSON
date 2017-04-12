@@ -7,7 +7,8 @@ let blockManagerComponent = {
     block: '<',
     isTopLevelFormSubmitted: '<',
     isStepCompleted: '<',
-    updateParent: '&'
+    updateParent: '&',
+    disableNextButton: '&'
   },
   template,
   controller

@@ -7,7 +7,126 @@ describe('RadioList', () => {
   let $rootScope, $componentController, $compile;
   let FORM_NAME_PREFIX;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[9];
+  let blockBinding = {
+    id: 63,
+    type: 'dynamic',
+    element: 'radiobox',
+    program_data_code: 'c1.m1.s1.radio_1',
+    data: {
+      config: {
+        required: true
+      },
+      label: 'this is the label',
+      name: 'this is the name',
+      items: [
+        {
+          label: 'this is the label 1',
+          value: 'this_is_the_label_1',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 2',
+          value: 'this_is_the_label_2',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 3',
+          value: 'this_is_the_label_3',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 4',
+          value: 'this_is_the_label_4',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 5',
+          value: 'this_is_the_label_5',
+          sub_label: null,
+          selected: false,
+          feedback: 'This answer has feedback'
+        },
+        {
+          label: 'this is the label 6',
+          value: 'this_is_the_label_6',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 7',
+          value: 'this_is_the_label_7',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 8',
+          value: 'this_is_the_label_8',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 9',
+          value: 'this_is_the_label_9',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 10',
+          value: 'this_is_the_label_10',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 11',
+          value: 'this_is_the_label_11',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 12',
+          value: 'this_is_the_label_12',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 13',
+          value: 'this_is_the_label_13',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 14',
+          value: 'this_is_the_label_14',
+          sub_label: null,
+          selected: true,
+          feedback: null
+        },
+        {
+          label: 'this is the label 15',
+          value: 'this_is_the_label_15',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        }
+      ]
+    }
+  };
 
   let mockTranslateFilter = (value) => {
     return value;
@@ -95,18 +214,16 @@ describe('RadioList', () => {
     });
 
     it('has the correct id on the form 12', () => {
-      expect(template.find('ng-form').attr('id')).to.eq(blockBinding.data.name);
+      expect(template.find('ng-form').attr('id')).to.eq(`${FORM_NAME_PREFIX}${blockBinding.id}`);
     });
 
     it('has a list item with the correct data in the label', () => {
-      let obj = blockBinding.data.items;
       let labelText = angular.element(template[0].querySelector('.radio-label span'));
-      expect(labelText.html()).to.eq(obj[8].label);
+      expect(labelText.html()).to.eq(blockBinding.data.items[10].label);
     });
 
     it('has a list item with the correct data in the input=value', () => {
-      let obj = blockBinding.data.items;
-      expect(template.find('input').attr('value')).to.eq(obj[8].value);
+      expect(template.find('input').attr('value')).to.eq(blockBinding.data.items[10].value);
     });
 
 

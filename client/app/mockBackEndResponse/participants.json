@@ -2,10 +2,11 @@
   "success": true,
   "data": {
     "id": 4,
-    "email": "tonio.mandela@usertest.com",
+    "email": "tonio.mandela26@usertest.com",
     "username": "",
     "first_name": "tonio",
     "last_name": "mandela",
+    "gender": "M",
     "remember_token": null,
     "created_at": "2017-02-28 15:17:11",
     "updated_at": "2017-02-28 15:17:11",
