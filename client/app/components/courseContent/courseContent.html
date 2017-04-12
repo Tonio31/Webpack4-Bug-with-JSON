@@ -1,34 +1,32 @@
 
 <form novalidate name="topLevelForm" class="course-content">
   <div class="row">
-    <div class="small-12 medium-10 xlarge-8 small-centered columns">
+    <div class="small-12 medium-10 xlarge-8 small-centered columns" ng-class="{ 'step-frozen' : $ctrl.isStepCompletedOnPageLoading}">
       <!-- Beginning of main content in the page -->
-      <fieldset ng-disabled="$ctrl.isStepCompleted" ng-class="{ 'step-frozen' : $ctrl.isStepCompletedOnPageLoading}">
-        <h4 ng-bind-html="$ctrl.content.breadcrumbs | unsafe | uppercase"></h4>
-        <h1>{{$ctrl.content.name}}</h1>
+      <h4 ng-bind-html="$ctrl.content.breadcrumbs | unsafe | uppercase"></h4>
+      <h1>{{$ctrl.content.name}}</h1>
 
-        <div ng-repeat="block in $ctrl.content.blocks track by block.id">
-          <div class="block" ng-switch="block.element">
+      <div ng-repeat="block in $ctrl.content.blocks track by block.id">
+        <div class="block" ng-switch="block.element">
 
-           <div ng-switch-when="container">
-            <composed block="block"
-                      is-top-level-form-submitted="topLevelForm.$submitted"
-                      is-step-completed="$ctrl.isStepCompleted"
-                      update-parent="$ctrl.updateInputFields(programDataCode, courseContentValue)">
-            </composed>
-           </div>
+         <div ng-switch-when="container">
+          <composed block="block"
+                    is-top-level-form-submitted="topLevelForm.$submitted"
+                    is-step-completed="$ctrl.isStepCompleted"
+                    update-parent="$ctrl.updateInputFields(programDataCode, courseContentValue)">
+          </composed>
+         </div>
 
-           <div ng-switch-default>
-             <block-manager block="block"
-                            is-top-level-form-submitted="topLevelForm.$submitted"
-                            is-step-completed="$ctrl.isStepCompleted"
-                            update-parent="$ctrl.updateInputFields(block.program_data_code, parentValue)">
-             </block-manager>
-           </div>
+         <div ng-switch-default>
+           <block-manager block="block"
+                          is-top-level-form-submitted="topLevelForm.$submitted"
+                          is-step-completed="$ctrl.isStepCompleted"
+                          update-parent="$ctrl.updateInputFields(block.program_data_code, parentValue)">
+           </block-manager>
+         </div>
 
-          </div> <!-- END .block -->
-        </div> <!-- END ng-repeat -->
-      </fieldset>
+        </div> <!-- END .block -->
+      </div> <!-- END ng-repeat -->
       <!-- END of main content in the page -->
 
     </div> <!-- END .small-12 medium-10 xlarge-8 small-centered columns -->
