@@ -9,13 +9,6 @@ class ViaSurveyController {
 
     this.name = 'viaSurvey';
 
-
-    let appKey = 'testkey';
-    let apiBaseUrl = 'https://www.viacharacter.org/survey/api1/';
-    let surveyID = 86; // The list of available surveys can be retrieved by the GetSurveys API method. The VIA-120 is survey ID 86.
-   // let loginKey; // The login key is returned from the LoginUser service call. It is used for starting surveys.s
-   // let sessionKey; // The sesion key is returned from the StartSurvey service call. It is used for getting questions and submitting answers.
-
     // 'appKey=testkey&sendWelcomeEmailToUser=false&email=test1491489134393%40test.com&firstName=test&lastName=test&gender=M&password=testtesttest'
     let registerFormData = {
       appKey: 'testkey',
