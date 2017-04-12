@@ -20,6 +20,12 @@
     p {
       margin: 0;
       color: $oil;
+      font-size: rem_calc(14px);
+      line-height: rem_calc(16px);
+      @media #{$medium-up} {
+        font-size: rem_calc(18px);
+        line-height: rem_calc(20px);
+      }
 
       &.company-header {
         font-weight: $font-weight-bold;

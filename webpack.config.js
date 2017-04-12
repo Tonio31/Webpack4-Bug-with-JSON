@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: 'source-map',
@@ -32,10 +33,12 @@ module.exports = {
         loader: 'raw' },
       {
         test: /\.(scss|sass)$/,
-        loader: 'style!css!postcss!sass'
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
       },
       {
-        test: /\.css$/, loader: 'style!css!postcss'
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+
       },
       {
         test: /\.svg/,
@@ -78,6 +81,7 @@ module.exports = {
     failOnError: true
   },
   plugins: [
+    new ExtractTextPlugin("[name].css"),
     // Automatically move all modules defined outside of application directory to vendor bundle.
     // If you are using more complicated project structure, consider to specify common chunks manually.
     new webpack.optimize.CommonsChunkPlugin({
@@ -93,7 +97,7 @@ module.exports = {
 
     new webpack.ProvidePlugin({
       c3: 'c3'
-    }),
+    })
 
   ]
 };
