@@ -7,7 +7,116 @@ describe('RadioList', () => {
   let $rootScope, $componentController, $compile;
   let FORM_NAME_PREFIX;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[9];
+  let blockBinding = {
+    id: 63,
+    type: 'dynamic',
+    element: 'radiobox',
+    program_data_code: 'c1.m1.s1.radio_1',
+    data: {
+      config: {
+        required: true
+      },
+      label: 'this is the label',
+      name: 'this is the name',
+      items: [
+        {
+          label: 'this is the label 1',
+          value: 'this_is_the_label_1',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 2',
+          value: 'this_is_the_label_2',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 3',
+          value: 'this_is_the_label_3',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 4',
+          value: 'this_is_the_label_4',
+          sub_label: null,
+          selected: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'this is the label 5',
+          value: 'this_is_the_label_5',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 6',
+          value: 'this_is_the_label_6',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 7',
+          value: 'this_is_the_label_7',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 8',
+          value: 'this_is_the_label_8',
+          sub_label: null,
+          selected: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'this is the label 9',
+          value: 'this_is_the_label_9',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 12',
+          value: 'this_is_the_label_12',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 13',
+          value: 'this_is_the_label_13',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 14',
+          value: 'this_is_the_label_14',
+          sub_label: null,
+          selected: true,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'this is the label 15',
+          value: 'this_is_the_label_15',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        }
+      ]
+    },
+    pivot: {
+      step_id: 6,
+      block_id: 63
+    }
+  };
 
   let mockTranslateFilter = (value) => {
     return value;
