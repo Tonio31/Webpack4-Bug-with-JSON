@@ -87,9 +87,6 @@ let appModule = angular.module('app', [
     // Activate logging of transitions in console
     $trace.enable('TRANSITION');
 
-    // Google Analytics, create the session
-    $window.ga('create', 'UA-57685355-4', 'auto');
-
     // If we're coming from the login page to the home page, it could be for 2 reason:
     //  1) We wanted to access the home page but got redirected to the login page
     //  2) We wanted to access any other page than the home but got redirected to the home page
