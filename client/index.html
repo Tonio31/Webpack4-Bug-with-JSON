@@ -7,14 +7,52 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="description" content="Potential Life">
+    <meta name="description" content="Potentiafife Program">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <base href="/">
+    <style>
+      @keyframes spinner {
+        to {transform: rotate(360deg);}
+      }
+
+      .spinner:before {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: 10px;
+        margin-left: -30px;
+        content: '';
+        box-sizing: border-box;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 5px solid #ccc;
+        border-top-color: #EE7548;
+        animation: spinner .6s linear infinite;
+      }
+
+      .logo {
+        top: 50%;
+        left: 50%;
+        margin-top: -70px;
+        margin-left: -145px;
+        position: absolute;
+        display: inline-block;
+        background-image: url('https://dchai72lj2pqb.cloudfront.net/assets/logo.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 80%;
+        text-indent: -9999em;
+        height: 60px;
+        width: 290px;
+      }
+    </style>
   </head>
   <body ng-app="app" ng-strict-di ng-cloak>
 
     <app>
-      Loading...
+      <div class="logo"></div>
+      <div class="spinner"></div>
     </app>
 
     <script>
