@@ -1,5 +1,13 @@
 class NavbarController {
-  constructor( $log, $state, STATES, Menu, JwtFactory, User, ZendeskWidget) {
+  constructor( $log,
+               $state,
+               $location,
+               $anchorScroll,
+               STATES,
+               Menu,
+               JwtFactory,
+               User,
+               ZendeskWidget ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -20,6 +28,11 @@ class NavbarController {
       ZendeskWidget.hide();
     };
 
+    this.toggleMenu = () => {
+      $location.hash('main');
+      $anchorScroll();
+    };
+
     // check if the banner exists, returns true/false
     this.isBannerExist = () => {
       return Object.keys(User.getCompanyBanner()).length;
@@ -32,7 +45,6 @@ class NavbarController {
     this.companyName = 'Potentialife';
 
     $log.log('constructor() - END');
-
   }
 }
 
