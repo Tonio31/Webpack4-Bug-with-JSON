@@ -1,5 +1,5 @@
 class LoginController {
-  constructor($log, $state, $stateParams, Data, User, JwtFactory, STATES) {
+  constructor($log, $state, $stateParams, $window, Data, User, JwtFactory, STATES) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -44,6 +44,9 @@ class LoginController {
 
           // Save User Information
           User.setUser(userToSave);
+
+          // Set up google analytics to link the data to a specific userId
+          $window.ga('set', 'userId', dataBackFromServer.user.id);
 
           $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
         },

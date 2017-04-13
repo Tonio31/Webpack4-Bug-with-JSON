@@ -4,7 +4,7 @@ import LoginComponent from './login.component';
 import LoginTemplate from './login.html';
 
 describe('Login', () => {
-  let $rootScope, $state, $componentController, $compile;
+  let $rootScope, $state, $componentController, $compile, $window;
 
   let Data, STATES;
   let goFn;
@@ -26,10 +26,13 @@ describe('Login', () => {
     $componentController = $injector.get('$componentController');
     $state = $injector.get('$state');
     $compile = $injector.get('$compile');
+    $window = $injector.get('$window');
     Data = $injector.get('Data');
     STATES = $injector.get('STATES');
 
     goFn = sinon.stub($state, 'go');
+
+    $window.ga = () => {};
   }));
 
   describe('Module', () => {
