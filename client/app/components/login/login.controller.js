@@ -17,7 +17,6 @@ class LoginController {
       $state.go(STATES.RETRIEVE_CREDENTIALS);
     };
 
-
     this.login = (iLoginForm) => {
       $log.log('login()');
 

@@ -27,8 +27,7 @@
           <div class="right show-password">
             <a ng-click="$ctrl.showPassword = !$ctrl.showPassword">
               <span class="fontello-icon icon-pl-eye"></span>
-              <span ng-if="!$ctrl.showPassword">{{ 'SHOW' | translate }}</span>
-              <span ng-if="$ctrl.showPassword">{{ 'HIDE' | translate }}</span>
+              <span>{{ $ctrl.showPassword ? 'HIDE' : 'SHOW' | translate }}</span>
             </a>
           </div>
         </div>
