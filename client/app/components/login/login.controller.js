@@ -21,6 +21,7 @@ class LoginController {
       $log.log('login()');
 
       if ( iLoginForm.$valid ) {
+        this.invalidLogin = false;
         let authPOSTRequest = Data.getUserAuthData();
 
         authPOSTRequest.email = this.username;
