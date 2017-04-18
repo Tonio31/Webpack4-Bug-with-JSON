@@ -38,7 +38,7 @@ class ResetPasswordController {
         let resetPasswordPOSTRequest = Data.resetPassword();
 
         resetPasswordPOSTRequest.token = this.token;
-        resetPasswordPOSTRequest.user_id = this.userId; // eslint-disable-line camelcase
+        // resetPasswordPOSTRequest.user_id = this.userId; // eslint-disable-line camelcase
         resetPasswordPOSTRequest.password = this.password;
 
         resetPasswordPOSTRequest.$save( () => {
