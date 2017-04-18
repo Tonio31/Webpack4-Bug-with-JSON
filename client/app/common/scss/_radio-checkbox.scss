@@ -145,16 +145,3 @@
     }
   }
 }
-
-
-.step-frozen {
-  [type="radio"],
-  [type="checkbox"] {
-    &:checked  ~ .shim {
-      border-color: $onyx;
-      &::after {
-        color: $onyx;
-      }
-    }
-  }
-}
