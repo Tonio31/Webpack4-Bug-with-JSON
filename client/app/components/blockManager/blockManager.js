@@ -11,7 +11,6 @@ import iconTextModule from 'components/iconText/iconText';
 import barChartModule from 'components/barChart/barChart';
 import pieChartModule from 'components/pieChart/pieChart';
 import gaugeChartModule from 'components/gaugeChart/gaugeChart';
-import spiderChartModule from 'components/spiderChart/spiderChart';
 import checkbox from 'components/checkbox/checkbox';
 import radioList from 'components/radioList/radioList';
 import unorderedList from 'components/unorderedList/unorderedList';
@@ -32,7 +31,6 @@ let blockManagerModule = angular.module('blockManager', [
   barChartModule,
   pieChartModule,
   gaugeChartModule,
-  spiderChartModule,
   checkbox,
   radioList,
   unorderedList,
