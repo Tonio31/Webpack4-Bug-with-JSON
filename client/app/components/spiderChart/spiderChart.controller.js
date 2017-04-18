@@ -1,5 +1,5 @@
 class SpiderChartController {
-  constructor($log) {
+  constructor($log, somethingChart) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -8,6 +8,12 @@ class SpiderChartController {
     $log.log('constructor - START');
 
     this.name = 'spiderChart';
+
+    $log.info('somethingChart', somethingChart);
+
+
+    // RadarChart.draw("#chart", data, config);
+
   }
 }
 
