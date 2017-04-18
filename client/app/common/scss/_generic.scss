@@ -7,6 +7,12 @@ body {
   line-height: 1.625rem;
 }
 
+// these rules are defined within angular.min.js but we need them here before we need them before
+// the javascript is loaded: http://stackoverflow.com/questions/29339293/how-to-correctly-use-ng-cloak-directive
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 .padding {
   &-10px {
     padding: rem_calc(10px);

@@ -31,7 +31,7 @@ let homeModule = angular.module('home', [
         resolve: {
           content: (Data) => {
             'ngInject';
-            return Data.getDynamicContentPromise('reflexion', true);
+            return Data.getDynamicContentPromise('reflexion', false);
           }
         },
         params: {

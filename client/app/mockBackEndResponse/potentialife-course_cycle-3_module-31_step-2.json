@@ -40,6 +40,22 @@
       }
     },
     {
+      "id": 22,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "href": "http://apipl.ciprianspiridon.com/pdf",
+        "color": "alert",
+        "label": "Download PDF",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
       "id": 30,
       "type": "static",
       "element": "html",
