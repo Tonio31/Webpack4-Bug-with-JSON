@@ -4,7 +4,9 @@ import './spiderChart.scss';
 
 let spiderChartComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    block: '<'
+  },
   template,
   controller
 };

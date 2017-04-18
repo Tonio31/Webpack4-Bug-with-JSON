@@ -61,6 +61,15 @@ $modules: () !default;
       }
     }
   }
+
+  [disabled] {
+    &.parent-submitted,
+    &.ng-dirty {
+      &.ng-valid {
+        border-color: $onyx;
+      }
+    }
+  }
 }
 
 //

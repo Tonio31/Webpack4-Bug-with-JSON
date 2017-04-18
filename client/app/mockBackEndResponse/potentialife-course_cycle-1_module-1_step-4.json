@@ -167,26 +167,31 @@
         "title":"spider chart",
         "set": [
           {
-            "area": "Central ",
-            "value": 80
-          },
-          {
-            "area": "Kirkdale",
-            "value": 40
-          },
-          {
-            "area": "Kensington ",
-            "value": 40
-          },
-          {
-            "area": "Everton ",
-            "value": 90
-          },
-          {
-            "area": "Picton ",
-            "value": 60
+            "className": "user",
+            "axes": [
+              {
+                "axis": "Acceleration",
+                "value": 80
+              },
+              {
+                "axis": "Breaking",
+                "value": 40
+              },
+              {
+                "axis": "Handling",
+                "value": 40
+              },
+              {
+                "axis": "Fuel",
+                "value": 90
+              },
+              {
+                "axis": "Top speed",
+                "value": 60
+              }
+          	]
           }
-      	]
+        ]
       }
     }
   ]

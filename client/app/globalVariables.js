@@ -9,6 +9,12 @@ let globalVariablesModule = angular.module('globalVariables', [
 
   return ( _ );
 })
+.factory('d3', ( $window ) => {
+  'ngInject';
+  let d3 = $window.d3;
+
+  return d3;
+})
 .name;
 
 export default globalVariablesModule;

@@ -9,6 +9,8 @@ import 'angular-zendesk-widget';
 import 'common/fontello/css/fontello.css';
 import 'c3/c3.css';
 
+// import * as d3 from 'd3';
+
 // Potentialife module
 import Global from './globalVariables';
 import Common from './common/common';

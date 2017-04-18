@@ -3,5 +3,89 @@
 // @import '~client/app/common/_foundation-functions';
 
 .spider-chart {
-  color: red;
+  svg > g {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .radar-chart {
+    .level {
+      stroke: grey;
+      stroke-width: 0.5;
+    }
+    .axis {
+      line {
+        stroke: grey;
+        stroke-width: 1;
+      }
+      .legend {
+        font-family: sans-serif;
+        font-size: 14px;
+        &.top {
+          dy: 1em;
+        }
+        &.left {
+          text-anchor: start;
+        }
+        &.middle {
+          text-anchor: middle;
+        }
+        &.right {
+          text-anchor: end;
+        }
+      }
+    }
+    .tooltip {
+      font-family: sans-serif;
+      font-size: 13px;
+      transition: opacity 200ms;
+      opacity: 0;
+      &.visible {
+        opacity: 1;
+      }
+    }
+    .area {
+      stroke-width: 2;
+      fill-opacity: 0.5;
+    }
+    &.focus {
+      .area {
+        fill-opacity: 0.1;
+        &.focused {
+          fill-opacity: 0.7;
+        }
+      }
+    }
+    .area,
+    .circle {
+      transition: opacity 300ms, fill-opacity 200ms;
+      opacity: 1;
+    }
+    .circle {
+      fill-opacity: 0.9;
+    }
+    .d3-enter,
+    .d3-exit {
+      opacity: 0;
+    }
+    .area {
+      fill-opacity: 0.7;
+    }
+    &.focus {
+      .area {
+        fill-opacity: 0.3;
+        &.focused {
+          fill-opacity: 0.9;
+        }
+      }
+    }
+    .area.germany, .germany .circle {
+      fill: #FFD700;
+      stroke: none;
+    }
+    .area.argentina, .argentina .circle {
+      fill: #ADD8E6;
+      stroke: none;
+    }
+  }
 }
