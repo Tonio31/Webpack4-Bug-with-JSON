@@ -6,6 +6,7 @@ class RetrieveCredentialsController {
     $log = $log.getInstance( 'RetrieveCredentialsController' );
 
     this.emailSent = false;
+    this.errorDuringRequest = false;
 
     this.backToLogin = () => {
       $state.go(STATES.LOGIN);
@@ -25,7 +26,8 @@ class RetrieveCredentialsController {
           this.emailSent = true;
         },
         (error) => {
-          $log.log('error when sending the recovery email error=', error);
+          $log.error('error when sending the recovery email error=', error);
+          this.errorDuringRequest = true;
         });
       }
       else {
