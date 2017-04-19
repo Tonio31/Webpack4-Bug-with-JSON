@@ -2,21 +2,36 @@ import SpiderChartModule from './spiderChart';
 import SpiderChartController from './spiderChart.controller';
 import SpiderChartComponent from './spiderChart.component';
 import SpiderChartTemplate from './spiderChart.html';
+import * as d3 from 'c3';
 /* eslint-disable */
 describe('SpiderChart', () => {
   let $rootScope, $componentController, $compile;
 
-  let mockD3 = {
-    getCompanyBanner: () => {
-      return {
-        bgColor: 'orange',
-        header: 'Inspiring Leadership',
-        logo: 'https://logos.keycdn.com/keycdn-logo.png',
-        subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
-        textColor: 'white'
-      };
-    }
-  };
+  // let d3 = {
+  //   select: () => {
+  //     return {
+  //       append: () => {
+  //         return {
+  //           attr: () => {
+  //             return {
+  //               attr: () => {
+  //                 return [];
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     };
+  //   },
+  //   scale: {
+  //     category10: () => {
+  //       return 'nothing';
+  //     }
+  //   }
+  // };
+  //
+  // let svg = d3.select('#chart').append('svg').attr().attr();
+  //
 
   let dataBindings = {
     id: 63,
@@ -54,7 +69,9 @@ describe('SpiderChart', () => {
     }
   };
 
-  beforeEach(window.module(SpiderChartModule));
+  beforeEach(window.module(SpiderChartModule, ($provide) => {
+    $provide.value('d3', d3 );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
