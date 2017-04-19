@@ -4,7 +4,7 @@ import SpiderChartComponent from './spiderChart.component';
 import SpiderChartTemplate from './spiderChart.html';
 
 describe('SpiderChart', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope, $componentController, $compile, d3;
 
   let dataBindings = {
     id: 63,
@@ -48,6 +48,7 @@ describe('SpiderChart', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    d3 = $injector.get('d3');
   }));
 
   describe('Module', () => {

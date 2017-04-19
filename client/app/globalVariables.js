@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import angular from 'angular';
 require('lodash/core');
 
@@ -9,7 +11,7 @@ let globalVariablesModule = angular.module('globalVariables', [
 
   return ( _ );
 })
-.factory('d3', ( $window ) => {
+.service('d3', ( $window ) => {
   'ngInject';
   let d3 = $window.d3;
 
