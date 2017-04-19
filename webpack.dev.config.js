@@ -13,12 +13,6 @@ module.exports = () => {
     path: path.resolve(__dirname, 'client')
   };
 
-  config.module.loaders = config.module.loaders.concat([
-    {
-      test: /\.css$/, loader: 'style!css!postcss'
-    },
-  ]);
-
   config.plugins = config.plugins.concat([
 
     // Injects bundles in your index.html instead of wiring all manually.
