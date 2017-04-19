@@ -117,7 +117,6 @@ describe('ResetPassword', () => {
       controller.resetPassword(formReset);
 
       expect(resetPasswordPOSTRequest.token).to.equal(controller.token);
-      expect(resetPasswordPOSTRequest.user_id).to.equal(controller.userId);
       expect(resetPasswordPOSTRequest.password).to.equal(controller.password);
       sinon.assert.calledWith(goSpy, STATES.HOME);
 

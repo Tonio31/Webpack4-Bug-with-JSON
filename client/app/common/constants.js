@@ -9,7 +9,7 @@ let constantModule = angular.module('app.common.constant', [
     LOGIN_ROOT: 'loginRoot',
     HOME: '/home',
     LOGIN: '/login',
-    RESET_PASSWORD: '/reset_password',
+    RESET_PASSWORD: '/password/reset',
     RETRIEVE_CREDENTIALS: '/retrieve_credentials',
     PAGE_NOT_FOUND: '/404'
   })

@@ -76,6 +76,7 @@ let appModule = angular.module('app', [
           $state,
           $location,
           $transitions,
+          $window,
           User,
           JwtFactory,
           Data,
@@ -93,10 +94,8 @@ let appModule = angular.module('app', [
     //  2) We wanted to access any other page than the home but got redirected to the home page
     //     In this case, we are forced to redirect first to the home page because if it's the first time we access the website
     //     the menu is not yet retrieved (we need to be logged in to retrieve the menu), so all the states are not defined
-    //     So we need first to go to any state defined (I choose home), intercept the transition, retrieve the menu, and redirect
+    //     So we need first to go to any state defined (I chose home), intercept the transition, retrieve the menu, and redirect
     //     the user to the good step
-
-
     let matchFromLoginToHome = {
       from: (state) => {
         return ( state.name === STATES.LOGIN || state.name === STATES.RESET_PASSWORD );
@@ -154,6 +153,10 @@ let appModule = angular.module('app', [
     // The event we emit here is catched by the directive sync-state
     $transitions.onSuccess( {}, (trans) => {
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+
+      // Send the current state url to google Analytics
+      $window.ga('send', 'pageview', $location.path());
+
       // Without $timeout, the $rootscope.on won't pick up the event because the directive is not yet created
       // see http://stackoverflow.com/questions/15676072/angularjs-broadcast-not-working-on-first-controller-load
       $timeout( () => {
@@ -196,8 +199,12 @@ let appModule = angular.module('app', [
       // In case the user is already logged in (token is not expired), we need to set his user ID
       // form local storage in the User factory as the id will be used to retrieve participant information
       // from server that is used on the home page and in expections reports to bugsnag
-      User.setUser({ id: JwtFactory.getUserId() });
+      let userId = JwtFactory.getUserId();
+      User.setUser({ id: userId });
       Data.getParticipantDetails();
+
+      // Set up google analytics to link the data to a specific userId
+      $window.ga('set', 'userId', userId);
 
       Menu.retrieveMenuAndReturnStates().then( (states) => {
         $log.log('Menu retrieved successfully');
@@ -225,7 +232,7 @@ let appModule = angular.module('app', [
     }
     else {
       // If the user access the URL login ('/login'), we should not redirect him to the login page
-      // after (infinite loop), hence the below check
+      // after he logged in (infinite loop), hence the below check
       let firstStateRequested = STATES.HOME;
       if ( $location.url() !== $state.get(STATES.HOME).url &&
         $location.url() !== $state.get(STATES.LOGIN).url ) {
