@@ -1,49 +1,81 @@
 fieldset {
+
   textarea,
   input:not([type='button']):not([type='checkbox']):not([type='radio']) {
     padding: rem_calc(10px);
   }
 
-  &[disabled] {
-    textarea,
-    input:not([type='button']):not([type='checkbox']):not([type='radio']) {
-      border-color: $oil;
-      background-color: $light-grey;
-      cursor: default;
+  textarea {
+    padding: rem_calc(10px);
+  }
 
-      &::placeholder {
-        color: transparentize($oil, .5);
+  &[disabled] {
+
+    textarea,
+    input:not([type='button']):not([type='checkbox']):not([type='radio']),
+    input[type="radio"]:checked,
+    input[type="checkbox"]:checked  {
+
+      &.parent-submitted,
+      &.ng-dirty {
+        &.ng-valid,
+        &.ng-invalid {
+          border-color: $oil;
+
+          &::placeholder {
+            color: transparentize($oil, .5);
+          }
+        }
       }
+
+      ~ .shim {
+        border-color: $onyx;
+        &::after {
+          color: $onyx;
+        }
+      }
+
     }
 
     textarea {
       resize: none;
     }
 
-    .radio-checkbox {
+  }
+}
+
+
+
+.radio-checkbox {
+  [disabled] {
+
+    .note.invalid {
+      color: inherit;
+    }
+
+
+    .checkbox-label,
+    .radio-label,
+    .shim {
+      opacity: .3;
+    }
+    .selected {
       .checkbox-label,
       .radio-label,
       .shim {
-        opacity: .3;
+        opacity: 1;
       }
-      .selected {
-        .checkbox-label,
-        .radio-label,
-        .shim {
-          opacity: 1;
-        }
-      }
+    }
 
-      label,
-      .shim {
-        cursor: default;
-        line-height: rem_calc(28px);
-      }
+    label,
+    .shim {
+      cursor: default;
+      line-height: rem_calc(28px);
+    }
 
-      &.radioList {
-        .list-footer .button {
-          display: none;
-        }
+    &.radioList {
+      .list-footer .button {
+        display: none;
       }
     }
   }

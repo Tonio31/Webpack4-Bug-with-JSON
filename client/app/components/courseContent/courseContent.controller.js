@@ -20,14 +20,11 @@ class CourseContentController {
     this.name = 'courseContent';
 
     this.isStepCompleted = false;
-    this.isStepCompletedOnPageLoading = false;
     this.skipShowingBanner = false;
-
 
     // This container is used to store all the inputs modified by the user, so we can
     // send it back to the server when saving
     let inputFields = {};
-
 
     this.banner = {
       text: '',
@@ -73,7 +70,7 @@ class CourseContentController {
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
       this.skipShowingBanner = this.content.skipShowingBanner;
-      this.isStepCompleted = this.isStepCompletedOnPageLoading = ( this.content.status === 'completed' );
+      this.isStepCompleted = ( this.content.status === 'completed' );
       this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
 
       this.displayPreviousButton = ( this.content.prev_page_url !== null );

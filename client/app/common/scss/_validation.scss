@@ -19,7 +19,7 @@
   }
 }
 
-.step-frozen .flex-container > .validation-icon-right {
+[disabled] .flex-container > .validation-icon-right {
   border-color: $onyx;
   .fontello-icon {
     color: $onyx;

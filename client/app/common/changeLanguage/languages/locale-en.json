@@ -58,6 +58,7 @@
   "PLEASE_SELECT_1_OPTION": "(Please select 1 option below)",
 
   "ERROR_SAVING_RETRY": "Whoops, we are sorry, there was an error while saving data, please refresh the page and retry or contact support if error persists.",
+  "ERROR_RETRY": "Whoops, we are sorry, there was an error please refresh the page and retry or contact support if error persists.",
 
   "ERROR_WITH_BACKEND": "Whoops, Unexpected error while changing your password.",
   "PLEASE_TRY_AGAIN": "Please try again",

@@ -223,18 +223,18 @@ angular.module( 'appMockBackEnd', [
     return [ 200, authenticate, responseHeaders ];
   });
 
-  $httpBackend.whenPOST(Data.buildApiUrl('forgotlogin')).respond( (method, url) => {
+  $httpBackend.whenPOST(Data.buildApiUrl('password/email')).respond( (method, url) => {
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
 
     return [ 200, {}, {} ];
   });
 
-  $httpBackend.whenPOST(Data.buildApiUrl('resetPassword')).respond( (method, url, data) => {
+  $httpBackend.whenPOST(Data.buildApiUrl('password/reset')).respond( (method, url, data) => {
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
 
     let dataObject = angular.fromJson(data);
 
-    if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('user_id') && dataObject.hasOwnProperty('password') ) {
+    if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('password') ) {
       return [ 200, authenticate, {} ];
     }
 

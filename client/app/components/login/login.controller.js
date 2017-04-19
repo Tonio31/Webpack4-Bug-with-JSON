@@ -17,11 +17,11 @@ class LoginController {
       $state.go(STATES.RETRIEVE_CREDENTIALS);
     };
 
-
     this.login = (iLoginForm) => {
       $log.log('login()');
 
       if ( iLoginForm.$valid ) {
+        this.invalidLogin = false;
         let authPOSTRequest = Data.getUserAuthData();
 
         authPOSTRequest.email = this.username;
