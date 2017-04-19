@@ -7,10 +7,7 @@ class SpiderChartController {
 
     $log.log('constructor - START');
 
-    this.name = 'spiderChart';
-
     /* eslint-disable */
-
     // start library
     let RadarChart = {
       defaultConfig: {

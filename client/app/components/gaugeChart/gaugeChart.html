@@ -1,5 +1,5 @@
 <div class="gauge-chart">
-  <p class="gauge-chart-title text-center">{{ $ctrl.block.data.title }}</p>
+  <p class="chart-title text-center">{{ $ctrl.block.data.title }}</p>
   <c3chart bindto-id="gauge-{{$ctrl.block.id}}">
     <chart-column column-id="Data 1"
                 column-values="{{$ctrl.block.data.gauge.value}}"

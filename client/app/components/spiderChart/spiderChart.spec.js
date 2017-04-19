@@ -6,6 +6,42 @@ import SpiderChartTemplate from './spiderChart.html';
 describe('SpiderChart', () => {
   let $rootScope, $componentController, $compile;
 
+  let dataBindings = {
+    id: 63,
+    type: 'static',
+    element: 'spider_chart',
+    data: {
+      title: 'spider chart',
+      set: [
+        {
+          className: 'user',
+          axes: [
+            {
+              axis: 'Acceleration',
+              value: 80
+            },
+            {
+              axis: 'Breaking',
+              value: 40
+            },
+            {
+              axis: 'Handling',
+              value: 40
+            },
+            {
+              axis: 'Fuel',
+              value: 90
+            },
+            {
+              axis: 'Top speed',
+              value: 60
+            }
+          ]
+        }
+      ]
+    }
+  };
+
   beforeEach(window.module(SpiderChartModule));
 
   beforeEach(inject(($injector) => {
@@ -21,15 +57,57 @@ describe('SpiderChart', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+
+    let bindings = {
+      block: dataBindings
+    };
+
     beforeEach(() => {
       controller = $componentController('spiderChart', {
         $scope: $rootScope.$new()
-      });
+      }, bindings);
     });
 
 
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
+    it('$onInit creates the data needed for displaying the bar chart', () => {
+      controller.$onInit();
+      expect(controller.userSpiderData).to.deep.eq([
+        {
+          id: 63,
+          type: 'static',
+          element: 'spider_chart',
+          data: {
+            title: 'spider chart',
+            set: [
+              {
+                className: 'user',
+                axes: [
+                  {
+                    axis: 'Acceleration',
+                    value: 80
+                  },
+                  {
+                    axis: 'Breaking',
+                    value: 40
+                  },
+                  {
+                    axis: 'Handling',
+                    value: 40
+                  },
+                  {
+                    axis: 'Fuel',
+                    value: 90
+                  },
+                  {
+                    axis: 'Top speed',
+                    value: 60
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]);
     });
   });
 
@@ -39,7 +117,8 @@ describe('SpiderChart', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<spider-chart></spider-chart>')(scope);
+      scope.block = dataBindings;
+      template = $compile('<spider-chart block="block"></spider-chart>')(scope);
       scope.$apply();
     });
 
