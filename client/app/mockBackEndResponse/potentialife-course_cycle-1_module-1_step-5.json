@@ -16,8 +16,12 @@
       "element": "video",
       "program_data_code": null,
       "data": {
-        "poster": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/videoplace.jpg",
-        "source": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/s.1.1\/S1-1-1-new.mp4"
+        "poster": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/step-2\/poster.jpg",
+        "source": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/step-2\/video.mov",
+        "caption_src": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/step-2\/text.vtt",
+        "caption_lang": "en",
+        "caption_label": "English subtitles",
+        "caption_default": true
       },
       "pivot": {
         "step_id": 4,

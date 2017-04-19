@@ -7,13 +7,21 @@ class VideoController {
     $log = $log.getInstance( 'VideoController' );
 
     this.$onInit = () => {
-      $log.log('this.$onInit.data=', this.data);
 
       this.mediaInfo = {
         sources: [
           {
             src: this.data.source,
             type: 'video/mp4'
+          }
+        ],
+        tracks: [
+          {
+            kind: 'subtitles',
+            label: this.data.caption_label,
+            src: this.data.caption_src,
+            srclang: this.data.caption_lang,
+            default: this.data.caption_default
           }
         ],
         poster: this.data.poster

@@ -35,9 +35,6 @@ module.exports = {
         loader: 'style!css!postcss!sass'
       },
       {
-        test: /\.css$/, loader: 'style!css!postcss'
-      },
-      {
         test: /\.svg/,
         loader: 'svg-url-loader'
       },
@@ -93,7 +90,6 @@ module.exports = {
 
     new webpack.ProvidePlugin({
       c3: 'c3'
-    }),
-
+    })
   ]
 };

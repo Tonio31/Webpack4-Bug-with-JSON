@@ -1,5 +1,6 @@
 @import '~client/app/common/scss/_vars';
 @import '~client/app/common/_foundation-settings';
+@import '~client/app/common/_foundation-functions';
 
 .video-module {
   color: $darkBgColor;
@@ -7,6 +8,16 @@
   .vjs-video-wrap {
     margin-left: -$padding-10px;
     margin-right: -$padding-10px;
+  }
+
+  .vjs-text-track-display {
+    [title="Angus"] {
+      font-family: $defaultFont !important;
+      color: $video-colour-highlight;
+    }
+    [title="Tal"] {
+      color: $blue-focus;
+    }
   }
 }
 

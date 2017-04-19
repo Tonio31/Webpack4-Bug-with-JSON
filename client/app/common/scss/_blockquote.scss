@@ -6,9 +6,11 @@
   padding-left: rem_calc(10px);
   color: $locked-grey;
   border: 0;
-  p {
+  p,
+  p:last-child {
     border-left: 1px solid $locked-grey;
     margin-left: rem_calc(10px);
+    margin-bottom: rem_calc(10px);
     padding-left: rem_calc(10px);
   }
 
