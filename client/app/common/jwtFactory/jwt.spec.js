@@ -4,7 +4,7 @@ import JwtModule from './jwt';
 
 describe('JSON Web Token', () => {
   let JwtFactory, AuthInterceptorFactory, TOKEN, USER_ID, STATES;
-  let $state;
+  let $state, $location;
 
   let authDetails = require('app/mockBackEndResponse/authenticateResponse.json');
 
@@ -23,6 +23,15 @@ describe('JSON Web Token', () => {
 
     JwtFactory = $injector.get('JwtFactory');
     AuthInterceptorFactory = $injector.get('AuthInterceptor');
+    $location = $injector.get('$location');
+
+    $location.search = () => {
+      return {
+        user_id: 4,
+        token: 'token'
+      };
+    };
+
   }));
 
   describe('AuthInterceptorFactory', () => {
@@ -129,30 +138,62 @@ describe('JSON Web Token', () => {
     });
 
 
-    it('isAuthedExpired() - Simulate authentication expired', () => {
+    it('isAuthExpired() - Simulate authentication expired', () => {
 
       // Expiry date for this Token = 28 Feb 2017, this is older than now, so function should return true
       // eslint-disable-next-line max-len
       mockLocalStorage[TOKEN] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cL2FwaXBsLmNpcHJpYW5zcGlyaWRvbi5jb21cL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ4ODMwMTY3NSwiZXhwIjoxNDg4MzA1Mjc1LCJuYmYiOjE0ODgzMDE2NzUsImp0aSI6Ijk0Y2ExOGY5N2ZiNzUwMDBkMzNjOGY2ODA0YzgyNDI3In0.HP0cdDLtrCNd0uiELAwPpzzweRp_XbcfZfnJtojemRM';
 
-      let isExpired = JwtFactory.isAuthedExpired();
+      let isExpired = JwtFactory.isAuthExpired();
       expect(isExpired).to.equal(true);
     });
 
 
-    it('isAuthedExpired() - Simulate authentication NOT expired', () => {
+    it('isAuthExpired() - Simulate authentication NOT expired', () => {
 
       // Expiry date for this Token = 28 August 2025, (this test will fail after the 28 August 2025, you will have to update the token
       mockLocalStorage[TOKEN] = authDetails.token;
 
-      let isExpired = JwtFactory.isAuthedExpired();
+      let isExpired = JwtFactory.isAuthExpired();
       expect(isExpired).to.equal(false);
     });
+
+    it('isAuthExpired() - Simulate parsing error', sinon.test( () => {
+
+      mockLocalStorage[TOKEN] = 'something that will break on parsing';
+
+      let isExpired = JwtFactory.isAuthExpired();
+      expect(isExpired).to.equal(true);
+      expect(mockLocalStorage[TOKEN]).to.equal(undefined);
+      expect(mockLocalStorage[USER_ID]).to.equal(undefined);
+    }));
+
+    it('isLoginInfoAvailable() - returns true if isAuthExpired returns false', sinon.test( () => {
+
+      JwtFactory.isAuthExpired = () => {
+        return false;
+      };
+
+      expect(JwtFactory.isLoginInfoAvailable()).to.equal(true);
+    }));
+
+    it('isLoginInfoAvailable() - returns true token and user_id are in the URL', sinon.test( () => {
+
+      JwtFactory.isAuthExpired = () => {
+        return true;
+      };
+
+      let loginInfo = JwtFactory.isLoginInfoAvailable();
+
+      expect(mockLocalStorage[TOKEN]).to.equal('token');
+      expect(mockLocalStorage[USER_ID]).to.equal(4);
+      expect(loginInfo).to.equal(true);
+    }));
+
 
     it('logout removes USER_ID and TOKEN form localStorage', () => {
       mockLocalStorage[TOKEN] = 'token';
       mockLocalStorage[USER_ID] = 'userid';
-      // Expiry date for this Token = 28 August 2025, (this test will fail after the 28 August 2025, you will have to update the token
 
       JwtFactory.logout();
       expect(mockLocalStorage[TOKEN]).to.equal(undefined);
