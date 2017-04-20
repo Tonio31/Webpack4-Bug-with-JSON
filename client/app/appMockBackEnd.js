@@ -168,7 +168,7 @@ angular.module( 'appMockBackEnd', [
 
     $log.log(`$httpBackend.whenGET(${url})`);
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    if ( !JwtFactory.isAuthExpired() ) {
       let content = {};
       try {
         content = getStepContent(url);
@@ -190,7 +190,7 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    if ( !JwtFactory.isAuthExpired() ) {
       let reflexionParticipant = require('./mockBackEndResponse/reflexion.json');
       return [ 200, reflexionParticipant, {} ];
     }
@@ -202,7 +202,7 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(Data.buildApiUrl('menu', true)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    if ( !JwtFactory.isAuthExpired() ) {
       // Simulate the menu for a user that is logged in
       return [ 200, menu, {} ];
     }
@@ -216,7 +216,7 @@ angular.module( 'appMockBackEnd', [
 
     let dataObject = angular.fromJson(data);
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    if ( !JwtFactory.isAuthExpired() ) {
       // Simulate a good answer
 
       updateMenu(dataObject.fullUrl);

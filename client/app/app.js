@@ -213,7 +213,7 @@ let appModule = angular.module('app', [
     $log.log('Start');
 
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    if ( JwtFactory.isLoginInfoAvailable() ) {
 
       $log.log(`User Auth did NOT expired, retrieve Menu and redirect to the good state`);
 
