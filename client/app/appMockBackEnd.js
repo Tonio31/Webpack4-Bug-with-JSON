@@ -25,7 +25,7 @@ angular.module( 'appMockBackEnd', [
   'ngInject';
 
   // Time in ms to simulate a delay in back end response
-  let DELAY_HTTP_RESPONSE_TIME = 0;
+  let DELAY_HTTP_RESPONSE_TIME = 3000;
 
   $provide.decorator('$httpBackend', ($delegate) => {
     let proxy = function(method, url, data, callback, headers) {

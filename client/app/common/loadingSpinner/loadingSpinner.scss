@@ -4,12 +4,16 @@
 
 .loading-spinner {
 
+ // position: relative;
+  height: 100%;
+  width: 100%;
+
   @keyframes spinner {
     to {transform: rotate(360deg);}
   }
 
   .spinner:before {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     margin-top: rem_calc(10px);
@@ -40,5 +44,11 @@
     width: rem_calc(290px);
   }
 
-
+  .message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: rem_calc(25px);
+    margin-left: rem_calc(40px);
+  }
 }

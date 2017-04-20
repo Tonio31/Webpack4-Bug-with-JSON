@@ -8,16 +8,18 @@ class CourseContentController {
                $state,
                $stateRegistry,
                Menu,
+               SpinnerFactory,
                Data,
                Utility,
                FORM_NAME_PREFIX,
-               STATES ) {
+               STATES,
+               SPINNERS ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'CourseContentController' );
 
-    this.name = 'courseContent';
+    this.savingStepSpinner = SpinnerFactory.getSpinner(SPINNERS.SAVING_STEP);
 
     this.isStepCompleted = false;
     this.skipShowingBanner = false;
@@ -37,18 +39,18 @@ class CourseContentController {
       class: ''
     };
 
-    this.setBannerSuccess = (iSkipShowingBanner, iSuccessMessage) => {
-      if ( !iSkipShowingBanner ) {
-        this.banner.text = iSuccessMessage;
-        this.banner.class = 'banner-congrats';
-        this.banner.icon = 'icon-pl-tick';
-      }
+    this.setBannerSuccess = ( iSuccessMessage) => {
+      this.banner.text = iSuccessMessage;
+      this.banner.class = 'banner-congrats';
+      this.banner.icon = 'icon-pl-tick';
+      SpinnerFactory.hide(SPINNERS.SAVING_STEP);
     };
 
     this.setBannerError = () => {
       this.banner.text = `<p>${ $filter('translate')('ERROR_SAVING_RETRY').toString() }</p>`;
       this.banner.class = 'banner-error';
       this.banner.icon = 'icon-pl-exclamation';
+      SpinnerFactory.hide(SPINNERS.SAVING_STEP);
     };
 
     this.updateNextStepButtonStyle = (iIsStepCompleted, iSkipShowingBanner, iNextState ) => {
@@ -124,7 +126,11 @@ class CourseContentController {
         this.goToFieldInError(iForm);
       }
       else if ( !this.isStepCompleted || this.skipShowingBanner ) {
-        // First time user click on the button, display the green banner and change the label
+        // First time user click on the button, display the green banner,
+        // change the label and display the spinner
+
+        SpinnerFactory.show(SPINNERS.SAVING_STEP);
+
         let postData = Data.updateStep();
 
         postData.fullUrl = this.content.fullUrl;
@@ -134,10 +140,6 @@ class CourseContentController {
 
         postData.$save( (dataBackFromServer) => {
           $log.log('Response OK from the backend, retrieving the updated menu from backend dataBackFromServer=', dataBackFromServer);
-
-          this.isStepCompleted = true;
-          this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
-          this.setBannerSuccess(this.skipShowingBanner, dataBackFromServer.congrats);
 
           // If there was user input saved in local storage, delete it as it has been successfully saved on server side
           Utility.removeUserInputFromLocalStorage(inputFields);
@@ -159,13 +161,21 @@ class CourseContentController {
               }
             });
 
+            this.isStepCompleted = true;
+            this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
+
             if ( this.skipShowingBanner ) {
               // If we skip showing banner, we need to change state just after updating the menu
               $state.go(this.content.next_page_url);
             }
+            else {
+              this.setBannerSuccess(dataBackFromServer.congrats);
+            }
           },
           (error) => {
             $log.log('error Retrieving menu error=', error);
+            // Display error Banner for the user
+            this.setBannerError();
           });
 
         }, (error) => {
