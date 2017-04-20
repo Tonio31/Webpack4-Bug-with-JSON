@@ -35,7 +35,7 @@
 
     <div class="row bgcolour-grey panel collapse text-center">
       <div class="columns small-12">
-        <h4>{{'CURRENT_LOCATION' | translate }}</h4>
+        <h4>{{'GO_TO_NEXT_STEP' | translate }}:</h4>
         <div class="show-for-small-only">
           <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}</h3>
           <h3>{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
@@ -64,13 +64,13 @@
           <div class="columns small-12">
             <div class="row bgcolour-grey panel collapse">
 
-              <div ng-show="$ctrl.content.avatar" class="user-avatar columns small-12 medium-2 medium-push-10">
+              <div class="user-avatar columns small-12 medium-2 medium-push-10" ng-if="$ctrl.content.avatar">
                 <div class="left-padding text-center">
                   <img ng-src="{{$ctrl.content.avatar}}" />
                 </div>
               </div>
 
-              <div class="columns small-12 medium-10 medium-pull-2">
+              <div class="columns small-12" ng-class="{'medium-pull-2 medium-10': $ctrl.content.avatar}">
                 <p class="quote text-center">&ldquo;{{$ctrl.content.reflection}}&rdquo;</p>
                 <p class="quote-signature text-center">
                   {{$ctrl.content.name}} <br>
@@ -86,7 +86,7 @@
     </div>
 
 
-    <div class="row collapse">
+    <div class="row collapse equal-columns">
         <div id="faq" class="small-12 medium-6 columns medium-margin-right">
           <h4>{{'FAQS' | translate }}</h4>
           <div class="bgcolour-grey panel">

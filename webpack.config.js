@@ -88,7 +88,6 @@ module.exports = {
 
     new webpack.ProvidePlugin({
       c3: 'c3'
-    }),
-
+    })
   ]
 };

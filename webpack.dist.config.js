@@ -1,9 +1,10 @@
 const webpack = require('webpack');
+const glob = require('glob');
 const path = require('path');
 const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 module.exports = (iPhase) => {
   config.output = {
@@ -13,13 +14,13 @@ module.exports = (iPhase) => {
   };
 
   config.module.loaders = config.module.loaders.concat([
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
+    {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
     },
     {
       test: /\.(scss|sass)$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader")
+      loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader")
     },
   ]);
 
@@ -34,7 +35,7 @@ module.exports = (iPhase) => {
       template: 'client/index.html',
       inject: 'body',
       hash: true,
-      favicon: 'client/app/common/favicon/apple-touch-icon.png'
+      favicon: 'client/app/common/favicon/favicon.ico'
     }),
 
 
@@ -52,9 +53,8 @@ module.exports = (iPhase) => {
         // angular global variable, so we should keep it unchanged
         except: ['$super', '$', 'exports', 'require', 'angular']
       }
-    }),
+    })
 
-    new CssSourcemapPlugin({ disable: true })
   ]);
 
   return config;

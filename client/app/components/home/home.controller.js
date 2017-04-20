@@ -11,7 +11,7 @@ class HomeController {
     $log.log('constructor::Start');
 
     this.firstName = User.getFirstName();
-    $log.log('User.getFirstName()=', User.getFirstName());
+
 
     this.currentProgression = Menu.getCurrentProgression();
     this.menu = Menu.getMenu();
@@ -53,7 +53,7 @@ class HomeController {
     this.goToFAQs = () => {
       $log.log('goToFAQs()');
       $log.log('User.getFirstName()=', User.getFirstName());
-      $window.location.href = 'https://support.potentialife.com';
+      $window.open('https://support.potentialife.com', '_blank');
     };
 
     this.sendUsEmail = () => {

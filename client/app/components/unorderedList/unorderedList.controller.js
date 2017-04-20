@@ -10,6 +10,7 @@ class UnorderedListController {
       this.MIN_ELEMENTS_DISPLAYED = this.block.data.config.minItemsDisplayed;
       this.showMoreButtonDisplayed = this.block.data.config.showMoreButtonAtStart;
 
+
       if ( this.MIN_ELEMENTS_DISPLAYED !== 0 ) {
         this.showMoreLabel = $filter('translate')('SHOW_MORE').toString();
         this.hideLabel = $filter('translate')('SHOW_LESS').toString();

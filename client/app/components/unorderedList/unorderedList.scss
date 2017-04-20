@@ -3,7 +3,14 @@
 // @import '~client/app/common/_foundation-functions';
 
 .unordered-list {
+  .child-item:not(:last-child) {
+    min-height: 1rem;
+  }
   .takeaways {
+    background-color: lighten($light-grey, 3);
     padding: .625rem;
+    .title {
+      margin-bottom: 0;
+    }
   }
 }

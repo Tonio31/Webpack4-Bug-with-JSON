@@ -32,9 +32,9 @@ module.exports = () => {
     new HtmlWebpackPlugin({
       template: 'client/indexMockBackEnd.html',
       //template: 'client/index.html',
-      inject: 'body',
+      inject: 'head',
       hash: true,
-      favicon: 'client/app/common/favicon/apple-touch-icon.png'
+      favicon: 'client/app/common/favicon/favicon.ico'
     }),
 
 
