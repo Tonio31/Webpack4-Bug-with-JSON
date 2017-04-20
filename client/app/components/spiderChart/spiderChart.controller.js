@@ -1,5 +1,5 @@
 class SpiderChartController {
-  constructor($log, $window, d3) {
+  constructor($log, $window, $timeout, d3) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -7,13 +7,15 @@ class SpiderChartController {
 
     $log.log('constructor - START');
 
+    let chartWidth = 300;
+    let chartHeight = 300;
     /* eslint-disable */
     // start library
     let RadarChart = {
       defaultConfig: {
         containerClass: 'radar-chart',
-        w: 300,
-        h: 300,
+        w: chartWidth,
+        h: chartHeight,
         factor: 0.95,
         factorLegend: 1,
         levels: 3,
@@ -299,20 +301,35 @@ class SpiderChartController {
     // end library
     /* eslint-ensable */
 
-
     this.$onInit = () => {
       let userSpiderData = this.block.data.set;
-      // set up chart
       let chart = RadarChart.chart();
       let cfg = chart.config(); // retrieve default config
-      let svg = d3.select('#chart').append('svg')
-      .attr('width', cfg.w + cfg.w + 50)
-      .attr('height', cfg.h + cfg.h / 4);
-      svg.append('g').attr('transform', 'translate(170,0)').classed('single', 1).datum(userSpiderData).call(chart);
 
-      // add data and render chart
-      chart.config({w: cfg.w / 4, h: cfg.h / 4, axisText: false, levels: 0, circles: false});
-      cfg = chart.config();
+      // have to set timeout so dom has time to finish layout
+      $timeout(() => {
+        // set up chart
+        let chartEl = angular.element(document.querySelector('.spider-chart'));
+        let chartElWidth = chartEl[0].clientWidth;
+
+        let svg = d3.select(`#chart-spider-${this.block.id}`).append('svg')
+        .attr('width', `${chartElWidth}px`)
+        .attr('height', chartHeight);
+        svg.append('g').attr('transform', `translate(${(chartElWidth / 2) - (chartHeight / 2)},0)`).classed('single', 1).datum(userSpiderData).call(chart);
+
+        // when screen resizes update svg attributes
+        angular.element($window).bind('resize', () => {
+          chartElWidth = chartEl[0].clientWidth;
+          svg.attr('width', `${chartElWidth}px`);
+          d3.select(`#chart-spider-${this.block.id} svg g`).attr('transform', `translate(${(chartElWidth / 2) - (chartHeight / 2)},0)`);
+        });
+
+        // add data and render chart
+        chart.config({w: cfg.w / 4, h: cfg.h / 4, axisText: false, levels: 0, circles: false});
+        cfg = chart.config();
+
+      }, 500);
+
     };
   }
 }
