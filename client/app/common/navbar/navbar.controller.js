@@ -1,10 +1,13 @@
 class NavbarController {
+  // eslint-disable-next-line max-params
   constructor( $log,
                $state,
                $location,
                $anchorScroll,
                STATES,
+               SPINNERS,
                Menu,
+               SpinnerFactory,
                JwtFactory,
                User,
                ZendeskWidget ) {
@@ -19,6 +22,8 @@ class NavbarController {
 
     this.$onInit = () => {
       $log.log('constructor()::$onInit - BEGIN');
+      this.courseContentSpinner = SpinnerFactory.getSpinner(SPINNERS.COURSE_CONTENT);
+
       $log.log('constructor()::$onInit - END');
     };
 

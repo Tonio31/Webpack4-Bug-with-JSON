@@ -1,4 +1,4 @@
-class LoginRootController {
+class AppController {
   constructor(SpinnerFactory, SPINNERS) {
     'ngInject';
 
@@ -6,4 +6,4 @@ class LoginRootController {
   }
 }
 
-export default LoginRootController;
+export default AppController;

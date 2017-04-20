@@ -1,5 +1,14 @@
 class LoginController {
-  constructor($log, $state, $stateParams, $window, Data, User, JwtFactory, STATES) {
+  constructor( $log,
+               $state,
+               $stateParams,
+               $window,
+               Data,
+               User,
+               JwtFactory,
+               STATES,
+               SpinnerFactory,
+               SPINNERS ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -21,6 +30,7 @@ class LoginController {
       $log.log('login()');
 
       if ( iLoginForm.$valid ) {
+        SpinnerFactory.show(SPINNERS.TOP_LEVEL);
         this.invalidLogin = false;
         let authPOSTRequest = Data.getUserAuthData();
 
@@ -52,6 +62,7 @@ class LoginController {
         },
         (error) => {
           $log.log('error during authentification error=', error);
+          SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
           this.invalidLogin = true;
         });
       }
