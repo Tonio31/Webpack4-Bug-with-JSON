@@ -16,9 +16,9 @@
       "element": "video",
       "program_data_code": null,
       "data": {
-        "poster": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_poster.jpg",
-        "source": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/L01_M01_V3_weblo.mp4",
-        "caption_src": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_text.vtt",
+        "poster": "https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_poster.jpg",
+        "source": "https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/L01_M01_V3_weblo.mp4",
+        "caption_src": "https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_text.vtt",
         "caption_lang": "en",
         "caption_label": "English subtitles",
         "caption_default": true
