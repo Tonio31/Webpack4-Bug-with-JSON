@@ -179,7 +179,7 @@ class CourseContentController {
         });
       }
       else {
-        $log.debug('About to change state to go to: ', this.content.next_page_url);
+        $log.info('About to change state to go to: ', this.content.next_page_url);
         $state.go(this.content.next_page_url);
       }
 

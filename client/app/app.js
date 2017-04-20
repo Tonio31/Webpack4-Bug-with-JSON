@@ -159,7 +159,7 @@ let appModule = angular.module('app', [
     $transitions.onStart( matchFromInternalToAny, (trans) => {
       let fromState = trans.from().name; // Example of fromState: /home
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
-      $log.debug('$transitions.onStart - matchFromInternalToAny -  fromState=', fromState, '  toState=', toState);
+      $log.log('$transitions.onStart - matchFromInternalToAny -  fromState=', fromState, '  toState=', toState);
       SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
     });
 
@@ -173,7 +173,7 @@ let appModule = angular.module('app', [
       SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
       SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
 
-      $log.debug('$transitions.onSuccess - fromAnyToAny - fromState=', fromState, '  toState=', toState);
+      $log.log('$transitions.onSuccess - fromAnyToAny - fromState=', fromState, '  toState=', toState);
 
       // Send the current state url to google Analytics
       $window.ga('send', 'pageview', $location.path());
@@ -181,7 +181,7 @@ let appModule = angular.module('app', [
       // Without $timeout, the $rootscope.on won't pick up the event because the directive is not yet created
       // see http://stackoverflow.com/questions/15676072/angularjs-broadcast-not-working-on-first-controller-load
       $timeout( () => {
-        $log.debug('About to emit the event: stateChangeSuccess      toState=', toState);
+        $log.info('About to emit the event: stateChangeSuccess      toState=', toState);
         $rootScope.$emit('stateChangeSuccess', toState);
       });
       return true;
@@ -207,7 +207,7 @@ let appModule = angular.module('app', [
 
     // Registers a OnInvalidCallback function to be invoked when StateService.transitionTo has been called with an invalid state reference parameter
     $state.onInvalid( (to, from) => {
-      $log.debug('Invalid transition from ', from, '  to ', to);
+      $log.info('Invalid transition from ', from, '  to ', to);
     });
 
     $log.log('Start');

@@ -8,7 +8,7 @@ class LoadingSpinnerController {
 
     this.$onInit = () => {
 
-      $log.debug('$onInit() - this.name=', this.name, 'this.show=', this.show);
+      $log.log('$onInit() - this.name=', this.name, 'this.show=', this.show);
 
       this.spinner = SpinnerFactory.getSpinner(this.name);
 
