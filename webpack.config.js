@@ -29,13 +29,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'raw' },
-      {
-        test: /\.(scss|sass)$/,
-        loader: 'style!css!postcss!sass'
-      },
-      {
-        test: /\.css$/, loader: 'style!css!postcss'
+        loader: 'raw'
       },
       {
         test: /\.svg/,
@@ -78,6 +72,7 @@ module.exports = {
     failOnError: true
   },
   plugins: [
+
     // Automatically move all modules defined outside of application directory to vendor bundle.
     // If you are using more complicated project structure, consider to specify common chunks manually.
     new webpack.optimize.CommonsChunkPlugin({

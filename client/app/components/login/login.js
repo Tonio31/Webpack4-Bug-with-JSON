@@ -6,6 +6,7 @@ import MenuService from 'common/menuFactory/menu';
 import JwtFactory from 'common/jwtFactory/jwt';
 import UserDataFactory from 'common/userDataFactory/userData';
 import ResourceFactory from 'common/resourceFactory/resource';
+import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 import ConstantModule from 'common/constants';
 
 let loginModule = angular.module('login', [
@@ -15,6 +16,7 @@ let loginModule = angular.module('login', [
   JwtFactory,
   UserDataFactory,
   ResourceFactory,
+  LoadingSpinnerModule,
   ConstantModule
 ])
 

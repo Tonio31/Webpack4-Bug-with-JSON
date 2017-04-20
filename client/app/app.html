@@ -1,4 +1,5 @@
 <!-- Place all UI elements intended to be present across all routes in this file -->
 <div class="app">
-  <ui-view></ui-view>
+  <spinner name="$ctrl.topLevelSpinner.name" show="true"></spinner>
+  <ui-view ng-show="!$ctrl.topLevelSpinner.show"></ui-view>
 </div>

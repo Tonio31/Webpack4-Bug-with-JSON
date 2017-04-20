@@ -1,8 +1,6 @@
 class MainController {
-  constructor($log, ZendeskWidget, User) {
+  constructor(ZendeskWidget, User) {
     'ngInject';
-
-    $log.info('main controller');
 
     ZendeskWidget.identify({
       name: `${User.getFirstName()} ${User.getLastName()}`,
@@ -10,7 +8,6 @@ class MainController {
     });
 
     ZendeskWidget.show();
-
   }
 }
 

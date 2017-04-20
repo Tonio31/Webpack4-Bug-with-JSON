@@ -8,6 +8,7 @@ import UserDataFactory from './userDataFactory/userData';
 import JwtFactory from './jwtFactory/jwt';
 import BugsnagModule from './bugsnag/bugsnag';
 import MenuService from './menuFactory/menu';
+import LoadingSpinner from './loadingSpinner/loadingSpinner';
 import LogDecorator from './logDecorator/logDecorator';
 import ConstantModule from './constants';
 
@@ -19,6 +20,7 @@ let commonModule = angular.module('app.common', [
   LogDecorator,
   ResourceFactory,
   MenuService,
+  LoadingSpinner,
   JwtFactory,
   UserDataFactory,
   BugsnagModule,
