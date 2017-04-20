@@ -2,8 +2,9 @@ import SpiderChartModule from './spiderChart';
 import SpiderChartController from './spiderChart.controller';
 import SpiderChartComponent from './spiderChart.component';
 import SpiderChartTemplate from './spiderChart.html';
-import d3 from 'd3';
 /* eslint-disable */
+import d3 from 'd3';
+/* eslint-enable */
 describe('SpiderChart', () => {
   let $rootScope, $componentController, $compile;
 
@@ -132,4 +133,3 @@ describe('SpiderChart', () => {
     });
   });
 });
-/* eslint-enable */
