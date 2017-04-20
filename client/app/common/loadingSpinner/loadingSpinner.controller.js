@@ -15,7 +15,7 @@ class LoadingSpinnerController {
         this.displayLogo = true;
       }
 
-      // By default, hide the message the logo
+      // By default, hide the message
       if ( angular.isUndefined(this.displayMessage) ) {
         this.displayMessage = false;
       }
