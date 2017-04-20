@@ -15,8 +15,8 @@ module.exports = () => {
 
   config.module.loaders = config.module.loaders.concat([
     {
-        test: /\.css$/,
-        loader: 'style!css!postcss'
+      test: /\.css$/,
+      loader: 'style!css!postcss'
     },
     {
       test: /\.(scss|sass)$/,
