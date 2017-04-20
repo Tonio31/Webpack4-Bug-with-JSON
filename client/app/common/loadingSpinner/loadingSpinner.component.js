@@ -6,7 +6,9 @@ let loadingSpinnerComponent = {
   restrict: 'E',
   bindings: {
     name: '<',
-    show: '<'
+    show: '<',
+    displayLogo: '<',
+    displayMessage: '<'
   },
   template,
   controller

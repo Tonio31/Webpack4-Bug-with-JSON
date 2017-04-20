@@ -32,6 +32,15 @@
     </div> <!-- END .small-12 medium-10 xlarge-8 small-centered columns -->
   </div> <!-- END .row -->
   <div>
+    <div ng-show="$ctrl.savingStepSpinner.show" class="row saving-step-spinner">
+      <div class="small-12 medium-10 xlarge-8 columns small-centered">
+        <spinner name="$ctrl.savingStepSpinner.name"
+                 show="false"
+                 display-logo="false"
+                 display-message="true">
+        </spinner>
+      </div>
+    </div>
     <div ng-show="$ctrl.banner.text" class="banner y-center-parent" ng-class="$ctrl.banner.class">
       <div class="row y-center-child">
         <div class="small-12 medium-10 xlarge-8 columns small-centered">
@@ -52,7 +61,7 @@
       <div class="row y-center-child">
         <div class="small-12 medium-8 columns small-centered">
           <button ng-show="$ctrl.displayPreviousButton" class="secondary radius left" type="button" ng-click="$ctrl.previousStep()">&lt; {{ 'PREVIOUS' | translate }}</button>
-          <button ng-class="$ctrl.nextStepButton.class" class="radius right" type="submit" ng-click="$ctrl.nextStep(topLevelForm)">{{$ctrl.nextStepButton.label}}</button>
+          <button ng-disabled="$ctrl.savingStepSpinner.show" ng-class="$ctrl.nextStepButton.class" class="radius right" type="submit" ng-click="$ctrl.nextStep(topLevelForm)">{{$ctrl.nextStepButton.label}}</button>
         </div>
       </div>
     </div> <!-- END .navigation -->
