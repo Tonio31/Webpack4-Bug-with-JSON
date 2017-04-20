@@ -2,36 +2,10 @@ import SpiderChartModule from './spiderChart';
 import SpiderChartController from './spiderChart.controller';
 import SpiderChartComponent from './spiderChart.component';
 import SpiderChartTemplate from './spiderChart.html';
-import * as d3 from 'c3';
+import d3 from 'd3';
 /* eslint-disable */
 describe('SpiderChart', () => {
   let $rootScope, $componentController, $compile;
-
-  // let d3 = {
-  //   select: () => {
-  //     return {
-  //       append: () => {
-  //         return {
-  //           attr: () => {
-  //             return {
-  //               attr: () => {
-  //                 return [];
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     };
-  //   },
-  //   scale: {
-  //     category10: () => {
-  //       return 'nothing';
-  //     }
-  //   }
-  // };
-  //
-  // let svg = d3.select('#chart').append('svg').attr().attr();
-  //
 
   let dataBindings = {
     id: 63,
@@ -69,9 +43,7 @@ describe('SpiderChart', () => {
     }
   };
 
-  beforeEach(window.module(SpiderChartModule, ($provide) => {
-    $provide.value('d3', d3 );
-  }));
+  beforeEach(window.module(SpiderChartModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
@@ -96,46 +68,36 @@ describe('SpiderChart', () => {
       }, bindings);
     });
 
-    // it('$onInit creates the data needed for displaying the bar chart', () => {
-    //   controller.$onInit();
-    //   expect(controller.userSpiderData).to.deep.eq([
-    //     {
-    //       id: 63,
-    //       type: 'static',
-    //       element: 'spider_chart',
-    //       data: {
-    //         title: 'spider chart',
-    //         set: [
-    //           {
-    //             className: 'user',
-    //             axes: [
-    //               {
-    //                 axis: 'Acceleration',
-    //                 value: 80
-    //               },
-    //               {
-    //                 axis: 'Breaking',
-    //                 value: 40
-    //               },
-    //               {
-    //                 axis: 'Handling',
-    //                 value: 40
-    //               },
-    //               {
-    //                 axis: 'Fuel',
-    //                 value: 90
-    //               },
-    //               {
-    //                 axis: 'Top speed',
-    //                 value: 60
-    //               }
-    //             ]
-    //           }
-    //         ]
-    //       }
-    //     }
-    //   ]);
-    // });
+    it('$onInit creates the data needed for displaying the bar chart', () => {
+      controller.$onInit();
+      expect(controller.userSpiderData).to.deep.eq([
+        {
+          className: 'user',
+          axes: [
+            {
+              axis: 'Acceleration',
+              value: 80
+            },
+            {
+              axis: 'Breaking',
+              value: 40
+            },
+            {
+              axis: 'Handling',
+              value: 40
+            },
+            {
+              axis: 'Fuel',
+              value: 90
+            },
+            {
+              axis: 'Top speed',
+              value: 60
+            }
+          ]
+        }
+      ]);
+    });
   });
 
   describe('View', () => {
@@ -151,9 +113,9 @@ describe('SpiderChart', () => {
 
 
     it('There is a chart on the page', () => {
-      expect(true).to.equal(true);
-      // let chart = angular.element(template[0].querySelector('.gauge-chart'));
-      // expect(chart.length).to.eq(1); // Element exist on DOM
+      // expect(true).to.equal(true);
+      let chart = angular.element(template[0].querySelector('.spider-chart'));
+      expect(chart.length).to.eq(1); // Element exist on DOM
     });
   });
 

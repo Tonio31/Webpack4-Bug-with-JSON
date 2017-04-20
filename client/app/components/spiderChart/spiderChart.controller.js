@@ -302,7 +302,7 @@ class SpiderChartController {
     /* eslint-ensable */
 
     this.$onInit = () => {
-      let userSpiderData = this.block.data.set;
+      this.userSpiderData = this.block.data.set;
       let chart = RadarChart.chart();
       let cfg = chart.config(); // retrieve default config
 
@@ -315,7 +315,7 @@ class SpiderChartController {
         let svg = d3.select(`#chart-spider-${this.block.id}`).append('svg')
         .attr('width', `${chartElWidth}px`)
         .attr('height', chartHeight);
-        svg.append('g').attr('transform', `translate(${(chartElWidth / 2) - (chartHeight / 2)},0)`).classed('single', 1).datum(userSpiderData).call(chart);
+        svg.append('g').attr('transform', `translate(${(chartElWidth / 2) - (chartHeight / 2)},0)`).classed('single', 1).datum(this.userSpiderData).call(chart);
 
         // when screen resizes update svg attributes
         angular.element($window).bind('resize', () => {
