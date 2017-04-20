@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+/* eslint-disable angular/timeout-service */
+/* eslint-disable no-undef */
 
 // External Module
 import angular from 'angular';
@@ -19,7 +21,32 @@ angular.module( 'appMockBackEnd', [
   UserData,
   'ngMockE2E'
 ])
-.run( ($log, $httpBackend, User, Data, JwtFactory) => {
+.config( ($provide) => {
+  'ngInject';
+
+  // Time in ms to simulate a delay in back end response
+  let DELAY_HTTP_RESPONSE_TIME = 0;
+
+  $provide.decorator('$httpBackend', ($delegate) => {
+    let proxy = function(method, url, data, callback, headers) {
+      let interceptor = function() {
+        let self = this;
+        let _arguments = arguments;
+        setTimeout(() => {
+          callback.apply(self, _arguments);
+        }, DELAY_HTTP_RESPONSE_TIME);
+      };
+      return $delegate.call(this, method, url, data, interceptor, headers);
+    };
+    for ( let key in $delegate ) {
+      if ( $delegate.hasOwnProperty(key) ) {
+        proxy[key] = $delegate[key];
+      }
+    }
+    return proxy;
+  });
+})
+.run( ($log, $httpBackend, $timeout, User, Data, JwtFactory) => {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -154,7 +181,6 @@ angular.module( 'appMockBackEnd', [
           content = require('./mockBackEndResponse/genericContent.json');
         }
       }
-
       return [ 200, content, {} ];
     }
 

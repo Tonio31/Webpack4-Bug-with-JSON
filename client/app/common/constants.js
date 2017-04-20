@@ -35,6 +35,10 @@ let constantModule = angular.module('app.common.constant', [
     STRENGTHS: 's',
     LIFE_MAP: 'M',
   })
+  .constant('SPINNERS', {
+    COURSE_CONTENT: 'courseContentSpinner',
+    TOP_LEVEL: 'topLevelSpinner'
+  })
 .name;
 
 export default constantModule;

@@ -22,7 +22,7 @@ let BugsnagFactory = function($log, User) {
       email: User.getEmail()
     };
 
-    $log.debug('BUGSNAG report. payload=', payload);
+    $log.info('BUGSNAG report. payload=', payload);
     return true;
   };
 };
