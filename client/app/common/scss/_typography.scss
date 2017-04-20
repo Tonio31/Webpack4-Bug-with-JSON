@@ -104,3 +104,7 @@ ul {
 .note {
   font-size: rem_calc(14px);
 }
+
+.chart-title {
+  @extend h2;
+}
