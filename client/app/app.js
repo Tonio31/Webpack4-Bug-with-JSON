@@ -17,8 +17,9 @@ import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
 import MenuService from 'common/menuFactory/menu';
+import constantModule from 'common/constants';
 import ngStorage from 'ngstorage-webpack';
-
+import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 
 
 // This is a trick to be able to set up dynamic routing in run.
@@ -30,9 +31,11 @@ let appModule = angular.module('app', [
   uiRouter,
   ngStorage,
   ngAnimate,
+  constantModule,
   Common,
   Components,
   MenuService,
+  LoadingSpinnerModule,
   Global
 ])
   .config(($locationProvider, $stateProvider, $localStorageProvider, $urlRouterProvider, ZendeskWidgetProvider, STATES) => {
@@ -72,6 +75,7 @@ let appModule = angular.module('app', [
           $timeout,
           $urlRouter,
           Menu,
+          SpinnerFactory,
           $trace,
           $state,
           $location,
@@ -80,7 +84,8 @@ let appModule = angular.module('app', [
           User,
           JwtFactory,
           Data,
-          STATES ) => {
+          STATES,
+          SPINNERS ) => {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -148,11 +153,29 @@ let appModule = angular.module('app', [
       return true;
     });
 
+    let matchFromInternalToAny = {
+      from: (state) => {
+        return ( state.name !== '' );
+      }
+    };
+    $transitions.onStart( matchFromInternalToAny, (trans) => {
+      let fromState = trans.from().name; // Example of fromState: /home
+      let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+      $log.log('$transitions.onStart - matchFromInternalToAny -  fromState=', fromState, '  toState=', toState);
+      SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
+    });
 
     // On every route change, we need to update the menu in order to display the good page
     // The event we emit here is catched by the directive sync-state
     $transitions.onSuccess( {}, (trans) => {
+
+      let fromState = trans.from().name; // Example of fromState: /home
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+
+      SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
+      SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
+
+      $log.log('$transitions.onSuccess - fromAnyToAny - fromState=', fromState, '  toState=', toState);
 
       // Send the current state url to google Analytics
       $window.ga('send', 'pageview', $location.path());
@@ -160,7 +183,7 @@ let appModule = angular.module('app', [
       // Without $timeout, the $rootscope.on won't pick up the event because the directive is not yet created
       // see http://stackoverflow.com/questions/15676072/angularjs-broadcast-not-working-on-first-controller-load
       $timeout( () => {
-        $log.log('About to emit the event: stateChangeSuccess      toState=', toState);
+        $log.info('About to emit the event: stateChangeSuccess      toState=', toState);
         $rootScope.$emit('stateChangeSuccess', toState);
       });
       return true;
@@ -186,19 +209,19 @@ let appModule = angular.module('app', [
 
     // Registers a OnInvalidCallback function to be invoked when StateService.transitionTo has been called with an invalid state reference parameter
     $state.onInvalid( (to, from) => {
-      $log.debug('Invalid transition from ', from, '  to ', to);
+      $log.info('Invalid transition from ', from, '  to ', to);
     });
 
     $log.log('Start');
 
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    if ( JwtFactory.isLoginInfoAvailable() ) {
 
       $log.log(`User Auth did NOT expired, retrieve Menu and redirect to the good state`);
 
       // In case the user is already logged in (token is not expired), we need to set his user ID
       // form local storage in the User factory as the id will be used to retrieve participant information
-      // from server that is used on the home page and in expections reports to bugsnag
+      // from server that is used on the home page and in exceptions reports to bugsnag
       let userId = JwtFactory.getUserId();
       User.setUser({ id: userId });
       Data.getParticipantDetails();
