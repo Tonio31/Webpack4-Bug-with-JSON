@@ -1,4 +1,4 @@
-let MenuFactory = function( $log, $q, _, Data, STATES) {
+let MenuFactory = function( $log, $q, Data, STATES) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -59,42 +59,32 @@ let MenuFactory = function( $log, $q, _, Data, STATES) {
     return menu;
   };
 
-  let retrieveMenuAndReturnStates = ( iForceRetrieve ) => {
+  let retrieveMenuAndReturnStates = () => {
     let deferred = $q.defer();
 
-    if ( _.isEmpty(menu.data) || iForceRetrieve ) {
-      // Get the menu from back end
-      $log.log(`retrieveMenuAndReturnStates() - _.isEmpty(menu.data)=${_.isEmpty(menu.data)} 
-                  iForceRetrieve=${iForceRetrieve}, retrieve menu from the backend`);
+    // Get the menu from back end
+    $log.log(`retrieveMenuAndReturnStates() - retrieve menu from the backend`);
 
-      Data.getMenu().get({},
-        (menuData) => {
+    Data.getMenu().get({},
+      (menuData) => {
 
-          // For now, we only have one Potentialife course, so we pick the first item in the list
-          menu.data = menuData.menudata[0];
+        // For now, we only have one Potentialife course, so we pick the first item in the list
+        menu.data = menuData.menudata[0];
 
-          $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully menu=', menu);
+        $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully menu=', menu);
 
-          let states = [];
-          findFinalState(menu.data, states);
+        let states = [];
+        findFinalState(menu.data, states);
 
-          currentProgression.data = menuData.current_progression;
+        currentProgression.data = menuData.current_progression;
 
-          deferred.resolve(states);
-        },
-        (error) => {
+        deferred.resolve(states);
+      },
+      (error) => {
 
-          $log.log('retrieveMenuAndReturnStates() - Error while retrieving Menu error=', error);
-          deferred.reject(error);
-        });
-
-    }
-    else {
-      // No need to return the states if the menu already exist, it means the states have already
-      // been defined, but we do need to resolve the promise, so we can redirect the user if
-      // necessary (look at interceptor on transitions in app.js)
-      deferred.resolve([]);
-    }
+        $log.log('retrieveMenuAndReturnStates() - Error while retrieving Menu error=', error);
+        deferred.reject(error);
+      });
 
     return deferred.promise;
   };

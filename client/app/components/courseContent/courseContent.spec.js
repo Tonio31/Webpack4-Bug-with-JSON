@@ -160,7 +160,7 @@ describe('CourseContent', () => {
       expect(updateStepPOSTRequest.status).to.equal('completed');
       expect(updateStepPOSTRequest.programData).to.deep.equal( [{ code: 'c1.m1.s1.story_2', value: 'This is a text' }] );
 
-      sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
+      sinon.assert.calledOnce(retrieveMenuAndReturnStatesFn);
       sinon.assert.calledWith(removeUserInputSpy, { 'c1.m1.s1.story_2': 'This is a text' });
       sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
@@ -205,7 +205,7 @@ describe('CourseContent', () => {
       expect(updateStepPOSTRequest.status).to.equal('completed');
       expect(updateStepPOSTRequest.programData).to.deep.equal( [] );
 
-      sinon.assert.calledWith(retrieveMenuAndReturnStatesFn, true);
+      sinon.assert.calledOnce(retrieveMenuAndReturnStatesFn);
       sinon.assert.calledWith(removeUserInputSpy, {});
       sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
