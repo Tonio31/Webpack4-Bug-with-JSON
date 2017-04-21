@@ -36,7 +36,13 @@ let appModule = angular.module('app', [
   LoadingSpinnerModule,
   Global
 ])
-  .config(($locationProvider, $stateProvider, $localStorageProvider, $urlRouterProvider, ZendeskWidgetProvider, STATES) => {
+  .config( ( $locationProvider,
+             $stateProvider,
+             $httpProvider,
+             $localStorageProvider,
+             $urlRouterProvider,
+             ZendeskWidgetProvider,
+             STATES ) => {
     'ngInject';
 
     // This is needed because we create our state dynamically, if we don't put this,
@@ -64,6 +70,15 @@ let appModule = angular.module('app', [
         zE.hide();
       }
     });
+
+    // Change all HTTP GET requests to disable cache, we should always get the latest data from the server
+    if ( !$httpProvider.defaults.headers.get ) {
+      $httpProvider.defaults.headers.get = {};
+    }
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Sat, 1 Jan 2000 00:00:00 GMT';
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.get.Pragma = 'no-cache';
+
 
     $stateProviderRef = $stateProvider;
   })
