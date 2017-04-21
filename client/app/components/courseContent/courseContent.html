@@ -67,10 +67,10 @@
                   ng-click="$ctrl.previousStep()">
             &lt; {{ 'PREVIOUS' | translate }}
           </button>
-          <button ng-class="$ctrl.nextStepButton.class"
+          <button ng-disabled="$ctrl.savingStepSpinner.show || $ctrl.isNextButtonDisable"
+                  ng-class="$ctrl.nextStepButton.class"
                   class="radius right"
                   type="submit"
-                  ng-disabled="$ctrl.isNextButtonDisable"
                   ng-click="$ctrl.nextStep(topLevelForm)">
             {{$ctrl.nextStepButton.label}}
           </button>
