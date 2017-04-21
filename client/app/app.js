@@ -36,7 +36,13 @@ let appModule = angular.module('app', [
   LoadingSpinnerModule,
   Global
 ])
-  .config(($locationProvider, $stateProvider, $localStorageProvider, $urlRouterProvider, ZendeskWidgetProvider, STATES) => {
+  .config( ( $locationProvider,
+             $stateProvider,
+             $httpProvider,
+             $localStorageProvider,
+             $urlRouterProvider,
+             ZendeskWidgetProvider,
+             STATES ) => {
     'ngInject';
 
     // This is needed because we create our state dynamically, if we don't put this,
@@ -65,13 +71,24 @@ let appModule = angular.module('app', [
       }
     });
 
+    // Change all HTTP GET requests to disable cache, we should always get the latest data from the server
+    if ( !$httpProvider.defaults.headers.get ) {
+      $httpProvider.defaults.headers.get = {};
+    }
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Sat, 1 Jan 2000 00:00:00 GMT';
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.get.Pragma = 'no-cache';
+
+
     $stateProviderRef = $stateProvider;
   })
   // eslint-disable-next-line max-params
   .run( ( $rootScope,
           $log,
+          $q,
           $timeout,
           $urlRouter,
+          $stateRegistry,
           Menu,
           SpinnerFactory,
           $trace,
@@ -110,12 +127,27 @@ let appModule = angular.module('app', [
 
       $log.log('Coming From login Page or reset password state');
 
+      let deferred = $q.defer();
+
       // Find all the menu that doesn't have children (no Submenu) and create a state from it
       Menu.retrieveMenuAndReturnStates().then( (states) => {
         $log.log('Menu retrieved successfully');
 
         states.forEach( (state) => {
-          $stateProviderRef.state(state);
+          let uiRouterState = $stateRegistry.get(state.name);
+
+          if ( uiRouterState ) {
+            // Update Old Locked state to point to courseContent component
+            if ( uiRouterState.component !== state.component ) {
+              $log.log(`About to deregister and re-register state ${state.name}. uiRouterState=`, uiRouterState, '  state=', state);
+              $stateRegistry.deregister(state.name);
+              $stateRegistry.register(state);
+            }
+          }
+          else {
+            $stateProviderRef.state(state);
+          }
+
         });
 
         // This is needed because we create our state dynamically, this works with
@@ -131,24 +163,26 @@ let appModule = angular.module('app', [
           // If it's a valid state, we redirect to this state, otherwise, go to 404 page
           if ( $state.href(stateToRedirect) !== null ) {
             $log.log(`Redirect to state=${stateToRedirect}   $state.href(stateToRedirect)=${$state.href(stateToRedirect)}`);
-            $state.go(stateToRedirect);
+            deferred.resolve($state.target(stateToRedirect));
           }
           else {
             $log.log(`Redirect to 404 PageNotFound because stateToRedirect=${stateToRedirect}
                       $state.href(stateToRedirect)=${$state.href(stateToRedirect)}`);
-            $state.go(STATES.PAGE_NOT_FOUND);
+            deferred.resolve($state.target(STATES.PAGE_NOT_FOUND));
           }
         }
         else {
           $log.log(`From login to home, no redirection as we want to target ${STATES.HOME} state`);
+          deferred.resolve();
         }
 
       },
       (error) => {
         $log.log('error Retrieving menu error=', error);
+        deferred.reject();
       });
 
-      return true;
+      return deferred.promise;
     });
 
     let matchFromInternalToAny = {

@@ -155,15 +155,14 @@ class CourseContentController {
 
           // This will resend a query to the backend to get the menu, the status of the step
           // will be updated and the directive menuButton will update automatically the menu
-          let forceMenuRetrieval = true;
-          Menu.retrieveMenuAndReturnStates(forceMenuRetrieval).then( (states) => {
+          Menu.retrieveMenuAndReturnStates().then( (states) => {
             // Modify state to check that state that are no more locked does not point to locked component
             $log.log('Menu updated successfully');
             states.forEach( (stateDefinition) => {
               let uiRouterState = $stateRegistry.get(stateDefinition.name);
 
               // Update Old Locked state to point to courseContent component
-              if ( uiRouterState.component !== stateDefinition.component ) {
+              if ( uiRouterState && uiRouterState.component !== stateDefinition.component ) {
                 $log.log(`About to deregister and re-register state ${stateDefinition.name}. uiRouterState=`, uiRouterState, '  stateDefinition=', stateDefinition);
                 $stateRegistry.deregister(stateDefinition.name);
                 $stateRegistry.register(stateDefinition);
