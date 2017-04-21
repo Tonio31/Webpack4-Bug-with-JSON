@@ -107,7 +107,7 @@ let menuItem = function($window, $filter) {
             return iObject.hasOwnProperty('hideStepInMenu') && iObject.hideStepInMenu;
           };
 
-          $scope.getBellowTitle = (iObject) => {
+          $scope.getBelowTitle = (iObject) => {
             let nbMenuChilds = 0;
             if ( iObject.hasOwnProperty('children') ) {
               for ( let subMenuItem of iObject.children ) {
