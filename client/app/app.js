@@ -85,6 +85,7 @@ let appModule = angular.module('app', [
   // eslint-disable-next-line max-params
   .run( ( $rootScope,
           $log,
+          $q,
           $timeout,
           $urlRouter,
           $stateRegistry,
@@ -126,6 +127,8 @@ let appModule = angular.module('app', [
 
       $log.log('Coming From login Page or reset password state');
 
+      let deferred = $q.defer();
+
       // Find all the menu that doesn't have children (no Submenu) and create a state from it
       Menu.retrieveMenuAndReturnStates().then( (states) => {
         $log.log('Menu retrieved successfully');
@@ -160,24 +163,26 @@ let appModule = angular.module('app', [
           // If it's a valid state, we redirect to this state, otherwise, go to 404 page
           if ( $state.href(stateToRedirect) !== null ) {
             $log.log(`Redirect to state=${stateToRedirect}   $state.href(stateToRedirect)=${$state.href(stateToRedirect)}`);
-            $state.go(stateToRedirect);
+            deferred.resolve($state.target(stateToRedirect));
           }
           else {
             $log.log(`Redirect to 404 PageNotFound because stateToRedirect=${stateToRedirect}
                       $state.href(stateToRedirect)=${$state.href(stateToRedirect)}`);
-            $state.go(STATES.PAGE_NOT_FOUND);
+            deferred.resolve($state.target(STATES.PAGE_NOT_FOUND));
           }
         }
         else {
           $log.log(`From login to home, no redirection as we want to target ${STATES.HOME} state`);
+          deferred.resolve();
         }
 
       },
       (error) => {
         $log.log('error Retrieving menu error=', error);
+        deferred.reject();
       });
 
-      return true;
+      return deferred.promise;
     });
 
     let matchFromInternalToAny = {
