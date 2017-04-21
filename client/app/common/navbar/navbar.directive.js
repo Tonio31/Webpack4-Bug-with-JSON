@@ -83,7 +83,7 @@ let syncMenuAndState = function($rootScope, $log) {
 };
 
 
-let menuItem = function($window) {
+let menuItem = function($window, $filter) {
   'ngInject';
   return {
     require: '^offCanvasWrap',
@@ -105,6 +105,28 @@ let menuItem = function($window) {
 
           $scope.hideMenuItem = (iObject) => {
             return iObject.hasOwnProperty('hideStepInMenu') && iObject.hideStepInMenu;
+          };
+
+          $scope.getBellowTitle = (iObject) => {
+            let nbMenuChilds = 0;
+            if ( iObject.hasOwnProperty('children') ) {
+              for ( let subMenuItem of iObject.children ) {
+                if ( !$scope.hideMenuItem(subMenuItem) ) {
+                  nbMenuChilds += 1;
+                }
+              }
+            }
+
+            let type = '';
+            if ( iObject.hasOwnProperty('progress') ) {
+              type = $filter('translate')('MODULES').toString();
+            }
+            else {
+              type = $filter('translate')('STEPS').toString();
+            }
+
+            let belowTitle = `${$filter('translate')('TOTAL').toString()} - ${nbMenuChilds} ${type}`;
+            return belowTitle;
           };
 
           $scope.hideCanvas = () => {
