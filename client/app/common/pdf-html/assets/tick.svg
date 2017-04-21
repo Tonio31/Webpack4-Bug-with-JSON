@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="15px" viewBox="0 0 19 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="_lifeacts" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="lifeact_pdf" transform="translate(-515.000000, -499.000000)" fill="#6CAD58">
+            <g id="lifeacts-copy-3" transform="translate(50.000000, 493.000000)">
+                <g id="lifeact_checkbox_area" transform="translate(454.000000, 0.000000)">
+                    <path d="M29.3316853,7.26585485 L28.4787558,6.43530832 C27.8840197,5.85617949 26.9206808,5.854677 26.3273162,6.43213638 L17.6641244,14.8683189 L14.4514519,11.7399548 C13.8584302,11.1623284 12.8950914,11.1639979 12.3000123,11.7434606 L11.4472543,12.5738402 C10.8523467,13.1531359 10.8506323,14.0911944 11.4438254,14.6688208 L16.5835185,19.6733018 C16.8820009,19.9639514 17.2737484,20.1076902 17.6653245,20.105353 C18.0560433,20.1071894 18.4469336,19.9631167 18.7449018,19.672968 L29.3351142,9.3606685 C29.9281359,8.78304216 29.9271072,7.84531757 29.3316853,7.26585485 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
