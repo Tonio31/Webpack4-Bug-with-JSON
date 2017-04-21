@@ -87,6 +87,7 @@ let appModule = angular.module('app', [
           $log,
           $timeout,
           $urlRouter,
+          $stateRegistry,
           Menu,
           SpinnerFactory,
           $trace,
@@ -130,7 +131,20 @@ let appModule = angular.module('app', [
         $log.log('Menu retrieved successfully');
 
         states.forEach( (state) => {
-          $stateProviderRef.state(state);
+          let uiRouterState = $stateRegistry.get(state.name);
+
+          if ( uiRouterState ) {
+            // Update Old Locked state to point to courseContent component
+            if ( uiRouterState.component !== state.component ) {
+              $log.log(`About to deregister and re-register state ${state.name}. uiRouterState=`, uiRouterState, '  state=', state);
+              $stateRegistry.deregister(state.name);
+              $stateRegistry.register(state);
+            }
+          }
+          else {
+            $stateProviderRef.state(state);
+          }
+
         });
 
         // This is needed because we create our state dynamically, this works with

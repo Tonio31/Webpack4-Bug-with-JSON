@@ -153,7 +153,7 @@ class CourseContentController {
               let uiRouterState = $stateRegistry.get(stateDefinition.name);
 
               // Update Old Locked state to point to courseContent component
-              if ( uiRouterState.component !== stateDefinition.component ) {
+              if ( uiRouterState && uiRouterState.component !== stateDefinition.component ) {
                 $log.log(`About to deregister and re-register state ${stateDefinition.name}. uiRouterState=`, uiRouterState, '  stateDefinition=', stateDefinition);
                 $stateRegistry.deregister(stateDefinition.name);
                 $stateRegistry.register(stateDefinition);
