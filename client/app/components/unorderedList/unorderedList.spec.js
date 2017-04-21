@@ -22,28 +22,44 @@ describe('UnorderedList', () => {
         name: 'Your chosen VIA character strengths',
         items: [
           {
-            text: 'Reflexion'
+            label: 'Power',
+            sub_label: 'Sub Label',
+            takeaways: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
           },
           {
-            text: 'Power'
+            label: 'Reflexion',
+            sub_label: 'Sub Label',
+            takeaways: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
           },
           {
-            text: 'Love'
+            label: 'Love',
+            sub_label: 'Sub Label',
+            takeaways: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
           },
           {
-            text: 'Good in Bed'
+            label: 'Good in Bed',
+            sub_label: 'Sub Label',
+            takeaways: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
           },
           {
-            text: 'Hakunamatata'
+            label: 'Hakunamatata',
+            sub_label: 'Sub Label',
+            takeaways: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
           },
           {
-            text: 'Mars'
+            label: 'Mars',
+            sub_label: 'Sub Label',
+            takeaways: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
           },
           {
-            text: 'Sun'
+            label: 'Sun',
+            sub_label: 'Sub Label',
+            takeaways: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
           },
           {
-            text: 'Hate'
+            label: 'Hate',
+            sub_label: 'Sub Label',
+            takeaways: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
           }
         ]
       }
@@ -135,12 +151,23 @@ describe('UnorderedList', () => {
       scope.$apply();
     });
 
-    it('has a list item with the correct data in the text', () => {
+    it('has a list item with the correct data in the label', () => {
       let obj = blockBinding.data.items;
-      let listItem = angular.element(template[0].querySelector('li .list-wrap'));
-      expect(listItem.html()).to.eq(obj[0].text);
+      let listItem = angular.element(template[0].querySelector('li .list-wrap span'));
+      expect(listItem.html()).to.eq(obj[0].label);
     });
 
+    it('has a list item with the correct data in the sub_label', () => {
+      let obj = blockBinding.data.items;
+      let listItem = angular.element(template[0].querySelector('li .list-wrap strong'));
+      expect(listItem.html()).to.contain(obj[0].sub_label);
+    });
+
+    it('has a list item with the correct data in the takeaways', () => {
+      let obj = blockBinding.data.items;
+      let listItem = angular.element(template[0].querySelector('li .takeaways .takeaways .fgcolour-active'));
+      expect(listItem.html()).to.eq(obj[0].takeaways);
+    });
 
     it('has a correct number of items displayed', () => {
       let listItems = angular.element(template[0].querySelectorAll('li .list-wrap'));
