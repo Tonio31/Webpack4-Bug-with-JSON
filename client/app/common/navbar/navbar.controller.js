@@ -1,5 +1,16 @@
 class NavbarController {
-  constructor( $log, $state, STATES, Menu, JwtFactory, User, ZendeskWidget) {
+  // eslint-disable-next-line max-params
+  constructor( $log,
+               $state,
+               $location,
+               $anchorScroll,
+               STATES,
+               SPINNERS,
+               Menu,
+               SpinnerFactory,
+               JwtFactory,
+               User,
+               ZendeskWidget ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -11,6 +22,8 @@ class NavbarController {
 
     this.$onInit = () => {
       $log.log('constructor()::$onInit - BEGIN');
+      this.courseContentSpinner = SpinnerFactory.getSpinner(SPINNERS.COURSE_CONTENT);
+
       $log.log('constructor()::$onInit - END');
     };
 
@@ -18,6 +31,11 @@ class NavbarController {
       JwtFactory.logout();
       $state.go(STATES.LOGIN);
       ZendeskWidget.hide();
+    };
+
+    this.toggleMenu = () => {
+      $location.hash('main');
+      $anchorScroll();
     };
 
     // check if the banner exists, returns true/false
@@ -32,7 +50,6 @@ class NavbarController {
     this.companyName = 'Potentialife';
 
     $log.log('constructor() - END');
-
   }
 }
 

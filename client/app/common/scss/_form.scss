@@ -1,22 +1,8 @@
 fieldset {
 
-  input {
-    &[type="text"],
-    &[type="password"],
-    &[type="date"],
-    &[type="datetime"],
-    &[type="datetime-local"],
-    &[type="month"],
-    &[type="week"],
-    &[type="email"],
-    &[type="number"],
-    &[type="search"],
-    &[type="tel"],
-    &[type="time"],
-    &[type="url"],
-    &[type="color"] {
-      padding: rem_calc(10px);
-    }
+  textarea,
+  input:not([type='button']):not([type='checkbox']):not([type='radio']) {
+    padding: rem_calc(10px);
   }
 
   textarea {
@@ -26,57 +12,70 @@ fieldset {
   &[disabled] {
 
     textarea,
-    input[type="text"],
-    input[type="password"],
-    input[type="date"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="month"],
-    input[type="week"],
-    input[type="email"],
-    input[type="number"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="time"],
-    input[type="url"],
-    input[type="color"] {
-      border-color: $oil;
-      background-color: $light-grey;
-      cursor: default;
+    input:not([type='button']):not([type='checkbox']):not([type='radio']),
+    input[type="radio"]:checked,
+    input[type="checkbox"]:checked  {
 
-      &::placeholder {
-        color: transparentize($oil, .5);
+      &.parent-submitted,
+      &.ng-dirty {
+        &.ng-valid,
+        &.ng-invalid {
+          border-color: $oil;
+
+          &::placeholder {
+            color: transparentize($oil, .5);
+          }
+        }
       }
+
+      ~ .shim {
+        border-color: $onyx;
+        &::after {
+          color: $onyx;
+        }
+      }
+
     }
 
     textarea {
       resize: none;
     }
 
-    .radio-checkbox {
+  }
+}
+
+
+
+.radio-checkbox {
+  [disabled] {
+
+    .note.invalid {
+      color: inherit;
+    }
+
+
+    .checkbox-label,
+    .radio-label,
+    .shim {
+      opacity: .3;
+    }
+    .selected {
       .checkbox-label,
       .radio-label,
       .shim {
-        opacity: .3;
+        opacity: 1;
       }
-      .selected {
-        .checkbox-label,
-        .radio-label,
-        .shim {
-          opacity: 1;
-        }
-      }
+    }
 
-      label,
-      .shim {
-        cursor: default;
-        line-height: rem_calc(28px);
-      }
+    label,
+    .shim {
+      cursor: default;
+      line-height: rem_calc(28px);
+    }
 
-      &.radioList {
-        .list-footer .button {
-          display: none;
-        }
+    &.radioList {
+      .list-footer .button {
+        display: none;
       }
     }
   }

@@ -2,17 +2,31 @@
   font: $defaultFont;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  color: $oil;
+  margin-bottom: rem_calc(20px)
+}
+
 h1 {
-  color: #333333;
-  font-size: $h1-30px;
+  font-size: rem_calc(30px);
+  font-weight: bold;
+  line-height: rem_calc(29px);
+}
+
+h2 {
+  font-size: $h2-20px;
   font-weight: bold;
   line-height: $h1-34px;
 }
 
 h3 {
-  color: #333333;
   font-size: $h3-18px;
-  font-weight: 500;
+  font-weight: bold;
   line-height: $h3-28px;
   label {
     color: inherit;
@@ -31,9 +45,22 @@ h4 {
   text-transform: uppercase;
 }
 
-.block {
-  p {
-    line-height: rem_calc(28px);
+p,
+li,
+textarea,
+label,
+blockquote,
+input:not([type='button']):not([type='checkbox']):not([type='radio']) {
+  @include defaultParagraph();
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+ul {
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -58,6 +85,10 @@ h4 {
   @extend h1;
 }
 
+.h2-style {
+  @extend h2;
+}
+
 .h3-style {
   @extend h3;
 }
@@ -71,5 +102,5 @@ h4 {
 }
 
 .note {
-  font-size: rem_calc(12px);
+  font-size: rem_calc(14px);
 }

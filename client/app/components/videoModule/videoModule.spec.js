@@ -45,10 +45,21 @@ describe('Video', () => {
     it('media info to be populated with the bindings form data', () => {
 
       let expectedMediaInfo = {
-        sources: [ {
-          src: videoDataBindings.source,
-          type: 'video/mp4'
-        }],
+        sources: [
+          {
+            src: videoDataBindings.source,
+            type: 'video/mp4'
+          }
+        ],
+        tracks: [
+          {
+            kind: 'subtitles',
+            label: videoDataBindings.caption_label,
+            src: videoDataBindings.caption_src,
+            srclang: videoDataBindings.caption_lang,
+            default: videoDataBindings.caption_default
+          }
+        ],
         poster: videoDataBindings.poster
       };
 

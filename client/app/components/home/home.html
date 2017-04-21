@@ -35,7 +35,7 @@
 
     <div class="row bgcolour-grey panel collapse text-center">
       <div class="columns small-12">
-        <h4>{{'CURRENT_LOCATION' | translate }}</h4>
+        <h4>{{'GO_TO_NEXT_STEP' | translate }}:</h4>
         <div class="show-for-small-only">
           <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}</h3>
           <h3>{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
@@ -64,18 +64,17 @@
           <div class="columns small-12">
             <div class="row bgcolour-grey panel collapse">
 
-              <div class="user-avatar columns small-12 medium-2 medium-push-10">
+              <div class="user-avatar columns small-12 medium-2 medium-push-10" ng-if="$ctrl.content.avatar">
                 <div class="left-padding text-center">
-                  <!-- hidden due to ticket POT-53 -->
-                  <!-- <img ng-src="{{$ctrl.content[0].avatar}}" /> -->
+                  <img ng-src="{{$ctrl.content.avatar}}" />
                 </div>
               </div>
 
-              <div class="columns small-12 medium-10 medium-pull-2">
-                <p class="quote text-center">&ldquo;{{$ctrl.content[0].reflection}}&rdquo;</p>
+              <div class="columns small-12" ng-class="{'medium-pull-2 medium-10': $ctrl.content.avatar}">
+                <p class="quote text-center">&ldquo;{{$ctrl.content.reflection}}&rdquo;</p>
                 <p class="quote-signature text-center">
-                  {{$ctrl.content[0].name}} <br>
-                  <span ng-if="$ctrl.content[0].company">&ndash; {{$ctrl.content[0].company}}</span>
+                  {{$ctrl.content.name}} <br>
+                  <span ng-if="$ctrl.content.company">&ndash; {{$ctrl.content.company}}</span>
                 </p>
               </div>
 
@@ -87,7 +86,7 @@
     </div>
 
 
-    <div class="row collapse">
+    <div class="row collapse equal-columns">
         <div id="faq" class="small-12 medium-6 columns medium-margin-right">
           <h4>{{'FAQS' | translate }}</h4>
           <div class="bgcolour-grey panel">

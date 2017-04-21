@@ -9,7 +9,7 @@ let constantModule = angular.module('app.common.constant', [
     LOGIN_ROOT: 'loginRoot',
     HOME: '/home',
     LOGIN: '/login',
-    RESET_PASSWORD: '/reset_password',
+    RESET_PASSWORD: '/password/reset',
     RETRIEVE_CREDENTIALS: '/retrieve_credentials',
     PAGE_NOT_FOUND: '/404'
   })
@@ -34,6 +34,10 @@ let constantModule = angular.module('app.common.constant', [
     SELF_DISCOVERY: 'D',
     STRENGTHS: 's',
     LIFE_MAP: 'M',
+  })
+  .constant('SPINNERS', {
+    COURSE_CONTENT: 'courseContentSpinner',
+    TOP_LEVEL: 'topLevelSpinner'
   })
 .name;
 

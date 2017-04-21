@@ -72,12 +72,17 @@
   }
 
   small.error {
-    margin-top: -1rem;
+    margin-top: -0.3rem;
   }
 
-  .show-password .fontello-icon {
-    color: $blue-focus;
-    padding-right: $default-padding;
+  .show-password {
+    margin-bottom: 0.5rem;
+    margin-top: 0.35rem;
+
+    .fontello-icon {
+      color: $blue-focus;
+      padding-right: $default-padding;
+    }
   }
 
   .keep-me-logged {

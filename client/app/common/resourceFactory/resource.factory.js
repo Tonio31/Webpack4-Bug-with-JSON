@@ -82,12 +82,12 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
 
   let sendRecoverPasswordEmail = () => {
     $log.log('sendRecoverPasswordEmail()');
-    return new ($resource(buildApiUrl('forgotlogin')))();
+    return new ($resource(buildApiUrl('password/email')))();
   };
 
   let resetPassword = () => {
     $log.log('resetPassword()');
-    return new ($resource(buildApiUrl('resetPassword')))();
+    return new ($resource(buildApiUrl('password/reset')))();
   };
 
   let updateStep = () => {

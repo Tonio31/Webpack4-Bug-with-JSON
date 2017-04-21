@@ -1,5 +1,14 @@
 class LoginController {
-  constructor($log, $state, $stateParams, Data, User, JwtFactory, STATES) {
+  constructor( $log,
+               $state,
+               $stateParams,
+               $window,
+               Data,
+               User,
+               JwtFactory,
+               STATES,
+               SpinnerFactory,
+               SPINNERS ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -17,11 +26,12 @@ class LoginController {
       $state.go(STATES.RETRIEVE_CREDENTIALS);
     };
 
-
     this.login = (iLoginForm) => {
       $log.log('login()');
 
       if ( iLoginForm.$valid ) {
+        SpinnerFactory.show(SPINNERS.TOP_LEVEL);
+        this.invalidLogin = false;
         let authPOSTRequest = Data.getUserAuthData();
 
         authPOSTRequest.email = this.username;
@@ -45,10 +55,14 @@ class LoginController {
           // Save User Information
           User.setUser(userToSave);
 
+          // Set up google analytics to link the data to a specific userId
+          $window.ga('set', 'userId', dataBackFromServer.user.id);
+
           $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
         },
         (error) => {
           $log.log('error during authentification error=', error);
+          SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
           this.invalidLogin = true;
         });
       }

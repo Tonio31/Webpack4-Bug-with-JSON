@@ -1,42 +1,45 @@
 <div class="radio-checkbox checkbox unordered-list">
-  <ng-form id="{{$ctrl.FORM_NAME}}" name="{{$ctrl.FORM_NAME}}">
-    <header class="flex-container">
-      <div class="header-inner">
-        <p><strong>{{ $ctrl.block.data.label }}</strong></p>
-        <p class="note" ng-class="{ 'invalid': this[$ctrl.FORM_NAME].$invalid && $ctrl.isTopLevelFormSubmitted }">{{$ctrl.PLEASE_SELECT_MSG}}</p>
-      </div>
 
-      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted || $ctrl.isStepCompleted">
-        <span ng-class="this[$ctrl.FORM_NAME].$invalid ? 'invalid icon-pl-exclamation': 'icon-pl-tick'" class="right fontello-icon"></span>
-      </div>
-    </header>
+  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.FORM_NAME}}">
+    <fieldset ng-disabled="$ctrl.isStepCompleted">
+      <header class="flex-container">
+        <div class="header-inner">
+          <p><strong>{{ $ctrl.block.data.label }}</strong></p>
+          <p class="note" ng-class="{ 'invalid': this[$ctrl.FORM_NAME].$invalid && $ctrl.isTopLevelFormSubmitted }">{{$ctrl.PLEASE_SELECT_MSG}}</p>
+        </div>
 
-    <ul class="no-list">
-      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit" ng-class="{'selected': $ctrl.selection[item.value]}">
-        <label class="list-wrap" for="checkboxName-{{item.value}}">
-          <div class="checkbox-label">
-            <span>{{item.label}}</span>
-            <strong ng-if="item.sub_label">- {{item.sub_label}}</strong>
-          </div>
-          <input id="checkboxName-{{item.value}}"
-                 type="checkbox"
-                 name="{{$ctrl.CHECKBOX_GROUP_NAME}}"
-                 value="{{item.value}}"
-                 ng-required="!$ctrl.checkIfValid()"
-                 ng-model="$ctrl.selection[item.value]"
-                 ng-model-options="{allowInvalid: true}"
-                 ng-change="$ctrl.actionOnUserInput(this[$ctrl.FORM_NAME][$ctrl.CHECKBOX_GROUP_NAME]);">
-          <span class="shim"></span>
-        </label>
-        <blockquote ng-if="item.feedback" ng-show="$ctrl.selection[item.value]" class="blockquote list-wrap fgcolour-success">
-          <p>{{item.feedback}}</p>
-        </blockquote>
-      </li>
-    </ul>
-    <div class="list-footer" ng-if="$ctrl.block.data.items.length > $ctrl.NB_MIN_CHECKBOX_DISPLAYED" ng-hide="$ctrl.areAllCheckBoxDisplayed">
-      <button class="button radius secondary" ng-click="$ctrl.displayAllCheckBox()">
-        <span><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-r"></i>{{'SHOW_MORE' | translate}}</span>
-      </button>
-    </div>
+        <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted || $ctrl.isStepCompleted">
+          <span ng-class="this[$ctrl.FORM_NAME].$invalid ? 'invalid icon-pl-exclamation': 'icon-pl-tick'" class="right fontello-icon"></span>
+        </div>
+      </header>
+
+      <ul class="no-list">
+        <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit" ng-class="{'selected': $ctrl.selection[item.value]}">
+          <label class="list-wrap" for="checkboxName-{{item.value}}">
+            <div class="checkbox-label">
+              <span>{{item.label}}</span>
+              <strong ng-if="item.sub_label">- {{item.sub_label}}</strong>
+            </div>
+            <input id="checkboxName-{{item.value}}"
+                   type="checkbox"
+                   name="{{$ctrl.CHECKBOX_GROUP_NAME}}"
+                   value="{{item.value}}"
+                   ng-required="!$ctrl.checkIfValid()"
+                   ng-model="$ctrl.selection[item.value]"
+                   ng-model-options="{allowInvalid: true}"
+                   ng-change="$ctrl.actionOnUserInput(this[$ctrl.FORM_NAME][$ctrl.CHECKBOX_GROUP_NAME]);">
+            <span class="shim"></span>
+          </label>
+          <blockquote ng-if="item.feedback" ng-show="$ctrl.selection[item.value]" class="blockquote list-wrap fgcolour-success">
+            <p>{{item.feedback}}</p>
+          </blockquote>
+        </li>
+      </ul>
+      <div class="list-footer" ng-if="$ctrl.block.data.items.length > $ctrl.NB_MIN_CHECKBOX_DISPLAYED" ng-hide="$ctrl.areAllCheckBoxDisplayed">
+        <button type="button" class="button radius secondary" ng-click="$ctrl.displayAllCheckBox()">
+          <span><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-r"></i>{{'SHOW_MORE' | translate}}</span>
+        </button>
+      </div>
+    </fieldset>
   </ng-form>
 </div>

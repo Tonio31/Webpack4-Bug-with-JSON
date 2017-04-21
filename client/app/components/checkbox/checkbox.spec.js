@@ -8,7 +8,86 @@ describe('Checkbox', () => {
   let Utility;
   let FORM_NAME_PREFIX;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json').blocks[7];
+  let blockBinding = {
+    id: 52,
+    type: 'dynamic',
+    element: 'checkbox',
+    program_data_code: 'c1.m1.s1.checkbox_1',
+    data: {
+      config: {
+        min_selected: 2,
+        max_selected: 3
+      },
+      label: 'this is the label',
+      placeholder: 'this is the placholder',
+      name: 'this is the name',
+      items: [
+        {
+          label: 'label: Meeting with Con',
+          sub_label: 'sub_label: non-work',
+          value: 'Con',
+          checked: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'label: Meeting with Dan1',
+          value: 'dan1',
+          checked: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'label: Meeting with an Alien2',
+          value: 'alien2',
+          checked: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'label: Meeting with my bed3',
+          value: 'bed3',
+          checked: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'label: Meeting with Dan4',
+          value: 'dan4',
+          checked: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'label: Meeting with an Alien5',
+          value: 'alien5',
+          checked: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'label: Meeting with my bed6',
+          value: 'bed6',
+          checked: false,
+          feedback: 'this answer has feedback'
+        },
+        {
+          label: 'label: Meeting with Dan7',
+          value: 'dan7',
+          checked: false
+        },
+        {
+          label: 'label: Meeting with an Alien8',
+          value: 'alien8',
+          checked: true
+        },
+        {
+          label: 'label: Meeting with my bed9',
+          value: 'bed9',
+          checked: false
+        }
+      ]
+    },
+    pivot: {
+      step_id: 6,
+      block_id: 62
+    }
+  };
+
 
   let mockTranslateFilter = (value) => {
     return value;

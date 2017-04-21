@@ -6,17 +6,17 @@
   </header>
   <ul class="no-list">
     <li ng-repeat="item in $ctrl.blockData.items | limitTo : $ctrl.limit track by $index ">
-      <div class="list-wrap">{{item.text}}</div>
-      <div class="takeaways fgcolour-active" ng-if="item.takeaways">
-        <p>Your notes: </p>
-        <div class="takeaways fgcolour-active" ng-if="item.takeaways">
-          <p>{{item.takeaways}}</p>
+      <div class="list-wrap child-item">{{item.text}}</div>
+      <div class="takeaways child-item" ng-if="item.takeaways">
+        <p class="fgcolour-active title">Your notes: </p>
+        <div class="takeaways" ng-if="item.takeaways">
+          <p class="fgcolour-active">{{item.takeaways}}</p>
         </div>
       </div>
     </li>
   </ul>
   <div class="list-footer" ng-if="$ctrl.block.data.items.length > $ctrl.MIN_ELEMENTS_DISPLAYED">
-    <button class="button radius secondary" ng-click="$ctrl.toggleMore()">
+    <button type="button" class="button radius secondary" ng-click="$ctrl.toggleMore()">
         <span><i class="fontello-icon fgcolour-black icon-pl-gt"
                  ng-class="$ctrl.showMoreButtonDisplayed ? 'rotate-90-r' : 'rotate-90-l'"></i>
           {{$ctrl.showMoreButtonDisplayed ? $ctrl.showMoreLabel : $ctrl.hideLabel }}

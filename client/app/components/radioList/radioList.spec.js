@@ -45,7 +45,7 @@ describe('RadioList', () => {
           value: 'this_is_the_label_4',
           sub_label: null,
           selected: false,
-          feedback: null
+          feedback: 'this answer has feedback'
         },
         {
           label: 'this is the label 5',
@@ -73,7 +73,7 @@ describe('RadioList', () => {
           value: 'this_is_the_label_8',
           sub_label: null,
           selected: false,
-          feedback: null
+          feedback: 'this answer has feedback'
         },
         {
           label: 'this is the label 9',
@@ -115,7 +115,7 @@ describe('RadioList', () => {
           value: 'this_is_the_label_14',
           sub_label: null,
           selected: true,
-          feedback: null
+          feedback: 'this answer has feedback'
         },
         {
           label: 'this is the label 15',
@@ -125,6 +125,10 @@ describe('RadioList', () => {
           feedback: null
         }
       ]
+    },
+    pivot: {
+      step_id: 6,
+      block_id: 63
     }
   };
 
