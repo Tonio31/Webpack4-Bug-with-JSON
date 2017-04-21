@@ -44,7 +44,7 @@ describe('Navbar Directive', () => {
       expect(hasSubMenuTags.length).to.eq(6);
     });
 
-    it('getBellowTitle() return the good title ', () => {
+    it('getBelowTitle() return the good title ', () => {
       let belowTitle = angular.element(template[0].querySelectorAll('.below-title'));
       expect(belowTitle.html()).to.eq('10 / 10 Modules');
     });
