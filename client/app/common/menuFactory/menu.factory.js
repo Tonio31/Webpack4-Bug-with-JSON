@@ -69,10 +69,11 @@ let MenuFactory = function( $log, $q, _, Data, STATES) {
 
       Data.getMenu().get({},
         (menuData) => {
-          $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully');
 
           // For now, we only have one Potentialife course, so we pick the first item in the list
           menu.data = menuData.menudata[0];
+
+          $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully menu=', menu);
 
           let states = [];
           findFinalState(menu.data, states);
