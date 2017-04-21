@@ -213,13 +213,13 @@ let appModule = angular.module('app', [
     $log.log('Start');
 
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    if ( JwtFactory.isLoginInfoAvailable() ) {
 
       $log.log(`User Auth did NOT expired, retrieve Menu and redirect to the good state`);
 
       // In case the user is already logged in (token is not expired), we need to set his user ID
       // form local storage in the User factory as the id will be used to retrieve participant information
-      // from server that is used on the home page and in expections reports to bugsnag
+      // from server that is used on the home page and in exceptions reports to bugsnag
       let userId = JwtFactory.getUserId();
       User.setUser({ id: userId });
       Data.getParticipantDetails();

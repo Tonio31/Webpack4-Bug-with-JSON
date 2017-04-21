@@ -37,7 +37,8 @@ let constantModule = angular.module('app.common.constant', [
   })
   .constant('SPINNERS', {
     COURSE_CONTENT: 'courseContentSpinner',
-    TOP_LEVEL: 'topLevelSpinner'
+    TOP_LEVEL: 'topLevelSpinner',
+    SAVING_STEP: 'savingStepSpinner'
   })
 .name;
 

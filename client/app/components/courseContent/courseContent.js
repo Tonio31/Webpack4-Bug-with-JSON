@@ -7,6 +7,7 @@ import ResourceFactory from 'common/resourceFactory/resource';
 import UtilityFactory from 'common/utility/utility';
 import MenuService from 'common/menuFactory/menu';
 import blockManager from 'components/blockManager/blockManager';
+import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 import constantModule from 'common/constants';
 import filtersModule from 'common/filters/filters';
 
@@ -18,6 +19,7 @@ let courseContentModule = angular.module('courseContent', [
   UtilityFactory,
   MenuService,
   constantModule,
+  LoadingSpinnerModule,
   blockManager,
   filtersModule,
   LogDecorator

@@ -1,4 +1,4 @@
-let JwtFactory = function($log, $window, $localStorage, TOKEN, USER_ID) {
+let JwtFactory = function($log, $window, $localStorage, $location, TOKEN, USER_ID) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -14,6 +14,10 @@ let JwtFactory = function($log, $window, $localStorage, TOKEN, USER_ID) {
     $localStorage[USER_ID] = iUserId;
   };
 
+  let logout = () => {
+    delete $localStorage[USER_ID];
+    delete $localStorage[TOKEN];
+  };
 
   // Retrieve Token from memory or local Storage if not yet stored in memory
   let getToken = () => {
@@ -31,23 +35,45 @@ let JwtFactory = function($log, $window, $localStorage, TOKEN, USER_ID) {
     return angular.fromJson($window.atob(base64));
   };
 
-  let isAuthedExpired = () => {
+  let isAuthExpired = () => {
 
     let token = getToken();
 
     if ( token ) {
-      let params = parseJwt(token);
+      try {
+        let params = parseJwt(token);
 
-      return Math.round(new Date().getTime() / 1000) >= params.exp;
+        return Math.round(new Date().getTime() / 1000) >= params.exp;
+      }
+      catch (error) {
+        $log.error('Error parsing the security token, delete Token and User_id');
+        logout();
+      }
     }
 
     return true;
   };
 
-  let logout = () => {
-    delete $localStorage[USER_ID];
-    delete $localStorage[TOKEN];
+  let isLoginInfoAvailable = () => {
+
+    let returnValue = false;
+
+    if ( !isAuthExpired() ) {
+      returnValue = true;
+    }
+    else {
+      let urlArgs = $location.search();
+      if ( urlArgs.hasOwnProperty('token') && urlArgs.hasOwnProperty('user_id') ) {
+        saveUserId(urlArgs.user_id);
+        saveToken(urlArgs.token);
+        $location.search({});
+        returnValue = true;
+      }
+    }
+
+    return returnValue;
   };
+
 
   return {
     saveToken,
@@ -55,7 +81,8 @@ let JwtFactory = function($log, $window, $localStorage, TOKEN, USER_ID) {
     getToken,
     getUserId,
     parseJwt,
-    isAuthedExpired,
+    isAuthExpired,
+    isLoginInfoAvailable,
     logout
   };
 };

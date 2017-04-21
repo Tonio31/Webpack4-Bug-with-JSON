@@ -32,7 +32,7 @@ module.exports = () => {
     new HtmlWebpackPlugin({
       template: 'client/indexMockBackEnd.html',
       //template: 'client/index.html',
-      inject: 'head',
+      inject: 'body',
       hash: true,
       favicon: 'client/app/common/favicon/favicon.ico'
     }),

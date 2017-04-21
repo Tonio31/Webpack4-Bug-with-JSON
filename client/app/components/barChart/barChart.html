@@ -1,7 +1,5 @@
 <div class="bar-chart">
-
-  <p class="bar-char-title text-center">{{ $ctrl.block.data.title }}</p>
-
+  <p class="chart-title text-center">{{ $ctrl.block.data.title }}</p>
   <c3chart bindto-id="barChart-{{$ctrl.block.id}}"
            padding-top="-60"
            labels-format-function="$ctrl.formatLabels"

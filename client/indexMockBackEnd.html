@@ -11,12 +11,16 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <base href="/">
     <style>
+      html,body {
+        height: 100%;
+      }
+
       @keyframes spinner {
         to {transform: rotate(360deg);}
       }
 
-      .spinner:before {
-        position: fixed;
+      .index-spinner:before {
+        position: absolute;
         top: 50%;
         left: 50%;
         margin-top: 10px;
@@ -31,7 +35,7 @@
         animation: spinner .6s linear infinite;
       }
 
-      .logo {
+      .index-logo {
         top: 50%;
         left: 50%;
         margin-top: -70px;
@@ -50,11 +54,11 @@
   </head>
 
 
-  <body ng-app="appMockBackEnd" ng-strict-di ng-cloak>
+  <body ng-app="appMockBackEnd" ng-strict-di>
 
     <app>
-        <div class="logo"></div>
-        <div class="spinner"></div>
+        <div class="index-logo"></div>
+        <div class="index-spinner"></div>
     </app>
 
 

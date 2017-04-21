@@ -5,9 +5,9 @@ import CourseContentModule from './courseContent';
 describe('CourseContent', () => {
   let $rootScope, $state, $stateRegistry, $q, $location, $componentController, $compile;
 
-  let Menu, Data, Utility, FORM_NAME_PREFIX;
+  let Menu, Data, Utility, SpinnerFactory, FORM_NAME_PREFIX, SPINNERS;
 
-  let goFn, retrieveMenuAndReturnStatesFn, removeUserInputSpy, saveUserInputSpy;
+  let goFn, retrieveMenuAndReturnStatesFn, removeUserInputSpy, saveUserInputSpy, spinnerShowSpy, spinnerHideSpy;
   let stateRegistryGetFn, stateRegistryDeregisterFn, stateRegistryRegisterFn;
 
   let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json');
@@ -39,7 +39,9 @@ describe('CourseContent', () => {
     Menu = $injector.get('Menu');
     Data = $injector.get('Data');
     Utility = $injector.get('Utility');
+    SpinnerFactory = $injector.get('SpinnerFactory');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
+    SPINNERS = $injector.get('SPINNERS');
 
     goFn = sinon.stub($state, 'go');
     retrieveMenuAndReturnStatesFn = sinon.stub(Menu, 'retrieveMenuAndReturnStates', () => {
@@ -60,6 +62,9 @@ describe('CourseContent', () => {
 
     removeUserInputSpy = sinon.spy(Utility, 'removeUserInputFromLocalStorage');
     saveUserInputSpy = sinon.spy(Utility, 'saveUserInputToLocalStorage');
+
+    spinnerShowSpy = sinon.spy(SpinnerFactory, 'show');
+    spinnerHideSpy = sinon.spy(SpinnerFactory, 'hide');
   }));
 
   describe('Controller', () => {
@@ -144,7 +149,7 @@ describe('CourseContent', () => {
       };
 
       // Add inputs to the saved input to submit to the server
-      controller.updateInputFields( 'c1.m1.s1.story_2', 'This is a text');
+      controller.updateInputFields( 'c1.m1.s1.story_2', 'This is a text' );
 
       controller.$onInit();
       controller.nextStep(form);
@@ -160,6 +165,8 @@ describe('CourseContent', () => {
       sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryRegisterFn, stateNotLocked);
+      sinon.assert.calledWith(spinnerShowSpy, SPINNERS.SAVING_STEP);
+      sinon.assert.calledWith(spinnerHideSpy, SPINNERS.SAVING_STEP);
       expect(controller.nextStepButton.label).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
       expect(controller.banner.text).to.eq('<p>Congratulations for finishing this module, you\'re a star<\/p>');
