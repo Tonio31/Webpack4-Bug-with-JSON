@@ -1,20 +1,17 @@
 
 class VideoController {
-  constructor($log, $scope) {
+  constructor($log, $scope, $window) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'VideoController' );
 
+    let ua = $window.navigator.userAgent;
+
     this.$onInit = () => {
 
       this.mediaInfo = {
-        sources: [
-          {
-            src: this.data.source,
-            type: 'video/mp4'
-          }
-        ],
+        // dont need the sources property because the resolution-change plugin deals with the source (sd & hd)
         tracks: [
           {
             kind: 'subtitles',
@@ -26,19 +23,58 @@ class VideoController {
         ],
         poster: this.data.poster
       };
+
+      this.mediaOptions = {
+        plugins: {
+          videoJsResolutionSwitcher: {
+            ui: true,
+            // Default resolution [{Number}, 'low', 'high'], (low == the lower of the numbers in data.player.res)
+            default: 'low',
+            // Display dynamic labels or gear symbol
+            dynamicLabel: true
+          }
+        }
+      };
+
+      // basic check for mobile User Agent:
+      if (ua.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i)) {
+        $log.info('navigator is probably mobile - provide SD video by default');
+        this.mediaOptions.plugins.videoJsResolutionSwitcher.default = 'low';
+      }
+      else {
+        $log.info('navigator is probably desktop - provide HD video by default');
+        this.mediaOptions.plugins.videoJsResolutionSwitcher.default = 'high';
+      }
+
     };
 
     // listen for the vjsVideoReady event
     $scope.$on('vjsVideoReady', (event, data) => {
-      // data contains `id`, `vid`, `player` and `controlBar`
-      $log.log('vjsVideoReady event was fired. event=', event, '  data.id=', data.id);
+
+      // update the video object with the sources
+      data.player.updateSrc([
+        {
+          src: this.data.source_sd,
+          type: 'video/mp4',
+          label: 'SD',
+          res: '320'
+        },
+        {
+          src: this.data.source_hd,
+          type: 'video/mp4',
+          label: 'HD',
+          res: '720'
+        }
+      ]);
+
+      // callback after resolution switched
+      // eslint-disable-next-line prefer-arrow-callback
+      data.player.on('resolutionchange', () => {
+        $log.info('Source changed to %s', data.player.src());
+      });
+
     });
 
-
-    // listen for when the vjs-media object changes
-    $scope.$on('vjsVideoMediaChanged', (event, data) => {
-      $log.log('vjsVideoMediaChanged event was fired. event=', event, '  data=', data);
-    });
   }
 }
 
