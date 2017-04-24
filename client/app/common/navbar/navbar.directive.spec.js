@@ -1,7 +1,7 @@
 import NavbarModule from './navbar';
 
 describe('Navbar Directive', () => {
-  let $rootScope, $compile;
+  let $rootScope, $compile, ZendeskWidget;
 
   let menuJson = require('app/mockBackEndResponse/menu-1.json');
 
@@ -11,6 +11,7 @@ describe('Navbar Directive', () => {
 
   beforeEach(window.module(NavbarModule, ($provide) => {
     $provide.value('translateFilter', mockTranslateFilter );
+    $provide.value('ZendeskWidget', ZendeskWidget );
   }));
 
   beforeEach(inject(($injector) => {
@@ -55,7 +56,7 @@ describe('Navbar Directive', () => {
       expect(module1.hasClass('menu-item')).to.eq(true);
 
       let menuButtonClass = angular.element(module1[0].querySelectorAll('.menu-button'));
-      expect(menuButtonClass.length).to.eq(12);
+      expect(menuButtonClass.length).to.eq(13);
     });
 
   });
