@@ -5,11 +5,11 @@ class PieChartController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'PieChartController' );
 
-    $log.log('PieChartController');
-
     this.chartColumns = [];
     this.chartData = [];
     this.chartGroup = '';
+
+    $log.log('PieChartController');
 
     this.$onInit = () => {
 
