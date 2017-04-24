@@ -40,6 +40,10 @@ let constantModule = angular.module('app.common.constant', [
     TOP_LEVEL: 'topLevelSpinner',
     SAVING_STEP: 'savingStepSpinner'
   })
+  .constant('APIS_URL', {
+    apiUrl: BACK_END_API,
+    apiViaSurvey: 'https://www.viacharacter.org/survey/api1/'
+  })
 .name;
 
 export default constantModule;

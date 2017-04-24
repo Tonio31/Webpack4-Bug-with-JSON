@@ -1,18 +1,20 @@
 import ResourceModule from './resource';
 
 describe('Resource', () => {
-  let User, Data, config;
+  let User, Data, APIS_URL;
   let $httpBackend;
 
   let participant = require('app/mockBackEndResponse/participants.json');
   let userId = 12;
 
+
   beforeEach(window.module(ResourceModule));
+
   beforeEach(inject(($injector) => {
     $httpBackend = $injector.get('$httpBackend');
     User = $injector.get('User');
     Data = $injector.get('Data');
-    config = $injector.get('config');
+    APIS_URL = $injector.get('APIS_URL');
 
     sinon.stub(User, 'getUserId', () => { return userId; } );
   }));
@@ -28,14 +30,14 @@ describe('Resource', () => {
     it('buildApiUrl(\'reflexion\', false) build an url without the userId', () => {
       let endPoint = 'reflexion';
 
-      expect(Data.buildApiUrl('reflexion', false)).to.deep.equal(`${config.apiUrl}${config.apiVersion}/${endPoint}`);
+      expect(Data.buildApiUrl('reflexion', false)).to.deep.equal(`${APIS_URL.apiUrl}/${endPoint}`);
     });
 
 
     it('buildApiUrl(\'reflexion\', true) build an url with the userId', () => {
       let endPoint = 'reflexion';
 
-      expect(Data.buildApiUrl('reflexion', true)).to.deep.equal(`${config.apiUrl}${config.apiVersion}/${endPoint}/${userId}`);
+      expect(Data.buildApiUrl('reflexion', true)).to.deep.equal(`${APIS_URL.apiUrl}/${endPoint}/${userId}`);
     });
 
     // This will test the retrieval of the menuData and the convertMenuData function
@@ -76,7 +78,7 @@ describe('Resource', () => {
 
     it('getDynamicContentPromise() return a resolved promise if the server returns no error', sinon.test( (done) => {
 
-      let regexpStep = new RegExp('https:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+      let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 200, { data: 'some data' }, {} ];
       });
@@ -96,7 +98,7 @@ describe('Resource', () => {
 
     it('getDynamicContentPromise() return a rejected promise if the server returns an error', sinon.test( (done) => {
 
-      let regexpStep = new RegExp('https:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+      let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 404, { data: 'some data' }, {} ];
       });
