@@ -1,13 +1,21 @@
 class MainController {
-  constructor(ZendeskWidget, User) {
+  constructor($log, ZendeskWidget, $stateParams, User) {
     'ngInject';
 
-    ZendeskWidget.identify({
-      name: `${User.getFirstName()} ${User.getLastName()}`,
-      email: User.getEmail()
-    });
+    // eslint-disable-next-line no-param-reassign
+    $log = $log.getInstance( 'MainController' );
 
-    ZendeskWidget.show();
+    if ( User.isUserDefined() ) {
+      ZendeskWidget.identify({
+        name: `${User.getFirstName()} ${User.getLastName()}`,
+        email: User.getEmail()
+      });
+
+      ZendeskWidget.show();
+    }
+
+    $log.debug('$stateParams=', $stateParams);
+    this.displayMenu = $stateParams.displayMenu;
   }
 }
 

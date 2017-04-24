@@ -1,4 +1,4 @@
-import UserModule from './userData';
+import UserModule from './courseContent';
 
 describe('User', () => {
   let User;

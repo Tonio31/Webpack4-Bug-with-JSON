@@ -15,7 +15,7 @@ import CourseContent from './courseContent/courseContent';
 let componentModule = angular.module('app.components', [
   Home,
   Main,
-  //FriendsSurvey,
+  FriendsSurvey,
   About,
   Login,
   retrieveCredentials,

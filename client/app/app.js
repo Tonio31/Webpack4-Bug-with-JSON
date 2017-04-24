@@ -204,8 +204,7 @@ let appModule = angular.module('app', [
       let fromState = trans.from().name; // Example of fromState: /home
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
 
-      SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
-      SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
+      SpinnerFactory.hideAll();
 
       $log.log('$transitions.onSuccess - fromAnyToAny - fromState=', fromState, '  toState=', toState);
 
@@ -226,13 +225,19 @@ let appModule = angular.module('app', [
     // ui-router by default reports an error when we start a transition but we don't finish it and superseed it for another one
     // See comment above for more explanations on why we do this for this particular login case
     $state.defaultErrorHandler( (error) => {
-      let fromState = error.detail.from();
-      let toState = error.detail.to();
 
-      if ( ( fromState.name === STATES.LOGIN || toState.name === STATES.LOGIN ) &&
-        error.message === 'The transition has been superseded by a different transition' ) {
-        $log.log('Transition from login to another page has been superseded, this is normal as part of login process');
-        $log.log(error);
+      if ( error.hasOwnProperty('detail') ) {
+        let fromState = error.detail.from();
+        let toState = error.detail.to();
+
+        if ( ( fromState.name === STATES.LOGIN || toState.name === STATES.LOGIN ) &&
+          error.message === 'The transition has been superseded by a different transition' ) {
+          $log.log('Transition from login to another page has been superseded, this is normal as part of login process');
+          $log.log(error);
+        }
+        else {
+          $log.error(error);
+        }
       }
       else {
         $log.error(error);
@@ -247,7 +252,12 @@ let appModule = angular.module('app', [
     $log.log('Start');
 
 
-    if ( JwtFactory.isLoginInfoAvailable() ) {
+    if ( $location.path() === STATES.RESET_PASSWORD ||
+      $location.path().includes(STATES.SURVEY) ) {
+      $log.log(`No need to retrieve User info as we target: ${$location.path()}`);
+      $urlRouter.sync();
+    }
+    else if ( JwtFactory.isLoginInfoAvailable() ) {
 
       $log.log(`User Auth did NOT expired, retrieve Menu and redirect to the good state`);
 
@@ -280,10 +290,6 @@ let appModule = angular.module('app', [
       (error) => {
         $log.log('error Retrieving menu error=', error);
       });
-    }
-    else if ( $location.path() === STATES.RESET_PASSWORD ) {
-      $log.log(`User Auth expired, Target page is reset password`);
-      $urlRouter.sync();
     }
     else {
       // If the user access the URL login ('/login'), we should not redirect him to the login page

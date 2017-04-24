@@ -17,7 +17,18 @@ let mainModule = angular.module('main', [
   'ngInject';
   $stateProvider.state(STATES.MAIN, {
     abstract: true,
-    component: 'main'
+    component: 'main',
+    params: {
+      displayMenu: true
+    }
+  });
+
+  $stateProvider.state(STATES.MAIN_NO_MENU, {
+    abstract: true,
+    component: 'main',
+    params: {
+      displayMenu: false
+    }
   });
 })
 

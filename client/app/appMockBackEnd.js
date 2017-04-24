@@ -199,6 +199,30 @@ angular.module( 'appMockBackEnd', [
     return errorReply;
   });
 
+  $httpBackend.whenGET(Data.buildApiUrl('survey?page=1')).respond( (method, url) => {
+    $log.log(`$httpBackend.whenGET(${url})`);
+
+    let survey = require('./mockBackEndResponse/360_survey_page_1.json');
+    return [ 200, survey, {} ];
+  });
+
+
+  $httpBackend.whenGET(Data.buildApiUrl('survey?page=2')).respond( (method, url) => {
+    $log.log(`$httpBackend.whenGET(${url})`);
+
+    let survey = require('./mockBackEndResponse/360_survey_page_2.json');
+    return [ 200, survey, {} ];
+  });
+
+
+  $httpBackend.whenGET(Data.buildApiUrl('survey?page=3')).respond( (method, url) => {
+    $log.log(`$httpBackend.whenGET(${url})`);
+
+    let survey = require('./mockBackEndResponse/360_survey_page_3.json');
+    return [ 200, survey, {} ];
+  });
+
+
   $httpBackend.whenGET(Data.buildApiUrl('menu', true)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
 

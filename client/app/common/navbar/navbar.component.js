@@ -4,7 +4,9 @@ import './navbar.scss';
 
 let navbarComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    displayMenu: '<'
+  },
   template,
   controller
 };
