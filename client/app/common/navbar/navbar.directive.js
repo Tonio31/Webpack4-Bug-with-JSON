@@ -81,7 +81,6 @@ let syncMenuAndState = function($rootScope, $log, $state, JwtFactory, STATES, Ze
 
       angular.element(element[0].getElementsByClassName('logout')[0]).on('click', (event) => {
         event.stopPropagation();
-        // hideMenuPanel(element[0], true);
         JwtFactory.logout();
         $state.go(STATES.LOGIN);
         ZendeskWidget.hide();
