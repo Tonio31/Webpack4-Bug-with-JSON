@@ -11,7 +11,7 @@ let pageNotFoundModule = angular.module('pageNotFound', [
   MenuService,
   constantModule
 ])
-  .config(($stateProvider, $urlRouterProvider, STATES) => {
+  .config(($stateProvider, STATES) => {
     'ngInject';
 
     $stateProvider
