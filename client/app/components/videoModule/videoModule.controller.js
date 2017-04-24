@@ -12,7 +12,13 @@ class VideoController {
         sources: [
           {
             src: this.data.source,
-            type: 'video/mp4'
+            type: 'video/mp4',
+            label: '360'
+          },
+          {
+            src: this.data.source,
+            type: 'video/mp4',
+            label: '720p'
           }
         ],
         tracks: [
@@ -30,6 +36,30 @@ class VideoController {
 
     // listen for the vjsVideoReady event
     $scope.$on('vjsVideoReady', (event, data) => {
+      $log.info('vjsVideoReady xxx', event, data);
+
+      data.player.plugins = {
+        videoJsResolutionSwitcher: {
+          default: 'high',
+          dynamicLabel: true
+        }
+      };
+      data.player.updateSrc = () => {
+        return [
+          {
+            src: 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
+            type: 'video/webm',
+            label: '360'
+          },
+          {
+            src: 'http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4',
+            type: 'video/mp4',
+            label: '720'
+          }
+        ];
+      };
+
+
       // data contains `id`, `vid`, `player` and `controlBar`
       $log.log('vjsVideoReady event was fired. event=', event, '  data.id=', data.id);
     });
