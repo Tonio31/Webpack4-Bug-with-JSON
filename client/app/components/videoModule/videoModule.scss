@@ -19,6 +19,19 @@
       color: $blue-focus;
     }
   }
+
+  .vjs-menu li.vjs-selected,
+  .vjs-menu li.vjs-selected:focus,
+  .vjs-menu li.vjs-selected:hover {
+    background-color: $video-colour-highlight;
+    color: $white;
+  }
+
+  .vjs-menu .vjs-menu-item {
+    background-color: $white;
+    color: $oil;
+  }
+
 }
 
 $buttonXY: 8rem;

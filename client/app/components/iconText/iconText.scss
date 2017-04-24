@@ -81,12 +81,13 @@
 
     .text-content {
       padding-left: 1rem;
-    }
-
-    @media #{$small-only}, #{$medium-only} {
-      .text-content {
-        padding-top: 1rem;
+      &.y-center-parent {
         text-align: center;
+        @media #{$medium-up} {
+          padding-top: 1rem;
+          text-align: left;
+        }
+
       }
     }
   }

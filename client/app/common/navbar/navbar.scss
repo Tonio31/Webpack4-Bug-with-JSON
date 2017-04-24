@@ -190,8 +190,13 @@ $mainTitleMenuColor: #a0a0a0;
       cursor: pointer;
       position: absolute;
       bottom: 0;
+      padding-top: .3334rem;
+      padding-bottom: .3334rem;
       .pl-menu-button {
         font-size: rem_calc(30);
+        &::before {
+          margin-top: rem_calc(15px);
+        }
       }
     }
   }

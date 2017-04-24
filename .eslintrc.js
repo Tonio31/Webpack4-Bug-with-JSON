@@ -24,7 +24,8 @@ module.exports = exports = {
     "_": true,
     "require": true,
     "ENVIRONMENT": true,
-    "VERSION": true
+    "VERSION": true,
+    "BACK_END_API": true
   },
   "rules": {
     "accessor-pairs": [

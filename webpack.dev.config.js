@@ -39,7 +39,8 @@ module.exports = () => {
 
 
     new webpack.DefinePlugin({
-      ENVIRONMENT: JSON.stringify('development')
+      ENVIRONMENT: JSON.stringify('development'),
+      BACK_END_API: JSON.stringify(`https://localhost.com`)
     }),
 
     // Adds webpack HMR support. It act's like livereload,

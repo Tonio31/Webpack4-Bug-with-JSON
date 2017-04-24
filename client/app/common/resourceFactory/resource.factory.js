@@ -1,11 +1,11 @@
-let ResourceFactory = function($log, $q, $resource, User, config) {
+let ResourceFactory = function($log, $q, $resource, User, APIS_URL) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
   $log = $log.getInstance('ResourceFactory');
 
   let buildApiUrl = (iTypeOfApi, iUserId = false) => {
-    let apiUrl = `${config.apiUrl}${config.apiVersion}/${iTypeOfApi}`;
+    let apiUrl = `${APIS_URL.apiUrl}/${iTypeOfApi}`;
 
     if ( iUserId ) {
       apiUrl += `/${User.getUserId()}`;
@@ -97,7 +97,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
   // The following is used by ViaSurvey module
   let viaSurvey = (iEndPointApi) => {
     $log.log('viaSurvey()  iEndPointApi=', iEndPointApi);
-    return new ($resource(`${config.apiViaSurvey}${iEndPointApi}`))();
+    return new ($resource(`${APIS_URL.apiViaSurvey}${iEndPointApi}`))();
   };
 
   return {
