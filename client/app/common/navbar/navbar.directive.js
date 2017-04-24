@@ -84,7 +84,6 @@ let syncMenuAndState = function($rootScope, $log, $state, JwtFactory, STATES, Ze
         JwtFactory.logout();
         $state.go(STATES.LOGIN);
         ZendeskWidget.hide();
-        $log.log('logout clicked');
       });
 
     }
