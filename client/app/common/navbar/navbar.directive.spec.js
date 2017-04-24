@@ -5,14 +5,20 @@ describe('Navbar Directive', () => {
 
   let menuJson = require('app/mockBackEndResponse/menu-1.json');
 
-  beforeEach(window.module(NavbarModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(NavbarModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $compile = $injector.get('$compile');
   }));
 
-  describe('<menu-item></menu-item>', () => {
+  describe('Entire Menu <menu-item></menu-item>', () => {
     // view layer specs.
     let scope, template;
 
@@ -38,6 +44,11 @@ describe('Navbar Directive', () => {
       expect(hasSubMenuTags.length).to.eq(6);
     });
 
+    it('getBelowTitle() return the good title ', () => {
+      let belowTitle = angular.element(template[0].querySelectorAll('.below-title'));
+      expect(belowTitle.html()).to.eq('10 / 10 Modules');
+    });
+
 
     it('Count the number of element that have .menu-button class', () => {
       let module1 = angular.element(template[0].querySelector('#\\/potentialife-course\\/cycle-1\\/module-1'));
@@ -48,6 +59,7 @@ describe('Navbar Directive', () => {
     });
 
   });
+
 
   describe('<menu-button data="child"></menu-button>', () => {
     // view layer specs.
