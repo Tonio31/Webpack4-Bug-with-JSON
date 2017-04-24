@@ -48,7 +48,13 @@ describe('Video', () => {
         sources: [
           {
             src: videoDataBindings.source,
-            type: 'video/mp4'
+            type: 'video/mp4',
+            label: '360'
+          },
+          {
+            src: videoDataBindings.source,
+            type: 'video/mp4',
+            label: '720p'
           }
         ],
         tracks: [
