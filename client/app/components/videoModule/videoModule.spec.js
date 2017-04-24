@@ -8,7 +8,11 @@ describe('Video', () => {
 
   let videoDataBindings = {
     poster: 'https://d2ahrnswp9nefw.cloudfront.net/videoplace.jpg',
-    source: 'https://d2ahrnswp9nefw.cloudfront.net/s.1.1/S1-1-1-new.mp4'
+    source: 'https://d2ahrnswp9nefw.cloudfront.net/s.1.1/S1-1-1-new.mp4',
+    caption_label: 'caption_label',
+    caption_src: 'caption_src',
+    caption_lang: 'caption_lang',
+    caption_default: 'caption_default'
   };
 
   beforeEach(window.module(VideoModule));
@@ -45,18 +49,7 @@ describe('Video', () => {
     it('media info to be populated with the bindings form data', () => {
 
       let expectedMediaInfo = {
-        sources: [
-          {
-            src: videoDataBindings.source,
-            type: 'video/mp4',
-            label: '360'
-          },
-          {
-            src: videoDataBindings.source,
-            type: 'video/mp4',
-            label: '720p'
-          }
-        ],
+
         tracks: [
           {
             kind: 'subtitles',
@@ -86,7 +79,8 @@ describe('Video', () => {
     });
 
     it('it contains a video tag', () => {
-      expect(template.find('video').html()).to.contain(videoDataBindings.source);
+      let video = angular.element(template[0].querySelector('.vjs-tech'));
+      expect(video.length).to.eq(1);
     });
   });
 

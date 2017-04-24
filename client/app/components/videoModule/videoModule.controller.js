@@ -6,21 +6,13 @@ class VideoController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'VideoController' );
 
+
+
     this.$onInit = () => {
 
+
       this.mediaInfo = {
-        sources: [
-          {
-            src: this.data.source,
-            type: 'video/mp4',
-            label: '360'
-          },
-          {
-            src: this.data.source,
-            type: 'video/mp4',
-            label: '720p'
-          }
-        ],
+        // dont need the sources property because the resolution-change plugin deals with the source (sd & hd)
         tracks: [
           {
             kind: 'subtitles',
@@ -32,43 +24,46 @@ class VideoController {
         ],
         poster: this.data.poster
       };
+
+      this.mediaOptions = {
+        plugins: {
+          videoJsResolutionSwitcher: {
+            ui: true,
+            default: 'low', // Default resolution [{Number}, 'low', 'high'],
+            dynamicLabel: true // Display dynamic labels or gear symbol
+          }
+        }
+      };
+
     };
 
     // listen for the vjsVideoReady event
     $scope.$on('vjsVideoReady', (event, data) => {
-      $log.info('vjsVideoReady xxx', event, data);
 
-      data.player.plugins = {
-        videoJsResolutionSwitcher: {
-          default: 'high',
-          dynamicLabel: true
+      // update the video object with the sources
+      data.player.updateSrc([
+        {
+          src: this.data.source_sd,
+          type: 'video/mp4',
+          label: 'SD',
+          res: '360'
+        },
+        {
+          src: this.data.source_hd,
+          type: 'video/mp4',
+          label: 'HD',
+          res: '1080'
         }
-      };
-      data.player.updateSrc = () => {
-        return [
-          {
-            src: 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
-            type: 'video/webm',
-            label: '360'
-          },
-          {
-            src: 'http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4',
-            type: 'video/mp4',
-            label: '720'
-          }
-        ];
-      };
+      ]);
 
+      // callback after resolution switched
+      // eslint-disable-next-line prefer-arrow-callback
+      data.player.on('resolutionchange', () => {
+        $log.info('Source changed to %s', data.player.src());
+      });
 
-      // data contains `id`, `vid`, `player` and `controlBar`
-      $log.log('vjsVideoReady event was fired. event=', event, '  data.id=', data.id);
     });
 
-
-    // listen for when the vjs-media object changes
-    $scope.$on('vjsVideoMediaChanged', (event, data) => {
-      $log.log('vjsVideoMediaChanged event was fired. event=', event, '  data=', data);
-    });
   }
 }
 
