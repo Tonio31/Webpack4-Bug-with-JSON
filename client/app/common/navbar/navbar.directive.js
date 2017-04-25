@@ -1,4 +1,4 @@
-let syncMenuAndState = function($rootScope, $log) {
+let syncMenuAndState = function($rootScope, $log, $state, JwtFactory, STATES, ZendeskWidget) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -78,6 +78,14 @@ let syncMenuAndState = function($rootScope, $log) {
         hideMenuPanel(element[0], true);
         $log.log('BACK Clicked!! element=', element[0].id, '   event=', event);
       });
+
+      angular.element(element[0].getElementsByClassName('logout')[0]).on('click', (event) => {
+        event.stopPropagation();
+        JwtFactory.logout();
+        $state.go(STATES.LOGIN);
+        ZendeskWidget.hide();
+      });
+
     }
   };
 };
