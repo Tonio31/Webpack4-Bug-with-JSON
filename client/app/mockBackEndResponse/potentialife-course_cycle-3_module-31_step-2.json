@@ -145,7 +145,7 @@
       "program_data_code": "c1.m1.s1.checkbox_1",
       "data": {
         "config": {
-          "min_selected": 2,
+          "min_selected": 3,
           "max_selected": 3
         },
         "label": "label: this is the label",
@@ -203,7 +203,7 @@
           {
             "label": "label: Meeting with an Alien8",
             "value": "alien8",
-            "checked": true
+            "checked": false
           },
           {
             "label": "label: Meeting with my bed9",
