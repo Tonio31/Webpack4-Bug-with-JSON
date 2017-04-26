@@ -7,7 +7,7 @@ import LogDecorator from 'common/logDecorator/logDecorator';
 import MenuService from 'common/menuFactory/menu';
 import constantModule from 'common/constants';
 import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
-import { syncMenuAndState, menuItem, menuButton } from './navbar.directive';
+import { syncMenuAndState, menuItem, menuButton, plDisableLink } from './navbar.directive';
 
 require('angular-foundation');
 
@@ -25,6 +25,7 @@ let navbarModule = angular.module('navbar', [
   .directive('menuItem', menuItem )
   .directive('menuButton', menuButton )
   .directive('syncState', syncMenuAndState )
+  .directive('plDisableLink', plDisableLink )
   .name;
 
 export default navbarModule;

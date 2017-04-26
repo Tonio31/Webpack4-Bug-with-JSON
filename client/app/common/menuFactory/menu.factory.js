@@ -55,6 +55,14 @@ let MenuFactory = function( $log, $q, Data, STATES) {
   //                                           Public Interface
   // ********************************************************************************************************
 
+  let isMenuRetrieved = () => {
+    if ( Object.keys(menu.data).length === 0 ) {
+      return false;
+    }
+
+    return true;
+  };
+
   let getMenu = () => {
     return menu;
   };
@@ -97,6 +105,7 @@ let MenuFactory = function( $log, $q, Data, STATES) {
   return {
     getMenu,
     retrieveMenuAndReturnStates,
+    isMenuRetrieved,
     getCurrentProgression
   };
 };

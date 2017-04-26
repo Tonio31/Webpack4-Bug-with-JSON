@@ -1,0 +1,554 @@
+{
+  "id": 1,
+  "name": "Authenticity Survey",
+  "fullUrl": "/360-Survey/2",
+  "slug": null,
+  "description": null,
+  "content": null,
+  "status": null,
+  "breadcrumbs": null,
+  "next_page_url": "/360-Survey/3",
+  "prev_page_url": "/360-Survey/1",
+  "blocks": [
+    {
+      "id": 10,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_1",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "1. Tends to show empathy to other people's concerns",
+        "name": "Tends to show empathy",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 20,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_2",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "2. Responds to challenges optimistically",
+        "name": "Responds to challenges",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": true,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 30,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_3",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "3. When upset with someone, is able to display sensitivity to that person's feelings and thoughts",
+        "name": "When upset with someone",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": true,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 40,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_4",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "4. Shows that they care about bringing out the best in others",
+        "name": "Shows that they care",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": true,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 50,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_5",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "5. Makes an effort to help others to identify and use their strengths",
+        "name": "Makes an effort to help",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": true,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 60,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_6",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "6. Makes an effort to understand different perspectives",
+        "name": "Makes an effort to understand",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": true,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 70,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_7",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "7. Lets others know who they truly are as a person",
+        "name": "Lets others know who",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": true,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 80,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_8",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "8. Shows a sense of responsibility to help others",
+        "name": "Shows a sense of responsibility",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": true,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 90,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_6",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "9. Stands up for others even when there is a risk to their status or reputation",
+        "name": "Stands up for others",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": true,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    },
+    {
+      "id": 100,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m5.s6.radio_10",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "10. Apologizes when he/she makes a mistake",
+        "name": "Apologizes",
+        "items": [
+          {
+            "label": "Never",
+            "value": "Never",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Rarely",
+            "value": "Rarely",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Sometimes",
+            "value": "Sometimes",
+            "sub_label": null,
+            "selected": false,
+            "feedback": null
+          },
+          {
+            "label": "Often",
+            "value": "Often",
+            "sub_label": null,
+            "selected": false,
+            "feedback": "this answer has feedback"
+          },
+          {
+            "label": "Always",
+            "value": "Always",
+            "sub_label": null,
+            "selected": true,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    }
+  ]
+}

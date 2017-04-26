@@ -54,10 +54,21 @@ let SpinnerFactory = function($log) {
     spinner.show = false;
   };
 
+
+  let hideAll = () => {
+    $log.log('hideAll() - hide all spinners');
+    for ( let spinnerName in spinners ) {
+      if ( spinners.hasOwnProperty(spinnerName) ) {
+        spinners[spinnerName].show = false;
+      }
+    }
+  };
+
   return {
     createNewSpinner,
     show,
     hide,
+    hideAll,
     getSpinner
   };
 };

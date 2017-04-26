@@ -56,18 +56,46 @@ describe('Navbar', () => {
     });
   });
 
-  describe('View', () => {
+  describe('View <navbar display-menu="true"></navbar>', () => {
     // view layer specs.
     let scope, template;
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<navbar></navbar>')(scope);
+      scope.displayMenu = true;
+      template = $compile('<navbar display-menu="displayMenu"></navbar>')(scope);
       scope.$apply();
     });
 
     it('has name in template', () => {
       expect(template.find('h1').find('a').html()).to.eq('Potentialife');
+    });
+
+
+    it('<aside>(left menu) and hamburger icon menu are displayed', () => {
+      expect(template.find('aside').html()).to.not.be.an('undefined');
+      let hambergerIcon = angular.element(template[0].querySelectorAll('.menu-toggle-button'));
+      expect(hambergerIcon.html()).to.not.be.an('undefined');
+    });
+
+  });
+
+
+  describe('View <navbar display-menu="false"></navbar>', () => {
+    // view layer specs.
+    let scope, template;
+
+    beforeEach(() => {
+      scope = $rootScope.$new();
+      scope.displayMenu = false;
+      template = $compile('<navbar display-menu="displayMenu"></navbar>')(scope);
+      scope.$apply();
+    });
+
+    it('<aside>(left menu) and hamburger icon menu are NOT displayed', () => {
+      expect(template.find('aside').html()).to.be.an('undefined');
+      let hambergerIcon = angular.element(template[0].querySelectorAll('.menu-toggle-button'));
+      expect(hambergerIcon.html()).to.be.an('undefined');
     });
 
   });

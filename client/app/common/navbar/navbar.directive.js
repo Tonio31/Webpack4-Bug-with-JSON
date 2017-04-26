@@ -190,8 +190,27 @@ let menuButton = function($log) {
   };
 };
 
+
+let plDisableLink = function() {
+  'ngInject';
+  return {
+    restrict: 'A',
+    scope: {
+      disable: '=plDisableLink'
+    },
+    link: function( $scope, element ) {
+      element.bind('click', (event) => {
+        if ( $scope.disable ) {
+          event.preventDefault();
+        }
+      });
+    }
+  };
+};
+
 export {
   syncMenuAndState,
   menuItem,
-  menuButton
+  menuButton,
+  plDisableLink
 };

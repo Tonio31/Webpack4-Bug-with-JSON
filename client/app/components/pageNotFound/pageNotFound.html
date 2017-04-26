@@ -6,7 +6,7 @@
       <h1>{{ 'WOOPS_UNEXPECTED' | translate }}</h1>
       <h3>{{ 'PAGE_DONT_EXIST' | translate:$ctrl.intendedUrl }}</h3>
 
-      <button class="radius" type="button" ng-click="$ctrl.resumeProgress()">{{ 'RESUME_YOUR_PROGRESS' | translate }}</button>
+      <button ng-if="$ctrl.displayResumeProgress" class="radius" type="button" ng-click="$ctrl.resumeProgress()">{{ 'RESUME_YOUR_PROGRESS' | translate }}</button>
     </div>
   </div>
 </div>

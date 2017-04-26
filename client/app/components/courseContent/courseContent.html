@@ -60,8 +60,20 @@
     <div class="navigation y-center-parent">
       <div class="row y-center-child">
         <div class="small-12 medium-8 columns small-centered">
-          <button ng-show="$ctrl.displayPreviousButton" class="secondary radius left" type="button" ng-click="$ctrl.previousStep()">&lt; {{ 'PREVIOUS' | translate }}</button>
-          <button ng-disabled="$ctrl.savingStepSpinner.show" ng-class="$ctrl.nextStepButton.class" class="radius right" type="submit" ng-click="$ctrl.nextStep(topLevelForm)">{{$ctrl.nextStepButton.label}}</button>
+          <button ng-show="$ctrl.displayPreviousButton"
+                  class="secondary radius left"
+                  type="button"
+                  ng-click="$ctrl.previousStep()">
+            &lt; {{ 'PREVIOUS' | translate }}
+          </button>
+          <button ng-show="$ctrl.displayNextButton"
+                  ng-disabled="$ctrl.savingStepSpinner.show"
+                  ng-class="$ctrl.nextStepButton.class"
+                  class="radius right"
+                  type="submit"
+                  ng-click="$ctrl.nextStep(topLevelForm)">
+            {{$ctrl.nextStepButton.label}}
+          </button>
         </div>
       </div>
     </div> <!-- END .navigation -->
