@@ -46,6 +46,9 @@
   }
 
   /* general */
+  html,body {
+    height: 100%;
+  }
 
   h1, h2, h3, h4, p, li, th {
     font-family: "Montserrat", sans-serif;
@@ -147,19 +150,14 @@
   .page {
     background: white;
     position: relative;
-    width: 21cm;
-    height: 29.7cm;
+    width: 100%;
+    height: 100%;
     display: block;
     margin: 0 auto;
-    margin-bottom: 0.5cm;
-    page-break-after: always;
   }
 
   @media all {
-    /*html, body {
-      width: 210mm;
-      height: 297mm;
-    }*/
+
     .page {
       margin: 0;
       page-break-after: always;
