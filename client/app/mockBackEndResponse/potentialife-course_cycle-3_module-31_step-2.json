@@ -150,7 +150,7 @@
         },
         "label": "label: this is the label",
         "placeholder": "placeholder: this is the placholder",
-        "name": "name: this is the name",
+        "name": "name",
         "items": [
           {
             "label": "label: Meeting with Con",

@@ -26,7 +26,7 @@
                    ng-required="!$ctrl.checkIfValid()"
                    ng-model="$ctrl.selection[item.value]"
                    ng-model-options="{allowInvalid: true}"
-                   ng-change="$ctrl.actionOnUserInput(this[$ctrl.FORM_NAME][$ctrl.CHECKBOX_GROUP_NAME]);">
+                   ng-change="$ctrl.actionOnUserInput(this[$ctrl.FORM_NAME]);">
             <span class="shim"></span>
           </label>
           <blockquote ng-if="item.feedback" ng-show="$ctrl.selection[item.value]" class="blockquote list-wrap fgcolour-success">
