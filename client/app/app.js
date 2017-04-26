@@ -168,7 +168,7 @@ let appModule = angular.module('app', [
           else {
             $log.log(`Redirect to 404 PageNotFound because stateToRedirect=${stateToRedirect}
                       $state.href(stateToRedirect)=${$state.href(stateToRedirect)}`);
-            deferred.resolve($state.target(STATES.PAGE_NOT_FOUND));
+            deferred.resolve($state.target(STATES.PAGE_NOT_FOUND, { intendedUrl: stateToRedirect }));
           }
         }
         else {
@@ -249,13 +249,13 @@ let appModule = angular.module('app', [
       $log.info('Invalid transition from ', from, '  to ', to);
     });
 
-    $log.log('Start');
+    $log.log('Start - $location.path()=', $location.path());
 
 
     if ( $location.path() === STATES.RESET_PASSWORD ||
-      $location.path().includes(STATES.SURVEY) ) {
+         $location.path().includes(STATES.SURVEY) ) {
       $log.log(`No need to retrieve User info as we target: ${$location.path()}`);
-      $urlRouter.sync();
+      $urlRouter.listen();
     }
     else if ( JwtFactory.isLoginInfoAvailable() ) {
 

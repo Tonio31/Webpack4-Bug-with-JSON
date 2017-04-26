@@ -1,52 +1,38 @@
-import UserModule from './courseContent';
+import CourseContentFactory from './courseContent';
 
-describe('User', () => {
-  let User;
+describe('CourseContentFactory', () => {
+  let ContentFactory;
 
-  beforeEach(window.module(UserModule));
+  beforeEach(window.module(CourseContentFactory));
   beforeEach(inject(($injector) => {
-    User = $injector.get('User');
+    ContentFactory = $injector.get('ContentFactory');
   }));
 
-  describe('User Factory', () => {
 
-    it('checks that we can set and get the user data', () => {
+  it('updateInputFields() - Stores data correctly in inputs', () => {
+    ContentFactory.updateInputFields( 'c1.m1.s1.story_2', 'This is a text' );
+    expect(ContentFactory.getInputFields()).to.deep.equal({ 'c1.m1.s1.story_2': 'This is a text' });
+  });
 
-      let userToStore = {
-        id: '12',
-        token: '#@&*#&^$*$&#)*%',
-        firstName: 'Tonio',
-        lastName: 'Mandela',
-        email: 'tonio.mandela@gmail.com'
-      };
 
-      User.setUser(userToStore);
+  it('clearInputFields() - delete data inside inputs', () => {
+    ContentFactory.updateInputFields( 'c1.m1.s1.story_2', 'This is a text' );
+    ContentFactory.clearInputFields();
+    expect(ContentFactory.getInputFields()).to.deep.equal({});
+  });
 
-      expect(User.getFirstName()).to.equal(userToStore.firstName);
-      expect(User.getLastName()).to.equal(userToStore.lastName);
-      expect(User.getSecurityToken()).to.equal(userToStore.token);
-      expect(User.getUserId()).to.equal(userToStore.id);
-      expect(User.getEmail()).to.equal(userToStore.email);
-    });
 
-    it('isUserDefined() returns true if any of the fields are defined', () => {
 
-      let userToStore = {
-        id: '12',
-        token: '#@&*#&^$*$&#)*%',
-        firstName: 'Tonio',
-        lastName: 'Mandela',
-        email: 'tonio.mandela@gmail.com'
-      };
+  it('saveDataToSendLater() - Stores data correctly in additionalDataToSave', () => {
+    ContentFactory.saveDataToSendLater( 'c1.m1.s1.story_2', 'This is a text' );
+    expect(ContentFactory.getAdditionalData()).to.deep.equal({ 'c1.m1.s1.story_2': 'This is a text' });
+  });
 
-      User.setUser(userToStore);
 
-      expect(User.isUserDefined()).to.equal(true);
-    });
-
-    it('isUserDefined() returns false if the user is not initialised', () => {
-      expect(User.isUserDefined()).to.equal(false);
-    });
+  it('clearAdditionalData() - delete data inside additionalDataToSave', () => {
+    ContentFactory.saveDataToSendLater( 'c1.m1.s1.story_2', 'This is a text' );
+    ContentFactory.clearAdditionalData();
+    expect(ContentFactory.getAdditionalData()).to.deep.equal({});
   });
 
 

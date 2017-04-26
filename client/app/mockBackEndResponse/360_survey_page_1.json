@@ -1,13 +1,13 @@
 {
   "id": 1,
   "name": "",
-  "fullUrl": "360_Survey/1",
+  "fullUrl": "/360-Survey/1",
   "slug": null,
   "description": null,
   "content": null,
   "status": null,
   "breadcrumbs": null,
-  "next_page_url": "/360_Survey/2",
+  "next_page_url": "/360-Survey/2",
   "prev_page_url": null,
   "blocks": [
     {

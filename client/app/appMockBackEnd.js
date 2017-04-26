@@ -25,7 +25,7 @@ angular.module( 'appMockBackEnd', [
   'ngInject';
 
   // Time in ms to simulate a delay in back end response
-  let DELAY_HTTP_RESPONSE_TIME = 0;
+  let DELAY_HTTP_RESPONSE_TIME = 1000;
 
   $provide.decorator('$httpBackend', ($delegate) => {
     let proxy = function(method, url, data, callback, headers) {
@@ -239,21 +239,24 @@ angular.module( 'appMockBackEnd', [
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     let dataObject = angular.fromJson(data);
+    let responseHeaders = {
+      stepId: dataObject.stepId,
+      status: 'ok'
+    };
+
+    let responseContent = {
+      congrats: '<p>Congratulations for finishing this step, you\'re a star<\/p>'
+    };
+
 
     if ( !JwtFactory.isAuthExpired() ) {
       // Simulate a good answer
 
       updateMenu(dataObject.fullUrl);
 
-      let responseHeaders = {
-        stepId: dataObject.stepId,
-        status: 'ok'
-      };
-
-      let responseContent = {
-        congrats: '<p>Congratulations for finishing this module, you\'re a star<\/p>'
-      };
-
+      return [ 200, responseContent, responseHeaders ];
+    }
+    else if ( dataObject.fullUrl.includes('360_Survey') ) {
       return [ 200, responseContent, responseHeaders ];
     }
 

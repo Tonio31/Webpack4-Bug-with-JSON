@@ -192,7 +192,7 @@ let plDisableLink = function() {
     },
     link: function( $scope, element ) {
       element.bind('click', (event) => {
-        if ( !$scope.enabled ) {
+        if ( $scope.disable ) {
           event.preventDefault();
         }
       });

@@ -2,10 +2,10 @@ let CourseContentFactory = function($log) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
-  $log = $log.getInstance( 'CourseContentController' );
+  $log = $log.getInstance( 'CourseContentFactory' );
 
-  let inputs = [];
-  let additionalDataToSave = [];
+  let inputs = {};
+  let additionalDataToSave = {};
 
   let updateInputFields = (iIdentifier, iNewValue) => {
     $log.log('updateInputFields() iIdentifier=', iIdentifier, '    iNewValue=', iNewValue);
@@ -18,8 +18,11 @@ let CourseContentFactory = function($log) {
   };
 
   let clearInputFields = () => {
-    $log.log('clearInputFields()');
-    inputs.length = 0;
+    $log.log('clearInputFields() BEFORE inputs =', inputs);
+    for ( let key of Object.keys(inputs) ) {
+      delete inputs[key];
+    }
+    $log.log('clearInputFields() AFTER inputs =', inputs);
   };
 
   let saveDataToSendLater = (iIdentifier, iNewValue) => {
@@ -34,7 +37,9 @@ let CourseContentFactory = function($log) {
 
   let clearAdditionalData = () => {
     $log.log('clearAdditionalData()');
-    additionalDataToSave.length = 0;
+    for ( let key of Object.keys(additionalDataToSave) ) {
+      delete additionalDataToSave[key];
+    }
   };
 
 

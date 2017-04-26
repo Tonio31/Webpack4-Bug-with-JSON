@@ -1,5 +1,8 @@
 class MainController {
-  constructor($log, ZendeskWidget, $stateParams, User) {
+  constructor( $log,
+               ZendeskWidget,
+               $stateParams,
+               User ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -14,7 +17,7 @@ class MainController {
       ZendeskWidget.show();
     }
 
-    $log.debug('$stateParams=', $stateParams);
+    $log.log('$stateParams=', $stateParams);
     this.displayMenu = $stateParams.displayMenu;
   }
 }

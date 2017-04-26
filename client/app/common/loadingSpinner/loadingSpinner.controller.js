@@ -8,7 +8,7 @@ class LoadingSpinnerController {
 
     this.$onInit = () => {
 
-      $log.debug('$onInit() - this.name=', this.name, 'this.show=', this.show, '   this.displayLogo=', this.displayLogo);
+      $log.log('$onInit() - this.name=', this.name, 'this.show=', this.show, '   this.displayLogo=', this.displayLogo);
 
       // By default, show the logo
       if ( angular.isUndefined(this.displayLogo) ) {

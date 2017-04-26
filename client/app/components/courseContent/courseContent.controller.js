@@ -66,13 +66,34 @@ class CourseContentController {
       }
     };
 
+    this.calculateButtonInfo = (iIsStepCompleted, iSkipShowingBanner, iNextState, iPreviousState) => {
+
+      if ( iPreviousState ) {
+        this.displayPreviousButton = true;
+      }
+      else {
+        this.displayPreviousButton = false;
+      }
+
+      if ( iNextState ) {
+        this.displayNextButton = true;
+        this.updateNextStepButtonStyle(iIsStepCompleted, iSkipShowingBanner, iNextState);
+      }
+      else {
+        this.displayNextButton = false;
+      }
+
+
+    };
+
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
       this.skipShowingBanner = this.content.skipShowingBanner;
       this.isStepCompleted = ( this.content.status === 'completed' );
-      this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
-
-      this.displayPreviousButton = ( this.content.prev_page_url !== null );
+      this.calculateButtonInfo( this.isStepCompleted,
+                                this.skipShowingBanner,
+                                this.content.next_page_url,
+                                this.content.prev_page_url );
 
       ContentFactory.clearInputFields();
       $log.log('$onInit - END');
@@ -123,6 +144,18 @@ class CourseContentController {
       return programData;
     };
 
+    this.actionsAfterSaveSuccessful = (iBannerCongratsMsg) => {
+      this.isStepCompleted = true;
+      this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
+
+      if ( this.skipShowingBanner ) {
+        // If we skip showing banner, we need to change state just after updating the menu
+        $state.go(this.content.next_page_url);
+      }
+      else {
+        this.setBannerSuccess(iBannerCongratsMsg);
+      }
+    };
 
     this.nextStep = (iForm) => {
 
@@ -147,7 +180,7 @@ class CourseContentController {
           // If there was user input saved in local storage, delete it as it has been successfully saved on server side
           Utility.removeUserInputFromLocalStorage(ContentFactory.getInputFields());
 
-          if ( this.displayMenu ) {
+          if ( Menu.isMenuRetrieved() ) {
             // This will resend a query to the backend to get the menu, the status of the step
             // will be updated and the directive menuButton will update automatically the menu
             Menu.retrieveMenuAndReturnStates().then( (states) => {
@@ -164,16 +197,7 @@ class CourseContentController {
                 }
               });
 
-              this.isStepCompleted = true;
-              this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
-
-              if ( this.skipShowingBanner ) {
-                // If we skip showing banner, we need to change state just after updating the menu
-                $state.go(this.content.next_page_url);
-              }
-              else {
-                this.setBannerSuccess(dataBackFromServer.congrats);
-              }
+              this.actionsAfterSaveSuccessful(dataBackFromServer.congrats);
             },
             (error) => {
               $log.log('error Retrieving menu error=', error);
@@ -181,11 +205,8 @@ class CourseContentController {
               this.setBannerError();
             });
           }
-          else if ( this.skipShowingBanner ) {
-            $state.go(this.content.next_page_url);
-          }
           else {
-            this.setBannerSuccess(dataBackFromServer.congrats);
+            this.actionsAfterSaveSuccessful(dataBackFromServer.congrats);
           }
         }, (error) => {
           // Display error Banner for the user

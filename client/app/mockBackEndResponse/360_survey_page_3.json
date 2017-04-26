@@ -1,58 +1,25 @@
 {
   "id": 1,
-  "name": "Inputs",
-  "fullUrl": "360_Survey/3",
+  "name": "",
+  "fullUrl": "360-Survey/3",
   "slug": null,
   "description": null,
   "content": null,
   "status": null,
   "breadcrumbs": null,
   "next_page_url": null,
-  "prev_page_url": "/360_Survey/2",
+  "prev_page_url": null,
   "blocks": [
     {
       "id": 20,
       "type": "static",
       "element": "html",
       "data": {
-        "value": "<h1>Dear <strong>Paul,<\/strong><\/h1><p>Thank you for your help with this part of my Potentialife Leadership Development program.<\/p><p>As mentioned in the email, I am reaching out to people I know to gather stories about where and how I have been most successful in the past.<\/p>"
+        "value": "<h1>Thank you for completing the 360 degree survey.<\/h1><p>Your feedback is invaluable and contributes greatly to the Potentialife program, thank you.<\/p><p>If you would like to learn more about the program please visit our website: <a href=\"https://potentialife.com/\"><strong>potentialife.com<\/strong><\/a><\/p>"
       },
       "pivot": {
         "step_id": 5,
         "block_id": 50,
-        "order": 0
-      }
-    },
-    {
-      "id": 21,
-      "type": "static",
-      "element": "html",
-      "data": {
-        "value": "<h1>Specifically:<\/h1><ul><li>I am looking for a story from you about a time when you saw me at my best. What strengths did you see me using and how was I using them to my advantage?<\/li><li>I am also looking for completion of the 'Relationships Survey'. The survey consists of 38 questions and should take no more than 5-10 minutes to complete<\/li><\/ul>"
-      },
-      "pivot": {
-        "step_id": 5,
-        "block_id": 50,
-        "order": 0
-      }
-    },
-    {
-      "id": 31,
-      "type": "dynamic",
-      "element": "textarea",
-      "program_data_code": "c1.m2.s6.1.strength",
-      "data": {
-        "config": {
-          "required": true
-        },
-        "label": "Enter your strengths story for Matthew Arnold:",
-        "placeholder": "",
-        "value": "",
-        "name": "strengths"
-      },
-      "pivot": {
-        "step_id": 5,
-        "block_id": 51,
         "order": 0
       }
     }
