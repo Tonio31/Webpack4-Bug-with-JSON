@@ -140,7 +140,7 @@ describe('CourseContent Module', () => {
       controller.$onInit();
       controller.nextStep(topLevelForm);
 
-      sinon.assert.calledWith(locationSpy, 'name: this is the name');
+      sinon.assert.calledWith(locationSpy, 'name');
       done();
     }));
 
