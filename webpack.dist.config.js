@@ -5,23 +5,25 @@ const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-let apiConfig = {
+let websiteConfig = {
   UAT: {
     websiteUrl: 'https://webpl.ciprianspiridon.com/',
     apiUrl: 'https://apipl.ciprianspiridon.com/',
-    apiVersion: 'v1'
+    apiVersion: 'v1',
+    googleTrackingCode: 'UA-57685355-4'
   },
   PROD: {
     websiteUrl: 'https://program.potentialife.com/',
     apiUrl: 'https://api.potentialife.com/',
-    apiVersion: 'v1'
+    apiVersion: 'v1',
+    googleTrackingCode: 'UA-57685355-5'
   }
 };
 
 module.exports = (iPhase) => {
   config.output = {
     filename: '[name].bundle.js',
-    publicPath: apiConfig[iPhase].websiteUrl,
+    publicPath: websiteConfig[iPhase].websiteUrl,
     path: path.resolve(__dirname, 'dist')
   };
 
@@ -53,7 +55,8 @@ module.exports = (iPhase) => {
 
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify(iPhase),
-      BACK_END_API: JSON.stringify(`${apiConfig[iPhase].apiUrl}${apiConfig[iPhase].apiVersion}`)
+      GOOGLE_TRACKING_CODE: JSON.stringify(websiteConfig[iPhase].googleTrackingCode),
+      BACK_END_API: JSON.stringify(`${websiteConfig[iPhase].apiUrl}${websiteConfig[iPhase].apiVersion}`)
     }),
 
     // Reduces bundles total size

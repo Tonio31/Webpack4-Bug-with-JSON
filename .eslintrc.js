@@ -25,7 +25,8 @@ module.exports = exports = {
     "require": true,
     "ENVIRONMENT": true,
     "VERSION": true,
-    "BACK_END_API": true
+    "BACK_END_API": true,
+    "GOOGLE_TRACKING_CODE": true
   },
   "rules": {
     "accessor-pairs": [
