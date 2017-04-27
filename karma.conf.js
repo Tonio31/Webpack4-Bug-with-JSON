@@ -69,6 +69,7 @@ module.exports = function (config) {
       plugins: [
         new webpack.DefinePlugin({
           ENVIRONMENT: JSON.stringify('development'),
+          GOOGLE_TRACKING_CODE: JSON.stringify('Whatever'),
           BACK_END_API: JSON.stringify(`https://localhost.com`)
         })
       ]

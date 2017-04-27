@@ -1,7 +1,7 @@
 import ResourceModule from './resource';
 
 describe('Resource', () => {
-  let User, Data, APIS_URL;
+  let User, Data, WEBSITE_CONFIG;
   let $httpBackend;
 
   let participant = require('app/mockBackEndResponse/participants.json');
@@ -14,7 +14,7 @@ describe('Resource', () => {
     $httpBackend = $injector.get('$httpBackend');
     User = $injector.get('User');
     Data = $injector.get('Data');
-    APIS_URL = $injector.get('APIS_URL');
+    WEBSITE_CONFIG = $injector.get('WEBSITE_CONFIG');
 
     sinon.stub(User, 'getUserId', () => { return userId; } );
   }));
@@ -30,14 +30,14 @@ describe('Resource', () => {
     it('buildApiUrl(\'reflexion\', false) build an url without the userId', () => {
       let endPoint = 'reflexion';
 
-      expect(Data.buildApiUrl('reflexion', false)).to.deep.equal(`${APIS_URL.apiUrl}/${endPoint}`);
+      expect(Data.buildApiUrl('reflexion', false)).to.deep.equal(`${WEBSITE_CONFIG.apiUrl}/${endPoint}`);
     });
 
 
     it('buildApiUrl(\'reflexion\', true) build an url with the userId', () => {
       let endPoint = 'reflexion';
 
-      expect(Data.buildApiUrl('reflexion', true)).to.deep.equal(`${APIS_URL.apiUrl}/${endPoint}/${userId}`);
+      expect(Data.buildApiUrl('reflexion', true)).to.deep.equal(`${WEBSITE_CONFIG.apiUrl}/${endPoint}/${userId}`);
     });
 
     // This will test the retrieval of the menuData and the convertMenuData function
