@@ -9,7 +9,7 @@ module.exports = () => {
 
   config.output = {
     filename: '[name].bundle.js',
-    publicPath: 'http://localhost:3000/',
+    publicPath: '/',
     path: path.resolve(__dirname, 'client')
   };
 
