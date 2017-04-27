@@ -14,4 +14,14 @@
     }
   }
 
+  .icon-text {
+    .flex-parent {
+      .text-content {
+        width: calc(100% - 9rem);
+        display: block;
+        overflow: hidden;
+      }
+    }
+  }
+
 }
