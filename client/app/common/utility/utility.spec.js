@@ -1,16 +1,11 @@
 import UtilityModule from './utility';
 
 describe('Utility', () => {
-  let $state;
+  let $state, $window;
   let Utility;
-  let goSpy;
+  let goSpy, openSpy;
 
-
-  let mockWindow = {
-    location: {
-      href: 'http://this-should-change.com'
-    }
-  };
+  let sandbox = sinon.sandbox.create();
 
   let mockUser = {
     getUserId: () => {
@@ -27,7 +22,6 @@ describe('Utility', () => {
   };
 
   beforeEach(window.module(UtilityModule, ($provide) => {
-    $provide.value('$window', mockWindow );
     $provide.value('User', mockUser );
     $provide.value('$localStorage', mockLocalStorage );
   }));
@@ -35,22 +29,27 @@ describe('Utility', () => {
   beforeEach(inject(($injector) => {
     $state = $injector.get('$state');
     Utility = $injector.get('Utility');
+    $window = $injector.get('$window');
 
-    goSpy = sinon.spy($state, 'go');
+    openSpy = sandbox.stub($window, 'open');
+    goSpy = sandbox.spy($state, 'go');
 
     cleanMockObject(mockLocalStorage);
   }));
 
+  afterEach( () => {
+    sandbox.restore();
+  });
 
   describe('Utility Factory', () => {
 
 
-    it('Redirect to external URL if url is of type http:// or https://', () => {
+    it('Redirect to external URL if url is of type http:// or https://', sinon.test( () => {
       let url = 'http://iamtestingifthisworks.com';
       Utility.goToLink(url);
 
-      expect(mockWindow.location.href).to.eq(url);
-    });
+      sinon.assert.calledWith(openSpy, url, '_blank');
+    }));
 
 
     it('Change State if the url is not an external URL', () => {
@@ -59,6 +58,8 @@ describe('Utility', () => {
 
       sinon.assert.calledWith(goSpy, url);
     });
+
+
 
     it('buildLocalStorageKey(iKey) builds a key based on userId', () => {
       expect(Utility.buildLocalStorageKey('some_id')).to.eq(`${mockUser.getUserId()}-some_id`);
