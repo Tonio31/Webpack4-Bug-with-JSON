@@ -65,6 +65,7 @@ angular.module( 'appMockBackEnd', [
   let stepContent = {};
 
   let errorReply = [ 401, { error: 'token_not_provided' }, {} ];
+  // let error500 = [ 500, { error: 'Internal Server Error' }, {} ];
 
   // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
   User.setUser({ id: authenticate.user.id });
@@ -167,6 +168,7 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(regexpStep).respond( (method, url) => {
 
     $log.log(`$httpBackend.whenGET(${url})`);
+
 
     if ( !JwtFactory.isAuthExpired() ) {
       let content = {};

@@ -1,4 +1,4 @@
-let ResourceFactory = function($log, $q, $resource, User, APIS_URL) {
+let ResourceFactory = function($log, $q, $resource, $stateParams, User, APIS_URL) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -42,7 +42,10 @@ let ResourceFactory = function($log, $q, $resource, User, APIS_URL) {
 
 
   let getDynamicContentPromise = ( iEndPointUrl, iIsArray, iOptionalParameters = {} ) => {
-    $log.log('getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iIsArray=', iIsArray, '  iOptionalParameters=', iOptionalParameters);
+    $log.log('TONIO getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iIsArray=', iIsArray, '  iOptionalParameters=', iOptionalParameters, '   $stateParams=', $stateParams);
+    $log.debug('CAN I SEE TAHT');
+    $log.debug('$stateParams=', $stateParams);
+
 
     let deferred = $q.defer();
 

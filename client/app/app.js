@@ -37,6 +37,7 @@ let appModule = angular.module('app', [
   Global
 ])
   .config( ( $locationProvider,
+             $logProvider,
              $stateProvider,
              $httpProvider,
              $localStorageProvider,
@@ -79,6 +80,7 @@ let appModule = angular.module('app', [
     $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.get.Pragma = 'no-cache';
 
+    $logProvider.debugEnabled(false);
 
     $stateProviderRef = $stateProvider;
   })

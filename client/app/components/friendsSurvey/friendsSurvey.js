@@ -28,7 +28,7 @@ let friendsSurveyModule = angular.module('friendsSurvey', [
       parent: STATES.MAIN_NO_MENU,
       component: 'friendsSurvey',
       resolve: {
-        content: ($stateParams, Data) => {
+        content: (Data) => {
           'ngInject';
           return Data.getDynamicContentPromise('survey', false, { page: iPageNumber });
         }

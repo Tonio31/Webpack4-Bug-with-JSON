@@ -9,8 +9,12 @@ class FriendsSurveyController {
 
     this.$onInit = () => {
       $log.log('$state=', $state);
+      $log.error('$log.error CAN I SEE TAHT');
+      $log.debug('$log.debug CAN I SEE TAHT');
+      $log.info('$log.info CAN I SEE TAHT');
+      $log.warn('$log.warning CAN I SEE TAHT');
 
-        // User should not be able to access this page if they don't have a TOKEN_SURVEY, on 360_Survey/1,
+      // User should not be able to access this page if they don't have a TOKEN_SURVEY, on 360_Survey/1,
         // we will store locally the TOKEN_SURVEY and use this to know if the user can have access
 
       if ( $state.current.name === `${STATES.SURVEY}/1` &&
