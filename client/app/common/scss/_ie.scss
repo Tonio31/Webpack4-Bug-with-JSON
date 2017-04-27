@@ -4,8 +4,11 @@
     overflow-y: visible;
     .inner-wrap {
       height: 100vh;
-      border: 1px solid yellow;
     }
+  }
+
+  .course-content {
+    height: calc(100% - 6rem);
   }
 
   .navbar {
