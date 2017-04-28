@@ -60,7 +60,20 @@ let UserData = function() {
     return user.companyBanner;
   };
 
+  let isUserDefined = () => {
+    // eslint-disable-next-line no-unused-vars
+    for ( let [ key, value ] of Object.entries(user) ) {
+      if ( ( angular.isString(value) && value ) ||
+        ( angular.isObject(value) && Object.keys(value).length !== 0 ) ) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   return {
+    isUserDefined,
     setUser,
     getFirstName,
     getLastName,

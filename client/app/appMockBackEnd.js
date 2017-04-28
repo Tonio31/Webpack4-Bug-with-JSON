@@ -199,6 +199,30 @@ angular.module( 'appMockBackEnd', [
     return errorReply;
   });
 
+  $httpBackend.whenGET(Data.buildApiUrl('survey?page=1')).respond( (method, url) => {
+    $log.log(`$httpBackend.whenGET(${url})`);
+
+    let survey = require('./mockBackEndResponse/360_survey_page_1.json');
+    return [ 200, survey, {} ];
+  });
+
+
+  $httpBackend.whenGET(Data.buildApiUrl('survey?page=2')).respond( (method, url) => {
+    $log.log(`$httpBackend.whenGET(${url})`);
+
+    let survey = require('./mockBackEndResponse/360_survey_page_2.json');
+    return [ 200, survey, {} ];
+  });
+
+
+  $httpBackend.whenGET(Data.buildApiUrl('survey?page=3')).respond( (method, url) => {
+    $log.log(`$httpBackend.whenGET(${url})`);
+
+    let survey = require('./mockBackEndResponse/360_survey_page_3.json');
+    return [ 200, survey, {} ];
+  });
+
+
   $httpBackend.whenGET(Data.buildApiUrl('menu', true)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
 
@@ -215,21 +239,24 @@ angular.module( 'appMockBackEnd', [
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     let dataObject = angular.fromJson(data);
+    let responseHeaders = {
+      stepId: dataObject.stepId,
+      status: 'ok'
+    };
+
+    let responseContent = {
+      congrats: '<p>Congratulations for finishing this step, you\'re a star<\/p>'
+    };
+
 
     if ( !JwtFactory.isAuthExpired() ) {
       // Simulate a good answer
 
       updateMenu(dataObject.fullUrl);
 
-      let responseHeaders = {
-        stepId: dataObject.stepId,
-        status: 'ok'
-      };
-
-      let responseContent = {
-        congrats: '<p>Congratulations for finishing this module, you\'re a star<\/p>'
-      };
-
+      return [ 200, responseContent, responseHeaders ];
+    }
+    else if ( dataObject.fullUrl.includes('360_Survey') ) {
       return [ 200, responseContent, responseHeaders ];
     }
 

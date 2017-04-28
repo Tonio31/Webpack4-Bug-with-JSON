@@ -2,12 +2,12 @@
 
 import CourseContentModule from './courseContent';
 
-describe('CourseContent', () => {
+describe('CourseContent Module', () => {
   let $rootScope, $state, $stateRegistry, $q, $location, $componentController, $compile;
 
   let Menu, Data, Utility, SpinnerFactory, FORM_NAME_PREFIX, SPINNERS;
 
-  let goFn, retrieveMenuAndReturnStatesFn, removeUserInputSpy, saveUserInputSpy, spinnerShowSpy, spinnerHideSpy;
+  let goFn, retrieveMenuAndReturnStatesSpy, isMenuRetrievedSpy, removeUserInputSpy, saveUserInputSpy, spinnerShowSpy, spinnerHideSpy;
   let stateRegistryGetFn, stateRegistryDeregisterFn, stateRegistryRegisterFn;
 
   let contentBindings = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-2.json');
@@ -24,8 +24,21 @@ describe('CourseContent', () => {
     return value;
   };
 
+
+  let mockContentFactory = {
+    updateInputFields: () => {},
+    getInputFields: () => {
+      return { 'c1.m1.s1.story_2': 'This is a text' };
+    },
+    clearInputFields: () => {},
+    getAdditionalData: () => {
+      return { token_survey: 'd!@#$%^&*()_+' };
+    }
+  };
+
   beforeEach(window.module(CourseContentModule, ($provide) => {
     $provide.value('translateFilter', mockTranslateFilter );
+    $provide.value('ContentFactory', mockContentFactory );
   }));
 
   beforeEach(inject(($injector) => {
@@ -44,11 +57,15 @@ describe('CourseContent', () => {
     SPINNERS = $injector.get('SPINNERS');
 
     goFn = sinon.stub($state, 'go');
-    retrieveMenuAndReturnStatesFn = sinon.stub(Menu, 'retrieveMenuAndReturnStates', () => {
+    retrieveMenuAndReturnStatesSpy = sinon.stub(Menu, 'retrieveMenuAndReturnStates', () => {
       let deferred = $q.defer();
 
       deferred.resolve([stateNotLocked]);
       return deferred.promise;
+    });
+
+    isMenuRetrievedSpy = sinon.stub(Menu, 'isMenuRetrieved', () => {
+      return true;
     });
 
     stateRegistryGetFn = sinon.stub($stateRegistry, 'get', () => {
@@ -123,7 +140,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       controller.nextStep(topLevelForm);
 
-      sinon.assert.calledWith(locationSpy, 'name: this is the name');
+      sinon.assert.calledWith(locationSpy, 'name');
       done();
     }));
 
@@ -148,9 +165,6 @@ describe('CourseContent', () => {
         $invalid: false
       };
 
-      // Add inputs to the saved input to submit to the server
-      controller.updateInputFields( 'c1.m1.s1.story_2', 'This is a text' );
-
       controller.$onInit();
       controller.nextStep(form);
 
@@ -158,9 +172,19 @@ describe('CourseContent', () => {
 
       expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.fullUrl);
       expect(updateStepPOSTRequest.status).to.equal('completed');
-      expect(updateStepPOSTRequest.programData).to.deep.equal( [{ code: 'c1.m1.s1.story_2', value: 'This is a text' }] );
+      expect(updateStepPOSTRequest.programData).to.deep.equal( [
+        {
+          code: 'c1.m1.s1.story_2',
+          value: 'This is a text'
+        },
+        {
+          code: 'token_survey',
+          value: 'd!@#$%^&*()_+'
+        },
+      ] );
 
-      sinon.assert.calledOnce(retrieveMenuAndReturnStatesFn);
+      sinon.assert.calledOnce(retrieveMenuAndReturnStatesSpy);
+      sinon.assert.calledOnce(isMenuRetrievedSpy);
       sinon.assert.calledWith(removeUserInputSpy, { 'c1.m1.s1.story_2': 'This is a text' });
       sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
@@ -175,47 +199,19 @@ describe('CourseContent', () => {
       done();
     }));
 
-    it('nextStep() sends a POST to save current step & change state if the flag skipShowingBanner is true', sinon.test( (done) => {
-
-      let dataBackFromServer = {};
-
-      let updateStepPOSTRequest = {
-        $save: (callback) => {
-          return callback(dataBackFromServer);
-        }
-      };
-
-      sinon.stub(Data, 'updateStep', () => {
-        return updateStepPOSTRequest;
-      });
-
-      let form = {
-        $invalid: false
-      };
+    it('actionsAfterSaveSuccessful() dont show banner and change state if skipShowingBanner is true', sinon.test( (done) => {
 
 
       controller.$onInit();
       controller.skipShowingBanner = true; // Simulate a step where we don't show the banner
 
-      controller.nextStep(form);
+      controller.actionsAfterSaveSuccessful( 'Whatever text for the banner' );
 
-      $rootScope.$digest();
-
-      expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.fullUrl);
-      expect(updateStepPOSTRequest.status).to.equal('completed');
-      expect(updateStepPOSTRequest.programData).to.deep.equal( [] );
-
-      sinon.assert.calledOnce(retrieveMenuAndReturnStatesFn);
-      sinon.assert.calledWith(removeUserInputSpy, {});
-      sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
-      sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
-      sinon.assert.calledWith(stateRegistryRegisterFn, stateNotLocked);
       sinon.assert.calledWith(goFn, controller.content.next_page_url);
       expect(controller.nextStepButton.label).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
       expect(controller.banner.text).to.eq('');
 
-      // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();
     }));
 
@@ -246,7 +242,7 @@ describe('CourseContent', () => {
       controller.$onInit();
       controller.nextStep(form);
 
-      sinon.assert.notCalled(retrieveMenuAndReturnStatesFn);
+      sinon.assert.notCalled(retrieveMenuAndReturnStatesSpy);
 
       sinon.assert.calledWith( saveUserInputSpy, { 'c1.m1.s1.story_2': 'This is a text' } );
       expect(controller.banner.class).to.eq('banner-error');
@@ -276,6 +272,8 @@ describe('CourseContent', () => {
         'c1.m1.s1.story_4': ['first value', 'second value']
       };
 
+      let additionalData = mockContentFactory.getAdditionalData();
+
       let expectedConvertedInputs = [
         {
           code: 'c1.m1.s1.story_2',
@@ -284,11 +282,14 @@ describe('CourseContent', () => {
         {
           code: 'c1.m1.s1.story_4',
           value: ['first value', 'second value']
+        },
+        {
+          code: 'token_survey',
+          value: 'd!@#$%^&*()_+'
         }
       ];
 
-
-      let inputConverted = controller.convertInputFieldForPOST(inputFields);
+      let inputConverted = controller.convertInputFieldForPOST(inputFields, additionalData);
 
       expect(inputConverted).to.deep.eq(expectedConvertedInputs);
     });

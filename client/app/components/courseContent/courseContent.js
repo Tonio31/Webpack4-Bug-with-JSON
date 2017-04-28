@@ -5,6 +5,7 @@ import LogDecorator from 'common/logDecorator/logDecorator';
 import UserDataFactory from 'common/userDataFactory/userData';
 import ResourceFactory from 'common/resourceFactory/resource';
 import UtilityFactory from 'common/utility/utility';
+import CourseContentFactory from 'common/courseContentFactory/courseContent';
 import MenuService from 'common/menuFactory/menu';
 import blockManager from 'components/blockManager/blockManager';
 import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
@@ -17,6 +18,7 @@ let courseContentModule = angular.module('courseContent', [
   UserDataFactory,
   ResourceFactory,
   UtilityFactory,
+  CourseContentFactory,
   MenuService,
   constantModule,
   LoadingSpinnerModule,

@@ -34,7 +34,7 @@
           "minItemsDisplayed": 5,
           "showMoreButtonAtStart": true
         },
-        "name": "Your chosen VIA character strengths",
+        "label": "Your chosen VIA character strengths",
         "items": [
           {
             "label": "Power",
@@ -89,7 +89,7 @@
           "minItemsDisplayed": 5,
           "showMoreButtonAtStart": true
         },
-        "name": "Your chosen VIA character strengths",
+        "label": "Your chosen VIA character strengths",
         "items": [
           {
             "label": "Power",
@@ -133,7 +133,7 @@
           "minItemsDisplayed": 0,
           "showMoreButtonAtStart": true
         },
-        "name": "Your chosen VIA character strengths",
+        "label": "Your chosen VIA character strengths",
         "items": [
           {
             "label": "One exemple might be ti seize the opportunity to deliver a presentation at an upcoming meeting (because you realized that public speaking is a PPZ activity for you).",
@@ -177,7 +177,7 @@
           "minItemsDisplayed": 0,
           "showMoreButtonAtStart": false
         },
-        "name": "Your chosen VIA character strengths",
+        "label": "Your chosen VIA character strengths",
         "items": [
           {
             "label": "One exemple might be ti seize the opportunity to deliver a presentation at an upcoming meeting (because you realized that public speaking is a PPZ activity for you).",
@@ -221,7 +221,7 @@
           "minItemsDisplayed": 0,
           "showMoreButtonAtStart": true
         },
-        "name": "Your chosen VIA character strengths",
+        "label": "Your chosen VIA character strengths",
         "items": [
           {
             "label": "Drink More water",
@@ -310,7 +310,7 @@
           "minItemsDisplayed": 0,
           "showMoreButtonAtStart": false
         },
-        "name": "Your chosen VIA character strengths",
+        "label": "Your chosen VIA character strengths",
         "items": [
           {
             "label": "Drink More water",

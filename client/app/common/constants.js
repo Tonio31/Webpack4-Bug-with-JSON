@@ -4,14 +4,18 @@ let constantModule = angular.module('app.common.constant', [
 ])
   .constant( 'TOKEN', 'token' )
   .constant( 'USER_ID', 'user_id' )
+  .constant( 'TOKEN_SURVEY', 'token_survey' )
   .constant( 'STATES', {
     MAIN: 'main',
+    MAIN_NO_MENU: 'main_no_menu',
     LOGIN_ROOT: 'loginRoot',
     HOME: '/home',
     LOGIN: '/login',
     RESET_PASSWORD: '/password/reset',
     RETRIEVE_CREDENTIALS: '/retrieve_credentials',
-    PAGE_NOT_FOUND: '/404'
+    PAGE_NOT_FOUND: '/404',
+    PAGE_NOT_FOUND_NO_MENU: '/PageNotFound',
+    SURVEY: '/360-Survey'
   })
   .constant('FORM_NAME_PREFIX', 'myForm')
   .constant('MODEL_OPTIONS', {
@@ -40,9 +44,10 @@ let constantModule = angular.module('app.common.constant', [
     TOP_LEVEL: 'topLevelSpinner',
     SAVING_STEP: 'savingStepSpinner'
   })
-  .constant('APIS_URL', {
+  .constant('WEBSITE_CONFIG', {
     apiUrl: BACK_END_API,
-    apiViaSurvey: 'https://www.viacharacter.org/survey/api1/'
+    apiViaSurvey: 'https://www.viacharacter.org/survey/api1/',
+    googleTrackingCode: GOOGLE_TRACKING_CODE
   })
 .name;
 

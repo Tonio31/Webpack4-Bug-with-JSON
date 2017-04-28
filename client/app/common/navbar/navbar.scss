@@ -125,6 +125,7 @@ $mainTitleMenuColor: #a0a0a0;
     margin-top: $tabbar-height;
 
     a {
+      display: block;
       color: $canvasMenuLinkTextColor;
     }
 
@@ -189,7 +190,6 @@ $mainTitleMenuColor: #a0a0a0;
       border-bottom: 0;
       cursor: pointer;
       position: absolute;
-      bottom: 0;
       padding-top: .3334rem;
       padding-bottom: .3334rem;
       .pl-menu-button {
@@ -347,6 +347,7 @@ $mainTitleMenuColor: #a0a0a0;
         background-color: $onyx;
         border-bottom: 2px solid $onyx;
         padding: 1.25rem .6667rem .6667rem rem_calc(5px);
+        display: flex;
         &::before {
           display: none;
         }

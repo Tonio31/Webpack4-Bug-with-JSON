@@ -11,6 +11,7 @@ class CourseContentController {
                SpinnerFactory,
                Data,
                Utility,
+               ContentFactory,
                FORM_NAME_PREFIX,
                STATES,
                SPINNERS ) {
@@ -23,10 +24,6 @@ class CourseContentController {
 
     this.isStepCompleted = false;
     this.skipShowingBanner = false;
-
-    // This container is used to store all the inputs modified by the user, so we can
-    // send it back to the server when saving
-    let inputFields = {};
 
     this.banner = {
       text: '',
@@ -69,20 +66,41 @@ class CourseContentController {
       }
     };
 
+    this.calculateButtonInfo = (iIsStepCompleted, iSkipShowingBanner, iNextState, iPreviousState) => {
+
+      if ( iPreviousState ) {
+        this.displayPreviousButton = true;
+      }
+      else {
+        this.displayPreviousButton = false;
+      }
+
+      if ( iNextState ) {
+        this.displayNextButton = true;
+        this.updateNextStepButtonStyle(iIsStepCompleted, iSkipShowingBanner, iNextState);
+      }
+      else {
+        this.displayNextButton = false;
+      }
+
+
+    };
+
     this.$onInit = () => {
       $log.log('$onInit - BEGIN');
       this.skipShowingBanner = this.content.skipShowingBanner;
       this.isStepCompleted = ( this.content.status === 'completed' );
-      this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
+      this.calculateButtonInfo( this.isStepCompleted,
+                                this.skipShowingBanner,
+                                this.content.next_page_url,
+                                this.content.prev_page_url );
 
-      this.displayPreviousButton = ( this.content.prev_page_url !== null );
-
+      ContentFactory.clearInputFields();
       $log.log('$onInit - END');
     };
 
     this.updateInputFields = (iIdentifier, iNewValue) => {
-      $log.log('updateInputFields iIdentifier=', iIdentifier, '    iNewValue=', iNewValue);
-      inputFields[iIdentifier] = iNewValue;
+      ContentFactory.updateInputFields(iIdentifier, iNewValue);
     };
 
     this.previousStep = () => {
@@ -105,7 +123,7 @@ class CourseContentController {
     };
 
 
-    this.convertInputFieldForPOST = (iInputFields) => {
+    this.convertInputFieldForPOST = (iInputFields, iAdditionalData) => {
 
       let programData = [];
 
@@ -116,9 +134,28 @@ class CourseContentController {
         });
       });
 
+      Object.entries(iAdditionalData).forEach( ([ key, value ]) => {
+        programData.push({
+          code: key,
+          value: value
+        });
+      });
+
       return programData;
     };
 
+    this.actionsAfterSaveSuccessful = (iBannerCongratsMsg) => {
+      this.isStepCompleted = true;
+      this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
+
+      if ( this.skipShowingBanner ) {
+        // If we skip showing banner, we need to change state just after updating the menu
+        $state.go(this.content.next_page_url);
+      }
+      else {
+        this.setBannerSuccess(iBannerCongratsMsg);
+      }
+    };
 
     this.nextStep = (iForm) => {
 
@@ -135,54 +172,48 @@ class CourseContentController {
 
         postData.fullUrl = this.content.fullUrl;
         postData.status = 'completed';
-        postData.programData = this.convertInputFieldForPOST(inputFields);
-
+        postData.programData = this.convertInputFieldForPOST(ContentFactory.getInputFields(), ContentFactory.getAdditionalData());
 
         postData.$save( (dataBackFromServer) => {
           $log.log('Response OK from the backend, retrieving the updated menu from backend dataBackFromServer=', dataBackFromServer);
 
           // If there was user input saved in local storage, delete it as it has been successfully saved on server side
-          Utility.removeUserInputFromLocalStorage(inputFields);
+          Utility.removeUserInputFromLocalStorage(ContentFactory.getInputFields());
 
-          // This will resend a query to the backend to get the menu, the status of the step
-          // will be updated and the directive menuButton will update automatically the menu
-          Menu.retrieveMenuAndReturnStates().then( (states) => {
-            // Modify state to check that state that are no more locked does not point to locked component
-            $log.log('Menu updated successfully');
-            states.forEach( (stateDefinition) => {
-              let uiRouterState = $stateRegistry.get(stateDefinition.name);
+          if ( Menu.isMenuRetrieved() ) {
+            // This will resend a query to the backend to get the menu, the status of the step
+            // will be updated and the directive menuButton will update automatically the menu
+            Menu.retrieveMenuAndReturnStates().then( (states) => {
+              // Modify state to check that state that are no more locked does not point to locked component
+              $log.log('Menu updated successfully');
+              states.forEach( (stateDefinition) => {
+                let uiRouterState = $stateRegistry.get(stateDefinition.name);
 
-              // Update Old Locked state to point to courseContent component
-              if ( uiRouterState && uiRouterState.component !== stateDefinition.component ) {
-                $log.log(`About to deregister and re-register state ${stateDefinition.name}. uiRouterState=`, uiRouterState, '  stateDefinition=', stateDefinition);
-                $stateRegistry.deregister(stateDefinition.name);
-                $stateRegistry.register(stateDefinition);
-              }
+                // Update Old Locked state to point to courseContent component
+                if ( uiRouterState && uiRouterState.component !== stateDefinition.component ) {
+                  $log.log(`About to deregister and re-register state ${stateDefinition.name}. uiRouterState=`, uiRouterState, '  stateDefinition=', stateDefinition);
+                  $stateRegistry.deregister(stateDefinition.name);
+                  $stateRegistry.register(stateDefinition);
+                }
+              });
+
+              this.actionsAfterSaveSuccessful(dataBackFromServer.congrats);
+            },
+            (error) => {
+              $log.log('error Retrieving menu error=', error);
+              // Display error Banner for the user
+              this.setBannerError();
             });
-
-            this.isStepCompleted = true;
-            this.updateNextStepButtonStyle(this.isStepCompleted, this.skipShowingBanner, this.content.next_page_url);
-
-            if ( this.skipShowingBanner ) {
-              // If we skip showing banner, we need to change state just after updating the menu
-              $state.go(this.content.next_page_url);
-            }
-            else {
-              this.setBannerSuccess(dataBackFromServer.congrats);
-            }
-          },
-          (error) => {
-            $log.log('error Retrieving menu error=', error);
-            // Display error Banner for the user
-            this.setBannerError();
-          });
-
+          }
+          else {
+            this.actionsAfterSaveSuccessful(dataBackFromServer.congrats);
+          }
         }, (error) => {
           // Display error Banner for the user
           this.setBannerError();
 
           // Save user input to locasl storage so we can restore fit when he refresh the page
-          Utility.saveUserInputToLocalStorage(inputFields);
+          Utility.saveUserInputToLocalStorage(ContentFactory.getInputFields());
 
           $log.log('Error saving the current step. error=', error);
         });

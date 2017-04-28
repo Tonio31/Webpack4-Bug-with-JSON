@@ -37,11 +37,15 @@ describe('Menu', () => {
       expect(Menu.getMenu()).to.deep.equal({ data: {} });
     });
 
+    it('isMenuRetrieved returns false if the menu hasnt been retrieved', () => {
+      expect(Menu.isMenuRetrieved()).to.equal(false);
+    });
 
     // This will test the retrieval of the menuData and the convertMenuData function
     it('retrieveMenuAndReturnStates returns a promise on the menu', (done) => {
 
       Menu.retrieveMenuAndReturnStates().then( (states) => {
+        expect(Menu.isMenuRetrieved()).to.equal(true);
         expect(states.length).to.eq(51);
         expect(states[0].name).to.eq('/potentialife-course/cycle-1/lifemap');
 

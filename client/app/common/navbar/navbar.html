@@ -4,11 +4,13 @@
       <nav class="tab-bar" data-offcanvas>
 
         <section class="left tab-bar-section">
-          <h1 class="title logo-potential-life"><a ui-sref="{{$ctrl.homeState}}">{{$ctrl.companyName}}</a></h1>
+          <h1 class="title logo-potential-life">
+            <a pl-disable-link="!$ctrl.displayMenu" ui-sref="{{$ctrl.homeState}}">{{$ctrl.companyName}}</a>
+          </h1>
           <a href="#content" class="accessible-link">Skip to content</a>
         </section>
 
-        <div class="right-small">
+        <div ng-if="$ctrl.displayMenu" class="right-small">
           <div class="menu-toggle-button left-off-canvas-toggle" ng-click="$ctrl.toggleMenu()">
             <span class="line-wrap">
               <i></i>
@@ -25,7 +27,7 @@
 
     <div class="inner-wrap">
 
-      <aside class="left-off-canvas-menu">
+      <aside ng-if="$ctrl.displayMenu" class="left-off-canvas-menu">
         <ul class="off-canvas-list-bugfix">
           <li class="home btn-back-home menu-button" ui-sref="{{$ctrl.homeState}}">
             <div class="small-2 columns">
