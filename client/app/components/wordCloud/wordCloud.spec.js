@@ -3,8 +3,104 @@ import WordCloudController from './wordCloud.controller';
 import WordCloudComponent from './wordCloud.component';
 import WordCloudTemplate from './wordCloud.html';
 
+// needs to load d3, but doesnt execute it - easier to import this rather than mock it
+/* eslint-disable */
+import d3 from 'd3';
+/* eslint-enable */
+
 describe('WordCloud', () => {
   let $rootScope, $componentController, $compile;
+
+  let dataBindings = {
+    id: 64,
+    type: 'static',
+    element: 'word_cloud',
+    data: {
+      title: 'Word Cloud',
+      wordData: [
+        {
+          text: 'hello',
+          power: 12
+        },
+        {
+          text: 'world',
+          power: 1
+        },
+        {
+          text: 'normally',
+          power: 2
+        },
+        {
+          text: 'you',
+          power: 3
+        },
+        {
+          text: 'want',
+          power: 4
+        },
+        {
+          text: 'more',
+          power: 5
+        },
+        {
+          text: 'words',
+          power: 6
+        },
+        {
+          text: 'than',
+          power: 7
+        },
+        {
+          text: 'this',
+          power: 8
+        },
+        {
+          text: 'hi',
+          power: 9
+        },
+        {
+          text: 'something',
+          power: 10
+        },
+        {
+          text: 'sunny',
+          power: 1
+        },
+        {
+          text: 'chicken',
+          power: 2
+        },
+        {
+          text: 'hungry',
+          power: 3
+        },
+        {
+          text: 'tummy',
+          power: 4
+        },
+        {
+          text: 'dancing',
+          power: 5
+        },
+        {
+          text: 'beachball',
+          power: 6
+        },
+        {
+          text: 'towel',
+          power: 7
+        },
+        {
+          text: 'seagull',
+          power: 8
+        },
+        {
+          text: 'icecream',
+          power: 9
+        }
+      ]
+    }
+  };
 
   beforeEach(window.module(WordCloudModule));
 
@@ -21,15 +117,101 @@ describe('WordCloud', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+    let bindings = {
+      block: dataBindings
+    };
+
     beforeEach(() => {
       controller = $componentController('wordCloud', {
         $scope: $rootScope.$new()
-      });
+      }, bindings);
     });
 
 
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
+    it('$onInit creates the data needed for displaying the bar chart', () => {
+      controller.$onInit();
+      expect(controller.wordData).to.deep.eq([
+        {
+          text: 'hello',
+          power: 12
+        },
+        {
+          text: 'world',
+          power: 1
+        },
+        {
+          text: 'normally',
+          power: 2
+        },
+        {
+          text: 'you',
+          power: 3
+        },
+        {
+          text: 'want',
+          power: 4
+        },
+        {
+          text: 'more',
+          power: 5
+        },
+        {
+          text: 'words',
+          power: 6
+        },
+        {
+          text: 'than',
+          power: 7
+        },
+        {
+          text: 'this',
+          power: 8
+        },
+        {
+          text: 'hi',
+          power: 9
+        },
+        {
+          text: 'something',
+          power: 10
+        },
+        {
+          text: 'sunny',
+          power: 1
+        },
+        {
+          text: 'chicken',
+          power: 2
+        },
+        {
+          text: 'hungry',
+          power: 3
+        },
+        {
+          text: 'tummy',
+          power: 4
+        },
+        {
+          text: 'dancing',
+          power: 5
+        },
+        {
+          text: 'beachball',
+          power: 6
+        },
+        {
+          text: 'towel',
+          power: 7
+        },
+        {
+          text: 'seagull',
+          power: 8
+        },
+        {
+          text: 'icecream',
+          power: 9
+        }
+      ]);
     });
   });
 
@@ -39,13 +221,15 @@ describe('WordCloud', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<word-cloud></word-cloud>')(scope);
+      scope.block = dataBindings;
+      template = $compile('<word-cloud block="block"></word-cloud>')(scope);
       scope.$apply();
     });
 
 
-    it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('wordCloud');
+    it('There is a word cloud on the page', () => {
+      let cloud = angular.element(template[0].querySelector('.word-cloud'));
+      expect(cloud.length).to.eq(1); // Element exist on DOM
     });
   });
 
