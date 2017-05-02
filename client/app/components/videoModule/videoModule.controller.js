@@ -27,7 +27,6 @@ class VideoController {
       this.mediaOptions = {
         plugins: {
           videoJsResolutionSwitcher: {
-            ui: true,
             // Default resolution [{Number}, 'low', 'high'], (low == the lower of the numbers in data.player.res)
             default: 'low',
             // Display dynamic labels or gear symbol
