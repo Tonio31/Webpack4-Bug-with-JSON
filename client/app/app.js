@@ -206,7 +206,6 @@ let appModule = angular.module('app', [
       let fromState = trans.from().name; // Example of fromState: /home
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
 
-      SpinnerFactory.hideAll();
 
       $log.log('$transitions.onSuccess - fromAnyToAny - fromState=', fromState, '  toState=', toState);
 
@@ -217,6 +216,7 @@ let appModule = angular.module('app', [
       // see http://stackoverflow.com/questions/15676072/angularjs-broadcast-not-working-on-first-controller-load
       $timeout( () => {
         $log.info('About to emit the event: stateChangeSuccess      toState=', toState);
+        SpinnerFactory.hideAll();
         $rootScope.$emit('stateChangeSuccess', toState);
       });
       return true;
@@ -234,15 +234,18 @@ let appModule = angular.module('app', [
         $log.log(error);
       }
       else if ( error.status === 401 ) {
-        $log.warn('$transitions.onError() - Error 401, user not authenticated or token expired, redirect to login page');
-        $state.go(STATES.LOGIN, { stateToRedirect: toState });
+        $log.warn(`$transitions.onError() - Error 401, user not authenticated or token expired, 
+                  redirect to login page.  stateToRedirect=`, toState);
+        $state.go(STATES.LOGIN, { stateToRedirect: toState }, { reload: true });
       }
       else if ( error.status === 402 ) {
         $log.warn(`$transitions.onError() - Error 402, Invalid Token for state without login, 
                    redirect to 500 page with specific error message`);
+        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_402' }, { reload: true });
       }
       else {
-        $log.error('$transitions.onError() - fromState=', fromState, '  toState=', toState, '  trans=', trans);
+        $log.error('$transitions.onError() - fromState=', fromState, '  toState=', toState, '  error=', error);
+        $state.go(STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
       }
 
     });

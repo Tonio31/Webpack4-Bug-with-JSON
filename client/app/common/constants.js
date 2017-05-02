@@ -14,7 +14,9 @@ let constantModule = angular.module('app.common.constant', [
     RESET_PASSWORD: '/password/reset',
     RETRIEVE_CREDENTIALS: '/retrieve_credentials',
     PAGE_NOT_FOUND: '/404',
-    PAGE_NOT_FOUND_NO_MENU: '/PageNotFound',
+    PAGE_NOT_FOUND_NO_MENU: '/404_noMenu',
+    ERROR_PAGE: '/Error',
+    ERROR_PAGE_NO_MENU: '/Error_noMenu',
     SURVEY: '/360-Survey'
   })
   .constant('FORM_NAME_PREFIX', 'myForm')

@@ -13,29 +13,29 @@ let pageNotFoundModule = angular.module('pageNotFound', [
   JwtFactory,
   constantModule
 ])
-  .config(($stateProvider, STATES) => {
-    'ngInject';
+.config(($stateProvider, STATES) => {
+  'ngInject';
 
-    $stateProvider
-      .state(STATES.PAGE_NOT_FOUND_NO_MENU, {
-        url: STATES.PAGE_NOT_FOUND,
-        parent: STATES.MAIN_NO_MENU,
-        component: 'pageNotFound',
-        params: {
-          intendedUrl: null
-        }
-      })
-      .state(STATES.PAGE_NOT_FOUND, {
-        url: STATES.PAGE_NOT_FOUND,
-        parent: STATES.MAIN,
-        component: 'pageNotFound',
-        params: {
-          intendedUrl: null
-        }
-      });
-  })
-  .component('pageNotFound', pageNotFoundComponent)
+  $stateProvider
+    .state(STATES.PAGE_NOT_FOUND_NO_MENU, {
+      url: STATES.PAGE_NOT_FOUND,
+      parent: STATES.MAIN_NO_MENU,
+      component: 'pageNotFound',
+      params: {
+        intendedUrl: null
+      }
+    })
+    .state(STATES.PAGE_NOT_FOUND, {
+      url: STATES.PAGE_NOT_FOUND,
+      parent: STATES.MAIN,
+      component: 'pageNotFound',
+      params: {
+        intendedUrl: null
+      }
+    });
+})
+.component('pageNotFound', pageNotFoundComponent)
 
-  .name;
+.name;
 
 export default pageNotFoundModule;
