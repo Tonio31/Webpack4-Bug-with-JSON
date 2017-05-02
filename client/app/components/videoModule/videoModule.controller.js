@@ -33,7 +33,8 @@ class VideoController {
             // Display dynamic labels or gear symbol
             dynamicLabel: true
           }
-        }
+        },
+        playbackRates: [ 0.5, 1.0, 1.5, 2.0 ]
       };
 
       // basic check for mobile User Agent:
