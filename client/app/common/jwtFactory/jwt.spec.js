@@ -4,7 +4,7 @@ import JwtModule from './jwt';
 
 describe('JSON Web Token', () => {
   let JwtFactory, AuthInterceptorFactory, TOKEN, USER_ID, STATES;
-  let $state, $location;
+  let $state, $q, $location;
 
   let authDetails = require('app/mockBackEndResponse/authenticateResponse.json');
 
@@ -17,6 +17,7 @@ describe('JSON Web Token', () => {
 
   beforeEach(inject(($injector) => {
     $state = $injector.get('$state');
+    $q = $injector.get('$q');
     USER_ID = $injector.get('USER_ID');
     TOKEN = $injector.get('TOKEN');
     STATES = $injector.get('STATES');
@@ -92,9 +93,11 @@ describe('JSON Web Token', () => {
       };
 
       $state.$current.name = '/step-1';
-      AuthInterceptorFactory.responseError(responseError);
+      let something = AuthInterceptorFactory.responseError(responseError);
 
-      sinon.assert.calledWith(goSpy, STATES.LOGIN, { stateToRedirect: $state.$current.name } );
+      expect(something).to.deep.eq($q.reject(responseError));
+
+      // sinon.assert.calledWith(goSpy, STATES.LOGIN, { stateToRedirect: $state.$current.name } );
     }));
 
   });

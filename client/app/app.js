@@ -222,28 +222,57 @@ let appModule = angular.module('app', [
       return true;
     });
 
+    $transitions.onError( {}, (trans) => {
 
+      let fromState = trans.from().name; // Example of fromState: /home
+      let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+      let error = trans.error();
+
+      if ( ( fromState === STATES.LOGIN ) &&
+        error.message === 'The transition has been superseded by a different transition' ) {
+        $log.log('Transition from login to another page has been superseded, this is normal as part of login process');
+        $log.log(error);
+      }
+      else if ( error.status === 401 ) {
+        $log.warn('$transitions.onError() - Error 401, user not authenticated or token expired, redirect to login page');
+        $state.go(STATES.LOGIN, { stateToRedirect: toState });
+      }
+      else if ( error.status === 402 ) {
+        $log.warn(`$transitions.onError() - Error 402, Invalid Token for state without login, 
+                   redirect to 500 page with specific error message`);
+      }
+      else {
+        $log.error('$transitions.onError() - fromState=', fromState, '  toState=', toState, '  trans=', trans);
+      }
+
+    });
 
     // ui-router by default reports an error when we start a transition but we don't finish it and superseed it for another one
     // See comment above for more explanations on why we do this for this particular login case
     $state.defaultErrorHandler( (error) => {
 
-      if ( error.hasOwnProperty('detail') ) {
-        let fromState = error.detail.from();
-        let toState = error.detail.to();
-
-        if ( ( fromState.name === STATES.LOGIN || toState.name === STATES.LOGIN ) &&
-          error.message === 'The transition has been superseded by a different transition' ) {
-          $log.log('Transition from login to another page has been superseded, this is normal as part of login process');
-          $log.log(error);
-        }
-        else {
-          $log.error(error);
-        }
-      }
-      else {
-        $log.error(error);
-      }
+      $log.error('$state.defaultErrorHandler error=', error);
+      // if ( error.hasOwnProperty('detail') ) {
+      //   let fromState = error.detail.from();
+      //   let toState = error.detail.to();
+      //
+      //   if ( ( fromState.name === STATES.LOGIN || toState.name === STATES.LOGIN ) &&
+      //     error.message === 'The transition has been superseded by a different transition' ) {
+      //     $log.log('Transition from login to another page has been superseded, this is normal as part of login process');
+      //     $log.log(error);
+      //   }
+      //   else {
+      //     $log.error(error);
+      //   }
+      // }
+      // else if ( error === ERRORS.SURVEY_TOKEN_NOT_PROVIDED ) {
+      //   $log.log('No survey_token provided, redirect to 404 page');
+      //   // $state.go(STATES.PAGE_NOT_FOUND_NO_MENU);
+      // }
+      // else {
+      //   // TO DO redirect to 500 error page
+      //   $log.error(error);
+      // }
     });
 
     // Registers a OnInvalidCallback function to be invoked when StateService.transitionTo has been called with an invalid state reference parameter

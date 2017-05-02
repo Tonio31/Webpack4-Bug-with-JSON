@@ -64,15 +64,15 @@ describe('FriendsSurvey', () => {
       });
     });
 
-    it('$onInit() - current state  = /360-Survey/1 - Save TOKEN_SURVEY and remove it from the url', () => {
-      $state.current.name = `${STATES.SURVEY}/1`;
-
-      controller.$onInit();
-
-      expect(mockLocalStorage).to.deep.eq({ token_survey: 'something' });
-      sinon.assert.calledWith(searchSpy, TOKEN_SURVEY, null);
-      sinon.assert.calledWith(saveDataToSendLaterSpy, TOKEN_SURVEY, 'something');
-    });
+    // it('$onInit() - current state  = /360-Survey/1 - Save TOKEN_SURVEY and remove it from the url', () => {
+    //   $state.current.name = `${STATES.SURVEY}/1`;
+    //
+    //   controller.$onInit();
+    //
+    //   expect(mockLocalStorage).to.deep.eq({ token_survey: 'something' });
+    //   sinon.assert.calledWith(searchSpy, TOKEN_SURVEY, null);
+    //   sinon.assert.calledWith(saveDataToSendLaterSpy, TOKEN_SURVEY, 'something');
+    // });
 
     it('$onInit() - current state  = /360-Survey/2 - Store the token in CourseContent to send it later', () => {
 
@@ -83,12 +83,12 @@ describe('FriendsSurvey', () => {
       sinon.assert.calledWith(saveDataToSendLaterSpy, TOKEN_SURVEY, 'A Token');
     });
 
-    it('$onInit() - current state  = /360-Survey/2  - Go to page not found as no Token is in localStorage', () => {
-      $state.current.name = `${STATES.SURVEY}/2`;
-      controller.$onInit();
-
-      sinon.assert.calledWith(goSpy, STATES.PAGE_NOT_FOUND_NO_MENU, { intendedUrl: '/A/Super/cool/url' });
-    });
+    // it('$onInit() - current state  = /360-Survey/2  - Go to page not found as no Token is in localStorage', () => {
+    //   $state.current.name = `${STATES.SURVEY}/2`;
+    //   controller.$onInit();
+    //
+    //   sinon.assert.calledWith(goSpy, STATES.PAGE_NOT_FOUND_NO_MENU, { intendedUrl: '/A/Super/cool/url' });
+    // });
 
     it('$onInit() - current state  = /360-Survey/3  - delete local storage data and remove token from course Content', () => {
       mockLocalStorage[TOKEN_SURVEY] = 'A Token';

@@ -1,20 +1,39 @@
 import ResourceModule from './resource';
 
 describe('Resource', () => {
-  let User, Data, APIS_URL;
-  let $httpBackend;
+  let User, Data, APIS_URL, TOKEN_SURVEY;
+  let $httpBackend, $location;
 
   let participant = require('app/mockBackEndResponse/participants.json');
   let userId = 12;
 
+  let cleanMockObject = (iMockObject) => {
+    Object.keys(iMockObject).forEach( (key) => {
+      delete iMockObject[key];
+    });
+  };
 
-  beforeEach(window.module(ResourceModule));
+  let mockLocalStorage = {};
+
+  beforeEach(window.module(ResourceModule, ($provide) => {
+    $provide.value('$localStorage', mockLocalStorage );
+  }));
 
   beforeEach(inject(($injector) => {
     $httpBackend = $injector.get('$httpBackend');
+    $location = $injector.get('$location');
     User = $injector.get('User');
     Data = $injector.get('Data');
     APIS_URL = $injector.get('APIS_URL');
+    TOKEN_SURVEY = $injector.get('TOKEN_SURVEY');
+
+    $location.search = () => {
+      return {
+        [TOKEN_SURVEY]: 'ThisIsAToken'
+      };
+    };
+
+    cleanMockObject(mockLocalStorage);
 
     sinon.stub(User, 'getUserId', () => { return userId; } );
   }));
@@ -113,6 +132,32 @@ describe('Resource', () => {
 
       $httpBackend.flush();
     }));
+
+    it('getFriendSurveyContent() return a rejected promise if the server returns an error', sinon.test( (done) => {
+
+      let regexpStep = new RegExp('https:\/\/localhost\.com\/survey\?.*');
+      $httpBackend.whenGET(regexpStep).respond( (method, url) => {
+        if ( url.includes('token_survey=') ) {
+          return [ 200, { data: 'some data' }, {} ];
+        }
+        return [ 402, { error: 'No Token_survey provided' }, {} ];
+      });
+
+      let contentPromise = Data.getFriendSurveyContent({});
+
+
+      contentPromise.then( (dataFromServer) => {
+        expect(dataFromServer.data).to.equal('some data');
+        done();
+      })
+        .catch( () => {
+          assert.fail(0, 1, 'We should not return an error if the server returns positive response');
+        });
+     // sinon.assert.calledWith(getDynamicContentPromiseSpy, '');
+
+      $httpBackend.flush();
+    }));
+
 
     it('getUserAuthData() return a promise', sinon.test( (done) => {
 

@@ -15,12 +15,12 @@ let friendsSurveyModule = angular.module('friendsSurvey', [
   constantModule,
   LogDecorator
 ])
-.config(($stateProvider, STATES, TOKEN_SURVEY) => {
+.config(($stateProvider, STATES) => {
   'ngInject';
 
   let registerState = (iPageNumber) => {
     let stateName = `${STATES.SURVEY}/${iPageNumber}`;
-    let stateUrl = `${STATES.SURVEY}/${iPageNumber}?${TOKEN_SURVEY}`;
+    let stateUrl = `${STATES.SURVEY}/${iPageNumber}`;
 
     let state = {
       name: stateName,
@@ -30,10 +30,14 @@ let friendsSurveyModule = angular.module('friendsSurvey', [
       resolve: {
         content: (Data) => {
           'ngInject';
-          return Data.getDynamicContentPromise('survey', false, { page: iPageNumber });
+          return Data.getFriendSurveyContent({ page: iPageNumber });
         }
+      },
+      params: {
+        page: iPageNumber
       }
     };
+
     $stateProvider.state(state);
   };
 
