@@ -34,7 +34,7 @@ class VideoController {
             dynamicLabel: true
           }
         },
-        playbackRates: [ 0.5, 1.0, 1.5, 2.0 ]
+        playbackRates: [ 0.5, 1.0, 2.0 ]
       };
 
       // basic check for mobile User Agent:
