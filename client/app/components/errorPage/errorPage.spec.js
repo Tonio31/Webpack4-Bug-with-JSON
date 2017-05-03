@@ -10,8 +10,10 @@ describe('ErrorPage', () => {
     return value;
   };
 
+  let ZendeskWidget;
   beforeEach(window.module(ErrorPageModule, ($provide) => {
     $provide.value('translateFilter', mockTranslateFilter );
+    $provide.value('ZendeskWidget', ZendeskWidget);
   }));
 
   beforeEach(inject(($injector) => {

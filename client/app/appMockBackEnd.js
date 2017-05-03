@@ -197,7 +197,7 @@ angular.module( 'appMockBackEnd', [
     $log.log(`$httpBackend.whenGET(${url})`);
 
     // Simulate an Internal server error
-    // return error500;
+//    return error500;
 
     if ( !JwtFactory.isAuthExpired() ) {
       let reflexionParticipant = require('./mockBackEndResponse/reflexion.json');

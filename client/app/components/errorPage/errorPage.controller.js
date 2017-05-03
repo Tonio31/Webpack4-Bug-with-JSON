@@ -1,5 +1,5 @@
 class ErrorPageController {
-  constructor($log, $stateParams, $filter) {
+  constructor($log, $stateParams, $filter, ZendeskWidget) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -17,6 +17,12 @@ class ErrorPageController {
       else {
         this.errorMsg = $filter('translate')('ERROR_UNEXPECTED').toString();
       }
+
+      this.displayContactUsForm = $stateParams.displayMenu;
+    };
+
+    this.openWendeskWidget = () => {
+      ZendeskWidget.activate();
     };
   }
 }
