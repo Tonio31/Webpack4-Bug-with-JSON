@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>{documentTitle}</title>
   <style>
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
   /* reset and defaults */
   html, body, div, span, applet, object, iframe,
@@ -39,20 +40,15 @@
   blockquote, q {
     quotes: none;
   }
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-    content: '';
-    content: none;
-  }
   table {
     border-collapse: collapse;
     border-spacing: 0;
   }
 
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-
-
   /* general */
+  html,body {
+    height: 100%;
+  }
 
   h1, h2, h3, h4, p, li, th {
     font-family: "Montserrat", sans-serif;
@@ -104,7 +100,7 @@
     font-weight: bold;
   }
 
-  P:last-child {
+  .last-child {
     margin-bottom: 0;
   }
 
@@ -125,7 +121,7 @@
     padding-left: 10px;
   }
 
-  .bullet-dash::before {
+  .bullet-dash:before {
     content: '-';
     display: block;
     position: absolute;
@@ -138,7 +134,7 @@
     display: inline-block;
   }
 
-  .comma-after::after {
+  .comma-after:after {
     content: ',';
     display: block;
     position: absolute;
@@ -151,31 +147,20 @@
     text-align: left;
   }
 
-  page[size="a4"] {
+  .page {
     background: white;
     position: relative;
-    width: 21cm;
-    height: 29.7cm;
+    width: 100%;
+    height: 100%;
     display: block;
     margin: 0 auto;
-    margin-bottom: 0.5cm;
-    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-    page-break-after: always;
   }
 
   @media all {
-    /*html, body {
-      width: 210mm;
-      height: 297mm;
-    }*/
-    page[size="A4"] {
-      margin: 0;
-      box-shadow: 0;
-      page-break-after: always;
-    }
 
-    * {
-      box-sizing: border-box;
+    .page {
+      margin: 0;
+      page-break-after: always;
     }
 
     p {
@@ -186,10 +171,6 @@
       border: 1px solid #333;
       margin-bottom: 18px;
       width: 100%;
-    }
-
-    table:last-child {
-      margin-bottom: 0;
     }
 
     th {
@@ -231,7 +212,6 @@
       display: block;
       background-color: #fff;
       border: 1px solid #333;
-      border-radius: 50%;
       height: 31px;
       width: 31px;
       margin: 0 auto;
@@ -240,7 +220,7 @@
     footer {
       width: 100%;
       padding: 20px 0;
-      position: fixed;
+      position: absolute;
       left: 0;
       bottom: 0;
     }
@@ -251,18 +231,12 @@
     }
   }
 
-  /* print specific */
-  @page {
-    size: A4;
-    margin: 11mm 17mm 17mm 17mm;
-  }
-
   </style>
 </head>
 <body>
 
   <!-- LIFEACT PAGE -->
-  <page size="a4">
+  <div class="page">
     <h1>Level 1 - Module 1</h1>
     <h2>LifeAct: Encounter strengths</h2>
 
@@ -276,7 +250,7 @@
         <td>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
           <p><strong class="underline">Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strenth 2</span> <span class="user-text">strenth 3</span></p>
-          <p>Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
+          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
         </td>
         <td class="column-make-note"></td>
         <td class="column-checkmark">
@@ -295,7 +269,7 @@
         <td>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
           <p><strong class="underline">Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strength 2</span> <span class="user-text">strength 3</span></p>
-          <p>Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
+          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
         </td>
         <td class="column-make-note"></td>
         <td class="column-checkmark">
@@ -314,7 +288,7 @@
         <td>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
           <p><strong class="underline">Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strength 2</span> <span class="user-text">strength 3</span></p>
-          <p>Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
+          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
         </td>
         <td class="column-make-note"></td>
         <td class="column-checkmark">
@@ -333,7 +307,7 @@
         <td>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
           <p><strong>Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strength 2</span> <span class="user-text">strength 3</span></p>
-          <p>Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
+          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
         </td>
         <td class="column-make-note"></td>
         <td class="column-checkmark">
@@ -342,7 +316,7 @@
       </tr>
     </table>
 
-    <table>
+    <table class="last-child">
       <tr class="row header">
         <th>Discuss</th>
         <th class="column-make-note">Make a note</th>
@@ -352,7 +326,7 @@
         <td>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
           <p><strong>Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strength 2</span> <span class="user-text">strength 3</span></p>
-          <p>Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
+          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
         </td>
         <td class="column-make-note"></td>
         <td class="column-checkmark">
@@ -360,7 +334,10 @@
         </td>
       </tr>
     </table>
-  </page>
+    <footer>
+      <img src="assets/Logo.svg" class="logo" alt="Potentialife" title="Potentialife" />
+    </footer>
+  </div>
 
 
 
@@ -368,7 +345,7 @@
 
 
   <!-- SUMMARY PAGE -->
-  <page size="a4">
+  <div class="page">
     <h1>Level 1 - Module 1</h1>
     <h2>Summary: Encounter strengths</h2>
 
@@ -396,10 +373,10 @@
           </ul>
 
           <h3 class="underline no-margin">LifeMap data</h3>
-          <ul>
+          <ul class="last-child">
             <li class="user-text bullet-dash">X% of time aware of strengths</li>
             <li class="user-text bullet-dash">Y% of time exercising strengths inside work</li>
-            <li class="user-text bullet-dash">Z% of time exercising strengths outside work</li>
+            <li class="last-child user-text bullet-dash">Z% of time exercising strengths outside work</li>
           </ul>
 
         </td>
@@ -412,22 +389,21 @@
       </tr>
       <tr>
         <td>
-          <ol>
+          <ol class="last-child">
             <li>In order to fulfil your potential, focus on your strengths. </li>
             <li>Manage your weaknesses, but only to the point where they do not prevent you from exercising your strengths.</li>
             <li>Most of us do not put our strengths to use. As a result, we do not fulfil our potential for success or happiness.</li>
             <li>Sometimes our strengths are not apparent; they may be hidden behind our weaknesses.</li>
-            <li>We will go through a process of discovery and development to uncover these strengths.</li>
+            <li class="last-child">We will go through a process of discovery and development to uncover these strengths.</li>
           </ol>
 
         </td>
       </tr>
     </table>
-  </page>
-
-  <footer>
-    <img src="assets/Logo.svg" class="logo" alt="Potentialife" title="Potentialife" />
-  </footer>
+    <footer>
+      <img src="assets/Logo.svg" class="logo" alt="Potentialife" title="Potentialife" />
+    </footer>
+  </div>
 
 </body>
 </html>

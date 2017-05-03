@@ -16,6 +16,10 @@
   "NEXT": "Next",
   "COMPLETE": "Complete",
   "SAVING": "SAVING...",
+  "MODULES": "modules",
+  "STEPS": "steps",
+  "TOTAL": "Total",
+  "YOUR_NOTES": "Your notes:",
 
   "CONTENT_LOCKED": "This content is locked!",
   "CONTENT_LOCKED_DETAILS": "Unfortunately you'll need to do the previous steps before you'll be able to gain access to this one.",

@@ -98,17 +98,17 @@ class CheckboxController {
       return true;
     };
 
-    this.actionOnUserInput = (iCheckBoxGroupElement) => {
+    this.actionOnUserInput = (iFormElement) => {
 
-      $log.log('iCheckBoxGroupElement=', iCheckBoxGroupElement, '  this.selection=', this.selection);
+      $log.log('iFormElement=', iFormElement, '  this.selection=', this.selection);
 
       let checkedInput = [];
       let isSelectionValid = this.checkIfValid(checkedInput);
       if ( isSelectionValid ) {
-        iCheckBoxGroupElement.$setValidity('nbOptionSelected', true);
+        iFormElement.$setValidity('nbOptionSelected', true);
       }
       else {
-        iCheckBoxGroupElement.$setValidity('nbOptionSelected', false);
+        iFormElement.$setValidity('nbOptionSelected', false);
       }
 
       // Update parent with the change

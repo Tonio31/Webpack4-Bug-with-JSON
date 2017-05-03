@@ -1,4 +1,4 @@
-let syncMenuAndState = function($rootScope, $log) {
+let syncMenuAndState = function($rootScope, $log, $state, JwtFactory, STATES, ZendeskWidget) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -78,12 +78,20 @@ let syncMenuAndState = function($rootScope, $log) {
         hideMenuPanel(element[0], true);
         $log.log('BACK Clicked!! element=', element[0].id, '   event=', event);
       });
+
+      angular.element(element[0].getElementsByClassName('logout')[0]).on('click', (event) => {
+        event.stopPropagation();
+        JwtFactory.logout();
+        $state.go(STATES.LOGIN);
+        ZendeskWidget.hide();
+      });
+
     }
   };
 };
 
 
-let menuItem = function($window) {
+let menuItem = function($window, $filter) {
   'ngInject';
   return {
     require: '^offCanvasWrap',
@@ -105,6 +113,28 @@ let menuItem = function($window) {
 
           $scope.hideMenuItem = (iObject) => {
             return iObject.hasOwnProperty('hideStepInMenu') && iObject.hideStepInMenu;
+          };
+
+          $scope.getBelowTitle = (iObject) => {
+            let nbMenuChilds = 0;
+            if ( iObject.hasOwnProperty('children') ) {
+              for ( let subMenuItem of iObject.children ) {
+                if ( !$scope.hideMenuItem(subMenuItem) ) {
+                  nbMenuChilds += 1;
+                }
+              }
+            }
+
+            let type = '';
+            if ( iObject.hasOwnProperty('progress') ) {
+              type = $filter('translate')('MODULES').toString();
+            }
+            else {
+              type = $filter('translate')('STEPS').toString();
+            }
+
+            let belowTitle = `${$filter('translate')('TOTAL').toString()} - ${nbMenuChilds} ${type}`;
+            return belowTitle;
           };
 
           $scope.hideCanvas = () => {
@@ -160,8 +190,27 @@ let menuButton = function($log) {
   };
 };
 
+
+let plDisableLink = function() {
+  'ngInject';
+  return {
+    restrict: 'A',
+    scope: {
+      disable: '=plDisableLink'
+    },
+    link: function( $scope, element ) {
+      element.bind('click', (event) => {
+        if ( $scope.disable ) {
+          event.preventDefault();
+        }
+      });
+    }
+  };
+};
+
 export {
   syncMenuAndState,
   menuItem,
-  menuButton
+  menuButton,
+  plDisableLink
 };

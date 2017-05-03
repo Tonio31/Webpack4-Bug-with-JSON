@@ -36,6 +36,9 @@ describe('PageNotFound', () => {
       };
     });
 
+    sinon.stub(Menu, 'isMenuRetrieved', () => {
+      return true;
+    });
 
     goSpy = sinon.spy($state, 'go');
   }));
@@ -63,6 +66,10 @@ describe('PageNotFound', () => {
       controller.resumeProgress();
 
       sinon.assert.calledWith(goSpy, currentStepUrl);
+    }));
+
+    it('displayResumeProgress gets its value from Menu.isMenuRetrieved()', sinon.test( () => {
+      expect(controller.displayResumeProgress).to.eq(true);
     }));
 
   });

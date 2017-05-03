@@ -8,7 +8,7 @@ let UtilityFactory = function( $log, $q, $state, $window, $localStorage, User, D
     let reExternalUrl = /^https?:\/\/.*$/;
     if ( iUrl.match(reExternalUrl) ) {
       $log.log('About to redirect to different URL: ', iUrl);
-      $window.location.href = iUrl;
+      $window.open( iUrl, '_blank' );
     }
     else {
       $log.log('About to change state to go to: ', iUrl);

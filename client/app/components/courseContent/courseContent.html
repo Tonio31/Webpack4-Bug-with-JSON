@@ -67,7 +67,8 @@
                   ng-click="$ctrl.previousStep()">
             &lt; {{ 'PREVIOUS' | translate }}
           </button>
-          <button ng-disabled="$ctrl.savingStepSpinner.show || $ctrl.isNextButtonDisable"
+          <button ng-show="$ctrl.displayNextButton"
+                  ng-disabled="$ctrl.savingStepSpinner.show"
                   ng-class="$ctrl.nextStepButton.class"
                   class="radius right"
                   type="submit"

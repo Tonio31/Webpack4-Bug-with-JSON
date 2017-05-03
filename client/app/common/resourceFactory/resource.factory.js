@@ -1,11 +1,11 @@
-let ResourceFactory = function($log, $q, $resource, User, config) {
+let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
   $log = $log.getInstance('ResourceFactory');
 
   let buildApiUrl = (iTypeOfApi, iUserId = false) => {
-    let apiUrl = `${config.apiUrl}${config.apiVersion}/${iTypeOfApi}`;
+    let apiUrl = `${WEBSITE_CONFIG.apiUrl}/${iTypeOfApi}`;
 
     if ( iUserId ) {
       apiUrl += `/${User.getUserId()}`;
@@ -100,7 +100,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
     return new ($resource('', {}, {
       register: {
         method: 'POST',
-        url: `${config.apiViaSurvey}RegisterUser`,
+        url: `${WEBSITE_CONFIG.apiViaSurvey}RegisterUser`,
         transformResponse: (userId) => {
           return {
             userId: userId
@@ -109,7 +109,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
       },
       login: {
         method: 'POST',
-        url: `${config.apiViaSurvey}LoginUser`,
+        url: `${WEBSITE_CONFIG.apiViaSurvey}LoginUser`,
         transformResponse: (loginKeyRawString) => {
           return {
             loginKey: angular.fromJson(loginKeyRawString)
@@ -118,7 +118,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
       },
       startSurvey: {
         method: 'POST',
-        url: `${config.apiViaSurvey}StartSurvey`,
+        url: `${WEBSITE_CONFIG.apiViaSurvey}StartSurvey`,
         transformResponse: (sessionKeyRawString) => {
           return {
             sessionKey: angular.fromJson(sessionKeyRawString)
@@ -127,7 +127,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
       },
       getQuestions: {
         method: 'POST',
-        url: `${config.apiViaSurvey}GetQuestions`,
+        url: `${WEBSITE_CONFIG.apiViaSurvey}GetQuestions`,
         transformResponse: (questions) => {
           return {
             questionsList: angular.fromJson(questions)
@@ -136,7 +136,7 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
       },
       submitAnswers: {
         method: 'POST',
-        url: `${config.apiViaSurvey}SubmitAnswers`,
+        url: `${WEBSITE_CONFIG.apiViaSurvey}SubmitAnswers`,
         transformResponse: (response) => {
           $log.log('SubmitAnswers response=', response);
           return {
