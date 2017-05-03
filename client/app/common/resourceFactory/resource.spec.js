@@ -136,26 +136,16 @@ describe('Resource', () => {
     it('getFriendSurveyContent() return a rejected promise if the server returns an error', sinon.test( (done) => {
 
       let regexpStep = new RegExp('https:\/\/localhost\.com\/survey\?.*');
-      $httpBackend.whenGET(regexpStep).respond( (method, url) => {
-        if ( url.includes('token_survey=') ) {
-          return [ 200, { data: 'some data' }, {} ];
-        }
-        return [ 402, { error: 'No Token_survey provided' }, {} ];
+      $httpBackend.whenGET(regexpStep).respond( () => {
+        return [ 200, { data: 'some data' }, {} ];
       });
 
-      let contentPromise = Data.getFriendSurveyContent({});
+      Data.getFriendSurveyContent({});
 
-
-      contentPromise.then( (dataFromServer) => {
-        expect(dataFromServer.data).to.equal('some data');
-        done();
-      })
-        .catch( () => {
-          assert.fail(0, 1, 'We should not return an error if the server returns positive response');
-        });
-     // sinon.assert.calledWith(getDynamicContentPromiseSpy, '');
+      expect(mockLocalStorage).to.deep.eq({ token_survey: 'ThisIsAToken' });
 
       $httpBackend.flush();
+      done();
     }));
 
 
