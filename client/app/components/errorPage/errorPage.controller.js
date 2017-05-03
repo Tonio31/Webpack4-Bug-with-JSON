@@ -18,8 +18,6 @@ class ErrorPageController {
         this.errorMsg = $filter('translate')('ERROR_UNEXPECTED').toString();
       }
     };
-
-    this.name = 'errorPage';
   }
 }
 

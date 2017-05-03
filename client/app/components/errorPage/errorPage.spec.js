@@ -4,7 +4,7 @@ import ErrorPageComponent from './errorPage.component';
 import ErrorPageTemplate from './errorPage.html';
 
 describe('ErrorPage', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope, $componentController, $compile, $stateParams;
 
   let mockTranslateFilter = (value) => {
     return value;
@@ -18,6 +18,7 @@ describe('ErrorPage', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    $stateParams = $injector.get('$stateParams');
   }));
 
   describe('Module', () => {
@@ -33,9 +34,16 @@ describe('ErrorPage', () => {
       });
     });
 
+    it('$onInit() - display specific error message if it is in the $stateParams', () => {
+      $stateParams.errorMsg = 'ERROR_402';
+      controller.$onInit();
+      expect(controller.errorMsg).to.eq('ERROR_402');
+    });
 
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('name');
+    it('$onInit() - display generic error message ERROR_UNEXPECTED if $stateParams is empty', () => {
+      $stateParams.errorMsg = null;
+      controller.$onInit();
+      expect(controller.errorMsg).to.eq('ERROR_UNEXPECTED');
     });
   });
 
@@ -50,8 +58,8 @@ describe('ErrorPage', () => {
     });
 
 
-    it('has a h1 title', () => {
-      expect(template.find('h1').html()).to.eq('errorPage');
+    it('the h1 tag has the good content (ERROR_UNEXPECTED)', () => {
+      expect(template.find('h1').html()).to.eq('ERROR_UNEXPECTED');
     });
   });
 

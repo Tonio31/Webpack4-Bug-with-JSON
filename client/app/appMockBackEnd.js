@@ -66,7 +66,7 @@ angular.module( 'appMockBackEnd', [
 
   let error401 = [ 401, { error: 'token_not_provided' }, {} ];
   let error402 = [ 402, { error: 'Not Authorised' }, {} ];
-  let error500 = [ 500, { error: 'Internal Server Error' }, {} ];
+  let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
   // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
   User.setUser({ id: authenticate.user.id });
@@ -172,29 +172,32 @@ angular.module( 'appMockBackEnd', [
 
 
     // Simulate an Internal server error
-    return error500;
+    // return error500;
 
-    // if ( !JwtFactory.isAuthExpired() ) {
-    //   let content = {};
-    //   try {
-    //     content = getStepContent(url);
-    //   }
-    //   catch (error) {
-    //     $log.log(error);
-    //     if ( error.message.includes('Cannot find module') ) {
-    //       // The json for this step is not yet imported in the project return the generic content
-    //       $log.log('No json found for the specific step, returning generic content');
-    //       content = require('./mockBackEndResponse/genericContent.json');
-    //     }
-    //   }
-    //   return [ 200, content, {} ];
-    // }
-    //
-    // return error401;
+    if ( !JwtFactory.isAuthExpired() ) {
+      let content = {};
+      try {
+        content = getStepContent(url);
+      }
+      catch (error) {
+        $log.log(error);
+        if ( error.message.includes('Cannot find module') ) {
+          // The json for this step is not yet imported in the project return the generic content
+          $log.log('No json found for the specific step, returning generic content');
+          content = require('./mockBackEndResponse/genericContent.json');
+        }
+      }
+      return [ 200, content, {} ];
+    }
+
+    return error401;
   });
 
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
+
+    // Simulate an Internal server error
+    // return error500;
 
     if ( !JwtFactory.isAuthExpired() ) {
       let reflexionParticipant = require('./mockBackEndResponse/reflexion.json');
@@ -279,7 +282,6 @@ angular.module( 'appMockBackEnd', [
 
     // If the user is not logged in, returns error
     return error401;
-    // return [ 404, { error: 'token_not_provided' }, {} ]; // switch with the line above if you want to simulate an other error than "Not logged in"
 
   });
 

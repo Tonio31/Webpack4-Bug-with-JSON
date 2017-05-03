@@ -3,7 +3,6 @@
 let AuthInterceptorFactory = function( $log,
                                        $state,
                                        $q,
-                                       // STATES,
                                        JwtFactory ) {
   'ngInject';
 
@@ -40,13 +39,7 @@ let AuthInterceptorFactory = function( $log,
 
     $log.log('There was an error during the last communication with the server error.status=', error.status);
 
-    $log.error(error);
-
-    // If we receive 401, it means the user is not logged in, redirect him to the login page
-    // and specify where we have to redirect after login
-    // if ( error.status === 401 && $state.$current.name !== STATES.LOGIN ) {
-    //   return $state.go(STATES.LOGIN, { stateToRedirect: $state.$current.name });
-    // }
+    $log.error('error=', error);
 
     return $q.reject(error);
   };

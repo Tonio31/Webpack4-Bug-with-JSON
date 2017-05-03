@@ -14,7 +14,7 @@ let errorPageModule = angular.module('errorPage', [
 
   $stateProvider
     .state(STATES.ERROR_PAGE_NO_MENU, {
-      url: STATES.ERROR_PAGE,
+      url: STATES.ERROR_PAGE_NO_MENU,
       parent: STATES.MAIN_NO_MENU,
       component: 'errorPage',
       params: {
