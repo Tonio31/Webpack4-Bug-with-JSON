@@ -80,8 +80,6 @@ let appModule = angular.module('app', [
     $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.get.Pragma = 'no-cache';
 
-    $logProvider.debugEnabled(false);
-
     $stateProviderRef = $stateProvider;
   })
   // eslint-disable-next-line max-params
@@ -102,11 +100,15 @@ let appModule = angular.module('app', [
           JwtFactory,
           Data,
           STATES,
-          SPINNERS ) => {
+          SPINNERS,
+          WEBSITE_CONFIG ) => {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance('app::RUN()');
+
+    // Create Google Analytics Session
+    $window.ga('create', WEBSITE_CONFIG.googleTrackingCode, 'auto');
 
     // Activate logging of transitions in console
     $trace.enable('TRANSITION');

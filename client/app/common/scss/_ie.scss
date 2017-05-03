@@ -1,0 +1,30 @@
+// http://www.mediacurrent.com/blog/write-conditional-css-ie10-and-11
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .off-canvas-wrap {
+    overflow-y: visible;
+    .inner-wrap {
+      height: 100vh;
+    }
+  }
+
+  .course-content {
+    height: calc(100% - 6rem);
+  }
+
+  .navbar {
+    .main-section {
+      height: auto;
+    }
+  }
+
+  .icon-text {
+    .flex-parent {
+      .text-content {
+        width: calc(100% - 9rem);
+        display: block;
+        overflow: hidden;
+      }
+    }
+  }
+
+}

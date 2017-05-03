@@ -46,12 +46,10 @@ let constantModule = angular.module('app.common.constant', [
     TOP_LEVEL: 'topLevelSpinner',
     SAVING_STEP: 'savingStepSpinner'
   })
-  .constant('ERRORS', {
-    SURVEY_TOKEN_NOT_PROVIDED: 'Survey_token has not been provided in parameters'
-  })
-  .constant('APIS_URL', {
+  .constant('WEBSITE_CONFIG', {
     apiUrl: BACK_END_API,
-    apiViaSurvey: 'https://www.viacharacter.org/survey/api1/'
+    apiViaSurvey: 'https://www.viacharacter.org/survey/api1/',
+    googleTrackingCode: GOOGLE_TRACKING_CODE
   })
 .name;
 

@@ -8,7 +8,7 @@ let ResourceFactory = function( $log,
                                 $location,
                                 User,
                                 STATES,
-                                APIS_URL,
+                                WEBSITE_CONFIG,
                                 TOKEN_SURVEY ) {
   'ngInject';
 
@@ -16,7 +16,7 @@ let ResourceFactory = function( $log,
   $log = $log.getInstance('ResourceFactory');
 
   let buildApiUrl = (iTypeOfApi, iUserId = false) => {
-    let apiUrl = `${APIS_URL.apiUrl}/${iTypeOfApi}`;
+    let apiUrl = `${WEBSITE_CONFIG.apiUrl}/${iTypeOfApi}`;
 
     if ( iUserId ) {
       apiUrl += `/${User.getUserId()}`;
@@ -130,7 +130,7 @@ let ResourceFactory = function( $log,
   // The following is used by ViaSurvey module
   let viaSurvey = (iEndPointApi) => {
     $log.log('viaSurvey()  iEndPointApi=', iEndPointApi);
-    return new ($resource(`${APIS_URL.apiViaSurvey}${iEndPointApi}`))();
+    return new ($resource(`${WEBSITE_CONFIG.apiViaSurvey}${iEndPointApi}`))();
   };
 
   return {
