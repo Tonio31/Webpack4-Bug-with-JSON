@@ -27,13 +27,13 @@ class VideoController {
       this.mediaOptions = {
         plugins: {
           videoJsResolutionSwitcher: {
-            ui: true,
             // Default resolution [{Number}, 'low', 'high'], (low == the lower of the numbers in data.player.res)
             default: 'low',
             // Display dynamic labels or gear symbol
             dynamicLabel: true
           }
-        }
+        },
+        playbackRates: [ 0.5, 1.0, 2.0 ]
       };
 
       // basic check for mobile User Agent:

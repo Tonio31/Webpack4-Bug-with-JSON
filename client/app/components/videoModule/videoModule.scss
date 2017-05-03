@@ -32,7 +32,12 @@
     color: $oil;
   }
 
+// hides the audio track menu
+  .vjs-audio-button {
+    display: none;
+  }
 }
+
 
 $buttonXY: 8rem;
 
