@@ -37,7 +37,6 @@ let appModule = angular.module('app', [
   Global
 ])
   .config( ( $locationProvider,
-             $logProvider,
              $stateProvider,
              $httpProvider,
              $qProvider,
