@@ -6,7 +6,13 @@ import ErrorPageTemplate from './errorPage.html';
 describe('ErrorPage', () => {
   let $rootScope, $componentController, $compile;
 
-  beforeEach(window.module(ErrorPageModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(ErrorPageModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
