@@ -4,6 +4,7 @@ class CourseContentController {
   constructor( $log,
                $filter,
                $location,
+               $window,
                $anchorScroll,
                $state,
                $stateRegistry,
@@ -175,6 +176,14 @@ class CourseContentController {
 
         postData.$save( (dataBackFromServer) => {
           $log.log('Response OK from the backend, retrieving the updated menu from backend dataBackFromServer=', dataBackFromServer);
+
+          // User has successfully completed a step
+          $window.ga('send', {
+            hitType: 'event',
+            eventCategory: 'CompletedStep',
+            eventAction: this.content.fullUrl,
+            eventLabel: this.content.name
+          });
 
           // If there was user input saved in local storage, delete it as it has been successfully saved on server side
           Utility.removeUserInputFromLocalStorage(ContentFactory.getInputFields());

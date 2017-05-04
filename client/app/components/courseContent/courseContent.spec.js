@@ -3,7 +3,7 @@
 import CourseContentModule from './courseContent';
 
 describe('CourseContent Module', () => {
-  let $rootScope, $state, $stateRegistry, $q, $location, $componentController, $compile;
+  let $rootScope, $state, $window, $stateRegistry, $q, $location, $componentController, $compile;
 
   let Menu, Data, Utility, SpinnerFactory, FORM_NAME_PREFIX, SPINNERS;
 
@@ -46,6 +46,7 @@ describe('CourseContent Module', () => {
     $componentController = $injector.get('$componentController');
     $location = $injector.get('$location');
     $state = $injector.get('$state');
+    $window = $injector.get('$window');
     $stateRegistry = $injector.get('$stateRegistry');
     $q = $injector.get('$q');
     $compile = $injector.get('$compile');
@@ -55,6 +56,9 @@ describe('CourseContent Module', () => {
     SpinnerFactory = $injector.get('SpinnerFactory');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
     SPINNERS = $injector.get('SPINNERS');
+
+
+    $window.ga = () => {};
 
     goFn = sinon.stub($state, 'go');
     retrieveMenuAndReturnStatesSpy = sinon.stub(Menu, 'retrieveMenuAndReturnStates', () => {
