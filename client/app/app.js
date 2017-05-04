@@ -39,6 +39,7 @@ let appModule = angular.module('app', [
   .config( ( $locationProvider,
              $stateProvider,
              $httpProvider,
+             $qProvider,
              $localStorageProvider,
              $urlRouterProvider,
              ZendeskWidgetProvider,
@@ -78,6 +79,8 @@ let appModule = angular.module('app', [
     $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Sat, 1 Jan 2000 00:00:00 GMT';
     $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.get.Pragma = 'no-cache';
+
+    $qProvider.errorOnUnhandledRejections(false);
 
     $stateProviderRef = $stateProvider;
   })
@@ -224,36 +227,64 @@ let appModule = angular.module('app', [
     });
 
 
+    let matchFromAnyToParentNoLogin = {
+      to: (state) => {
+        return ( state.parent.name === STATES.MAIN_NO_MENU ||
+                 state.parent.name === STATES.LOGIN_ROOT );
+      }
+    };
+    $transitions.onError( matchFromAnyToParentNoLogin, (trans) => {
+      let fromState = trans.from().name; // Example of fromState: /home
+      let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+      let error = trans.error();
 
-    // ui-router by default reports an error when we start a transition but we don't finish it and superseed it for another one
-    // See comment above for more explanations on why we do this for this particular login case
-    $state.defaultErrorHandler( (error) => {
-
-      if ( error.hasOwnProperty('detail') ) {
-        let fromState = error.detail.from();
-        let toState = error.detail.to();
-
-        if ( ( fromState.name === STATES.LOGIN || toState.name === STATES.LOGIN ) &&
-          error.message === 'The transition has been superseded by a different transition' ) {
-          $log.log('Transition from login to another page has been superseded, this is normal as part of login process');
-          $log.log(error);
-        }
-        else {
-          $log.error(error);
-        }
+      if ( error.status === 402 ) {
+        $log.warn(`$transitions.onError(matchFromAnyToParentNoLogin) - Error 402, Invalid Token for state without login,
+                   redirect to 500 page with specific error message`);
+        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_402' }, { reload: true });
       }
       else {
-        $log.error(error);
+        $log.error('$transitions.onError(matchFromAnyToParentNoLogin) - fromState=', fromState,
+                   '  toState=', toState, '  error=', error);
+        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
       }
     });
+
+
+    let matchFromAnyToParentWithMenu = {
+      to: (state) => {
+        return ( state.parent.name === STATES.MAIN );
+      }
+    };
+    $transitions.onError( matchFromAnyToParentWithMenu, (trans) => {
+      let fromState = trans.from().name; // Example of fromState: /home
+      let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+      let error = trans.error();
+
+      if ( ( fromState === STATES.LOGIN ) &&
+        error.message === 'The transition has been superseded by a different transition' ) {
+        $log.log('Transition from login to another page has been superseded, this is normal as part of login process error=', error);
+      }
+      else if ( error.status === 401 ) {
+        $log.warn(`$transitions.onError(matchFromAnyToParentWithMenu) - Error 401, user not authenticated or token expired, 
+                  redirect to login page.  stateToRedirect=`, toState);
+        $state.go(STATES.LOGIN, { stateToRedirect: toState }, { reload: true });
+      }
+      else {
+        $log.error('$transitions.onError(matchFromAnyToParentWithMenu) - fromState=', fromState,
+                   '  toState=', toState, '  error=', error);
+        $state.go(STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
+      }
+    });
+
 
     // Registers a OnInvalidCallback function to be invoked when StateService.transitionTo has been called with an invalid state reference parameter
     $state.onInvalid( (to, from) => {
       $log.info('Invalid transition from ', from, '  to ', to);
     });
 
-    $log.log('Start - $location.path()=', $location.path());
 
+    $log.log('Start - $location.path()=', $location.path());
 
     if ( $location.path() === STATES.RESET_PASSWORD ||
          $location.path().includes(STATES.SURVEY) ) {

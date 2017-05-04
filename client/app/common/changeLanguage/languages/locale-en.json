@@ -65,6 +65,8 @@
 
   "ERROR_SAVING_RETRY": "Whoops, we are sorry, there was an error while saving data, please refresh the page and retry or contact support if error persists.",
   "ERROR_RETRY": "Whoops, we are sorry, there was an error please refresh the page and retry or contact support if error persists.",
+  "ERROR_UNEXPECTED": "Unexpected error.",
+  "ERROR_402": "This link is not valid anymore.",
 
   "ERROR_WITH_BACKEND": "Whoops, Unexpected error while changing your password.",
   "PLEASE_TRY_AGAIN": "Please try again",

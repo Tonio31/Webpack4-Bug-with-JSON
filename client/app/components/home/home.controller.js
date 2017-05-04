@@ -57,11 +57,7 @@ class HomeController {
     };
 
     this.sendUsEmail = () => {
-      $log.info('sendUsEmail');
-      ZendeskWidget.identify({
-        name: `${User.getFirstName()} ${User.getLastName()}`,
-        email: User.getEmail()
-      });
+      $log.log('sendUsEmail');
       ZendeskWidget.activate();
     };
 

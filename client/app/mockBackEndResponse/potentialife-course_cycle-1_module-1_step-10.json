@@ -33,16 +33,20 @@
           "minItemsDisplayed": 5,
           "showMoreButtonAtStart": true
         },
-        "name": "Your chosen VIA character strengths",
+        "label": "Your chosen VIA character strengths",
         "items": [
           {
-            "text": "Reflexion"
+            "label": "Reflexion",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
           },
           {
-            "text": "Power"
+            "label": "Power",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
           },
           {
-            "text": "Good in Bed"
+            "label": "Good in Bed"
           }
         ]
       }

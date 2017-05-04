@@ -165,7 +165,6 @@ class CourseContentController {
     };
 
     this.nextStep = (iForm) => {
-
       if ( iForm.$invalid && !this.isStepCompleted ) {
         this.goToFieldInError(iForm);
       }

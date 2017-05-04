@@ -1,4 +1,15 @@
-let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
+// eslint-disable-next-line max-params
+let ResourceFactory = function( $log,
+                                $q,
+                                $resource,
+                                $stateParams,
+                                $state,
+                                $localStorage,
+                                $location,
+                                User,
+                                STATES,
+                                WEBSITE_CONFIG,
+                                TOKEN_SURVEY ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -69,6 +80,28 @@ let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
     }
 
     return deferred.promise;
+  };
+
+  let getFriendSurveyContent = ( ioGetParameters ) => {
+    // Get Token from URL or local storage
+    let urlParameters = $location.search();
+    let tokenSurvey = '';
+
+    if ( urlParameters.hasOwnProperty(TOKEN_SURVEY) ) {
+      tokenSurvey = urlParameters[TOKEN_SURVEY];
+      $localStorage[TOKEN_SURVEY] = tokenSurvey;
+    }
+    else if ( angular.isDefined($localStorage[TOKEN_SURVEY]) ) {
+      tokenSurvey = $localStorage[TOKEN_SURVEY];
+    }
+
+    $log.warn('getFriendSurveyContent() - tokenSurvey=', tokenSurvey);
+
+    if ( tokenSurvey ) {
+      ioGetParameters[TOKEN_SURVEY] = tokenSurvey;
+    }
+
+    return getDynamicContentPromise( 'survey', false, ioGetParameters );
   };
 
   // **********************************  POST  *************************************** //
@@ -153,6 +186,7 @@ let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
     sendRecoverPasswordEmail,
     resetPassword,
     getDynamicContentPromise,
+    getFriendSurveyContent,
     getParticipantDetails,
     updateStep,
     buildApiUrl,

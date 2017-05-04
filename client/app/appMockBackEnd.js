@@ -46,7 +46,7 @@ angular.module( 'appMockBackEnd', [
     return proxy;
   });
 })
-.run( ($log, $httpBackend, $timeout, User, Data, JwtFactory) => {
+.run( ($log, $httpBackend, $timeout, User, Data, JwtFactory, STATES, TOKEN_SURVEY) => {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -64,7 +64,9 @@ angular.module( 'appMockBackEnd', [
 
   let stepContent = {};
 
-  let errorReply = [ 401, { error: 'token_not_provided' }, {} ];
+  let error401 = [ 401, { error: 'token_not_provided' }, {} ];
+  let error402 = [ 402, { error: 'Not Authorised' }, {} ];
+  let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
   // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
   User.setUser({ id: authenticate.user.id });
@@ -168,6 +170,10 @@ angular.module( 'appMockBackEnd', [
 
     $log.log(`$httpBackend.whenGET(${url})`);
 
+
+    // Simulate an Internal server error
+    // return error500;
+
     if ( !JwtFactory.isAuthExpired() ) {
       let content = {};
       try {
@@ -184,11 +190,14 @@ angular.module( 'appMockBackEnd', [
       return [ 200, content, {} ];
     }
 
-    return errorReply;
+    return error401;
   });
 
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
+
+    // Simulate an Internal server error
+//    return error500;
 
     if ( !JwtFactory.isAuthExpired() ) {
       let reflexionParticipant = require('./mockBackEndResponse/reflexion.json');
@@ -196,32 +205,29 @@ angular.module( 'appMockBackEnd', [
     }
 
     // Return error by default
-    return errorReply;
+    return error401;
   });
 
-  $httpBackend.whenGET(Data.buildApiUrl('survey?page=1')).respond( (method, url) => {
+  let regexpSurvey = new RegExp('https:\/\/localhost\.com\/survey\?.*');
+  $httpBackend.whenGET(regexpSurvey).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
 
-    let survey = require('./mockBackEndResponse/360_survey_page_1.json');
+    // find the page number and token_survey
+    let regexp = new RegExp('^.*page=(\\d)(?:&token_survey=(.*))?');
+
+    let groups = url.match(regexp);
+    $log.log('groups=', groups);
+    let pageNumber = groups[1];
+    let tokenSurvey = groups[2];
+
+    if ( angular.isUndefined(tokenSurvey) ) {
+      return error402;
+    }
+
+    let survey = require(`./mockBackEndResponse/360_survey_page_${pageNumber}.json`);
+
     return [ 200, survey, {} ];
   });
-
-
-  $httpBackend.whenGET(Data.buildApiUrl('survey?page=2')).respond( (method, url) => {
-    $log.log(`$httpBackend.whenGET(${url})`);
-
-    let survey = require('./mockBackEndResponse/360_survey_page_2.json');
-    return [ 200, survey, {} ];
-  });
-
-
-  $httpBackend.whenGET(Data.buildApiUrl('survey?page=3')).respond( (method, url) => {
-    $log.log(`$httpBackend.whenGET(${url})`);
-
-    let survey = require('./mockBackEndResponse/360_survey_page_3.json');
-    return [ 200, survey, {} ];
-  });
-
 
   $httpBackend.whenGET(Data.buildApiUrl('menu', true)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
@@ -232,8 +238,18 @@ angular.module( 'appMockBackEnd', [
     }
 
     // Return error by default
-    return errorReply;
+    return error401;
   });
+
+  let isPropertyDefined = (iArray, iPropertyName) => {
+
+    for (let data of iArray) {
+      if (data.code === iPropertyName && data.value) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
@@ -248,21 +264,24 @@ angular.module( 'appMockBackEnd', [
       congrats: '<p>Congratulations for finishing this step, you\'re a star<\/p>'
     };
 
+    if ( dataObject.fullUrl.includes(STATES.SURVEY) ) {
+      // For Firends submitting survey, no need for normal login but token_survey must always be attached
+      if ( isPropertyDefined(dataObject.programData, TOKEN_SURVEY) ) {
+        return [ 200, responseContent, responseHeaders ];
+      }
 
-    if ( !JwtFactory.isAuthExpired() ) {
+      return error402;
+    }
+    else if ( !JwtFactory.isAuthExpired() ) {
       // Simulate a good answer
 
       updateMenu(dataObject.fullUrl);
 
       return [ 200, responseContent, responseHeaders ];
     }
-    else if ( dataObject.fullUrl.includes('360_Survey') ) {
-      return [ 200, responseContent, responseHeaders ];
-    }
 
     // If the user is not logged in, returns error
-    return errorReply;
-    // return [ 404, { error: 'token_not_provided' }, {} ]; // switch with the line above if you want to simulate an other error than "Not logged in"
+    return error401;
 
   });
 
@@ -273,6 +292,7 @@ angular.module( 'appMockBackEnd', [
       status: 'ok'
     };
 
+    // return error401;
     return [ 200, authenticate, responseHeaders ];
   });
 

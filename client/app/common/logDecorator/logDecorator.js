@@ -9,7 +9,6 @@ let resourceServiceModule = angular.module('logDecorator', [
     $provide.decorator('$log', ( $filter, $delegate) => {
       'ngInject';
 
-
       let enchanceLoggerFn = ( $log ) => {
 
 
