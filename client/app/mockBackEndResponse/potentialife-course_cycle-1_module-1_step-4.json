@@ -30,26 +30,17 @@
       "element":"bar_chart",
       "data": {
         "title":"Your strengths breakdown",
+        "barWidth": 0.5,
         "bars":[
           {
             "title": "Work",
             "color": "#d3d3d3",
-            "value": 0
+            "value": 10
           },
           {
             "title": "Non-Work",
             "color": "green",
             "value": 31
-          },
-          {
-            "title": "Sleep",
-            "color": "blue",
-            "value": 95
-          },
-          {
-            "title": "Whatever",
-            "color": "red",
-            "value": 100
           }
         ]
       }
@@ -60,6 +51,7 @@
       "element":"bar_chart",
       "data": {
         "title":"Your SECOND strengths breakdown",
+        "barWidth": 0.8,
         "bars":[
           {
             "title": "Work",
