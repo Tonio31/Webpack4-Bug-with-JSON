@@ -4,6 +4,7 @@ class CourseContentController {
   constructor( $log,
                $filter,
                $location,
+               $window,
                $anchorScroll,
                $state,
                $stateRegistry,
