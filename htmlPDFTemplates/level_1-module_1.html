@@ -1,407 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>{documentTitle}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>LifeAct</title>
   <style>
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+    /*@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');*/
 
-  /* reset and defaults */
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-  }
-  article, aside, details, figcaption, figure,
-  footer, header, hgroup, menu, nav, section {
-    display: block;
-  }
-  body {
-    line-height: 1;
-  }
-  ol, ul {
-    list-style: none;
-  }
-  blockquote, q {
-    quotes: none;
-  }
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
+    /*vietnamese*/
 
-  /* general */
-  html,body {
-    height: 100%;
-  }
-
-  h1, h2, h3, h4, p, li, th {
-    font-family: "Montserrat", sans-serif;
-    color: #333333;
-  }
-
-  h1 {
-    font-size: 12px;
-    font-weight: bold;
-    color: #F06334;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  h2 {
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 28px;
-    margin-bottom: 12px;
-  }
-
-  h3 {
-    font-size: 11px;
-    font-weight: bold;
-    line-height: 15px;
-    margin-bottom: 14px;
-  }
-
-  p, li {
-    font-size: 11px;
-    line-height: 15px;
-    margin-bottom: 14px;
-  }
-
-  ul {
-    margin-bottom: 14px;
-  }
-
-  ul li {
-    margin-bottom: 0;
-  }
-
-  ol {
-     list-style-type: decimal;
-     list-style-position: inside;
-  }
-
-  strong {
-    font-weight: bold;
-  }
-
-  .last-child {
-    margin-bottom: 0;
-  }
-
-  .user-text {
-    color: #0093C0;
-  }
-
-  .underline {
-    text-decoration: underline;
-  }
-
-  .no-margin {
-    margin: 0;
-  }
-
-  .bullet-dash {
-    position: relative;
-    padding-left: 10px;
-  }
-
-  .bullet-dash:before {
-    content: '-';
-    display: block;
-    position: absolute;
-    left: 0;
-  }
-
-  .comma-after {
-    position: relative;
-    padding-right: 2.5px;
-    display: inline-block;
-  }
-
-  .comma-after:after {
-    content: ',';
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-
-  footer {
-    font-size: 18px;
-    text-align: left;
-  }
-
-  .page {
-    background: white;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: block;
-    margin: 0 auto;
-  }
-
-  @media all {
-
-    .page {
-      margin: 0;
-      page-break-after: always;
+    @font-face {
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 400;
+      /*src: url(https://apipl.ciprianspiridon.com/fonts/Montserrat-Regular.ttf) format('truetype');*/
+      /*unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;*/
     }
 
-    p {
-      page-break-inside: avoid;
+    /* latin-ext */
+    @font-face {
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 400;
+      /*src: url(https://apipl.ciprianspiridon.com/fonts/Montserrat-Regular.ttf) format('truetype');*/
+      /*unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;*/
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 400;
+      /*src: url(https://apipl.ciprianspiridon.com/fonts/Montserrat-Regular.ttf) format('truetype');*/
+      /*unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;*/
+    }
+
+    /* vietnamese */
+    @font-face {
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 700;
+      /*src: url(https://apipl.ciprianspiridon.com/fonts/Montserrat-Bold.ttf) format('truetype');*/
+      /*unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;*/
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 700;
+      /*src: url(https://apipl.ciprianspiridon.com/fonts/Montserrat-Bold.ttf) format('truetype');*/
+      /*unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;*/
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 700;
+      /*src: url(https://apipl.ciprianspiridon.com/fonts/Montserrat-Bold.ttf) format('truetype');*/
+      /*unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;*/
+    }
+    @font-face {
+      font-family: 'Helvetica';
+    }
+
+    /* reset and defaults */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section {
+      display: block;
+    }
+
+    body {
+      line-height: 1;
+    }
+
+    ol, ul {
+      list-style: none;
+    }
+
+    blockquote, q {
+      quotes: none;
     }
 
     table {
-      border: 1px solid #333;
-      margin-bottom: 18px;
-      width: 100%;
+      padding: 5px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
     }
 
-    th {
-      background-color: #E9E9E9;
-      -webkit-print-color-adjust: exact;
-      font-size: 13px;
-      text-align: left;
-      padding: 5px 10px;
+    /* general */
+
+    h1, h2, h3, h4, p, li, th {
+      font-family: "Helvetica", sans-serif;
+      color: #333333;
     }
 
-    td {
-      padding: 10px;
-      min-height: 130px
+    h1 {
+      font-size: 12px;
+      font-weight: bold;
+      color: #F06334;
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
-    td.column-checkmark {
-      background-color: #E9E9E9;
-      -webkit-print-color-adjust: exact;
-      text-align: center;
-      vertical-align: middle;
-      padding: 2px;
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 28px;
+      margin-bottom: 12px;
     }
 
-    .column-make-note {
-      width: 50mm;
-      border-left: 1px solid #333;
+    h3 {
+      font-size: 11px;
+      font-weight: bold;
+      line-height: 15px;
+      margin-bottom: 14px;
     }
 
-    .column-checkmark {
-      width: 12mm;
-      border-left: 1px solid #333;
+    p, li {
+      font-size: 11px;
+      line-height: 15px;
+      margin-bottom: 14px;
     }
 
-    th.column-checkmark {
-      text-align: center;
+    ul {
+      margin-bottom: 14px;
     }
 
-    .checkmark-round {
+    ul li {
+      margin-bottom: 0;
+    }
+
+    ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    .last-child {
+      margin-bottom: 0;
+    }
+
+    .user-text {
+      color: #0093C0;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    .no-margin {
+      margin: 0;
+    }
+
+    .bullet-dash {
+      position: relative;
+      padding-left: 10px;
+    }
+
+    /*here*/
+    .bullet-dash:before {
+      content: '-';
       display: block;
-      height: 45px;
-      width: 45px;
-      margin: 0 auto;
+      position: absolute;
+      left: 0;
     }
 
     footer {
-      width: 100%;
-      padding: 20px 0;
-      position: absolute;
-      left: 0;
-      bottom: 0;
+      font-size: 18px;
+      text-align: left;
     }
 
-    footer .logo {
-      height: 42px;
-      width: 214px;
+    .page {
+      background: white;
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 0.5cm;
+      page-break-after: always;
+      padding-left: 30px;
+      padding-right: 30px;
     }
-  }
+
+    @media all {
+      .page {
+        margin: 0;
+        page-break-after: always;
+      }
+
+      p {
+        page-break-inside: avoid;
+      }
+
+      table {
+        border: 1px solid #333;
+        margin-bottom: 18px;
+        width: 100%;
+      }
+
+      th {
+        background-color: #E9E9E9;
+        -webkit-print-color-adjust: exact;
+        font-size: 13px;
+        text-align: left;
+        padding: 5px 10px;
+      }
+
+      td {
+        padding: 10px;
+        min-height: 130px
+      }
+
+      td.column-checkmark {
+        background-color: #E9E9E9;
+        -webkit-print-color-adjust: exact;
+        text-align: center;
+        vertical-align: middle;
+        padding: 2px;
+      }
+
+      .column-make-note {
+        width: 50mm;
+        border-left: 1px solid #333;
+      }
+
+      .column-checkmark {
+        width: 12mm;
+        border-left: 1px solid #333;
+      }
+
+      th.column-checkmark {
+        text-align: center;
+      }
+
+      .checkmark-round {
+        display: block;
+        background-color: #fff;
+        border: 1px solid #333;
+        height: 31px;
+        width: 31px;
+        margin: 0 auto;
+      }
+
+      footer {
+        width: 100%;
+        padding: 20px 0;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+
+      footer .logo {
+        height: 42px;
+        width: 214px;
+      }
+    }
 
   </style>
 </head>
 <body>
 
-  <!-- LIFEACT PAGE -->
-  <div class="page">
-    <h1>Level 1 - Module 1</h1>
-    <h2>LifeAct: Encounter strengths</h2>
+<!-- LIFEACT PAGE -->
+<div class="page">
+  <h1>Level 1 - Module 1</h1>
+  <h2>LifeAct: Encounter strengths</h2>
 
-    <table>
-      <tr class="row header">
-        <th>Observe</th>
-        <th class="column-make-note">Make a note</th>
-        <th class="column-checkmark"><img src="assets/tick.svg" alt="tick" /></th>
-      </tr>
-      <tr>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
-          <p><strong class="underline">Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strenth 2</span> <span class="user-text">strenth 3</span></p>
-          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
-        </td>
-        <td class="column-make-note"></td>
-        <td class="column-checkmark">
-          <img src="assets/circle.svg" alt="circle" class="checkmark-round" />
-        </td>
-      </tr>
-    </table>
+  <table>
+    <tr class="row header">
+      <th>Observe</th>
+      <th class="column-make-note">Make a note</th>
+      <th class="column-checkmark">
+        <img src="https://dchai72lj2pqb.cloudfront.net/assets/tick.svg" alt="tick"/>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>Your ViaMe strengths diagnostic helped you identify 3 important
+          character strengths</p>
+        <p>
+          <strong class="underline">Your character strengths</strong>
+          <span class="user-text comma-after">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_1'] !!}, </span>
+          <span class="user-text comma-after">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_2'] !!}, </span>
+          <span class="user-text">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_3'] !!}</span></p>
+        <p class="last-child">
+          Think of a specific situation when one or more of these strengths
+          was at play. Note down what you were doing and how you felt.
+        </p>
+      </td>
+      <td class="column-make-note"></td>
+      <td class="column-checkmark">
+        <span class="checkmark-round"></span>
+      </td>
+    </tr>
+  </table>
 
-    <table>
-      <tr class="row header">
-        <th>Discuss</th>
-        <th class="column-make-note">Make a note</th>
-        <th class="column-checkmark"><img src="assets/tick.svg" alt="tick" /></th>
-      </tr>
-      <tr>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
-          <p><strong class="underline">Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strength 2</span> <span class="user-text">strength 3</span></p>
-          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
-        </td>
-        <td class="column-make-note"></td>
-        <td class="column-checkmark">
-          <img src="assets/circle.svg" alt="circle" class="checkmark-round" />
-        </td>
-      </tr>
-    </table>
+  <table>
+    <tr class="row header">
+      <th>Discuss</th>
+      <th class="column-make-note">Make a note</th>
+      <th class="column-checkmark"><img src="https://dchai72lj2pqb.cloudfront.net/assets/tick.svg" alt="tick"/>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>LAre your chosen character strengths obvious to others?</p>
+        <p>Discuss them with a colleague, friend or your buddy group.</p>
+        <p>
+          <strong class="underline">Your character strengths:</strong>
+          <span class="user-text comma-after">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_1'] !!}, </span>
+          <span class="user-text comma-after">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_2'] !!}, </span>
+          <span class="user-text">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_3'] !!}</span></p>
+        <p class="last-child">What did they say?</p>
+      </td>
+      <td class="column-make-note"></td>
+      <td class="column-checkmark">
+        <span class="checkmark-round"></span>
+      </td>
+    </tr>
+  </table>
 
-    <table>
-      <tr class="row header">
-        <th>Do</th>
-        <th class="column-make-note">Make a note</th>
-        <th class="column-checkmark"><img src="assets/tick.svg" alt="tick" /></th>
-      </tr>
-      <tr>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
-          <p><strong class="underline">Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strength 2</span> <span class="user-text">strength 3</span></p>
-          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
-        </td>
-        <td class="column-make-note"></td>
-        <td class="column-checkmark">
-          <img src="assets/circle.svg" alt="circle" class="checkmark-round" />
-        </td>
-      </tr>
-    </table>
+  <table>
+    <tr class="row header">
+      <th>Do</th>
+      <th class="column-make-note">Make a note</th>
+      <th class="column-checkmark">
+        <img src="https://dchai72lj2pqb.cloudfront.net/assets/tick.svg" alt="tick"/>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>Let's get practical! You decided on an idea to help put your
+          character strengths into practice.</p>
+        <p>
+          <strong class="underline">Your idea:</strong>
+          <span class="user-text comma-after">
+                        {!! @$shortcodes['l1.m1.s9.textbox.idea_to_increase_strengths'] !!}
+                    </span>
+        </p>
+        <p class="last-child">
+          Give it a go today! Note down how you got on.
+        </p>
+      </td>
+      <td class="column-make-note"></td>
+      <td class="column-checkmark">
+        <span class="checkmark-round"></span>
+      </td>
+    </tr>
+  </table>
 
-    <table>
-      <tr class="row header">
-        <th>Observe</th>
-        <th class="column-make-note">Make a note</th>
-        <th class="column-checkmark"><img src="assets/tick.svg" alt="tick" /></th>
-      </tr>
-      <tr>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
-          <p><strong>Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strength 2</span> <span class="user-text">strength 3</span></p>
-          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
-        </td>
-        <td class="column-make-note"></td>
-        <td class="column-checkmark">
-          <img src="assets/circle.svg" alt="circle" class="checkmark-round" />
-        </td>
-      </tr>
-    </table>
+  <table>
+    <tr class="row header">
+      <th>Observe</th>
+      <th class="column-make-note">Make a note</th>
+      <th class="column-checkmark"><img src="https://dchai72lj2pqb.cloudfront.net/assets/tick.svg" alt="tick"/>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          You exercise your strengths
+          <span class="user-text comma-after"> {!! @$shortcodes['l1.strengths.work'] !!}%</span>
+          of the time at work, and
+          <span class="user-text comma-after">{!! @$shortcodes['l1.strengths.non-work'] !!}%</span>
+          of the
+          time outside work. Is there a discrepancy, and what is driving it?
+        </p>
+        <p class="last-child">
+          Note down your thoughts or ideas.
+        </p>
+      </td>
+      <td class="column-make-note"></td>
+      <td class="column-checkmark">
+        <span class="checkmark-round"></span>
+      </td>
+    </tr>
+  </table>
 
-    <table class="last-child">
-      <tr class="row header">
-        <th>Discuss</th>
-        <th class="column-make-note">Make a note</th>
-        <th class="column-checkmark"><img src="assets/tick.svg" alt="tick" /></th>
-      </tr>
-      <tr>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur temporibus, aut tempora quia cupiditate voluptate magnam similique sit. Maxime et error facilis ab, dolor, suscipit debitis voluptates. Facere, saepe fugiat.</p>
-          <p><strong>Earum deleniti praesentium</strong> <span class="user-text comma-after">strenth 1</span> <span class="user-text comma-after">strength 2</span> <span class="user-text">strength 3</span></p>
-          <p class="last-child">Consectetur adipisicing elit. Deserunt at quidem harum, ipsa veritatis. Omnis blanditiis atque est reprehenderit harum!</p>
-        </td>
-        <td class="column-make-note"></td>
-        <td class="column-checkmark">
-          <img src="assets/circle.svg" alt="circle" class="checkmark-round" />
-        </td>
-      </tr>
-    </table>
-    <footer>
-      <img src="assets/Logo.svg" class="logo" alt="Potentialife" title="Potentialife" />
-    </footer>
+  <table class="last-child">
+    <tr class="row header">
+      <th>Discuss</th>
+      <th class="column-make-note">Make a note</th>
+      <th class="column-checkmark"><img src="https://dchai72lj2pqb.cloudfront.net/assets/tick.svg" alt="tick"/>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>Teaching is a great way of learning.</p>
+        <p>Take 5 minutes to share the key points from this module with a
+          colleague, friend or family member who isn't on the program. </p>
+        <p class="last-child">Note down how you got on. </p>
+      </td>
+      <td class="column-make-note"></td>
+      <td class="column-checkmark">
+        <span class="checkmark-round"></span>
+      </td>
+    </tr>
+  </table>
+  <br /><br />
+  <div>
+    <img src="https://dchai72lj2pqb.cloudfront.net/assets/Logo.svg" class="logo" alt="Potentialife"
+         title="Potentialife"/>
   </div>
+</div>
 
 
+<!-- SUMMARY PAGE -->
+<div class="page">
+  <h1>Level 1 - Module 1</h1>
+  <h2>Summary: Encounter strengths</h2>
 
+  <table>
+    <tr class="row header">
+      <th>Key data</th>
+    </tr>
+    <tr>
+      <td>
+        <h3 class="underline no-margin">Your idea</h3>
+        <p class="user-text bullet-dash">
+          {!! @$shortcodes['l1.m1.s9.textbox.idea_to_increase_strengths'] !!}
+        </p>
 
+        <h3 class="underline no-margin">Character strengths</h3>
+        <ul>
+          <li class="user-text bullet-dash">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_1'] !!}</li>
+          <li class="user-text bullet-dash">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_2'] !!}</li>
+          <li class="user-text bullet-dash">{!! @$shortcodes['l1.m1.s8.textbox.chosen_strength_3'] !!}</li>
+        </ul>
 
+        <h3 class="underline no-margin">Your selected strength activities from the LifeMap</h3>
+        <ul>
+          <li class="user-text bullet-dash">{!! @$shortcodes['l1.strengths.chosen_activity_1'] !!}</li>
+          <li class="user-text bullet-dash">{!! @$shortcodes['l1.strengths.chosen_activity_2'] !!}</li>
+          <li class="user-text bullet-dash">{!! @$shortcodes['l1.strengths.chosen_activity_3'] !!}</li>
+        </ul>
 
-  <!-- SUMMARY PAGE -->
-  <div class="page">
-    <h1>Level 1 - Module 1</h1>
-    <h2>Summary: Encounter strengths</h2>
+        <h3 class="underline no-margin">LifeMap data</h3>
+        <ul class="last-child">
+          <!--<li class="user-text bullet-dash">{!! @$shortcodes['l1.strengths.work'] !!}% of time aware of strengths</li>-->
+          <li class="user-text bullet-dash">{!! @$shortcodes['l1.strengths.work'] !!}% of time exercising strengths inside work</li>
+          <li class="last-child user-text bullet-dash">{!! @$shortcodes['l1.strengths.non-work'] !!}% of time exercising strengths outside work</li>
+        </ul>
 
-    <table>
-      <tr class="row header">
-        <th>Key data</th>
-      </tr>
-      <tr>
-        <td>
-          <h3 class="underline no-margin">Your idea</h3>
-          <p class="user-text bullet-dash">I’m going to present my weekly report rather than sending the usual bullet pointed email.</p>
+      </td>
+    </tr>
+  </table>
 
-          <h3 class="underline no-margin">Your idea</h3>
-          <ul>
-            <li class="user-text bullet-dash">Strength 1</li>
-            <li class="user-text bullet-dash">Strength 2</li>
-            <li class="user-text bullet-dash">Strength 3</li>
-          </ul>
+  <table>
+    <tr class="row header">
+      <th>Key points</th>
+    </tr>
+    <tr>
+      <td>
+        <ol class="last-child" style="padding-left: 20px;">
+          <li> In order to maximize performance and fulfil your potential, focus on your strengths.</li>
+          <li>Manage your weaknesses, but only to the point where they do not prevent you from exercising your strengths.
+          </li>
+          <li>Most of us do not put our strengths to use. As a result, we do not fulfil our potential for
+            success or happiness.
+          </li>
+          <li>Sometimes our strengths are not apparent; they may be hidden behind our weaknesses.</li>
+          <li class="last-child">We will go through a process of discovery and development to uncover these
+            strengths.
+          </li>
+        </ol>
 
-          <h3 class="underline no-margin">Your selected strength activities from the LifeMap</h3>
-          <ul>
-            <li class="user-text bullet-dash">Strength 1</li>
-            <li class="user-text bullet-dash">Strength 2</li>
-            <li class="user-text bullet-dash">Strength 3</li>
-          </ul>
+      </td>
+    </tr>
+  </table>
 
-          <h3 class="underline no-margin">LifeMap data</h3>
-          <ul class="last-child">
-            <li class="user-text bullet-dash">X% of time aware of strengths</li>
-            <li class="user-text bullet-dash">Y% of time exercising strengths inside work</li>
-            <li class="last-child user-text bullet-dash">Z% of time exercising strengths outside work</li>
-          </ul>
-
-        </td>
-      </tr>
-    </table>
-
-    <table>
-      <tr class="row header">
-        <th>Key points</th>
-      </tr>
-      <tr>
-        <td>
-          <ol class="last-child">
-            <li>In order to fulfil your potential, focus on your strengths. </li>
-            <li>Manage your weaknesses, but only to the point where they do not prevent you from exercising your strengths.</li>
-            <li>Most of us do not put our strengths to use. As a result, we do not fulfil our potential for success or happiness.</li>
-            <li>Sometimes our strengths are not apparent; they may be hidden behind our weaknesses.</li>
-            <li class="last-child">We will go through a process of discovery and development to uncover these strengths.</li>
-          </ol>
-
-        </td>
-      </tr>
-    </table>
-    <footer>
-      <img src="assets/Logo.svg" class="logo" alt="Potentialife" title="Potentialife" />
-    </footer>
+  <div>
+    <img src="https://dchai72lj2pqb.cloudfront.net/assets/Logo.svg" class="logo" alt="Potentialife"
+         title="Potentialife"/>
   </div>
+</div>
 
 </body>
 </html>
+
