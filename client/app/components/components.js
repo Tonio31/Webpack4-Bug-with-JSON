@@ -9,6 +9,7 @@ import resetPassword from './resetPassword/resetPassword';
 import LoginRoot from './loginRoot/loginRoot';
 import moduleOverview from './moduleOverview/moduleOverview';
 import PageNotFound from './pageNotFound/pageNotFound';
+import ErrorPage from './errorPage/errorPage';
 import LockedPage from './lockedPage/lockedPage';
 import CourseContent from './courseContent/courseContent';
 
@@ -23,6 +24,7 @@ let componentModule = angular.module('app.components', [
   LoginRoot,
   moduleOverview,
   PageNotFound,
+  ErrorPage,
   LockedPage,
   CourseContent
 ])

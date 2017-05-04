@@ -1,20 +1,39 @@
 import ResourceModule from './resource';
 
 describe('Resource', () => {
-  let User, Data, WEBSITE_CONFIG;
-  let $httpBackend;
+  let User, Data, WEBSITE_CONFIG, TOKEN_SURVEY;
+  let $httpBackend, $location;
 
   let participant = require('app/mockBackEndResponse/participants.json');
   let userId = 12;
 
+  let cleanMockObject = (iMockObject) => {
+    Object.keys(iMockObject).forEach( (key) => {
+      delete iMockObject[key];
+    });
+  };
 
-  beforeEach(window.module(ResourceModule));
+  let mockLocalStorage = {};
+
+  beforeEach(window.module(ResourceModule, ($provide) => {
+    $provide.value('$localStorage', mockLocalStorage );
+  }));
 
   beforeEach(inject(($injector) => {
     $httpBackend = $injector.get('$httpBackend');
+    $location = $injector.get('$location');
     User = $injector.get('User');
     Data = $injector.get('Data');
     WEBSITE_CONFIG = $injector.get('WEBSITE_CONFIG');
+    TOKEN_SURVEY = $injector.get('TOKEN_SURVEY');
+
+    $location.search = () => {
+      return {
+        [TOKEN_SURVEY]: 'ThisIsAToken'
+      };
+    };
+
+    cleanMockObject(mockLocalStorage);
 
     sinon.stub(User, 'getUserId', () => { return userId; } );
   }));
@@ -113,6 +132,22 @@ describe('Resource', () => {
 
       $httpBackend.flush();
     }));
+
+    it('getFriendSurveyContent() return a rejected promise if the server returns an error', sinon.test( (done) => {
+
+      let regexpStep = new RegExp('https:\/\/localhost\.com\/survey\?.*');
+      $httpBackend.whenGET(regexpStep).respond( () => {
+        return [ 200, { data: 'some data' }, {} ];
+      });
+
+      Data.getFriendSurveyContent({});
+
+      expect(mockLocalStorage).to.deep.eq({ token_survey: 'ThisIsAToken' });
+
+      $httpBackend.flush();
+      done();
+    }));
+
 
     it('getUserAuthData() return a promise', sinon.test( (done) => {
 
