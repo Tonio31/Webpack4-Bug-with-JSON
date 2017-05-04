@@ -168,6 +168,9 @@ class CourseContentController {
       if ( iForm.$invalid && !this.isStepCompleted ) {
         this.goToFieldInError(iForm);
       }
+      else if ( ContentFactory.isNextButtonPreAction() ) {
+        ContentFactory.nextStepButtonPreAction();
+      }
       else if ( !this.isStepCompleted || this.skipShowingBanner ) {
         // First time user click on the button, display the green banner,
         // change the label and display the spinner

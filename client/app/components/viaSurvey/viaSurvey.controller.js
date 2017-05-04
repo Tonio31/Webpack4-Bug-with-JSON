@@ -1,5 +1,5 @@
 class ViaSurveyController {
-  constructor($log, User, Data) {
+  constructor($log, User, Data, ContentFactory, SpinnerFactory, SPINNERS) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -24,7 +24,7 @@ class ViaSurveyController {
     };
 
     this.viaSurveyData = {
-      appKey: 'testkey',
+      appKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4',
       surveyID: 86,
       questionCount: 120,
       loginKey: '',
@@ -33,7 +33,7 @@ class ViaSurveyController {
     };
 
     let registerFormData = {
-      appKey: 'testkey',
+      appKey: this.viaSurveyData.appKey,
       sendWelcomeEmailToUser: false,
       email: User.getUserId(), // We use the user id here in case the user email changes in the future, the userID will never change
       firstName: User.getFirstName(),
@@ -46,23 +46,37 @@ class ViaSurveyController {
       return registerFormData;
     };
 
+    this.displayNextPageSurvey = (iArgs) => {
+      $log.warn('displayNextPageSurvey is CALLLED iArgs=', iArgs);
+    };
+
     this.$onInit = () => {
+
+      SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
+
+      ContentFactory.setNextStepButtonPreAction(this.displayNextPageSurvey, 1, 2, 3 );
+
       let registerUserPost = Data.viaSurvey();
 
-      Object.assign(registerUserPost, registerFormData);
+      Object.assign(registerUserPost, this.getRegisterFormData());
 
-      $log.log('registerUserPost=', registerUserPost);
+      $log.warn('registerUserPost=', registerUserPost);
 
       registerUserPost.$register( (dataBackFromRegister) => {
         $log.log('Success registering dataBackFromRegister=', dataBackFromRegister);
 
         this.loginUserRequest();
       }, (error) => {
-        $log.log('Error during Register. error=', error);
 
         // The user might have been already registered on the website, try to login if that's the case
-        if ( error.status === 500 && error.data.userId.includes('You have already registered a user with this email address') ) {
+        if ( error.status === 500 &&
+             error.statusText === 'You have already registered a user with this email address' ) {
+          $log.log('User already registered, proceed to login');
           this.loginUserRequest();
+        }
+        else {
+          $log.error('Error during Register. error=', error);
+          SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
         }
       });
 
@@ -115,6 +129,10 @@ class ViaSurveyController {
         this.viaSurveyData.loginKey = dataBackFromLogin.loginKey;
 
         this.startSurveyRequest();
+      }, (error) => {
+        $log.error('Error during Login, error=', error);
+
+        SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
       });
     };
 
@@ -134,6 +152,10 @@ class ViaSurveyController {
 
         this.viaSurveyData.sessionKey = dataBackFromStartSurvey.sessionKey;
         this.getQuestionsRequest();
+      }, (error) => {
+        $log.error('Error during $startSurvey, error=', error);
+
+        SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
       });
     };
 
@@ -149,6 +171,10 @@ class ViaSurveyController {
       getQuestionsPost.$getQuestions( (dataBackFromGetQuestions) => {
         $log.log('Success login dataBackFromStartSurvey=', dataBackFromGetQuestions);
         this.radioQuestions = this.transformQuestionsToRadioBlock(dataBackFromGetQuestions.questionsList);
+      }, (error) => {
+        $log.error('Error during $getQuestions, error=', error);
+
+        SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
       });
 
     };

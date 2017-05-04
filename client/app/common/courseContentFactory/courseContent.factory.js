@@ -43,13 +43,32 @@ let CourseContentFactory = function($log) {
   };
 
 
+  let nextButtonPreActionFn = undefined;
+  let nextButtonPreActionArguments = undefined;
+
+  let setNextStepButtonPreAction = (iFuncToExecute, ...iArgs) => {
+    nextButtonPreActionFn = iFuncToExecute;
+    nextButtonPreActionArguments = iArgs;
+  };
+
+  let isNextButtonPreAction = () => {
+    return angular.isDefined(nextButtonPreActionFn);
+  };
+
+  let nextStepButtonPreAction = () => {
+    nextButtonPreActionFn(nextButtonPreActionArguments);
+  };
+
   return {
     updateInputFields,
     getInputFields,
     clearInputFields,
     saveDataToSendLater,
     getAdditionalData,
-    clearAdditionalData
+    clearAdditionalData,
+    setNextStepButtonPreAction,
+    isNextButtonPreAction,
+    nextStepButtonPreAction
   };
 
 };

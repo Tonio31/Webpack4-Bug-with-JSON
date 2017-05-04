@@ -6,6 +6,7 @@ let ResourceFactory = function( $log,
                                 $state,
                                 $localStorage,
                                 $location,
+                                $httpParamSerializer,
                                 User,
                                 STATES,
                                 WEBSITE_CONFIG,
@@ -143,6 +144,12 @@ let ResourceFactory = function( $log,
       login: {
         method: 'POST',
         url: `${WEBSITE_CONFIG.apiViaSurvey}LoginUser`,
+        headers: {
+          'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        transformRequest: (dataToEncode) => {
+          return $httpParamSerializer(dataToEncode);
+        },
         transformResponse: (loginKeyRawString) => {
           return {
             loginKey: angular.fromJson(loginKeyRawString)
