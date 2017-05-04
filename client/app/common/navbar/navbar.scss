@@ -366,8 +366,7 @@ $mainTitleMenuColor: #a0a0a0;
   }
 
   .menu-item {
-    display: flex;
-    width: 100%;
+    display: block;
 
     a {
       width: 100%;

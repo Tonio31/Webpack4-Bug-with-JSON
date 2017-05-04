@@ -61,6 +61,10 @@ $tick-size: 3rem;
     background-color: $light-grey;
     height: $height-navigation-banner;
 
+    &.y-center-parent {
+      justify-content: flex-start;
+    }
+
     button {
       height: $height-button-banner;
       padding: 0;
