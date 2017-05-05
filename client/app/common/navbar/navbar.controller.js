@@ -47,7 +47,7 @@ class NavbarController {
     // defining the states dynamically, we use it to display
     this.menu = Menu.getMenu();
 
-    this.companyName = 'Potentialife';
+    this.Potentialife = 'Potentialife';
 
     $log.log('constructor() - END');
   }
