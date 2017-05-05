@@ -27,45 +27,47 @@
     {
       "type":"composed",
       "element":"container",
-      "blocks":[
-        {
-          "id": 50,
-          "type":"static",
-          "element":"icon_text",
-          "data": {
-            "icon": {
-              "type": "icon-pl-lock",
-              "color": "success"
-            },
-            "text": "<h1>This content is locked!<\/p>",
-            "button": {
-              "href": "/potentialife-course/cycle-1/module-1/step-9",
-              "color": "primary",
-              "label": "Resume your progress"
+      "data": {
+        "blocks":[
+          {
+            "id": 50,
+            "type":"static",
+            "element":"icon_text",
+            "data": {
+              "icon": {
+                "type": "icon-pl-lock",
+                "color": "success"
+              },
+              "text": "<h1>This content is locked!<\/p>",
+              "button": {
+                "href": "/potentialife-course/cycle-1/module-1/step-9",
+                "color": "primary",
+                "label": "Resume your progress"
+              }
+            }
+          },
+          {
+            "id": 56,
+            "type":"static",
+            "element":"bar_chart",
+            "data": {
+              "title":"Your strengths breakdown",
+              "bars":[
+                {
+                  "title": "Work",
+                  "color": "blue",
+                  "value": 25
+                },
+                {
+                  "title": "Whatever",
+                  "color": "red",
+                  "value": 75
+                }
+              ]
             }
           }
-        },
-        {
-          "id": 56,
-          "type":"static",
-          "element":"bar_chart",
-          "data": {
-            "title":"Your strengths breakdown",
-            "bars":[
-              {
-                "title": "Work",
-                "color": "blue",
-                "value": 25
-              },
-              {
-                "title": "Whatever",
-                "color": "red",
-                "value": 75
-              }
-            ]
-          }
-        }
-      ]
+        ]
+      }
     }
   ]
 }
