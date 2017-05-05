@@ -319,7 +319,7 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(Data.buildApiUrl('participants', true)).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method}`);
 
-
+    // return error500;
     return [ 200, participant, {} ];
   });
 

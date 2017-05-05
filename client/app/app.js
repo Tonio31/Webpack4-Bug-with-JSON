@@ -300,30 +300,34 @@ let appModule = angular.module('app', [
       // from server that is used on the home page and in exceptions reports to bugsnag
       let userId = JwtFactory.getUserId();
       User.setUser({ id: userId });
-      Data.getParticipantDetails();
+      Data.getParticipantDetails().then( () => {
+        Menu.retrieveMenuAndReturnStates().then( (states) => {
+          $log.log('Menu retrieved successfully');
 
-      // Set up google analytics to link the data to a specific userId
-      $window.ga('set', 'userId', userId);
+          states.forEach( (state) => {
+            $stateProviderRef.state(state);
+          });
 
-      Menu.retrieveMenuAndReturnStates().then( (states) => {
-        $log.log('Menu retrieved successfully');
+          // Will trigger an update; the same update that happens when the address bar url changes, aka $locationChangeSuccess.
+          $urlRouter.sync();
 
-        states.forEach( (state) => {
-          $stateProviderRef.state(state);
+          // This is needed because we create our state dynamically, this works with
+          // $urlRouterProvider.deferIntercept(); defined in the config of this module.
+          // Once we created our dynamic states, we have to make ui-router listen to route change in the URL
+          // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
+          $urlRouter.listen();
+        },
+        (error) => {
+          $log.log('error Retrieving menu error=', error);
+          $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' });
         });
-
-        // Will trigger an update; the same update that happens when the address bar url changes, aka $locationChangeSuccess.
-        $urlRouter.sync();
-
-        // This is needed because we create our state dynamically, this works with
-        // $urlRouterProvider.deferIntercept(); defined in the config of this module.
-        // Once we created our dynamic states, we have to make ui-router listen to route change in the URL
-        // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
-        $urlRouter.listen();
       },
       (error) => {
-        $log.log('error Retrieving menu error=', error);
+        $log.log('error Retrieving Participant Data error=', error);
+        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' });
       });
+
+
     }
     else {
       // If the user access the URL login ('/login'), we should not redirect him to the login page
