@@ -30,6 +30,10 @@ $mainTitleMenuColor: #a0a0a0;
   }
 }
 
+menu-item {
+  display: block;
+}
+
 .menu-toggle-button {
 
   $menu-size: 45px;
@@ -130,7 +134,7 @@ $mainTitleMenuColor: #a0a0a0;
     }
 
     .home {
-      display: flex;
+      display: flex; // flex
       background-color: $onyx;
       border-top: 1px solid #5e5e5e;
       cursor: pointer;
@@ -150,7 +154,7 @@ $mainTitleMenuColor: #a0a0a0;
       background-size: contain;
       background-position: 50%;
       background-repeat: no-repeat;
-      display: inline-block;
+      display: block;
     }
 
     .current {
