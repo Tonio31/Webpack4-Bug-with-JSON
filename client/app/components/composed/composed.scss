@@ -8,12 +8,11 @@
   background: $really-light-grey;
   padding: $default-padding;
   color: $oil;
+}
 
-  .block {
-    padding: 0;
 
-    &:not(.no-bg-padding) {
-      padding: 0 $side-block-padding;
-    }
+.block {
+  .composed {
+    padding: 0 $side-block-padding;
   }
 }

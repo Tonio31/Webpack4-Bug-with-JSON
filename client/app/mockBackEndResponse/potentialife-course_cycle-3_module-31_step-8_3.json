@@ -444,23 +444,6 @@
               "block_id": 51,
               "order": 0
             }
-          },
-          {
-            "id": 60,
-            "type": "static",
-            "element": "html",
-            "program_data_code": null,
-            "data": {
-              "config": {
-                "class": "padding-top-bottom"
-              },
-              "value": "<h1><\/h1>"
-            },
-            "pivot": {
-              "step_id": 5,
-              "block_id": 50,
-              "order": 0
-            }
           }
         ]
       }
