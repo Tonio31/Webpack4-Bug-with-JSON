@@ -22,7 +22,7 @@
     padding: rem_calc(10px);
 
     .header-inner {
-      width: calc(100% - (#{$validation-icon-right} - #{$default-padding}));
+      width: calc(100% - #{$validation-icon-right} - #{$default-padding});
       padding: rem_calc(10px) 0;
 
       p:last-child {

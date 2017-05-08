@@ -34,7 +34,6 @@ class NavbarController {
     };
 
     this.toggleMenu = () => {
-      $location.hash('main');
       $anchorScroll();
     };
 
