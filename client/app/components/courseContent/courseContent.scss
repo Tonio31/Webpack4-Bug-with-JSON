@@ -7,7 +7,7 @@ $height-button-banner: rem_calc(45px);
 $tick-size: 3rem;
 
 .course-content {
-  margin-top: rem_calc(20px);
+  padding-top: rem_calc(20px);
   min-height: calc(100vh - #{$height-footer-nav-banner});
   display: flex;
   flex-direction: column;
@@ -60,6 +60,10 @@ $tick-size: 3rem;
   .navigation {
     background-color: $light-grey;
     height: $height-navigation-banner;
+
+    &.y-center-parent {
+      justify-content: flex-start;
+    }
 
     button {
       height: $height-button-banner;

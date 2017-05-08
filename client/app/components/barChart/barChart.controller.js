@@ -75,9 +75,11 @@ class BarChartController {
       });
       this.chartGroup += `${COLUMN_ID.spaceOnTop},`;
 
+
       $log.log('onInit - this.chartColumns=', this.chartColumns);
       $log.log('onInit - this.chartData=', this.chartData);
       $log.log('onInit - this.chartGroup=', this.chartGroup);
+
     };
   }
 }

@@ -30,6 +30,10 @@ $mainTitleMenuColor: #a0a0a0;
   }
 }
 
+menu-item {
+  display: block;
+}
+
 .menu-toggle-button {
 
   $menu-size: 45px;
@@ -150,7 +154,7 @@ $mainTitleMenuColor: #a0a0a0;
       background-size: contain;
       background-position: 50%;
       background-repeat: no-repeat;
-      display: inline-block;
+      display: block;
     }
 
     .current {
@@ -366,8 +370,7 @@ $mainTitleMenuColor: #a0a0a0;
   }
 
   .menu-item {
-    display: flex;
-    width: 100%;
+    display: block;
 
     a {
       width: 100%;

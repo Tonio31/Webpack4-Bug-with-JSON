@@ -3,18 +3,30 @@
   .off-canvas-wrap {
     overflow-y: visible;
     .inner-wrap {
-      height: 100vh;
+      // height: auto;
     }
+  }
+
+  .navbar {
+    .main-section,
+    .left-submenu {
+      height: auto;
+    }
+  }
+
+  // http://stackoverflow.com/questions/15635601/ie-10-elements-with-relative-position-disappearing-after-scrolling-in-parent-ele
+  // .navbar {
+  //   .left-submenu {
+  //     // transform: scale(1);
+  //   }
+  // }
+
+  .off-canvas-list-bugfix {
+    height: auto;
   }
 
   .course-content {
     height: calc(100% - 6rem);
-  }
-
-  .navbar {
-    .main-section {
-      height: auto;
-    }
   }
 
   .icon-text {
@@ -24,6 +36,13 @@
         display: block;
         overflow: hidden;
       }
+    }
+  }
+
+  .move-right {
+    .navigation,
+    footer {
+      margin-left: -8.6875rem;
     }
   }
 

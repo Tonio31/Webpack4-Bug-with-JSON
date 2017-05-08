@@ -6,7 +6,7 @@
            sort-data="null"
            chart-data="$ctrl.chartData"
            chart-columns="$ctrl.chartColumns">
-    <chart-bar ratio="0.8"/>
+    <chart-bar ratio="{{$ctrl.block.data.barWidth}}" />
     <chart-axes values-x="{{$ctrl.COLUMN_ID.xLabels}}"/>
     <chart-group group-values="{{$ctrl.chartGroup}}"/>
     <chart-axis>
