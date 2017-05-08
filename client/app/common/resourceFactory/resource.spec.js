@@ -2,7 +2,7 @@ import ResourceModule from './resource';
 
 describe('Resource', () => {
   let User, Data, WEBSITE_CONFIG, TOKEN_SURVEY;
-  let $httpBackend, $location;
+  let $httpBackend, $location, $window;
 
   let participant = require('app/mockBackEndResponse/participants.json');
   let userId = 12;
@@ -22,10 +22,13 @@ describe('Resource', () => {
   beforeEach(inject(($injector) => {
     $httpBackend = $injector.get('$httpBackend');
     $location = $injector.get('$location');
+    $window = $injector.get('$window');
     User = $injector.get('User');
     Data = $injector.get('Data');
     WEBSITE_CONFIG = $injector.get('WEBSITE_CONFIG');
     TOKEN_SURVEY = $injector.get('TOKEN_SURVEY');
+
+    $window.ga = () => {};
 
     $location.search = () => {
       return {
@@ -83,6 +86,9 @@ describe('Resource', () => {
         gender: 'M',
         id: 4,
         lastName: 'mandela',
+        cohort: 'BAC001',
+        company: 'Barclays',
+        division: 'Sales',
         companyBanner: {
           bgColor: 'orange',
           header: 'Inspiring Leadership',

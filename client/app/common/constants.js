@@ -49,7 +49,12 @@ let constantModule = angular.module('app.common.constant', [
   .constant('WEBSITE_CONFIG', {
     apiUrl: BACK_END_API,
     apiViaSurvey: 'https://www.viacharacter.org/survey/api1/',
-    googleTrackingCode: GOOGLE_TRACKING_CODE
+    googleTrackingCode: GOOGLE_TRACKING_CODE,
+    GA_DIMENSIONS: {
+      COMPANY: 'dimension1',
+      COHORT: 'dimension2',
+      DIVISION: 'dimension3'
+    }
   })
 .name;
 

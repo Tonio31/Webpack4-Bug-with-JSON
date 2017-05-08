@@ -6,7 +6,7 @@ class ComposedController {
     $log = $log.getInstance( 'ComposedController' );
 
     this.$onInit = () => {
-      this.blockData = this.block.blocks;
+      this.blockData = this.block.data.blocks;
       $log.info('this.blockData', this.blockData);
     };
 

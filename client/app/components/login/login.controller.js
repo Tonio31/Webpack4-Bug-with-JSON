@@ -55,13 +55,17 @@ class LoginController {
           // Save User Information
           User.setUser(userToSave);
 
-          // Set up google analytics to link the data to a specific userId
-          $window.ga('set', 'userId', dataBackFromServer.user.id);
+          // Retrieve Participants detail informations
+          Data.getParticipantDetails().then( () => {
+            $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
+          },
+          () => {
+            $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' });
+          });
 
-          $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
         },
         (error) => {
-          $log.log('error during authentification error=', error);
+          $log.error('error during authentification error=', error);
           SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
           this.invalidLogin = true;
         });

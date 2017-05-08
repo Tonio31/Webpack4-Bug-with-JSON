@@ -28,440 +28,425 @@
       "id": 12,
       "type": "composed",
       "element": "container",
-      "blocks": [
-        {
-          "id": 13,
-          "type": "static",
-          "element": "html",
-          "program_data_code": null,
-          "data": {
-            "config": {
-              "padding": "no-bg-padding",
-              "bgColor": "silver",
-              "class": "padding-top-bottom"
+      "data": {
+        "blocks": [
+          {
+            "id": 13,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h5><strong>Participant 1/5<\/strong><\/h5>"
             },
-            "value": "<h5><strong>Participant 1/5<\/strong><\/h5>"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 50,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 50,
-            "order": 0
-          }
-        },
-        {
-          "id": 14,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p1.firstName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 14,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p1.firstName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "First name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_1_first_name"
             },
-            "label": "First name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_1_first_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 15,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p1.lastName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 15,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p1.lastName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "Last name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_1_last_name"
             },
-            "label": "Last name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_1_last_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 16,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p1.email",
-          "data": {
-            "config": {
-              "type": "email",
-              "required": true
+          {
+            "id": 16,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p1.email",
+            "data": {
+              "config": {
+                "type": "email",
+                "required": true
+              },
+              "label": "Email address:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_1_email",
+              "subLabel": "e.g. name@email.com"
             },
-            "label": "Email address:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_1_email",
-            "subLabel": "e.g. name@email.com"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 22,
-          "type": "static",
-          "element": "html",
-          "program_data_code": null,
-          "data": {
-            "config": {
-              "padding": "no-bg-padding",
-              "bgColor": "silver",
-              "class": "padding-top-bottom"
+          {
+            "id": 22,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h5><strong>Participant 2/5<\/strong><\/h5>"
             },
-            "value": "<h5><strong>Participant 2/5<\/strong><\/h5>"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 50,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 50,
-            "order": 0
-          }
-        },
-        {
-          "id": 24,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p2.firstName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 24,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p2.firstName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "First name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_2_first_name"
             },
-            "label": "First name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_2_first_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 25,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p2.lastName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 25,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p2.lastName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "Last name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_2_last_name"
             },
-            "label": "Last name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_2_last_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 26,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p2.email",
-          "data": {
-            "config": {
-              "type": "email",
-              "required": true
+          {
+            "id": 26,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p2.email",
+            "data": {
+              "config": {
+                "type": "email",
+                "required": true
+              },
+              "label": "Email address:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_2_email",
+              "subLabel": "e.g. name@email.com"
             },
-            "label": "Email address:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_2_email",
-            "subLabel": "e.g. name@email.com"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 32,
-          "type": "static",
-          "element": "html",
-          "program_data_code": null,
-          "data": {
-            "config": {
-              "padding": "no-bg-padding",
-              "bgColor": "silver",
-              "class": "padding-top-bottom"
+          {
+            "id": 32,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h5><strong>Participant 3/5<\/strong><\/h5>"
             },
-            "value": "<h5><strong>Participant 3/5<\/strong><\/h5>"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 50,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 50,
-            "order": 0
-          }
-        },
-        {
-          "id": 34,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p3.firstName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 34,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p3.firstName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "First name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_3_first_name"
             },
-            "label": "First name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_3_first_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 35,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p3.lastName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 35,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p3.lastName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "Last name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_3_last_name"
             },
-            "label": "Last name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_3_last_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 36,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p3.email",
-          "data": {
-            "config": {
-              "type": "email",
-              "required": true
+          {
+            "id": 36,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p3.email",
+            "data": {
+              "config": {
+                "type": "email",
+                "required": true
+              },
+              "label": "Email address:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_3_email",
+              "subLabel": "e.g. name@email.com"
             },
-            "label": "Email address:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_3_email",
-            "subLabel": "e.g. name@email.com"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 42,
-          "type": "static",
-          "element": "html",
-          "program_data_code": null,
-          "data": {
-            "config": {
-              "padding": "no-bg-padding",
-              "bgColor": "silver",
-              "class": "padding-top-bottom"
+          {
+            "id": 42,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h5><strong>Participant 4/5<\/strong><\/h5>"
             },
-            "value": "<h5><strong>Participant 4/5<\/strong><\/h5>"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 50,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 50,
-            "order": 0
-          }
-        },
-        {
-          "id": 44,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p4.firstName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 44,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p4.firstName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "First name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_4_first_name"
             },
-            "label": "First name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_4_first_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 45,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p4.lastName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 45,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p4.lastName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "Last name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_4_last_name"
             },
-            "label": "Last name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_4_last_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 46,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p4.email",
-          "data": {
-            "config": {
-              "type": "email",
-              "required": true
+          {
+            "id": 46,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p4.email",
+            "data": {
+              "config": {
+                "type": "email",
+                "required": true
+              },
+              "label": "Email address:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_4_email",
+              "subLabel": "e.g. name@email.com"
             },
-            "label": "Email address:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_4_email",
-            "subLabel": "e.g. name@email.com"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 52,
-          "type": "static",
-          "element": "html",
-          "program_data_code": null,
-          "data": {
-            "config": {
-              "padding": "no-bg-padding",
-              "bgColor": "silver",
-              "class": "padding-top-bottom"
+          {
+            "id": 52,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h5><strong>Participant 5/5<\/strong><\/h5>"
             },
-            "value": "<h5><strong>Participant 5/5<\/strong><\/h5>"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 50,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 50,
-            "order": 0
-          }
-        },
-        {
-          "id": 54,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p5.firstName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 54,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p5.firstName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "First name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_5_first_name"
             },
-            "label": "First name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_5_first_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 55,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p5.lastName",
-          "data": {
-            "config": {
-              "type": "text",
-              "required": true
+          {
+            "id": 55,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p5.lastName",
+            "data": {
+              "config": {
+                "type": "text",
+                "required": true
+              },
+              "label": "Last name:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_5_last_name"
             },
-            "label": "Last name:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_5_last_name"
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
-          }
-        },
-        {
-          "id": 56,
-          "type": "dynamic",
-          "element": "textbox",
-          "program_data_code": "c3.m1.s8.p5.email",
-          "data": {
-            "config": {
-              "type": "email",
-              "required": true
+          {
+            "id": 56,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "c3.m1.s8.p5.email",
+            "data": {
+              "config": {
+                "type": "email",
+                "required": true
+              },
+              "label": "Email address:",
+              "placeholder": "",
+              "value": "",
+              "name": "Participant_5_email",
+              "subLabel": "e.g. name@email.com"
             },
-            "label": "Email address:",
-            "placeholder": "",
-            "value": "",
-            "name": "Participant_5_email",
-            "subLabel": "e.g. name@email.com"
-          },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 51,
-            "order": 0
+            "pivot": {
+              "step_id": 5,
+              "block_id": 51,
+              "order": 0
+            }
           }
-        },
-        {
-          "id": 60,
-          "type": "static",
-          "element": "html",
-          "program_data_code": null,
-          "data": {
-            "config": {
-              "class": "padding-top-bottom"
-            },
-            "value": "<h1><\/h1>"
-          },
-          "pivot": {
-            "step_id": 5,
-            "block_id": 50,
-            "order": 0
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "id": 50,

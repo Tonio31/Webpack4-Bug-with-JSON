@@ -6,7 +6,11 @@ let ResourceFactory = function( $log,
                                 $state,
                                 $localStorage,
                                 $location,
+<<<<<<< HEAD
                                 $httpParamSerializer,
+=======
+                                $window,
+>>>>>>> origin/dev
                                 User,
                                 STATES,
                                 WEBSITE_CONFIG,
@@ -33,8 +37,10 @@ let ResourceFactory = function( $log,
   };
 
   let getParticipantDetails = () => {
+
+    let deferred = $q.defer();
     $log.log('getParticipantDetails()');
-    return $resource(buildApiUrl('participants', true)).get( (userData) => {
+    $resource(buildApiUrl('participants', true)).get( (userData) => {
       $log.log('getParticipantDetails() retrieved successfully');
 
       let userToSave = {
@@ -42,15 +48,28 @@ let ResourceFactory = function( $log,
         firstName: userData.data['first_name'], // eslint-disable-line dot-notation
         lastName: userData.data['last_name'], // eslint-disable-line dot-notation
         email: userData.data.email,
-        gender: userData.data.gender,
+        gender: userData.data.gender
+        company: userData.data.company,
+        division: userData.data.division,
+        cohort: userData.data.cohort,
         companyBanner: userData.data.companyBanner
       };
 
       User.setUser(userToSave);
+
+      // Set up google analytics to link the data to a specific userId
+      $window.ga('set', 'userId', userToSave.id);
+      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COMPANY, userToSave.company);
+      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.DIVISION, userToSave.division);
+      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COHORT, userToSave.cohort);
+      deferred.resolve();
     },
-      (error) => {
-        $log.error('getParticipantDetails() error=', error);
-      });
+    (error) => {
+      $log.error('getParticipantDetails() error=', error);
+      deferred.reject(error);
+    });
+
+    return deferred.promise;
   };
 
 
