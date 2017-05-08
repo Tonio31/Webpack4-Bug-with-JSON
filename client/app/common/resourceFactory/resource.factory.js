@@ -6,11 +6,8 @@ let ResourceFactory = function( $log,
                                 $state,
                                 $localStorage,
                                 $location,
-<<<<<<< HEAD
                                 $httpParamSerializer,
-=======
                                 $window,
->>>>>>> origin/dev
                                 User,
                                 STATES,
                                 WEBSITE_CONFIG,
@@ -48,7 +45,7 @@ let ResourceFactory = function( $log,
         firstName: userData.data['first_name'], // eslint-disable-line dot-notation
         lastName: userData.data['last_name'], // eslint-disable-line dot-notation
         email: userData.data.email,
-        gender: userData.data.gender
+        gender: userData.data.gender,
         company: userData.data.company,
         division: userData.data.division,
         cohort: userData.data.cohort,
