@@ -26,6 +26,7 @@ module.exports = exports = {
     "ENVIRONMENT": true,
     "VERSION": true,
     "BACK_END_API": true,
+    "VIA_SURVEY_APP_KEY": true,
     "GOOGLE_TRACKING_CODE": true
   },
   "rules": {
@@ -94,7 +95,7 @@ module.exports = exports = {
     "no-loop-func": ERROR,
     "no-magic-numbers": OFF,
     "no-mixed-requires": WARN,
-    "no-multi-spaces": ERROR,
+    "no-multi-spaces": WARN,
     "no-multi-str": WARN,
     "no-native-reassign": ERROR,
     "no-new-func": ERROR,

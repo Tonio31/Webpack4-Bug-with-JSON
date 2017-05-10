@@ -157,7 +157,8 @@ describe('RadioList', () => {
 
     let bindings = {
       block: blockBinding,
-      isTopLevelFormSubmitted: false
+      isTopLevelFormSubmitted: false,
+      updateBlockManager: () => {}
     };
 
     beforeEach(() => {

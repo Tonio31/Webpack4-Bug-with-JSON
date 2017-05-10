@@ -97,6 +97,15 @@ class CourseContentController {
                                 this.content.prev_page_url );
 
       ContentFactory.clearInputFields();
+      ContentFactory.setBeforeNextStepValidation();
+      ContentFactory.setNextStepButtonPreSaveAction();
+      ContentFactory.setPreviousStepButtonPreAction();
+
+      this.navigation = {
+        prevPage: this.content.prev_page_url,
+        nextPage: this.content.next_page_url
+      };
+
       $log.log('$onInit - END');
     };
 
@@ -105,12 +114,12 @@ class CourseContentController {
     };
 
     this.previousStep = () => {
-      $state.go(this.content.prev_page_url);
-    };
-
-    this.disableNextButton = (iDisable) => {
-      $log.log('Disable next Button: ', iDisable);
-      this.isNextButtonDisable = iDisable;
+      if ( ContentFactory.isPreviousButtonPreAction() ) {
+        ContentFactory.previousStepButtonPreSaveAction();
+      }
+      else {
+        $state.go(this.content.prev_page_url);
+      }
     };
 
     this.goToFieldInError = (iForm) => {
@@ -122,8 +131,7 @@ class CourseContentController {
           if ( currentForm.$invalid ) {
             $log.debug('The invalid form is:', key);
             // Focus the user on the form in error
-            $location.hash(key);
-            $anchorScroll();
+            $anchorScroll(key);
             return;
           }
         }
@@ -166,11 +174,14 @@ class CourseContentController {
     };
 
     this.nextStep = (iForm) => {
+
+      ContentFactory.beforeNextStepValidation();
+
       if ( iForm.$invalid && !this.isStepCompleted ) {
         this.goToFieldInError(iForm);
       }
-      else if ( ContentFactory.isNextButtonPreAction() ) {
-        ContentFactory.nextStepButtonPreAction();
+      else if ( ContentFactory.isNextButtonPreSaveAction() ) {
+        ContentFactory.nextStepButtonPreSaveAction();
       }
       else if ( !this.isStepCompleted || this.skipShowingBanner ) {
         // First time user click on the button, display the green banner,
@@ -230,7 +241,7 @@ class CourseContentController {
           // Display error Banner for the user
           this.setBannerError();
 
-          // Save user input to locasl storage so we can restore fit when he refresh the page
+          // Save user input to local storage so we can restore fit when he refresh the page
           Utility.saveUserInputToLocalStorage(ContentFactory.getInputFields());
 
           $log.log('Error saving the current step. error=', error);

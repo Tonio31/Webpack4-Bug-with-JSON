@@ -8,8 +8,8 @@ let viaSurveyComponent = {
     block: '<',
     isTopLevelFormSubmitted: '<',
     isStepCompleted: '<',
-    updateBlockManager: '&',
-    disableNextButton: '&'
+    navigation: '<',
+    updateBlockManager: '&'
   },
   template,
   controller

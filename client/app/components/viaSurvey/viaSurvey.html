@@ -1,18 +1,32 @@
-<div class="via-survey">
-  <p>THis is a survey that will last 120 questions</p>
-  <p>it is to evaluate your strenght, click on the button below to start the survey</p>
-  <button type="button" class="radius" ng-click="$ctrl.startSurvey()">Start survey</button>
+<div id="via-survey" class="via-survey">
 
-  <div ng-show="$ctrl.surveyStarted && $ctrl.radioQuestions.length">
-    <div ng-repeat="question in $ctrl.radioQuestions">
-      <p>question.program_data_code= {{question.program_data_code}}</p>
+  <div ng-if="$ctrl.tabToDisplay === 'questions'">
+
+    <html-module data="$ctrl.block.data.intro_survey"></html-module>
+
+    <p class="text-center">{{$ctrl.currentPageNumber}} / {{$ctrl.nbPagesSurvey}}</p>
+
+    <div ng-repeat="question in $ctrl.radioQuestions | limitTo: $ctrl.nbQuestionsDisplayed : $ctrl.numFirstQuestionDisplayed">
       <radio-list
         update-block-manager="$ctrl.onUpdate(question.program_data_code, blockManagerValue)"
         is-step-completed="$ctrl.isStepCompleted"
-        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        is-top-level-form-submitted="$ctrl.simulateTopLevelFormSubmitted[$ctrl.currentPageNumber]"
         block="question">
       </radio-list>
       <br/>
     </div>
+
+    <p class="text-center">{{$ctrl.currentPageNumber}} / {{$ctrl.nbPagesSurvey}}</p>
   </div>
+
+  <div ng-if="$ctrl.tabToDisplay === 'results'">
+    <html-module data="$ctrl.block.data.intro_results"></html-module>
+    <checkbox
+      update-block-manager="$ctrl.onUpdate($ctrl.results.program_data_code, blockManagerValue)"
+      is-step-completed="$ctrl.isStepCompleted"
+      is-top-level-form-submitted="$ctrl.isListOfStrengthFormSubmitted"
+      block="$ctrl.listOfStrengthsForCheckBox">
+    </checkbox>
+  </div>
+
 </div>

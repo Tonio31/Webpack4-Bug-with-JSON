@@ -48,12 +48,17 @@ let constantModule = angular.module('app.common.constant', [
   })
   .constant('WEBSITE_CONFIG', {
     apiUrl: BACK_END_API,
-    apiViaSurvey: 'https://www.viacharacter.org/survey/api1/',
     googleTrackingCode: GOOGLE_TRACKING_CODE,
     GA_DIMENSIONS: {
       COMPANY: 'dimension1',
       COHORT: 'dimension2',
       DIVISION: 'dimension3'
+    },
+    viaSurvey: {
+      api: 'https://www.viacharacter.org/survey/api1/',
+      appKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4',
+      surveyID: 86,
+      questionCount: 120
     }
   })
 .name;

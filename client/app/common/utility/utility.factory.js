@@ -1,4 +1,4 @@
-let UtilityFactory = function( $log, $q, $state, $window, $localStorage, User, Data ) {
+let UtilityFactory = function( $log, $q, $state, $window, $localStorage, User ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -46,56 +46,11 @@ let UtilityFactory = function( $log, $q, $state, $window, $localStorage, User, D
   };
 
 
-  // Communication between CourseContent and Block controllers, this is used to trigger some actions when the user clicks
-  // on next button, for some cases we might want to do something different actions than submit the results to Back End
-  let actionBeforeSavingStep = {};
-
-  let setSubmitSurvey = (iAppKey, iLoginKey, iSessionKey, iAnswers) => {
-    actionBeforeSavingStep.submitViaSurvey = {
-      appKey: iAppKey,
-      loginKey: iLoginKey,
-      sessionkey: iSessionKey,
-      answers: iAnswers
-    };
-  };
-
-  let doThingsBeforeSubmitCurrentStep = () => {
-    // let deferred = $q.defer();
-    if ( actionBeforeSavingStep.hasOwnProperty('submitViaSurvey') ) {
-
-      let submitAnswerParams = {
-        appKey: actionBeforeSavingStep.submitViaSurvey.appKey,
-        loginKey: actionBeforeSavingStep.submitViaSurvey.loginKey,
-        sessionkey: actionBeforeSavingStep.submitViaSurvey.sessionKey,
-        answers: actionBeforeSavingStep.submitViaSurvey.answers
-      };
-
-      let submitAnswersPost = Data.viaSurvey();
-      Object.assign(submitAnswersPost, submitAnswerParams);
-      submitAnswersPost.$submitAnswers( (dataBackFromSubmitAnswers) => {
-        // If the SubmitAnswers service returns true, all answers have been submitted. If it returns false, more questions remain to
-        // be answered and can be retrieved by a subsequent call to GetQuestions.
-        $log.log('Success login dataBackFromSubmitAnswers=', dataBackFromSubmitAnswers);
-        if ( dataBackFromSubmitAnswers.response ) {
-
-          // TO DO Get the results
-          $log.log('All answers have been submitted, ready to get the results');
-        }
-        else {
-          $log.log('Not all the questions were submitted to ViaSurvey. SubmitAnswers API returned false');
-        }
-      });
-    }
-  };
-
-
   return {
     saveUserInputToLocalStorage,
     getUserInputFromLocalStorage,
     removeUserInputFromLocalStorage,
     buildLocalStorageKey,
-    doThingsBeforeSubmitCurrentStep,
-    setSubmitSurvey,
     goToLink
   };
 };

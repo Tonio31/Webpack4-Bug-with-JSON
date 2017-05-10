@@ -140,66 +140,39 @@ let ResourceFactory = function( $log,
     return new ($resource(buildApiUrl('password/reset')))();
   };
 
+  // Used to save data for a step and mark the step as completed for the current user.
   let updateStep = () => {
     $log.log('updateStep()');
     return new ($resource(buildApiUrl('program_data')))();
   };
 
+  // Used to save data for a step without setting the step as completed
+  let partialUpdateStep = () => {
+    $log.log('partialUpdateStep()');
+    return new ($resource(buildApiUrl('partial_save')))();
+  };
+
   // The following is used by ViaSurvey module
-  let viaSurvey = () => {
+  let viaSurvey = ( iApi ) => {
     return new ($resource('', {}, {
       register: {
         method: 'POST',
-        url: `${WEBSITE_CONFIG.apiViaSurvey}RegisterUser`,
+        url: `${WEBSITE_CONFIG.viaSurvey.api}RegisterUser`,
         transformResponse: (userId) => {
           return {
             userId: userId
           };
         }
       },
-      login: {
+      call: {
         method: 'POST',
-        url: `${WEBSITE_CONFIG.apiViaSurvey}LoginUser`,
-        headers: {
-          'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        transformRequest: (dataToEncode) => {
-          return $httpParamSerializer(dataToEncode);
-        },
-        transformResponse: (loginKeyRawString) => {
-          return {
-            loginKey: angular.fromJson(loginKeyRawString)
-          };
-        }
-      },
-      startSurvey: {
-        method: 'POST',
-        url: `${WEBSITE_CONFIG.apiViaSurvey}StartSurvey`,
-        transformResponse: (sessionKeyRawString) => {
-          return {
-            sessionKey: angular.fromJson(sessionKeyRawString)
-          };
-        }
-      },
-      getQuestions: {
-        method: 'POST',
-        url: `${WEBSITE_CONFIG.apiViaSurvey}GetQuestions`,
-        transformResponse: (questions) => {
-          return {
-            questionsList: angular.fromJson(questions)
-          };
-        }
-      },
-      submitAnswers: {
-        method: 'POST',
-        url: `${WEBSITE_CONFIG.apiViaSurvey}SubmitAnswers`,
+        url: `${WEBSITE_CONFIG.viaSurvey.api}${iApi}`,
         transformResponse: (response) => {
-          $log.log('SubmitAnswers response=', response);
           return {
-            response: angular.fromJson(response)
+            data: angular.fromJson(response)
           };
         }
-      }
+      },
     }))();
   };
 
@@ -212,6 +185,7 @@ let ResourceFactory = function( $log,
     getFriendSurveyContent,
     getParticipantDetails,
     updateStep,
+    partialUpdateStep,
     buildApiUrl,
     viaSurvey
   };
