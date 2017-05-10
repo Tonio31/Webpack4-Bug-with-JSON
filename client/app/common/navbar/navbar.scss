@@ -12,18 +12,17 @@ $mainTitleMenuColor: #a0a0a0;
   .tab-bar {
     background-color: $onyx;
 
-    .menu-icon {
-      // hide menu button on non-mobile
-      @media #{$large-up} {
-        display: none;
-      }
+    .right-small {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .logo-potential-life a {
     display: inline-block;
     background-image: url('./assets/logo-potential-life.svg');
     background-repeat: no-repeat;
-    background-position: 1px 4px;
+    background-position: center left;
     background-size: auto 80%;
     text-indent: -9999em;
     height: auto;
@@ -31,16 +30,89 @@ $mainTitleMenuColor: #a0a0a0;
   }
 }
 
+menu-item {
+  display: block;
+}
+
+.menu-toggle-button {
+
+  $menu-size: 45px;
+  $radius: 4px;
+  $speed: 500ms;
+
+  @include noSelect();
+
+  border: 1px solid $white;
+  border-radius: $radius;
+  cursor: pointer;
+  width: $menu-size;
+  height: $menu-size;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .line-wrap {
+    display: block;
+    width: $menu-size - 14px;
+    height: $menu-size - 15px;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+  }
+
+  i {
+    background-color: $white;
+    border-radius: $radius;
+    width: 100%;
+    height: 3px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform $speed, opacity $speed;
+
+    &:nth-child(2) {
+      top: 8px;
+    }
+
+    &:nth-child(3) {
+      top: 16px;
+    }
+  }
+  .text {
+    color: $white;
+    display: block;
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    transform: translateZ(0);
+
+    &-hide {
+      display: none;
+    }
+  }
+}
+
 
 .navbar {
   height: 100%;
 
-  .content {
-    height: 100%;
+  company-banner {
+    display: block;
+
+    ~ .content .course-content {
+      min-height: calc(100vh - #{$height-footer-nav-banner} - #{$height-company-banner});
+    }
   }
 
-  a {
-    color: $canvasMenuLinkTextColor;
+  .content {
+    height: 100%;
   }
 
   .header {
@@ -54,22 +126,19 @@ $mainTitleMenuColor: #a0a0a0;
   }
 
   .left-off-canvas-menu {
-    @media #{$large-up} {
-      position: static;
-      transform: translate3d(0, 0, 0);
-      top: auto;
-      left: auto;
-      bottom: auto;
-      width: $off-canvas-width;
-    }
     margin-top: $tabbar-height;
+
+    a {
+      display: block;
+      color: $canvasMenuLinkTextColor;
+    }
 
     .home {
       display: flex;
       background-color: $onyx;
       border-top: 1px solid #5e5e5e;
       cursor: pointer;
-      padding: 1.25rem 0.6667rem 1.875rem 0.3125rem;
+      padding: 1.25rem .6667rem .6667rem .6667rem;
       .columns {
         padding: 0;
       }
@@ -85,7 +154,7 @@ $mainTitleMenuColor: #a0a0a0;
       background-size: contain;
       background-position: 50%;
       background-repeat: no-repeat;
-      display: inline-block;
+      display: block;
     }
 
     .current {
@@ -119,6 +188,21 @@ $mainTitleMenuColor: #a0a0a0;
         background-image: url('./assets/menu-item-home.svg');
       }
     }
+
+    .logout {
+      background-color: $ship-grey;
+      border-bottom: 0;
+      cursor: pointer;
+      position: absolute;
+      padding-top: .3334rem;
+      padding-bottom: .3334rem;
+      .pl-menu-button {
+        font-size: rem_calc(30);
+        &::before {
+          margin-top: rem_calc(15px);
+        }
+      }
+    }
   }
 
   .main-section {
@@ -127,9 +211,7 @@ $mainTitleMenuColor: #a0a0a0;
     width: 100%;
     transform: translate3d(0, 0, 0);
     transition: transform $speed3;
-    @media #{$large-up} {
-      width: calc(100% - #{$off-canvas-width});
-    }
+    padding-bottom: $footerHeight;
   }
 
   .off-canvas-wrap,
@@ -154,18 +236,43 @@ $mainTitleMenuColor: #a0a0a0;
       height: 100%;
     }
     .inner-wrap {
+      min-height: 100vh;
       @media #{$medium-up} {
         display: flex;
+        flex-wrap: wrap;
       }
     }
   }
 
   .move-right {
-    > .inner-wrap {
-      @media #{$large-up} {
-        transform: translate3d(0, 0, 0);
+    .main-section,
+    footer {
+      @media #{$xlarge-up} {
+        transform: translateX(-#{$off-canvas-width / 2});
       }
     }
+
+    .menu-toggle-button {
+      .text-menu {
+        display: none;
+      }
+      .text-hide {
+        display: block;
+      }
+
+      i {
+        &:nth-child(1) {
+          transform: rotate(45deg) translateX(6px) translateY(5px);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:nth-child(3) {
+          transform: rotate(-45deg) translateX(6px) translateY(-6px);
+         }
+      }
+    }
+
   }
 
   .menu-button {
@@ -191,6 +298,7 @@ $mainTitleMenuColor: #a0a0a0;
 
     p {
       margin-bottom: 0;
+      line-height: 1.25rem;
 
       &.top-title {
         font-size: 10px;
@@ -239,11 +347,16 @@ $mainTitleMenuColor: #a0a0a0;
     .back {
       display: block;
       a {
+        align-items: center;
         background-color: $onyx;
-        padding: rem_calc(20px) .6667rem rem_calc(30px) rem_calc(5px);
-        align-items: flex-end;
+        border-bottom: 2px solid $onyx;
+        padding: 1.25rem .6667rem .6667rem rem_calc(5px);
+        display: flex;
         &::before {
           display: none;
+        }
+        &:hover {
+          border-bottom: 2px solid $onyx;
         }
         .small-2 {
           width: 19%;
@@ -257,8 +370,7 @@ $mainTitleMenuColor: #a0a0a0;
   }
 
   .menu-item {
-    display: flex;
-    width: 100%;
+    display: block;
 
     a {
       width: 100%;
@@ -272,14 +384,27 @@ $mainTitleMenuColor: #a0a0a0;
         position: relative;
 
         &::after {
-          content: '';
-          display: block;
-          border: 1px solid red;
-          width: 10px;
-          height: 10px;
+          content: '\3e';
+          height: 30px;
           position: absolute;
-          top: 0;
-          right: -10px;
+          top: calc(50% - 10px);
+          right: 10px;
+          color: $white;
+          font-family: "fontello";
+          font-style: normal;
+          font-weight: normal;
+          speak: none;
+          display: inline-block;
+          text-decoration: inherit;
+          width: 1em;
+          margin-right: .2em;
+          text-align: center;
+          font-variant: normal;
+          text-transform: none;
+          line-height: 1em;
+          margin-left: .2em;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
 
         p {
@@ -299,7 +424,6 @@ $mainTitleMenuColor: #a0a0a0;
   //The workaround to fix this is to redefine the directive and the css associated
 
   .off-canvas-list-bugfix {
-    list-style-type: none;
     margin: 0;
     padding: 0;
   }
@@ -312,4 +436,5 @@ $mainTitleMenuColor: #a0a0a0;
       }
     }
   }
+
 }

@@ -6,7 +6,11 @@ let UserData = function() {
     token: '',
     firstName: '',
     lastName: '',
-    email: ''
+    company: '',
+    division: '',
+    cohort: '',
+    email: '',
+    companyBanner: {}
   };
 
   let setUser = (iUserObject) => {
@@ -26,8 +30,24 @@ let UserData = function() {
       user.lastName = iUserObject.lastName;
     }
 
+    if ( iUserObject.hasOwnProperty('company') && iUserObject.company ) {
+      user.company = iUserObject.company;
+    }
+
+    if ( iUserObject.hasOwnProperty('division') && iUserObject.division ) {
+      user.division = iUserObject.division;
+    }
+
+    if ( iUserObject.hasOwnProperty('cohort') && iUserObject.cohort ) {
+      user.cohort = iUserObject.cohort;
+    }
+
     if ( iUserObject.hasOwnProperty('email') && iUserObject.email ) {
       user.email = iUserObject.email;
+    }
+
+    if ( iUserObject.hasOwnProperty('companyBanner') && iUserObject.companyBanner ) {
+      user.companyBanner = iUserObject.companyBanner;
     }
   };
 
@@ -37,6 +57,18 @@ let UserData = function() {
 
   let getLastName = () => {
     return user.lastName;
+  };
+
+  let getCompany = () => {
+    return user.company;
+  };
+
+  let getDivision = () => {
+    return user.division;
+  };
+
+  let getCohort = () => {
+    return user.cohort;
   };
 
   let getSecurityToken = () => {
@@ -51,13 +83,34 @@ let UserData = function() {
     return user.email;
   };
 
+  let getCompanyBanner = () => {
+    return user.companyBanner;
+  };
+
+  let isUserDefined = () => {
+    // eslint-disable-next-line no-unused-vars
+    for ( let [ key, value ] of Object.entries(user) ) {
+      if ( ( angular.isString(value) && value ) ||
+        ( angular.isObject(value) && Object.keys(value).length !== 0 ) ) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   return {
+    isUserDefined,
     setUser,
     getFirstName,
     getLastName,
+    getCompany,
+    getDivision,
+    getCohort,
     getUserId,
     getSecurityToken,
-    getEmail
+    getEmail,
+    getCompanyBanner
   };
 
 };

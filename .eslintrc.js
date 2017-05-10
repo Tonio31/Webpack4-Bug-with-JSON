@@ -24,7 +24,9 @@ module.exports = exports = {
     "_": true,
     "require": true,
     "ENVIRONMENT": true,
-    "VERSION": true
+    "VERSION": true,
+    "BACK_END_API": true,
+    "GOOGLE_TRACKING_CODE": true
   },
   "rules": {
     "accessor-pairs": [
@@ -165,7 +167,7 @@ module.exports = exports = {
     "max-depth": [WARN, 8],
     "max-len": [WARN, {
       "code": 132,
-      "ignorePattern": "^\\s*\\$log\\.log\\(\\'.*;",
+      "ignorePattern": "^\\s*\\$log\\.log\\(.*;",
       "ignoreComments": true
     }],
     "max-nested-callbacks": [WARN, 8],

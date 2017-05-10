@@ -1,0 +1,83 @@
+  <div ng-class="$ctrl.block.data.config.padding" ng-switch="$ctrl.block.element">
+
+    <div ng-switch-when="video">
+      <video-module data="$ctrl.block.data"></video-module>
+    </div>
+
+    <div ng-switch-when="module_overview">
+      <module-overview block="$ctrl.block"></module-overview>
+    </div>
+
+    <div ng-switch-when="checkbox">
+      <checkbox
+        update-block-manager="$ctrl.onUpdate(blockManagerValue)"
+        is-step-completed="$ctrl.isStepCompleted"
+        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        block="$ctrl.block">
+      </checkbox>
+    </div>
+
+    <div ng-switch-when="radiobox">
+      <radio-list
+        update-block-manager="$ctrl.onUpdate(blockManagerValue)"
+        is-step-completed="$ctrl.isStepCompleted"
+        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        block="$ctrl.block">
+      </radio-list>
+    </div>
+
+    <div ng-switch-when="html">
+      <html-module data="$ctrl.block.data"></html-module>
+    </div>
+
+    <div ng-switch-when="textarea">
+      <pl-text-area
+        update-block-manager="$ctrl.onUpdate(blockManagerValue)"
+        is-step-completed="$ctrl.isStepCompleted"
+        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        block="$ctrl.block">
+      </pl-text-area>
+    </div>
+
+    <div ng-switch-when="textbox">
+      <text-box
+        update-block-manager="$ctrl.onUpdate(blockManagerValue)"
+        is-step-completed="$ctrl.isStepCompleted"
+        is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted"
+        block="$ctrl.block">
+      </text-box>
+    </div>
+
+    <div ng-switch-when="icon_text">
+      <icon-text data="$ctrl.block.data"></icon-text>
+    </div>
+
+    <div ng-switch-when="bar_chart">
+      <bar-chart block="$ctrl.block"></bar-chart>
+    </div>
+
+    <div ng-switch-when="pie_chart">
+      <pie-chart block="$ctrl.block"></pie-chart>
+    </div>
+
+    <div ng-switch-when="gauge_chart">
+      <gauge-chart block="$ctrl.block"></gauge-chart>
+    </div>
+
+    <div ng-switch-when="spider_chart">
+      <spider-chart block="$ctrl.block"></spider-chart>
+    </div>
+
+    <div ng-switch-when="ul">
+      <unordered-list block="$ctrl.block" />
+    </div>
+
+    <div ng-switch-when="button">
+      <button-module block="$ctrl.block" />
+    </div>
+
+    <div ng-switch-when="via_survey">
+      <via-survey block="$ctrl.block" />
+    </div>
+
+</div>

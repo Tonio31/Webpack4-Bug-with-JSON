@@ -1,18 +1,42 @@
 import ResourceModule from './resource';
 
 describe('Resource', () => {
-  let User, Data, config;
-  let $httpBackend;
+  let User, Data, WEBSITE_CONFIG, TOKEN_SURVEY;
+  let $httpBackend, $location, $window;
 
   let participant = require('app/mockBackEndResponse/participants.json');
   let userId = 12;
 
-  beforeEach(window.module(ResourceModule));
+  let cleanMockObject = (iMockObject) => {
+    Object.keys(iMockObject).forEach( (key) => {
+      delete iMockObject[key];
+    });
+  };
+
+  let mockLocalStorage = {};
+
+  beforeEach(window.module(ResourceModule, ($provide) => {
+    $provide.value('$localStorage', mockLocalStorage );
+  }));
+
   beforeEach(inject(($injector) => {
     $httpBackend = $injector.get('$httpBackend');
+    $location = $injector.get('$location');
+    $window = $injector.get('$window');
     User = $injector.get('User');
     Data = $injector.get('Data');
-    config = $injector.get('config');
+    WEBSITE_CONFIG = $injector.get('WEBSITE_CONFIG');
+    TOKEN_SURVEY = $injector.get('TOKEN_SURVEY');
+
+    $window.ga = () => {};
+
+    $location.search = () => {
+      return {
+        [TOKEN_SURVEY]: 'ThisIsAToken'
+      };
+    };
+
+    cleanMockObject(mockLocalStorage);
 
     sinon.stub(User, 'getUserId', () => { return userId; } );
   }));
@@ -28,14 +52,14 @@ describe('Resource', () => {
     it('buildApiUrl(\'reflexion\', false) build an url without the userId', () => {
       let endPoint = 'reflexion';
 
-      expect(Data.buildApiUrl('reflexion', false)).to.deep.equal(`${config.apiUrl}${config.apiVersion}/${endPoint}`);
+      expect(Data.buildApiUrl('reflexion', false)).to.deep.equal(`${WEBSITE_CONFIG.apiUrl}/${endPoint}`);
     });
 
 
     it('buildApiUrl(\'reflexion\', true) build an url with the userId', () => {
       let endPoint = 'reflexion';
 
-      expect(Data.buildApiUrl('reflexion', true)).to.deep.equal(`${config.apiUrl}${config.apiVersion}/${endPoint}/${userId}`);
+      expect(Data.buildApiUrl('reflexion', true)).to.deep.equal(`${WEBSITE_CONFIG.apiUrl}/${endPoint}/${userId}`);
     });
 
     // This will test the retrieval of the menuData and the convertMenuData function
@@ -60,7 +84,17 @@ describe('Resource', () => {
         email: 'tonio.mandela@usertest.com',
         firstName: 'tonio',
         id: 4,
-        lastName: 'mandela'
+        lastName: 'mandela',
+        cohort: 'BAC001',
+        company: 'Barclays',
+        division: 'Sales',
+        companyBanner: {
+          bgColor: 'orange',
+          header: 'Inspiring Leadership',
+          logo: 'https://logos.keycdn.com/keycdn-logo.png',
+          subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
+          textColor: 'white'
+        }
       });
 
       done();
@@ -69,7 +103,7 @@ describe('Resource', () => {
 
     it('getDynamicContentPromise() return a resolved promise if the server returns no error', sinon.test( (done) => {
 
-      let regexpStep = new RegExp('http:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+      let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 200, { data: 'some data' }, {} ];
       });
@@ -89,7 +123,7 @@ describe('Resource', () => {
 
     it('getDynamicContentPromise() return a rejected promise if the server returns an error', sinon.test( (done) => {
 
-      let regexpStep = new RegExp('http:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+      let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 404, { data: 'some data' }, {} ];
       });
@@ -104,6 +138,22 @@ describe('Resource', () => {
 
       $httpBackend.flush();
     }));
+
+    it('getFriendSurveyContent() return a rejected promise if the server returns an error', sinon.test( (done) => {
+
+      let regexpStep = new RegExp('https:\/\/localhost\.com\/survey\?.*');
+      $httpBackend.whenGET(regexpStep).respond( () => {
+        return [ 200, { data: 'some data' }, {} ];
+      });
+
+      Data.getFriendSurveyContent({});
+
+      expect(mockLocalStorage).to.deep.eq({ token_survey: 'ThisIsAToken' });
+
+      $httpBackend.flush();
+      done();
+    }));
+
 
     it('getUserAuthData() return a promise', sinon.test( (done) => {
 

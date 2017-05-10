@@ -1,38 +1,45 @@
-<div class="radio-checkbox radioList">
-  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.formName}}">
-    <header class="flex-container">
-      <div class="header-inner">
-        <p><strong>{{ $ctrl.name }}</strong></p>
-        <p class="note" ng-class="{ 'invalid': this[$ctrl.formName].$invalid && $ctrl.isTopLevelFormSubmitted }">(Please select 1 option below)</p>
-      </div>
+<div class="radio-checkbox radioList unordered-list">
+  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.FORM_NAME}}">
+    <fieldset ng-disabled="$ctrl.isStepCompleted">
+      <header class="flex-container">
+        <div class="header-inner">
+          <p><strong>{{ $ctrl.block.data.label }}</strong></p>
+          <p class="note" ng-class="{ 'invalid': this[$ctrl.FORM_NAME].$invalid && $ctrl.isTopLevelFormSubmitted }">{{'PLEASE_SELECT_1_OPTION' | translate}}</p>
+        </div>
 
-      <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted">
-        <span ng-class="{ 'invalid icon-pl-exclamation': this[$ctrl.formName].$invalid, 'icon-pl-tick': !this[$ctrl.formName].$invalid }" class="right fontello-icon"></span>
+        <div class="validation-icon-right" ng-show="$ctrl.isTopLevelFormSubmitted || $ctrl.isStepCompleted">
+          <span ng-class="this[$ctrl.FORM_NAME].$invalid ? 'invalid icon-pl-exclamation' : 'icon-pl-tick'" class="right fontello-icon"></span>
+        </div>
+      </header>
+      <ul class="no-list">
+        <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart" ng-class="{'selected': item.selected}">
+          <label class="list-wrap" for="radioName-{{$ctrl.FORM_NAME}}-{{$index}}">
+            <div class="radio-label">
+              <span>{{item.label}}</span>
+              <strong ng-if="item.sub_label">- {{item.sub_label}}</strong>
+            </div>
+            <input id="radioName-{{$ctrl.FORM_NAME}}-{{$index}}"
+              type="radio"
+              name="radio_group-{{$ctrl.FORM_NAME}}"
+              value="{{item.value}}"
+              ng-required="$ctrl.block.data.config.required && !$ctrl.selected"
+              ng-model="$ctrl.selected"
+              ng-change="$ctrl.actionOnUserInput(this[$ctrl.FORM_NAME].$valid);">
+            <div class="shim"></div>
+          </label>
+          <blockquote ng-if="item.feedback" ng-show="$ctrl.selected === item.value" class="blockquote list-wrap fgcolour-success">
+            <p>{{item.feedback}}</p>
+          </blockquote>
+        </li>
+      </ul>
+      <div class="list-footer" ng-if="$ctrl.block.data.items.length > $ctrl.MIN_NB_RADIO_BUTTON_DISPLAYED">
+        <button type="button" class="button radius secondary" ng-click="$ctrl.toggleMore()">
+          <span><i class="fontello-icon fgcolour-black icon-pl-gt"
+                   ng-class="$ctrl.showMoreButtonDisplayed ? 'rotate-90-r' : 'rotate-90-l'"></i>
+            {{$ctrl.showMoreButtonDisplayed ? ( 'SHOW_MORE' | translate ) : ( 'SHOW_LESS' | translate ) }}
+          </span>
+        </button>
       </div>
-    </header>
-    <ul ng-class="{'animate': $ctrl.showAnimation}">
-      <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit : $ctrl.limitStart">
-        <label for="radioName-{{$ctrl.formName}}-{{$index}}">
-          <span class="radio-label">{{item.label}}</span>
-          <input id="radioName-{{$ctrl.formName}}-{{$index}}"
-            type="radio"
-            name="radio_group-{{$ctrl.formName}}"
-            value="{{item.value}}"
-            ng-checked="{{item.checked}}"
-            ng-required="{{$ctrl.block.required || true}}"
-            ng-model="$ctrl.selected"
-            ng-change="$ctrl.actionOnUserInput(this[$ctrl.formName].$valid, $index)">
-        </label>
-        <blockquote ng-if="item.feedback" ng-show="$ctrl.selected === item.value" class="blockquote fgcolour-success">
-          <p>{{item.feedback}}</p>
-        </blockquote>
-      </li>
-    </ul>
-    <div class="toggle-show-more" ng-if="$ctrl.block.data.items.length > 5">
-      <p class="button radius secondary" ng-click="$ctrl.toggleMore()">
-        <span ng-hide="$ctrl.showingMore"><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-r"></i> Show more</span>
-        <span ng-show="$ctrl.showingMore"><i class="fontello-icon fgcolour-black icon-pl-gt rotate-90-l"></i> Show less</span>
-      </p>
-    </div>
+    </fieldset>
   </ng-form>
 </div>

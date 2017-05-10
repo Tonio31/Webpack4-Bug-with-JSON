@@ -2,10 +2,23 @@
 @import '~client/app/common/_foundation-settings';
 
 .textBox {
-   input[type="text"] {
-     height: 3rem;
-     width: calc(100% - (#{$validation-icon-right} + #{$default-padding}));
 
-     @include inputsBorderStyling();
-   }
+  margin: 0 0 1rem 0;
+
+  h3 {
+    margin-bottom: 0;
+    text-transform: none;
+  }
+
+  input[type] {
+    height: 3rem;
+    width: calc(100% - (#{$validation-icon-right} + #{$default-padding}));
+    margin: 0;
+
+    @include inputsBorderStyling();
+  }
+
+  .sublabel {
+    color: $very-dark-grey;
+  }
 }

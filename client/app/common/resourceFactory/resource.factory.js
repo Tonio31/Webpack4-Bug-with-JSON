@@ -1,11 +1,23 @@
-let ResourceFactory = function($log, $q, $resource, User, config) {
+// eslint-disable-next-line max-params
+let ResourceFactory = function( $log,
+                                $q,
+                                $resource,
+                                $stateParams,
+                                $state,
+                                $localStorage,
+                                $location,
+                                $window,
+                                User,
+                                STATES,
+                                WEBSITE_CONFIG,
+                                TOKEN_SURVEY ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
   $log = $log.getInstance('ResourceFactory');
 
   let buildApiUrl = (iTypeOfApi, iUserId = false) => {
-    let apiUrl = `${config.apiUrl}${config.apiVersion}/${iTypeOfApi}`;
+    let apiUrl = `${WEBSITE_CONFIG.apiUrl}/${iTypeOfApi}`;
 
     if ( iUserId ) {
       apiUrl += `/${User.getUserId()}`;
@@ -21,22 +33,38 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
   };
 
   let getParticipantDetails = () => {
+
+    let deferred = $q.defer();
     $log.log('getParticipantDetails()');
-    return $resource(buildApiUrl('participants', true)).get( (userData) => {
+    $resource(buildApiUrl('participants', true)).get( (userData) => {
       $log.log('getParticipantDetails() retrieved successfully');
 
       let userToSave = {
         id: userData.data.id,
         firstName: userData.data['first_name'], // eslint-disable-line dot-notation
         lastName: userData.data['last_name'], // eslint-disable-line dot-notation
-        email: userData.data.email
+        email: userData.data.email,
+        company: userData.data.company,
+        division: userData.data.division,
+        cohort: userData.data.cohort,
+        companyBanner: userData.data.companyBanner
       };
 
       User.setUser(userToSave);
+
+      // Set up google analytics to link the data to a specific userId
+      $window.ga('set', 'userId', userToSave.id);
+      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COMPANY, userToSave.company);
+      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.DIVISION, userToSave.division);
+      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COHORT, userToSave.cohort);
+      deferred.resolve();
     },
-      (error) => {
-        $log.error('getParticipantDetails() error=', error);
-      });
+    (error) => {
+      $log.error('getParticipantDetails() error=', error);
+      deferred.reject(error);
+    });
+
+    return deferred.promise;
   };
 
 
@@ -69,6 +97,28 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
     return deferred.promise;
   };
 
+  let getFriendSurveyContent = ( ioGetParameters ) => {
+    // Get Token from URL or local storage
+    let urlParameters = $location.search();
+    let tokenSurvey = '';
+
+    if ( urlParameters.hasOwnProperty(TOKEN_SURVEY) ) {
+      tokenSurvey = urlParameters[TOKEN_SURVEY];
+      $localStorage[TOKEN_SURVEY] = tokenSurvey;
+    }
+    else if ( angular.isDefined($localStorage[TOKEN_SURVEY]) ) {
+      tokenSurvey = $localStorage[TOKEN_SURVEY];
+    }
+
+    $log.warn('getFriendSurveyContent() - tokenSurvey=', tokenSurvey);
+
+    if ( tokenSurvey ) {
+      ioGetParameters[TOKEN_SURVEY] = tokenSurvey;
+    }
+
+    return getDynamicContentPromise( 'survey', false, ioGetParameters );
+  };
+
   // **********************************  POST  *************************************** //
   // Theses resource are to be used with $save method only, because we return an instance
   // of the function, we can't use it to do get method
@@ -80,17 +130,23 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
 
   let sendRecoverPasswordEmail = () => {
     $log.log('sendRecoverPasswordEmail()');
-    return new ($resource(buildApiUrl('forgotlogin')))();
+    return new ($resource(buildApiUrl('password/email')))();
   };
 
   let resetPassword = () => {
     $log.log('resetPassword()');
-    return new ($resource(buildApiUrl('resetPassword')))();
+    return new ($resource(buildApiUrl('password/reset')))();
   };
 
   let updateStep = () => {
     $log.log('updateStep()');
     return new ($resource(buildApiUrl('program_data')))();
+  };
+
+  // The following is used by ViaSurvey module
+  let viaSurvey = (iEndPointApi) => {
+    $log.log('viaSurvey()  iEndPointApi=', iEndPointApi);
+    return new ($resource(`${WEBSITE_CONFIG.apiViaSurvey}${iEndPointApi}`))();
   };
 
   return {
@@ -99,9 +155,11 @@ let ResourceFactory = function($log, $q, $resource, User, config) {
     sendRecoverPasswordEmail,
     resetPassword,
     getDynamicContentPromise,
+    getFriendSurveyContent,
     getParticipantDetails,
     updateStep,
-    buildApiUrl
+    buildApiUrl,
+    viaSurvey
   };
 };
 

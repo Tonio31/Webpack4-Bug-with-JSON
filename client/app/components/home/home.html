@@ -35,7 +35,7 @@
 
     <div class="row bgcolour-grey panel collapse text-center">
       <div class="columns small-12">
-        <h4>{{'CURRENT_LOCATION' | translate }}</h4>
+        <h4>{{'GO_TO_NEXT_STEP' | translate }}:</h4>
         <div class="show-for-small-only">
           <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}</h3>
           <h3>{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
@@ -44,7 +44,7 @@
           <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}&nbsp;<span>&bull;</span>&nbsp;{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
         </div>
         <button class="button radius success" type="submit" ng-click="$ctrl.resumeProgress()">
-          {{$ctrl.currentProgression.data.current_step.title | uppercase}} &bull; {{$ctrl.currentProgression.data.current_step.name | uppercase}}
+          {{$ctrl.currentProgression.data.current_step.title | uppercase}} &bull; {{$ctrl.currentProgression.data.current_step.name | uppercase | limitTo: 25 }}<span ng-if="$ctrl.currentProgression.data.current_step.name.length > 25">...</span>
         </button>
 
       </div>
@@ -62,17 +62,20 @@
 
         <div class="row collapse">
           <div class="columns small-12">
-            <div class="row bgcolour-grey panel collapse y-center-parent">
+            <div class="row bgcolour-grey panel collapse">
 
-              <div class="columns small-12 medium-2 medium-push-10 y-center-child">
+              <div class="user-avatar columns small-12 medium-2 medium-push-10" ng-if="$ctrl.content.avatar">
                 <div class="left-padding text-center">
-                  <img ng-src="{{$ctrl.content[0].avatar}}" />
+                  <img ng-src="{{$ctrl.content.avatar}}" />
                 </div>
               </div>
 
-              <div class="columns small-12 medium-10 medium-pull-2">
-                <div><h3 class="quote text-justify">{{$ctrl.content[0].reflection}}</h3></div>
-                <div class="text-center"><h3 class="quote-signature">{{$ctrl.content[0].name}}</h3></div>
+              <div class="columns small-12" ng-class="{'medium-pull-2 medium-10': $ctrl.content.avatar}">
+                <p class="quote text-center">&ldquo;{{$ctrl.content.reflection}}&rdquo;</p>
+                <p class="quote-signature text-center">
+                  {{$ctrl.content.name}} <br>
+                  <span ng-if="$ctrl.content.company">&ndash; {{$ctrl.content.company}}</span>
+                </p>
               </div>
 
             </div>
@@ -83,7 +86,7 @@
     </div>
 
 
-    <div class="row collapse">
+    <div class="row collapse equal-columns">
         <div id="faq" class="small-12 medium-6 columns medium-margin-right">
           <h4>{{'FAQS' | translate }}</h4>
           <div class="bgcolour-grey panel">

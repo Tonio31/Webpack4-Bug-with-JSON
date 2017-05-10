@@ -22,12 +22,12 @@ class ResetPasswordController {
         ioResetPasswordForm.passwordConfirmation.$setValidity('nomatch', false);
       }
       else {
-        $log.debug('Passwords match');
+        $log.log('Passwords match');
         ioResetPasswordForm.password.$setValidity('nomatch', true);
         ioResetPasswordForm.passwordConfirmation.$setValidity('nomatch', true);
       }
 
-      $log.debug('ioResetPasswordForm=', ioResetPasswordForm);
+      $log.log('ioResetPasswordForm=', ioResetPasswordForm);
     };
 
     this.resetPassword = (iResetPasswordForm) => {
@@ -38,7 +38,6 @@ class ResetPasswordController {
         let resetPasswordPOSTRequest = Data.resetPassword();
 
         resetPasswordPOSTRequest.token = this.token;
-        resetPasswordPOSTRequest.user_id = this.userId; // eslint-disable-line camelcase
         resetPasswordPOSTRequest.password = this.password;
 
         resetPasswordPOSTRequest.$save( () => {

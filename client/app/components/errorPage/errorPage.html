@@ -1,0 +1,14 @@
+<div class="error-page">
+  <div class="row">
+    <div class="small-12 medium-10 xlarge-8 small-centered columns text-center">
+      <h1>{{$ctrl.errorMsg}}</h1>
+      <h3 ng-if="!$ctrl.displayContactUsForm">{{ 'PLEASE_EMAIL_SUPPORT' | translate }}</h3>
+
+      <div ng-if="$ctrl.displayContactUsForm" class="bgcolour-grey panel">
+        <p>{{'SUPPORT_TEXT' | translate }}</p>
+        <button class="radius secondary expand" type="submit" ng-click="$ctrl.openWendeskWidget()">{{'EMAIL_US' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</div>

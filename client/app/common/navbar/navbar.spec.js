@@ -3,7 +3,29 @@ import NavbarModule from './navbar';
 describe('Navbar', () => {
   let $rootScope, $componentController, $compile;
 
-  beforeEach(window.module(NavbarModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  let ZendeskWidget;
+
+  let mockUser = {
+    getCompanyBanner: () => {
+      return {
+        bgColor: 'orange',
+        header: 'Inspiring Leadership',
+        logo: 'https://logos.keycdn.com/keycdn-logo.png',
+        subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
+        textColor: 'white'
+      };
+    }
+  };
+
+  beforeEach(window.module(NavbarModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+    $provide.value('User', mockUser );
+    $provide.value('ZendeskWidget', ZendeskWidget);
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
@@ -18,29 +40,62 @@ describe('Navbar', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
+
     beforeEach(() => {
       controller = $componentController('navbar', {
         $scope: $rootScope.$new()
       });
     });
 
-    it('has a companyName property', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('companyName');
+    it('isBannerExist() return a truthy expression is some data exists', () => {
+      expect(controller.isBannerExist()).to.not.eq(0 );
+    });
+
+    it('has a Potentialife property', () => {
+      expect(controller).to.have.property('Potentialife');
     });
   });
 
-  describe('View', () => {
+  describe('View <navbar display-menu="true"></navbar>', () => {
     // view layer specs.
     let scope, template;
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<navbar></navbar>')(scope);
+      scope.displayMenu = true;
+      template = $compile('<navbar display-menu="displayMenu"></navbar>')(scope);
       scope.$apply();
     });
 
     it('has name in template', () => {
       expect(template.find('h1').find('a').html()).to.eq('Potentialife');
+    });
+
+
+    it('<aside>(left menu) and hamburger icon menu are displayed', () => {
+      expect(template.find('aside').html()).to.not.be.an('undefined');
+      let hambergerIcon = angular.element(template[0].querySelectorAll('.menu-toggle-button'));
+      expect(hambergerIcon.html()).to.not.be.an('undefined');
+    });
+
+  });
+
+
+  describe('View <navbar display-menu="false"></navbar>', () => {
+    // view layer specs.
+    let scope, template;
+
+    beforeEach(() => {
+      scope = $rootScope.$new();
+      scope.displayMenu = false;
+      template = $compile('<navbar display-menu="displayMenu"></navbar>')(scope);
+      scope.$apply();
+    });
+
+    it('<aside>(left menu) and hamburger icon menu are NOT displayed', () => {
+      expect(template.find('aside').html()).to.be.an('undefined');
+      let hambergerIcon = angular.element(template[0].querySelectorAll('.menu-toggle-button'));
+      expect(hambergerIcon.html()).to.be.an('undefined');
     });
 
   });

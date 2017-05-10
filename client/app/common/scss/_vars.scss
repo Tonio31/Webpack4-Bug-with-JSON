@@ -1,3 +1,5 @@
+@import '~client/app/common/_foundation-functions';
+
 // colours
 $accentColor: #1de9b6;
 $logoColor: #ec754e;
@@ -10,8 +12,12 @@ $onyx: #101010;
 $ship-grey: #4D4D4D;
 $white: #fff;
 
+$video-colour-accent: transparentize($white, .9);
+$video-colour-highlight: $logoColor;
+
 // changeLanguageHeight
 $changeLanguageHeight: 20px;
+$footerHeight: rem_calc(70px);
 
 // default font
 $defaultFont: 100% 'Montserrat', sans-serif;
@@ -19,14 +25,20 @@ $defaultFont: 100% 'Montserrat', sans-serif;
 // heading sized in px as rem units
 $h1-30px: 1.875rem;
 $h1-34px: 2.125rem;
+
+$h2-20px: rem_calc(20px);
+
 $h3-18px: 1.125rem;
 $h3-28px: 1.75rem;
+
 $h4-14px: 0.875rem;
 $h4-18px: 1.125rem;
 
 // gives padding
 $padding-10px: 0.625rem;
 $default-padding: 0.625rem;
+$side-block-padding: 1.25rem;
+
 
 // animation speed
 $speed3: 333ms;
@@ -35,3 +47,5 @@ $speed5: 500ms;
 
 //
 $validation-icon-right: 45px;
+$height-footer-nav-banner: rem_calc(130px);
+$height-company-banner: rem_calc(60px);

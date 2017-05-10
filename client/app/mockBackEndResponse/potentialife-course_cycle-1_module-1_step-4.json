@@ -1,7 +1,8 @@
 {
   "id": 4,
   "name": "Exercise: Your strengths and weaknesses part 2",
-  "slug": "/potentialife-course/cycle-1/module-1/step-4",
+  "fullUrl": "/potentialife-course/cycle-1/module-1/step-4",
+  "slug": "step-4",
   "description": null,
   "content": null,
   "status": "completed",
@@ -29,26 +30,17 @@
       "element":"bar_chart",
       "data": {
         "title":"Your strengths breakdown",
+        "barWidth": 0.5,
         "bars":[
           {
             "title": "Work",
             "color": "#d3d3d3",
-            "value": 0
+            "value": 10
           },
           {
             "title": "Non-Work",
             "color": "green",
             "value": 31
-          },
-          {
-            "title": "Sleep",
-            "color": "blue",
-            "value": 95
-          },
-          {
-            "title": "Whatever",
-            "color": "red",
-            "value": 100
           }
         ]
       }
@@ -59,6 +51,7 @@
       "element":"bar_chart",
       "data": {
         "title":"Your SECOND strengths breakdown",
+        "barWidth": 0.8,
         "bars":[
           {
             "title": "Work",
@@ -79,6 +72,116 @@
             "title": "Whatever",
             "color": "red",
             "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": 59,
+      "type":"static",
+      "element":"pie_chart",
+      "data": {
+        "title":"this is a pie chart",
+        "segments":[
+          {
+            "title": "Chicken",
+            "color": "#CD473D",
+            "value": 52
+          },
+          {
+            "title": "Pastry",
+            "color": "#384856",
+            "value": 22
+          },
+          {
+            "title": "Gravy",
+            "color": "#2A343D",
+            "value": 35
+          },
+          {
+            "title": "Veges",
+            "color": "#2684BD",
+            "value": 18
+          }
+        ]
+      }
+    },
+    {
+      "id": 60,
+      "type":"static",
+      "element":"pie_chart",
+      "data": {
+        "title":"why people should use pie charts",
+        "segments":[
+          {
+            "title": "looks delicious",
+            "color": "#B0F566",
+            "value": 124
+          },
+          {
+            "title": "Easy to Eat",
+            "color": "#4AF2A1",
+            "value": 65
+          },
+          {
+            "title": "Fruit/Savoury",
+            "color": "#5CC9F5",
+            "value": 35
+          },
+          {
+            "title": "Fits in most pockets",
+            "color": "#6638F0",
+            "value": 18
+          }
+        ]
+      }
+    },
+    {
+      "id": 62,
+      "type":"static",
+      "element":"gauge_chart",
+      "data": {
+        "title":"gauge chart",
+        "gauge": {
+          "unit": "progress",
+          "colour" : "#6638F0",
+          "value": 50,
+          "min": 0,
+          "max": 70
+        }
+      }
+    },
+    {
+      "id": 63,
+      "type":"static",
+      "element":"spider_chart",
+      "data": {
+        "title":"spider chart",
+        "set": [
+          {
+            "className": "user",
+            "axes": [
+              {
+                "axis": "Acceleration",
+                "value": 80
+              },
+              {
+                "axis": "Braking",
+                "value": 40
+              },
+              {
+                "axis": "Handling",
+                "value": 40
+              },
+              {
+                "axis": "Fuel",
+                "value": 90
+              },
+              {
+                "axis": "Top speed",
+                "value": 60
+              }
+          	]
           }
         ]
       }

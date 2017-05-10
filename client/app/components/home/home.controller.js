@@ -1,7 +1,7 @@
 
 class HomeController {
 
-  constructor($log, $state, User, Menu) {
+  constructor($log, $state, User, Menu, ZendeskWidget, $window) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -11,7 +11,7 @@ class HomeController {
     $log.log('constructor::Start');
 
     this.firstName = User.getFirstName();
-    $log.log('User.getFirstName()=', User.getFirstName());
+
 
     this.currentProgression = Menu.getCurrentProgression();
     this.menu = Menu.getMenu();
@@ -53,11 +53,12 @@ class HomeController {
     this.goToFAQs = () => {
       $log.log('goToFAQs()');
       $log.log('User.getFirstName()=', User.getFirstName());
+      $window.open('https://support.potentialife.com', '_blank');
     };
 
-
     this.sendUsEmail = () => {
-      $log.log('sendUsEmail()');
+      $log.log('sendUsEmail');
+      ZendeskWidget.activate();
     };
 
   }

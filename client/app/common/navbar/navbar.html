@@ -4,40 +4,67 @@
       <nav class="tab-bar" data-offcanvas>
 
         <section class="left tab-bar-section">
-          <h1 class="title logo-potential-life"><a ui-sref="{{$ctrl.homeState}}">{{$ctrl.companyName}}</a></h1>
+          <h1 class="title logo-potential-life">
+            <a pl-disable-link="!$ctrl.displayMenu" ui-sref="{{$ctrl.homeState}}">{{$ctrl.Potentialife}}</a>
+          </h1>
           <a href="#content" class="accessible-link">Skip to content</a>
         </section>
-        <div class="right-small">
-          <a role="button" aria-controls="idOfRightMenu" class="left-off-canvas-toggle menu-icon"><span></span></a>
+
+        <div ng-if="$ctrl.displayMenu" class="right-small">
+          <div class="menu-toggle-button left-off-canvas-toggle" ng-click="$ctrl.toggleMenu()">
+            <span class="line-wrap">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+            <span class="text text-menu">menu</span>
+            <span class="text text-hide">hide</span>
+          </div>
         </div>
+
       </nav>
     </div>
 
     <div class="inner-wrap">
 
-      <aside class="left-off-canvas-menu">
+      <aside ng-if="$ctrl.displayMenu" class="left-off-canvas-menu">
         <ul class="off-canvas-list-bugfix">
           <li class="home btn-back-home menu-button" ui-sref="{{$ctrl.homeState}}">
             <div class="small-2 columns">
               <span class="pl-menu-button"></span>
             </div>
             <div class="small-10 columns">
-              <p class="top-title">PotentialLife</p>
-              <p class="main-title">Home</p>
-              <p class="below-title">Cycle 1/3</p>
+              <p class="top-title">Potentialife</p>
+              <p class="main-title">{{ 'HOME' | translate }}</p>
+              <p class="below-title"></p>
             </div>
           </li>
           <menu-item item="$ctrl.menu.data"></menu-item>
+          <li class="logout menu-button row small-collapse" ng-click="$ctrl.logout()">
+            <div class="small-2 columns">
+              <span class="pl-menu-button icon-logout"></span>
+            </div>
+            <div class="small-10 columns">
+              <p class="top-title">&nbsp;</p>
+              <p class="main-title">{{'LOGOUT' | translate}}</p>
+              <p class="below-title">&nbsp;</p>
+            </div>
+          </li>
         </ul>
       </aside>
 
+
       <section class="main-section">
-          <div id="content" class="content" ui-view></div>
+      <!-- <div> -->
+        <company-banner ng-if="$ctrl.isBannerExist()"></company-banner>
+        <spinner name="$ctrl.courseContentSpinner.name" show="false"></spinner>
+        <div ng-show="!$ctrl.courseContentSpinner.show" id="content" class="content" ui-view></div>
+      <!-- </div> -->
       </section>
 
       <!-- close the off-canvas menu -->
       <a class="exit-off-canvas"></a>
-
+      <footer></footer>
     </div>
   </div>
 </div>

@@ -1,0 +1,57 @@
+{
+  "id": 1,
+  "name": "Composed",
+  "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/2",
+  "slug": "step-8/2",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 8 / 10",
+  "next_page_url": "/potentialife-course/cycle-3/module-31/step-8/3",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-8/1",
+  "skipShowingBanner": true,
+  "blocks": [
+    {
+      "type": "composed",
+      "element": "container",
+      "data": {
+        "blocks": [
+          {
+            "id": 32,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "class": ""
+              },
+              "value": "<h1>Preview draft email from Potentialife<\/h1>"
+            },
+            "pivot": {
+              "step_id": 5,
+              "block_id": 50,
+              "order": 0
+            }
+          },
+          {
+            "id": 32,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "class": "left-border color-very-dark-grey"
+              },
+              "value": "<p>Dear xx.xxx,<\/p><p>Leadership just got a whole lot more important for your organization. Phenomena such as the increasing pace of technological and organizational change and workplace disaggregation mean that more than ever before there is space for expression within organizations. This space is oxygen that allows more creativity, initiative, engagement…in short, more space for leadership.<\/p><p>And this doesn’t just apply at the top of the organization – it applies at every single level. In fact, those organizations that are able to develop leadership behaviors ‘at scale’ have a distinct competitive advantage. By positively setting your people alight with higher levels of energy, engagement, creativity, productivity and purpose you can not only enable your business strategy but shape it.<\/p><p>Yours sincerely,<\/p><p>Potentialife<\/p>"
+            },
+            "pivot": {
+              "step_id": 5,
+              "block_id": 50,
+              "order": 0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

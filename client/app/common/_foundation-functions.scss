@@ -25,6 +25,14 @@ $modules: () !default;
   user-select: none;
 }
 
+@mixin defaultParagraph() {
+  color: $very-dark-grey;
+  font: $defaultFont;
+  font-size: rem_calc(18px);
+  font-weight: normal;
+  line-height: rem_calc(28px);
+}
+
 @mixin inputsBorderStyling() {
   border: 2px solid $onyx;
   border-radius: $global-radius - 2px;
@@ -33,8 +41,7 @@ $modules: () !default;
     border: 2px solid $blue-focus;
   }
 
-  &.parent-submitted,
-  &.ng-dirty {
+  &.parent-submitted {
     &.ng-invalid {
       border: 2px solid $alert-color;
       color: $alert-color;
@@ -43,7 +50,10 @@ $modules: () !default;
         color: $alert-color;
       }
     }
+  }
 
+  &.parent-submitted,
+  &.ng-dirty {
     &.ng-valid {
       border: 2px solid $success-color;
       &::placeholder {

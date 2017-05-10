@@ -10,6 +10,8 @@ class PageNotFoundController {
       url: $stateParams.intendedUrl
     };
 
+    this.displayResumeProgress = Menu.isMenuRetrieved();
+
     this.resumeProgress = () => {
       let currentStep = Menu.getCurrentProgression().data.current_step.fullUrl;
       $log.log('ResumeProgress(), go to currentStep: ', currentStep);

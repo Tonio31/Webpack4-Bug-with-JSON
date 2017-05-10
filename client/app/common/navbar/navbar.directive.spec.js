@@ -1,18 +1,25 @@
 import NavbarModule from './navbar';
 
 describe('Navbar Directive', () => {
-  let $rootScope, $compile;
+  let $rootScope, $compile, ZendeskWidget;
 
   let menuJson = require('app/mockBackEndResponse/menu-1.json');
 
-  beforeEach(window.module(NavbarModule));
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
+
+  beforeEach(window.module(NavbarModule, ($provide) => {
+    $provide.value('translateFilter', mockTranslateFilter );
+    $provide.value('ZendeskWidget', ZendeskWidget );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $compile = $injector.get('$compile');
   }));
 
-  describe('<menu-item></menu-item>', () => {
+  describe('Entire Menu <menu-item></menu-item>', () => {
     // view layer specs.
     let scope, template;
 
@@ -35,7 +42,12 @@ describe('Navbar Directive', () => {
 
     it('Count the number of tags that have the class has-submenu', () => {
       let hasSubMenuTags = angular.element(template[0].querySelectorAll('.has-submenu'));
-      expect(hasSubMenuTags.length).to.eq(5);
+      expect(hasSubMenuTags.length).to.eq(6);
+    });
+
+    it('getBelowTitle() return the good title ', () => {
+      let belowTitle = angular.element(template[0].querySelectorAll('.below-title'));
+      expect(belowTitle.html()).to.eq('10 / 10 Modules');
     });
 
 
@@ -44,10 +56,11 @@ describe('Navbar Directive', () => {
       expect(module1.hasClass('menu-item')).to.eq(true);
 
       let menuButtonClass = angular.element(module1[0].querySelectorAll('.menu-button'));
-      expect(menuButtonClass.length).to.eq(14);
+      expect(menuButtonClass.length).to.eq(13);
     });
 
   });
+
 
   describe('<menu-button data="child"></menu-button>', () => {
     // view layer specs.
@@ -185,5 +198,6 @@ describe('Navbar Directive', () => {
     });
 
   });
+
 
 });

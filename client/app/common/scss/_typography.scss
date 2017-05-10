@@ -2,45 +2,91 @@
   font: $defaultFont;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  color: $oil;
+  margin-bottom: rem_calc(20px)
+}
+
 h1 {
+  font-size: rem_calc(30px);
   font-weight: bold;
-  font-size: $h1-30px;
+  line-height: rem_calc(29px);
+}
+
+h2 {
+  font-size: $h2-20px;
+  font-weight: bold;
   line-height: $h1-34px;
-  color: #333333;
 }
 
 h3 {
-  color: #333333;
   font-size: $h3-18px;
+  font-weight: bold;
   line-height: $h3-28px;
-  font-weight: 500;
-  text-transform: uppercase;
+  label {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: inherit;
+  }
 }
-
 
 h4 {
   color: #F06334;
   font-size: $h4-14px;
-  line-height: $h4-18px;
   font-weight: bold;
+  line-height: $h4-18px;
   text-transform: uppercase;
 }
 
-h3.quote {
-  font-style: italic;
-  font-family: 'Open Sans', serif;
-  text-transform: none;
+p,
+li,
+textarea,
+label,
+blockquote,
+input:not([type='button']):not([type='checkbox']):not([type='radio']) {
+  @include defaultParagraph();
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-h3.quote-signature {
+ul {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.quote {
   font-style: italic;
   font-family: 'Open Sans', serif;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: none;
+  line-height: rem_calc(24px);
+  padding-top: rem_calc(10px);
+  @media #{$medium-up} {
+    padding-top: 0;
+  }
+}
+
+.quote-signature {
+  @extend .quote;
+  font-weight: 400;
 }
 
 .h1-style {
   @extend h1;
+}
+
+.h2-style {
+  @extend h2;
 }
 
 .h3-style {
@@ -56,5 +102,9 @@ h3.quote-signature {
 }
 
 .note {
-  font-size: rem_calc(12px);
+  font-size: rem_calc(14px);
+}
+
+.chart-title {
+  @extend h2;
 }

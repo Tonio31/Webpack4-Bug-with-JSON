@@ -29,6 +29,24 @@ describe('User', () => {
       expect(User.getEmail()).to.equal(userToStore.email);
     });
 
+    it('isUserDefined() returns true if any of the fields are defined', () => {
+
+      let userToStore = {
+        id: '12',
+        token: '#@&*#&^$*$&#)*%',
+        firstName: 'Tonio',
+        lastName: 'Mandela',
+        email: 'tonio.mandela@gmail.com'
+      };
+
+      User.setUser(userToStore);
+
+      expect(User.isUserDefined()).to.equal(true);
+    });
+
+    it('isUserDefined() returns false if the user is not initialised', () => {
+      expect(User.isUserDefined()).to.equal(false);
+    });
   });
 
 

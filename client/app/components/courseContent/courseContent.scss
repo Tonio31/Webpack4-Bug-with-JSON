@@ -6,22 +6,21 @@ $height-button-banner: rem_calc(45px);
 
 $tick-size: 3rem;
 
-.sticky-bottom-container {
-  height: 100%;
+.course-content {
+  padding-top: rem_calc(20px);
+  min-height: calc(100vh - #{$height-footer-nav-banner});
   display: flex;
   flex-direction: column;
-}
+  justify-content: space-between;
 
-.sticky-bottom-main {
-  flex: 1;
-}
-
-
-.course-content {
-  height: 100%;
+  fieldset {
+    border: none;
+    margin: 1rem 0 0;
+    padding: 0;
+  }
 
   .block {
-    padding: $padding-10px 0;
+    padding: $default-padding 0;
   }
 
   .banner {
@@ -30,6 +29,9 @@ $tick-size: 3rem;
 
     &-congrats {
       background-color: $success-color;
+      p {
+        color: $white;
+      }
     }
 
     &-error {
@@ -38,7 +40,7 @@ $tick-size: 3rem;
 
     .banner-content {
       min-height: $height-navigation-banner;
-      padding: $padding-10px 0;
+      padding: $default-padding 0;
 
       p {
         margin-bottom: 0;
@@ -59,6 +61,10 @@ $tick-size: 3rem;
     background-color: $light-grey;
     height: $height-navigation-banner;
 
+    &.y-center-parent {
+      justify-content: flex-start;
+    }
+
     button {
       height: $height-button-banner;
       padding: 0;
@@ -71,5 +77,9 @@ $tick-size: 3rem;
     button:focus {
       outline: none;
     }
+  }
+
+  .saving-step-spinner {
+    height: 5rem;
   }
 }

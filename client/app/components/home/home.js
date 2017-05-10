@@ -20,27 +20,27 @@ let homeModule = angular.module('home', [
   constantModule
 ])
 
-  .config(($stateProvider, $urlRouterProvider, STATES) => {
-    'ngInject';
+.config(($stateProvider, STATES) => {
+  'ngInject';
 
-    $stateProvider
-      .state(STATES.HOME, {
-        url: `/`,
-        component: 'home',
-        parent: STATES.MAIN,
-        resolve: {
-          content: (Data) => {
-            'ngInject';
-            return Data.getDynamicContentPromise('reflexion', true);
-          }
-        },
-        params: {
-          forceRedirect: null
+  $stateProvider
+    .state(STATES.HOME, {
+      url: `/`,
+      component: 'home',
+      parent: STATES.MAIN,
+      resolve: {
+        content: (Data) => {
+          'ngInject';
+          return Data.getDynamicContentPromise('reflexion', false);
         }
-      });
-  })
+      },
+      params: {
+        forceRedirect: null
+      }
+    });
+})
 
-  .component('home', homeComponent)
-  .name;
+.component('home', homeComponent)
+.name;
 
 export default homeModule;

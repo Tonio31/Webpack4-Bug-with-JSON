@@ -1,11 +1,20 @@
 class LoginController {
-  constructor($log, $state, $stateParams, Data, User, JwtFactory, STATES) {
+  constructor( $log,
+               $state,
+               $stateParams,
+               $window,
+               Data,
+               User,
+               JwtFactory,
+               STATES,
+               SpinnerFactory,
+               SPINNERS ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'LoginController' );
 
-    this.username = 'myemail@gmail.com';
+    this.username = '';
     this.password = '';
     this.keepLoggedIn = false;
     this.showPassword = false;
@@ -17,11 +26,12 @@ class LoginController {
       $state.go(STATES.RETRIEVE_CREDENTIALS);
     };
 
-
     this.login = (iLoginForm) => {
       $log.log('login()');
 
       if ( iLoginForm.$valid ) {
+        SpinnerFactory.show(SPINNERS.TOP_LEVEL);
+        this.invalidLogin = false;
         let authPOSTRequest = Data.getUserAuthData();
 
         authPOSTRequest.email = this.username;
@@ -45,10 +55,18 @@ class LoginController {
           // Save User Information
           User.setUser(userToSave);
 
-          $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
+          // Retrieve Participants detail informations
+          Data.getParticipantDetails().then( () => {
+            $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
+          },
+          () => {
+            $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' });
+          });
+
         },
         (error) => {
-          $log.log('error during authentification error=', error);
+          $log.error('error during authentification error=', error);
+          SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
           this.invalidLogin = true;
         });
       }

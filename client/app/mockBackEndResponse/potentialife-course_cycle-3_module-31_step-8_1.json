@@ -1,0 +1,58 @@
+{
+  "id": 1,
+  "name": "Sending out your strengths requests",
+  "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/1",
+  "slug": "step-8/1",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 8 / 10",
+  "next_page_url": "/potentialife-course/cycle-3/module-31/step-8/2",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-7",
+  "skipShowingBanner": true,
+  "blocks": [
+    {
+      "id": 54,
+      "type": "static",
+      "element": "icon_text",
+      "data": {
+        "icon": {
+          "type": "icon-badge-self-discovery",
+          "color": "success"
+        },
+        "text": "<h3>In order to deepen your understanding of your strengths you will be requesting feedback from fivs people who know you really well.<\/h3>"
+      }
+    },
+    {
+      "id": 31,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Think of five people, who know you well and will give an honest opinion about you. These people can be colleagues, clients, family members, or friends. You will need to know the email address for each person.<\/p><p>Each of these people will receive a pre-formatted email from which they will be asked to complete two short surveys<\/p><ul><li>Firstly, a short paragraph describing a time when they saw you at your best<\/li><li>Secondly, a relationships survey<\/li><\/ul>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 32,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "config": {
+          "class": ""
+        },
+        "value": "<p><strong>Next you will preview the email you will be sending out.<\/strong><\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    }
+  ]
+}

@@ -10,6 +10,12 @@
     margin-bottom: rem_calc(20)
   }
 
+  p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.25rem;
+  }
+
   .no-list {
     li {
       display: flex;
@@ -65,9 +71,6 @@
       margin: 0;
     }
     p {
-      color: lighten($simon-black, 10);
-      margin: 0;
-      padding: 4px 0;
 
       &.duration {
         font-size: 12px;

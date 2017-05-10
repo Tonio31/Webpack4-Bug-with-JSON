@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+/* eslint-disable angular/timeout-service */
+/* eslint-disable no-undef */
 
 // External Module
 import angular from 'angular';
@@ -19,7 +21,32 @@ angular.module( 'appMockBackEnd', [
   UserData,
   'ngMockE2E'
 ])
-.run( ($log, $httpBackend, User, Data, JwtFactory) => {
+.config( ($provide) => {
+  'ngInject';
+
+  // Time in ms to simulate a delay in back end response
+  let DELAY_HTTP_RESPONSE_TIME = 0;
+
+  $provide.decorator('$httpBackend', ($delegate) => {
+    let proxy = function(method, url, data, callback, headers) {
+      let interceptor = function() {
+        let self = this;
+        let _arguments = arguments;
+        setTimeout(() => {
+          callback.apply(self, _arguments);
+        }, DELAY_HTTP_RESPONSE_TIME);
+      };
+      return $delegate.call(this, method, url, data, interceptor, headers);
+    };
+    for ( let key in $delegate ) {
+      if ( $delegate.hasOwnProperty(key) ) {
+        proxy[key] = $delegate[key];
+      }
+    }
+    return proxy;
+  });
+})
+.run( ($log, $httpBackend, $timeout, User, Data, JwtFactory, STATES, TOKEN_SURVEY) => {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -28,6 +55,7 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenGET(/(.*)\.mp4/).passThrough();
   $httpBackend.whenGET(/(.*)\.jpg/).passThrough();
+  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
 
   let menu = require('./mockBackEndResponse/menu-1.json');
 
@@ -36,7 +64,9 @@ angular.module( 'appMockBackEnd', [
 
   let stepContent = {};
 
-  let errorReply = [ 401, { error: 'token_not_provided' }, {} ];
+  let error401 = [ 401, { error: 'token_not_provided' }, {} ];
+  let error402 = [ 402, { error: 'Not Authorised' }, {} ];
+  let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
   // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
   User.setUser({ id: authenticate.user.id });
@@ -80,38 +110,71 @@ angular.module( 'appMockBackEnd', [
   // This function will update the current step on the menu, it is harcoded to simulate the fact that the backend will do this job
   let updateMenu = (iFullUrlStepCompleted) => {
 
-    if ( iFullUrlStepCompleted === '/potentialife-course/cycle-1/module-1/step-1' ) {
+    let cycle1 = menu.menudata[0].children[0];
+    // let cycle2 = menu.menudata[0].children[1];
+    let cycle3 = menu.menudata[0].children[2];
+    let C3_module31 = cycle3.children[0];
+
+    let C3_M31_step8_1 = C3_module31.children[7];
+    let C3_M31_step8_2 = C3_module31.children[8];
+    let C3_M31_step8_3 = C3_module31.children[9];
+    let C3_M31_step9 = C3_module31.children[10];
+
+    if ( iFullUrlStepCompleted === '/potentialife-course/cycle-1/module-1/step-9' ) {
 
       // Update menudata
-      let cycle1 = menu.menudata[0].children[0];
       cycle1.progress.completed += 1;
       cycle1.progress.percent = 10;
 
       let module1 = cycle1.children[1];
-      let step1 = module1.children[0];
-      step1.status = 'completed';
-      let step2 = module1.children[1];
-      step2.status = 'current';
+      let step9 = module1.children[8];
+      step9.status = 'completed';
+      let step10 = module1.children[9];
+      step10.status = 'current';
 
       // Update Current Step
-      menu.current_progression.current_step = step2;
+      menu.current_progression.current_step = step10;
 
       // Update Step data to say completed for step 1
-      updateStepStatus('/potentialife-course/cycle-1/module-1/step-1', 'completed');
+      updateStepStatus('/potentialife-course/cycle-1/module-1/step-9', 'completed');
 
       // Update Step data to say current for step 2
-      updateStepStatus('/potentialife-course/cycle-1/module-1/step-2', 'current');
+      updateStepStatus('/potentialife-course/cycle-1/module-1/step-10', 'current');
+    }
+    else if ( iFullUrlStepCompleted === '/potentialife-course/cycle-3/module-31/step-8/1' ) {
+      C3_M31_step8_1.status = 'completed';
+      C3_M31_step8_2.status = 'current';
+
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/1', 'completed');
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/2', 'current');
+    }
+    else if ( iFullUrlStepCompleted === '/potentialife-course/cycle-3/module-31/step-8/2' ) {
+      C3_M31_step8_2.status = 'completed';
+      C3_M31_step8_3.status = 'current';
+
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/2', 'completed');
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/3', 'current');
+    }
+    else if ( iFullUrlStepCompleted === '/potentialife-course/cycle-3/module-31/step-8/3' ) {
+      C3_M31_step8_3.status = 'completed';
+      C3_M31_step9.status = 'current';
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-8/3', 'completed');
+      updateStepStatus('/potentialife-course/cycle-3/module-31/step-9', 'current');
     }
 
-    $log.log('Fake menu object updated to set cycle1/module1/step8 as current step and step7 as completed');
+    $log.log('Fake menu object updated to set cycle1/module1/step10 as current step and step9 as completed');
   };
 
-  let regexpStep = new RegExp('http:\/\/apipl.ciprianspiridon.com\/v1\/step\?.*');
+  let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
   $httpBackend.whenGET(regexpStep).respond( (method, url) => {
 
     $log.log(`$httpBackend.whenGET(${url})`);
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+
+    // Simulate an Internal server error
+    // return error500;
+
+    if ( !JwtFactory.isAuthExpired() ) {
       let content = {};
       try {
         content = getStepContent(url);
@@ -124,61 +187,101 @@ angular.module( 'appMockBackEnd', [
           content = require('./mockBackEndResponse/genericContent.json');
         }
       }
-
       return [ 200, content, {} ];
     }
 
-    return errorReply;
+    return error401;
   });
 
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    // Simulate an Internal server error
+//    return error500;
+
+    if ( !JwtFactory.isAuthExpired() ) {
       let reflexionParticipant = require('./mockBackEndResponse/reflexion.json');
       return [ 200, reflexionParticipant, {} ];
     }
 
     // Return error by default
-    return errorReply;
+    return error401;
+  });
+
+  let regexpSurvey = new RegExp('https:\/\/localhost\.com\/survey\?.*');
+  $httpBackend.whenGET(regexpSurvey).respond( (method, url) => {
+    $log.log(`$httpBackend.whenGET(${url})`);
+
+    // find the page number and token_survey
+    let regexp = new RegExp('^.*page=(\\d)(?:&token_survey=(.*))?');
+
+    let groups = url.match(regexp);
+    $log.log('groups=', groups);
+    let pageNumber = groups[1];
+    let tokenSurvey = groups[2];
+
+    if ( angular.isUndefined(tokenSurvey) ) {
+      return error402;
+    }
+
+    let survey = require(`./mockBackEndResponse/360_survey_page_${pageNumber}.json`);
+
+    return [ 200, survey, {} ];
   });
 
   $httpBackend.whenGET(Data.buildApiUrl('menu', true)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    if ( !JwtFactory.isAuthExpired() ) {
       // Simulate the menu for a user that is logged in
       return [ 200, menu, {} ];
     }
 
     // Return error by default
-    return errorReply;
+    return error401;
   });
 
+  let isPropertyDefined = (iArray, iPropertyName) => {
+
+    for (let data of iArray) {
+      if (data.code === iPropertyName && data.value) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
-    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=${data},   headers=${headers}`);
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     let dataObject = angular.fromJson(data);
+    let responseHeaders = {
+      stepId: dataObject.stepId,
+      status: 'ok'
+    };
 
-    if ( !JwtFactory.isAuthedExpired() ) {
+    let responseContent = {
+      congrats: '<p>Congratulations for finishing this step, you\'re a star<\/p>'
+    };
+
+    if ( dataObject.fullUrl.includes(STATES.SURVEY) ) {
+      // For Firends submitting survey, no need for normal login but token_survey must always be attached
+      if ( isPropertyDefined(dataObject.programData, TOKEN_SURVEY) ) {
+        return [ 200, responseContent, responseHeaders ];
+      }
+
+      return error402;
+    }
+    else if ( !JwtFactory.isAuthExpired() ) {
       // Simulate a good answer
 
       updateMenu(dataObject.fullUrl);
-
-      let responseHeaders = {
-        stepId: dataObject.stepId,
-        status: 'ok'
-      };
-
-      let responseContent = {
-        congrats: '<p>Congratulations for finishing this module, you\'re a star<\/p>'
-      };
 
       return [ 200, responseContent, responseHeaders ];
     }
 
     // If the user is not logged in, returns error
-    return errorReply;
+    return error401;
 
   });
 
@@ -189,21 +292,22 @@ angular.module( 'appMockBackEnd', [
       status: 'ok'
     };
 
+    // return error401;
     return [ 200, authenticate, responseHeaders ];
   });
 
-  $httpBackend.whenPOST(Data.buildApiUrl('forgotlogin')).respond( (method, url) => {
+  $httpBackend.whenPOST(Data.buildApiUrl('password/email')).respond( (method, url) => {
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
 
     return [ 200, {}, {} ];
   });
 
-  $httpBackend.whenPOST(Data.buildApiUrl('resetPassword')).respond( (method, url, data) => {
+  $httpBackend.whenPOST(Data.buildApiUrl('password/reset')).respond( (method, url, data) => {
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
 
     let dataObject = angular.fromJson(data);
 
-    if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('user_id') && dataObject.hasOwnProperty('password') ) {
+    if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('password') ) {
       return [ 200, authenticate, {} ];
     }
 
@@ -215,7 +319,7 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(Data.buildApiUrl('participants', true)).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method}`);
 
-
+    // return error500;
     return [ 200, participant, {} ];
   });
 

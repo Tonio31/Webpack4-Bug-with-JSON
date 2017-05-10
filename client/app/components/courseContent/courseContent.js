@@ -4,14 +4,11 @@ import courseContentComponent from './courseContent.component';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import UserDataFactory from 'common/userDataFactory/userData';
 import ResourceFactory from 'common/resourceFactory/resource';
+import UtilityFactory from 'common/utility/utility';
+import CourseContentFactory from 'common/courseContentFactory/courseContent';
 import MenuService from 'common/menuFactory/menu';
-import videoModule from 'components/videoModule/videoModule';
-import textAreaModule from 'components/textArea/textArea';
-import textBoxModule from 'components/textBox/textBox';
-import iconTextModule from 'components/iconText/iconText';
-import barChartModule from 'components/barChart/barChart';
-import checkbox from 'components/checkbox/checkbox';
-import radioList from 'components/radioList/radioList';
+import blockManager from 'components/blockManager/blockManager';
+import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 import constantModule from 'common/constants';
 import filtersModule from 'common/filters/filters';
 
@@ -20,15 +17,12 @@ let courseContentModule = angular.module('courseContent', [
   uiRouter,
   UserDataFactory,
   ResourceFactory,
+  UtilityFactory,
+  CourseContentFactory,
   MenuService,
-  videoModule,
-  textAreaModule,
-  textBoxModule,
-  iconTextModule,
-  barChartModule,
-  checkbox,
-  radioList,
   constantModule,
+  LoadingSpinnerModule,
+  blockManager,
   filtersModule,
   LogDecorator
 ])

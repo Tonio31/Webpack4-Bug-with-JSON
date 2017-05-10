@@ -4,7 +4,7 @@ import LoginComponent from './login.component';
 import LoginTemplate from './login.html';
 
 describe('Login', () => {
-  let $rootScope, $state, $componentController, $compile;
+  let $rootScope, $state, $componentController, $compile, $window, $q;
 
   let Data, STATES;
   let goFn;
@@ -25,11 +25,15 @@ describe('Login', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $state = $injector.get('$state');
+    $q = $injector.get('$q');
     $compile = $injector.get('$compile');
+    $window = $injector.get('$window');
     Data = $injector.get('Data');
     STATES = $injector.get('STATES');
 
     goFn = sinon.stub($state, 'go');
+
+    $window.ga = () => {};
   }));
 
   describe('Module', () => {
@@ -70,9 +74,16 @@ describe('Login', () => {
         return authPOSTRequestResource;
       });
 
+      sinon.stub(Data, 'getParticipantDetails', () => {
+        let deferred = $q.defer();
+
+        deferred.resolve();
+        return deferred.promise;
+      });
 
       controller.login(formLogin);
 
+      $rootScope.$digest();
       expect(authPOSTRequestResource.email).to.equal(controller.username);
       expect(authPOSTRequestResource.password).to.equal(controller.password);
 

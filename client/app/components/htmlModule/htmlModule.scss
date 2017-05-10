@@ -1,0 +1,29 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+// @import '~client/app/common/_foundation-functions';
+
+.html-module {
+
+
+  .left-border {
+    border-left: .15rem solid;
+    padding-left: $default-padding;
+  }
+
+  .color-very-dark-grey * {
+    color: $very-dark-grey;
+  }
+
+  .padding-top-bottom {
+    padding-top: $default-padding;
+    padding-bottom: $default-padding;
+  }
+
+}
+
+.no-bg-padding {
+  .html-module {
+    padding: 0 $side-block-padding;
+    margin: 0 calc(-#{$side-block-padding});
+  }
+}

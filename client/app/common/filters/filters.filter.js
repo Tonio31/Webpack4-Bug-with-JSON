@@ -5,5 +5,4 @@ let unsafeFilter = function($sce) {
   };
 };
 
-
 export { unsafeFilter };

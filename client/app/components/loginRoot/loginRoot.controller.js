@@ -1,6 +1,8 @@
 class LoginRootController {
-  constructor() {
+  constructor(SpinnerFactory, SPINNERS) {
     'ngInject';
+
+    this.topLevelSpinner = SpinnerFactory.getSpinner(SPINNERS.TOP_LEVEL);
   }
 }
 

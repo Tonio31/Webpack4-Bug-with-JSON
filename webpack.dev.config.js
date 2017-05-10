@@ -13,6 +13,17 @@ module.exports = () => {
     path: path.resolve(__dirname, 'client')
   };
 
+  config.module.loaders = config.module.loaders.concat([
+    {
+      test: /\.css$/,
+      loader: 'style!css!postcss'
+    },
+    {
+      test: /\.(scss|sass)$/,
+      loader: 'style!css!postcss!sass'
+    }
+  ]);
+
   config.plugins = config.plugins.concat([
 
     // Injects bundles in your index.html instead of wiring all manually.
@@ -22,11 +33,15 @@ module.exports = () => {
       template: 'client/indexMockBackEnd.html',
       //template: 'client/index.html',
       inject: 'body',
-      hash: true
+      hash: true,
+      favicon: 'client/app/common/favicon/favicon.ico'
     }),
 
+
     new webpack.DefinePlugin({
-      ENVIRONMENT: JSON.stringify('development')
+      ENVIRONMENT: JSON.stringify('development'),
+      GOOGLE_TRACKING_CODE: JSON.stringify('UA-96100387-1'),
+      BACK_END_API: JSON.stringify(`https://localhost.com`)
     }),
 
     // Adds webpack HMR support. It act's like livereload,

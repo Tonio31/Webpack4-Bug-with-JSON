@@ -5,9 +5,22 @@ import TextBoxTemplate from './textBox.html';
 
 describe('TextBox', () => {
   let $rootScope, $componentController, $compile;
-  let FORM_NAME_PREFIX, ICON_FONTELLO;
+  let Utility;
+  let FORM_NAME_PREFIX;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-2.json').blocks[5];
+  let blockBinding = {
+    id: 31,
+    type: 'dynamic',
+    element: 'textarea',
+    program_data_code: 'c1.m1.s1.textbox_1',
+    required: true,
+    data: {
+      label: 'Label: This is the label for the text box common_theme_1',
+      placeholder: 'placeholder: Enter some data here',
+      value: 'Something',
+      name: 'common_theme_1'
+    }
+  };
 
 
   beforeEach(window.module(TextBoxModule));
@@ -17,7 +30,7 @@ describe('TextBox', () => {
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
     FORM_NAME_PREFIX = $injector.get('FORM_NAME_PREFIX');
-    ICON_FONTELLO = $injector.get('ICON_FONTELLO');
+    Utility = $injector.get('Utility');
   }));
 
   describe('Module', () => {
@@ -28,9 +41,12 @@ describe('TextBox', () => {
     // controller specs
     let controller;
 
+    let updateBlockManagerSpy;
+
     let bindings = {
       block: blockBinding,
-      isTopLevelFormSubmitted: false
+      isTopLevelFormSubmitted: false,
+      updateBlockManager: () => {}
     };
 
     beforeEach(() => {
@@ -38,14 +54,30 @@ describe('TextBox', () => {
         $scope: $rootScope.$new()
       }, bindings);
 
-      controller.$onInit();
+      updateBlockManagerSpy = sinon.spy(controller, 'updateBlockManager');
     });
 
-
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
+    it('$onInit() - initialise text & FORM_NAME from the input', () => {
+      controller.$onInit();
       expect(controller.text).to.equal(bindings.block.data.value);
-      expect(controller.formName).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
-      expect(controller.iconText).to.equal(ICON_FONTELLO.VALID_TICK);
+      expect(controller.FORM_NAME).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
+
+      sinon.assert.notCalled(updateBlockManagerSpy);
+    });
+
+    it('$onInit() - initialise text & FORM_NAME from the local storage', () => {
+
+      bindings.block.data.value = '';
+      let getUserInputFromLocalStorageStub = sinon.stub(Utility, 'getUserInputFromLocalStorage', () => {
+        return 'Some Text';
+      });
+
+      controller.$onInit();
+      expect(controller.text).to.equal('Some Text');
+      expect(controller.FORM_NAME).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
+
+      sinon.assert.calledWith(getUserInputFromLocalStorageStub, controller.block.program_data_code);
+      sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: 'Some Text' });
     });
   });
 
@@ -63,7 +95,8 @@ describe('TextBox', () => {
 
 
     it('has a h3 title', () => {
-      expect(template.find('h3').html()).to.eq(blockBinding.data.label);
+      let labelText = angular.element(template[0].querySelector('h3 label'));
+      expect(labelText.html()).to.eq(blockBinding.data.label);
     });
 
     it('has a input with properties', () => {

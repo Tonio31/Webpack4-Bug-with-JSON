@@ -1,0 +1,42 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+// @import '~client/app/common/_foundation-functions';
+
+.company-banner {
+  width: 100%;
+
+  .flex-banner {
+    display: flex;
+    justify-content: space-between;
+    height: $tabbar-height;
+    padding: $default-padding;
+  }
+
+  .company-headings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    p {
+      color: inherit;
+      margin: 0;
+      font-size: rem_calc(14px);
+      line-height: rem_calc(16px);
+      @media #{$medium-up} {
+        font-size: rem_calc(18px);
+        line-height: rem_calc(20px);
+      }
+
+      &.company-header {
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+
+  .company-logo {
+    img {
+      height: calc(#{$tabbar-height} - 2 * #{$default-padding});
+    }
+  }
+
+}

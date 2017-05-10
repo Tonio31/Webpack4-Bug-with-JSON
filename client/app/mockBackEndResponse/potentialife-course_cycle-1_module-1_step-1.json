@@ -1,10 +1,11 @@
 {
   "id": 1,
   "name": "Module introduction",
-  "slug": "/potentialife-course/cycle-1/module-1/step-1",
+  "fullUrl": "/potentialife-course/cycle-1/module-1/step-1",
+  "slug": "step-1",
   "description": null,
   "content": null,
-  "status": "current",
+  "status": "completed",
   "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 1 / 10",
   "next_page_url": "/potentialife-course/cycle-1/module-1/step-2",
   "prev_page_url": null,

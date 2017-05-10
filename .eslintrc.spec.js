@@ -13,8 +13,8 @@ let globalsToAdd = {
 
 Object.assign(eslintConfig.globals, globalsToAdd);
 
-
 eslintConfig.rules["angular/log"] = OFF;
+eslintConfig.rules["camelcase"] = OFF;
 eslintConfig.rules["no-console"] = OFF;
 eslintConfig.rules["init-declarations"] = OFF;
 eslintConfig.rules["angular/window-service"] = OFF;

@@ -1,0 +1,379 @@
+{
+  "id": 1,
+  "name": "Unordered List",
+  "fullUrl": "/potentialife-course/cycle-3/module-31/step-6",
+  "slug": "step-6",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 6 / 10",
+  "next_page_url": "/potentialife-course/cycle-3/module-31/step-7",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-5",
+  "blocks": [
+    {
+      "id": 30,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Unordered list<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 31,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 5,
+          "showMoreButtonAtStart": true
+        },
+        "label": "Your chosen VIA character strengths",
+        "items": [
+          {
+            "label": "Power",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Reflexion",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Love",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Good in Bed",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Hakunamatata",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Mars",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Sun",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Hate",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 5,
+          "showMoreButtonAtStart": true
+        },
+        "label": "Your chosen VIA character strengths",
+        "items": [
+          {
+            "label": "Power",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Reflexion",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Love",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Accordian close by default<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 41,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": true
+        },
+        "label": "Your chosen VIA character strengths",
+        "items": [
+          {
+            "label": "One exemple might be ti seize the opportunity to deliver a presentation at an upcoming meeting (because you realized that public speaking is a PPZ activity for you).",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Another might be to remind yourself to spend an extra few minutes coaching an underperforming colleague (because you love coaching)",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Or maybe the change is simple to be more systematic about going for a run in the morning (because you have realized this is when you are at your creative best",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Accordian open by default<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 45,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": false
+        },
+        "label": "Your chosen VIA character strengths",
+        "items": [
+          {
+            "label": "One exemple might be ti seize the opportunity to deliver a presentation at an upcoming meeting (because you realized that public speaking is a PPZ activity for you).",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Another might be to remind yourself to spend an extra few minutes coaching an underperforming colleague (because you love coaching)",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Or maybe the change is simple to be more systematic about going for a run in the morning (because you have realized this is when you are at your creative best",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        ]
+      }
+    },
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Accordian close by default<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 51,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": true
+        },
+        "label": "Your chosen VIA character strengths",
+        "items": [
+          {
+            "label": "Drink More water",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Eat less processed food",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Bring your own lunch to work",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "PLan what to eat before you are hungry",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Eat out less",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Reduce alcohol consumption",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Restrict yourself to one treat a day",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Eat little and often",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Eat More fruits and vegetables",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Consume less caffeine",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Reduce the number of unhealthy temptations around you",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Increase the number of healthy snacks around you",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        ]
+      }
+    },
+    {
+      "id": 54,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Block: ul<\/h1><p>Accordian open by default<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 55,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c3.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": false
+        },
+        "label": "Your chosen VIA character strengths",
+        "items": [
+          {
+            "label": "Drink More water",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Eat less processed food",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Bring your own lunch to work",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "PLan what to eat before you are hungry",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Eat out less",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Reduce alcohol consumption",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Restrict yourself to one treat a day",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Eat little and often",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Eat More fruits and vegetables",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Consume less caffeine",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Reduce the number of unhealthy temptations around you",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "label": "Increase the number of healthy snacks around you",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,14 +1,12 @@
 <div class="bar-chart">
-
-  <p class="bar-char-title text-center">{{ $ctrl.block.data.title }}</p>
-
+  <p class="chart-title text-center">{{ $ctrl.block.data.title }}</p>
   <c3chart bindto-id="barChart-{{$ctrl.block.id}}"
            padding-top="-60"
            labels-format-function="$ctrl.formatLabels"
            sort-data="null"
            chart-data="$ctrl.chartData"
            chart-columns="$ctrl.chartColumns">
-    <chart-bar ratio="0.8"/>
+    <chart-bar ratio="{{$ctrl.block.data.barWidth}}" />
     <chart-axes values-x="{{$ctrl.COLUMN_ID.xLabels}}"/>
     <chart-group group-values="{{$ctrl.chartGroup}}"/>
     <chart-axis>

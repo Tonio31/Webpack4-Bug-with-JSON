@@ -1,31 +1,34 @@
 class TextBoxController {
-  constructor($log, FORM_NAME_PREFIX, MODEL_OPTIONS, ICON_FONTELLO) {
+  constructor($log, Utility, FORM_NAME_PREFIX, MODEL_OPTIONS) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'TextBoxController' );
 
-    this.icons = ICON_FONTELLO;
+    // ng-model-options applied to the input
+    this.modelOptions = MODEL_OPTIONS;
+    this.hasFocus = false;
+    this.icon = '';
 
     this.$onInit = () => {
-      this.formName = `${FORM_NAME_PREFIX}${this.block.id}`;
+      this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
 
-      this.iconText = ICON_FONTELLO.VALID_TICK;
-      this.text = this.block.data.value;
+      if ( this.block.data.value ) {
+        this.text = this.block.data.value;
+      }
+      else {
+        this.text = Utility.getUserInputFromLocalStorage(this.block.program_data_code);
+        this.updateBlockManager({ blockManagerValue: this.text });
+      }
     };
 
-    this.actionOnUserInput = (iIsFormValid) => {
+    this.actionOnUserInput = () => {
       $log.log( `actionOnUserInput() - update courseContent: ${this.block.program_data_code}:${this.text}` );
 
       // Update parent with the change
-      this.onUpdate({ value: this.text });
-
-      // Update the text that will change the icon (display exclamation mark if it's in error
-      this.iconText = (iIsFormValid) ? ICON_FONTELLO.VALID_TICK : ICON_FONTELLO.WARNING;
+      this.updateBlockManager({ blockManagerValue: this.text });
     };
 
-    // ng-model-options applied to the input
-    this.modelOptions = MODEL_OPTIONS;
   }
 }
 

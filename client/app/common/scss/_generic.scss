@@ -19,7 +19,7 @@ body {
 .move-right {
   .exit-off-canvas {
     box-shadow: none;
-    @media #{$large-up} {
+    @media #{$xlarge-up} {
       display: none;
     }
   }
@@ -58,34 +58,4 @@ body {
 
 .visibilityHidden {
   visibility: hidden;
-}
-
-.flex-container {
-  display: flex;
-
-  .flex-expand-left {
-    flex: 1;
-  }
-
-  .validation-icon-right {
-    padding: $default-padding;
-    width: rem_calc($validation-icon-right);
-    height: rem_calc($validation-icon-right);
-    border: 2px solid $onyx;
-    border-radius: 50%;
-    margin-left: $default-padding;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.ng-invalid-required ~ .validation-icon-right {
-  border-color: $alert-color;
-}
-.ng-valid-required ~ .validation-icon-right {
-  border-color: $success-color;
-}
-.ng-valid-required ~ .validation-icon-right.has-focus {
-  border-color: $blue-focus;
 }

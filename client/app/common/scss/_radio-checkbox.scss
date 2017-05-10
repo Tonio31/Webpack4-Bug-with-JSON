@@ -1,144 +1,57 @@
-.input-checkbox {
-  &[type="checkbox"] {
-    appearance: none;
-    border: 1px solid $ship-grey;
-    border-radius: 2px;
-    background-color: $white;
-    margin: 0;
-    width: rem_calc($validation-icon-right) / 2;
-    height: rem_calc($validation-icon-right) / 2;
-    position: relative;
-    cursor: pointer;
-    transition: all $speed3 / 2;
 
-    &::after {
-      content: '';
-      font-family: 'fontello';
-      font-size: rem_calc(0px);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      color: $success-color;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: all $speed3 / 2;
-    }
-
-    &:checked {
-      border-color: $success-color;
-      &::after {
-        content: 't';
-        font-size: rem_calc(12px);
-        opacity: 1;
-      }
-    }
-  }
-}
 
 .radio-checkbox {
-  header {
-    @media #{$small-only} {
-      margin-left: rem_calc(-15px);
-      margin-right: rem_calc(-15px);
-    }
-    background-color: $light-grey;
-    padding: rem_calc(10px);
-  }
-  .header-inner {
-    width: calc(100% - (#{$validation-icon-right} - #{$default-padding}));
-  }
+  width: 100%;
+
   .note.invalid {
     color: $alert-color;
   }
-  ul {
-    @media #{$small-only} {
-      margin-left: rem_calc(-15px);
-      margin-right: rem_calc(-15px);
-    }
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
 
-    li {
-      margin: rem_calc(2px) 0;
-    }
-  }
-
-  li.ng-enter-stagger,
-  li.ng-leave-stagger {
-    transition-delay: 50ms;
-  }
-
-  li.ng-leave,
-  li.ng-move,
-  li.ng-enter {
-    transition: all linear $speed3;
-  }
-
-  li.ng-leave.ng-leave-active, //if you want leave animation
-  li.ng-move,
-  li.ng-enter {
-    opacity: 0;
-    height: 0;
-    transform: translateY(-10px); // scale(1.1);
-  }
-
-  li.ng-leave, //if you want leave animation
-  li.ng-move.ng-move-active,
-  li.ng-enter.ng-enter-active {
-    opacity: 1;
-    height: 65px;
-    transform: translateY(0); // scale(1);
-  }
-
-  label {
-    background-color: lighten($light-grey, 3);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: rem_calc(10px);
-    transition: background-color $speed3;
-
-    span, strong {
-      display: block;
-      @include noSelect;
-    }
+  .checkbox-label,
+  .radio-label,
+  .blockquote p {
+    width: calc(100% - (#{$validation-icon-right} + 1.5rem));
   }
 
   [type="radio"],
   [type="checkbox"] {
-    appearance: none;
-    border: 2px solid $ship-grey;
-    background-color: $white;
-    margin: 0;
-    width: rem_calc($validation-icon-right);
-    height: rem_calc($validation-icon-right);
-    position: relative;
+    position: absolute;
     cursor: pointer;
-    transition: all $speed3 / 2;
+    opacity: 0;
 
-    &::after {
-      content: '';
-      font-family: 'fontello';
-      font-size: rem_calc(0px);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      color: $success-color;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
+    ~ .shim {
+      display: block;
+      border: 2px solid $ship-grey;
+      border-radius:  50%;
+      background-color: $white;
+      margin: 0;
+      width: rem_calc($validation-icon-right);
+      height: rem_calc($validation-icon-right);
+      position: relative;
+      cursor: pointer;
       transition: all $speed3 / 2;
+
+      &::after {
+        content: '';
+        font-family: 'fontello';
+        font-size: rem_calc(0px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: $success-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all $speed3 / 2;
+      }
     }
 
-    &:focus {
+
+
+    &:focus ~ .shim {
       outline: 0;
       border-color: $blue-focus !important;
       &::after {
@@ -146,7 +59,7 @@
       }
     }
 
-    &:checked {
+    &:checked ~ .shim {
       border-color: $success-color;
       &::after {
         content: 't';
@@ -156,21 +69,79 @@
       }
     }
   }
-  .ng-invalid-required {
-    .validation-icon-right {
-      border-color: $alert-color;
+
+  [type="checkbox"] {
+    ~ .shim {
+      border-radius: rem_calc(8px);
     }
   }
 
-  .ng-valid-required {
-    .validation-icon-right {
-      border-color: $success-color;
-    }
-  }
 
   .blockquote {
     @extend label;
     cursor: default;
     padding: 0;
+  }
+
+  .ng-hide-add-active { // speeds up show/hide because there is ng-animate involved
+    display: none;
+  }
+}
+
+.input-checkbox {
+  [type="checkbox"] {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+
+    ~ .shim {
+      display: block;
+      border: 2px solid $ship-grey;
+      border-radius:  50%;
+      background-color: $white;
+      margin: 0;
+      width: rem_calc($validation-icon-right);
+      height: rem_calc($validation-icon-right);
+      position: relative;
+      cursor: pointer;
+      transition: all $speed3 / 2;
+
+      &::after {
+        content: '';
+        font-family: 'fontello';
+        font-size: rem_calc(0px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: $success-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all $speed3 / 2;
+      }
+    }
+
+
+
+    &:focus ~ .shim {
+      outline: 0;
+      border-color: $blue-focus !important;
+      &::after {
+        color: $blue-focus !important;
+      }
+    }
+
+    &:checked ~ .shim {
+      border-color: $success-color;
+      &::after {
+        content: 't';
+        font-size: rem_calc(18px);
+        padding-top: 3px;
+        opacity: 1;
+      }
+    }
   }
 }

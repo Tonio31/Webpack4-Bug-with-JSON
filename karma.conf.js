@@ -1,4 +1,5 @@
 var path    = require('path');
+const webpack = require('webpack');
 
 module.exports = function (config) {
 
@@ -64,7 +65,14 @@ module.exports = function (config) {
       },
       sassLoader: {
         includePaths: [path.resolve(__dirname, "./client/app")]
-      }
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          ENVIRONMENT: JSON.stringify('development'),
+          GOOGLE_TRACKING_CODE: JSON.stringify('Whatever'),
+          BACK_END_API: JSON.stringify(`https://localhost.com`)
+        })
+      ]
     },
 
     webpackMiddleware: {
