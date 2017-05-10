@@ -25,7 +25,7 @@ angular.module( 'appMockBackEnd', [
   'ngInject';
 
   // Time in ms to simulate a delay in back end response
-  let DELAY_HTTP_RESPONSE_TIME = 300;
+  let DELAY_HTTP_RESPONSE_TIME = 0;
 
   $provide.decorator('$httpBackend', ($delegate) => {
     let proxy = function(method, url, data, callback, headers) {
@@ -329,7 +329,7 @@ angular.module( 'appMockBackEnd', [
   });
 
   // Uncomment the line bellow to interact with the server
-  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
+  // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
   $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
     $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
     let reply = '';

@@ -3,7 +3,7 @@
 import CourseContentModule from './courseContent';
 
 describe('CourseContent Module', () => {
-  let $rootScope, $state, $window, $stateRegistry, $q, $location, $componentController, $compile;
+  let $rootScope, $state, $window, $stateRegistry, $q, $componentController, $compile;
 
   let Menu, Data, Utility, SpinnerFactory, FORM_NAME_PREFIX, SPINNERS;
 
@@ -20,6 +20,8 @@ describe('CourseContent Module', () => {
     resolve: {}
   };
 
+  let sandbox = sinon.sandbox.create();
+
   let mockTranslateFilter = (value) => {
     return value;
   };
@@ -33,7 +35,17 @@ describe('CourseContent Module', () => {
     clearInputFields: () => {},
     getAdditionalData: () => {
       return { token_survey: 'd!@#$%^&*()_+' };
-    }
+    },
+    saveDataToSendLater: () => {},
+    clearAdditionalData: () => {},
+    setNextStepButtonPreSaveAction: () => {},
+    isNextButtonPreSaveAction: () => { return false; },
+    nextStepButtonPreSaveAction: () => {},
+    beforeNextStepValidation: () => {},
+    setBeforeNextStepValidation: () => {},
+    setPreviousStepButtonPreAction: () => {},
+    isPreviousButtonPreAction: () => { return false; },
+    previousStepButtonPreSaveAction: () => {}
   };
 
   beforeEach(window.module(CourseContentModule, ($provide) => {
@@ -44,7 +56,6 @@ describe('CourseContent Module', () => {
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
-    $location = $injector.get('$location');
     $state = $injector.get('$state');
     $window = $injector.get('$window');
     $stateRegistry = $injector.get('$stateRegistry');
@@ -60,33 +71,39 @@ describe('CourseContent Module', () => {
 
     $window.ga = () => {};
 
-    goFn = sinon.stub($state, 'go');
-    retrieveMenuAndReturnStatesSpy = sinon.stub(Menu, 'retrieveMenuAndReturnStates', () => {
+    goFn = sandbox.stub($state, 'go');
+    retrieveMenuAndReturnStatesSpy = sandbox.stub(Menu, 'retrieveMenuAndReturnStates', () => {
       let deferred = $q.defer();
 
       deferred.resolve([stateNotLocked]);
       return deferred.promise;
     });
 
-    isMenuRetrievedSpy = sinon.stub(Menu, 'isMenuRetrieved', () => {
+    isMenuRetrievedSpy = sandbox.stub(Menu, 'isMenuRetrieved', () => {
       return true;
     });
 
-    stateRegistryGetFn = sinon.stub($stateRegistry, 'get', () => {
+    stateRegistryGetFn = sandbox.stub($stateRegistry, 'get', () => {
       let stateLocked = angular.copy(stateNotLocked);
       stateLocked.component = 'lockedPage';
       return stateLocked;
     });
 
-    stateRegistryDeregisterFn = sinon.stub( $stateRegistry, 'deregister', () => {} );
-    stateRegistryRegisterFn = sinon.spy($stateRegistry, 'register');
+    stateRegistryDeregisterFn = sandbox.stub( $stateRegistry, 'deregister', () => {} );
+    stateRegistryRegisterFn = sandbox.spy($stateRegistry, 'register');
 
-    removeUserInputSpy = sinon.spy(Utility, 'removeUserInputFromLocalStorage');
-    saveUserInputSpy = sinon.spy(Utility, 'saveUserInputToLocalStorage');
+    removeUserInputSpy = sandbox.spy(Utility, 'removeUserInputFromLocalStorage');
+    saveUserInputSpy = sandbox.spy(Utility, 'saveUserInputToLocalStorage');
 
-    spinnerShowSpy = sinon.spy(SpinnerFactory, 'show');
-    spinnerHideSpy = sinon.spy(SpinnerFactory, 'hide');
+    spinnerShowSpy = sandbox.spy(SpinnerFactory, 'show');
+    spinnerHideSpy = sandbox.spy(SpinnerFactory, 'hide');
   }));
+
+  afterEach( () => {
+    sandbox.restore();
+    mockContentFactory.isPreviousButtonPreAction = () => { return false; };
+    mockContentFactory.isNextButtonPreSaveAction = () => { return false; };
+  });
 
   describe('Controller', () => {
     // controller specs
@@ -106,6 +123,20 @@ describe('CourseContent Module', () => {
       controller.content.status = 'current';
     });
 
+
+    it('onInit() initialise the ContentFactory', sinon.test(() => {
+      let clearInputFieldsSpy = sandbox.spy(mockContentFactory, 'clearInputFields');
+      let setBeforeNextStepValidationSpy = sandbox.spy(mockContentFactory, 'setBeforeNextStepValidation');
+      let setNextStepButtonPreSaveActionSpy = sandbox.spy(mockContentFactory, 'setNextStepButtonPreSaveAction');
+      let setPreviousStepButtonPreActionSpy = sandbox.spy(mockContentFactory, 'setPreviousStepButtonPreAction');
+      controller.$onInit();
+      sinon.assert.called(clearInputFieldsSpy);
+      sinon.assert.called(setBeforeNextStepValidationSpy);
+      sinon.assert.called(setNextStepButtonPreSaveActionSpy);
+      sinon.assert.called(setPreviousStepButtonPreActionSpy);
+    }));
+
+
     it('test the onInit Function when the current status of the state is \'current\'', () => {
       controller.content.status = 'current';
       controller.content.prev_page_url = null;
@@ -115,20 +146,38 @@ describe('CourseContent Module', () => {
       expect(controller.banner.text).to.eq('');
     });
 
+
     it('test the onInit Function when the current status of the state is \'completed\'', () => {
       controller.content.status = 'completed';
+      controller.content.prev_page_url = 'prev';
+      controller.content.next_page_url = 'next';
       controller.$onInit();
       expect(controller.nextStepButton.label).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
       expect(controller.banner.text).to.eq('');
+      expect(controller.navigation).to.deep.eq({
+        prevPage: controller.content.prev_page_url,
+        nextPage: controller.content.next_page_url
+      });
     });
 
-    it('previousStep() triggers a change of state using this.content.prev_page_url', sinon.test( () => {
+    it('previousStep() triggers a change of state using this.content.prev_page_url if No PreAciton is defined', sinon.test( () => {
       controller.previousStep();
       sinon.assert.calledWith(goFn, controller.content.prev_page_url);
     }));
 
-    it('nextStep() focus the user on the field in error if the form is invalid', sinon.test( (done) => {
+    it('previousStep() calls ContentFactory.previousStepButtonPreSaveAction()', sinon.test( () => {
+      mockContentFactory.isPreviousButtonPreAction = () => { return true; };
+      let previousStepButtonPreSaveActionSpy = sandbox.spy(mockContentFactory, 'previousStepButtonPreSaveAction');
+
+      controller.previousStep();
+      sinon.assert.called(previousStepButtonPreSaveActionSpy);
+      sinon.assert.callCount(goFn, 0);
+    }));
+
+    it('nextStep() calls goToFieldInError() if the form is invalid', sinon.test( (done) => {
+
+      let beforeNextStepValidationSpy = sandbox.spy(mockContentFactory, 'beforeNextStepValidation');
 
       let topLevelForm = {
         $invalid: true
@@ -139,15 +188,36 @@ describe('CourseContent Module', () => {
         $invalid: true
       };
 
-      let locationSpy = sinon.spy($location, 'hash');
+      let goToFieldInErrorSpy = sinon.spy(controller, 'goToFieldInError');
 
       controller.$onInit();
       controller.nextStep(topLevelForm);
 
-      sinon.assert.calledWith(locationSpy, subFormName);
+      sinon.assert.calledWith(goToFieldInErrorSpy, topLevelForm);
+      sinon.assert.calledOnce(beforeNextStepValidationSpy);
       done();
     }));
 
+    it('nextStep() calls ContentFactory.nextStepButtonPreSaveAction()', sinon.test( (done) => {
+
+      let form = {
+        $invalid: false
+      };
+
+      mockContentFactory.isNextButtonPreSaveAction = () => { return true; };
+
+
+      let beforeNextStepValidationSpy = sandbox.spy(mockContentFactory, 'beforeNextStepValidation');
+      let nextStepButtonPreSaveActionSpy = sandbox.spy(mockContentFactory, 'nextStepButtonPreSaveAction');
+
+      controller.$onInit();
+      controller.nextStep(form);
+
+      sinon.assert.calledOnce(beforeNextStepValidationSpy);
+      sinon.assert.calledOnce(nextStepButtonPreSaveActionSpy);
+
+      done();
+    }));
 
     it('nextStep() sends a POST to save current step if it is not yet marked as completed', sinon.test( (done) => {
 

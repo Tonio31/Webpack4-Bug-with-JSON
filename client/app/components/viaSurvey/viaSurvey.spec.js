@@ -6,34 +6,30 @@ import ViaSurveyTemplate from './viaSurvey.html';
 describe('ViaSurvey', () => {
   let $rootScope, $componentController, $compile;
 
-/*  let question = {
-    QuestionID: 11436,
-    QuestionNumber: 1,
-    Text: 'Being able to come up with new and different ideas is one of my strong points.',
-    AnswerChoices: [
-      {
-        ChoiceID: 274,
-        Text: 'Very Much Like Me'
+  let blockBinding = {
+    id: 30,
+    type: 'static',
+    element: 'via_survey',
+    program_data_code: null,
+    config: {
+      match_strength_data_code: 'c1.m1.s7.checkbox_1',
+      all_strengths: 'c1.m1.s7.all_strength',
+      nb_questions_per_page: 120
+    },
+    data: {
+      intro_survey: {
+        value: '<h1>Via Survey<\/h1><p>This is a survey that will last 120 questions<\/p><p>It is to evaluate your strenght, click on the button below to start the survey<\/p>'
       },
-      {
-        ChoiceID: 275,
-        Text: 'Like Me'
-      },
-      {
-        ChoiceID: 276,
-        Text: 'Neutral'
-      },
-      {
-        ChoiceID: 277,
-        Text: 'Unlike Me'
-      },
-      {
-        ChoiceID: 278,
-        Text: 'Very Much Unlike Me'
+      intro_results: {
+        value: '<h1>Results<\/h1><p>You can find below your strength pre-order a relevant order for you<\/p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but dont hesitate to check all the strength below to choose the ones that resonate the most with you<\/p>'
       }
-    ]
-  };*/
+    }
+  };
 
+  let navigationBindings = {
+    prevPage: 'prevPage',
+    nextPage: 'nextPage'
+  };
 
   beforeEach(window.module(ViaSurveyModule));
 
@@ -51,9 +47,17 @@ describe('ViaSurvey', () => {
     // controller specs
     let controller;
     beforeEach(() => {
+      let bindings = {
+        block: blockBinding,
+        isTopLevelFormSubmitted: false,
+        isStepCompleted: false,
+        navigation: navigationBindings,
+        updateBlockManager: () => {}
+      };
+
       controller = $componentController('viaSurvey', {
         $scope: $rootScope.$new()
-      });
+      }, bindings);
     });
 
   });

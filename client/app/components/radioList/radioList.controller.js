@@ -46,7 +46,6 @@ class RadioListController {
         if (item.selected === true) {
           this.selected = item.value.toString();
           this.updateLimit(i);
-          this.updateBlockManager({ blockManagerValue: this.selected });
           return;
         }
       }

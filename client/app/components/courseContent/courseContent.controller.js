@@ -126,7 +126,7 @@ class CourseContentController {
 
       $log.debug('iForm=', iForm);
       for ( let [ key, value ] of Object.entries(iForm) ) {
-        if ( key.includes('myForm') ) {
+        if ( key.includes(FORM_NAME_PREFIX) ) {
           let currentForm = value;
           if ( currentForm.$invalid ) {
             $log.debug('The invalid form is:', key);

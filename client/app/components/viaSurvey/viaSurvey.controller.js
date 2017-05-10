@@ -21,88 +21,6 @@ class ViaSurveyController {
 
     $log.log('constructor - START');
 
-    this.radioQuestions = [];
-
-
-    this.tabToDisplay = 'questions';
-
-    this.simulateTopLevelFormSubmitted = [];
-    for ( let page = 1; page <= this.nbPagesSurvey; page++ ) {
-      this.simulateTopLevelFormSubmitted[page] = false;
-    }
-
-    this.isListOfStrengthFormSubmitted = false;
-
-    this.displayPrevPageSurvey = () => {
-      if ( this.currentPageNumber === 0 || this.currentPageNumber > this.nbPagesSurvey ) {
-        $state.go(this.navigation.prevPage);
-      }
-      else {
-        this.currentPageNumber -= 1;
-        this.numFirstQuestionDisplayed -= this.nbQuestionsDisplayed;
-      }
-    };
-
-
-    this.$onInit = () => {
-
-      $log.log('onInit() - BEGIN');
-
-      if ( this.block.config.nb_questions_per_page &&
-        this.block.config.nb_questions_per_page > 0 &&
-        this.block.config.nb_questions_per_page <= 120 ) {
-        this.nbQuestionsDisplayed = this.block.config.nb_questions_per_page;
-      }
-      else {
-        this.nbQuestionsDisplayed = 10; // Default value if the input is messed up
-      }
-
-      this.numFirstQuestionDisplayed = 0;
-      this.nbPagesSurvey = Math.floor( WEBSITE_CONFIG.viaSurvey.questionCount / this.nbQuestionsDisplayed );
-      this.currentPageNumber = 1;
-
-      SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
-
-      ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted);
-      ContentFactory.setNextStepButtonPreSaveAction(this.displayNextPageSurvey);
-      ContentFactory.setPreviousStepButtonPreAction(this.displayPrevPageSurvey);
-
-      let registerUserPost = Data.viaSurvey();
-
-      Object.assign(registerUserPost, this.getRegisterFormData());
-
-      $log.warn('registerUserPost=', registerUserPost);
-
-      registerUserPost.$register( (dataBackFromRegister) => {
-        $log.log('Success registering dataBackFromRegister=', dataBackFromRegister);
-
-        this.loginUserRequest();
-      }, (error) => {
-
-        // The user might have been already registered on the website, try to login if that's the case
-        if ( error.status === 500 &&
-          error.statusText === 'You have already registered a user with this email address' ) {
-          $log.log('User already registered, proceed to login');
-          this.loginUserRequest();
-        }
-        else {
-          this.goToErrorState('Register', error);
-        }
-      });
-
-      $log.log('onInit() - END');
-    };
-
-    this.createViaSurveyPassword = (iFirstName, iLastName) => {
-      return `${iFirstName}!@#$%${iLastName}`;
-    };
-
-    this.goToErrorState = (iApiInError, iError) => {
-      $log.error(`Error during ${iApiInError}. error=`, iError);
-      SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
-      $state.go(STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
-    };
-
     this.viaSurveyData = {
       appKey: WEBSITE_CONFIG.viaSurvey.appKey,
       surveyID: WEBSITE_CONFIG.viaSurvey.surveyID,
@@ -126,8 +44,69 @@ class ViaSurveyController {
       return registerFormData;
     };
 
-    this.setTopLevelFormSubmitted = () => {
+    this.$onInit = () => {
 
+      $log.log('onInit() - BEGIN');
+
+      this.radioQuestions = [];
+
+
+      this.tabToDisplay = 'questions';
+
+      this.simulateTopLevelFormSubmitted = [];
+      for ( let page = 1; page <= this.nbPagesSurvey; page++ ) {
+        this.simulateTopLevelFormSubmitted[page] = false;
+      }
+
+      this.isListOfStrengthFormSubmitted = false;
+
+      if ( this.block.config.nb_questions_per_page &&
+        this.block.config.nb_questions_per_page > 0 &&
+        this.block.config.nb_questions_per_page <= 120 ) {
+        this.nbQuestionsDisplayed = this.block.config.nb_questions_per_page;
+      }
+      else {
+        this.nbQuestionsDisplayed = 10; // Default value if the input is messed up
+      }
+
+      this.numFirstQuestionDisplayed = 0;
+      this.nbPagesSurvey = Math.floor( WEBSITE_CONFIG.viaSurvey.questionCount / this.nbQuestionsDisplayed );
+      this.currentPageNumber = 1;
+
+      SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
+
+      ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted);
+      ContentFactory.setNextStepButtonPreSaveAction(this.displayNextPageSurvey);
+      ContentFactory.setPreviousStepButtonPreAction(this.displayPrevPageSurvey);
+
+      this.registerUser();
+
+      $log.log('onInit() - END');
+    };
+
+    this.displayPrevPageSurvey = () => {
+      if ( this.currentPageNumber === 0 || this.currentPageNumber > this.nbPagesSurvey ) {
+        $state.go(this.navigation.prevPage);
+      }
+      else {
+        this.currentPageNumber -= 1;
+        this.numFirstQuestionDisplayed -= this.nbQuestionsDisplayed;
+      }
+    };
+
+    this.createViaSurveyPassword = (iFirstName, iLastName) => {
+      return `${iFirstName}!@#$%${iLastName}`;
+    };
+
+    this.goToErrorState = (iApiInError, iError) => {
+      $log.error(`Error during ${iApiInError}. error=`, iError);
+      SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
+      $state.go(STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
+    };
+
+    // This function will be called every time the user clicks on "Next Step" button at the bottom of the page
+    // It is registered via ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted)
+    this.setTopLevelFormSubmitted = () => {
       if ( this.tabToDisplay === 'questions' ) {
         this.simulateTopLevelFormSubmitted[this.currentPageNumber] = true;
       }
@@ -137,8 +116,7 @@ class ViaSurveyController {
     };
 
     this.displayNextPageSurvey = () => {
-      $log.warn( `displayNextPageSurvey this.currentPageNumber=${this.currentPageNumber}
-                  ,   this.nbPagesSurvey=${this.nbPagesSurvey}` );
+      $log.warn( `displayNextPageSurvey this.currentPageNumber=${this.currentPageNumber},   this.nbPagesSurvey=${this.nbPagesSurvey}` );
 
       if ( this.currentPageNumber <= this.nbPagesSurvey ) {
         this.numFirstQuestionDisplayed += this.nbQuestionsDisplayed;
@@ -283,6 +261,31 @@ class ViaSurveyController {
       });
 
       return deferred.promise;
+    };
+
+    this.registerUser = () => {
+      let registerUserPost = Data.viaSurvey();
+
+      Object.assign(registerUserPost, this.getRegisterFormData());
+
+      $log.warn('registerUserPost=', registerUserPost);
+
+      registerUserPost.$register( (dataBackFromRegister) => {
+        $log.log('Success registering dataBackFromRegister=', dataBackFromRegister);
+
+        this.loginUserRequest();
+      }, (error) => {
+
+        // The user might have been already registered on the website, try to login if that's the case
+        if ( error.status === 500 &&
+          error.statusText === 'You have already registered a user with this email address' ) {
+          $log.log('User already registered, proceed to login');
+          this.loginUserRequest();
+        }
+        else {
+          this.goToErrorState('Register', error);
+        }
+      });
     };
 
     this.loginUserRequest = () => {

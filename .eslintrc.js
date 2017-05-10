@@ -168,7 +168,7 @@ module.exports = exports = {
     "max-depth": [WARN, 8],
     "max-len": [WARN, {
       "code": 132,
-      "ignorePattern": "^\\s*\\$log\\.log\\(.*;",
+      "ignorePattern": "^\\s*\\$log\\.(log|warn|error|debug)\\(.*;",
       "ignoreComments": true
     }],
     "max-nested-callbacks": [WARN, 8],
