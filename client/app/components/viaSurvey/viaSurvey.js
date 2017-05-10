@@ -5,6 +5,8 @@ import ResourceFactory from 'common/resourceFactory/resource';
 import UserDataFactory from 'common/userDataFactory/userData';
 import viaSurveyComponent from './viaSurvey.component';
 import CourseContentFactory from 'common/courseContentFactory/courseContent';
+import UtilityFactory from 'common/utility/utility';
+import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 import LangFactory from 'common/changeLanguage/changeLanguage';
 
 let viaSurveyModule = angular.module('viaSurvey', [
@@ -13,6 +15,8 @@ let viaSurveyModule = angular.module('viaSurvey', [
   UserDataFactory,
   CourseContentFactory,
   LangFactory,
+  LoadingSpinnerModule,
+  UtilityFactory,
   LogDecorator
 ])
 

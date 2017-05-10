@@ -4,7 +4,27 @@ import ViaSurveyComponent from './viaSurvey.component';
 import ViaSurveyTemplate from './viaSurvey.html';
 
 describe('ViaSurvey', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope, $componentController, $compile, $q;
+  let SPINNERS, STATES;
+  let SpinnerFactory;
+
+  let spies = {
+    spinnerFactory: {},
+    contentFactory: {},
+    state: {},
+    utilityFactory: {}
+  };
+
+  let listStrength = [
+    {
+      StrengthName: 'Appreciation of Beauty \u0026 Excellence',
+      StrengthDescription: '\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.'
+    },
+    {
+      StrengthName: 'Bravery',
+      StrengthDescription: '\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.'
+    }
+  ];
 
   let blockBinding = {
     id: 30,
@@ -14,7 +34,7 @@ describe('ViaSurvey', () => {
     config: {
       match_strength_data_code: 'c1.m1.s7.checkbox_1',
       all_strengths: 'c1.m1.s7.all_strength',
-      nb_questions_per_page: 120
+      nb_questions_per_page: 20
     },
     data: {
       intro_survey: {
@@ -31,13 +51,114 @@ describe('ViaSurvey', () => {
     nextPage: 'nextPage'
   };
 
-  beforeEach(window.module(ViaSurveyModule));
+  let sandbox = sinon.sandbox.create();
+
+  let simulateDataBackFromServer = {
+    data: ''
+  };
+
+  let simulateErrorDataBackFromServer = 'Error';
+
+  let returnErrorFromViaSurvey = false;
+
+  let mockData = {
+    partialUpdateStep : () => {
+      return {
+        $save: (callback, callbackError) => {
+          return callbackError();
+        }
+      };
+    },
+    viaSurvey : () => {
+      return {
+        $register: (callback, callbackError) => {
+          if (returnErrorFromViaSurvey) {
+            return callbackError(simulateErrorDataBackFromServer);
+          }
+          return callback(simulateDataBackFromServer);
+        },
+        $call: (callback, callbackError) => {
+          if (returnErrorFromViaSurvey) {
+            return callbackError(simulateErrorDataBackFromServer);
+          }
+          return callback(simulateDataBackFromServer);
+        }
+      };
+    }
+  };
+
+  let mockContentFactory = {
+    updateInputFields: () => {},
+    getInputFields: () => {
+      return { 21159: '745' };
+    },
+    clearInputFields: () => {},
+    getAdditionalData: () => {
+      return { token_survey: 'd!@#$%^&*()_+' };
+    },
+    saveDataToSendLater: () => {},
+    clearAdditionalData: () => {},
+    setNextStepButtonPreSaveAction: () => {},
+    isNextButtonPreSaveAction: () => { return false; },
+    nextStepButtonPreSaveAction: () => {},
+    beforeNextStepValidation: () => {},
+    setBeforeNextStepValidation: () => {},
+    setPreviousStepButtonPreAction: () => {},
+    isPreviousButtonPreAction: () => { return false; },
+    previousStepButtonPreSaveAction: () => {}
+  };
+
+  let mockState = {
+    go: () => {}
+  };
+
+  let mockUtility = {
+    saveUserInputToLocalStorage: () => {},
+    getUserInputFromLocalStorage: (iQuestionID) => {
+      if ( iQuestionID === '99999' ) {
+        return false;
+      }
+      return true;
+    }
+  };
+
+  beforeEach(window.module(ViaSurveyModule, ($provide) => {
+    // $provide.value('translateFilter', mockTranslateFilter );
+    $provide.value('ContentFactory', mockContentFactory );
+    $provide.value('Utility', mockUtility );
+    $provide.value('Data', mockData );
+    $provide.value('$state', mockState );
+  }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    $q = $injector.get('$q');
+    SpinnerFactory = $injector.get('SpinnerFactory');
+    SPINNERS = $injector.get('SPINNERS');
+    STATES = $injector.get('STATES');
+
+    spies.spinnerFactory.show = sandbox.stub(SpinnerFactory, 'show');
+    spies.spinnerFactory.hide = sandbox.stub(SpinnerFactory, 'hide');
+
+    spies.contentFactory.setBeforeNextStepValidation = sandbox.stub(mockContentFactory, 'setBeforeNextStepValidation');
+    spies.contentFactory.setNextStepButtonPreSaveAction = sandbox.stub(mockContentFactory, 'setNextStepButtonPreSaveAction');
+    spies.contentFactory.setPreviousStepButtonPreAction = sandbox.stub(mockContentFactory, 'setPreviousStepButtonPreAction');
+    spies.contentFactory.updateInputFields = sandbox.stub(mockContentFactory, 'updateInputFields');
+    spies.contentFactory.clearInputFields = sandbox.stub(mockContentFactory, 'clearInputFields');
+    spies.contentFactory.getInputFields = sandbox.spy(mockContentFactory, 'getInputFields');
+
+    spies.state.go = sandbox.stub(mockState, 'go');
+    spies.utilityFactory.saveUserInputToLocalStorage = sandbox.stub(mockUtility, 'saveUserInputToLocalStorage');
   }));
+
+  afterEach( () => {
+    sandbox.restore();
+    simulateDataBackFromServer.data = '';
+    simulateErrorDataBackFromServer = 'Error';
+    returnErrorFromViaSurvey = false;
+  });
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
@@ -58,6 +179,335 @@ describe('ViaSurvey', () => {
       controller = $componentController('viaSurvey', {
         $scope: $rootScope.$new()
       }, bindings);
+    });
+
+    it('$onInit() - constant are initialised', () => {
+
+      let registerUserSpy = sandbox.stub(controller, 'registerUser');
+
+      controller.$onInit();
+      expect(controller.radioQuestions).to.deep.equal([]);
+      expect(controller.tabToDisplay).to.equal('questions');
+      expect(controller.nbQuestionsDisplayed).to.equal(20);
+      expect(controller.numFirstQuestionDisplayed).to.equal(0);
+      expect(controller.nbPagesSurvey).to.equal(6);
+      expect(controller.currentPageNumber).to.equal(1);
+      expect(controller.simulateTopLevelFormSubmitted).to.deep.equal({
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+        6: false,
+      });
+      sinon.assert.calledWith(spies.spinnerFactory.show, SPINNERS.COURSE_CONTENT);
+      sinon.assert.calledWith(spies.contentFactory.setBeforeNextStepValidation, controller.setTopLevelFormSubmitted);
+      sinon.assert.calledWith(spies.contentFactory.setNextStepButtonPreSaveAction, controller.displayNextPageSurvey);
+      sinon.assert.calledWith(spies.contentFactory.setPreviousStepButtonPreAction, controller.displayPrevPageSurvey);
+      sinon.assert.called(registerUserSpy);
+    });
+
+    it('displayPrevPageSurvey() - Change state if the current page is 0', () => {
+      controller.currentPageNumber = 0;
+      controller.displayPrevPageSurvey();
+      sinon.assert.calledWith(spies.state.go, navigationBindings.prevPage);
+    });
+
+    it('displayPrevPageSurvey() - Change state if the current page is bigger then the total number of pages', () => {
+      controller.currentPageNumber = 6;
+      controller.nbPagesSurvey = 5;
+      controller.displayPrevPageSurvey();
+      sinon.assert.calledWith(spies.state.go, navigationBindings.prevPage);
+    });
+
+    it('displayPrevPageSurvey() - Change pages number if currentPage is between 0 and total number of pages', () => {
+      controller.currentPageNumber = 6;
+      controller.numFirstQuestionDisplayed = 60;
+      controller.nbQuestionsDisplayed = 10;
+      controller.nbPagesSurvey = 10;
+      controller.displayPrevPageSurvey();
+      expect(controller.currentPageNumber).to.equal(5);
+      expect(controller.numFirstQuestionDisplayed).to.equal(50);
+    });
+
+    it('goToErrorState() - hide the spinner and change state', () => {
+      controller.goToErrorState();
+      sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.COURSE_CONTENT);
+      sinon.assert.calledWith(spies.state.go, STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
+    });
+
+    it('setTopLevelFormSubmitted() - update the fake submittedForm object if this.tabToDisplay === \'questions\'', () => {
+      controller.tabToDisplay = 'questions';
+      controller.currentPageNumber = 6;
+      controller.simulateTopLevelFormSubmitted = {
+        6: false
+      };
+      controller.setTopLevelFormSubmitted();
+      expect(controller.simulateTopLevelFormSubmitted[controller.currentPageNumber]).to.equal(true);
+    });
+
+    it('setTopLevelFormSubmitted() - update the fake submittedForm object if this.tabToDisplay === \'results\'', () => {
+      controller.tabToDisplay = 'results';
+      controller.isListOfStrengthFormSubmitted = false;
+      controller.setTopLevelFormSubmitted();
+      expect(controller.isListOfStrengthFormSubmitted).to.equal(true);
+    });
+
+    it('displayNextPageSurvey() - Change pages number if currentPage is less than total number of pages', () => {
+      controller.currentPageNumber = 6;
+      controller.numFirstQuestionDisplayed = 60;
+      controller.nbQuestionsDisplayed = 10;
+      controller.nbPagesSurvey = 10;
+      controller.displayNextPageSurvey();
+      expect(controller.currentPageNumber).to.equal(7);
+      expect(controller.numFirstQuestionDisplayed).to.equal(70);
+      sinon.assert.calledWith(spies.utilityFactory.saveUserInputToLocalStorage, mockContentFactory.getInputFields());
+    });
+
+    it('displayNextPageSurvey() - Submit Answers if its the last page and call GetResults is submitAnswers returns true', () => {
+
+      sinon.stub(controller, 'submitAnswers', () => {
+        let deferred = $q.defer();
+        deferred.resolve({
+          data: true
+        });
+        return deferred.promise;
+      });
+
+
+      let getResultsSpy = sandbox.stub(controller, 'getResults');
+
+      controller.currentPageNumber = 6;
+      controller.nbPagesSurvey = 5;
+      controller.displayNextPageSurvey();
+
+      $rootScope.$digest();
+
+      sinon.assert.calledWith(spies.spinnerFactory.show, SPINNERS.COURSE_CONTENT);
+      sinon.assert.calledOnce(getResultsSpy);
+    });
+
+    it('displayNextPageSurvey() - Submit Answers if its the last page and call goToErrorState is submitAnswers returns false', () => {
+
+      sinon.stub(controller, 'submitAnswers', () => {
+        let deferred = $q.defer();
+        deferred.resolve({
+          data: false
+        });
+        return deferred.promise;
+      });
+
+
+      let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
+
+      controller.currentPageNumber = 6;
+      controller.nbPagesSurvey = 5;
+      controller.displayNextPageSurvey();
+
+      $rootScope.$digest();
+
+      sinon.assert.calledWith(spies.spinnerFactory.show, SPINNERS.COURSE_CONTENT);
+      sinon.assert.calledOnce(goToErrorStateSpy);
+    });
+
+    it('onUpdate() - update Content Factory', () => {
+      let questionID = '12345';
+      let value = '275';
+      controller.nbPagesSurvey = 5;
+      controller.onUpdate(questionID, value);
+
+      sinon.assert.calledWith(spies.contentFactory.updateInputFields, questionID, value);
+    });
+
+    it('transformResultsToCheckBoxBlock() - get an object ready to be injected into radioBox component from a list of strengths', () => {
+
+      let checkboxBlock = controller.transformResultsToCheckBoxBlock(listStrength);
+      expect(checkboxBlock).to.deep.eq({
+        id: 52,
+        type: 'dynamic',
+        element: 'checkbox',
+        program_data_code: 'c1.m1.s7.checkbox_1',
+        data: {
+          config: {
+            min_selected: 3,
+            max_selected: 3
+          },
+          label: 'Your character strengths',
+          placeholder: '',
+          name: '',
+          items: [{
+            label: 'Appreciation of Beauty & Excellence',
+            sub_label: '\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.',
+            value: 'Appreciation of Beauty & Excellence',
+            checked: false,
+            feedback: null
+          },
+          {
+            label: 'Bravery',
+            sub_label: '\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.',
+            value: 'Bravery',
+            checked: false,
+            feedback: null
+          }]
+        }
+      });
+    });
+
+    it('saveSurveyResultToBackEnd() - send a request to the back end to save the list of strengths and check that in case of error, we store data to send it to the back end later', () => {
+      controller.saveSurveyResultToBackEnd(listStrength);
+
+      $rootScope.$digest();
+
+      sinon.assert.calledWith(spies.contentFactory.updateInputFields, controller.block.config.all_strengths, listStrength);
+    });
+
+    it('getResults() - calls getResults API (success reply from GetResults)', () => {
+
+      simulateDataBackFromServer.data = 'something';
+      let saveSurveyResultToBackEndSpy = sandbox.stub(controller, 'saveSurveyResultToBackEnd');
+      controller.transformResultsToCheckBoxBlock = (iData) => {
+        return iData;
+      };
+
+      controller.getResults(listStrength);
+
+      sinon.assert.calledWith(saveSurveyResultToBackEndSpy, simulateDataBackFromServer.data);
+      expect(controller.listOfStrengthsForCheckBox).to.equal(simulateDataBackFromServer.data);
+      sinon.assert.calledOnce(spies.contentFactory.clearInputFields);
+      sinon.assert.calledWith(spies.contentFactory.setNextStepButtonPreSaveAction, undefined);
+      sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.COURSE_CONTENT);
+    });
+
+    it('getResults() - calls getResults API (error reply from GetResults)', () => {
+      returnErrorFromViaSurvey = true;
+
+      let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
+      controller.getResults(listStrength);
+      sinon.assert.calledOnce(goToErrorStateSpy);
+    });
+
+    it('submitAnswers() - return a successful promise', (done) => {
+      simulateDataBackFromServer.data = 'something';
+
+      controller.submitAnswers().then( () => {
+        expect(true).to.equal(true);
+        done();
+      },
+      () => {
+        assert.fail( 0, 1, 'The promise from submitAnswers() should NOT fail' );
+        done();
+      });
+
+      $rootScope.$digest();
+    });
+
+    it('submitAnswers() - return a rejected promise', (done) => {
+      returnErrorFromViaSurvey = true;
+      simulateDataBackFromServer.data = 'something';
+
+      controller.submitAnswers().then( () => {
+        assert.fail( 0, 1, 'The promise from submitAnswers() should fail' );
+        done();
+      },
+      (error) => {
+        expect(error).to.equal('Error');
+        done();
+      });
+
+      $rootScope.$digest();
+    });
+
+    it('registerUser() - call loginUser in case of success', () => {
+      let loginUserSpy = sandbox.stub(controller, 'loginUserRequest');
+      controller.registerUser();
+      sinon.assert.calledOnce(loginUserSpy);
+    });
+
+    it('registerUser() - call loginUser in case of error because user is already registered', () => {
+      returnErrorFromViaSurvey = true;
+      simulateErrorDataBackFromServer = {
+        status: 500,
+        statusText: 'You have already registered a user with this email address'
+      };
+      let loginUserSpy = sandbox.stub(controller, 'loginUserRequest');
+      controller.registerUser();
+      sinon.assert.calledOnce(loginUserSpy);
+    });
+
+    it('registerUser() - call goToErrorState() in case of unknown error', () => {
+      returnErrorFromViaSurvey = true;
+      simulateErrorDataBackFromServer = 'This is a weird error';
+      let loginUserSpy = sandbox.stub(controller, 'loginUserRequest');
+      let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
+      controller.registerUser();
+      sinon.assert.notCalled(loginUserSpy);
+      sinon.assert.calledOnce(goToErrorStateSpy);
+    });
+
+    it('loginUserRequest() - call startSurveyRequest in case of success', () => {
+      let getQuestionsRequestSpy = sandbox.stub(controller, 'getQuestionsRequest');
+      simulateDataBackFromServer.data = 'Session Key';
+      controller.registerUser();
+      expect(controller.viaSurveyData.sessionKey).to.equal(simulateDataBackFromServer.data);
+      sinon.assert.calledOnce(getQuestionsRequestSpy);
+    });
+
+    it('loginUserRequest() - call goToErrorState() in case of unknown error', () => {
+      returnErrorFromViaSurvey = true;
+      let getQuestionsRequestSpy = sandbox.stub(controller, 'getQuestionsRequest');
+      let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
+      controller.registerUser();
+      sinon.assert.notCalled(getQuestionsRequestSpy);
+      sinon.assert.calledOnce(goToErrorStateSpy);
+    });
+
+    it('calculateCurrentPageNumber() - set currentPageNumber & numFirstQuestionDisplayed depending on the first unanswered question stored in local storage', () => {
+      controller.radioQuestions = [
+        { program_data_code: '00000' },
+        { program_data_code: '11111' },
+        { program_data_code: '22222' },
+        { program_data_code: '33333' },
+        { program_data_code: '44444' },
+        { program_data_code: '55555' },
+        { program_data_code: '66666' },
+        { program_data_code: '77777' },
+        { program_data_code: '88888' },
+        { program_data_code: '99999' } // This is the first answered question
+      ];
+
+      // We display 2 questions per page
+      controller.nbQuestionsDisplayed = 2;
+
+      controller.currentPageNumber = -1;
+      controller.numFirstQuestionDisplayed = -1;
+
+      controller.calculateCurrentPageNumber();
+      expect(controller.currentPageNumber).to.equal(5);
+      expect(controller.numFirstQuestionDisplayed).to.equal(8);
+    });
+
+    it('getQuestionsRequest() - display the list of questions in case of success', () => {
+
+      simulateDataBackFromServer.data = 'something';
+
+      controller.transformQuestionsToRadioBlock = (iData) => {
+        return iData;
+      };
+
+      let calculateCurrentPageNumberSpy = sandbox.stub(controller, 'calculateCurrentPageNumber');
+      simulateDataBackFromServer.data = 'Session Key';
+      controller.registerUser();
+      expect(controller.radioQuestions).to.equal(simulateDataBackFromServer.data);
+      sinon.assert.calledOnce(calculateCurrentPageNumberSpy);
+    });
+
+    it('getQuestionsRequest() - call goToErrorState() in case of unknown error', () => {
+      returnErrorFromViaSurvey = true;
+      let getQuestionsRequestSpy = sandbox.stub(controller, 'getQuestionsRequest');
+      let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
+      controller.registerUser();
+      sinon.assert.notCalled(getQuestionsRequestSpy);
+      sinon.assert.calledOnce(goToErrorStateSpy);
     });
 
   });

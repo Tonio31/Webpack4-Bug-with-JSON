@@ -21,6 +21,10 @@ class ViaSurveyController {
 
     $log.log('constructor - START');
 
+    this.createViaSurveyPassword = (iFirstName, iLastName) => {
+      return `${iFirstName}!@#$%${iLastName}`;
+    };
+
     this.viaSurveyData = {
       appKey: WEBSITE_CONFIG.viaSurvey.appKey,
       surveyID: WEBSITE_CONFIG.viaSurvey.surveyID,
@@ -50,13 +54,7 @@ class ViaSurveyController {
 
       this.radioQuestions = [];
 
-
       this.tabToDisplay = 'questions';
-
-      this.simulateTopLevelFormSubmitted = [];
-      for ( let page = 1; page <= this.nbPagesSurvey; page++ ) {
-        this.simulateTopLevelFormSubmitted[page] = false;
-      }
 
       this.isListOfStrengthFormSubmitted = false;
 
@@ -72,6 +70,11 @@ class ViaSurveyController {
       this.numFirstQuestionDisplayed = 0;
       this.nbPagesSurvey = Math.floor( WEBSITE_CONFIG.viaSurvey.questionCount / this.nbQuestionsDisplayed );
       this.currentPageNumber = 1;
+
+      this.simulateTopLevelFormSubmitted = {};
+      for ( let page = 1; page <= this.nbPagesSurvey; page++ ) {
+        this.simulateTopLevelFormSubmitted[page] = false;
+      }
 
       SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
 
@@ -94,10 +97,6 @@ class ViaSurveyController {
       }
     };
 
-    this.createViaSurveyPassword = (iFirstName, iLastName) => {
-      return `${iFirstName}!@#$%${iLastName}`;
-    };
-
     this.goToErrorState = (iApiInError, iError) => {
       $log.error(`Error during ${iApiInError}. error=`, iError);
       SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
@@ -116,7 +115,7 @@ class ViaSurveyController {
     };
 
     this.displayNextPageSurvey = () => {
-      $log.warn( `displayNextPageSurvey this.currentPageNumber=${this.currentPageNumber},   this.nbPagesSurvey=${this.nbPagesSurvey}` );
+      $log.log( `displayNextPageSurvey this.currentPageNumber=${this.currentPageNumber},   this.nbPagesSurvey=${this.nbPagesSurvey}` );
 
       if ( this.currentPageNumber <= this.nbPagesSurvey ) {
         this.numFirstQuestionDisplayed += this.nbQuestionsDisplayed;
@@ -142,8 +141,6 @@ class ViaSurveyController {
 
       $anchorScroll('main');
     };
-
-
 
     this.onUpdate = (iQuestionId, iValue) => {
       $log.log('onUpdate() - iQuestionId=', iQuestionId, '  iValue=', iValue);
