@@ -1,4 +1,4 @@
-let UtilityFactory = function( $log, $state, $window, $localStorage, User ) {
+let UtilityFactory = function( $log, $q, $state, $window, $localStorage, User ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -44,6 +44,7 @@ let UtilityFactory = function( $log, $state, $window, $localStorage, User ) {
       delete $localStorage[buildLocalStorageKey(key)];
     }
   };
+
 
   return {
     saveUserInputToLocalStorage,

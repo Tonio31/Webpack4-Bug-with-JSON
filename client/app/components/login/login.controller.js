@@ -45,7 +45,7 @@ class LoginController {
             firstName: dataBackFromServer.user['first_name'], // eslint-disable-line dot-notation
             lastName: dataBackFromServer.user['last_name'], // eslint-disable-line dot-notation
             email: dataBackFromServer.user.email,
-            token: dataBackFromServer.token,
+            token: dataBackFromServer.token
           };
 
           // Save to local Storage

@@ -19,10 +19,6 @@ eslintConfig.rules["no-console"] = OFF;
 eslintConfig.rules["init-declarations"] = OFF;
 eslintConfig.rules["angular/window-service"] = OFF;
 eslintConfig.rules["array-bracket-spacing"] = OFF;
-eslintConfig.rules["max-len"] = [ WARN, {
-  "code": 200,
-  "ignorePattern": "^\\s*it\\(\\'.*\\{",
-  "ignoreComments": true
-}];
+eslintConfig.rules["max-len"] = OFF;
 
 module.exports = exports = eslintConfig;

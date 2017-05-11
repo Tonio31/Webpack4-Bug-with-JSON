@@ -10,6 +10,7 @@ let UserData = function() {
     division: '',
     cohort: '',
     email: '',
+    gender: '',
     companyBanner: {}
   };
 
@@ -49,6 +50,10 @@ let UserData = function() {
     if ( iUserObject.hasOwnProperty('companyBanner') && iUserObject.companyBanner ) {
       user.companyBanner = iUserObject.companyBanner;
     }
+
+    if ( iUserObject.hasOwnProperty('gender') && iUserObject.gender ) {
+      user.gender = iUserObject.gender;
+    }
   };
 
   let getFirstName = () => {
@@ -83,6 +88,10 @@ let UserData = function() {
     return user.email;
   };
 
+  let getGender = () => {
+    return user.gender;
+  };
+
   let getCompanyBanner = () => {
     return user.companyBanner;
   };
@@ -110,6 +119,7 @@ let UserData = function() {
     getUserId,
     getSecurityToken,
     getEmail,
+    getGender,
     getCompanyBanner
   };
 

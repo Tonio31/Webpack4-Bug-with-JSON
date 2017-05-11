@@ -97,6 +97,15 @@ class CourseContentController {
                                 this.content.prev_page_url );
 
       ContentFactory.clearInputFields();
+      ContentFactory.setBeforeNextStepValidation();
+      ContentFactory.setNextStepButtonPreSaveAction();
+      ContentFactory.setPreviousStepButtonPreAction();
+
+      this.navigation = {
+        prevPage: this.content.prev_page_url,
+        nextPage: this.content.next_page_url
+      };
+
       $log.log('$onInit - END');
     };
 
@@ -105,20 +114,26 @@ class CourseContentController {
     };
 
     this.previousStep = () => {
-      $state.go(this.content.prev_page_url);
+      if ( ContentFactory.isPreviousButtonPreAction() ) {
+        ContentFactory.previousStepButtonPreSaveAction();
+      }
+      else {
+        $state.go(this.content.prev_page_url);
+      }
     };
 
     this.goToFieldInError = (iForm) => {
-      for ( let block of this.content.blocks ) {
-        let formName = `${FORM_NAME_PREFIX}${block.id}`;
 
-        if ( iForm.hasOwnProperty(formName) &&
-             iForm[formName].$invalid ) {
-
-          // Focus the user on the form in error
-          $location.hash(block.data.name);
-          $anchorScroll();
-          return;
+      $log.debug('iForm=', iForm);
+      for ( let [ key, value ] of Object.entries(iForm) ) {
+        if ( key.includes(FORM_NAME_PREFIX) ) {
+          let currentForm = value;
+          if ( currentForm.$invalid ) {
+            $log.debug('The invalid form is:', key);
+            // Focus the user on the form in error
+            $anchorScroll(key);
+            return;
+          }
         }
       }
     };
@@ -159,8 +174,14 @@ class CourseContentController {
     };
 
     this.nextStep = (iForm) => {
+
+      ContentFactory.beforeNextStepValidation();
+
       if ( iForm.$invalid && !this.isStepCompleted ) {
         this.goToFieldInError(iForm);
+      }
+      else if ( ContentFactory.isNextButtonPreSaveAction() ) {
+        ContentFactory.nextStepButtonPreSaveAction();
       }
       else if ( !this.isStepCompleted || this.skipShowingBanner ) {
         // First time user click on the button, display the green banner,
@@ -220,7 +241,7 @@ class CourseContentController {
           // Display error Banner for the user
           this.setBannerError();
 
-          // Save user input to locasl storage so we can restore fit when he refresh the page
+          // Save user input to local storage so we can restore fit when he refresh the page
           Utility.saveUserInputToLocalStorage(ContentFactory.getInputFields());
 
           $log.log('Error saving the current step. error=', error);

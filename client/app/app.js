@@ -261,9 +261,10 @@ let appModule = angular.module('app', [
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
       let error = trans.error();
 
-      if ( ( fromState === STATES.LOGIN ) &&
-        error.message === 'The transition has been superseded by a different transition' ) {
-        $log.log('Transition from login to another page has been superseded, this is normal as part of login process error=', error);
+      if ( error.message === 'The transition has been superseded by a different transition' ) {
+        // This error will be normal after the login if the user is redirected to another page than home
+        // or if the user clicks super fast on menu items, then we won't have time to load one step before the user request another one.
+        $log.log('Transition from login to another page has been superseded, this could be normal error=', error);
       }
       else if ( error.status === 401 ) {
         $log.warn(`$transitions.onError(matchFromAnyToParentWithMenu) - Error 401, user not authenticated or token expired, 

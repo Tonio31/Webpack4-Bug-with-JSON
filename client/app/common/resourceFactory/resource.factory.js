@@ -6,6 +6,7 @@ let ResourceFactory = function( $log,
                                 $state,
                                 $localStorage,
                                 $location,
+                                $httpParamSerializer,
                                 $window,
                                 User,
                                 STATES,
@@ -44,6 +45,7 @@ let ResourceFactory = function( $log,
         firstName: userData.data['first_name'], // eslint-disable-line dot-notation
         lastName: userData.data['last_name'], // eslint-disable-line dot-notation
         email: userData.data.email,
+        gender: userData.data.gender,
         company: userData.data.company,
         division: userData.data.division,
         cohort: userData.data.cohort,
@@ -138,15 +140,40 @@ let ResourceFactory = function( $log,
     return new ($resource(buildApiUrl('password/reset')))();
   };
 
+  // Used to save data for a step and mark the step as completed for the current user.
   let updateStep = () => {
     $log.log('updateStep()');
     return new ($resource(buildApiUrl('program_data')))();
   };
 
+  // Used to save data for a step without setting the step as completed
+  let partialUpdateStep = () => {
+    $log.log('partialUpdateStep()');
+    return new ($resource(buildApiUrl('partial_save')))();
+  };
+
   // The following is used by ViaSurvey module
-  let viaSurvey = (iEndPointApi) => {
-    $log.log('viaSurvey()  iEndPointApi=', iEndPointApi);
-    return new ($resource(`${WEBSITE_CONFIG.apiViaSurvey}${iEndPointApi}`))();
+  let viaSurvey = ( iApi ) => {
+    return new ($resource('', {}, {
+      register: {
+        method: 'POST',
+        url: `${WEBSITE_CONFIG.viaSurvey.api}RegisterUser`,
+        transformResponse: (userId) => {
+          return {
+            userId: userId
+          };
+        }
+      },
+      call: {
+        method: 'POST',
+        url: `${WEBSITE_CONFIG.viaSurvey.api}${iApi}`,
+        transformResponse: (response) => {
+          return {
+            data: angular.fromJson(response)
+          };
+        }
+      },
+    }))();
   };
 
   return {
@@ -158,6 +185,7 @@ let ResourceFactory = function( $log,
     getFriendSurveyContent,
     getParticipantDetails,
     updateStep,
+    partialUpdateStep,
     buildApiUrl,
     viaSurvey
   };

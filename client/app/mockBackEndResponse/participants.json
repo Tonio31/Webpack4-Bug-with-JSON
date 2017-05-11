@@ -2,10 +2,11 @@
   "success": true,
   "data": {
     "id": 4,
-    "email": "tonio.mandela@usertest.com",
-    "username": "",
+    "email": "tonio.mandela26@usertest.com",
+    "username": "tonio1234",
     "first_name": "tonio",
     "last_name": "mandela",
+    "gender": "M",
     "company": "Barclays",
     "division": "Sales",
     "cohort": "BAC001",
