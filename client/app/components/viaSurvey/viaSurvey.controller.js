@@ -378,7 +378,7 @@ class ViaSurveyController {
             label: answer.Text,
             value: answer.ChoiceID,
             sub_label: null, // eslint-disable-line camelcase
-            selected: true, // TODO change this to false as this pre-select the first item for every radio
+            selected: false,
             feedback: null
           };
 

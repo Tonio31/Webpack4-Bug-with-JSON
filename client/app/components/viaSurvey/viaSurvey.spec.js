@@ -26,6 +26,64 @@ describe('ViaSurvey', () => {
     }
   ];
 
+  let listQuestions = [
+    {
+      QuestionID: 11436,
+      QuestionNumber: 1,
+      Text: 'Being able to come up with new and different ideas is one of my strong points.',
+      AnswerChoices: [
+        {
+          ChoiceID: 274,
+          Text: 'Very Much Like Me'
+        },
+        {
+          ChoiceID: 275,
+          Text: 'Like Me'
+        },
+        {
+          ChoiceID: 276,
+          Text: 'Neutral'
+        },
+        {
+          ChoiceID: 277,
+          Text: 'Unlike Me'
+        },
+        {
+          ChoiceID: 278,
+          Text: 'Very Much Unlike Me'
+        }
+      ]
+    },
+    {
+      QuestionID: 11437,
+      QuestionNumber: 2,
+      Text: 'I have taken frequent stands in the face of strong opposition.',
+      AnswerChoices: [
+        {
+          ChoiceID: 274,
+          Text: 'Very Much Like Me'
+        },
+        {
+          ChoiceID: 275,
+          Text: 'Like Me'
+        },
+        {
+          ChoiceID: 276,
+          Text: 'Neutral'
+        },
+        {
+          ChoiceID: 277,
+          Text: 'Unlike Me'
+        },
+        {
+          ChoiceID: 278,
+          Text: 'Very Much Unlike Me'
+        }
+      ]
+    }
+  ];
+
+
   let blockBinding = {
     id: 30,
     type: 'static',
@@ -319,7 +377,7 @@ describe('ViaSurvey', () => {
       sinon.assert.calledWith(spies.contentFactory.updateInputFields, questionID, value);
     });
 
-    it('transformResultsToCheckBoxBlock() - get an object ready to be injected into radioBox component from a list of strengths', () => {
+    it('transformResultsToCheckBoxBlock() - get an object ready to be injected into checkbox component from a list of strengths', () => {
 
       let checkboxBlock = controller.transformResultsToCheckBoxBlock(listStrength);
       expect(checkboxBlock).to.deep.eq({
@@ -509,6 +567,114 @@ describe('ViaSurvey', () => {
       sinon.assert.notCalled(getQuestionsRequestSpy);
       sinon.assert.calledOnce(goToErrorStateSpy);
     });
+
+    it('transformQuestionsToRadioBlock() - get an object ready to be injected into radioBox component from a list of questions', () => {
+
+      let checkboxBlock = controller.transformQuestionsToRadioBlock(listQuestions);
+      expect(checkboxBlock).to.deep.eq([
+        {
+          id: 11436,
+          type: 'dynamic',
+          program_data_code: 11436,
+          data: {
+            config: {
+              required: true
+            },
+            label: '1: Being able to come up with new and different ideas is one of my strong points.',
+            placeholder: null,
+            name: 'Being able to come up with new and different ideas is one of my strong points.',
+            items: [
+              {
+                label: 'Very Much Like Me',
+                value: 274,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              },
+              {
+                label: 'Like Me',
+                value: 275,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              },
+              {
+                label: 'Neutral',
+                value: 276,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              },
+              {
+                label: 'Unlike Me',
+                value: 277,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              },
+              {
+                label: 'Very Much Unlike Me',
+                value: 278,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              }
+            ]
+          }
+        },
+        {
+          id: 11437,
+          type: 'dynamic',
+          program_data_code: 11437,
+          data: {
+            config: {
+              required: true
+            },
+            label: '2: I have taken frequent stands in the face of strong opposition.',
+            placeholder: null,
+            name: 'I have taken frequent stands in the face of strong opposition.',
+            items: [
+              {
+                label: 'Very Much Like Me',
+                value: 274,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              },
+              {
+                label: 'Like Me',
+                value: 275,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              },
+              {
+                label: 'Neutral',
+                value: 276,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              },
+              {
+                label: 'Unlike Me',
+                value: 277,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              },
+              {
+                label: 'Very Much Unlike Me',
+                value: 278,
+                sub_label: null,
+                selected: false,
+                feedback: null
+              }
+            ]
+          }
+        }
+      ]);
+    });
+
 
   });
 
