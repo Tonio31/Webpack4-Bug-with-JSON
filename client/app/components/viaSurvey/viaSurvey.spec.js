@@ -4,7 +4,7 @@ import ViaSurveyComponent from './viaSurvey.component';
 import ViaSurveyTemplate from './viaSurvey.html';
 
 describe('ViaSurvey', () => {
-  let $rootScope, $componentController, $compile, $q;
+  let $rootScope, $componentController, $q;
   let SPINNERS, STATES;
   let SpinnerFactory;
 
@@ -181,7 +181,6 @@ describe('ViaSurvey', () => {
   };
 
   beforeEach(window.module(ViaSurveyModule, ($provide) => {
-    // $provide.value('translateFilter', mockTranslateFilter );
     $provide.value('ContentFactory', mockContentFactory );
     $provide.value('Utility', mockUtility );
     $provide.value('Data', mockData );
@@ -191,7 +190,6 @@ describe('ViaSurvey', () => {
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
-    $compile = $injector.get('$compile');
     $q = $injector.get('$q');
     SpinnerFactory = $injector.get('SpinnerFactory');
     SPINNERS = $injector.get('SPINNERS');
@@ -674,21 +672,6 @@ describe('ViaSurvey', () => {
         }
       ]);
     });
-
-
-  });
-
-  describe('View', () => {
-    // view specs
-    let scope, template;
-
-    beforeEach(() => {
-      scope = $rootScope.$new();
-      template = $compile('<via-survey></via-survey>')(scope);
-      scope.$apply();
-    });
-
-
   });
 
   describe('Component', () => {
