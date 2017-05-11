@@ -105,7 +105,7 @@ class SpiderChartController {
                 .attr('class', function(d, i){
                   var p = getHorizontalPosition(i, 0.5);
                   return 'legend ' +
-                  ((p < 0.4) ? 'left' : ((p > 0.6) ? 'right' : 'middle'));
+                  ((p < 0.4) ? 'right' : ((p > 0.6) ? 'left' : 'middle'));
                 })
                 .attr('dy', function(d, i) {
                   var p = getVerticalPosition(i, 0.5);
