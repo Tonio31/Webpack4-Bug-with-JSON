@@ -11,7 +11,7 @@ import angularTranslateStorageCookie from 'angular-translate-storage-cookie';
 import angularTranslateLoaderStaticFiles from 'angular-translate-loader-static-files';
 import angularCookie from 'angular-cookies';
 
-import ChangeLanguageFactory from './changelanguage.factory.js';
+import ChangeLanguageFactory from './changeLanguage.factory.js';
 
 import localeEnglish from './languages/locale-en.json';
 import localeFrench from './languages/locale-fr.json';
