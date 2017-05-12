@@ -6,6 +6,9 @@ class GaugeChartController {
     $log = $log.getInstance( 'GaugeChartController' );
 
     $log.log('constructor - START');
+    this.formatLabel = () => {
+      return `${this.block.data.gauge.value}${this.block.data.gauge.suffix_label}`;
+    };
 
   }
 }
