@@ -291,8 +291,8 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
     $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
 
-    return error401;
-    // return [ 200, authenticate, {} ];
+    // return error401;
+    return [ 200, authenticate, {} ];
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('password/email')).respond( (method, url) => {

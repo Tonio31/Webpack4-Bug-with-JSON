@@ -22,6 +22,7 @@ class LoginController {
 
     this.invalidLogin = false;
 
+
     this.setInvalidLoginMessage = () => {
       this.invalidLogin = true;
       SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
@@ -93,33 +94,41 @@ class LoginController {
       checkUsernamePOSTRequest.user_login = this.username;
       // checkUsernamePOSTRequest.section = WEBSITE_CONFIG.OTHER_PL_SITES_API.change.checkUsernameApi;
       checkUsernamePOSTRequest.$check( (dataBackFromServer) => {
-        $log.log(`Username ${this.username} exists on http://change.potentialife.com/  dataBackFromServer=`, dataBackFromServer);
-
-        // User exists, check if the credentials are correct
-        let checkCredentialsPOSTRequest = Data.checkAuthOnChangePotentialife(WEBSITE_CONFIG.OTHER_PL_SITES_API.change.checkCredentialsApi);
-        checkCredentialsPOSTRequest.user_login = this.username;
-        checkCredentialsPOSTRequest.pass = this.password;
-        checkCredentialsPOSTRequest.$check( (dataBackFromServer) => {
-          if ( dataBackFromServer.hasOwnProperty('errors') && dataBackFromServer.errors.hasOwnProperty('incorrect_password') ) {
-            $log.log(`Username/password NOT valid on http://change.potentialife.com/  error=`, dataBackFromServer.errors.incorrect_password[0]);
-            this.setInvalidLoginMessage();
-          }
-          else if ( dataBackFromServer.hasOwnProperty('user') && dataBackFromServer.user === '1' ) {
-
-            $log.log(`Username/password valid on http://change.potentialife.com/  dataBackFromServer=`, dataBackFromServer);
-
-          }
-
-
-        },
-        (error) => {
-          // User exists on http://change.potentialife.com/ but login details are invalid
-          $log.log(`Unexpected error while checking username/password on http://change.potentialife.com/ error=`, error);
+        if ( dataBackFromServer.hasOwnProperty('status') && dataBackFromServer.status === 'not_found' ) {
+          $log.log(`Username '${this.username}' DOES NOT exists on http://change.potentialife.com/`);
           this.setInvalidLoginMessage();
-        });
+        }
+        else {
+
+          $log.log(`Username ${this.username} exists on http://change.potentialife.com/  dataBackFromServer=`, dataBackFromServer);
+
+          // User exists, check if the credentials are correct
+          let checkCredentialsPOSTRequest = Data.checkAuthOnChangePotentialife(WEBSITE_CONFIG.OTHER_PL_SITES_API.change.checkCredentialsApi);
+          checkCredentialsPOSTRequest.user_login = this.username;
+          checkCredentialsPOSTRequest.pass = this.password;
+          checkCredentialsPOSTRequest.$check( (dataBackFromServer) => {
+            if ( dataBackFromServer.hasOwnProperty('errors') && dataBackFromServer.errors.hasOwnProperty('incorrect_password') ) {
+              $log.log(`Username/password NOT valid on http://change.potentialife.com/  error=`, dataBackFromServer.errors.incorrect_password[0]);
+              this.setInvalidLoginMessage();
+            }
+            else if ( dataBackFromServer.hasOwnProperty('user') && dataBackFromServer.user === '1' ) {
+
+              $log.log(`Username/password valid on http://change.potentialife.com/  dataBackFromServer=`, dataBackFromServer);
+              $log.log(`this.testTonio=`, this.testTonio);
+              this.externalLogin = 'http://change.potentialife.com/wp-login.php';
+              this.testTonio.submit();
+            }
+
+
+          },
+          (error) => {
+            $log.log(`Unexpected error while checking username/password on http://change.potentialife.com/ error=`, error);
+            this.setInvalidLoginMessage();
+          });
+        }
       },
       (error) => {
-        $log.log(`Username ${this.username} DOES NOT exists on http://change.potentialife.com/  error=`, error);
+        $log.log(`Unexpected error while checking if username exist on http://change.potentialife.com/ error=`, error);
         this.setInvalidLoginMessage();
       });
     };

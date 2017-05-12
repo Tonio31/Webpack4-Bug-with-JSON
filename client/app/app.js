@@ -43,6 +43,8 @@ let appModule = angular.module('app', [
              $localStorageProvider,
              $urlRouterProvider,
              ZendeskWidgetProvider,
+             $sceDelegateProvider,
+             WEBSITE_CONFIG,
              STATES ) => {
     'ngInject';
 
@@ -83,6 +85,10 @@ let appModule = angular.module('app', [
     $qProvider.errorOnUnhandledRejections(false);
 
     $stateProviderRef = $stateProvider;
+
+    $sceDelegateProvider.resourceUrlWhitelist([
+      'http://change.potentialife.com/**'
+    ]);
   })
   // eslint-disable-next-line max-params
   .run( ( $rootScope,
