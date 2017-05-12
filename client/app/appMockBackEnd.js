@@ -56,6 +56,10 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(/(.*)\.mp4/).passThrough();
   $httpBackend.whenGET(/(.*)\.jpg/).passThrough();
 
+
+  $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/(.*)/).passThrough();
+  $httpBackend.whenPOST(/https:\/\/my\.potentialife\.com\/api\/(.*)/).passThrough();
+
   let menu = require('./mockBackEndResponse/menu-1.json');
 
   let authenticate = require('./mockBackEndResponse/authenticateResponse.json');
@@ -287,12 +291,8 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
     $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
 
-    let responseHeaders = {
-      status: 'ok'
-    };
-
-    // return error401;
-    return [ 200, authenticate, responseHeaders ];
+    return error401;
+    // return [ 200, authenticate, {} ];
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('password/email')).respond( (method, url) => {

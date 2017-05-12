@@ -8,7 +8,8 @@ class LoginController {
                JwtFactory,
                STATES,
                SpinnerFactory,
-               SPINNERS ) {
+               SPINNERS,
+               WEBSITE_CONFIG ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -20,6 +21,11 @@ class LoginController {
     this.showPassword = false;
 
     this.invalidLogin = false;
+
+    this.setInvalidLoginMessage = () => {
+      this.invalidLogin = true;
+      SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
+    };
 
     this.forgotCredentials = () => {
       $log.log('forgotCredentials()');
@@ -66,8 +72,13 @@ class LoginController {
         },
         (error) => {
           $log.error('error during authentification error=', error);
-          SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
-          this.invalidLogin = true;
+
+          // If we have an error during login, it might be because the credentials are wrong but
+          // it can also be because the user tries to log in on http://my.potentialife.com/ or
+          // on http://change.potentialife.com as this login page is used to login to the three application
+
+          // Check if user has valid credentials on http://change.potentialife.com
+          this.loginOnChangePotentialife();
         });
       }
       else {
@@ -75,6 +86,42 @@ class LoginController {
         $log.log('Login form is invalid');
       }
 
+    };
+
+    this.loginOnChangePotentialife = () => {
+      let checkUsernamePOSTRequest = Data.checkAuthOnChangePotentialife(WEBSITE_CONFIG.OTHER_PL_SITES_API.change.checkUsernameApi);
+      checkUsernamePOSTRequest.user_login = this.username;
+      // checkUsernamePOSTRequest.section = WEBSITE_CONFIG.OTHER_PL_SITES_API.change.checkUsernameApi;
+      checkUsernamePOSTRequest.$check( (dataBackFromServer) => {
+        $log.log(`Username ${this.username} exists on http://change.potentialife.com/  dataBackFromServer=`, dataBackFromServer);
+
+        // User exists, check if the credentials are correct
+        let checkCredentialsPOSTRequest = Data.checkAuthOnChangePotentialife(WEBSITE_CONFIG.OTHER_PL_SITES_API.change.checkCredentialsApi);
+        checkCredentialsPOSTRequest.user_login = this.username;
+        checkCredentialsPOSTRequest.pass = this.password;
+        checkCredentialsPOSTRequest.$check( (dataBackFromServer) => {
+          if ( dataBackFromServer.hasOwnProperty('errors') && dataBackFromServer.errors.hasOwnProperty('incorrect_password') ) {
+            $log.log(`Username/password NOT valid on http://change.potentialife.com/  error=`, dataBackFromServer.errors.incorrect_password[0]);
+            this.setInvalidLoginMessage();
+          }
+          else if ( dataBackFromServer.hasOwnProperty('user') && dataBackFromServer.user === '1' ) {
+
+            $log.log(`Username/password valid on http://change.potentialife.com/  dataBackFromServer=`, dataBackFromServer);
+
+          }
+
+
+        },
+        (error) => {
+          // User exists on http://change.potentialife.com/ but login details are invalid
+          $log.log(`Unexpected error while checking username/password on http://change.potentialife.com/ error=`, error);
+          this.setInvalidLoginMessage();
+        });
+      },
+      (error) => {
+        $log.log(`Username ${this.username} DOES NOT exists on http://change.potentialife.com/  error=`, error);
+        this.setInvalidLoginMessage();
+      });
     };
   }
 }
