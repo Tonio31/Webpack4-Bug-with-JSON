@@ -65,7 +65,7 @@ let appModule = angular.module('app', [
     $localStorageProvider.setKeyPrefix('pl2-');
 
     ZendeskWidgetProvider.init({
-      accountUrl: 'https://potentialifehelp.zendesk.com',
+      accountUrl: 'potentialifehelp.zendesk.com',
       beforePageLoad: function(zE) {
         zE.setHelpCenterSuggestions({ url: true });
         zE.hide();
