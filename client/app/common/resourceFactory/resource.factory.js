@@ -141,35 +141,20 @@ let ResourceFactory = function( $log,
   };
 
   // Will query http://change.potentialife.com/api/index_v2.php to get auth information
+  // @params: iWebsite - String (change | my)
   // @params: iTypeOfCheck - String (local.check_username_email | local.check_credentials | reset_pass_curl)
-  let checkAuthOnChangePotentialife = (iTypeOfCheck) => {
-    $log.log('checkAuthOnChangePotentialife()');
+  let checkAuthOnOtherPlWebsite = (iWebsite, iTypeOfCheck) => {
+    $log.log('checkAuthOnOtherPlWebsite() iWebsite=', iWebsite, '   iTypeOfCheck=', iTypeOfCheck);
     return new ($resource('', {}, {
       check: {
         method: 'POST',
         headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
-        url: WEBSITE_CONFIG.OTHER_PL_SITES_API.change.apiUrl,
+        url: WEBSITE_CONFIG.OTHER_PL_SITES_API[iWebsite].apiUrl,
         params: {
           section: iTypeOfCheck
         },
         transformRequest: function(data) {
           return $httpParamSerializer(data);
-        }
-      }
-    }))();
-  };
-
-  // Will query https://my.potentialife.com/api/index_v2.php to get auth information
-  // @params: iTypeOfCheck - String (local.check_username_email | local.check_credentials | reset_pass_curl)
-  let checkAuthOnMyPotentialife = (iTypeOfCheck, iUsername) => {
-    $log.log('checkAuthOnMyPotentialife()');
-    return new ($resource('', {}, {
-      check: {
-        method: 'POST',
-        url: WEBSITE_CONFIG.OTHER_PL_SITES_API.my.apiUrl,
-        params: {
-          section: iTypeOfCheck,
-          user_login: iUsername
         }
       }
     }))();
@@ -223,8 +208,7 @@ let ResourceFactory = function( $log,
     partialUpdateStep,
     buildApiUrl,
     viaSurvey,
-    checkAuthOnChangePotentialife,
-    checkAuthOnMyPotentialife
+    checkAuthOnOtherPlWebsite
   };
 };
 

@@ -61,13 +61,19 @@ let constantModule = angular.module('app.common.constant', [
       questionCount: 120
     },
     OTHER_PL_SITES_API: {
-      change: {
-        apiUrl: 'http://change.potentialife.com/api/index_v2.php',
+      api: {
         checkUsernameApi: 'local.check_username_email',
         checkCredentialsApi: 'local.check_credentials',
         resetPasswordApi: 'reset_pass_curl',
       },
-      my: 'https://my.potentialife.com/api/index_v2.php'
+      change: {
+        apiUrl: 'http://change.potentialife.com/api/index_v2.php',
+        loginUrl: 'http://change.potentialife.com/wp-login.php'
+      },
+      my: {
+        apiUrl: 'https://my.potentialife.com/api/index_v2.php',
+        loginUrl: 'https://my.potentialife.com/wp-login.php'
+      },
     }
   })
 .name;

@@ -62,7 +62,7 @@
 
 
 
-  <form action="http://change.potentialife.com/wp-login.php" method="post" name="$ctrl.testTonio" id="auto_log">
+  <form pl-submit="$ctrl.triggerSubmitFrom" action="{{$ctrl.externalWebsite}}" method="post" name="goToOtherPlWebsites" id="auto_log">
     <input type="hidden" name="log" size="20" value="{{$ctrl.username}}"/>
     <input type="hidden" name="pwd" size="20" value="{{$ctrl.password}}"/>
   </form>

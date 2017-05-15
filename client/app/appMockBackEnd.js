@@ -57,8 +57,6 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(/(.*)\.jpg/).passThrough();
 
 
-  $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/(.*)/).passThrough();
-  $httpBackend.whenPOST(/https:\/\/my\.potentialife\.com\/api\/(.*)/).passThrough();
 
   let menu = require('./mockBackEndResponse/menu-1.json');
 
@@ -291,9 +289,23 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
     $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
 
-    // return error401;
-    return [ 200, authenticate, {} ];
+    return error401;
+    // return [ 200, authenticate, {} ];
   });
+
+
+  $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/(.*)/).passThrough();
+  $httpBackend.whenPOST(/https:\/\/my\.potentialife\.com\/api\/(.*)/).passThrough();
+  // $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/index_v2\.php\?section=local\.check_username_email(.*)/).respond( (method, url, data, headers) => {
+  //
+  //   let notFound = {
+  //     status: 'not_found'
+  //   };
+  //
+  //   return [ 200, notFound, {} ];
+  // });
+
+
 
   $httpBackend.whenPOST(Data.buildApiUrl('password/email')).respond( (method, url) => {
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
