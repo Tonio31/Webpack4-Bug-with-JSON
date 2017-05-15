@@ -15,8 +15,8 @@ class LoginController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'LoginController' );
 
-    this.username = 'admin';
-    this.password = 'P0tifeL0Pass123!';
+    this.username = '';
+    this.password = '';
     this.keepLoggedIn = false;
     this.showPassword = false;
 
