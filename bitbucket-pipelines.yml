@@ -13,3 +13,4 @@ pipelines:
           - npm run build
           - npm run setKarmaGlobals -- --browser PhantomJS
           - npm run test/phantomjs --silent
+          - npm version patch
