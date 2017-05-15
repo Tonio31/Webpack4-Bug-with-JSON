@@ -29,7 +29,7 @@ class LoginController {
     this.forceTargetWebsite = 'program';
     this.$onInit = () => {
       $log.log('$onInit - START');
-      if ( $stateParams.hasOwnProperty('target') ) {
+      if ( angular.isDefined($stateParams.target) ) {
         this.forceTargetWebsite = $stateParams.target;
       }
     };

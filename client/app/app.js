@@ -93,7 +93,6 @@ let appModule = angular.module('app', [
       WEBSITE_CONFIG.OTHER_PL_SITES_API.my.loginUrl
     ]);
   })
-  // eslint-disable-next-line max-params
   .run( ( $rootScope,
           $log,
           $q,

@@ -71,7 +71,7 @@ let UtilityFactory = function( $log,
     checkUsernamePOSTRequest.user_login = iUserEmail; // eslint-disable-line camelcase
     checkUsernamePOSTRequest.$check( (dataBackFromServer) => {
       if (dataBackFromServer.hasOwnProperty('status') && dataBackFromServer.status === 'ok') {
-        $log.log(`Username ${iUserEmail} exists on ${apiUrl}  dataBackFromServer=`, dataBackFromServer);
+        $log.log(`Username ${iUserEmail} exists on ${apiUrl}  dataBackFomServer=`, dataBackFromServer);
         deferred.resolve(firstWebsiteToCheck);
       }
       else {

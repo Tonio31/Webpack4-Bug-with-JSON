@@ -1,9 +1,7 @@
 class CourseContentController {
 
-  // eslint-disable-next-line max-params
   constructor( $log,
                $filter,
-               $location,
                $window,
                $anchorScroll,
                $state,

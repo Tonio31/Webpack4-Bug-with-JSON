@@ -172,7 +172,7 @@ module.exports = exports = {
       "ignoreComments": true
     }],
     "max-nested-callbacks": [WARN, 8],
-    "max-params": [WARN, 10],
+    "max-params": OFF,
     "new-cap": WARN,
     "new-parens": WARN,
     "no-array-constructor": WARN,

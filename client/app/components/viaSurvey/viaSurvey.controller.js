@@ -1,5 +1,4 @@
 class ViaSurveyController {
-  // eslint-disable-next-line max-params
   constructor( $log,
                $q,
                $state,

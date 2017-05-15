@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-params
 let ResourceFactory = function( $log,
                                 $q,
                                 $resource,
