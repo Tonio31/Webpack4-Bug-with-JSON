@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-params
 let ResourceFactory = function( $log,
                                 $q,
                                 $resource,
@@ -140,6 +139,26 @@ let ResourceFactory = function( $log,
     return new ($resource(buildApiUrl('password/reset')))();
   };
 
+  // Will query http://change.potentialife.com/api/index_v2.php to get auth information
+  // @params: iWebsite - String (change | my)
+  // @params: iTypeOfCheck - String (local.check_username_email | local.check_credentials | reset_pass_curl)
+  let checkAuthOnOtherPlWebsite = (iWebsite, iTypeOfCheck) => {
+    $log.log('checkAuthOnOtherPlWebsite() iWebsite=', iWebsite, '   iTypeOfCheck=', iTypeOfCheck);
+    return new ($resource('', {}, {
+      check: {
+        method: 'POST',
+        headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
+        url: WEBSITE_CONFIG.OTHER_PL_SITES_API[iWebsite].apiUrl,
+        params: {
+          section: iTypeOfCheck
+        },
+        transformRequest: function(data) {
+          return $httpParamSerializer(data);
+        }
+      }
+    }))();
+  };
+
   // Used to save data for a step and mark the step as completed for the current user.
   let updateStep = () => {
     $log.log('updateStep()');
@@ -187,7 +206,8 @@ let ResourceFactory = function( $log,
     updateStep,
     partialUpdateStep,
     buildApiUrl,
-    viaSurvey
+    viaSurvey,
+    checkAuthOnOtherPlWebsite
   };
 };
 

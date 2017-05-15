@@ -1,4 +1,11 @@
-let UtilityFactory = function( $log, $q, $state, $window, $localStorage, User ) {
+let UtilityFactory = function( $log,
+                               $q,
+                               $state,
+                               $window,
+                               $localStorage,
+                               Data,
+                               User,
+                               WEBSITE_CONFIG ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -46,12 +53,59 @@ let UtilityFactory = function( $log, $q, $state, $window, $localStorage, User ) 
   };
 
 
+  let getUserTargetWebsite = (iUserEmail, iTargetWebsiteList) => {
+
+    let deferred = $q.defer();
+
+    let otherWebsitesToLoginIn = [];
+    Object.assign(otherWebsitesToLoginIn, iTargetWebsiteList);
+    let firstWebsiteToCheck = otherWebsitesToLoginIn[0];
+    otherWebsitesToLoginIn.shift();
+
+
+    let apiUrl = WEBSITE_CONFIG.OTHER_PL_SITES_API[firstWebsiteToCheck].apiUrl;
+    $log.log(`getUserTargetWebsite() - is user defined on ${apiUrl} iUserEmail=`, iUserEmail, '  iTargetWebsiteList=', iTargetWebsiteList);
+
+    let checkUserNameApi = WEBSITE_CONFIG.OTHER_PL_SITES_API.api.checkUsernameApi;
+    let checkUsernamePOSTRequest = Data.checkAuthOnOtherPlWebsite(firstWebsiteToCheck, checkUserNameApi);
+    checkUsernamePOSTRequest.user_login = iUserEmail; // eslint-disable-line camelcase
+    checkUsernamePOSTRequest.$check( (dataBackFromServer) => {
+      if (dataBackFromServer.hasOwnProperty('status') && dataBackFromServer.status === 'ok') {
+        $log.log(`Username ${iUserEmail} exists on ${apiUrl}  dataBackFomServer=`, dataBackFromServer);
+        deferred.resolve(firstWebsiteToCheck);
+      }
+      else {
+        $log.log(`Username '${iUserEmail}' DOES NOT exists on ${apiUrl} - status=${dataBackFromServer.status}`);
+        if (otherWebsitesToLoginIn.length > 0) {
+          $log.log(`otherWebsitesToLoginIn.length > 0     otherWebsitesToLoginIn=`, otherWebsitesToLoginIn);
+          getUserTargetWebsite(iUserEmail, otherWebsitesToLoginIn).then( (targetWebsite) => {
+            deferred.resolve(targetWebsite);
+          },
+          (error) => {
+            deferred.reject(error);
+          });
+        }
+        else {
+          $log.log(`User/Emil ${iUserEmail} does not exist anywhere`);
+          deferred.reject('User/Email does not exist');
+        }
+      }
+    },
+    (error) => {
+      $log.log(`Unexpected error while checking if username exist on ${apiUrl} error=`, error);
+      deferred.reject(error);
+    });
+
+    return deferred.promise;
+  };
+
   return {
     saveUserInputToLocalStorage,
     getUserInputFromLocalStorage,
     removeUserInputFromLocalStorage,
     buildLocalStorageKey,
-    goToLink
+    goToLink,
+    getUserTargetWebsite
   };
 };
 

@@ -43,6 +43,8 @@ let appModule = angular.module('app', [
              $localStorageProvider,
              $urlRouterProvider,
              ZendeskWidgetProvider,
+             $sceDelegateProvider,
+             WEBSITE_CONFIG,
              STATES ) => {
     'ngInject';
 
@@ -83,8 +85,14 @@ let appModule = angular.module('app', [
     $qProvider.errorOnUnhandledRejections(false);
 
     $stateProviderRef = $stateProvider;
+
+    // The login page of this website can log user in 2 other different website, we need to whitelist the other website
+    // in order to submit the hidden form (name="goToOtherPlWebsites") that allows login on the other website
+    $sceDelegateProvider.resourceUrlWhitelist([
+      WEBSITE_CONFIG.OTHER_PL_SITES_API.change.loginUrl,
+      WEBSITE_CONFIG.OTHER_PL_SITES_API.my.loginUrl
+    ]);
   })
-  // eslint-disable-next-line max-params
   .run( ( $rootScope,
           $log,
           $q,
@@ -334,13 +342,16 @@ let appModule = angular.module('app', [
       // If the user access the URL login ('/login'), we should not redirect him to the login page
       // after he logged in (infinite loop), hence the below check
       let firstStateRequested = STATES.HOME;
-      if ( $location.url() !== $state.get(STATES.HOME).url &&
-        $location.url() !== $state.get(STATES.LOGIN).url ) {
-        firstStateRequested = $location.url();
+      if ( $location.path() !== $state.get(STATES.HOME).url &&
+        $location.path() !== $state.get(STATES.LOGIN).url ) {
+        firstStateRequested = $location.path();
       }
 
       $log.log(`User Auth expired, go to login, stateToRedirect=${firstStateRequested}`);
-      $state.go(STATES.LOGIN, { stateToRedirect: firstStateRequested });
+      $state.go(STATES.LOGIN, {
+        stateToRedirect: firstStateRequested,
+        target: $location.search().target
+      });
     }
 
     $log.log('END');

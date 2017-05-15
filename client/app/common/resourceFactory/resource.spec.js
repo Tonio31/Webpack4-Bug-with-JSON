@@ -199,6 +199,31 @@ describe('Resource', () => {
 
       done();
     }));
+
+    it('checkAuthOnOtherPlWebsite() return a promise', sinon.test( (done) => {
+
+      let websiteToTarget = 'my';
+
+      let urlToMAtch = `${WEBSITE_CONFIG.OTHER_PL_SITES_API[websiteToTarget].apiUrl}(.*)`;
+      $httpBackend.whenPOST(new RegExp(urlToMAtch)).respond( () => {
+        return [ 200, {}, {} ];
+      });
+
+      let checkAuth = Data.checkAuthOnOtherPlWebsite(websiteToTarget, WEBSITE_CONFIG.OTHER_PL_SITES_API.api.checkUsernameApi);
+
+      checkAuth.$check( () => {
+        assert(true, 'Positive response form the back end');
+        done();
+      })
+        .catch( () => {
+          assert.fail(0, 1, 'We should not return an error if the server returns positive response');
+          done();
+        });
+
+      $httpBackend.flush();
+
+      done();
+    }));
   });
 
 

@@ -1,8 +1,8 @@
 import UtilityModule from './utility';
 
 describe('Utility', () => {
-  let $state, $window;
-  let Utility;
+  let $state, $window, $rootScope;
+  let Utility, Data;
   let goSpy, openSpy;
 
   let sandbox = sinon.sandbox.create();
@@ -29,7 +29,9 @@ describe('Utility', () => {
   beforeEach(inject(($injector) => {
     $state = $injector.get('$state');
     Utility = $injector.get('Utility');
+    Data = $injector.get('Data');
     $window = $injector.get('$window');
+    $rootScope = $injector.get('$rootScope');
 
     openSpy = sandbox.stub($window, 'open');
     goSpy = sandbox.spy($state, 'go');
@@ -97,6 +99,70 @@ describe('Utility', () => {
       expect(mockLocalStorage).to.deep.eq({});
     });
 
+    it("getUserTargetWebsite() - auth succeed on 'my'", sinon.test( (done) => {
+
+      let authDataBackFromServer = {
+        status: 'ok'
+      };
+
+      let checkAuthOnOtherPlWebsitePOST = {
+        $check: (callback) => {
+          return callback(authDataBackFromServer);
+        }
+      };
+
+      sinon.stub(Data, 'checkAuthOnOtherPlWebsite', () => {
+        return checkAuthOnOtherPlWebsitePOST;
+      });
+
+      Utility.getUserTargetWebsite('user@email.com', ['my', 'change']).then( (websiteToTarget) => {
+        expect(websiteToTarget).to.equal('my');
+        done();
+      },
+      () => {
+        assert.fail(0, 1, 'We should not return an error if the server status:ok');
+        done();
+      });
+      $rootScope.$digest();
+    }));
+
+    it("getUserTargetWebsite() - auth failed on 'my' but succeed on 'change'", sinon.test( (done) => {
+
+      let authUserNotFoundReply = {
+        status: 'User not found'
+      };
+
+      let checkAuthPOSTReplyUserNotFound = {
+        $check: (callback) => {
+          return callback(authUserNotFoundReply);
+        }
+      };
+
+
+      let authUserFoundReply = {
+        status: 'ok'
+      };
+
+      let checkAuthPOSTReplyUserFound = {
+        $check: (callback) => {
+          return callback(authUserFoundReply);
+        }
+      };
+
+      let checkAuthOnOtherPlWebsiteSpy = sinon.stub(Data, 'checkAuthOnOtherPlWebsite');
+      checkAuthOnOtherPlWebsiteSpy.onFirstCall().returns(checkAuthPOSTReplyUserNotFound);
+      checkAuthOnOtherPlWebsiteSpy.onSecondCall().returns(checkAuthPOSTReplyUserFound);
+
+      Utility.getUserTargetWebsite('user@email.com', ['my', 'change']).then( (websiteToTarget) => {
+        expect(websiteToTarget).to.equal('change');
+        done();
+      },
+      () => {
+        assert.fail(0, 1, 'We should not return an error if the server status:ok');
+        done();
+      });
+      $rootScope.$digest();
+    }));
   });
 
 });

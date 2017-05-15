@@ -59,6 +59,21 @@ let constantModule = angular.module('app.common.constant', [
       appKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4',
       surveyID: 86,
       questionCount: 120
+    },
+    OTHER_PL_SITES_API: {
+      api: {
+        checkUsernameApi: 'local.check_username_email',
+        checkCredentialsApi: 'local.check_credentials',
+        resetPasswordApi: 'reset_pass_curl',
+      },
+      change: {
+        apiUrl: 'http://change.potentialife.com/api/index_v2.php',
+        loginUrl: 'http://change.potentialife.com/wp-login.php'
+      },
+      my: {
+        apiUrl: 'https://my.potentialife.com/api/index_v2.php',
+        loginUrl: 'https://my.potentialife.com/wp-login.php'
+      },
     }
   })
 .name;
