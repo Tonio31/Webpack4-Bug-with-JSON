@@ -6,8 +6,12 @@ import LoginTemplate from './login.html';
 describe('Login', () => {
   let $rootScope, $state, $componentController, $compile, $window, $q;
 
-  let Data, STATES;
+  let SpinnerFactory, Data, STATES, SPINNERS, WEBSITE_CONFIG;
   let goFn;
+
+  let spies = {
+    spinnerFactory: {}
+  };
 
   let formLogin = {
     $valid: true
@@ -17,8 +21,15 @@ describe('Login', () => {
     return value;
   };
 
+  let mockUtility = {
+    getUserTargetWebsite: () => {
+      return $q.resolve('my');
+    }
+  };
+
   beforeEach(window.module(LoginModule, ($provide) => {
     $provide.value('translateFilter', mockTranslateFilter );
+    $provide.value('Utility', mockUtility );
   }));
 
   beforeEach(inject(($injector) => {
@@ -29,7 +40,10 @@ describe('Login', () => {
     $compile = $injector.get('$compile');
     $window = $injector.get('$window');
     Data = $injector.get('Data');
+    SpinnerFactory = $injector.get('SpinnerFactory');
     STATES = $injector.get('STATES');
+    SPINNERS = $injector.get('SPINNERS');
+    WEBSITE_CONFIG = $injector.get('WEBSITE_CONFIG');
 
     goFn = sinon.stub($state, 'go');
 
@@ -53,7 +67,16 @@ describe('Login', () => {
       });
     });
 
-    it('change state when we click on Forgot Login Details', () => {
+    it('setInvalidLoginMessage() - change state when we click on Forgot Login Details', sinon.test( () => {
+
+      spies.spinnerFactory.hide = sinon.spy(SpinnerFactory, 'hide');
+
+      controller.setInvalidLoginMessage();
+      expect(controller.invalidLogin).to.eq(true);
+      sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.TOP_LEVEL);
+    }));
+
+    it('forgotCredentials() - change state when we click on Forgot Login Details', () => {
       controller.forgotCredentials();
 
       sinon.assert.calledWith(goFn, STATES.RETRIEVE_CREDENTIALS);
@@ -90,7 +113,7 @@ describe('Login', () => {
       sinon.assert.calledWith(goFn, STATES.HOME, { forceRedirect: stateParams.stateToRedirect });
     });
 
-    it('sends an authentication request but dont change state if it fails', () => {
+    it('loginOnOtherPlWebsite() - auth request fail on program but succeed on my', sinon.test(() => {
 
       let authPOSTRequestResourceFail = {
         $save: (callback, callbackError) => {
@@ -108,7 +131,27 @@ describe('Login', () => {
       expect(authPOSTRequestResourceFail.password).to.equal(controller.password);
 
       sinon.assert.callCount(goFn, 0);
-    });
+
+
+
+      let authOK = {
+        user: '1'
+      };
+
+      let checkAuthPOSTReplyOk = {
+        $check: (callback) => {
+          return callback(authOK);
+        }
+      };
+
+      let checkAuthOnOtherPlWebsiteSpy = sinon.stub(Data, 'checkAuthOnOtherPlWebsite');
+      checkAuthOnOtherPlWebsiteSpy.onFirstCall().returns(checkAuthPOSTReplyOk);
+
+      $rootScope.$digest();
+
+      expect(controller.triggerSubmitFrom).to.eq(true);
+      expect(controller.externalWebsite).to.eq(WEBSITE_CONFIG.OTHER_PL_SITES_API.my.loginUrl);
+    }));
 
   });
 

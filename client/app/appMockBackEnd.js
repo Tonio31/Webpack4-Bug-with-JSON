@@ -55,7 +55,8 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenGET(/(.*)\.mp4/).passThrough();
   $httpBackend.whenGET(/(.*)\.jpg/).passThrough();
-  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
+
+
 
   let menu = require('./mockBackEndResponse/menu-1.json');
 
@@ -329,6 +330,57 @@ angular.module( 'appMockBackEnd', [
 
     // return error500;
     return [ 200, participant, {} ];
+  });
+
+  $httpBackend.whenPOST(Data.buildApiUrl('partial_save')).respond( (method, url) => {
+    $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
+
+    return [ 200, {}, {} ];
+  });
+
+  // Uncomment the line bellow to interact with the server
+  // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
+  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
+    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
+    let reply = '';
+    if ( url.includes('RegisterUser') ) {
+      $log.log('Register User, replying with an error');
+      reply = require('./mockBackEndResponse/viaSurvey/RegisterUser.html');
+      return [ 500, reply, {}, 'You have already registered a user with this email address' ];
+    }
+    else if ( url.includes('LoginUser') ) {
+      reply = '"276d51d7-10bf-4ff6-b5fe-9d0cd3ac5b3a"';
+      $log.log(`LoginUser, replying with login key: ${reply}`);
+      return [ 200, reply, {} ];
+    }
+    else if ( url.includes('StartSurvey') ) {
+      reply = '"872546c2-2a9b-4df2-8966-e2ba661163a2"';
+      $log.log(`StartSurvey, replying with session key: ${reply}`);
+      return [ 200, reply, {} ];
+    }
+    else if ( url.includes('GetQuestions') ) {
+      $log.log('GetQuestions, replying with the list of questions');
+      reply = require('./mockBackEndResponse/viaSurvey/GetQuestions.json');
+      return [ 200, reply, {} ];
+    }
+    else if ( url.includes('SubmitAnswers') ) {
+      let dataObject = angular.fromJson(data);
+      if ( dataObject.answers.length === 120 ) {
+        reply = '"true"';
+      }
+      else {
+        reply = '"false"';
+      }
+      $log.log(`SubmitAnswers, replying with ${reply} `);
+      return [ 200, reply, {} ];
+    }
+    else if ( url.includes('GetResults') ) {
+      $log.log('GetResults, replying with the list of 24 strengths');
+      reply = require('./mockBackEndResponse/viaSurvey/GetResults.json');
+      return [ 200, reply, {} ];
+    }
+
+    return error500;
   });
 
 });

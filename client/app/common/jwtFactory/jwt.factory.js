@@ -1,4 +1,9 @@
-let JwtFactory = function($log, $window, $localStorage, $location, TOKEN, USER_ID) {
+let JwtFactory = function( $log,
+                           $window,
+                           $localStorage,
+                           $location,
+                           TOKEN,
+                           USER_ID ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -73,7 +78,6 @@ let JwtFactory = function($log, $window, $localStorage, $location, TOKEN, USER_I
 
     return returnValue;
   };
-
 
   return {
     saveToken,

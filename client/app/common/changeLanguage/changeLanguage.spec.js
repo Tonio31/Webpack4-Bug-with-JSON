@@ -29,11 +29,6 @@ describe('ChangeLanguage', () => {
       spyTranslate = sinon.spy($translate, 'use');
     });
 
-    it('has a name property', () => {
-      expect(controller).to.have.property('name');
-    });
-
-
     it('Calls $translate.use() when invoking changeLang function', () => {
       let lang = 'en';
       controller.changeLang('en');

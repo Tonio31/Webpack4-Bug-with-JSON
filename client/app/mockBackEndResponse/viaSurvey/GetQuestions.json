@@ -1,0 +1,3242 @@
+[
+  {
+    "QuestionID": 11436,
+    "QuestionNumber": 1,
+    "Text": "Being able to come up with new and different ideas is one of my strong points.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11437,
+    "QuestionNumber": 2,
+    "Text": "I have taken frequent stands in the face of strong opposition.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11438,
+    "QuestionNumber": 3,
+    "Text": "I never quit a task before it is done.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11439,
+    "QuestionNumber": 4,
+    "Text": "I always keep my promises.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11440,
+    "QuestionNumber": 5,
+    "Text": "I have no trouble eating healthy foods.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11441,
+    "QuestionNumber": 6,
+    "Text": "I always look on the bright side.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11442,
+    "QuestionNumber": 7,
+    "Text": "I am a spiritual person.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11443,
+    "QuestionNumber": 8,
+    "Text": "I know how to handle myself in different social situations.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11444,
+    "QuestionNumber": 9,
+    "Text": "I always finish what I start.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11445,
+    "QuestionNumber": 10,
+    "Text": "I really enjoy doing small favors for friends.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11446,
+    "QuestionNumber": 11,
+    "Text": "There are people in my life who care as much about my feelings and well-being as they do about their own.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11447,
+    "QuestionNumber": 12,
+    "Text": "As a leader, I treat everyone equally well regardless of his or her experience.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11448,
+    "QuestionNumber": 13,
+    "Text": "Even when candy or cookies are under my nose, I never overeat.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11449,
+    "QuestionNumber": 14,
+    "Text": "I practice my religion.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11450,
+    "QuestionNumber": 15,
+    "Text": "I rarely hold a grudge.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11451,
+    "QuestionNumber": 16,
+    "Text": "I am always busy with something interesting.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11452,
+    "QuestionNumber": 17,
+    "Text": "I am thrilled when I learn something new.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11453,
+    "QuestionNumber": 18,
+    "Text": "I like to think of new ways to do things.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11454,
+    "QuestionNumber": 19,
+    "Text": "No matter what the situation, I am able to fit in.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11455,
+    "QuestionNumber": 20,
+    "Text": "I never hesitate to publicly express an unpopular opinion.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11456,
+    "QuestionNumber": 21,
+    "Text": "I believe honesty is the basis for trust.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11457,
+    "QuestionNumber": 22,
+    "Text": "I go out of my way to cheer up people who appear down.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11458,
+    "QuestionNumber": 23,
+    "Text": "I treat all people equally regardless of who they might be.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11459,
+    "QuestionNumber": 24,
+    "Text": "One of my strengths is helping a group of people work well together even when they have their differences.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11460,
+    "QuestionNumber": 25,
+    "Text": "I am a highly disciplined person.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11461,
+    "QuestionNumber": 26,
+    "Text": "I always think before I speak.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11462,
+    "QuestionNumber": 27,
+    "Text": "I experience deep emotions when I see beautiful things.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11463,
+    "QuestionNumber": 28,
+    "Text": "At least once a day, I stop and count my blessings.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11464,
+    "QuestionNumber": 29,
+    "Text": "Despite challenges, I always remain hopeful about the future.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11465,
+    "QuestionNumber": 30,
+    "Text": "My faith never deserts me during hard times.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11466,
+    "QuestionNumber": 31,
+    "Text": "I do not act as if I am a special person.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11467,
+    "QuestionNumber": 32,
+    "Text": "I welcome the opportunity to brighten someone else\u0027s day with laughter.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11468,
+    "QuestionNumber": 33,
+    "Text": "I never seek vengeance.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11469,
+    "QuestionNumber": 34,
+    "Text": "I value my ability to think critically.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11470,
+    "QuestionNumber": 35,
+    "Text": "I have the ability to make other people feel interesting.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11471,
+    "QuestionNumber": 36,
+    "Text": "I must stand up for what I believe even if there are negative results.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11472,
+    "QuestionNumber": 37,
+    "Text": "I finish things despite obstacles in the way.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11473,
+    "QuestionNumber": 38,
+    "Text": "I love to make other people happy.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11474,
+    "QuestionNumber": 39,
+    "Text": "I am the most important person in someone else\u0027s life.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11475,
+    "QuestionNumber": 40,
+    "Text": "I work at my very best when I am a group member.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11476,
+    "QuestionNumber": 41,
+    "Text": "Everyone\u0027s rights are equally important to me.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11477,
+    "QuestionNumber": 42,
+    "Text": "I see beauty that other people pass by without noticing.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11478,
+    "QuestionNumber": 43,
+    "Text": "I have a clear picture in my mind about what I want to happen in the future.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11479,
+    "QuestionNumber": 44,
+    "Text": "I never brag about my accomplishments.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11480,
+    "QuestionNumber": 45,
+    "Text": "I try to have fun in all kinds of situations.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11481,
+    "QuestionNumber": 46,
+    "Text": "I love what I do.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11482,
+    "QuestionNumber": 47,
+    "Text": "I am excited by many different activities.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11483,
+    "QuestionNumber": 48,
+    "Text": "I am a true life-long learner.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11484,
+    "QuestionNumber": 49,
+    "Text": "I am always coming up with new ways to do things.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11485,
+    "QuestionNumber": 50,
+    "Text": "People describe me as \"wise beyond my years.\"",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11486,
+    "QuestionNumber": 51,
+    "Text": "My promises can be trusted.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11487,
+    "QuestionNumber": 52,
+    "Text": "I give everyone a chance.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11488,
+    "QuestionNumber": 53,
+    "Text": "To be an effective leader, I treat everyone the same.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11489,
+    "QuestionNumber": 54,
+    "Text": "I never want things that are bad for me in the long run, even if they make me feel good in the short run.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11490,
+    "QuestionNumber": 55,
+    "Text": "I have often been left speechless by the beauty depicted in a movie.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11491,
+    "QuestionNumber": 56,
+    "Text": "I am an extremely grateful person.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11492,
+    "QuestionNumber": 57,
+    "Text": "I try to add some humor to whatever I do.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11493,
+    "QuestionNumber": 58,
+    "Text": "I look forward to each new day.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11494,
+    "QuestionNumber": 59,
+    "Text": "I believe it is best to forgive and forget.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11495,
+    "QuestionNumber": 60,
+    "Text": "I have many interests.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11496,
+    "QuestionNumber": 61,
+    "Text": "When the topic calls for it, I can be a highly rational thinker.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11497,
+    "QuestionNumber": 62,
+    "Text": "My friends say that I have lots of new and different ideas.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11498,
+    "QuestionNumber": 63,
+    "Text": "I am always able to look at things and see the big picture.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11499,
+    "QuestionNumber": 64,
+    "Text": "I always stand up for my beliefs.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11500,
+    "QuestionNumber": 65,
+    "Text": "I do not give up.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11501,
+    "QuestionNumber": 66,
+    "Text": "I am true to my own values.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11502,
+    "QuestionNumber": 67,
+    "Text": "I always feel the presence of love in my life.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11503,
+    "QuestionNumber": 68,
+    "Text": "I can always stay on a diet.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11504,
+    "QuestionNumber": 69,
+    "Text": "I think through the consequences every time before I act.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11505,
+    "QuestionNumber": 70,
+    "Text": "I am always aware of the natural beauty in the environment.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11506,
+    "QuestionNumber": 71,
+    "Text": "My faith makes me who I am.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11507,
+    "QuestionNumber": 72,
+    "Text": "I have lots of energy.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11508,
+    "QuestionNumber": 73,
+    "Text": "I can find something of interest in any situation.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11509,
+    "QuestionNumber": 74,
+    "Text": "I read all of the time.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11510,
+    "QuestionNumber": 75,
+    "Text": "Thinking things through is part of who I am.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11511,
+    "QuestionNumber": 76,
+    "Text": "I am an original thinker.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11512,
+    "QuestionNumber": 77,
+    "Text": "I am good at sensing what other people are feeling.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11513,
+    "QuestionNumber": 78,
+    "Text": "I have a mature view on life.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11514,
+    "QuestionNumber": 79,
+    "Text": "I am as excited about the good fortune of others as I am about my own.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11515,
+    "QuestionNumber": 80,
+    "Text": "I can express love to someone else.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11516,
+    "QuestionNumber": 81,
+    "Text": "Without exception, I support my teammates or fellow group members.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11517,
+    "QuestionNumber": 82,
+    "Text": "My friends always tell me I am a strong but fair leader.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11518,
+    "QuestionNumber": 83,
+    "Text": "I always keep straight right from wrong.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11519,
+    "QuestionNumber": 84,
+    "Text": "I feel thankful for what I have received in life.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11520,
+    "QuestionNumber": 85,
+    "Text": "I know that I will succeed with the goals I set for myself.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11521,
+    "QuestionNumber": 86,
+    "Text": "I rarely call attention to myself.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11522,
+    "QuestionNumber": 87,
+    "Text": "I have a great sense of humor.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11523,
+    "QuestionNumber": 88,
+    "Text": "I rarely try to get even.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11524,
+    "QuestionNumber": 89,
+    "Text": "I always weigh the pro\u0027s and con\u0027s.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11525,
+    "QuestionNumber": 90,
+    "Text": "I stick with whatever I decide to do.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11526,
+    "QuestionNumber": 91,
+    "Text": "I enjoy being kind to others.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11527,
+    "QuestionNumber": 92,
+    "Text": "I can accept love from others.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11528,
+    "QuestionNumber": 93,
+    "Text": "Even if I disagree with them, I always respect the leaders of my group.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11529,
+    "QuestionNumber": 94,
+    "Text": "Even if I do not like someone, I treat him or her fairly.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11530,
+    "QuestionNumber": 95,
+    "Text": "As a leader, I try to make all group members happy.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11531,
+    "QuestionNumber": 96,
+    "Text": "I am a very careful person.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11532,
+    "QuestionNumber": 97,
+    "Text": "I am in awe of simple things in life that others might take for granted",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11533,
+    "QuestionNumber": 98,
+    "Text": "When I look at my life, I find many things to be grateful for.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11534,
+    "QuestionNumber": 99,
+    "Text": "I have been told that modesty is one of my most notable characteristics.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11535,
+    "QuestionNumber": 100,
+    "Text": "I am usually willing to give someone another chance.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11536,
+    "QuestionNumber": 101,
+    "Text": "I think my life is extremely interesting.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11537,
+    "QuestionNumber": 102,
+    "Text": "I read a huge variety of books.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11538,
+    "QuestionNumber": 103,
+    "Text": "I try to have good reasons for my important decisions.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11539,
+    "QuestionNumber": 104,
+    "Text": "I always know what to say to make people feel good.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11540,
+    "QuestionNumber": 105,
+    "Text": "I may not say it to others, but I consider myself to be a wise person.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11541,
+    "QuestionNumber": 106,
+    "Text": "It is important to me to respect decisions made by my group.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11542,
+    "QuestionNumber": 107,
+    "Text": "I always make careful choices.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11543,
+    "QuestionNumber": 108,
+    "Text": "I feel a profound sense of appreciation every day.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11544,
+    "QuestionNumber": 109,
+    "Text": "If I feel down, I always think about what is good in my life.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11545,
+    "QuestionNumber": 110,
+    "Text": "My beliefs make my life important.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11546,
+    "QuestionNumber": 111,
+    "Text": "I awaken with a sense of excitement about the day\u0027s possibilities.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11547,
+    "QuestionNumber": 112,
+    "Text": "I love to read nonfiction books for fun.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11548,
+    "QuestionNumber": 113,
+    "Text": "Others consider me to be a wise person.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11549,
+    "QuestionNumber": 114,
+    "Text": "I am a brave person.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11550,
+    "QuestionNumber": 115,
+    "Text": "Others trust me to keep their secrets.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11551,
+    "QuestionNumber": 116,
+    "Text": "I gladly sacrifice my self-interest for the benefit of the group I am in.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11552,
+    "QuestionNumber": 117,
+    "Text": "I believe that it is worth listening to everyone\u0027s opinions.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11553,
+    "QuestionNumber": 118,
+    "Text": "People are drawn to me because I am humble.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11554,
+    "QuestionNumber": 119,
+    "Text": "I am known for my good sense of humor.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  },
+  {
+    "QuestionID": 11555,
+    "QuestionNumber": 120,
+    "Text": "People describe me as full of zest.",
+    "AnswerChoices": [
+      {
+        "ChoiceID": 274,
+        "Text": "Very Much Like Me"
+      },
+      {
+        "ChoiceID": 275,
+        "Text": "Like Me"
+      },
+      {
+        "ChoiceID": 276,
+        "Text": "Neutral"
+      },
+      {
+        "ChoiceID": 277,
+        "Text": "Unlike Me"
+      },
+      {
+        "ChoiceID": 278,
+        "Text": "Very Much Unlike Me"
+      }
+    ]
+  }
+]

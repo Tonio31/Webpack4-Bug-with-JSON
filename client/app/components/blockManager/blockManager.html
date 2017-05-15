@@ -77,7 +77,11 @@
     </div>
 
     <div ng-switch-when="via_survey">
-      <via-survey block="$ctrl.block" />
+      <via-survey block="$ctrl.block"
+                  update-block-manager="$ctrl.onUpdate(blockManagerValue)"
+                  is-step-completed="$ctrl.isStepCompleted"
+                  navigation="$ctrl.navigation"
+                  is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted" />
     </div>
 
 </div>

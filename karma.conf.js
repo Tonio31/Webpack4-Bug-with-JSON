@@ -23,6 +23,7 @@ module.exports = function (config) {
 
     // list of files/patterns to load in the browser
     files: [
+      { pattern: './node_modules/phantomjs-polyfill-string-includes/index.js', watched: false },
       { pattern: 'spec.bundle.js', watched: false }
     ],
 
@@ -70,7 +71,8 @@ module.exports = function (config) {
         new webpack.DefinePlugin({
           ENVIRONMENT: JSON.stringify('development'),
           GOOGLE_TRACKING_CODE: JSON.stringify('Whatever'),
-          BACK_END_API: JSON.stringify(`https://localhost.com`)
+          BACK_END_API: JSON.stringify(`https://localhost.com`),
+          VIA_SURVEY_APP_KEY: JSON.stringify('Whatever')
         })
       ]
     },
@@ -85,7 +87,8 @@ module.exports = function (config) {
     reporters: ['mocha'],
 
     mochaReporter: {
-      output: 'autowatch'
+      output: 'autowatch',
+      showDiff: 'inline'
     },
 
     // web server port

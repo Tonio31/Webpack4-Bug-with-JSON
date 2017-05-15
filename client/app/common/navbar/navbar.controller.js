@@ -1,8 +1,6 @@
 class NavbarController {
-  // eslint-disable-next-line max-params
   constructor( $log,
                $state,
-               $location,
                $anchorScroll,
                STATES,
                SPINNERS,

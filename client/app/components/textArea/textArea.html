@@ -1,21 +1,21 @@
 <div class="textArea">
-  <ng-form id="{{$ctrl.block.data.name}}" name="{{$ctrl.FORM_NAME}}">
+  <ng-form id="{{$ctrl.FORM_NAME}}" name="{{$ctrl.FORM_NAME}}">
     <fieldset ng-disabled="$ctrl.isStepCompleted">
       <h3><label for="{{$ctrl.block.program_data_code}}">{{ $ctrl.block.data.label }}</label></h3>
       <div class="flex-container">
 
-          <textarea name="{{$ctrl.block.data.name}}"
-                    id="{{$ctrl.block.program_data_code}}"
-                    ng-model="$ctrl.text"
-                    ng-class="{ 'parent-submitted': $ctrl.isTopLevelFormSubmitted }"
-                    ng-model-options="$ctrl.modelOptions"
-                    ng-required="{{$ctrl.block.data.config.required}}"
-                    ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
-                    ng-focus="$ctrl.hasFocus = true"
-                    ng-blur="$ctrl.hasFocus = false"
-                    ng-change="$ctrl.actionOnUserInput()">
-            {{$ctrl.text}}
-          </textarea>
+        <textarea name="{{$ctrl.block.data.name}}"
+                  id="{{$ctrl.block.program_data_code}}"
+                  ng-model="$ctrl.text"
+                  ng-class="{ 'parent-submitted': $ctrl.isTopLevelFormSubmitted }"
+                  ng-model-options="$ctrl.modelOptions"
+                  ng-required="{{$ctrl.block.data.config.required}}"
+                  ng-attr-placeholder="{{$ctrl.block.data.placeholder}}"
+                  ng-focus="$ctrl.hasFocus = true"
+                  ng-blur="$ctrl.hasFocus = false"
+                  ng-change="$ctrl.actionOnUserInput()">
+          {{$ctrl.text}}
+        </textarea>
 
         <div class="validation-icon-right"
              ng-show="$ctrl.hasFocus || $ctrl.isStepCompleted || $ctrl.isTopLevelFormSubmitted || ( this[$ctrl.FORM_NAME].$valid && $ctrl.text.length )"

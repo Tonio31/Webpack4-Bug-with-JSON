@@ -42,6 +42,60 @@ let CourseContentFactory = function($log) {
     }
   };
 
+  // **************************************************************************************
+  //       Hooks to insert specific actions when clicking on Next/Previous button
+
+  // This hook is after the field validation but before submitting a step, if it is defined
+  // it will be executed instead of the default action to submit step, it can be used to have multipage
+  // on a single step (like viaSurvey)
+  let nextButtonPreActionFn = undefined;
+  let nextButtonPreActionArguments = undefined;
+  let setNextStepButtonPreSaveAction = (iFuncToExecute, ...iArgs) => {
+    nextButtonPreActionFn = iFuncToExecute;
+    nextButtonPreActionArguments = iArgs;
+  };
+
+  let isNextButtonPreSaveAction = () => {
+    return angular.isDefined(nextButtonPreActionFn);
+  };
+
+  let nextStepButtonPreSaveAction = () => {
+    nextButtonPreActionFn(nextButtonPreActionArguments);
+  };
+
+  // This hook is before the validation of the fields, it will be executed and the normal code of
+  // nextStep() will be executed after
+  let beforeNextStepValidationFn = undefined;
+  let beforeNextStepValidationArguments = undefined;
+  let setBeforeNextStepValidation = (iFuncToExecute, ...iArgs) => {
+    beforeNextStepValidationFn = iFuncToExecute;
+    beforeNextStepValidationArguments = iArgs;
+  };
+
+  let beforeNextStepValidation = () => {
+    if ( angular.isDefined(beforeNextStepValidationFn) ) {
+      beforeNextStepValidationFn(beforeNextStepValidationArguments);
+    }
+  };
+
+  // This hook is after the field validation but before submitting a step, if it is defined
+  // it will be executed instead of the default action to submit step, it can be used to have multipage
+  // on a single step (like viaSurvey)
+  let previousButtonPreActionFn = undefined;
+  let previousButtonPreActionArguments = undefined;
+  let setPreviousStepButtonPreAction = (iFuncToExecute, ...iArgs) => {
+    previousButtonPreActionFn = iFuncToExecute;
+    previousButtonPreActionArguments = iArgs;
+  };
+
+  let isPreviousButtonPreAction = () => {
+    return angular.isDefined(previousButtonPreActionFn);
+  };
+
+  let previousStepButtonPreSaveAction = () => {
+    previousButtonPreActionFn(previousButtonPreActionArguments);
+  };
+
 
   return {
     updateInputFields,
@@ -49,7 +103,15 @@ let CourseContentFactory = function($log) {
     clearInputFields,
     saveDataToSendLater,
     getAdditionalData,
-    clearAdditionalData
+    clearAdditionalData,
+    setNextStepButtonPreSaveAction,
+    isNextButtonPreSaveAction,
+    nextStepButtonPreSaveAction,
+    beforeNextStepValidation,
+    setBeforeNextStepValidation,
+    setPreviousStepButtonPreAction,
+    isPreviousButtonPreAction,
+    previousStepButtonPreSaveAction
   };
 
 };

@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-params
 let ResourceFactory = function( $log,
                                 $q,
                                 $resource,
@@ -6,6 +5,7 @@ let ResourceFactory = function( $log,
                                 $state,
                                 $localStorage,
                                 $location,
+                                $httpParamSerializer,
                                 $window,
                                 User,
                                 STATES,
@@ -44,6 +44,7 @@ let ResourceFactory = function( $log,
         firstName: userData.data['first_name'], // eslint-disable-line dot-notation
         lastName: userData.data['last_name'], // eslint-disable-line dot-notation
         email: userData.data.email,
+        gender: userData.data.gender,
         company: userData.data.company,
         division: userData.data.division,
         cohort: userData.data.cohort,
@@ -138,15 +139,60 @@ let ResourceFactory = function( $log,
     return new ($resource(buildApiUrl('password/reset')))();
   };
 
+  // Will query http://change.potentialife.com/api/index_v2.php to get auth information
+  // @params: iWebsite - String (change | my)
+  // @params: iTypeOfCheck - String (local.check_username_email | local.check_credentials | reset_pass_curl)
+  let checkAuthOnOtherPlWebsite = (iWebsite, iTypeOfCheck) => {
+    $log.log('checkAuthOnOtherPlWebsite() iWebsite=', iWebsite, '   iTypeOfCheck=', iTypeOfCheck);
+    return new ($resource('', {}, {
+      check: {
+        method: 'POST',
+        headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
+        url: WEBSITE_CONFIG.OTHER_PL_SITES_API[iWebsite].apiUrl,
+        params: {
+          section: iTypeOfCheck
+        },
+        transformRequest: function(data) {
+          return $httpParamSerializer(data);
+        }
+      }
+    }))();
+  };
+
+  // Used to save data for a step and mark the step as completed for the current user.
   let updateStep = () => {
     $log.log('updateStep()');
     return new ($resource(buildApiUrl('program_data')))();
   };
 
+  // Used to save data for a step without setting the step as completed
+  let partialUpdateStep = () => {
+    $log.log('partialUpdateStep()');
+    return new ($resource(buildApiUrl('partial_save')))();
+  };
+
   // The following is used by ViaSurvey module
-  let viaSurvey = (iEndPointApi) => {
-    $log.log('viaSurvey()  iEndPointApi=', iEndPointApi);
-    return new ($resource(`${WEBSITE_CONFIG.apiViaSurvey}${iEndPointApi}`))();
+  let viaSurvey = ( iApi ) => {
+    return new ($resource('', {}, {
+      register: {
+        method: 'POST',
+        url: `${WEBSITE_CONFIG.viaSurvey.api}RegisterUser`,
+        transformResponse: (userId) => {
+          return {
+            userId: userId
+          };
+        }
+      },
+      call: {
+        method: 'POST',
+        url: `${WEBSITE_CONFIG.viaSurvey.api}${iApi}`,
+        transformResponse: (response) => {
+          return {
+            data: angular.fromJson(response)
+          };
+        }
+      },
+    }))();
   };
 
   return {
@@ -158,8 +204,10 @@ let ResourceFactory = function( $log,
     getFriendSurveyContent,
     getParticipantDetails,
     updateStep,
+    partialUpdateStep,
     buildApiUrl,
-    viaSurvey
+    viaSurvey,
+    checkAuthOnOtherPlWebsite
   };
 };
 

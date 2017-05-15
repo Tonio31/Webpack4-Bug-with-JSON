@@ -46,16 +46,30 @@ describe('JSON Web Token', () => {
       saveUserIdSpy = sinon.spy(JwtFactory, 'saveUserId');
     });
 
-    it('request interceptor adds token ID and UserID (if they are valid) to every request', sinon.test( () => {
+    it('request interceptor adds token ID and UserID (if they are valid) to every request to the back end', sinon.test( () => {
 
       let config = {
-        headers: {}
+        headers: {},
+        url: BACK_END_API
       };
 
       let configModified = AuthInterceptorFactory.request(config);
 
       expect(configModified.headers.Authorization).to.eq(`Bearer ${authDetails.token}`);
       expect(configModified.headers.user_id).to.eq(authDetails.user_id);
+    }));
+
+    it('request interceptor doesnt add token ID and UserID to request to the outside world', sinon.test( () => {
+
+      let config = {
+        headers: {},
+        url: 'http://somethingFarFarAway.com/Infinite'
+      };
+
+      let configModified = AuthInterceptorFactory.request(config);
+
+      expect(configModified.headers.Authorization).to.eq(undefined);
+      expect(configModified.headers.user_id).to.eq(undefined);
     }));
 
     it('response interceptor (no error) save the token if the server sends it back', sinon.test( () => {

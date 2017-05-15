@@ -143,11 +143,12 @@
       "data": {
         "title":"gauge chart",
         "gauge": {
-          "unit": "progress",
+          "unit": "",
           "colour" : "#6638F0",
-          "value": 50,
+          "value": 8,
           "min": 0,
-          "max": 70
+          "max": 12,
+          "suffix_label": " hours"
         }
       }
     },
@@ -182,6 +183,41 @@
                 "value": 60
               }
           	]
+          }
+        ]
+      }
+    },
+    {
+      "id": 64,
+      "type":"static",
+      "element":"spider_chart",
+      "data": {
+        "title":"spider chart",
+        "set": [
+          {
+            "className": "user",
+            "axes": [
+              {
+                "axis": "Sleep",
+                "value": "40"
+              },
+              {
+                "axis": "Nutrition",
+                "value": "55"
+              },
+              {
+                "axis": "Exercise",
+                "value": "99"
+              },
+              {
+                "axis": "Depletion",
+                "value": "34"
+              },
+              {
+                "axis": "Recovery",
+                "value": "50"
+              }
+            ]
           }
         ]
       }

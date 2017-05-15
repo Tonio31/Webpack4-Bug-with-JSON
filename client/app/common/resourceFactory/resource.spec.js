@@ -81,8 +81,9 @@ describe('Resource', () => {
       Data.getParticipantDetails();
       $httpBackend.flush();
       sinon.assert.calledWith(setUserSpy, {
-        email: 'tonio.mandela@usertest.com',
+        email: 'tonio.mandela26@usertest.com',
         firstName: 'tonio',
+        gender: 'M',
         id: 4,
         lastName: 'mandela',
         cohort: 'BAC001',
@@ -186,6 +187,31 @@ describe('Resource', () => {
       let updateStepPOST = Data.updateStep();
 
       updateStepPOST.$save( () => {
+        assert(true, 'Positive response form the back end');
+        done();
+      })
+        .catch( () => {
+          assert.fail(0, 1, 'We should not return an error if the server returns positive response');
+          done();
+        });
+
+      $httpBackend.flush();
+
+      done();
+    }));
+
+    it('checkAuthOnOtherPlWebsite() return a promise', sinon.test( (done) => {
+
+      let websiteToTarget = 'my';
+
+      let urlToMAtch = `${WEBSITE_CONFIG.OTHER_PL_SITES_API[websiteToTarget].apiUrl}(.*)`;
+      $httpBackend.whenPOST(new RegExp(urlToMAtch)).respond( () => {
+        return [ 200, {}, {} ];
+      });
+
+      let checkAuth = Data.checkAuthOnOtherPlWebsite(websiteToTarget, WEBSITE_CONFIG.OTHER_PL_SITES_API.api.checkUsernameApi);
+
+      checkAuth.$check( () => {
         assert(true, 'Positive response form the back end');
         done();
       })

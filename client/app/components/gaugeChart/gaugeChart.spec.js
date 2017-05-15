@@ -4,15 +4,13 @@ import GaugeChartComponent from './gaugeChart.component';
 import GaugeChartTemplate from './gaugeChart.html';
 
 describe('GaugeChart', () => {
-  let $rootScope;
-  // let $componentController;
-  let $compile;
+  let $rootScope, $componentController, $compile;
 
   beforeEach(window.module(GaugeChartModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
-    // $componentController = $injector.get('$componentController');
+    $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
   }));
 
@@ -20,17 +18,40 @@ describe('GaugeChart', () => {
     // top-level specs: i.e., routes, injection, naming
   });
 
-  // describe('Controller', () => {
-  //   // controller specs
-  //   let controller;
-  //   beforeEach(() => {
-  //     controller = $componentController('gaugeChart', {
-  //       $scope: $rootScope.$new()
-  //     });
-  //   });
-  //
-  //
-  // });
+  describe('Controller', () => {
+    // controller specs
+    let controller;
+
+    let bindings = {
+      block: {
+        id: 62,
+        type: 'static',
+        element: 'gauge_chart',
+        data: {
+          title: 'gauge chart',
+          gauge: {
+            unit: '',
+            colour: '#6638F0',
+            value: 8,
+            min: 0,
+            max: 12,
+            suffix_label: ' hours'
+          }
+        }
+      }
+    };
+
+    beforeEach(() => {
+      controller = $componentController('gaugeChart', {
+        $scope: $rootScope.$new()
+      }, bindings);
+    });
+
+    it('formatLabel() - builds the good label', () => {
+      expect(controller.formatLabel()).to.eq('8 hours');
+    });
+
+  });
 
   describe('View', () => {
     // view specs
