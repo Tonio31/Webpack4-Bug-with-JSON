@@ -4,7 +4,32 @@ describe('Resource', () => {
   let User, Data, WEBSITE_CONFIG, TOKEN_SURVEY;
   let $httpBackend, $location, $window;
 
-  let participant = require('app/mockBackEndResponse/participants.json');
+  let participant = {
+    success: true,
+    data: {
+      id: 4,
+      email: 'tonio.mandela26@usertest.com',
+      username: 'tonio1234',
+      first_name: 'tonio',
+      last_name: 'mandela',
+      gender: 'M',
+      company: 'Barclays',
+      division: 'Sales',
+      cohort: 'BAC001',
+      remember_token: null,
+      created_at: '2017-02-28 15:17:11',
+      updated_at: '2017-02-28 15:17:11',
+      deleted_at: null,
+      companyBanner: {
+        logo: 'https://logos.keycdn.com/keycdn-logo.png',
+        header: 'Inspiring Leadership',
+        subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
+        bgColor: 'orange',
+        textColor: 'white'
+      }
+    },
+    message: "Participant retrieved successfully"
+  };
   let userId = 12;
 
   let cleanMockObject = (iMockObject) => {
