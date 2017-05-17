@@ -64,9 +64,6 @@ describe('Testing Module 1  |||  ', () => {
       textArea.sendKeys(iTextToEnter);
     };
 
-    // browser.get("/");
-
-
     beforeEach( () => {
       let breadcrumbs = element(by.binding('$ctrl.content.breadcrumbs'));
       expect(breadcrumbs.isDisplayed()).toBeTruthy();
@@ -113,11 +110,14 @@ describe('Testing Module 1  |||  ', () => {
       // Click on next, it should display a warning that the textarea is mandatory
       clickNextStepButton();
       let iconValidation = element(by.css('.validation-icon-right')).element(by.tagName('span'));
+      console.log('TONIO 0');
       expect(iconValidation.getAttribute('class')).toContain('icon-pl-exclamation invalid');
 
-      // Add something in hte textArea
+      console.log('TONIO 1');
+      // Add something in the textArea
       element(by.tagName('textarea')).clear().sendKeys('C1 M1 S5 Influences');
 
+      console.log('TONIO 2');
       clickNextStepButton();
       checkCongratsBannerDisplayed();
       clickNextStepButton();
