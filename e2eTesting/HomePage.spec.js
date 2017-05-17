@@ -31,12 +31,18 @@ describe('Testing Module 1  |||  ', () => {
     textArea.sendKeys(iTextToEnter);
   };
 
+  browser.get("/");
+
   let checkCurrentUrl = (iExpectedPath) => {
     let fullUrlExpected = `${baseUrl}${iExpectedPath}`;
     expect(browser.getCurrentUrl()).toEqual(fullUrlExpected);
   };
 
   beforeEach( () => {
+    let mainApp = element(by.className('app'));
+    expect(mainApp.isDisplayed()).toBeTruthy();
+    var until = protractor.ExpectedConditions;
+    browser.wait(until.presenceOf(mainApp), 5000, 'Element taking too long to appear in the DOM');
   });
 
   it('Go to Home page just after Login and see current Progression', () => {
