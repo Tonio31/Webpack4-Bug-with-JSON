@@ -90,12 +90,31 @@ gulp.task('e2e_test', () => {
 
   let baseUrl = yargs.argv.baseUrl || 'http://127.0.0.1:3000/';
 
-  gulp.src(['./e2eTesting/*.spec.js'])
-  .pipe(protractor({
-    configFile: "./protractor.conf.js",
-    args: ['--baseUrl', baseUrl]
-  }))
-  .on('error', function(e) { throw e })
+  let options = {
+    uri: 'https://apipl.ciprianspiridon.com/tonio-user',
+    headers: {
+      'User-Agent': 'Request-Promise'
+    },
+    json: true // Automatically parses the JSON string in the response
+  };
+
+  return rp(options)
+  .then( () => {
+    gutil.log('User successfully reseted to Cycle 1 - Module 1 - Step 2');
+    return gulp.src(['./e2eTesting/*.spec.js'])
+            .pipe(protractor({
+              configFile: "./protractor.conf.js",
+              args: ['--baseUrl', baseUrl]
+            }))
+            .on('error', (e) => {
+              throw e
+            });
+  })
+  .catch( (err) => {
+    gutil.log('Error resetting User to Cycle 1 - Module 1 - Step 2 / Abort E2E testing');
+    // API call failed...
+    return err;
+  });
 });
 
 gulp.task('serve', () => {
