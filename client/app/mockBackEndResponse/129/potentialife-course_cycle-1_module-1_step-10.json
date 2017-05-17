@@ -1,57 +1,44 @@
 {
-  "id": 7,
+  "id": 16,
   "stepable_id": 1,
   "stepable_type": "modules",
-  "title": "Step 5",
-  "name": "Exercise: Your influences",
-  "description": "3 minutes",
-  "slug": "step-5",
+  "title": "Step 10",
+  "name": "Video: Summary",
+  "description": "1 minute",
+  "slug": "step-10",
   "content": null,
   "hideStepInMenu": 0,
   "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.<\/p>",
-  "lft": 10,
-  "rgt": 11,
+  "lft": 20,
+  "rgt": 21,
   "depth": 1,
   "status": "current",
-  "created_at": "2017-03-13 09:18:43",
-  "updated_at": "2017-04-20 17:42:27",
+  "created_at": "2017-04-03 18:25:10",
+  "updated_at": "2017-05-12 12:16:34",
   "deleted_at": null,
   "parent_id": null,
-  "breadcrumbs": "Level 1 &bull; Module 1 &bull; Step 5",
-  "prev_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-4",
-  "next_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-6",
-  "fullUrl": "\/potentialife-course\/cycle-1\/module-1\/step-5",
+  "breadcrumbs": "Level 1 &bull; Module 1 &bull; Step 10",
+  "prev_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-9",
+  "next_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-11",
+  "fullUrl": "\/potentialife-course\/cycle-1\/module-1\/step-10",
   "blocks": [
     {
-      "id": 147,
+      "id": 163,
       "type": "static",
-      "element": "html",
+      "element": "video",
       "program_data_code": null,
       "data": {
-        "value": "<p>Regardless of your starting point, most of us have been encouraged to focus on our weaknesses across a variety of different areas of our lives. In order to progress, it's important to get a proper understanding of these influences.<\/br><\/br><strong>What are the influences in your life that have pushed you to think that weakness-fixing should be the priority?<\/strong> Some examples to think about might include your school environment, your parents, notable failures in your career, or the environment or incentives at work.<\/p>"
+        "poster": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_poster.jpg",
+        "source_sd": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/L01_M01_V3_weblo.mp4",
+        "source_hd": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/L01_M01_V3_weblo.mp4",
+        "caption_src": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_text.vtt",
+        "caption_default": "1",
+        "caption_label": "English subtitles",
+        "caption_lang": "en"
       },
       "pivot": {
-        "step_id": 7,
-        "block_id": 147
-      }
-    },
-    {
-      "id": 148,
-      "type": "dynamic",
-      "element": "textarea",
-      "program_data_code": "l1.m1.s4.textarea.important_influences",
-      "data": {
-        "label": "Write down the most important influences below:",
-        "placeholder": null,
-        "value": null,
-        "name": "important_influences",
-        "config": {
-          "required": "1"
-        }
-      },
-      "pivot": {
-        "step_id": 7,
-        "block_id": 148
+        "step_id": 16,
+        "block_id": 163
       }
     }
   ],
@@ -90,10 +77,10 @@
       "fullUrl": "\/potentialife-course\/cycle-1",
       "status": "current",
       "progress": {
-        "completed": 4,
-        "remaining": 104,
+        "completed": 9,
+        "remaining": 99,
         "total": 108,
-        "percent": "4"
+        "percent": "8"
       },
       "course": {
         "id": 1,

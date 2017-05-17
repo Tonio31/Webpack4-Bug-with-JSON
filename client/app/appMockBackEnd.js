@@ -79,7 +79,8 @@ angular.module( 'appMockBackEnd', [
     [ID_STEP_2] : {}
   };
 
-  let error401 = [ 401, { error: 'token_not_provided' }, {} ];
+  let error401 = [ 401, { message: 'token_not_provided' }, {}, 'token_not_provided' ];
+  let error401_tokenExpired = [ 401, { message: 'token_expired' }, {}, 'token_expired' ];
   let error402 = [ 402, { error: 'Not Authorised' }, {} ];
   let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
@@ -289,7 +290,7 @@ angular.module( 'appMockBackEnd', [
     }
 
     // If the user is not logged in, returns error
-    return error401;
+    return error401_tokenExpired;
 
   });
 
