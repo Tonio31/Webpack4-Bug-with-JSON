@@ -85,7 +85,15 @@ describe('Login', () => {
 
     it('sends an authentication request when user click on login button', () => {
 
-      let authDataBackFromServer = require('app/mockBackEndResponse/authenticateResponse.json');
+      let authDataBackFromServer = {
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2p3dC1pZHAuZXhhbXBsZS5jb20iLCJzdWIiOiI0IiwibmJmIjoxNDg4NTQzOTQwLCJleHAiOjE3NTY0MjU1OTksImlhdCI6MTQ4ODU0Mzk0MCwianRpIjoiaWQxMjM0NTYifQ.N7xkSMlHPhfwxaG5Ibs-WUBJIc7aMAmq82sLG6fKfRE',
+        user: {
+          id: 4,
+          first_name: 'tonio',
+          last_name: 'mandela',
+          email: 'tonio.mandela@usertest.com'
+        }
+      };
 
       let authPOSTRequestResource = {
         $save: (callback) => {

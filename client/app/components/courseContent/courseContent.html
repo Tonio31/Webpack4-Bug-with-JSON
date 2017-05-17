@@ -64,12 +64,14 @@
       <div class="row y-center-child">
         <div class="small-12 medium-8 columns small-centered">
           <button ng-show="$ctrl.displayPreviousButton"
+                  id="prevStepButton"
                   class="secondary radius left"
                   type="button"
                   ng-click="$ctrl.previousStep()">
             &lt; {{ 'PREVIOUS' | translate }}
           </button>
-          <button ng-show="$ctrl.displayNextButton"
+          <button id="nextStepButton"
+                  ng-show="$ctrl.displayNextButton"
                   ng-disabled="$ctrl.savingStepSpinner.show"
                   ng-class="$ctrl.nextStepButton.class"
                   class="radius right"

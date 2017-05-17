@@ -1,22 +1,24 @@
 import gulp     from 'gulp';
 import webpack  from 'webpack';
 import path     from 'path';
-import sync     from 'run-sequence';
 import rename   from 'gulp-rename';
 import template from 'gulp-template';
 import jeditor  from 'gulp-json-editor';
-import fs       from 'fs';
 import yargs    from 'yargs';
-import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
 import del      from 'del';
+import rp       from 'request-promise';
+import protractorLib        from 'gulp-protractor';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
 
 let root = 'client';
+
+const protractor = protractorLib.protractor;
+
 
 // helper method for resolving paths
 let resolveToApp = (glob = '') => {
@@ -81,6 +83,19 @@ gulp.task('setKarmaGlobals', () => {
       'browser': browser
     }))
     .pipe(gulp.dest("."));
+});
+
+
+gulp.task('e2e_test', () => {
+
+  let baseUrl = yargs.argv.baseUrl || 'http://127.0.0.1:3000/';
+
+  gulp.src(['./e2eTesting/*.spec.js'])
+  .pipe(protractor({
+    configFile: "./protractor.conf.js",
+    args: ['--baseUrl', baseUrl]
+  }))
+  .on('error', function(e) { throw e })
 });
 
 gulp.task('serve', () => {
