@@ -13,7 +13,7 @@ describe('Testing Module 1  |||  ', () => {
   let checkCongratsBannerDisplayed = () => {
     // Check if the save was successful
     let congratsBanner = element(by.binding('$ctrl.banner.text'));
-    expect(congratsBanner.getText()).toContain('Congratulations');
+    expect(congratsBanner.isDisplayed()).toBeTruthy();
   };
 
   let clickNextStepButton = () => {
