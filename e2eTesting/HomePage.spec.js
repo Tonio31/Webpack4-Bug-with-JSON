@@ -107,6 +107,9 @@ describe('Testing Module 1  |||  ', () => {
     it('Step 5 - Complete the step', () => {
       checkCurrentUrl('potentialife-course/cycle-1/module-1/step-5');
 
+      // Add something Empty to Synchronise into the textArea
+      element(by.tagName('textarea')).clear().sendKeys('');
+
       // Click on next, it should display a warning that the textarea is mandatory
       clickNextStepButton();
       let iconValidation = element(by.css('.validation-icon-right')).element(by.tagName('span'));
