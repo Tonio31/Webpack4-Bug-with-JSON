@@ -5,12 +5,8 @@ class RadioListController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'RadioListController' );
 
-    this.MIN_NB_RADIO_BUTTON_DISPLAYED = 5;
 
     this.selected = '';
-
-    this.limitStart = 0;
-    this.limit = this.MIN_NB_RADIO_BUTTON_DISPLAYED;
 
     this.showMoreButtonDisplayed = true;
 
@@ -64,6 +60,12 @@ class RadioListController {
 
     this.$onInit = () => {
       this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
+
+      let minRadioBoxDisplayed = this.block.data.config.minRadioBoxDisplayed;
+      this.MIN_NB_RADIO_BUTTON_DISPLAYED = angular.isDefined(minRadioBoxDisplayed) ? minRadioBoxDisplayed : 5;
+      this.limitStart = 0;
+      this.limit = this.MIN_NB_RADIO_BUTTON_DISPLAYED;
+
       setSelectedRadio(this.block.data.items);
     };
 
