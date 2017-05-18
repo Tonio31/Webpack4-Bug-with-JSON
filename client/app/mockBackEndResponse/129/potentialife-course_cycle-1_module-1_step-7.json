@@ -53,12 +53,12 @@
           {
             "title": "Work",
             "color": "#008CBA",
-            "value": "0"
+            "value": "60"
           },
           {
             "title": "Non-Work",
             "color": "#ec754e",
-            "value": "0"
+            "value": "56"
           }
         ]
       },
@@ -88,7 +88,7 @@
       "data": {
         "label": "Note down your thoughts below",
         "placeholder": null,
-        "value": null,
+        "value": "C1 M1 S7 Thoughts",
         "name": "notes_on_lifemap",
         "config": {
           "required": "1"

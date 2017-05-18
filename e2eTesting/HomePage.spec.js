@@ -56,12 +56,12 @@ describe('Testing Module 1  |||  ', () => {
 
     let enterDataInTextBox = (iTextBoxIndex, iTextToEnter) => {
       let textBox = element.all(by.tagName('text-box')).get(iTextBoxIndex).element(by.tagName('input'));
-      textBox.sendKeys(iTextToEnter);
+      textBox.clear().sendKeys(iTextToEnter);
     };
 
     let enterDataInTextArea = (iTextAreaIndex, iTextToEnter) => {
       let textArea = element.all(by.tagName('pl-text-area')).get(iTextAreaIndex).element(by.tagName('textarea'));
-      textArea.sendKeys(iTextToEnter);
+      textArea.clear().sendKeys(iTextToEnter);
     };
 
     beforeEach( () => {
@@ -113,14 +113,11 @@ describe('Testing Module 1  |||  ', () => {
       // Click on next, it should display a warning that the textarea is mandatory
       clickNextStepButton();
       let iconValidation = element(by.css('.validation-icon-right')).element(by.tagName('span'));
-      console.log('TONIO 0');
       expect(iconValidation.getAttribute('class')).toContain('icon-pl-exclamation invalid');
 
-      console.log('TONIO 1');
       // Add something in the textArea
       element(by.tagName('textarea')).clear().sendKeys('C1 M1 S5 Influences');
 
-      console.log('TONIO 2');
       clickNextStepButton();
       checkCongratsBannerDisplayed();
       clickNextStepButton();
@@ -136,7 +133,9 @@ describe('Testing Module 1  |||  ', () => {
     it('Step 7 - Complete the step', () => {
       checkCurrentUrl('potentialife-course/cycle-1/module-1/step-7');
 
-      // TODO Check that we have data in the barchart (I need data from lifeMap first)
+      // Select the bar charts and check that the label have the good value coming back from lifeMap
+      expect(element.all(by.css('bar-chart .c3-texts-Work text')).get(0).getText()).toEqual('60%');
+      expect(element.all(by.css('bar-chart .c3-texts-Non-Work text')).get(1).getText()).toEqual('56%');
 
       element(by.tagName('textarea')).clear().sendKeys('C1 M1 S7 Thoughts');
       clickNextStepButton();
@@ -160,15 +159,26 @@ describe('Testing Module 1  |||  ', () => {
     it('Step 9 - Complete the step', () => {
       checkCurrentUrl('potentialife-course/cycle-1/module-1/step-9');
 
-      // TODO RadioBox not being displayed with my user because no data in LifeMap
-      // We need to enter data here
+      // Select the first three strength
+      let checkbox = element(by.tagName('checkbox'));
+      let inputsCheckbox = checkbox.all(by.tagName('input'));
+      expect(inputsCheckbox.get(0).getAttribute('value')).toEqual('Work positive 4 large 28logs');
+      inputsCheckbox.get(0).click();
+      expect(inputsCheckbox.get(1).getAttribute('value')).toEqual('Non-work - 5 - 25logs');
+      inputsCheckbox.get(1).click();
+      expect(inputsCheckbox.get(2).getAttribute('value')).toEqual('Work Positive 5 Large 24slots');
+      inputsCheckbox.get(2).click();
+
+      // element(by.tagName('checkbox')).all(by.tagName('input')).get(0).click();
+
 
       enterDataInTextArea(0, 'C1 M1 S9 Thought');
       enterDataInTextArea(1, 'C1 M1 S9 Increase Strength');
 
-      expect(element.all(by.binding('item.label')).get(0).getText()).toEqual(DATA.C1_M1_S8.textBox0);
-      expect(element.all(by.binding('item.label')).get(1).getText()).toEqual(DATA.C1_M1_S8.textBox1);
-      expect(element.all(by.binding('item.label')).get(2).getText()).toEqual(DATA.C1_M1_S8.textBox2);
+      let unorderedList = element(by.tagName('unordered-list'));
+      expect(unorderedList.all(by.binding('item.label')).get(0).getText()).toEqual(DATA.C1_M1_S8.textBox0);
+      expect(unorderedList.all(by.binding('item.label')).get(1).getText()).toEqual(DATA.C1_M1_S8.textBox1);
+      expect(unorderedList.all(by.binding('item.label')).get(2).getText()).toEqual(DATA.C1_M1_S8.textBox2);
 
       clickNextStepButton();
       checkCongratsBannerDisplayed();

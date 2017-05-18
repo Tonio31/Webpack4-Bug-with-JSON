@@ -5,10 +5,11 @@ class RadioListController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'RadioListController' );
 
-    this.MIN_NB_RADIO_BUTTON_DISPLAYED = 5;
 
     this.selected = '';
 
+
+    this.MIN_NB_RADIO_BUTTON_DISPLAYED = 5;
     this.limitStart = 0;
     this.limit = this.MIN_NB_RADIO_BUTTON_DISPLAYED;
 
@@ -64,6 +65,7 @@ class RadioListController {
 
     this.$onInit = () => {
       this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
+
       setSelectedRadio(this.block.data.items);
     };
 
