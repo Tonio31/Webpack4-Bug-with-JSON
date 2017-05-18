@@ -11,8 +11,12 @@ exports.config = {
   seleniumServerJar: './node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.4.0.jar',
 
   capabilities: {
-    'browserName': 'chrome',
-    'shardTestFiles': true
+    browserName: 'chrome',
+    //'shardTestFiles': true,
+
+    chromeOptions: {
+      args: [ "--headless", "--disable-gpu", "--window-size=800x600" ]
+    }
     // 'maxInstances': 3
   },
 
