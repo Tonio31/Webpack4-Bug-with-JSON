@@ -9,6 +9,7 @@ pipelines:
   default: # Pipelines that run automatically on a commit to a branch
     - step:
         script: # Modify the commands below to build your repository.
+          - docker --version
           - npm install
           - ./node_modules/protractor/bin/webdriver-manager update
           - npm run e2e -- --baseUrl https://webpl.ciprianspiridon.com/
