@@ -1,5 +1,5 @@
 // var SpecReporter = require("jasmine-spec-reporter");
-
+require("babel-register");
 var path = require('path');
 
 exports.config = {

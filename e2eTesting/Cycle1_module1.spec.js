@@ -162,15 +162,12 @@ describe('Testing Module 1  |||  ', () => {
       // Select the first three strength
       let checkbox = element(by.tagName('checkbox'));
       let inputsCheckbox = checkbox.all(by.tagName('input'));
+      inputsCheckbox.get(2).click();
       expect(inputsCheckbox.get(0).getAttribute('value')).toEqual('Work positive 4 large 28logs');
       inputsCheckbox.get(0).click();
       expect(inputsCheckbox.get(1).getAttribute('value')).toEqual('Non-work - 5 - 25logs');
       inputsCheckbox.get(1).click();
       expect(inputsCheckbox.get(2).getAttribute('value')).toEqual('Work Positive 5 Large 24slots');
-      inputsCheckbox.get(2).click();
-
-      // element(by.tagName('checkbox')).all(by.tagName('input')).get(0).click();
-
 
       enterDataInTextArea(0, 'C1 M1 S9 Thought');
       enterDataInTextArea(1, 'C1 M1 S9 Increase Strength');

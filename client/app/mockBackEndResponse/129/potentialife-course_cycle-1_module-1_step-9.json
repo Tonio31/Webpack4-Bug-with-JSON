@@ -74,19 +74,19 @@
             "label": "Non-work - 5 - 25logs",
             "sub_label": "non-work",
             "value": "Non-work - 5 - 25logs",
-            "checked": true
+            "checked": false
           },
           {
             "label": "Work Positive 5 Large 24slots",
             "sub_label": "work",
             "value": "Work Positive 5 Large 24slots",
-            "checked": true
+            "checked": false
           },
           {
             "label": "Work - 4 - 15logs",
             "sub_label": "work",
             "value": "Work - 4 - 15logs",
-            "checked": true
+            "checked": false
           },
           {
             "label": "Non work - 4 - 9logs",
@@ -150,7 +150,7 @@
       "data": {
         "label": "Note down a few thoughts below.",
         "placeholder": null,
-        "value": "fdsfsddsf",
+        "value": null,
         "name": "notes_on_lifemap",
         "config": {
           "required": "1"
@@ -182,7 +182,7 @@
       "data": {
         "label": "Note down your one idea to increase the amount you use your character strengths this week.",
         "placeholder": null,
-        "value": "fsfdsdsffsd",
+        "value": null,
         "name": "idea_to_increase_strengths",
         "config": {
           "required": "1"
