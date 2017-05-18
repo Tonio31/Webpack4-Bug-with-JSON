@@ -61,7 +61,8 @@ class RadioListController {
     this.$onInit = () => {
       this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
 
-      this.MIN_NB_RADIO_BUTTON_DISPLAYED = angular.isDefined(this.block.data.config.minRadioBoxDisplayed) ? this.block.data.config.minRadioBoxDisplayed :5;
+      let minRadioBoxDisplayed = this.block.data.config.minRadioBoxDisplayed;
+      this.MIN_NB_RADIO_BUTTON_DISPLAYED = angular.isDefined(minRadioBoxDisplayed) ? minRadioBoxDisplayed : 5;
       this.limitStart = 0;
       this.limit = this.MIN_NB_RADIO_BUTTON_DISPLAYED;
 
