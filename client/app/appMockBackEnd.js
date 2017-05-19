@@ -135,26 +135,38 @@ angular.module( 'appMockBackEnd', [
   };
 
   let updateMenu = ( iUrlCompletedStep, iFullUrlNextStep, iUserId) => {
-    $log.log(`updateUserProgression() -  iUrlCompletedStep=${iUrlCompletedStep}  iFullUrlNextStep=${iFullUrlNextStep}  iUserID=${iUserId}`);
+    $log.log(`updateMenu() -  iUrlCompletedStep=${iUrlCompletedStep}  iFullUrlNextStep=${iFullUrlNextStep}  iUserID=${iUserId}`);
+
+    let updateStateToCurrent = false;
 
     for ( let itCycle of menu[iUserId].menudata[0].children ) {
 
-      $log.log('itCycle=', itCycle);
       if ( itCycle.hasOwnProperty('children') ) {
         for ( let itModule of itCycle.children ) {
 
-          $log.log('itModule=', itModule);
 
           if ( itModule.hasOwnProperty('children') ) {
             for ( let itStep of itModule.children ) {
 
-              $log.log('itStep=', itStep);
+              $log.log('itStep=', itStep, '  updateStateToCurrent=', updateStateToCurrent);
               if (itStep.fullUrl === iUrlCompletedStep) {
                 itStep.status = 'completed';
+                $log.warn(`Setting Step (${itStep.fullUrl}) to completed`);
+                updateStateToCurrent = true;
               }
-              else if (itStep.fullUrl === iFullUrlNextStep) {
+              else if (itStep.fullUrl === iFullUrlNextStep || updateStateToCurrent) {
+
+                if ( iFullUrlNextStep !== '/home' && !updateStateToCurrent ) {
+                  $log.error(`iFullUrlNextStep=${iFullUrlNextStep} - updateStateToCurrent=${updateStateToCurrent}  ||  This should never happens`);
+                }
+
+                updateStateToCurrent = false;
                 itStep.status = 'current';
                 menu[iUserId].current_progression.current_step = itStep;
+                $log.warn(`Setting Next Step (${itStep.fullUrl}) to current`);
+
+                // When the nextStep is updated to current, there is no more step to update, it is useless to continue the for loops
+                return;
               }
             }
           }
