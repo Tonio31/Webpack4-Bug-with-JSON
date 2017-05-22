@@ -44,7 +44,10 @@ let MenuFactory = function( $log, $q, Data, STATES) {
         url: iMenu.fullUrl,
         parent: STATES.MAIN,
         component: componentName,
-        resolve: resolveObject
+        resolve: resolveObject,
+        params: {
+          hideStepInMenu: iMenu.hideStepInMenu
+        }
       };
 
       oStates.push(state);
