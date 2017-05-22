@@ -812,7 +812,7 @@
                   "lft": 54,
                   "rgt": 55,
                   "depth": 1,
-                  "status": "locked",
+                  "status": "current",
                   "created_at": "2017-05-10 14:35:33",
                   "updated_at": "2017-05-10 14:37:04",
                   "deleted_at": null,

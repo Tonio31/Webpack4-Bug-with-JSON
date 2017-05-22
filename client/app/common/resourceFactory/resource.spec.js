@@ -28,7 +28,7 @@ describe('Resource', () => {
         textColor: 'white'
       }
     },
-    message: "Participant retrieved successfully"
+    message: 'Participant retrieved successfully'
   };
   let userId = 12;
 
