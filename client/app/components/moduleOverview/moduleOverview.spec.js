@@ -8,7 +8,88 @@ describe('ModuleOverview', () => {
   // let $componentController;
   let $compile;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-1.json').blocks[1];
+  let blockBinding = {
+    id: 11,
+    type: 'static',
+    element: 'module_overview',
+    data: {
+      title: 'Module 1 - Overview',
+      steps: [
+        {
+          title: 'Step 1',
+          name: 'Module introduction',
+          description: '2 minutes',
+          status: 'completed'
+        },
+        {
+          title: 'Step 2',
+          name: 'Reflect on times you were at your best',
+          description: '10 minutes',
+          status: 'completed'
+        },
+        {
+          title: 'Step 3',
+          name: 'Exercise: Your strengths and weaknesses - part 1',
+          description: '5 minutes',
+          status: 'completed'
+        },
+        {
+          title: 'Step 4',
+          name: 'Exercise: Your strengths and weaknesses - part 2',
+          description: '5 minutes',
+          status: 'completed'
+        },
+        {
+          title: 'Step 5',
+          name: 'Video: Managing your weaknesses',
+          description: '3 minutes',
+          status: 'completed'
+        },
+        {
+          title: 'Step 6',
+          name: 'Exercise: How often are you using your strengths?',
+          description: '3 minutes',
+          status: 'completed'
+        },
+        {
+          title: 'Step 7',
+          name: 'Exercise: The VIA strengths diagnostic',
+          description: '12 mins',
+          status: 'completed'
+        },
+        {
+          title: 'Step 8',
+          name: 'Exercise: When are you playing to your strengths?',
+          description: '3 minutes',
+          status: 'completed'
+        },
+        {
+          title: 'Step 9',
+          name: 'Video: Module summary',
+          description: '3 minutes',
+          status: 'current'
+        },
+        {
+          title: 'Step 10',
+          name: 'Your module actions',
+          description: '3 minutes',
+          status: 'locked'
+        },
+        {
+          title: 'Step 11',
+          name: 'Hakunamatata',
+          description: '20 minutes',
+          status: 'locked'
+        },
+        {
+          title: 'Step 12',
+          name: 'Enjoy your life',
+          description: '25 minutes',
+          status: 'locked'
+        }
+      ]
+    }
+  };
 
   beforeEach(window.module(ModuleOverviewModule));
 

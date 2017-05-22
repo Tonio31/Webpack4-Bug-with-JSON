@@ -6,7 +6,25 @@ describe('JSON Web Token', () => {
   let JwtFactory, AuthInterceptorFactory, TOKEN, USER_ID;
   let $state, $q, $location;
 
-  let authDetails = require('app/mockBackEndResponse/authenticateResponse.json');
+  let authDetails = {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2p3dC1pZHAuZXhhbXBsZS5jb20iLCJzdWIiOiI0IiwibmJmIjoxNDg4NTQzOTQwLCJleHAiOjE3NTY0MjU1OTksImlhdCI6MTQ4ODU0Mzk0MCwianRpIjoiaWQxMjM0NTYifQ.N7xkSMlHPhfwxaG5Ibs-WUBJIc7aMAmq82sLG6fKfRE',
+    user: {
+      id: 129,
+      email: 'tonio1@gmail.com',
+      username: 'tonio1',
+      first_name: 'Tonio',
+      last_name: 'Mandela',
+      gender: 'm',
+      created_at: '2017-05-04 15:33:54',
+      updated_at: '2017-05-04 15:33:54',
+      deleted_at: null,
+      pass: 'whatever',
+      division: null,
+      cohort: 'TSTCH001',
+      company: 'Company 1',
+      companyBanner: null
+    }
+  };
 
   let mockLocalStorage;
 
@@ -46,16 +64,30 @@ describe('JSON Web Token', () => {
       saveUserIdSpy = sinon.spy(JwtFactory, 'saveUserId');
     });
 
-    it('request interceptor adds token ID and UserID (if they are valid) to every request', sinon.test( () => {
+    it('request interceptor adds token ID and UserID (if they are valid) to every request to the back end', sinon.test( () => {
 
       let config = {
-        headers: {}
+        headers: {},
+        url: BACK_END_API
       };
 
       let configModified = AuthInterceptorFactory.request(config);
 
       expect(configModified.headers.Authorization).to.eq(`Bearer ${authDetails.token}`);
       expect(configModified.headers.user_id).to.eq(authDetails.user_id);
+    }));
+
+    it('request interceptor doesnt add token ID and UserID to request to the outside world', sinon.test( () => {
+
+      let config = {
+        headers: {},
+        url: 'http://somethingFarFarAway.com/Infinite'
+      };
+
+      let configModified = AuthInterceptorFactory.request(config);
+
+      expect(configModified.headers.Authorization).to.eq(undefined);
+      expect(configModified.headers.user_id).to.eq(undefined);
     }));
 
     it('response interceptor (no error) save the token if the server sends it back', sinon.test( () => {

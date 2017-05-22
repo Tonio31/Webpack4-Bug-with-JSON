@@ -6,8 +6,14 @@ class SpiderChartController {
     $log = $log.getInstance( 'SpiderChartController' );
 
     // chart size x/y
-    let chartWidth = 300;
-    let chartHeight = 300;
+    let chartWidth = 450;
+    let chartHeight = 450;
+
+    let screenWidth = $window.innerWidth;
+    if ( screenWidth <= 900 ) {
+      chartWidth = screenWidth / 2;
+      chartHeight = screenWidth / 2;
+    }
 
     /* eslint-disable */
     // start spider library: https://github.com/alangrafu/radar-chart-d3
@@ -16,20 +22,34 @@ class SpiderChartController {
         containerClass: 'radar-chart',
         w: chartWidth,
         h: chartHeight,
-        factor: 0.95,
-        factorLegend: 1,
-        levels: 3,
-        maxValue: 0,
+        // @factor: Reduce the size of the whole chart. 1: Take 100% of the image space
+        //                                              0: You see just a point in the middle
+        factor: 0.8,
+        // @factorLegend: Position of the label. 0: all labels are in the center of the spider
+        //                                       1: Labels are positioned just at the edge of the spider
+        factorLegend: 0.9,
+        // @level: Number of spider circle lines
+        levels: 5,
+        // @maxValue: ????
+        maxValue: 10,
+        // @radians: number to indicate how much of a circle you want the spider area to be
+        //            - 2 * Math.PI: full circle
+        //            - Math.PI: half circle
         radians: 2 * Math.PI,
         color: d3.scale.category10(),
+        // @axisLine: boolean - Hide/Show line from center to the label
         axisLine: true,
+        // @axisText: boolean - Hide/Show labels
         axisText: true,
+        // @circles: ????
         circles: true,
+        // @radius: size of the small circles at the extremity of each value
         radius: 5,
         axisJoin: function(d, i) {
           return d.className || i;
         },
-        transitionDuration: 300
+        transitionDuration: 300,
+        open: true
       },
       chart: function() {
         var cfg = Object.create(RadarChart.defaultConfig);
@@ -109,7 +129,7 @@ class SpiderChartController {
                 })
                 .attr('dy', function(d, i) {
                   var p = getVerticalPosition(i, 0.5);
-                  return ((p < 0.1) ? '1em' : ((p > 0.9) ? '0' : '0.5em'));
+                  return ((p < 0.1) ? '0.5em' : ((p > 0.9) ? '0' : '0.5em'));
                 })
                 .text(function(d) { return d; })
                 .attr('x', function(d, i){ return getHorizontalPosition(i, cfg.w / 2, cfg.factorLegend); })
@@ -254,7 +274,8 @@ class SpiderChartController {
     /* eslint-enable */
 
     this.$onInit = () => {
-      this.userSpiderData = this.block.data.set;
+      this.userSpiderData = this.formatDataForSpider(this.block.data.set);
+      $log.log('$onInit() - this.userSpiderData=', this.userSpiderData);
       let chart = RadarChart.chart();
       let cfg = chart.config();
 
@@ -290,8 +311,27 @@ class SpiderChartController {
         });
         cfg = chart.config();
 
-      }, 500); // 500ms
+      }, 0); // 500ms
 
+    };
+
+    this.formatDataForSpider = (ioDataSet) => {
+      // For small screens, we don't have enough space to show the percentage, so we don't add it
+      if ( screenWidth > 350 ) {
+        ioDataSet[0].axes.forEach( (axe) => {
+          axe.axis += ` (${axe.value}%)`;
+        });
+      }
+
+      // There is a bug if the value is 100%, the chart just go crazy, so we fake it is 100%
+      // As we still want to display the label as 100%, it's important to do this after assigning the value to the label
+      ioDataSet[0].axes.forEach( (axe) => {
+        if ( axe.value === '100' ) {
+          axe.value = '99';
+        }
+      });
+
+      return ioDataSet;
     };
   }
 }

@@ -5,7 +5,7 @@ describe('Menu', () => {
   let $rootScope;
   let scope;
 
-  let menuData = require('app/mockBackEndResponse/menu-1.json');
+  let menuData = require('app/mockBackEndResponse/4/menu.json');
 
   beforeEach(window.module(MenuModule));
   beforeEach(inject(($injector) => {

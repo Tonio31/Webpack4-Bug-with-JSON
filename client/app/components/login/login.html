@@ -52,11 +52,17 @@
           <span class="checkbox-label">{{ 'KEEP_ME_LOGGED_IN' | translate }}</span>
         </label>
       </li -->
-      <li>
-        <p class="text-center"><a ng-click="$ctrl.forgotCredentials()">{{ 'FORGOT_CREDENTIALS' | translate }}</a></p>
-      </li>
+      <!--<li>-->
+        <!--<p class="text-center"><a ng-click="$ctrl.forgotCredentials()">{{ 'FORGOT_CREDENTIALS' | translate }}</a></p>-->
+      <!--</li>-->
     </ul>
-
-
   </form>
+
+  <!--This form is used to login to external website, it will never be displayed to the user. This is the only way to submit -->
+  <!--a form and redirect user at the same time that is why action is overiden here -->
+  <form pl-submit="$ctrl.triggerSubmitFrom" action="{{$ctrl.externalWebsite}}" method="post" name="goToOtherPlWebsites" id="auto_log">
+    <input type="hidden" name="log" size="20" value="{{$ctrl.username}}"/>
+    <input type="hidden" name="pwd" size="20" value="{{$ctrl.password}}"/>
+  </form>
+
 </div>

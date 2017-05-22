@@ -10,13 +10,15 @@ let websiteConfig = {
     websiteUrl: 'https://webpl.ciprianspiridon.com/',
     apiUrl: 'https://apipl.ciprianspiridon.com/',
     apiVersion: 'v1',
-    googleTrackingCode: 'UA-57685355-4'
+    googleTrackingCode: 'UA-57685355-4',
+    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4'
   },
   PROD: {
     websiteUrl: 'https://program.potentialife.com/',
     apiUrl: 'https://api.potentialife.com/',
     apiVersion: 'v1',
-    googleTrackingCode: 'UA-57685355-5'
+    googleTrackingCode: 'UA-57685355-5',
+    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4' // TODO Change this when we have the key for production
   }
 };
 
@@ -56,7 +58,8 @@ module.exports = (iPhase) => {
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify(iPhase),
       GOOGLE_TRACKING_CODE: JSON.stringify(websiteConfig[iPhase].googleTrackingCode),
-      BACK_END_API: JSON.stringify(`${websiteConfig[iPhase].apiUrl}${websiteConfig[iPhase].apiVersion}`)
+      BACK_END_API: JSON.stringify(`${websiteConfig[iPhase].apiUrl}${websiteConfig[iPhase].apiVersion}`),
+      VIA_SURVEY_APP_KEY: JSON.stringify(websiteConfig[iPhase].viaSurveyAppKey)
     }),
 
     // Reduces bundles total size

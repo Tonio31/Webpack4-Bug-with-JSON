@@ -3,7 +3,9 @@
 let AuthInterceptorFactory = function( $log,
                                        $state,
                                        $q,
-                                       JwtFactory ) {
+                                       JwtFactory,
+                                       STATES,
+                                       WEBSITE_CONFIG ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -11,14 +13,18 @@ let AuthInterceptorFactory = function( $log,
 
   // automatically attach Authorization header
   let request = (config) => {
-    let token = JwtFactory.getToken();
-    let userId = JwtFactory.getUserId();
-    if ( token ) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
 
-    if ( userId ) {
-      config.headers.user_id = userId;
+    // Only add headers for
+    if ( config.url.includes(WEBSITE_CONFIG.apiUrl) ) {
+      let token = JwtFactory.getToken();
+      let userId = JwtFactory.getUserId();
+      if ( token ) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+
+      if ( userId ) {
+        config.headers.user_id = userId;
+      }
     }
 
     return config;
@@ -40,6 +46,12 @@ let AuthInterceptorFactory = function( $log,
     $log.log('There was an error during the last communication with the server error.status=', error.status);
 
     $log.error('error=', error);
+
+    if ( error.hasOwnProperty('config') && error.config.hasOwnProperty('url') && error.config.url.includes('program_data') &&
+         error.status === 401 && error.statusText === 'token_expired' ) {
+      $state.go(STATES.LOGIN, { stateToRedirect: $state.current.name });
+    }
+
 
     return $q.reject(error);
   };

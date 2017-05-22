@@ -73,6 +73,10 @@ class VideoController {
         $log.info('Source changed to %s', data.player.src());
       });
 
+      // This will prevent the user form right-click on the video (prevent form downloading easily)
+      data.player.on('contextmenu', (e) => {
+        e.preventDefault();
+      });
     });
 
   }

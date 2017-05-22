@@ -20,23 +20,23 @@ describe('SpiderChart', () => {
           axes: [
             {
               axis: 'Acceleration',
-              value: 80
+              value: '80'
             },
             {
               axis: 'Breaking',
-              value: 40
+              value: '40'
             },
             {
               axis: 'Handling',
-              value: 40
+              value: '40'
             },
             {
               axis: 'Fuel',
-              value: 90
+              value: '100'
             },
             {
               axis: 'Top speed',
-              value: 60
+              value: '60'
             }
           ]
         }
@@ -76,24 +76,24 @@ describe('SpiderChart', () => {
           className: 'user',
           axes: [
             {
-              axis: 'Acceleration',
-              value: 80
+              axis: 'Acceleration (80%)',
+              value: '80'
             },
             {
-              axis: 'Breaking',
-              value: 40
+              axis: 'Breaking (40%)',
+              value: '40'
             },
             {
-              axis: 'Handling',
-              value: 40
+              axis: 'Handling (40%)',
+              value: '40'
             },
             {
-              axis: 'Fuel',
-              value: 90
+              axis: 'Fuel (100%)',
+              value: '99'
             },
             {
-              axis: 'Top speed',
-              value: 60
+              axis: 'Top speed (60%)',
+              value: '60'
             }
           ]
         }

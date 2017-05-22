@@ -294,7 +294,7 @@ describe('Checkbox', () => {
 
 
     it('has the correct id on the form', () => {
-      expect(template.find('ng-form').attr('id')).to.eq(blockBinding.data.name);
+      expect(template.find('ng-form').attr('id')).to.eq(`${FORM_NAME_PREFIX}${blockBinding.id}`);
     });
 
     it('has a list item with the correct data in the label', () => {

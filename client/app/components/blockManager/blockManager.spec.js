@@ -7,7 +7,22 @@ describe('BlockManager', () => {
   let $rootScope;
   // let $componentController;
   let $compile;
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-1.json').blocks[1];
+  let blockBinding = {
+    id: 11,
+    type: 'static',
+    element: 'module_overview',
+    data: {
+      title: 'Module 1 - Overview',
+      steps: [
+        {
+          title: 'Step 1',
+          name: 'Module introduction',
+          description: '2 minutes',
+          status: 'completed'
+        }
+      ]
+    }
+  };
 
   beforeEach(window.module(BlockManagerModule));
 

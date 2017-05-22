@@ -6,7 +6,7 @@ import FooterComponent from 'common/footer/footer';
 import mainComponent from './main.component';
 import ConstantModule from 'common/constants';
 import ngStorage from 'ngstorage-webpack';
-import CourseContentFactory from 'common/courseContentFactory/courseContent';
+import CourseContentFactory from 'common/courseContentFactory/courseContentFactory';
 
 let mainModule = angular.module('main', [
   uiRouter,

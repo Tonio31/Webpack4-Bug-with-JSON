@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import ResourceFactory from 'common/resourceFactory/resource';
 import friendsSurveyComponent from './friendsSurvey.component';
-import CourseContentFactory from 'common/courseContentFactory/courseContent';
+import CourseContentFactory from 'common/courseContentFactory/courseContentFactory';
 import ngStorage from 'ngstorage-webpack';
 import constantModule from 'common/constants';
 

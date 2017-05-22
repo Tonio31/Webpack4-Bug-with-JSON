@@ -4,7 +4,32 @@ describe('Resource', () => {
   let User, Data, WEBSITE_CONFIG, TOKEN_SURVEY;
   let $httpBackend, $location, $window;
 
-  let participant = require('app/mockBackEndResponse/participants.json');
+  let participant = {
+    success: true,
+    data: {
+      id: 4,
+      email: 'tonio.mandela26@usertest.com',
+      username: 'tonio1234',
+      first_name: 'tonio',
+      last_name: 'mandela',
+      gender: 'M',
+      company: 'Barclays',
+      division: 'Sales',
+      cohort: 'BAC001',
+      remember_token: null,
+      created_at: '2017-02-28 15:17:11',
+      updated_at: '2017-02-28 15:17:11',
+      deleted_at: null,
+      companyBanner: {
+        logo: 'https://logos.keycdn.com/keycdn-logo.png',
+        header: 'Inspiring Leadership',
+        subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
+        bgColor: 'orange',
+        textColor: 'white'
+      }
+    },
+    message: "Participant retrieved successfully"
+  };
   let userId = 12;
 
   let cleanMockObject = (iMockObject) => {
@@ -81,8 +106,9 @@ describe('Resource', () => {
       Data.getParticipantDetails();
       $httpBackend.flush();
       sinon.assert.calledWith(setUserSpy, {
-        email: 'tonio.mandela@usertest.com',
+        email: 'tonio.mandela26@usertest.com',
         firstName: 'tonio',
+        gender: 'M',
         id: 4,
         lastName: 'mandela',
         cohort: 'BAC001',
@@ -186,6 +212,31 @@ describe('Resource', () => {
       let updateStepPOST = Data.updateStep();
 
       updateStepPOST.$save( () => {
+        assert(true, 'Positive response form the back end');
+        done();
+      })
+        .catch( () => {
+          assert.fail(0, 1, 'We should not return an error if the server returns positive response');
+          done();
+        });
+
+      $httpBackend.flush();
+
+      done();
+    }));
+
+    it('checkAuthOnOtherPlWebsite() return a promise', sinon.test( (done) => {
+
+      let websiteToTarget = 'my';
+
+      let urlToMAtch = `${WEBSITE_CONFIG.OTHER_PL_SITES_API[websiteToTarget].apiUrl}(.*)`;
+      $httpBackend.whenPOST(new RegExp(urlToMAtch)).respond( () => {
+        return [ 200, {}, {} ];
+      });
+
+      let checkAuth = Data.checkAuthOnOtherPlWebsite(websiteToTarget, WEBSITE_CONFIG.OTHER_PL_SITES_API.api.checkUsernameApi);
+
+      checkAuth.$check( () => {
         assert(true, 'Positive response form the back end');
         done();
       })
