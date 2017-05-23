@@ -1,13 +1,16 @@
 // http://www.mediacurrent.com/blog/write-conditional-css-ie10-and-11
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .off-canvas-wrap {
-    overflow-y: visible;
-    .inner-wrap {
-      // height: auto;
-    }
-  }
+
 
   .navbar {
+    .off-canvas-wrap {
+      overflow-y: visible;
+      .inner-wrap {
+        // height: auto;
+        // display: block;
+      }
+    }
+
     .main-section,
     .left-submenu {
       height: auto;
@@ -40,6 +43,10 @@
   }
 
   .move-right {
+    .banner {
+      margin-left: -8.6875rem;
+    }
+
     .navigation,
     footer {
       margin-left: -8.6875rem;

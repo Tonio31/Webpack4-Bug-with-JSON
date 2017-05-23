@@ -53,13 +53,12 @@
         </ul>
       </aside>
 
-
       <section class="main-section">
-      <!-- <div> -->
+        <!-- <div> -->
         <company-banner ng-if="$ctrl.isBannerExist()"></company-banner>
         <spinner name="$ctrl.courseContentSpinner.name" show="false"></spinner>
         <div ng-show="!$ctrl.courseContentSpinner.show" id="content" class="content" ui-view></div>
-      <!-- </div> -->
+        <!-- </div> -->
       </section>
 
       <!-- close the off-canvas menu -->

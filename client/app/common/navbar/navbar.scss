@@ -236,10 +236,22 @@ menu-item {
     }
     .inner-wrap {
       min-height: 100vh;
-      @media #{$medium-up} {
-        display: flex;
-        flex-wrap: wrap;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .central-container {
+
+        min-height: 100vh;
+        //display: flex;
+        //flex-direction: column;
+        //justify-content: space-between;
       }
+      // flex-wrap: wrap;
+      //@media #{$medium-up} {
+      //  display: flex;
+      //  flex-wrap: wrap;
+      //}
     }
   }
 

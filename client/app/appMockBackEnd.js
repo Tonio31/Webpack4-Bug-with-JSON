@@ -307,7 +307,7 @@ angular.module( 'appMockBackEnd', [
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
-    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     let dataObject = angular.fromJson(data);
     if ( dataObject.email === 'tonio1@gmail.com' ) {
@@ -371,7 +371,7 @@ angular.module( 'appMockBackEnd', [
   // Uncomment the line bellow to interact with the server
   // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
   $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
-    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
     let reply = '';
     if ( url.includes('RegisterUser') ) {
       $log.log('Register User, replying with an error');
