@@ -285,7 +285,10 @@ angular.module( 'appMockBackEnd', [
       congrats: '<p>Congratulations for finishing this step, you\'re a star<\/p>'
     };
 
-    if ( dataObject.fullUrl.includes(STATES.SURVEY) ) {
+    if ( dataObject.hasOwnProperty('fullUrl') && dataObject.fullUrl === 'genericContent' ) {
+      return [ 200, responseContent, responseHeaders ];
+    }
+    else if ( dataObject.hasOwnProperty('fullUrl') && dataObject.fullUrl.includes(STATES.SURVEY) ) {
       // For Firends submitting survey, no need for normal login but token_survey must always be attached
       if ( isPropertyDefined(dataObject.programData, TOKEN_SURVEY) ) {
         return [ 200, responseContent, responseHeaders ];
@@ -307,7 +310,7 @@ angular.module( 'appMockBackEnd', [
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
-    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     let dataObject = angular.fromJson(data);
     if ( dataObject.email === 'tonio1@gmail.com' ) {
@@ -371,7 +374,7 @@ angular.module( 'appMockBackEnd', [
   // Uncomment the line bellow to interact with the server
   // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
   $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
-    $log.log(`MOCK BackEnd Response. Url=${url},  method=${method},   data=${data},   headers=${headers}`);
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
     let reply = '';
     if ( url.includes('RegisterUser') ) {
       $log.log('Register User, replying with an error');
