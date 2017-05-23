@@ -211,6 +211,7 @@ menu-item {
     transform: translate3d(0, 0, 0);
     transition: transform $speed3;
     padding-bottom: $footerHeight;
+    flex-grow: 1;
   }
 
   .off-canvas-wrap,

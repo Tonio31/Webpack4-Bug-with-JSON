@@ -1,3 +1,5 @@
+@import '~client/app/common/scss/_vars';
+
 // http://www.mediacurrent.com/blog/write-conditional-css-ie10-and-11
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
@@ -6,8 +8,12 @@
     .off-canvas-wrap {
       overflow-y: visible;
       .inner-wrap {
-        // height: auto;
-        // display: block;
+        height: auto;
+        display: block;
+
+        .course-content-blocks {
+          min-height: calc(100vh - #{$height-footer-nav-banner} - #{$height-footer-nav-banner});
+        }
       }
     }
 
@@ -44,13 +50,18 @@
 
   .move-right {
     .banner {
-      margin-left: -8.6875rem;
+     // margin-left: -8.6875rem;
     }
 
     .navigation,
     footer {
-      margin-left: -8.6875rem;
+    //  margin-left: -8.6875rem;
     }
+  }
+
+
+  .locked-page {
+    height: calc(100vh - #{$height-footer-nav-banner} - #{$height-company-banner});
   }
 
 }

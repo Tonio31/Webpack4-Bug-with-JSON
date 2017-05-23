@@ -4,6 +4,7 @@ class CourseContentController {
                $filter,
                $window,
                $anchorScroll,
+               $timeout,
                $state,
                $stateRegistry,
                Menu,

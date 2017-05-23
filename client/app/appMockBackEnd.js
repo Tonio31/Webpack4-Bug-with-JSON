@@ -285,7 +285,10 @@ angular.module( 'appMockBackEnd', [
       congrats: '<p>Congratulations for finishing this step, you\'re a star<\/p>'
     };
 
-    if ( dataObject.fullUrl.includes(STATES.SURVEY) ) {
+    if ( dataObject.hasOwnProperty('fullUrl') && dataObject.fullUrl === 'genericContent' ) {
+      return [ 200, responseContent, responseHeaders ];
+    }
+    else if ( dataObject.hasOwnProperty('fullUrl') && dataObject.fullUrl.includes(STATES.SURVEY) ) {
       // For Firends submitting survey, no need for normal login but token_survey must always be attached
       if ( isPropertyDefined(dataObject.programData, TOKEN_SURVEY) ) {
         return [ 200, responseContent, responseHeaders ];
