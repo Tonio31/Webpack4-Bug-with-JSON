@@ -80,7 +80,7 @@
         },
         "label": "Label: Story 1:",
         "placeholder": "placeholder: Please fill in the first story",
-        "value": "",
+        "value": "something",
         "name": "name: story_1"
       },
       "pivot": {
