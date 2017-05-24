@@ -26,6 +26,29 @@ let ResourceFactory = function( $log,
     return apiUrl;
   };
 
+
+  let saveUserData = (iUserDataFromServer) => {
+    let userToSave = {
+      id: iUserDataFromServer.id,
+      firstName: iUserDataFromServer.first_name,
+      lastName: iUserDataFromServer.last_name,
+      email: iUserDataFromServer.email,
+      gender: iUserDataFromServer.gender,
+      company: iUserDataFromServer.company,
+      division: iUserDataFromServer.division,
+      cohort: iUserDataFromServer.cohort,
+      companyBanner: iUserDataFromServer.companyBanner
+    };
+
+    User.setUser(userToSave);
+
+    // Set up google analytics to link the data to a specific userId
+    $window.ga('set', 'userId', userToSave.id);
+    $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COMPANY, userToSave.company);
+    $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.DIVISION, userToSave.division);
+    $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COHORT, userToSave.cohort);
+  };
+
   // **********************************  GET  *************************************** //
   let getMenu = () => {
     $log.log('getMenu()');
@@ -39,25 +62,8 @@ let ResourceFactory = function( $log,
     $resource(buildApiUrl('participants', true)).get( (userData) => {
       $log.log('getParticipantDetails() retrieved successfully');
 
-      let userToSave = {
-        id: userData.data.id,
-        firstName: userData.data['first_name'], // eslint-disable-line dot-notation
-        lastName: userData.data['last_name'], // eslint-disable-line dot-notation
-        email: userData.data.email,
-        gender: userData.data.gender,
-        company: userData.data.company,
-        division: userData.data.division,
-        cohort: userData.data.cohort,
-        companyBanner: userData.data.companyBanner
-      };
+      saveUserData(userData.data);
 
-      User.setUser(userToSave);
-
-      // Set up google analytics to link the data to a specific userId
-      $window.ga('set', 'userId', userToSave.id);
-      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COMPANY, userToSave.company);
-      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.DIVISION, userToSave.division);
-      $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COHORT, userToSave.cohort);
       deferred.resolve();
     },
     (error) => {
@@ -202,6 +208,7 @@ let ResourceFactory = function( $log,
     resetPassword,
     getDynamicContentPromise,
     getFriendSurveyContent,
+    saveUserData,
     getParticipantDetails,
     updateStep,
     partialUpdateStep,

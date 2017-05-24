@@ -67,7 +67,7 @@ let constantModule = angular.module('app.common.constant', [
         resetPasswordApi: 'reset_pass_curl',
       },
       change: {
-        apiUrl: 'http://change.potentialife.com/api/index_v2.php',
+        apiUrl: `${BACK_END_API}/check-auth/change`,
         loginUrl: 'http://change.potentialife.com/wp-login.php'
       },
       my: {
