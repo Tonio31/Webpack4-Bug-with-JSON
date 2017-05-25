@@ -7,6 +7,7 @@
   <form novalidate name="login">
 
     <small class="error" ng-if="$ctrl.invalidLogin">{{ 'LOGIN_FAILED' | translate }}</small>
+    <small class="error" ng-show="$ctrl.error">{{$ctrl.error}}</small>
 
     <ul class="no-list">
       <li>

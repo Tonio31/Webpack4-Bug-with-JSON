@@ -2,6 +2,7 @@ class LoginController {
   constructor( $log,
                $state,
                $stateParams,
+               $filter,
                Data,
                Utility,
                JwtFactory,
@@ -31,6 +32,11 @@ class LoginController {
       if ( angular.isDefined($stateParams.target) ) {
         this.forceTargetWebsite = $stateParams.target;
       }
+
+      if ( $stateParams.displayErrorOnInit ) {
+        this.error = $filter('translate')($stateParams.displayErrorOnInit).toString();
+      }
+
     };
 
     this.setInvalidLoginMessage = () => {
