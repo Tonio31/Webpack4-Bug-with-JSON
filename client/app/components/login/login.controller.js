@@ -3,7 +3,6 @@ class LoginController {
                $state,
                $stateParams,
                Data,
-               User,
                Utility,
                JwtFactory,
                STATES,
@@ -74,29 +73,14 @@ class LoginController {
         authPOSTRequest.$save( (dataBackFromServer) => {
           $log.log('No error during authentification');
 
-          let userToSave = {
-            id: dataBackFromServer.user.id,
-            firstName: dataBackFromServer.user.first_name,
-            lastName: dataBackFromServer.user.last_name,
-            email: dataBackFromServer.user.email,
-            token: dataBackFromServer.token
-          };
-
           // Save to local Storage
           JwtFactory.saveToken(dataBackFromServer.token);
           JwtFactory.saveUserId(dataBackFromServer.user.id);
 
           // Save User Information
-          User.setUser(userToSave);
+          Data.saveUserData(dataBackFromServer.user);
 
-          // Retrieve Participants detail informations
-          Data.getParticipantDetails().then( () => {
-            $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
-          },
-          () => {
-            $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' });
-          });
-
+          $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
         },
         (error) => {
           $log.error('error during authentification error=', error);

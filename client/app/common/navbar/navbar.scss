@@ -99,7 +99,6 @@ menu-item {
   }
 }
 
-
 .navbar {
   height: 100%;
 
@@ -237,10 +236,9 @@ menu-item {
     }
     .inner-wrap {
       min-height: 100vh;
-      @media #{$medium-up} {
-        display: flex;
-        flex-wrap: wrap;
-      }
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 
@@ -376,7 +374,7 @@ menu-item {
       width: 100%;
     }
 
-    &.active {
+    &.stepActive {
       .menu-button {
         background-color: $black;
         border-top: 1px solid $white;

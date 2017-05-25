@@ -5,7 +5,11 @@
 .loading-spinner {
 
   position: relative;
-  height: 100%;
+
+  // height is set to 100vh and not 100% because of a firefox bug, with 100%, firefox thinks the
+  // total height is 0 and the spinner is wrongly positionned at the top of the page instead of in the middle
+  height: 100vh;
+
   width: 100%;
 
   @keyframes spinner {

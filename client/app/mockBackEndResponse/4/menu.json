@@ -515,10 +515,10 @@
                   "title": "Step 8",
                   "name": "360 Feedback",
                   "description": "Approx. 9999 mins",
-                  "slug": "step-8/1",
+                  "slug": "step-8",
                   "order": 0,
                   "status": "current",
-                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/1"
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-8"
                 },
                 {
                   "id": 33182,

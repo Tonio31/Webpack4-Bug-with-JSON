@@ -97,9 +97,35 @@ describe('ResetPassword', () => {
 
     it('sends an reset Password request when user click on resetPassword button', sinon.test( (done) => {
 
+      let authDataBackFromServer = {
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2p3dC1pZHAuZXhhbXBsZS5jb20iLCJzdWIiOiI0IiwibmJmIjoxNDg4NTQzOTQwLCJleHAiOjE3NTY0MjU1OTksImlhdCI6MTQ4ODU0Mzk0MCwianRpIjoiaWQxMjM0NTYifQ.N7xkSMlHPhfwxaG5Ibs-WUBJIc7aMAmq82sLG6fKfRE',
+        user: {
+          id: 4,
+          first_name: 'tonio',
+          last_name: 'mandela',
+          email: 'tonio.mandela@usertest.com',
+          username: 'tonio1234',
+          gender: 'M',
+          company: 'Barclays',
+          division: 'Sales',
+          cohort: 'BAC001',
+          remember_token: null,
+          created_at: '2017-02-28 15:17:11',
+          updated_at: '2017-02-28 15:17:11',
+          deleted_at: null,
+          companyBanner: {
+            logo: 'https://logos.keycdn.com/keycdn-logo.png',
+            header: 'Inspiring Leadership',
+            subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
+            bgColor: 'orange',
+            textColor: 'white'
+          }
+        }
+      };
+
       let resetPasswordPOSTRequest = {
         $save: (callback) => {
-          return callback();
+          return callback(authDataBackFromServer);
         }
       };
 

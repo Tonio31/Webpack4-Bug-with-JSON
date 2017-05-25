@@ -56,14 +56,16 @@ $tick-size: 3rem;
     }
   }
 
+  // We have to override the default (which is 100vh) because the saving step spinner
+  // needs to be positioned precisely at the bottom of the content and not at half
+  // of the size of the screen
+  .loading-spinner {
+    height: 100%;
+  }
 
   .navigation {
     background-color: $light-grey;
     height: $height-navigation-banner;
-
-    &.y-center-parent {
-      justify-content: flex-start;
-    }
 
     button {
       height: $height-button-banner;

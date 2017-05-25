@@ -91,7 +91,7 @@ let syncMenuAndState = function($rootScope, $log, $state, JwtFactory, STATES, Ze
 };
 
 
-let menuItem = function($window, $filter) {
+let menuItem = function($window, $filter, $state) {
   'ngInject';
   return {
     require: '^offCanvasWrap',
@@ -114,6 +114,21 @@ let menuItem = function($window, $filter) {
           $scope.hideMenuItem = (iObject) => {
             return iObject.hasOwnProperty('hideStepInMenu') && iObject.hideStepInMenu;
           };
+
+          // Used to know if the current state is the one pointed by this button link
+          // For hidden steps, we need to highlight the button even if the full url don't match
+          $scope.isStepActive = (iMenuItem) => {
+            if ( iMenuItem.fullUrl === $state.current.name ) {
+              return true;
+            }
+            else if ( $state.params.hideStepInMenu && $state.current.name.includes(iMenuItem.fullUrl) ) {
+              return true;
+            }
+
+            return false;
+          };
+
+          $scope.test = 'active';
 
           $scope.getBelowTitle = (iObject) => {
             let nbMenuChilds = 0;

@@ -18,7 +18,10 @@
       <menu-item item="child"></menu-item>
     </ul>
   </li>
-  <li ng-if="!hasChildren(child) && !hideMenuItem(child)" ng-click="hideCanvas()" class="menu-item" ui-sref-active="active">
+  <li ng-if="!hasChildren(child) && !hideMenuItem(child)"
+      ng-click="hideCanvas()"
+      class="menu-item"
+      ng-class="{ 'stepActive': isStepActive(child)}">
     <a ui-sref="{{child.fullUrl}}"><menu-button data="child"></menu-button></a>
   </li>
 </div>
