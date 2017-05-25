@@ -20,7 +20,7 @@ class LoginController {
     this.keepLoggedIn = false;
     this.showPassword = false;
 
-    this.invalidLogin = false;
+    this.error = null;
 
     this.externalWebsite = '';
     this.triggerSubmitFrom = false;
@@ -40,7 +40,7 @@ class LoginController {
     };
 
     this.setInvalidLoginMessage = () => {
-      this.invalidLogin = true;
+      this.error = $filter('translate')('LOGIN_FAILED').toString();
       SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
     };
 
@@ -57,7 +57,7 @@ class LoginController {
 
       if ( iLoginForm.$valid ) {
         SpinnerFactory.show(SPINNERS.TOP_LEVEL);
-        this.invalidLogin = false;
+        this.error = null;
         this.loginOnProgram();
       }
       else {
