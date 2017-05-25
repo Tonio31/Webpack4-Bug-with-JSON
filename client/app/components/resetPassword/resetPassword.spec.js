@@ -9,10 +9,14 @@ import LoginRoot from 'components/loginRoot/loginRoot';
 
 describe('ResetPassword', () => {
   let $rootScope, $componentController, $location, $state;
-  let STATES, Data;
+  let STATES, SPINNERS, Data, SpinnerFactory;
 
   let token = 'ngjkahdgjkhfshdb';
   let userId = '12';
+
+  let spies = {
+    spinnerFactory: {}
+  };
 
   let mockTranslateFilter = (value) => {
     return value;
@@ -26,6 +30,8 @@ describe('ResetPassword', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     STATES = $injector.get('STATES');
+    SPINNERS = $injector.get('SPINNERS');
+    SpinnerFactory = $injector.get('SpinnerFactory');
     Data = $injector.get('Data');
     $state = $injector.get('$state');
     $location = $injector.get('$location');
@@ -64,6 +70,8 @@ describe('ResetPassword', () => {
 
       setValidityPasswordSpy = sinon.spy(form.password, '$setValidity');
       setValiditPasswordConfirmationySpy = sinon.spy(form.passwordConfirmation, '$setValidity');
+
+      spies.spinnerFactory.show = sinon.spy(SpinnerFactory, 'show');
     });
 
     it('remove the url Parameters from the URL', () => { // erase if removing this.name from the controller
@@ -145,6 +153,7 @@ describe('ResetPassword', () => {
       expect(resetPasswordPOSTRequest.token).to.equal(controller.token);
       expect(resetPasswordPOSTRequest.password).to.equal(controller.password);
       sinon.assert.calledWith(goSpy, STATES.HOME);
+      sinon.assert.calledWith(spies.spinnerFactory.show, SPINNERS.TOP_LEVEL);
 
       done();
     }));

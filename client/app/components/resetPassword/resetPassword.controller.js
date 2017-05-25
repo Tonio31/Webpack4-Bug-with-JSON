@@ -4,7 +4,9 @@ class ResetPasswordController {
                $stateParams,
                $location,
                JwtFactory,
+               SpinnerFactory,
                STATES,
+               SPINNERS,
                Data ) {
     'ngInject';
 
@@ -39,6 +41,8 @@ class ResetPasswordController {
       if ( iResetPasswordForm.$valid ) {
         $log.log('iResetPasswordForm is Valid');
 
+        SpinnerFactory.show(SPINNERS.TOP_LEVEL);
+
         let resetPasswordPOSTRequest = Data.resetPassword();
 
         resetPasswordPOSTRequest.token = this.token;
@@ -59,6 +63,7 @@ class ResetPasswordController {
         (error) => {
           $log.log('error when resetting password error=', error);
           this.errorFromBackEnd += 1;
+          SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
         });
       }
     };
