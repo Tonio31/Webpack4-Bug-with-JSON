@@ -37,16 +37,6 @@
     height: calc(100% - 6rem);
   }
 
-  .icon-text {
-    .flex-parent {
-      .text-content {
-        width: calc(100% - 9rem);
-        display: block;
-        overflow: hidden;
-      }
-    }
-  }
-
   .locked-page {
     height: calc(100vh - #{$height-footer-nav-banner} - #{$height-company-banner});
   }
