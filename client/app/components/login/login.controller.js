@@ -2,6 +2,7 @@ class LoginController {
   constructor( $log,
                $state,
                $stateParams,
+               $filter,
                Data,
                Utility,
                JwtFactory,
@@ -19,7 +20,7 @@ class LoginController {
     this.keepLoggedIn = false;
     this.showPassword = false;
 
-    this.invalidLogin = false;
+    this.error = null;
 
     this.externalWebsite = '';
     this.triggerSubmitFrom = false;
@@ -31,10 +32,15 @@ class LoginController {
       if ( angular.isDefined($stateParams.target) ) {
         this.forceTargetWebsite = $stateParams.target;
       }
+
+      if ( $stateParams.displayErrorOnInit ) {
+        this.error = $filter('translate')($stateParams.displayErrorOnInit).toString();
+      }
+
     };
 
     this.setInvalidLoginMessage = () => {
-      this.invalidLogin = true;
+      this.error = $filter('translate')('LOGIN_FAILED').toString();
       SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
     };
 
@@ -51,7 +57,7 @@ class LoginController {
 
       if ( iLoginForm.$valid ) {
         SpinnerFactory.show(SPINNERS.TOP_LEVEL);
-        this.invalidLogin = false;
+        this.error = null;
         this.loginOnProgram();
       }
       else {

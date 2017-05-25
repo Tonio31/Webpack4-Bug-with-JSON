@@ -277,7 +277,11 @@ let appModule = angular.module('app', [
       else if ( error.status === 401 ) {
         $log.warn(`$transitions.onError(matchFromAnyToParentWithMenu) - Error 401, user not authenticated or token expired, 
                   redirect to login page.  stateToRedirect=`, toState);
-        $state.go(STATES.LOGIN, { stateToRedirect: toState }, { reload: true });
+        let params = {
+          stateToRedirect: toState,
+          displayErrorOnInit: 'LOGIN_TOKEN_EXPIRED'
+        };
+        $state.go(STATES.LOGIN, params, { reload: true });
       }
       else {
         $log.error('$transitions.onError(matchFromAnyToParentWithMenu) - fromState=', fromState,

@@ -124,9 +124,9 @@ describe('Testing Module 2  |||  ', () => {
       expect(viaCharacterList.all(by.binding('item.label')).get(2).getText()).toEqual(common.DATA.C1_M1_S8.textBox2);
 
       let activitiesList = unorderedLists.get(2);
-      expect(activitiesList.all(by.binding('item.label')).get(0).getText()).toEqual('Work Positive 5 Large 24slots');
-      expect(activitiesList.all(by.binding('item.label')).get(1).getText()).toEqual('Work positive 4 large 28logs');
-      expect(activitiesList.all(by.binding('item.label')).get(2).getText()).toEqual('Non-work - 5 - 25logs');
+      expect(activitiesList.all(by.binding('item.label')).get(0).getText()).toEqual('Work positive 4 large 28logs');
+      expect(activitiesList.all(by.binding('item.label')).get(1).getText()).toEqual('Non-work - 5 - 25logs');
+      expect(activitiesList.all(by.binding('item.label')).get(2).getText()).toEqual('Work Positive 5 Large 24slots');
 
       common.enterDataInTextArea(0, common.DATA.C1_M2_S7.textArea0);
 

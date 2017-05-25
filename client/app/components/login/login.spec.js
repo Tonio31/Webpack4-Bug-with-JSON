@@ -67,12 +67,12 @@ describe('Login', () => {
       });
     });
 
-    it('setInvalidLoginMessage() - change state when we click on Forgot Login Details', sinon.test( () => {
+    it('setInvalidLoginMessage() - display error message and hide spinner', sinon.test( () => {
 
       spies.spinnerFactory.hide = sinon.spy(SpinnerFactory, 'hide');
 
       controller.setInvalidLoginMessage();
-      expect(controller.invalidLogin).to.eq(true);
+      expect(controller.error).to.not.eq(null);
       sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.TOP_LEVEL);
     }));
 
