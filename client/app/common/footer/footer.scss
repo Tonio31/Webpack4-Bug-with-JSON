@@ -7,10 +7,9 @@ footer {
   background-color: $onyx;
   padding: 0;
   margin-top: -$footerHeight;
-  width: 100%;
+  width: auto;
   transform: translate3d(0, 0, 0);
   transition: transform $speed3;
-  align-self: flex-end;
   height: $footerHeight;
 
   @media #{$medium-up} {
