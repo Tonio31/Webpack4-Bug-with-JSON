@@ -14,7 +14,13 @@
     "division": null,
     "cohort": "TSTCH001",
     "company": "Company 1",
-    "companyBanner": null,
+    "companyBanner": {
+      "logo": "https://logos.keycdn.com/keycdn-logo.png",
+      "header": "Inspiring Leadership",
+      "subHeader": "",
+      "bgColor": "orange",
+      "textColor": "white"
+    },
     "cohorts": [
       {
         "id": 1,

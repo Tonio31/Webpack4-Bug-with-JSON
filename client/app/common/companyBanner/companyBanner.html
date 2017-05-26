@@ -4,7 +4,7 @@
       <div class="flex-banner">
         <div class="company-headings">
           <p class="company-header">{{$ctrl.data.header}}</p>
-          <p>{{$ctrl.data.subHeader}}</p>
+          <p ng-if="$ctrl.data.subHeader">{{$ctrl.data.subHeader}}</p>
         </div>
         <div class="company-logo">
           <img ng-src="{{$ctrl.data.logo}}" />
