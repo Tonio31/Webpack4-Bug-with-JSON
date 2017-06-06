@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import ResourceFactory from 'common/resourceFactory/resource';
 import friendsSurveyComponent from './friendsSurvey.component';
-import CourseContentFactory from 'common/courseContentFactory/courseContent';
+import CourseContentFactory from 'common/courseContentFactory/courseContentFactory';
 import ngStorage from 'ngstorage-webpack';
 import constantModule from 'common/constants';
 
@@ -15,12 +15,12 @@ let friendsSurveyModule = angular.module('friendsSurvey', [
   constantModule,
   LogDecorator
 ])
-.config(($stateProvider, STATES, TOKEN_SURVEY) => {
+.config(($stateProvider, STATES) => {
   'ngInject';
 
   let registerState = (iPageNumber) => {
     let stateName = `${STATES.SURVEY}/${iPageNumber}`;
-    let stateUrl = `${STATES.SURVEY}/${iPageNumber}?${TOKEN_SURVEY}`;
+    let stateUrl = `${STATES.SURVEY}/${iPageNumber}`;
 
     let state = {
       name: stateName,
@@ -28,12 +28,16 @@ let friendsSurveyModule = angular.module('friendsSurvey', [
       parent: STATES.MAIN_NO_MENU,
       component: 'friendsSurvey',
       resolve: {
-        content: ($stateParams, Data) => {
+        content: (Data) => {
           'ngInject';
-          return Data.getDynamicContentPromise('survey', false, { page: iPageNumber });
+          return Data.getFriendSurveyContent({ page: iPageNumber });
         }
+      },
+      params: {
+        page: iPageNumber
       }
     };
+
     $stateProvider.state(state);
   };
 

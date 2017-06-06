@@ -6,11 +6,15 @@ describe('Home', () => {
   let $rootScope, $state, $location, $componentController, $compile;
   let Data, User, Menu;
 
-  let contentBindings = require('app/mockBackEndResponse/reflexion.json');
+  let contentBindings = {
+    id: 20,
+    name: 'Brandy Kilback',
+    reflection: 'Nostrum culpa illo excepturi ipsa. Possimus quo natus est quam. Error ut natus non similique numquam et. Ut id inventore est.'
+  };
 
   let currentProgressionObject = 'current Progression Object';
   let menuObject = {
-    data: require('app/mockBackEndResponse/menu-1.json').menudata[0]
+    data: require('app/mockBackEndResponse/4/menu.json').menudata[0]
   };
   let firstName = 'Tonio';
 

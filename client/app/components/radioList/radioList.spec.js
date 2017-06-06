@@ -52,7 +52,7 @@ describe('RadioList', () => {
           value: 'this_is_the_label_5',
           sub_label: null,
           selected: false,
-          feedback: null
+          feedback: 'This answer has feedback'
         },
         {
           label: 'this is the label 6',
@@ -78,6 +78,20 @@ describe('RadioList', () => {
         {
           label: 'this is the label 9',
           value: 'this_is_the_label_9',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 10',
+          value: 'this_is_the_label_10',
+          sub_label: null,
+          selected: false,
+          feedback: null
+        },
+        {
+          label: 'this is the label 11',
+          value: 'this_is_the_label_11',
           sub_label: null,
           selected: false,
           feedback: null
@@ -143,7 +157,8 @@ describe('RadioList', () => {
 
     let bindings = {
       block: blockBinding,
-      isTopLevelFormSubmitted: false
+      isTopLevelFormSubmitted: false,
+      updateBlockManager: () => {}
     };
 
     beforeEach(() => {
@@ -204,18 +219,16 @@ describe('RadioList', () => {
     });
 
     it('has the correct id on the form 12', () => {
-      expect(template.find('ng-form').attr('id')).to.eq(blockBinding.data.name);
+      expect(template.find('ng-form').attr('id')).to.eq(`${FORM_NAME_PREFIX}${blockBinding.id}`);
     });
 
     it('has a list item with the correct data in the label', () => {
-      let obj = blockBinding.data.items;
       let labelText = angular.element(template[0].querySelector('.radio-label span'));
-      expect(labelText.html()).to.eq(obj[8].label);
+      expect(labelText.html()).to.eq(blockBinding.data.items[10].label);
     });
 
     it('has a list item with the correct data in the input=value', () => {
-      let obj = blockBinding.data.items;
-      expect(template.find('input').attr('value')).to.eq(obj[8].value);
+      expect(template.find('input').attr('value')).to.eq(blockBinding.data.items[10].value);
     });
 
 

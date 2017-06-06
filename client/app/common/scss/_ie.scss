@@ -1,30 +1,52 @@
+@import '~client/app/common/scss/_vars';
+
 // http://www.mediacurrent.com/blog/write-conditional-css-ie10-and-11
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .off-canvas-wrap {
-    overflow-y: visible;
-    .inner-wrap {
-      height: 100vh;
+
+
+  .navbar {
+    .off-canvas-wrap {
+      overflow-y: visible;
+      .inner-wrap {
+        display: block;
+
+        .course-content-blocks {
+          min-height: calc(100vh - #{$height-footer-nav-banner} - #{$height-footer-nav-banner});
+        }
+      }
     }
+
+    .main-section,
+    .left-submenu {
+      height: auto;
+    }
+  }
+
+  // http://stackoverflow.com/questions/15635601/ie-10-elements-with-relative-position-disappearing-after-scrolling-in-parent-ele
+  // .navbar {
+  //   .left-submenu {
+  //     // transform: scale(1);
+  //   }
+  // }
+
+  .off-canvas-list-bugfix {
+    height: auto;
   }
 
   .course-content {
     height: calc(100% - 6rem);
   }
 
-  .navbar {
-    .main-section {
-      height: auto;
-    }
+  .locked-page,
+  .error-page,
+  .pageNotFound {
+    height: calc(100vh - #{$height-footer-nav-banner} - #{$height-company-banner});
   }
 
-  .icon-text {
-    .flex-parent {
-      .text-content {
-        width: calc(100% - 9rem);
-        display: block;
-        overflow: hidden;
-      }
-    }
+  .navigation,
+  footer,
+  .banner {
+    margin-left: -8.6875rem;
+    margin-right: -8.6875rem;
   }
-
 }

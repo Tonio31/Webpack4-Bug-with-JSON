@@ -149,7 +149,18 @@ describe('Checkbox', () => {
 
       expect(controller.areAllCheckBoxDisplayed).to.equal(true);
       expect(controller.limit).to.equal(undefined);
-      expect(controller.selection).to.deep.equal({ alien8: true });
+      expect(controller.selection).to.deep.equal({
+        Con: false,
+        alien2: false,
+        alien5: false,
+        alien8: true,
+        bed3: false,
+        bed6: false,
+        bed9: false,
+        dan1: false,
+        dan4: false,
+        dan7: false
+      });
 
       // Revert the change to don't impact other test
       controller.block.data.items[8].checked = false;
@@ -159,7 +170,7 @@ describe('Checkbox', () => {
     it('$onInit() - this.selection is initialised from localStorage  if input DOESN\'T have checked checkbox', sinon.test( () => {
 
       let getUserInputFromLocalStorageStub = sinon.stub(Utility, 'getUserInputFromLocalStorage', () => {
-        return ['dan'];
+        return ['dan1'];
       });
 
 
@@ -167,12 +178,40 @@ describe('Checkbox', () => {
 
       expect(controller.areAllCheckBoxDisplayed).to.equal(true);
       expect(controller.limit).to.equal(undefined);
-      expect(controller.selection).to.deep.equal({ dan: true });
+      expect(controller.selection).to.deep.equal({
+        Con: false,
+        alien2: false,
+        alien5: false,
+        alien8: false,
+        bed3: false,
+        bed6: false,
+        bed9: false,
+        dan1: true,
+        dan4: false,
+        dan7: false
+      });
 
       sinon.assert.calledWith(getUserInputFromLocalStorageStub, controller.block.program_data_code);
-      sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: ['dan'] });
+      sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: ['dan1'] });
 
     }));
+
+    it('nbCheckBoxSelected() - test the function', () => {
+      controller.selection = {
+        Con: false,
+        alien2: true,
+        alien5: false,
+        alien8: false,
+        bed3: false,
+        bed6: false,
+        bed9: false,
+        dan1: true,
+        dan4: false,
+        dan7: false
+      };
+
+      expect(controller.nbCheckBoxSelected()).to.equal(2);
+    });
 
     it('getPleaseSelectMessage() for min=max=1', () => {
       expect(controller.getPleaseSelectMessage(1, 1)).to.equal('PLEASE_SELECT_1_OPTION');
@@ -294,7 +333,7 @@ describe('Checkbox', () => {
 
 
     it('has the correct id on the form', () => {
-      expect(template.find('ng-form').attr('id')).to.eq(blockBinding.data.name);
+      expect(template.find('ng-form').attr('id')).to.eq(`${FORM_NAME_PREFIX}${blockBinding.id}`);
     });
 
     it('has a list item with the correct data in the label', () => {

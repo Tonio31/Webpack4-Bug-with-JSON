@@ -9,7 +9,6 @@ class BlockManagerController {
       $log.log('onUpdate value=', value);
       this.updateParent({ parentValue: value });
     };
-
   }
 }
 

@@ -14,7 +14,9 @@ let constantModule = angular.module('app.common.constant', [
     RESET_PASSWORD: '/password/reset',
     RETRIEVE_CREDENTIALS: '/retrieve_credentials',
     PAGE_NOT_FOUND: '/404',
-    PAGE_NOT_FOUND_NO_MENU: '/PageNotFound',
+    PAGE_NOT_FOUND_NO_MENU: '/PageNotFound', // This needs to be different than PAGE_NOT_FOUND
+    ERROR_PAGE: '/Error',
+    ERROR_PAGE_NO_MENU: '/UnexpectedError', // This needs to be different than ERROR_PAGE
     SURVEY: '/360-Survey'
   })
   .constant('FORM_NAME_PREFIX', 'myForm')
@@ -46,8 +48,33 @@ let constantModule = angular.module('app.common.constant', [
   })
   .constant('WEBSITE_CONFIG', {
     apiUrl: BACK_END_API,
-    apiViaSurvey: 'https://www.viacharacter.org/survey/api1/',
-    googleTrackingCode: GOOGLE_TRACKING_CODE
+    googleTrackingCode: GOOGLE_TRACKING_CODE,
+    GA_DIMENSIONS: {
+      COMPANY: 'dimension1',
+      COHORT: 'dimension2',
+      DIVISION: 'dimension3'
+    },
+    viaSurvey: {
+      api: 'https://www.viacharacter.org/survey/api1/',
+      appKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4',
+      surveyID: 86,
+      questionCount: 120
+    },
+    OTHER_PL_SITES_API: {
+      api: {
+        checkUsernameApi: 'local.check_username_email',
+        checkCredentialsApi: 'local.check_credentials',
+        resetPasswordApi: 'reset_pass_curl',
+      },
+      change: {
+        apiUrl: `${BACK_END_API}/check-auth/change`,
+        loginUrl: 'http://change.potentialife.com/wp-login.php'
+      },
+      my: {
+        apiUrl: 'https://my.potentialife.com/api/index_v2.php',
+        loginUrl: 'https://my.potentialife.com/wp-login.php'
+      },
+    }
   })
 .name;
 

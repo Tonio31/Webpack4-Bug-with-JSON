@@ -7,7 +7,36 @@ describe('IconText', () => {
   let $rootScope, $componentController, $compile;
   let Utility;
 
-  let blocksBinding = require('app/mockBackEndResponse/potentialife-course_cycle-3_module-31_step-4.json').blocks;
+  let blocksBindingButton = {
+    id: 51,
+    type: 'static',
+    element: 'icon_text',
+    data: {
+      icon: {
+        type: 'icon-pl-lock',
+        color: 'success'
+      },
+      text: '<h1>This content is locked!<\\/p>',
+      button: {
+        href: '/potentialife-course/cycle-1/module-1/step-9',
+        color: 'primary',
+        label: 'Resume your progress'
+      }
+    }
+  };
+
+  let blockbindingsNoButton = {
+    id: 52,
+    type: 'static',
+    element: 'icon_text',
+    data: {
+      icon: {
+        type: 'icon-pl-exclamation',
+        color: 'alert'
+      },
+      text: '<p>If you see a button under this text, this is not normal, as there is no button provided in the JSON, we should not dispaly a button below.<\\/p>'
+    }
+  };
 
 
   beforeEach(window.module(IconTextModule));
@@ -46,8 +75,8 @@ describe('IconText', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      scope.data = blocksBinding[1].data;
-      scope.dataNoButton = blocksBinding[2].data;
+      scope.data = blocksBindingButton.data;
+      scope.dataNoButton = blockbindingsNoButton.data;
       template = $compile('<icon-text data="data"></icon-text>')(scope);
       templateNoButton = $compile('<icon-text data="dataNoButton"></icon-text>')(scope);
       scope.$apply();
@@ -57,7 +86,7 @@ describe('IconText', () => {
     it('has a button displayed if button is present in Json', () => {
       let button = angular.element(template.find('button'));
       expect(button.length).to.eq(1);
-      expect(template.find('button').html()).to.contain(blocksBinding[1].data.button.label);
+      expect(template.find('button').html()).to.contain(blocksBindingButton.data.button.label);
     });
 
 

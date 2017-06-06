@@ -40,6 +40,17 @@ class CheckboxController {
       return message;
     };
 
+    this.nbCheckBoxSelected = () => {
+      let nbSelectedCheckbox = 0;
+      for ( let key of Object.keys(this.selection) ) {
+        if ( this.selection[key] ) {
+          nbSelectedCheckbox++;
+        }
+      }
+
+      return nbSelectedCheckbox;
+    };
+
     this.$onInit = () => {
       this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
       this.CHECKBOX_GROUP_NAME = `checkbox_group-${this.FORM_NAME}`;
@@ -57,17 +68,19 @@ class CheckboxController {
             this.displayAllCheckBox();
           }
 
-          this.selection[checkbox.value] = checkbox.checked;
         }
+        this.selection[checkbox.value] = checkbox.checked;
       });
 
       // if nothing is selected, check if we have some data previously saved in local storage
-      if ( Object.keys(this.selection).length === 0 ) {
+      if ( this.nbCheckBoxSelected() === 0 ) {
         let checkedFromLocalStorage = Utility.getUserInputFromLocalStorage(this.block.program_data_code);
         if ( checkedFromLocalStorage ) {
           for ( let checked of checkedFromLocalStorage ) {
-            this.selection[checked] = true;
-            this.displayAllCheckBox(); // Shortcut, we don't know (we could but it's extra computation) if the box checked is hidden or not, so we display everything
+            if ( this.selection.hasOwnProperty(checked) ) {
+              this.selection[checked] = true;
+              this.displayAllCheckBox(); // Shortcut, we don't know (we could but it's extra computation) if the box checked is hidden or not, so we display everything
+            }
           }
 
           // Update block manager directly in order to save these inputs at courseContent level

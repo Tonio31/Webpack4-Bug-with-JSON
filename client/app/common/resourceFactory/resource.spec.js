@@ -1,20 +1,67 @@
 import ResourceModule from './resource';
 
 describe('Resource', () => {
-  let User, Data, WEBSITE_CONFIG;
-  let $httpBackend;
+  let User, Data, WEBSITE_CONFIG, TOKEN_SURVEY;
+  let $httpBackend, $location, $window;
 
-  let participant = require('app/mockBackEndResponse/participants.json');
+  let participant = {
+    success: true,
+    data: {
+      id: 4,
+      email: 'tonio.mandela26@usertest.com',
+      username: 'tonio1234',
+      first_name: 'tonio',
+      last_name: 'mandela',
+      gender: 'M',
+      company: 'Barclays',
+      division: 'Sales',
+      cohort: 'BAC001',
+      remember_token: null,
+      created_at: '2017-02-28 15:17:11',
+      updated_at: '2017-02-28 15:17:11',
+      deleted_at: null,
+      companyBanner: {
+        logo: 'https://logos.keycdn.com/keycdn-logo.png',
+        header: 'Inspiring Leadership',
+        subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
+        bgColor: 'orange',
+        textColor: 'white'
+      }
+    },
+    message: 'Participant retrieved successfully'
+  };
   let userId = 12;
 
+  let cleanMockObject = (iMockObject) => {
+    Object.keys(iMockObject).forEach( (key) => {
+      delete iMockObject[key];
+    });
+  };
 
-  beforeEach(window.module(ResourceModule));
+  let mockLocalStorage = {};
+
+  beforeEach(window.module(ResourceModule, ($provide) => {
+    $provide.value('$localStorage', mockLocalStorage );
+  }));
 
   beforeEach(inject(($injector) => {
     $httpBackend = $injector.get('$httpBackend');
+    $location = $injector.get('$location');
+    $window = $injector.get('$window');
     User = $injector.get('User');
     Data = $injector.get('Data');
     WEBSITE_CONFIG = $injector.get('WEBSITE_CONFIG');
+    TOKEN_SURVEY = $injector.get('TOKEN_SURVEY');
+
+    $window.ga = () => {};
+
+    $location.search = () => {
+      return {
+        [TOKEN_SURVEY]: 'ThisIsAToken'
+      };
+    };
+
+    cleanMockObject(mockLocalStorage);
 
     sinon.stub(User, 'getUserId', () => { return userId; } );
   }));
@@ -59,10 +106,14 @@ describe('Resource', () => {
       Data.getParticipantDetails();
       $httpBackend.flush();
       sinon.assert.calledWith(setUserSpy, {
-        email: 'tonio.mandela@usertest.com',
+        email: 'tonio.mandela26@usertest.com',
         firstName: 'tonio',
+        gender: 'M',
         id: 4,
         lastName: 'mandela',
+        cohort: 'BAC001',
+        company: 'Barclays',
+        division: 'Sales',
         companyBanner: {
           bgColor: 'orange',
           header: 'Inspiring Leadership',
@@ -114,6 +165,22 @@ describe('Resource', () => {
       $httpBackend.flush();
     }));
 
+    it('getFriendSurveyContent() return a rejected promise if the server returns an error', sinon.test( (done) => {
+
+      let regexpStep = new RegExp('https:\/\/localhost\.com\/survey\?.*');
+      $httpBackend.whenGET(regexpStep).respond( () => {
+        return [ 200, { data: 'some data' }, {} ];
+      });
+
+      Data.getFriendSurveyContent({});
+
+      expect(mockLocalStorage).to.deep.eq({ token_survey: 'ThisIsAToken' });
+
+      $httpBackend.flush();
+      done();
+    }));
+
+
     it('getUserAuthData() return a promise', sinon.test( (done) => {
 
       $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( () => {
@@ -145,6 +212,31 @@ describe('Resource', () => {
       let updateStepPOST = Data.updateStep();
 
       updateStepPOST.$save( () => {
+        assert(true, 'Positive response form the back end');
+        done();
+      })
+        .catch( () => {
+          assert.fail(0, 1, 'We should not return an error if the server returns positive response');
+          done();
+        });
+
+      $httpBackend.flush();
+
+      done();
+    }));
+
+    it('checkAuthOnOtherPlWebsite() return a promise', sinon.test( (done) => {
+
+      let websiteToTarget = 'my';
+
+      let urlToMAtch = `${WEBSITE_CONFIG.OTHER_PL_SITES_API[websiteToTarget].apiUrl}(.*)`;
+      $httpBackend.whenPOST(new RegExp(urlToMAtch)).respond( () => {
+        return [ 200, {}, {} ];
+      });
+
+      let checkAuth = Data.checkAuthOnOtherPlWebsite(websiteToTarget, WEBSITE_CONFIG.OTHER_PL_SITES_API.api.checkUsernameApi);
+
+      checkAuth.$check( () => {
         assert(true, 'Positive response form the back end');
         done();
       })

@@ -24,5 +24,6 @@
 .no-bg-padding {
   .html-module {
     padding: 0 $side-block-padding;
+    margin: 0 calc(-#{$side-block-padding});
   }
 }

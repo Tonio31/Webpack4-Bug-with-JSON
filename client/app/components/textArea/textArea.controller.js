@@ -16,9 +16,9 @@ class TextAreaController {
       }
       else {
         this.text = Utility.getUserInputFromLocalStorage(this.block.program_data_code);
-        this.updateBlockManager({ blockManagerValue: this.text });
       }
 
+      this.updateBlockManager({ blockManagerValue: this.text });
     };
 
     this.actionOnUserInput = () => {

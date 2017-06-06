@@ -8,7 +8,52 @@ describe('Composed', () => {
   // let $componentController;
   let $compile;
 
-  let blockBinding = require('app/mockBackEndResponse/potentialife-course_cycle-1_module-1_step-6.json').blocks[1];
+  let blockBinding = {
+    type: 'composed',
+    element: 'container',
+    data: {
+      blocks:[
+        {
+          id: 50,
+          type: 'static',
+          element: 'icon_text',
+          data: {
+            icon: {
+              type: 'icon-pl-lock',
+              color: 'success'
+            },
+            text: '<h1>This content is locked!<\/p>',
+            button: {
+              href: '/potentialife-course/cycle-1/module-1/step-9',
+              color: 'primary',
+              label: 'Resume your progress'
+            }
+          }
+        },
+        {
+          id: 56,
+          type: 'static',
+          element: 'bar_chart',
+          data: {
+            title: 'Your strengths breakdown',
+            bars: [
+              {
+                title: 'Work',
+                color: 'blue',
+                value: 25
+              },
+              {
+                title: 'Whatever',
+                color: 'red',
+                value: 75
+              }
+            ]
+          }
+        }
+      ]
+    }
+  };
+
   beforeEach(window.module(ComposedModule));
 
   beforeEach(inject(($injector) => {
@@ -50,7 +95,7 @@ describe('Composed', () => {
 
     it('has the correct amount of block as per the data', () => {
       const blockElements = angular.element(template[0].querySelectorAll('.composed > div'));
-      const blockData = blockBinding.blocks.length;
+      const blockData = blockBinding.data.blocks.length;
       expect(blockElements.length).to.eq(blockData);
     });
   });

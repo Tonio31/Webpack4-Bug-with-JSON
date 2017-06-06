@@ -1,0 +1,299 @@
+{
+  "id": 31,
+  "stepable_id": 2,
+  "stepable_type": "modules",
+  "title": "Step 7",
+  "name": "Exercise: Increasing your time in your peak potential zone",
+  "description": "4 minutes",
+  "slug": "step-7",
+  "content": null,
+  "hideStepInMenu": 0,
+  "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.<\/p>",
+  "lft": 36,
+  "rgt": 37,
+  "depth": 1,
+  "status": "current",
+  "created_at": "2017-04-13 12:27:19",
+  "updated_at": "2017-05-10 14:37:04",
+  "deleted_at": null,
+  "parent_id": null,
+  "breadcrumbs": "Level 1 &bull; Module 2 &bull; Step 7",
+  "prev_page_url": "\/potentialife-course\/cycle-1\/module-2\/step-6",
+  "next_page_url": "\/potentialife-course\/cycle-1\/module-2\/step-8",
+  "fullUrl": "\/potentialife-course\/cycle-1\/module-2\/step-7",
+  "blocks": [
+    {
+      "id": 214,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Let\u2019s take a fresh look at three important pieces of information regarding your strengths journey to-date.<\/p>"
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 214
+      }
+    },
+    {
+      "id": 321,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": null,
+      "data": {
+        "config": {
+          "minItemsDisplayed": "5",
+          "showMoreButtonAtStart": "1"
+        },
+        "label": "Reflections from Module 1's LifeActs",
+        "placeholder": null,
+        "name": null,
+        "value": null,
+        "items": [
+          {
+            "label": "C1 M2 S2 Reflect lifeacts",
+            "sub_label": null,
+            "takeaways": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 321
+      }
+    },
+    {
+      "id": 215,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": null,
+      "data": {
+        "config": {
+          "minItemsDisplayed": "5",
+          "showMoreButtonAtStart": "1"
+        },
+        "label": "Via Character Strengths",
+        "placeholder": null,
+        "name": null,
+        "value": null,
+        "items": [
+          {
+            "label": "C1 M1 S8 Strength0",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "C1 M1 S8 Strength1",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "C1 M1 S8 Strength2",
+            "sub_label": null,
+            "takeaways": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 215
+      }
+    },
+    {
+      "id": 216,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": null,
+      "data": {
+        "config": {
+          "minItemsDisplayed": "5",
+          "showMoreButtonAtStart": "1"
+        },
+        "label": "Selected activities from peak potential zone",
+        "placeholder": null,
+        "name": null,
+        "value": null,
+        "items": [
+          {
+            "label": "Work positive 4 large 28logs",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "Non-work - 5 - 25logs",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "Work Positive 5 Large 24slots",
+            "sub_label": null,
+            "takeaways": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 216
+      }
+    },
+    {
+      "id": 218,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Take a few moments to try to \u2018see the opportunities\u2019 regarding your peak potential zone. Try to come up with the 3 most interesting insights you have made about yourself so far.<\/p>"
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 218
+      }
+    },
+    {
+      "id": 220,
+      "type": "dynamic",
+      "element": "textarea",
+      "program_data_code": "l1.m2.s7.textarea.three_insights",
+      "data": {
+        "label": "Note these insights down below",
+        "placeholder": null,
+        "value": null,
+        "name": "three_insights",
+        "config": {
+          "required": "1"
+        }
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 220
+      }
+    },
+    {
+      "id": 221,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Now, think of 1 small but practical change that you can make in the week ahead that will allow you to gradually increase the time you spend in your peak potential zone.<\/p>"
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 221
+      }
+    },
+    {
+      "id": 223,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": null,
+      "data": {
+        "config": {
+          "minItemsDisplayed": 0,
+          "showMoreButtonAtStart": true
+        },
+        "label": "Check out  the thought-starters below",
+        "placeholder": null,
+        "name": null,
+        "value": null,
+        "items": [
+          {
+            "label": "One example might be to seize the opportunity to deliver a presentation at an upcoming meeting (because you realized that public speaking is a PPZ activity for you).",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "Another might be to remind yourself to spend an extra few minutes coaching an underperforming colleague (because you love coaching).",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "Or maybe the change is simply to be more systematic about going for a run in the morning (because this you have realized is when you are at your creative best).",
+            "sub_label": null,
+            "takeaways": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 223
+      }
+    },
+    {
+      "id": 320,
+      "type": "dynamic",
+      "element": "textarea",
+      "program_data_code": "l1.m2.s7.textbox.one_change",
+      "data": {
+        "label": "Note down your 1 change for the coming week below",
+        "placeholder": "This week I'm going to...",
+        "value": null,
+        "name": "one_change",
+        "config": {
+          "required": "1"
+        }
+      },
+      "pivot": {
+        "step_id": 31,
+        "block_id": 320
+      }
+    }
+  ],
+  "stepable": {
+    "id": 2,
+    "cycle_id": 1,
+    "title": "Module 2",
+    "name": "Experiment Strengths",
+    "description": "10 steps",
+    "content": null,
+    "slug": "module-2",
+    "lft": 4,
+    "rgt": 5,
+    "depth": 1,
+    "parent_id": null,
+    "created_at": null,
+    "updated_at": "2017-04-24 12:15:11",
+    "deleted_at": null,
+    "fullUrl": "\/potentialife-course\/cycle-1\/module-2",
+    "status": "locked",
+    "cycle": {
+      "id": 1,
+      "course_id": 1,
+      "title": "Level 1",
+      "name": "Unfreeze",
+      "description": "10 Modules",
+      "slug": "cycle-1",
+      "content": "<p>content<\/p>",
+      "lft": 2,
+      "rgt": 3,
+      "depth": 1,
+      "parent_id": null,
+      "created_at": "2017-02-13 11:20:50",
+      "updated_at": "2017-04-06 17:13:41",
+      "deleted_at": null,
+      "fullUrl": "\/potentialife-course\/cycle-1",
+      "status": "current",
+      "progress": {
+        "completed": 17,
+        "remaining": 92,
+        "total": 109,
+        "percent": "16"
+      },
+      "course": {
+        "id": 1,
+        "name": "Potentialife Course",
+        "slug": "potentialife-course",
+        "description": null,
+        "content": null,
+        "lft": 2,
+        "rgt": 3,
+        "depth": 1,
+        "parent_id": null,
+        "created_at": "2017-02-13 11:07:23",
+        "updated_at": "2017-02-13 11:09:39",
+        "deleted_at": null,
+        "fullUrl": "\/potentialife-course",
+        "status": "current"
+      }
+    }
+  }
+}

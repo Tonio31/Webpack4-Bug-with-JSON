@@ -31,8 +31,7 @@ class RetrieveCredentialsController {
         });
       }
       else {
-        $log.log('iForgotCredentialForm is not valid');
-        $log.log('iForgotCredentialForm.email=', iForgotCredentialForm.email);
+        $log.log('iForgotCredentialForm is not valid email=', iForgotCredentialForm.email);
       }
 
     };

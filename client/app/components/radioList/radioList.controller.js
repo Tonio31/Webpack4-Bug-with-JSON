@@ -5,17 +5,13 @@ class RadioListController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'RadioListController' );
 
-    this.MIN_NB_RADIO_BUTTON_DISPLAYED = 5;
 
     this.selected = '';
-
-    this.limitStart = 0;
-    this.limit = this.MIN_NB_RADIO_BUTTON_DISPLAYED;
 
     this.showMoreButtonDisplayed = true;
 
     this.updateLimit = (iIndexSelected) => {
-      $log.log('iIndexSelected=', iIndexSelected);
+      $log.log('updateLimit() - iIndexSelected=', iIndexSelected);
       if (iIndexSelected >= ( this.block.data.items.length - 2 ) ) {
         this.limitStart = -this.MIN_NB_RADIO_BUTTON_DISPLAYED;
       }
@@ -44,7 +40,7 @@ class RadioListController {
       for (let i = 0; i < iRadioItems.length; i++) {
         let item = iRadioItems[i];
         if (item.selected === true) {
-          this.selected = item.value;
+          this.selected = item.value.toString();
           this.updateLimit(i);
           return;
         }
@@ -64,13 +60,19 @@ class RadioListController {
 
     this.$onInit = () => {
       this.FORM_NAME = `${FORM_NAME_PREFIX}${this.block.id}`;
+
+      let minRadioBoxDisplayed = this.block.data.config.minRadioBoxDisplayed;
+      this.MIN_NB_RADIO_BUTTON_DISPLAYED = angular.isDefined(minRadioBoxDisplayed) ? minRadioBoxDisplayed : 5;
+      this.limitStart = 0;
+      this.limit = this.MIN_NB_RADIO_BUTTON_DISPLAYED;
+
       setSelectedRadio(this.block.data.items);
     };
 
     this.findSelectedIndex = () => {
       for (let i = 0; i < this.block.data.items.length; i++) {
         let item = this.block.data.items[i];
-        if ( item.value === this.selected ) {
+        if ( item.value.toString() === this.selected.toString() ) {
           return i;
         }
       }

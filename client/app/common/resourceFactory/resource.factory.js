@@ -1,4 +1,16 @@
-let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
+let ResourceFactory = function( $log,
+                                $q,
+                                $resource,
+                                $stateParams,
+                                $state,
+                                $localStorage,
+                                $location,
+                                $httpParamSerializer,
+                                $window,
+                                User,
+                                STATES,
+                                WEBSITE_CONFIG,
+                                TOKEN_SURVEY ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -14,6 +26,29 @@ let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
     return apiUrl;
   };
 
+
+  let saveUserData = (iUserDataFromServer) => {
+    let userToSave = {
+      id: iUserDataFromServer.id,
+      firstName: iUserDataFromServer.first_name,
+      lastName: iUserDataFromServer.last_name,
+      email: iUserDataFromServer.email,
+      gender: iUserDataFromServer.gender,
+      company: iUserDataFromServer.company,
+      division: iUserDataFromServer.division,
+      cohort: iUserDataFromServer.cohort,
+      companyBanner: iUserDataFromServer.companyBanner
+    };
+
+    User.setUser(userToSave);
+
+    // Set up google analytics to link the data to a specific userId
+    $window.ga('set', 'userId', userToSave.id);
+    $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COMPANY, userToSave.company);
+    $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.DIVISION, userToSave.division);
+    $window.ga('set', WEBSITE_CONFIG.GA_DIMENSIONS.COHORT, userToSave.cohort);
+  };
+
   // **********************************  GET  *************************************** //
   let getMenu = () => {
     $log.log('getMenu()');
@@ -21,23 +56,22 @@ let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
   };
 
   let getParticipantDetails = () => {
+
+    let deferred = $q.defer();
     $log.log('getParticipantDetails()');
-    return $resource(buildApiUrl('participants', true)).get( (userData) => {
+    $resource(buildApiUrl('participants', true)).get( (userData) => {
       $log.log('getParticipantDetails() retrieved successfully');
 
-      let userToSave = {
-        id: userData.data.id,
-        firstName: userData.data['first_name'], // eslint-disable-line dot-notation
-        lastName: userData.data['last_name'], // eslint-disable-line dot-notation
-        email: userData.data.email,
-        companyBanner: userData.data.companyBanner
-      };
+      saveUserData(userData.data);
 
-      User.setUser(userToSave);
+      deferred.resolve();
     },
-      (error) => {
-        $log.error('getParticipantDetails() error=', error);
-      });
+    (error) => {
+      $log.error('getParticipantDetails() error=', error);
+      deferred.reject(error);
+    });
+
+    return deferred.promise;
   };
 
 
@@ -70,6 +104,28 @@ let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
     return deferred.promise;
   };
 
+  let getFriendSurveyContent = ( ioGetParameters ) => {
+    // Get Token from URL or local storage
+    let urlParameters = $location.search();
+    let tokenSurvey = '';
+
+    if ( urlParameters.hasOwnProperty(TOKEN_SURVEY) ) {
+      tokenSurvey = urlParameters[TOKEN_SURVEY];
+      $localStorage[TOKEN_SURVEY] = tokenSurvey;
+    }
+    else if ( angular.isDefined($localStorage[TOKEN_SURVEY]) ) {
+      tokenSurvey = $localStorage[TOKEN_SURVEY];
+    }
+
+    $log.warn('getFriendSurveyContent() - tokenSurvey=', tokenSurvey);
+
+    if ( tokenSurvey ) {
+      ioGetParameters[TOKEN_SURVEY] = tokenSurvey;
+    }
+
+    return getDynamicContentPromise( 'survey', false, ioGetParameters );
+  };
+
   // **********************************  POST  *************************************** //
   // Theses resource are to be used with $save method only, because we return an instance
   // of the function, we can't use it to do get method
@@ -89,15 +145,60 @@ let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
     return new ($resource(buildApiUrl('password/reset')))();
   };
 
+  // Will query http://change.potentialife.com/api/index_v2.php to get auth information
+  // @params: iWebsite - String (change | my)
+  // @params: iTypeOfCheck - String (local.check_username_email | local.check_credentials | reset_pass_curl)
+  let checkAuthOnOtherPlWebsite = (iWebsite, iTypeOfCheck) => {
+    $log.log('checkAuthOnOtherPlWebsite() iWebsite=', iWebsite, '   iTypeOfCheck=', iTypeOfCheck);
+    return new ($resource('', {}, {
+      check: {
+        method: 'POST',
+        headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
+        url: WEBSITE_CONFIG.OTHER_PL_SITES_API[iWebsite].apiUrl,
+        params: {
+          section: iTypeOfCheck
+        },
+        transformRequest: function(data) {
+          return $httpParamSerializer(data);
+        }
+      }
+    }))();
+  };
+
+  // Used to save data for a step and mark the step as completed for the current user.
   let updateStep = () => {
     $log.log('updateStep()');
     return new ($resource(buildApiUrl('program_data')))();
   };
 
+  // Used to save data for a step without setting the step as completed
+  let partialUpdateStep = () => {
+    $log.log('partialUpdateStep()');
+    return new ($resource(buildApiUrl('partial_save')))();
+  };
+
   // The following is used by ViaSurvey module
-  let viaSurvey = (iEndPointApi) => {
-    $log.log('viaSurvey()  iEndPointApi=', iEndPointApi);
-    return new ($resource(`${WEBSITE_CONFIG.apiViaSurvey}${iEndPointApi}`))();
+  let viaSurvey = ( iApi ) => {
+    return new ($resource('', {}, {
+      register: {
+        method: 'POST',
+        url: `${WEBSITE_CONFIG.viaSurvey.api}RegisterUser`,
+        transformResponse: (userId) => {
+          return {
+            userId: userId
+          };
+        }
+      },
+      call: {
+        method: 'POST',
+        url: `${WEBSITE_CONFIG.viaSurvey.api}${iApi}`,
+        transformResponse: (response) => {
+          return {
+            data: angular.fromJson(response)
+          };
+        }
+      },
+    }))();
   };
 
   return {
@@ -106,10 +207,14 @@ let ResourceFactory = function($log, $q, $resource, User, WEBSITE_CONFIG) {
     sendRecoverPasswordEmail,
     resetPassword,
     getDynamicContentPromise,
+    getFriendSurveyContent,
+    saveUserData,
     getParticipantDetails,
     updateStep,
+    partialUpdateStep,
     buildApiUrl,
-    viaSurvey
+    viaSurvey,
+    checkAuthOnOtherPlWebsite
   };
 };
 

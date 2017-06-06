@@ -1,8 +1,6 @@
 class NavbarController {
-  // eslint-disable-next-line max-params
   constructor( $log,
                $state,
-               $location,
                $anchorScroll,
                STATES,
                SPINNERS,
@@ -34,7 +32,6 @@ class NavbarController {
     };
 
     this.toggleMenu = () => {
-      $location.hash('main');
       $anchorScroll();
     };
 
@@ -47,7 +44,7 @@ class NavbarController {
     // defining the states dynamically, we use it to display
     this.menu = Menu.getMenu();
 
-    this.companyName = 'Potentialife';
+    this.Potentialife = 'Potentialife';
 
     $log.log('constructor() - END');
   }

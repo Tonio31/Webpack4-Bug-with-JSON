@@ -27,13 +27,13 @@ class VideoController {
       this.mediaOptions = {
         plugins: {
           videoJsResolutionSwitcher: {
-            ui: true,
             // Default resolution [{Number}, 'low', 'high'], (low == the lower of the numbers in data.player.res)
             default: 'low',
             // Display dynamic labels or gear symbol
             dynamicLabel: true
           }
-        }
+        },
+        playbackRates: [ 0.75, 1.0, 1.25, 1.5 ]
       };
 
       // basic check for mobile User Agent:
@@ -73,6 +73,10 @@ class VideoController {
         $log.info('Source changed to %s', data.player.src());
       });
 
+      // This will prevent the user form right-click on the video (prevent form downloading easily)
+      data.player.on('contextmenu', (e) => {
+        e.preventDefault();
+      });
     });
 
   }

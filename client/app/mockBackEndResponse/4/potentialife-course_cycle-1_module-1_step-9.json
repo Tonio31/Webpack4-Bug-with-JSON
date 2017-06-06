@@ -1,0 +1,77 @@
+{
+  "id": 9,
+  "name": "Video: Module summary",
+  "fullUrl": "/potentialife-course/cycle-1/module-1/step-9",
+  "slug": "step-9",
+  "description": null,
+  "content": null,
+  "status": "current",
+  "breadcrumbs": "Cycle 1 &bull; Module 1 &bull; Step 9 / 10",
+  "next_page_url": "/potentialife-course/cycle-1/module-1/step-10",
+  "prev_page_url": "/potentialife-course/cycle-1/module-1/step-8",
+  "blocks": [
+    {
+      "id": 50,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Testing list Block check <a href=\"https:\/\/collaborate.uxpin.com\/69fb976f422eb50dd86157b43f74d68b194afda7#\/pages\/66287055\/sitemap\">here<\/a> for sketch<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 61,
+      "type": "dynamic",
+      "element": "textarea",
+      "program_data_code": "c1.m1.s1.story_1",
+      "data": {
+        "config": {
+          "required": true
+        },
+        "label": "Story 1:",
+        "placeholder": "Please fill in the first story",
+        "value": null,
+        "name": "story_1"
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 61
+      }
+    },
+    {
+      "id": 67,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": "c1.m1.s1.ul_1",
+      "data": {
+        "config": {
+          "minItemsDisplayed": 5,
+          "showMoreButtonAtStart": true
+        },
+        "name": "Your chosen VIA character strengths",
+        "items": [
+          {
+            "label": "Reflexion",
+            "sub_label": "Sub Label",
+            "takeaways": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          },
+          {
+            "label": "Power",
+            "sub_label": "Sub Label",
+            "takeaways": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          },
+          {
+            "label": "Good in Bed",
+            "sub_label": "Sub Label",
+            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        ]
+      }
+    }
+  ]
+}

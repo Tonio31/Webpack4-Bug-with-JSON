@@ -1,0 +1,103 @@
+{
+  "id": 5,
+  "stepable_id": 1,
+  "stepable_type": "modules",
+  "title": "Step 3",
+  "name": "Video: It\u2019s the abilities not the disabilities that count",
+  "description": "5 minutes",
+  "slug": "step-3",
+  "content": null,
+  "hideStepInMenu": 0,
+  "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.<\/p>",
+  "lft": 6,
+  "rgt": 7,
+  "depth": 1,
+  "status": "locked",
+  "created_at": "2017-02-14 17:20:59",
+  "updated_at": "2017-04-20 17:42:50",
+  "deleted_at": null,
+  "parent_id": null,
+  "breadcrumbs": "Level 1 &bull; Module 1 &bull; Step 3",
+  "prev_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-2",
+  "next_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-4",
+  "fullUrl": "\/potentialife-course\/cycle-1\/module-1\/step-3",
+  "blocks": [
+    {
+      "id": 144,
+      "type": "static",
+      "element": "video",
+      "program_data_code": null,
+      "data": {
+        "poster": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-1\/l01_m01_v01_poster_6.jpg",
+        "source_sd": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-1\/l01_m01_v1_weblo.mp4",
+        "source_hd": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-1\/l01_m01_v1_webhi.mp4",
+        "caption_src": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-1\/l01_m01_v01_text.vtt",
+        "caption_default": "1",
+        "caption_label": "English subtitles",
+        "caption_lang": "en"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 144
+      }
+    }
+  ],
+  "stepable": {
+    "id": 1,
+    "cycle_id": 1,
+    "title": "Module 1",
+    "name": "Encounter Strengths",
+    "description": "11 steps",
+    "content": null,
+    "slug": "module-1",
+    "lft": 2,
+    "rgt": 3,
+    "depth": 1,
+    "parent_id": null,
+    "created_at": null,
+    "updated_at": "2017-04-24 12:14:58",
+    "deleted_at": null,
+    "fullUrl": "\/potentialife-course\/cycle-1\/module-1",
+    "status": "current",
+    "cycle": {
+      "id": 1,
+      "course_id": 1,
+      "title": "Level 1",
+      "name": "Unfreeze",
+      "description": "10 Modules",
+      "slug": "cycle-1",
+      "content": "<p>content<\/p>",
+      "lft": 2,
+      "rgt": 3,
+      "depth": 1,
+      "parent_id": null,
+      "created_at": "2017-02-13 11:20:50",
+      "updated_at": "2017-04-06 17:13:41",
+      "deleted_at": null,
+      "fullUrl": "\/potentialife-course\/cycle-1",
+      "status": "current",
+      "progress": {
+        "completed": 1,
+        "remaining": 107,
+        "total": 108,
+        "percent": "1"
+      },
+      "course": {
+        "id": 1,
+        "name": "Potentialife Course",
+        "slug": "potentialife-course",
+        "description": null,
+        "content": null,
+        "lft": 2,
+        "rgt": 3,
+        "depth": 1,
+        "parent_id": null,
+        "created_at": "2017-02-13 11:07:23",
+        "updated_at": "2017-02-13 11:09:39",
+        "deleted_at": null,
+        "fullUrl": "\/potentialife-course",
+        "status": "current"
+      }
+    }
+  }
+}

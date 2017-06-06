@@ -1,5 +1,13 @@
 class ResetPasswordController {
-  constructor($log, $state, $stateParams, $location, STATES, Data) {
+  constructor( $log,
+               $state,
+               $stateParams,
+               $location,
+               JwtFactory,
+               SpinnerFactory,
+               STATES,
+               SPINNERS,
+               Data ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -17,7 +25,7 @@ class ResetPasswordController {
     this.comparePassword = (ioResetPasswordForm) => {
 
       if ( this.password !== this.passwordConfirmation ) {
-        $log.warn('Passwords does not match');
+        $log.log('Passwords do not match');
         ioResetPasswordForm.password.$setValidity('nomatch', false);
         ioResetPasswordForm.passwordConfirmation.$setValidity('nomatch', false);
       }
@@ -26,8 +34,6 @@ class ResetPasswordController {
         ioResetPasswordForm.password.$setValidity('nomatch', true);
         ioResetPasswordForm.passwordConfirmation.$setValidity('nomatch', true);
       }
-
-      $log.log('ioResetPasswordForm=', ioResetPasswordForm);
     };
 
     this.resetPassword = (iResetPasswordForm) => {
@@ -35,19 +41,29 @@ class ResetPasswordController {
       if ( iResetPasswordForm.$valid ) {
         $log.log('iResetPasswordForm is Valid');
 
+        SpinnerFactory.show(SPINNERS.TOP_LEVEL);
+
         let resetPasswordPOSTRequest = Data.resetPassword();
 
         resetPasswordPOSTRequest.token = this.token;
         resetPasswordPOSTRequest.password = this.password;
 
-        resetPasswordPOSTRequest.$save( () => {
+        resetPasswordPOSTRequest.$save( (dataBackFromServer) => {
           $log.log('The password change was successful, redirecting to home page');
+
+          // Save to local Storage
+          JwtFactory.saveToken(dataBackFromServer.token);
+          JwtFactory.saveUserId(dataBackFromServer.user.id);
+
+          // Save User Information
+          Data.saveUserData(dataBackFromServer.user);
 
           $state.go(STATES.HOME);
         },
         (error) => {
-          $log.log('error when sending the recovery email error=', error);
+          $log.log('error when resetting password error=', error);
           this.errorFromBackEnd += 1;
+          SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
         });
       }
     };

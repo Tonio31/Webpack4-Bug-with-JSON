@@ -7,7 +7,7 @@ $height-button-banner: rem_calc(45px);
 $tick-size: 3rem;
 
 .course-content {
-  margin-top: rem_calc(20px);
+  padding-top: rem_calc(20px);
   min-height: calc(100vh - #{$height-footer-nav-banner});
   display: flex;
   flex-direction: column;
@@ -56,6 +56,12 @@ $tick-size: 3rem;
     }
   }
 
+  // We have to override the default (which is 100vh) because the saving step spinner
+  // needs to be positioned precisely at the bottom of the content and not at half
+  // of the size of the screen
+  .loading-spinner {
+    height: 100%;
+  }
 
   .navigation {
     background-color: $light-grey;

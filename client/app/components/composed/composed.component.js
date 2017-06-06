@@ -8,6 +8,7 @@ let composedComponent = {
     block: '<',
     isTopLevelFormSubmitted: '<',
     isStepCompleted: '<',
+    navigation: '<',
     updateParent: '&'
   },
   template,

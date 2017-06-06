@@ -1,0 +1,469 @@
+{
+  "id": 32,
+  "stepable_id": 2,
+  "stepable_type": "modules",
+  "title": "Step 8",
+  "name": "Send out strengths requests",
+  "description": "5 minutes",
+  "slug": "step-8",
+  "content": null,
+  "hideStepInMenu": 0,
+  "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.<\/p>",
+  "lft": 38,
+  "rgt": 39,
+  "depth": 1,
+  "status": "current",
+  "created_at": "2017-04-19 18:53:46",
+  "updated_at": "2017-05-12 12:21:43",
+  "deleted_at": null,
+  "parent_id": null,
+  "breadcrumbs": "Level 1 &bull; Module 2 &bull; Step 8",
+  "prev_page_url": "\/potentialife-course\/cycle-1\/module-2\/step-7",
+  "next_page_url": "\/potentialife-course\/cycle-1\/module-2\/step-9",
+  "fullUrl": "\/potentialife-course\/cycle-1\/module-2\/step-8",
+  "blocks": [
+    {
+      "id": 227,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>In order to deepen your understanding of your strengths you will be requesting feedback from five people who know you really well.<\/p>\r\n\r\n<p>Think of five people, who know you well and will give an honest opinion about you. These people can be colleagues, clients, family members, or friends. *You will need to know the email address for each person.<\/p>\r\n<p>Each of these people will receive a pre-formatted email from\u00a0you\u00a0(see copy below) where they will be asked to complete two short surveys over the next six weeks:\r\n<li>Firstly, a short paragraph describing a time when they saw you at your best<\/li>\r\n<li>Secondly, a relationships survey<\/li>\r\n<\/p>"
+      },
+      "pivot": {
+        "step_id": 32,
+        "block_id": 227
+      }
+    },
+    {
+      "id": 228,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h3>Example email<\/p>\r\n<p><blockquote>\r\nDear [Your chosen person's  name], \r\n<\/br><\/br>\r\nTonio is taking part in a new type of leadership development program called Potentialife. As part of the program, they request feedback from people in their professional and personal lives, who know them well. \r\n<\/br><\/br>\r\nTonio has nominated you to give them feedback. In total it will take 10-15 minutes to complete and there are two parts:\r\n<ul><li>Strengths story (1 paragraph) <\/li>\r\n<li>Relationship survey (multiple choice questions)<\/li><\/ul>\r\n\r\nThe feedback that you give is immensely valuable and will help Tonio to develop over the course of the program. To complete the feedback, please click below:\r\n<\/br><\/br>\r\n<p align=\"middle\"><img  src=\"http:\/\/cmspl.ciprianspiridon.com\/uploads\/level_1\/module_2\/complete_survey.png\" alt=\"complete_survey\"><\/p>\r\nIf you\u2019d like to get in touch with Tonio, they are CC\u2019d on this email. If you have any questions for us at Potentialife please reply to us at support@potentialife.com. \r\n<\/br><\/br>\r\nKind regards, \r\n<\/br><\/br>\r\nPotentialife\r\n<\/blockquote><\/p>"
+      },
+      "pivot": {
+        "step_id": 32,
+        "block_id": 228
+      }
+    },
+    {
+      "id": 235,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Next you will need to enter the details of the 5 people that you would like to get 360 feedback from<\/p>"
+      },
+      "pivot": {
+        "step_id": 32,
+        "block_id": 235
+      }
+    },
+    {
+      "id": 322,
+      "type": "composed",
+      "element": "container",
+      "program_data_code": null,
+      "data": {
+        "block_ids": [
+          323,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          308,
+          309,
+          310,
+          311,
+          312,
+          313,
+          314,
+          315,
+          316,
+          317,
+          318,
+          319
+        ],
+        "blocks": [
+          {
+            "id": 323,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h3>Respondent 1\/5<\/h3>"
+            }
+          },
+          {
+            "id": 236,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent1_first_name",
+            "data": {
+              "label": "First name",
+              "placeholder": null,
+              "value": "sadas",
+              "name": "respondent1_first_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 237,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent1_last_name",
+            "data": {
+              "label": "Last name",
+              "placeholder": null,
+              "value": "dsasd",
+              "name": "respondent1_last_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 238,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent1_email",
+            "data": {
+              "label": "Email address",
+              "placeholder": "example@something.com",
+              "value": "dsasad",
+              "name": "respondent1_email",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 239,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h3>Respondent 2\/5<\/h3>"
+            }
+          },
+          {
+            "id": 240,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent2_first_name",
+            "data": {
+              "label": "First name",
+              "placeholder": null,
+              "value": "dsads",
+              "name": "respondent2_first_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 241,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent2_last_name",
+            "data": {
+              "label": "Last name",
+              "placeholder": null,
+              "value": "dassad",
+              "name": "respondent2_last_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 242,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent2_email",
+            "data": {
+              "label": "Email address",
+              "placeholder": "example@something.com",
+              "value": "dsaasd",
+              "name": "respondent2_email",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 308,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h3>Respondent 3\/5<\/h3>"
+            }
+          },
+          {
+            "id": 309,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent3_first_name",
+            "data": {
+              "label": "First name",
+              "placeholder": null,
+              "value": "dsasad",
+              "name": "respondent3_first_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 310,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent3_last_name",
+            "data": {
+              "label": "Last name",
+              "placeholder": null,
+              "value": "dsaasd",
+              "name": "respondent3_last_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 311,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent3_email",
+            "data": {
+              "label": "Email address",
+              "placeholder": "example@something.com",
+              "value": "dasdas",
+              "name": "respondent3_email",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 312,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h3>Respondent 4\/5<\/h3>"
+            }
+          },
+          {
+            "id": 313,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent4_first_name",
+            "data": {
+              "label": "First name",
+              "placeholder": null,
+              "value": "dsadas",
+              "name": "respondent4_first_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 314,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent4_last_name",
+            "data": {
+              "label": "Last name",
+              "placeholder": null,
+              "value": "ghdhgf",
+              "name": "respondent4_last_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 315,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent4_email",
+            "data": {
+              "label": "Email address",
+              "placeholder": "example@something.com",
+              "value": "hhgdhg",
+              "name": "respondent4_email",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 316,
+            "type": "static",
+            "element": "html",
+            "program_data_code": null,
+            "data": {
+              "config": {
+                "padding": "no-bg-padding",
+                "bgColor": "silver",
+                "class": "padding-top-bottom"
+              },
+              "value": "<h3>Respondent 5\/5<\/h3>"
+            }
+          },
+          {
+            "id": 317,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent5_first_name",
+            "data": {
+              "label": "First name",
+              "placeholder": null,
+              "value": "dhfghgf",
+              "name": "respondent5_first_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 318,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent5_last_name",
+            "data": {
+              "label": "Last name",
+              "placeholder": null,
+              "value": "dhghgdf",
+              "name": "respondent5_last_name",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          },
+          {
+            "id": 319,
+            "type": "dynamic",
+            "element": "textbox",
+            "program_data_code": "l1.m2.s8.textbox.respondent5_email",
+            "data": {
+              "label": "Email address",
+              "placeholder": "example@something.com",
+              "value": "hdgfhgdf",
+              "name": "respondent5_email",
+              "config": {
+                "type": "text",
+                "required": "1"
+              }
+            }
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 32,
+        "block_id": 322
+      }
+    }
+  ],
+  "stepable": {
+    "id": 2,
+    "cycle_id": 1,
+    "title": "Module 2",
+    "name": "Experiment Strengths",
+    "description": "10 steps",
+    "content": null,
+    "slug": "module-2",
+    "lft": 4,
+    "rgt": 5,
+    "depth": 1,
+    "parent_id": null,
+    "created_at": null,
+    "updated_at": "2017-04-24 12:15:11",
+    "deleted_at": null,
+    "fullUrl": "\/potentialife-course\/cycle-1\/module-2",
+    "status": "locked",
+    "cycle": {
+      "id": 1,
+      "course_id": 1,
+      "title": "Level 1",
+      "name": "Unfreeze",
+      "description": "10 Modules",
+      "slug": "cycle-1",
+      "content": "<p>content<\/p>",
+      "lft": 2,
+      "rgt": 3,
+      "depth": 1,
+      "parent_id": null,
+      "created_at": "2017-02-13 11:20:50",
+      "updated_at": "2017-04-06 17:13:41",
+      "deleted_at": null,
+      "fullUrl": "\/potentialife-course\/cycle-1",
+      "status": "current",
+      "progress": {
+        "completed": 20,
+        "remaining": 89,
+        "total": 109,
+        "percent": "18"
+      },
+      "course": {
+        "id": 1,
+        "name": "Potentialife Course",
+        "slug": "potentialife-course",
+        "description": null,
+        "content": null,
+        "lft": 2,
+        "rgt": 3,
+        "depth": 1,
+        "parent_id": null,
+        "created_at": "2017-02-13 11:07:23",
+        "updated_at": "2017-02-13 11:09:39",
+        "deleted_at": null,
+        "fullUrl": "\/potentialife-course",
+        "status": "current"
+      }
+    }
+  }
+}

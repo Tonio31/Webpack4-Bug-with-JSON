@@ -1,0 +1,655 @@
+{
+  "total":1,
+  "per_page":50,
+  "current_page":1,
+  "last_page":1,
+  "next_page_url":null,
+  "prev_page_url":null,
+  "from":1,
+  "to":1,
+  "current_progression":{
+    "current_cycle": {
+      "id":2,
+      "title":"Cycle 1",
+      "name":"Unfreze",
+      "fullUrl": "/potentialife-course/cycle-1",
+      "description":"10 \/ 10 Modules",
+      "slug":"cycle-1",
+      "order":1,
+      "status":"current"
+    },
+    "current_module": {
+      "id":5,
+      "title":"MODULE 1",
+      "name":"Encounter Strengths",
+      "fullUrl": "/potentialife-course/cycle-1/module-1",
+      "description":"Approx. 3 mins",
+      "slug":"module-1",
+      "order":1,
+      "status":"current"
+    },
+    "current_step": {
+      "id": 4,
+      "title": "Step 9",
+      "name": "Video: Module summary",
+      "description": "Approx. 5 mins",
+      "slug": "step-9",
+      "order": 3,
+      "status": "current",
+      "fullUrl": "/potentialife-course/cycle-1/module-1/step-9"
+    }
+  },
+  "menudata":[
+    {
+      "id": 1,
+      "title": "",
+      "name": "Potentialife Course",
+      "description": "the main potentialife COurse",
+      "slug": "potentialife-course",
+      "order": 0,
+      "children": [
+        {
+          "id": 2,
+          "title": "Cycle 1",
+          "name": "Unfreze",
+          "description": "10 / 10 Modules",
+          "slug": "cycle-1",
+          "order": 1,
+          "status": "current",
+          "progress": {
+            "completed": 9,
+            "remaining": 13,
+            "percent": 40
+          },
+          "children": [
+            {
+              "id": 47,
+              "title": "LIFEMAP",
+              "name": "Tips for life mapping",
+              "description": "7 DAYS",
+              "slug": "lifemap",
+              "order": 0,
+              "status": "completed",
+              "fullUrl": "/potentialife-course/cycle-1/lifemap"
+            },
+            {
+              "id": 5,
+              "title": "MODULE 1",
+              "name": "Encounter Strengths",
+              "description": "Approx. 30 mins",
+              "slug": "module-1",
+              "order": 1,
+              "status": "current",
+              "children": [
+                {
+                  "id": 1,
+                  "title": "Step 1",
+                  "name": "Module introduction",
+                  "description": "Approx. 5 mins",
+                  "slug": "step-1",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-1"
+                },
+                {
+                  "id": 2,
+                  "title": "Step 2",
+                  "name": "Reflect on times you were at your best",
+                  "description": "Approx. 2 mins",
+                  "slug": "step-2",
+                  "order": 1,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-2"
+                },
+                {
+                  "id": 3,
+                  "title": "Step 3",
+                  "name": "Exercise: Your strengths and weaknesses - part 1",
+                  "description": "Approx. 2 mins",
+                  "slug": "step-3",
+                  "order": 2,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-3"
+                },
+                {
+                  "id": 4,
+                  "title": "Step 4",
+                  "name": "Exercise: Your strengths and weaknesses part 2",
+                  "description": "Approx. 5 mins",
+                  "slug": "step-4",
+                  "order": 3,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-4"
+                },
+                {
+                  "id": 5,
+                  "title": "Step 5",
+                  "name": "Video: Managing your weaknesses",
+                  "description": "Approx. 3 mins",
+                  "slug": "step-5",
+                  "order": 4,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-5"
+                },
+                {
+                  "id": 6,
+                  "title": "Step 6",
+                  "name": "Exercise: How often are you using your strengths?",
+                  "description": "Approx. 3 mins",
+                  "slug": "step-6",
+                  "order": 5,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-6"
+                },
+                {
+                  "id": 7,
+                  "title": "Step 7",
+                  "name": "Exercise: The VIA strengths diagnostic",
+                  "description": "Approx. 12 mins",
+                  "slug": "step-7",
+                  "order": 6,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-7"
+                },
+                {
+                  "id": 8,
+                  "title": "Step 8",
+                  "name": "Exercise: When are you playing to your strengths?",
+                  "description": "Approx. 5 mins",
+                  "slug": "step-8",
+                  "order": 7,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-8"
+                },
+                {
+                  "id": 9,
+                  "title": "Step 9",
+                  "name": "Video: Module summary",
+                  "description": "Approx. 2 mins",
+                  "slug": "step-9",
+                  "order": 8,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-9"
+                },
+                {
+                  "id": 10,
+                  "title": "Step 10",
+                  "name": "Your module actions",
+                  "description": "Approx. 10 mins",
+                  "slug": "step-10",
+                  "order": 9,
+                  "status": "locked",
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-10"
+                }
+              ],
+              "fullUrl": "/potentialife-course/cycle-1/module-1"
+            },
+            {
+              "id": 6,
+              "title": "MODULE 2",
+              "name": "eXperiment Strengths",
+              "description": "Approx. 3 mins",
+              "slug": "module-2",
+              "order": 2,
+              "status": "locked",
+              "children": [
+                {
+                  "id": 13,
+                  "title": "Step 13",
+                  "name": "Step 13",
+                  "description": "This is the description of step 13",
+                  "slug": "step-13",
+                  "order": 0,
+                  "status": "locked",
+                  "fullUrl": "/potentialife-course/cycle-1/module-2/step-13"
+                },
+                {
+                  "id": 14,
+                  "title": "Step 14",
+                  "name": "Step 14",
+                  "description": "This is the description of step 14",
+                  "slug": "step-14",
+                  "order": 1,
+                  "status": "locked",
+                  "fullUrl": "/potentialife-course/cycle-1/module-2/step-14"
+                }
+              ],
+              "fullUrl": "/potentialife-course/cycle-1/module-2"
+            },
+            {
+              "id": 7,
+              "title": "MODULE 3",
+              "name": "Encounter Health",
+              "description": "Approx. 3 mins",
+              "slug": "module-3",
+              "order": 3,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-1/module-3"
+            },
+            {
+              "id": 8,
+              "title": "MODULE 4",
+              "name": "eXperiment Health",
+              "description": "Approx. 3 mins",
+              "slug": "module-4",
+              "order": 4,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-1/module-4"
+            },
+            {
+              "id": 9,
+              "title": "MODULE 5",
+              "name": "Encounter Absorption",
+              "description": "Approx. 3 mins",
+              "slug": "module-5",
+              "order": 5,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-1/module-5"
+            },
+            {
+              "id": 10,
+              "title": "MODULE 6",
+              "name": "eXperiment Absorption",
+              "description": "Approx. 3 mins",
+              "slug": "module-6",
+              "order": 6,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-1/module-6"
+            },
+            {
+              "id": 11,
+              "title": "MODULE 7",
+              "name": "Encounter Relationships",
+              "description": "Approx. 3 mins",
+              "slug": "module-7",
+              "order": 7,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-1/module-7"
+            },
+            {
+              "id": 12,
+              "title": "MODULE 8",
+              "name": "eXperiment Relationships",
+              "description": "Approx. 3 mins",
+              "slug": "module-8",
+              "order": 8,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-1/module-8"
+            },
+            {
+              "id": 13,
+              "title": "MODULE 9",
+              "name": "Encounter Purpose",
+              "description": "Approx. 3 mins",
+              "slug": "module-9",
+              "order": 9,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-1/module-9"
+            },
+            {
+              "id": 14,
+              "title": "MODULE 10",
+              "name": "eXperiment Purpose",
+              "description": "Approx. 3 mins",
+              "slug": "module-10",
+              "order": 10,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-1/module-10"
+            }
+          ],
+          "fullUrl": "/potentialife-course/cycle-1"
+        },
+        {
+          "id": 3,
+          "title": "Cycle 2",
+          "name": "Change",
+          "description": "10 / 10 Modules",
+          "slug": "cycle-2",
+          "order": 2,
+          "progress": {
+            "completed": 0,
+            "remaining": 10,
+            "percent": 0
+          },
+          "status": "locked",
+          "children": [
+            {
+              "id": 15,
+              "title": "Module 11",
+              "name": "Module 11",
+              "description": null,
+              "slug": "module-11",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-11"
+            },
+            {
+              "id": 16,
+              "title": "Module 12",
+              "name": "Module 12",
+              "description": null,
+              "slug": "module-12",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-12"
+            },
+            {
+              "id": 17,
+              "title": "Module 13",
+              "name": "Module 13",
+              "description": null,
+              "slug": "module-13",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-13"
+            },
+            {
+              "id": 18,
+              "title": "Module 14",
+              "name": "Module 14",
+              "description": null,
+              "slug": "module-14",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-14"
+            },
+            {
+              "id": 19,
+              "title": "Module 15",
+              "name": "Module 15",
+              "description": null,
+              "slug": "module-15",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-15"
+            },
+            {
+              "id": 20,
+              "title": "Module 16",
+              "name": "Module 16",
+              "description": null,
+              "slug": "module-16",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-16"
+            },
+            {
+              "id": 21,
+              "title": "Module 17",
+              "name": "Module 17",
+              "description": null,
+              "slug": "module-17",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-17"
+            },
+            {
+              "id": 22,
+              "title": "Module 18",
+              "name": "Module 18",
+              "description": null,
+              "slug": "module-18",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-18"
+            },
+            {
+              "id": 23,
+              "title": "Module 19",
+              "name": "Module 19",
+              "description": null,
+              "slug": "module-19",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-19"
+            },
+            {
+              "id": 24,
+              "title": "Module 20",
+              "name": "Module 20",
+              "description": null,
+              "slug": "module-20",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-2/module-20"
+            }
+          ],
+          "fullUrl": "/potentialife-course/cycle-2"
+        },
+        {
+          "id": 4,
+          "title": "Cycle 3",
+          "name": "Refreze",
+          "description": "10 / 10 Modules",
+          "slug": "cycle-3",
+          "order": 3,
+          "progress": {
+            "completed": 0,
+            "remaining": 10,
+            "percent": 0
+          },
+          "status": "locked",
+          "children": [
+            {
+              "id": 25,
+              "title": "Module 31",
+              "name": "Module 31",
+              "description": null,
+              "slug": "module-21",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-31",
+              "children": [
+                {
+                  "id": 3311,
+                  "title": "Step 1",
+                  "name": "Module Overview",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-1",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-1"
+                },
+                {
+                  "id": 3312,
+                  "title": "Step 2",
+                  "name": "Inputs",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-2",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-2"
+                },
+                {
+                  "id": 3313,
+                  "title": "Step 3",
+                  "name": "Video",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-3",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-3"
+                },
+                {
+                  "id": 3314,
+                  "title": "Step 4",
+                  "name": "icon_text",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-4",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-4"
+                },
+                {
+                  "id": 3315,
+                  "title": "Step 5",
+                  "name": "bar_chart",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-5",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-5"
+                },
+                {
+                  "id": 3316,
+                  "title": "Step 6",
+                  "name": "Unordered List",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-6",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-6"
+                },
+                {
+                  "id": 3317,
+                  "title": "Step 7",
+                  "name": "Composed",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-7",
+                  "order": 0,
+                  "status": "completed",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-7"
+                },
+                {
+                  "id": 33181,
+                  "title": "Step 8",
+                  "name": "360 Feedback",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-8",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-8"
+                },
+                {
+                  "id": 33182,
+                  "title": "Step 8 - 2",
+                  "name": "Enter emails",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-8/2",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/2",
+                  "hideStepInMenu": true
+                },
+                {
+                  "id": 33183,
+                  "title": "Step 8 - 3",
+                  "name": "Your emails are sent",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-8/3",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/3",
+                  "hideStepInMenu": true
+                },
+                {
+                  "id": 3319,
+                  "title": "Step 9",
+                  "name": "Via Survey",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-9",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-9",
+                  "hideStepInMenu": false
+                }
+              ]
+            },
+            {
+              "id": 26,
+              "title": "Module 22",
+              "name": "Module 22",
+              "description": null,
+              "slug": "module-22",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-22"
+            },
+            {
+              "id": 27,
+              "title": "Module 23",
+              "name": "Module 23",
+              "description": null,
+              "slug": "module-23",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-23"
+            },
+            {
+              "id": 28,
+              "title": "Module 24",
+              "name": "Module 24",
+              "description": null,
+              "slug": "module-24",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-24"
+            },
+            {
+              "id": 29,
+              "title": "Module 25",
+              "name": "Module 25",
+              "description": null,
+              "slug": "module-25",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-25"
+            },
+            {
+              "id": 30,
+              "title": "Module 26",
+              "name": "Module 26",
+              "description": null,
+              "slug": "module-26",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-26"
+            },
+            {
+              "id": 31,
+              "title": "Module 27",
+              "name": "Module 27",
+              "description": null,
+              "slug": "module-27",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-27"
+            },
+            {
+              "id": 32,
+              "title": "Module 28",
+              "name": "Module 28",
+              "description": null,
+              "slug": "module-28",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-28"
+            },
+            {
+              "id": 33,
+              "title": "Module 29",
+              "name": "Module 29",
+              "description": null,
+              "slug": "module-29",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-29"
+            },
+            {
+              "id": 34,
+              "title": "Module 30",
+              "name": "Module 30",
+              "description": null,
+              "slug": "module-30",
+              "order": 0,
+              "status": "locked",
+              "fullUrl": "/potentialife-course/cycle-3/module-30"
+            }
+          ],
+          "fullUrl": "/potentialife-course/cycle-3"
+        }
+      ],
+      "fullUrl": "/potentialife-course"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "id": 13,
+  "stepable_id": 1,
+  "stepable_type": "modules",
+  "title": "Step 8",
+  "name": "Exercise: Identifying your strengths",
+  "description": "15 minutes",
+  "slug": "step-8",
+  "content": "<p>this is not shown anywhere atm<\/p>",
+  "hideStepInMenu": 0,
+  "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.<\/p>",
+  "lft": 16,
+  "rgt": 17,
+  "depth": 1,
+  "status": "current",
+  "created_at": "2017-03-28 15:27:55",
+  "updated_at": "2017-05-12 12:15:42",
+  "deleted_at": null,
+  "parent_id": null,
+  "breadcrumbs": "Level 1 &bull; Module 1 &bull; Step 8",
+  "prev_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-7",
+  "next_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-9",
+  "fullUrl": "\/potentialife-course\/cycle-1\/module-1\/step-8",
+  "blocks": [
+    {
+      "id": 154,
+      "type": "dynamic",
+      "element": "icon_text",
+      "program_data_code": null,
+      "data": {
+        "value": null,
+        "icon": {
+          "type": "icon-badge-self-discovery",
+          "color": null
+        },
+        "text": "<p>You will now complete the VIA strengths finder, which will help you identify your unique character strengths. These are the strengths that you exercise when you are at your best. It should take about 15 minutes to complete.<\/p>",
+        "button": {
+          "href": "https:\/\/www.viacharacter.org\/survey\/account\/register",
+          "color": "primary",
+          "label": "Go to ViaMe Survey"
+        }
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 154
+      }
+    },
+    {
+      "id": 155,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Once you have completed the Via survey, please review your character strengths. Look at your top 5 strengths and choose the 3 that you identify with most.\r\n<\/p>"
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 155
+      }
+    },
+    {
+      "id": 176,
+      "type": "dynamic",
+      "element": "textbox",
+      "program_data_code": "l1.m1.s8.textbox.chosen_strength_1",
+      "data": {
+        "label": "Enter your chosen 3 strengths  below.",
+        "placeholder": "e.g. Love \/ Teamwork",
+        "value": null,
+        "name": "chosen_strength_1",
+        "config": {
+          "type": "text",
+          "required": "1"
+        }
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 176
+      }
+    },
+    {
+      "id": 177,
+      "type": "dynamic",
+      "element": "textbox",
+      "program_data_code": "l1.m1.s8.textbox.chosen_strength_2",
+      "data": {
+        "label": null,
+        "placeholder": "e.g. Love \/ Teamwork",
+        "value": null,
+        "name": "chosen_strength_2",
+        "config": {
+          "type": "text",
+          "required": "1"
+        }
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 177
+      }
+    },
+    {
+      "id": 178,
+      "type": "dynamic",
+      "element": "textbox",
+      "program_data_code": "l1.m1.s8.textbox.chosen_strength_3",
+      "data": {
+        "label": null,
+        "placeholder": "e.g. Love \/ Teamwork",
+        "value": null,
+        "name": "chosen_strength_3",
+        "config": {
+          "type": "text",
+          "required": "1"
+        }
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 178
+      }
+    }
+  ],
+  "stepable": {
+    "id": 1,
+    "cycle_id": 1,
+    "title": "Module 1",
+    "name": "Encounter Strengths",
+    "description": "11 steps",
+    "content": null,
+    "slug": "module-1",
+    "lft": 2,
+    "rgt": 3,
+    "depth": 1,
+    "parent_id": null,
+    "created_at": null,
+    "updated_at": "2017-04-24 12:14:58",
+    "deleted_at": null,
+    "fullUrl": "\/potentialife-course\/cycle-1\/module-1",
+    "status": "current",
+    "cycle": {
+      "id": 1,
+      "course_id": 1,
+      "title": "Level 1",
+      "name": "Unfreeze",
+      "description": "10 Modules",
+      "slug": "cycle-1",
+      "content": "<p>content<\/p>",
+      "lft": 2,
+      "rgt": 3,
+      "depth": 1,
+      "parent_id": null,
+      "created_at": "2017-02-13 11:20:50",
+      "updated_at": "2017-04-06 17:13:41",
+      "deleted_at": null,
+      "fullUrl": "\/potentialife-course\/cycle-1",
+      "status": "current",
+      "progress": {
+        "completed": 7,
+        "remaining": 101,
+        "total": 108,
+        "percent": "6"
+      },
+      "course": {
+        "id": 1,
+        "name": "Potentialife Course",
+        "slug": "potentialife-course",
+        "description": null,
+        "content": null,
+        "lft": 2,
+        "rgt": 3,
+        "depth": 1,
+        "parent_id": null,
+        "created_at": "2017-02-13 11:07:23",
+        "updated_at": "2017-02-13 11:09:39",
+        "deleted_at": null,
+        "fullUrl": "\/potentialife-course",
+        "status": "current"
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 {
   "id": 4,
   "name": "This is the title of this step",
+  "fullUrl": "genericContent",
   "slug": null,
   "description": null,
   "content": null,

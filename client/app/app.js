@@ -39,9 +39,12 @@ let appModule = angular.module('app', [
   .config( ( $locationProvider,
              $stateProvider,
              $httpProvider,
+             $qProvider,
              $localStorageProvider,
              $urlRouterProvider,
              ZendeskWidgetProvider,
+             $sceDelegateProvider,
+             WEBSITE_CONFIG,
              STATES ) => {
     'ngInject';
 
@@ -79,9 +82,17 @@ let appModule = angular.module('app', [
     $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.get.Pragma = 'no-cache';
 
+    $qProvider.errorOnUnhandledRejections(false);
+
     $stateProviderRef = $stateProvider;
+
+    // The login page of this website can log user in 2 other different website, we need to whitelist the other website
+    // in order to submit the hidden form (name="goToOtherPlWebsites") that allows login on the other website
+    $sceDelegateProvider.resourceUrlWhitelist([
+      WEBSITE_CONFIG.OTHER_PL_SITES_API.change.loginUrl,
+      WEBSITE_CONFIG.OTHER_PL_SITES_API.my.loginUrl
+    ]);
   })
-  // eslint-disable-next-line max-params
   .run( ( $rootScope,
           $log,
           $q,
@@ -224,36 +235,69 @@ let appModule = angular.module('app', [
     });
 
 
+    let matchFromAnyToParentNoLogin = {
+      to: (state) => {
+        return ( state.parent.name === STATES.MAIN_NO_MENU ||
+                 state.parent.name === STATES.LOGIN_ROOT );
+      }
+    };
+    $transitions.onError( matchFromAnyToParentNoLogin, (trans) => {
+      let fromState = trans.from().name; // Example of fromState: /home
+      let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+      let error = trans.error();
 
-    // ui-router by default reports an error when we start a transition but we don't finish it and superseed it for another one
-    // See comment above for more explanations on why we do this for this particular login case
-    $state.defaultErrorHandler( (error) => {
-
-      if ( error.hasOwnProperty('detail') ) {
-        let fromState = error.detail.from();
-        let toState = error.detail.to();
-
-        if ( ( fromState.name === STATES.LOGIN || toState.name === STATES.LOGIN ) &&
-          error.message === 'The transition has been superseded by a different transition' ) {
-          $log.log('Transition from login to another page has been superseded, this is normal as part of login process');
-          $log.log(error);
-        }
-        else {
-          $log.error(error);
-        }
+      if ( error.status === 402 ) {
+        $log.warn(`$transitions.onError(matchFromAnyToParentNoLogin) - Error 402, Invalid Token for state without login,
+                   redirect to 500 page with specific error message`);
+        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_402' }, { reload: true });
       }
       else {
-        $log.error(error);
+        $log.error('$transitions.onError(matchFromAnyToParentNoLogin) - fromState=', fromState,
+                   '  toState=', toState, '  error=', error);
+        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
       }
     });
+
+
+    let matchFromAnyToParentWithMenu = {
+      to: (state) => {
+        return ( state.parent.name === STATES.MAIN );
+      }
+    };
+    $transitions.onError( matchFromAnyToParentWithMenu, (trans) => {
+      let fromState = trans.from().name; // Example of fromState: /home
+      let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
+      let error = trans.error();
+
+      if ( error.message === 'The transition has been superseded by a different transition' ) {
+        // This error will be normal after the login if the user is redirected to another page than home
+        // or if the user clicks super fast on menu items, then we won't have time to load one step before the user request another one.
+        $log.log('Transition from login to another page has been superseded, this could be normal error=', error);
+      }
+      else if ( error.status === 401 ) {
+        $log.warn(`$transitions.onError(matchFromAnyToParentWithMenu) - Error 401, user not authenticated or token expired, 
+                  redirect to login page.  stateToRedirect=`, toState);
+        let params = {
+          stateToRedirect: toState,
+          displayErrorOnInit: 'LOGIN_TOKEN_EXPIRED'
+        };
+        $state.go(STATES.LOGIN, params, { reload: true });
+      }
+      else {
+        $log.error('$transitions.onError(matchFromAnyToParentWithMenu) - fromState=', fromState,
+                   '  toState=', toState, '  error=', error);
+        $state.go(STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
+      }
+    });
+
 
     // Registers a OnInvalidCallback function to be invoked when StateService.transitionTo has been called with an invalid state reference parameter
     $state.onInvalid( (to, from) => {
       $log.info('Invalid transition from ', from, '  to ', to);
     });
 
-    $log.log('Start - $location.path()=', $location.path());
 
+    $log.log('Start - $location.path()=', $location.path());
 
     if ( $location.path() === STATES.RESET_PASSWORD ||
          $location.path().includes(STATES.SURVEY) ) {
@@ -269,42 +313,49 @@ let appModule = angular.module('app', [
       // from server that is used on the home page and in exceptions reports to bugsnag
       let userId = JwtFactory.getUserId();
       User.setUser({ id: userId });
-      Data.getParticipantDetails();
+      Data.getParticipantDetails().then( () => {
+        Menu.retrieveMenuAndReturnStates().then( (states) => {
+          $log.log('Menu retrieved successfully');
 
-      // Set up google analytics to link the data to a specific userId
-      $window.ga('set', 'userId', userId);
+          states.forEach( (state) => {
+            $stateProviderRef.state(state);
+          });
 
-      Menu.retrieveMenuAndReturnStates().then( (states) => {
-        $log.log('Menu retrieved successfully');
+          // Will trigger an update; the same update that happens when the address bar url changes, aka $locationChangeSuccess.
+          $urlRouter.sync();
 
-        states.forEach( (state) => {
-          $stateProviderRef.state(state);
+          // This is needed because we create our state dynamically, this works with
+          // $urlRouterProvider.deferIntercept(); defined in the config of this module.
+          // Once we created our dynamic states, we have to make ui-router listen to route change in the URL
+          // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
+          $urlRouter.listen();
+        },
+        (error) => {
+          $log.log('error Retrieving menu error=', error);
+          $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' });
         });
-
-        // Will trigger an update; the same update that happens when the address bar url changes, aka $locationChangeSuccess.
-        $urlRouter.sync();
-
-        // This is needed because we create our state dynamically, this works with
-        // $urlRouterProvider.deferIntercept(); defined in the config of this module.
-        // Once we created our dynamic states, we have to make ui-router listen to route change in the URL
-        // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
-        $urlRouter.listen();
       },
       (error) => {
-        $log.log('error Retrieving menu error=', error);
+        $log.log('error Retrieving Participant Data error=', error);
+        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' });
       });
+
+
     }
     else {
       // If the user access the URL login ('/login'), we should not redirect him to the login page
       // after he logged in (infinite loop), hence the below check
       let firstStateRequested = STATES.HOME;
-      if ( $location.url() !== $state.get(STATES.HOME).url &&
-        $location.url() !== $state.get(STATES.LOGIN).url ) {
-        firstStateRequested = $location.url();
+      if ( $location.path() !== $state.get(STATES.HOME).url &&
+        $location.path() !== $state.get(STATES.LOGIN).url ) {
+        firstStateRequested = $location.path();
       }
 
       $log.log(`User Auth expired, go to login, stateToRedirect=${firstStateRequested}`);
-      $state.go(STATES.LOGIN, { stateToRedirect: firstStateRequested });
+      $state.go(STATES.LOGIN, {
+        stateToRedirect: firstStateRequested,
+        target: $location.search().target
+      });
     }
 
     $log.log('END');

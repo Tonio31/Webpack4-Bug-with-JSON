@@ -1,6 +1,11 @@
 /* eslint-disable camelcase */
 
-let AuthInterceptorFactory = function($log, $state, $q, JwtFactory, STATES) {
+let AuthInterceptorFactory = function( $log,
+                                       $state,
+                                       $q,
+                                       JwtFactory,
+                                       STATES,
+                                       WEBSITE_CONFIG ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -8,14 +13,18 @@ let AuthInterceptorFactory = function($log, $state, $q, JwtFactory, STATES) {
 
   // automatically attach Authorization header
   let request = (config) => {
-    let token = JwtFactory.getToken();
-    let userId = JwtFactory.getUserId();
-    if ( token ) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
 
-    if ( userId ) {
-      config.headers.user_id = userId;
+    // Only add headers for
+    if ( config.url.includes(WEBSITE_CONFIG.apiUrl) ) {
+      let token = JwtFactory.getToken();
+      let userId = JwtFactory.getUserId();
+      if ( token ) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+
+      if ( userId ) {
+        config.headers.user_id = userId;
+      }
     }
 
     return config;
@@ -36,13 +45,16 @@ let AuthInterceptorFactory = function($log, $state, $q, JwtFactory, STATES) {
 
     $log.log('There was an error during the last communication with the server error.status=', error.status);
 
-    $log.error(error);
+    $log.error('error=', error);
 
-    // If we receive 401, it means the user is not logged in, redirect him to the login page
-    // and specify where we have to redirect after login
-    if ( error.status === 401 && $state.$current.name !== STATES.LOGIN ) {
-      return $state.go(STATES.LOGIN, { stateToRedirect: $state.$current.name });
+    if ( error.hasOwnProperty('config') && error.config.hasOwnProperty('url') && error.config.url.includes('program_data') &&
+         error.status === 401 && error.statusText === 'token_expired' ) {
+      $state.go(STATES.LOGIN, {
+        stateToRedirect: $state.current.name,
+        displayErrorOnInit: 'LOGIN_TOKEN_EXPIRED'
+      });
     }
+
 
     return $q.reject(error);
   };

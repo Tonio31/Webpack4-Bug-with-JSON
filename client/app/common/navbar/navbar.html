@@ -5,7 +5,7 @@
 
         <section class="left tab-bar-section">
           <h1 class="title logo-potential-life">
-            <a pl-disable-link="!$ctrl.displayMenu" ui-sref="{{$ctrl.homeState}}">{{$ctrl.companyName}}</a>
+            <a pl-disable-link="!$ctrl.displayMenu" ui-sref="{{$ctrl.homeState}}">{{$ctrl.Potentialife}}</a>
           </h1>
           <a href="#content" class="accessible-link">Skip to content</a>
         </section>
@@ -53,13 +53,10 @@
         </ul>
       </aside>
 
-
       <section class="main-section">
-      <!-- <div> -->
         <company-banner ng-if="$ctrl.isBannerExist()"></company-banner>
-        <spinner name="$ctrl.courseContentSpinner.name" show="true"></spinner>
+        <spinner name="$ctrl.courseContentSpinner.name" show="false"></spinner>
         <div ng-show="!$ctrl.courseContentSpinner.show" id="content" class="content" ui-view></div>
-      <!-- </div> -->
       </section>
 
       <!-- close the off-canvas menu -->

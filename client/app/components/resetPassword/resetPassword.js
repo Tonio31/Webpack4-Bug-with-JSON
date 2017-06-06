@@ -3,6 +3,7 @@ import uiRouter from 'angular-ui-router';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import resetPasswordComponent from './resetPassword.component';
 import ResourceFactory from 'common/resourceFactory/resource';
+import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 import ConstantModule from 'common/constants';
 
 
@@ -10,6 +11,7 @@ let resetPasswordModule = angular.module('resetPassword', [
   uiRouter,
   LogDecorator,
   ResourceFactory,
+  LoadingSpinnerModule,
   ConstantModule
 ])
 .config(($stateProvider, STATES) => {

@@ -51,8 +51,8 @@ describe('Navbar', () => {
       expect(controller.isBannerExist()).to.not.eq(0 );
     });
 
-    it('has a companyName property', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('companyName');
+    it('has a Potentialife property', () => {
+      expect(controller).to.have.property('Potentialife');
     });
   });
 
