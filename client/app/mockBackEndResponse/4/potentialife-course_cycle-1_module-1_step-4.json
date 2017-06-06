@@ -26,12 +26,12 @@
     },
     {
       "id": 52,
-      "type":"static",
-      "element":"bar_chart",
+      "type": "static",
+      "element": "bar_chart",
       "data": {
-        "title":"Your strengths breakdown",
+        "title": "Your strengths breakdown",
         "barWidth": 0.5,
-        "bars":[
+        "bars": [
           {
             "title": "Work",
             "color": "#d3d3d3",
@@ -47,12 +47,12 @@
     },
     {
       "id": 58,
-      "type":"static",
-      "element":"bar_chart",
+      "type": "static",
+      "element": "bar_chart",
       "data": {
-        "title":"Your SECOND strengths breakdown",
+        "title": "Your SECOND strengths breakdown",
         "barWidth": 0.8,
-        "bars":[
+        "bars": [
           {
             "title": "Work",
             "color": "#d3d3d3",
@@ -78,11 +78,11 @@
     },
     {
       "id": 59,
-      "type":"static",
-      "element":"pie_chart",
+      "type": "static",
+      "element": "pie_chart",
       "data": {
-        "title":"this is a pie chart",
-        "segments":[
+        "title": "this is a pie chart",
+        "segments": [
           {
             "title": "Chicken",
             "color": "#CD473D",
@@ -108,11 +108,11 @@
     },
     {
       "id": 60,
-      "type":"static",
-      "element":"pie_chart",
+      "type": "static",
+      "element": "pie_chart",
       "data": {
-        "title":"why people should use pie charts",
-        "segments":[
+        "title": "why people should use pie charts",
+        "segments": [
           {
             "title": "looks delicious",
             "color": "#B0F566",
@@ -138,13 +138,13 @@
     },
     {
       "id": 62,
-      "type":"static",
-      "element":"gauge_chart",
+      "type": "static",
+      "element": "gauge_chart",
       "data": {
-        "title":"gauge chart",
+        "title": "gauge chart",
         "gauge": {
           "unit": "",
-          "colour" : "#6638F0",
+          "colour": "#6638F0",
           "value": 8,
           "min": 0,
           "max": 12,
@@ -154,10 +154,10 @@
     },
     {
       "id": 63,
-      "type":"static",
-      "element":"spider_chart",
+      "type": "static",
+      "element": "spider_chart",
       "data": {
-        "title":"spider chart",
+        "title": "spider chart",
         "set": [
           {
             "className": "user",
@@ -182,17 +182,107 @@
                 "axis": "Top speed",
                 "value": 60
               }
-          	]
+            ]
           }
         ]
       }
     },
     {
       "id": 64,
-      "type":"static",
-      "element":"spider_chart",
+      "type": "static",
+      "element": "word_cloud",
       "data": {
-        "title":"spider chart",
+        "title": "Word Cloud",
+        "wordData": [
+          {
+            "text": "hello",
+            "power": 12
+          },
+          {
+            "text": "world",
+            "power": 1
+          },
+          {
+            "text": "normally",
+            "power": 2
+          },
+          {
+            "text": "you",
+            "power": 3
+          },
+          {
+            "text": "want",
+            "power": 4
+          },
+          {
+            "text": "more",
+            "power": 5
+          },
+          {
+            "text": "words",
+            "power": 6
+          },
+          {
+            "text": "than",
+            "power": 7
+          },
+          {
+            "text": "this",
+            "power": 8
+          },
+          {
+            "text": "hi",
+            "power": 9
+          },
+          {
+            "text": "something",
+            "power": 10
+          },
+          {
+            "text": "sunny",
+            "power": 1
+          },
+          {
+            "text": "chicken",
+            "power": 2
+          },
+          {
+            "text": "hungry",
+            "power": 3
+          },
+          {
+            "text": "tummy",
+            "power": 4
+          },
+          {
+            "text": "dancing",
+            "power": 5
+          },
+          {
+            "text": "beachball",
+            "power": 6
+          },
+          {
+            "text": "towel",
+            "power": 7
+          },
+          {
+            "text": "seagull",
+            "power": 8
+          },
+          {
+            "text": "icecream",
+            "power": 9
+          }
+        ]
+      }
+    },
+    {
+      "id": 65,
+      "type": "static",
+      "element": "spider_chart",
+      "data": {
+        "title": "spider chart",
         "set": [
           {
             "className": "user",

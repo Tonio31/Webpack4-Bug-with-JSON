@@ -68,6 +68,10 @@
       <spider-chart block="$ctrl.block"></spider-chart>
     </div>
 
+    <div ng-switch-when="word_cloud">
+      <word-cloud block="$ctrl.block"></word-cloud>
+    </div>
+
     <div ng-switch-when="ul">
       <unordered-list block="$ctrl.block" />
     </div>
