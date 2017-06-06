@@ -1,4 +1,4 @@
-import wordCloudLayout from 'd3.layout.cloud';
+import wordCloudLayout from 'd3-cloud';
 
 class WordCloudController {
   constructor($log, $window, $document, $timeout, d3) {
