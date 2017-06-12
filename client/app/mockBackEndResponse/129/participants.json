@@ -15,11 +15,12 @@
     "cohort": "TSTCH001",
     "company": "Company 1",
     "companyBanner": {
-      "logo": "https://logos.keycdn.com/keycdn-logo.png",
+      "logo": "http:\\/\\/cmspl.ciprianspiridon.com\\/uploads\\/case_studies\\/fc251cc1013e616da40e8fe5a13cdd81.jpg",
       "header": "Inspiring Leadership",
-      "subHeader": "",
-      "bgColor": "orange",
-      "textColor": "white"
+      "subHeader": "Be the best. Be the difference.",
+      "bgColor": "#FF9E01",
+      "borderColor": "#FF9E01",
+      "textColor": "#FFFFFF"
     },
     "cohorts": [
       {
