@@ -61,6 +61,7 @@ class WordCloudController {
           .text((d) => { return d.text; });
         });
 
+
         layout.start();
 
       }, 100);
