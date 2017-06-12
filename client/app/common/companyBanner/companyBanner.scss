@@ -13,6 +13,7 @@
   }
 
   .company-headings {
+    flex-grow: 100;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -34,6 +35,7 @@
   }
 
   .company-logo {
+    flex-grow: 1;
     img {
       height: calc(#{$tabbar-height} - 2 * #{$default-padding});
     }

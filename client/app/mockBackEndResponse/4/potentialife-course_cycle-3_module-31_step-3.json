@@ -38,17 +38,22 @@
       }
     },
     {
-      "id": 60,
+      "id": 144,
       "type": "static",
       "element": "video",
       "program_data_code": null,
       "data": {
-        "poster": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/videoplace.jpg",
-        "source": "https:\/\/d2ahrnswp9nefw.cloudfront.net\/s.1.1\/S1-1-1-new.mp4"
+        "poster": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-1\/l01_m01_v01_poster_6.jpg",
+        "source_sd": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-1\/l01_m01_v1_weblo.mp4",
+        "source_hd": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-1\/l01_m01_v1_webhi.mp4",
+        "caption_src": "\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-1\/l01_m01_v01_text.vtt",
+        "caption_default": "1",
+        "caption_label": "English subtitles",
+        "caption_lang": "en"
       },
       "pivot": {
-        "step_id": 6,
-        "block_id": 60
+        "step_id": 5,
+        "block_id": 144
       }
     }
   ]

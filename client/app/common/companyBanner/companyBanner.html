@@ -2,11 +2,11 @@
   <div class=" row collapse">
     <div class="small-12 medium-10 xlarge-8 small-centered columns">
       <div class="flex-banner">
-        <div class="company-headings">
-          <p class="company-header">{{$ctrl.data.header}}</p>
-          <p>{{$ctrl.data.subHeader}}</p>
+        <div ng-if="$ctrl.data.header || $ctrl.data.subHeader" class="company-headings">
+          <p ng-if="$ctrl.data.header" class="company-header">{{$ctrl.data.header}}</p>
+          <p ng-if="$ctrl.data.subHeader">{{$ctrl.data.subHeader}}</p>
         </div>
-        <div class="company-logo">
+        <div class="company-logo text-center">
           <img ng-src="{{$ctrl.data.logo}}" />
         </div>
       </div>

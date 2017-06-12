@@ -13,7 +13,7 @@ exports.config = {
   },
 
   // Maximum time Protractor will wait for Angularjs to finish all asynch requests (in ms)
-  allScriptsTimeout: 30000,
+  allScriptsTimeout: 40000,
 
   // url where your app is running, relative URLs are prepending with this URL
   // This will be overridden by gulp

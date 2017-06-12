@@ -115,17 +115,17 @@
         "value": null,
         "items": [
           {
-            "label": "Work Positive 5 Large 24slots",
-            "sub_label": null,
-            "takeaways": null
-          },
-          {
             "label": "Work positive 4 large 28logs",
             "sub_label": null,
             "takeaways": null
           },
           {
             "label": "Non-work - 5 - 25logs",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "Work Positive 5 Large 24slots",
             "sub_label": null,
             "takeaways": null
           }

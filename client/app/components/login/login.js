@@ -34,7 +34,8 @@ let loginModule = angular.module('login', [
       parent: STATES.LOGIN_ROOT,
       component: 'login',
       params: {
-        stateToRedirect: STATES.HOME
+        stateToRedirect: STATES.HOME,
+        displayErrorOnInit: null,
       }
     });
 })
