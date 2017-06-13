@@ -56,7 +56,7 @@ let constantModule = angular.module('app.common.constant', [
     },
     viaSurvey: {
       api: 'https://www.viacharacter.org/survey/api1/',
-      appKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4',
+      appKey: VIA_SURVEY_APP_KEY,
       surveyID: 86,
       questionCount: 120
     },
