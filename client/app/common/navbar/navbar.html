@@ -56,7 +56,10 @@
       <section class="main-section">
         <company-banner ng-if="$ctrl.isBannerExist()"></company-banner>
         <spinner name="$ctrl.courseContentSpinner.name" show="false"></spinner>
-        <div ng-show="!$ctrl.courseContentSpinner.show" id="content" class="content" ui-view></div>
+        <div ng-show="!$ctrl.courseContentSpinner.show" id="content" class="content">
+          <div style="min-height: 101%" ui-view>
+          </div>
+        </div>
       </section>
 
       <!-- close the off-canvas menu -->
