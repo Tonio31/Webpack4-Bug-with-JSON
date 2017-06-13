@@ -117,6 +117,9 @@ class CourseContentController {
       }
       else {
         $state.go(this.content.prev_page_url);
+
+        // This is to bring the user to the top of the page on the previous step button
+        $anchorScroll();
       }
     };
 
@@ -165,6 +168,9 @@ class CourseContentController {
       if ( this.skipShowingBanner ) {
         // If we skip showing banner, we need to change state just after updating the menu
         $state.go(this.content.next_page_url);
+
+        // This is to bring the user to the top of the page on the next step
+        $anchorScroll();
       }
       else {
         this.setBannerSuccess(iBannerCongratsMsg);
@@ -248,6 +254,9 @@ class CourseContentController {
       else {
         $log.info('About to change state to go to: ', this.content.next_page_url);
         $state.go(this.content.next_page_url);
+
+        // This is to bring the user to the top of the page on the next step
+        $anchorScroll();
       }
 
     };

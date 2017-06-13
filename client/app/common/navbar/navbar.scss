@@ -234,11 +234,9 @@ menu-item {
     @media #{$medium-up} {
       height: 100%;
     }
+
     .inner-wrap {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
   }
 
