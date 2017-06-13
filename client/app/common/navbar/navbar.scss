@@ -112,6 +112,8 @@ menu-item {
 
   .content {
     height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .header {
@@ -241,10 +243,6 @@ menu-item {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
-
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
     }
   }
 
