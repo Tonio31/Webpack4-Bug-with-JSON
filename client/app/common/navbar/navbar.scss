@@ -112,12 +112,12 @@ menu-item {
 
   .content {
     height: 100%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    //overflow-y: scroll;
+    //-webkit-overflow-scrolling: touch;
   }
 
   .header {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 99;
@@ -237,6 +237,7 @@ menu-item {
       height: 100%;
     }
 
+    overflow: scroll;
 
     .inner-wrap {
       min-height: 100vh;
