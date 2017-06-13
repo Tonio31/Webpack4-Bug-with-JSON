@@ -117,6 +117,9 @@ class CourseContentController {
       }
       else {
         $state.go(this.content.prev_page_url);
+
+        // This is to bring the user to the top of the page on the previous step button
+        $anchorScroll();
       }
     };
 
