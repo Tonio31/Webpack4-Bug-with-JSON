@@ -234,6 +234,9 @@ menu-item {
     @media #{$medium-up} {
       height: 100%;
     }
+
+    -webkit-overflow-scrolling: touch;
+
     .inner-wrap {
       min-height: 100vh;
       display: flex;
