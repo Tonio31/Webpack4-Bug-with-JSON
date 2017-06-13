@@ -11,14 +11,14 @@ let websiteConfig = {
     apiUrl: 'https://apipl.ciprianspiridon.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-4',
-    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4'
+    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4' // Test key (same as localhost)
   },
   PROD: {
     websiteUrl: 'https://program.potentialife.com/',
     apiUrl: 'https://api.potentialife.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-5',
-    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4' // TODO Change this when we have the key for production
+    viaSurveyAppKey: 'F9C66D59-4551-4564-AFD5-31384735A4B8'
   }
 };
 
