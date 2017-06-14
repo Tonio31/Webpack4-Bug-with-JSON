@@ -219,15 +219,6 @@ menu-item {
     &::after {
       display: none;
     }
-    // For mobile: tab-bar is fixed, for the rest, we can scroll down
-    @media #{$small-only} {
-      height: 100%;
-      width: 100%;
-    }
-    // For desktop: We put a min-height to solve a bug with the menu (module menu item appearing in step section)
-    @media #{$medium-up} {
-      height: 100%;
-    }
   }
 
   .off-canvas-wrap {
