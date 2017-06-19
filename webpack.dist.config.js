@@ -11,14 +11,16 @@ let websiteConfig = {
     apiUrl: 'https://apipl.ciprianspiridon.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-4',
-    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4' // Test key (same as localhost)
+    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4', // Test key (same as localhost)
+    brochureWebsiteUrl: 'https://potentialife.com' // Will change as soon as we have UAT for this site
   },
   PROD: {
     websiteUrl: 'https://program.potentialife.com/',
     apiUrl: 'https://api.potentialife.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-5',
-    viaSurveyAppKey: 'F9C66D59-4551-4564-AFD5-31384735A4B8'
+    viaSurveyAppKey: 'F9C66D59-4551-4564-AFD5-31384735A4B8',
+    brochureWebsiteUrl: 'https://potentialife.com'
   }
 };
 
@@ -59,7 +61,8 @@ module.exports = (iPhase) => {
       ENVIRONMENT: JSON.stringify(iPhase),
       GOOGLE_TRACKING_CODE: JSON.stringify(websiteConfig[iPhase].googleTrackingCode),
       BACK_END_API: JSON.stringify(`${websiteConfig[iPhase].apiUrl}${websiteConfig[iPhase].apiVersion}`),
-      VIA_SURVEY_APP_KEY: JSON.stringify(websiteConfig[iPhase].viaSurveyAppKey)
+      VIA_SURVEY_APP_KEY: JSON.stringify(websiteConfig[iPhase].viaSurveyAppKey),
+      BROCHURE_HOME_URL: JSON.stringify(websiteConfig[iPhase].brochureWebsiteUrl)
     }),
 
     // Reduces bundles total size
