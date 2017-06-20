@@ -300,6 +300,7 @@ let appModule = angular.module('app', [
     $log.log('Start - $location.path()=', $location.path());
 
     if ( $location.path() === STATES.RESET_PASSWORD ||
+         $location.path() === STATES.RETRIEVE_CREDENTIALS ||
          $location.path().includes(STATES.SURVEY) ) {
       $log.log(`No need to retrieve User info as we target: ${$location.path()}`);
       $urlRouter.listen();
