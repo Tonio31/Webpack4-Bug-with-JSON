@@ -54,6 +54,9 @@ let constantModule = angular.module('app.common.constant', [
       COHORT: 'dimension2',
       DIVISION: 'dimension3'
     },
+    brochureWebSite: {
+      homePageUrl: BROCHURE_HOME_URL
+    },
     viaSurvey: {
       api: 'https://www.viacharacter.org/survey/api1/',
       appKey: VIA_SURVEY_APP_KEY,

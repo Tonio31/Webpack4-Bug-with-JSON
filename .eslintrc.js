@@ -27,6 +27,7 @@ module.exports = exports = {
     "VERSION": true,
     "BACK_END_API": true,
     "VIA_SURVEY_APP_KEY": true,
+    "BROCHURE_HOME_URL": true,
     "GOOGLE_TRACKING_CODE": true
   },
   "rules": {
