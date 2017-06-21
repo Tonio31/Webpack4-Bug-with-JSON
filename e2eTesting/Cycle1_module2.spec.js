@@ -131,12 +131,7 @@ describe('Testing Module 2  |||  ', () => {
       common.enterDataInTextArea(0, common.DATA.C1_M2_S7.textArea0);
 
       let checkOutThoughtList = unorderedLists.get(3);
-      expect(checkOutThoughtList.all(by.binding('item.label')).count()).toEqual(0);
-
-      let showButton = checkOutThoughtList.element(by.tagName('button'));
-      showButton.click();
-
-      expect(checkOutThoughtList.all(by.binding('item.label')).count()).toEqual(3);
+      expect(checkOutThoughtList.all(by.binding('item.label')).count()).toEqual(5);
 
       common.enterDataInTextArea(1, common.DATA.C1_M2_S7.textArea1);
 
