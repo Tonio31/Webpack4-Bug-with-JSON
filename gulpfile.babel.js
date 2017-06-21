@@ -203,10 +203,6 @@ gulp.task('clean', (cb) => {
   })
 });
 
-gulp.task('increaseVersion', () => {
-  gutil.log('increaseVersion has been called');
-});
-
 gulp.task('pre-commit', function () {
   gutil.log('pre-commit hook has  been called');
   return gulp.src(['./package.json'])
