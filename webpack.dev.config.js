@@ -42,7 +42,8 @@ module.exports = () => {
       ENVIRONMENT: JSON.stringify('development'),
       GOOGLE_TRACKING_CODE: JSON.stringify('UA-96100387-1'),
       BACK_END_API: JSON.stringify(`https://localhost.com`),
-      VIA_SURVEY_APP_KEY: JSON.stringify('F1206FA8-6CEA-4E67-97CE-611B925D50C4') // Test Key
+      VIA_SURVEY_APP_KEY: JSON.stringify('F1206FA8-6CEA-4E67-97CE-611B925D50C4'), // Test Key
+      BROCHURE_HOME_URL: JSON.stringify(`https://pl.dev`)
     }),
 
     // Adds webpack HMR support. It act's like livereload,
