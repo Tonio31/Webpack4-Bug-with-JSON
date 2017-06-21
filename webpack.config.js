@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const WebpackAutoInject = require('webpack-auto-inject-version');
 
 module.exports = {
   devtool: 'source-map',
@@ -88,6 +89,12 @@ module.exports = {
 
     new webpack.ProvidePlugin({
       c3: 'c3'
+    }),
+
+    new WebpackAutoInject({
+      components: {
+        AutoIncreaseVersion: false
+      }
     })
   ]
 };
