@@ -1,6 +1,6 @@
 import gulp     from 'gulp';
-var guppy = require('git-guppy')(gulp);
-//import guppy from 'git-guppy';
+import guppy    from 'git-guppy'; // git Hook for pre-commit
+import bump     from 'gulp-bump';
 import webpack  from 'webpack';
 import path     from 'path';
 import rename   from 'gulp-rename';
@@ -208,7 +208,10 @@ gulp.task('increaseVersion', () => {
 });
 
 gulp.task('pre-commit', function () {
-  gutil.log('pre-commit hook has been called');
+  gutil.log('pre-commit hook has  been called');
+  return gulp.src(['./package.json'])
+    .pipe(bump({type:'patch'}))
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('default', ['watch']);
