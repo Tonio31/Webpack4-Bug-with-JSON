@@ -1,4 +1,6 @@
 import gulp     from 'gulp';
+//var guppy = require('git-guppy')(gulp);
+import guppy from 'git-guppy';
 import webpack  from 'webpack';
 import path     from 'path';
 import rename   from 'gulp-rename';
@@ -201,5 +203,12 @@ gulp.task('clean', (cb) => {
   })
 });
 
+gulp.task('increaseVersion', () => {
+  gutil.log('increaseVersion has been called');
+});
+
+gulp.task('pre-commit', function () {
+  gutil.log('pre-commit hook has been called');
+});
 
 gulp.task('default', ['watch']);
