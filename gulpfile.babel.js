@@ -1,4 +1,5 @@
 import gulp     from 'gulp';
+import git      from 'gulp-git';
 //import guppy    from 'git-guppy'; // git Hook for pre-commit
 var guppy = require('git-guppy')(gulp);
 import bump     from 'gulp-bump';
@@ -211,7 +212,8 @@ gulp.task('increase', () => {
   gutil.log('Bump package json version');
   return gulp.src(['./package.json'])
   .pipe(bump({type:'patch'}))
-  .pipe(gulp.dest('./'));
+  .pipe(gulp.dest('./'))
+  .pipe(git.commit('bump version', {args: '-a'}));
 });
 
 gulp.task('pre-commit', ['increase'], function () {
