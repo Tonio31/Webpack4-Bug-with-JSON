@@ -158,7 +158,10 @@ gulp.task('serve', () => {
         },
         publicPath: config.output.publicPath
       }),
-      webpackHotMiddleware(compiler)
+      webpackHotMiddleware(compiler, {
+        log: () => {},
+        heartbeat: 2000
+      })
     ]
   });
 });
