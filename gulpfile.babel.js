@@ -1,6 +1,7 @@
 import gulp     from 'gulp';
-import git      from 'gulp-git';
+//import git      from 'gulp-git';
 //import guppy    from 'git-guppy'; // git Hook for pre-commit
+var git = require('gulp-git');
 var guppy = require('git-guppy')(gulp);
 import bump     from 'gulp-bump';
 import webpack  from 'webpack';
@@ -210,18 +211,36 @@ gulp.task('clean', (cb) => {
 
 gulp.task('increase', () => {
   gutil.log('Bump package json version');
-  return gulp.src(['./package.json'])
+  // return gulp.src(['./package.json'])
+  // .pipe(bump({type:'patch'}))
+  // .pipe(gulp.dest('./'))
+  // .pipe(git.commit('bump version'));
+  return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
-  .pipe(git.commit('bump version', {args: '-a'}));
+ // .pipe(git.add())
+  .pipe(git.commit('bump version'));
 });
 
-gulp.task('pre-commit', ['increase'], function () {
+gulp.task('pre-commit', function () {
   gutil.log('pre-commit hook has  been called');
 
 
 
 
 });
+
+gulp.task('pre-commit', guppy.src('pre-commit', (filesBeingCommitted) => {
+
+  gutil.log('filesBeingCommitted=', filesBeingCommitted);
+
+
+  // return gulp.src(filesBeingCommitted)
+  // .pipe(gulpFilter(['*.js']))
+  // .pipe(jshint())
+  // .pipe(jshint.reporter(stylish))
+  // .pipe(jshint.reporter('fail'));
+}));
+
 
 gulp.task('default', ['watch']);
