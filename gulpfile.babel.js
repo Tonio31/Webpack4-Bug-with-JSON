@@ -210,57 +210,15 @@ gulp.task('clean', (cb) => {
 gulp.task('bumpVersion', () => {
   gutil.log('Bump package json version');
 
-  // return gulp.src('./package.json')
-  // .pipe(git.diff('HEAD', {log: true}))
-  // .pipe(gulp.dest('./diff.out'));
-
   return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
   .pipe(git.add());
-  // .pipe(git.commit('bump version', {
-  //   args: '--amend --no-verify'
-  // }));
 });
 
 gulp.task('pre-commit', ['bumpVersion'], guppy.src('pre-commit', (files) => {
   gutil.log('pre-commit hook files=', files);
-  // if ( files.length !== 1 || files[0] !== 'package.json' ) {
-  //
-  //   gutil.log('trigger bumpVersion');
-  //   // This pre-commit hook is NOT triggered by bumpVersion above, bump version of package.json
-  //   // if it would have been triggered by bumpVersion (because we commit a file during bumpVersion, so it triggers this hook)
-  //   // we don't want to call bumpVersion to avoid infinite loop
-  //   gulp.start('bumpVersion');
-  // }
-  // else {
-  //
-  //   gutil.log('DONT trigger bumpVersion because its only package.json');
-  // }
 }));
-
-gulp.task('post-commit', guppy.src('post-commit', (files) => {
-  gutil.log('post-commit hook files=', files);
-  // if ( files.length !== 1 || files[0] !== 'package.json' ) {
-  //
-  //   gutil.log('trigger bumpVersion');
-  //   // This pre-commit hook is NOT triggered by bumpVersion above, bump version of package.json
-  //   // if it would have been triggered by bumpVersion (because we commit a file during bumpVersion, so it triggers this hook)
-  //   // we don't want to call bumpVersion to avoid infinite loop
-  //   gulp.start('bumpVersion');
-  // }
-  // else {
-  //
-  //   gutil.log('DONT trigger bumpVersion because its only package.json');
-  // }
-}));
-
-
-// Every time there is a push to the repository, the version in package.json will be bumped
-gulp.task('pre-push', ['bumpVersion'], guppy.src('pre-push', (files) => {
-  gutil.log('pre-push hook files=', files);
-}));
-
 
 
 gulp.task('default', ['watch']);
