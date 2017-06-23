@@ -209,13 +209,20 @@ gulp.task('clean', (cb) => {
 
 gulp.task('bumpVersion', () => {
   gutil.log('Bump package json version');
+
+  // return gulp.src('./package.json')
+  // .pipe(git.diff('HEAD', {log: true}))
+  // .pipe(gulp.dest('./diff.out'));
+
   return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
-  .pipe(git.commit('bump version'));
+  .pipe(git.commit('bump version', {
+    args: '--amend --no-verify'
+  }));
 });
 
-gulp.task('pre-commit', guppy.src('pre-commit', (files) => {
+gulp.task('pre-commit', ['bumpVersion'], guppy.src('pre-commit', (files) => {
   gutil.log('pre-commit hook files=', files);
   // if ( files.length !== 1 || files[0] !== 'package.json' ) {
   //
@@ -233,18 +240,18 @@ gulp.task('pre-commit', guppy.src('pre-commit', (files) => {
 
 gulp.task('post-commit', guppy.src('post-commit', (files) => {
   gutil.log('post-commit hook files=', files);
-  if ( files.length !== 1 || files[0] !== 'package.json' ) {
-
-    gutil.log('trigger bumpVersion');
-    // This pre-commit hook is NOT triggered by bumpVersion above, bump version of package.json
-    // if it would have been triggered by bumpVersion (because we commit a file during bumpVersion, so it triggers this hook)
-    // we don't want to call bumpVersion to avoid infinite loop
-    gulp.start('bumpVersion');
-  }
-  else {
-
-    gutil.log('DONT trigger bumpVersion because its only package.json');
-  }
+  // if ( files.length !== 1 || files[0] !== 'package.json' ) {
+  //
+  //   gutil.log('trigger bumpVersion');
+  //   // This pre-commit hook is NOT triggered by bumpVersion above, bump version of package.json
+  //   // if it would have been triggered by bumpVersion (because we commit a file during bumpVersion, so it triggers this hook)
+  //   // we don't want to call bumpVersion to avoid infinite loop
+  //   gulp.start('bumpVersion');
+  // }
+  // else {
+  //
+  //   gutil.log('DONT trigger bumpVersion because its only package.json');
+  // }
 }));
 
 
