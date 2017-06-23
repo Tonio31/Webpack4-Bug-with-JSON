@@ -217,9 +217,10 @@ gulp.task('bumpVersion', () => {
   return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
-  .pipe(git.commit('bump version', {
-    args: '--amend --no-verify'
-  }));
+  .pipe(git.add());
+  // .pipe(git.commit('bump version', {
+  //   args: '--amend --no-verify'
+  // }));
 });
 
 gulp.task('pre-commit', ['bumpVersion'], guppy.src('pre-commit', (files) => {
