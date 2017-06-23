@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -27,6 +27,7 @@
     "d3": "^3.5.17",
     "d3-cloud": "^1.2.4",
     "foundation-sites": "^5.5.3",
+    "guppy-post-commit": "^0.2.1",
     "ngstorage-webpack": "^2.2.2",
     "normalize.css": "^3.0.3",
     "videojs-resolution-switcher": "^0.4.2",
