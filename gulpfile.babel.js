@@ -216,9 +216,7 @@ gulp.task('bumpVersion', () => {
   .pipe(git.add());
 });
 
-gulp.task('pre-commit', ['bumpVersion'], guppy.src('pre-commit', (files) => {
-  gutil.log('pre-commit hook files=', files);
-}));
+gulp.task('pre-commit', ['bumpVersion']);
 
 
 gulp.task('default', ['watch']);
