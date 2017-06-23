@@ -229,18 +229,24 @@ gulp.task('pre-commit', function () {
 
 
 });
+//
+// gulp.task('pre-commit', ['increase'], guppy.src('pre-commit', (filesBeingCommitted) => {
+//
+//   gutil.log('filesBeingCommitted=', filesBeingCommitted);
+//
+//
+//   // return gulp.src(filesBeingCommitted)
+//   // .pipe(gulpFilter(['*.js']))
+//   // .pipe(jshint())
+//   // .pipe(jshint.reporter(stylish))
+//   // .pipe(jshint.reporter('fail'));
+// }));
 
-gulp.task('pre-commit', guppy.src('pre-commit', (filesBeingCommitted) => {
-
-  gutil.log('filesBeingCommitted=', filesBeingCommitted);
-
-
-  // return gulp.src(filesBeingCommitted)
-  // .pipe(gulpFilter(['*.js']))
-  // .pipe(jshint())
-  // .pipe(jshint.reporter(stylish))
-  // .pipe(jshint.reporter('fail'));
+// another contrived example
+gulp.task('pre-push', ['increase'], guppy.src('pre-push', (files) => {
+  gutil.log('pre-push hook files=', files);
 }));
+
 
 
 gulp.task('default', ['watch']);
