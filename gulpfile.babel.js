@@ -208,7 +208,7 @@ gulp.task('clean', (cb) => {
 });
 
 gulp.task('bumpVersion', () => {
-  gutil.log('Bump package json version');
+  gutil.log('Bump package json version with minor patch');
 
   return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
