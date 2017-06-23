@@ -209,41 +209,25 @@ gulp.task('clean', (cb) => {
   })
 });
 
-gulp.task('increase', () => {
+gulp.task('bumpVersion', () => {
   gutil.log('Bump package json version');
-  // return gulp.src(['./package.json'])
-  // .pipe(bump({type:'patch'}))
-  // .pipe(gulp.dest('./'))
-  // .pipe(git.commit('bump version'));
   return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
- // .pipe(git.add())
   .pipe(git.commit('bump version'));
 });
 
-gulp.task('pre-commit', function () {
-  gutil.log('pre-commit hook has  been called');
-
-
-
-
-});
-//
-// gulp.task('pre-commit', ['increase'], guppy.src('pre-commit', (filesBeingCommitted) => {
-//
-//   gutil.log('filesBeingCommitted=', filesBeingCommitted);
+// gulp.task('pre-commit', function () {
+//   gutil.log('pre-commit hook has  been called');
 //
 //
-//   // return gulp.src(filesBeingCommitted)
-//   // .pipe(gulpFilter(['*.js']))
-//   // .pipe(jshint())
-//   // .pipe(jshint.reporter(stylish))
-//   // .pipe(jshint.reporter('fail'));
-// }));
+//
+//
+// });
 
-// another contrived example
-gulp.task('pre-push', ['increase'], guppy.src('pre-push', (files) => {
+
+// Everytime there is a push to the repository, the version in package.json will be bumped
+gulp.task('pre-push', ['bumpVersion'], guppy.src('pre-push', (files) => {
   gutil.log('pre-push hook files=', files);
 }));
 
