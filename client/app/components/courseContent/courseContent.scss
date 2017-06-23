@@ -8,7 +8,6 @@ $tick-size: 3rem;
 
 .course-content {
   padding-top: rem_calc(20px);
-  min-height: calc(100vh - #{$height-footer-nav-banner});
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -102,16 +102,22 @@ menu-item {
 .navbar {
   height: 100%;
 
+
+
+
   company-banner {
     display: block;
 
-    ~ .content .course-content {
+   // ~ .content + div {
+    ~ .content .content-body {
       min-height: calc(100vh - #{$height-footer-nav-banner} - #{$height-company-banner});
     }
   }
 
   .content {
-    height: 100%;
+    .content-body {
+      min-height: calc(100vh - #{$height-footer-nav-banner});
+    }
   }
 
   .header {
