@@ -212,8 +212,13 @@ gulp.task('bumpVersion', () => {
   return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
-  .pipe(git.commit('bump version'));
+  .pipe(git.commit('bump version'))
+  .pipe(git.push());
 });
+
+gulp.task('pre-commit', guppy.src('pre-push', (files) => {
+  gutil.log('pre-commit hook files=', files);
+}));
 
 
 // Every time there is a push to the repository, the version in package.json will be bumped
