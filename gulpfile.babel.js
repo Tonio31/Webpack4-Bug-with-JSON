@@ -216,7 +216,7 @@ gulp.task('bumpVersion', () => {
   .pipe(git.push());
 });
 
-gulp.task('pre-commit', guppy.src('pre-push', (files) => {
+gulp.task('pre-commit', guppy.src('pre-commit', (files) => {
   gutil.log('pre-commit hook files=', files);
 }));
 
