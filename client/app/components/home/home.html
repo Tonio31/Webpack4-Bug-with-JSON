@@ -1,11 +1,9 @@
-<div class="home row collapse">
+<div class="home content-body row collapse">
 
   <div class="small-12 medium-10 xlarge-8 small-centered columns">
 
-
     <h1 class="text-center">{{ 'WELCOME' | translate }} {{$ctrl.firstName}}!</h1>
     <h4 class="text-center">{{ 'WATCH_YOURSELF_PROGRESS' | translate }}</h4>
-
 
     <div id="cycles" class="row collapse">
       <div class="columns medium-4" ng-class="{'show-for-medium-up': cycle.status !== 'current'}" ng-repeat="cycle in $ctrl.menu.data.children track by cycle.id">

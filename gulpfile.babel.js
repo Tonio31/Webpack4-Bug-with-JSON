@@ -1,4 +1,7 @@
 import gulp     from 'gulp';
+import git      from 'gulp-git';
+let guppy = require('git-guppy')(gulp);
+import bump     from 'gulp-bump';
 import webpack  from 'webpack';
 import path     from 'path';
 import rename   from 'gulp-rename';
@@ -156,7 +159,10 @@ gulp.task('serve', () => {
         },
         publicPath: config.output.publicPath
       }),
-      webpackHotMiddleware(compiler)
+      webpackHotMiddleware(compiler, {
+        log: () => {},
+        heartbeat: 2000
+      })
     ]
   });
 });
@@ -200,6 +206,17 @@ gulp.task('clean', (cb) => {
     cb();
   })
 });
+
+gulp.task('bumpVersion', () => {
+  gutil.log('Bump package json version with minor patch');
+
+  return gulp.src('./package.json')
+  .pipe(bump({type:'patch'}))
+  .pipe(gulp.dest('./'))
+  .pipe(git.add());
+});
+
+gulp.task('pre-commit', ['bumpVersion']);
 
 
 gulp.task('default', ['watch']);

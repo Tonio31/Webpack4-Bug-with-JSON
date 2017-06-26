@@ -4,6 +4,7 @@ const path = require('path');
 const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const WebpackAutoInject = require('webpack-auto-inject-version');
 
 let websiteConfig = {
   UAT: {
@@ -74,6 +75,12 @@ module.exports = (iPhase) => {
         // and relies on global variables. Most of angular modules relies on
         // angular global variable, so we should keep it unchanged
         except: ['$super', '$', 'exports', 'require', 'angular']
+      }
+    }),
+
+    new WebpackAutoInject({
+      components: {
+        AutoIncreaseVersion: false
       }
     })
 
