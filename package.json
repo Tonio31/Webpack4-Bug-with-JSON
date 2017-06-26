@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "1.2.5",
+  "version": "2.0.1",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -27,6 +27,7 @@
     "d3": "^3.5.17",
     "d3-cloud": "^1.2.4",
     "foundation-sites": "^5.5.3",
+    "guppy-post-commit": "^0.2.1",
     "ngstorage-webpack": "^2.2.2",
     "normalize.css": "^3.0.3",
     "videojs-resolution-switcher": "^0.4.2",
@@ -56,6 +57,7 @@
     "git-guppy": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-bump": "^2.7.0",
+    "gulp-git": "^2.4.1",
     "gulp-json-editor": "^2.2.1",
     "gulp-protractor": "^4.1.0",
     "gulp-rename": "^1.2.2",
