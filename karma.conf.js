@@ -72,7 +72,8 @@ module.exports = function (config) {
           ENVIRONMENT: JSON.stringify('development'),
           GOOGLE_TRACKING_CODE: JSON.stringify('Whatever'),
           BACK_END_API: JSON.stringify(`https://localhost.com`),
-          VIA_SURVEY_APP_KEY: JSON.stringify('Whatever')
+          VIA_SURVEY_APP_KEY: JSON.stringify('Whatever'),
+          BROCHURE_HOME_URL: JSON.stringify(`https://pl.dev`)
         })
       ]
     },
