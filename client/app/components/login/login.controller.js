@@ -115,8 +115,7 @@ class LoginController {
         checkCredentialsPOSTRequest.user_login = this.username;  // eslint-disable-line camelcase
         checkCredentialsPOSTRequest.pass = this.password;
         checkCredentialsPOSTRequest.$check( (dataBackFromcheckCredentials) => {
-          if ( dataBackFromcheckCredentials.hasOwnProperty('user') &&
-            dataBackFromcheckCredentials.user === '1' ) {
+          if ( dataBackFromcheckCredentials.hasOwnProperty('user') ) {
             $log.log(`Username/password valid on ${apiUrl}  dataBackFromServer=`, dataBackFromcheckCredentials);
             this.externalWebsite = WEBSITE_CONFIG.OTHER_PL_SITES_API[targetWebsite].loginUrl;
 
