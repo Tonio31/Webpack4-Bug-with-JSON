@@ -115,6 +115,14 @@ describe('Navbar Directive', () => {
               </li>
             </div>
             <div id="showNav2">
+              <li sync-state id="/potentialife-course/cycle-1/module-10" class="has-submenu menu-item">
+                <a href=""><p>Link</p></a>
+                <ul class="left-submenu">
+                  <li class="back btn-back-home"></li>
+                </ul>
+              </li>
+            </div>
+            <div id="showNav3">
               <li sync-state id="/potentialife-course/cycle-2/module-1" class="has-submenu menu-item">
                 <a href=""><p>Link</p></a>
                 <ul class="left-submenu">
@@ -141,20 +149,24 @@ describe('Navbar Directive', () => {
       let karmaGlobals = require('karmaGlobals.json');
       if ( karmaGlobals.browser !== 'PhantomJS' ) {
 
-        let toState = '/potentialife-course/cycle-1/module-1/step-11';
+        let toState = '/potentialife-course/cycle-1/module-10/step-11';
         $rootScope.$emit('stateChangeSuccess', toState);
 
         let showNav1 = angular.element(template[0].querySelector('#showNav1'));
-        expect(showNav1.hasClass('show-this-nav')).to.eq(true);
+        expect(showNav1.hasClass('show-this-nav')).to.eq(false);
 
         let showNav2 = angular.element(template[0].querySelector('#showNav2'));
-        expect(showNav2.hasClass('show-this-nav')).to.eq(false);
+        expect(showNav2.hasClass('show-this-nav')).to.eq(true);
+
+        let leftSubMenuNav2 = angular.element(template[0].querySelector('#showNav2 .left-submenu'));
+        expect(leftSubMenuNav2.hasClass('move-right')).to.eq(true);
+
+        let showNav3 = angular.element(template[0].querySelector('#showNav3'));
+        expect(showNav3.hasClass('show-this-nav')).to.eq(false);
 
         let fixNav = angular.element(template[0].querySelector('#fixNav'));
         expect(fixNav.hasClass('fix-nav-under')).to.eq(true);
 
-        let leftSubMenu = angular.element(template[0].querySelector('.left-submenu'));
-        expect(leftSubMenu.hasClass('move-right')).to.eq(true);
 
         // Remove all the classes if we go to hte home page
         toState = '/home';
@@ -162,7 +174,7 @@ describe('Navbar Directive', () => {
         expect(showNav1.hasClass('show-this-nav')).to.eq(false);
         expect(showNav2.hasClass('show-this-nav')).to.eq(false);
         expect(fixNav.hasClass('fix-nav-under')).to.eq(false);
-        expect(leftSubMenu.hasClass('move-right')).to.eq(false);
+        expect(leftSubMenuNav2.hasClass('move-right')).to.eq(false);
       }
 
       done();

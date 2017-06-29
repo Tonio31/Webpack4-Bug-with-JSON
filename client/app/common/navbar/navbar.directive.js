@@ -39,18 +39,31 @@ let syncMenuAndState = function($rootScope, $log, $state, JwtFactory, STATES, Ze
         }
       };
 
+      // If the id of the current element is included in the state name, it means we have to
+      // display this menuItem, otherwise, hide it
+      // Example of toState: /potentialife-course/cycle-1/module-1/step-1, /home, /login
+      // Example of id: /potentialife-course/cycle-1, /potentialife-course/cycle-1/module-1, /potentialife-course/cycle-1/module-2
+      let isCurrElementIdIncludedInToStateURL = (iToState, iIdElement) => {
+        let toStateArray = iToState.split('/');
+        let idElementArray = iIdElement.split('/');
+
+        for ( let [ index, value ] of idElementArray.entries() ) {
+          if ( value !== toStateArray[index] ) {
+            return false;
+          }
+        }
+
+        return true;
+      };
+
       // **************************************************************************************************
       //                            PUBLIC INTERFACE
 
       // Whenever we change state, we may have to change the menu
       let stateChangeSuccessEvent = $rootScope.$on('stateChangeSuccess', (event, toState) => {
-        let id = element[0].id;
 
-        // If the id of the current element is included in the state name, it means we have to
-        // display this menuItem, otherwise, hide it
-        // Example of toState: /potentialife-course/cycle-1/module-1/step-1, /home, /login
-        // Example of id: /potentialife-course/cycle-1, /potentialife-course/cycle-1/module-1, /potentialife-course/cycle-1/module-2
-        let showMenuPanelBool = toState.includes(id);
+        let showMenuPanelBool = isCurrElementIdIncludedInToStateURL(toState, element[0].id);
+        // let showMenuPanelBool = toState.includes(element[0].id);
 
         // Hack: if we want to display a step, it means we don't want to remove the class fix-nav-under
         // This is because fix-nav-under class hide the parent.parent element while show-nav-under forces
