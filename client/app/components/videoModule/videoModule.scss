@@ -6,7 +6,7 @@ $video-colour-accent: transparentize($white, .9);
 $video-colour-highlight: $logoColor;
 $video-sub-background: #101010;
 $video-sub-angus-color: #fff;
-$video-sub-tal-color: #ffd6c9;
+$video-sub-tal-color: #FFFF00;
 $video-sub-other-color: #9bbcf2;
 
 
@@ -35,8 +35,16 @@ $video-sub-other-color: #9bbcf2;
         color: $video-sub-other-color;
       }
     }
-
   }
+
+  .vjs-fullscreen {
+    .vjs-text-track-display {
+      span {
+        font-size: 5vh;
+      }
+    }
+  }
+
 
   .vjs-menu li.vjs-selected,
   .vjs-menu li.vjs-selected:focus,
