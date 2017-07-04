@@ -2,6 +2,13 @@
 @import '~client/app/common/_foundation-settings';
 @import '~client/app/common/_foundation-functions';
 
+$video-colour-accent: transparentize($white, .9);
+$video-colour-highlight: $logoColor;
+$video-sub-background: #101010;
+$video-sub-angus-color: #fff;
+$video-sub-tal-color: #ffd6c9;
+
+
 .video-module {
   color: $darkBgColor;
 
@@ -11,13 +18,20 @@
   }
 
   .vjs-text-track-display {
-    [title="Angus"] {
-      font-family: $defaultFont !important;
-      color: $video-colour-highlight;
+    span {
+      padding: 0rem 0.5rem;
+      box-decoration-break: clone;
+      background-color: $video-sub-background;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      &[title="Angus"] {
+        color: $video-sub-angus-color;
+      }
+      &[title="Tal"] {
+        color: $video-sub-tal-color;
+      }
     }
-    [title="Tal"] {
-      color: $blue-focus;
-    }
+
   }
 
   .vjs-menu li.vjs-selected,
