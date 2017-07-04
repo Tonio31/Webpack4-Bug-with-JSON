@@ -7,6 +7,7 @@ $video-colour-highlight: $logoColor;
 $video-sub-background: #101010;
 $video-sub-angus-color: #fff;
 $video-sub-tal-color: #ffd6c9;
+$video-sub-other-color: #9bbcf2;
 
 
 .video-module {
@@ -29,6 +30,9 @@ $video-sub-tal-color: #ffd6c9;
       }
       &[title="Tal"] {
         color: $video-sub-tal-color;
+      }
+      &[title="Other"] {
+        color: $video-sub-other-color;
       }
     }
 
