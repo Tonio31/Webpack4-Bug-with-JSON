@@ -1,10 +1,9 @@
 // External Module
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 import ngAnimate from 'angular-animate';
 import 'normalize.css';
 import 'angular-foundation';
-import 'angular-zendesk-widget';
 
 import 'common/fontello/css/fontello.css';
 import 'c3/c3.css';
@@ -25,7 +24,6 @@ let $stateProviderRef = null;
 
 let appModule = angular.module('app', [
   'mm.foundation',
-  'zendeskWidget',
   uiRouter,
   ngStorage,
   ngAnimate,
@@ -42,7 +40,6 @@ let appModule = angular.module('app', [
              $qProvider,
              $localStorageProvider,
              $urlRouterProvider,
-             ZendeskWidgetProvider,
              $sceDelegateProvider,
              WEBSITE_CONFIG,
              STATES ) => {
@@ -65,14 +62,6 @@ let appModule = angular.module('app', [
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     $localStorageProvider.setKeyPrefix('pl2-');
-
-    ZendeskWidgetProvider.init({
-      accountUrl: 'potentialifehelp.zendesk.com',
-      beforePageLoad: function(zE) {
-        zE.setHelpCenterSuggestions({ url: true });
-        zE.hide();
-      }
-    });
 
     // Change all HTTP GET requests to disable cache, we should always get the latest data from the server
     if ( !$httpProvider.defaults.headers.get ) {
@@ -107,6 +96,7 @@ let appModule = angular.module('app', [
           $transitions,
           $window,
           User,
+          ZendeskWidget,
           JwtFactory,
           Data,
           STATES,
@@ -116,6 +106,10 @@ let appModule = angular.module('app', [
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance('app::RUN()');
+
+    // Init the Zendesk Widget and hide it until user is defined
+    ZendeskWidget.init();
+    ZendeskWidget.hide();
 
     // Create Google Analytics Session
     $window.ga('create', WEBSITE_CONFIG.googleTrackingCode, 'auto');

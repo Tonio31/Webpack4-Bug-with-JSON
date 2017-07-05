@@ -4,6 +4,7 @@ import Footer from './footer/footer';
 import CompanyBanner from './companyBanner/companyBanner';
 import ChangeLanguage from './changeLanguage/changeLanguage';
 import ResourceFactory from './resourceFactory/resource';
+import ZendeskWidgetFactory from './zendeskWidget/zendeskWidget';
 import UserDataFactory from './userDataFactory/userData';
 import JwtFactory from './jwtFactory/jwt';
 import BugsnagModule from './bugsnag/bugsnag';
@@ -23,6 +24,7 @@ let commonModule = angular.module('app.common', [
   LoadingSpinner,
   JwtFactory,
   UserDataFactory,
+  ZendeskWidgetFactory,
   BugsnagModule,
   ConstantModule
 ])

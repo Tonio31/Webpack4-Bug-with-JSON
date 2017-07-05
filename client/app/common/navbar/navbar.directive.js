@@ -1,4 +1,9 @@
-let syncMenuAndState = function($rootScope, $log, $state, JwtFactory, STATES, ZendeskWidget) {
+let syncMenuAndState = function( $rootScope,
+                                 $log,
+                                 $state,
+                                 JwtFactory,
+                                 ZendeskWidget,
+                                 STATES) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign

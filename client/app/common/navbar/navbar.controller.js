@@ -6,9 +6,9 @@ class NavbarController {
                SPINNERS,
                Menu,
                SpinnerFactory,
+               ZendeskWidget,
                JwtFactory,
-               User,
-               ZendeskWidget ) {
+               User ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign

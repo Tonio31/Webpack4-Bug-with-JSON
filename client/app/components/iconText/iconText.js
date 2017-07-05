@@ -1,5 +1,5 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import iconTextComponent from './iconText.component';
 import UtilityFactory from 'common/utility/utility';

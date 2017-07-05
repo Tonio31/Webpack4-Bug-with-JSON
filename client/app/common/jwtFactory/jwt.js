@@ -1,5 +1,5 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 import JwtFactory from './jwt.factory';
 import AuthInterceptorFactory from './authInterceptor.factory';
 import ngStorage from 'ngstorage-webpack';

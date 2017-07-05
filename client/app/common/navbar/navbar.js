@@ -1,5 +1,5 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 import globalVariable from 'app/globalVariables';
 import navbarComponent from './navbar.component';
 import ResourceFactory from 'common/resourceFactory/resource';
