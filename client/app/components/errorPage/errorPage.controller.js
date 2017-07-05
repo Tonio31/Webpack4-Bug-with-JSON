@@ -1,5 +1,8 @@
 class ErrorPageController {
-  constructor($log, $stateParams, $filter, ZendeskWidget) {
+  constructor( $log,
+               $stateParams,
+               ZendeskWidget,
+               $filter ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign

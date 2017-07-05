@@ -14,8 +14,8 @@
     * [Running the App](#running-the-app)
         * [Gulp Tasks](#gulp-tasks)
         * [Testing](#testing)
-		* [Generating Components](https://bitbucket.org/Tonio31/program_2_0/overview#generating-components)		
-* [Starter Kit Support and Questions](#starter-kit-support-and-questions)
+		* [Generating Components](#generating-components)		
+* [Documentation](#documentation)
 
 # Walkthrough
 ## Build System
@@ -83,8 +83,8 @@ Tools needed to run this app:
 
 ## Installing
 
-* `fork` this repo
-* `clone` your fork
+* Clone the repo: `https://Tonio31@bitbucket.org/Tonio31/program_2_0.git`
+* Create a new branch: `git checkout -b feature/NewFeature` (rename the branch to your liking)
 * `npm install` to install dependencies
 
 ## Running the App
@@ -107,15 +107,31 @@ Here's a list of available tasks:
 
 * `npm run tdd`: Unit test in Test Driven Development, test will run every time there is a change in code or test files
 
+* `npm run e2e`: Run E2E locally
+
+* `npm run e2e -- --baseUrl https://webpl.ciprianspiridon.com/`: Run E2E tests on UAT
+
 * `npm run component`: scaffolds a new Angular component. [Read below](#generating-components) for usage details.
   
 ### Testing
+
+#### Unit Tests
 To run the tests, run `npm test` or `npm run tdd`.
 
 `Karma` combined with Webpack runs all files matching `*.spec.js` inside the `app` folder. This allows us to keep test files local to the component--which keeps us in good faith with continuing to build our app modularly. The file `spec.bundle.js` is the bundle file for **all** our spec files that Karma will run.
 
 Be sure to define your `*.spec.js` files within their corresponding component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` suffix, you must change the `regex` in `spec.bundle.js` to look for whatever file(s) you want.
 `Mocha` is the testing suite and `Chai` is the assertion library. If you would like to change this, see `karma.conf.js`.
+
+#### End to End Test (E2E)
+To run the E2E test locally, `npm run e2e`
+
+`Protractor` combined with Jasmine is running the E2E tests. Locally they use the user tonio1@gmail.com that have the same modules (1 & 2) than on UAT.
+
+To run the E2E test on UAT use: `npm run e2e -- --baseUrl https://webpl.ciprianspiridon.com/`
+
+This will use the user tonio1@gmail.com, the progress of this user on UAT will be resetted by the gulp task starting the test. Running E2E test is part of the procedure to load on PROD.
+
 
 
 ### Generating Components
@@ -144,3 +160,7 @@ For example, running `npm run component -- --name signup --parent auth` will cre
 Running `npm run component -- --name footer --parent ../common` creates a `footer` component at `client/app/common/footer`.  
 
 Because the argument to `--name` applies to the folder name **and** the actual component name, make sure to camelcase the component names.
+
+
+#Documentation
+For more information about the project, please refer to the  [documentation](https://sites.google.com/a/potentialife.com/documentation/tech) 
