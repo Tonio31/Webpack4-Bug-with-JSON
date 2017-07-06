@@ -158,7 +158,7 @@ class CourseContentController {
         });
       });
 
-      return programData;
+      return angular.toJson(programData);
     };
 
     this.actionsAfterSaveSuccessful = (iBannerCongratsMsg) => {
