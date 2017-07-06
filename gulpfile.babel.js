@@ -12,6 +12,7 @@ import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
 import del      from 'del';
 import rp       from 'request-promise';
+import tag_version          from 'gulp-tag-version';
 import protractorLib        from 'gulp-protractor';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -216,7 +217,22 @@ gulp.task('bumpVersion', () => {
   .pipe(git.add());
 });
 
-gulp.task('pre-commit', ['bumpVersion']);
+gulp.task('bumpVersAndTagRepo', () => {
+  gutil.log('Bump package json version with minor patch, create a git Tag and push it to repo');
+  return gulp.src(['./package.json'])
+  // bump the version number in those files
+  .pipe(bump({type: 'patch'}))
+  // save it back to filesystem
+  .pipe(gulp.dest('./'))
+  // commit the changed version number
+  .pipe(git.commit('bumps package version'))
+  // **tag it in the repository**
+  .pipe(tag_version());
+});
+
+
+//gulp.task('pre-commit', ['bumpVersion']);
+gulp.task('pre-commit');
 
 
 gulp.task('default', ['watch']);
