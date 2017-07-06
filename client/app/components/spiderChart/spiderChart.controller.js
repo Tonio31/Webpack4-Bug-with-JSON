@@ -30,8 +30,11 @@ class SpiderChartController {
         factorLegend: 0.9,
         // @level: Number of spider circle lines
         levels: 5,
-        // @maxValue: ????
-        maxValue: 10,
+        // @maxValue: if one value on the spiderChart is bigger than maxValue (but < 100 otherwise it goes bezerk)
+        //            it will be used as maximum value. For instance if maxValue is 10 and we have an item with value 50
+        //            50 will be the max and will appear on the spiderChart like it is 100% (everything will be resized
+        //            proportionally to 50 as the max)
+        maxValue: 100,
         // @radians: number to indicate how much of a circle you want the spider area to be
         //            - 2 * Math.PI: full circle
         //            - Math.PI: half circle
@@ -49,7 +52,8 @@ class SpiderChartController {
           return d.className || i;
         },
         transitionDuration: 300,
-        open: true
+        open: true,
+
       },
       chart: function() {
         var cfg = Object.create(RadarChart.defaultConfig);
@@ -62,9 +66,13 @@ class SpiderChartController {
               }
               return datum;
             });
-            var maxValue = Math.max(cfg.maxValue, d3.max(data, function(d) {
-              return d3.max(d.axes, function(o){ return o.value; });
+
+            let maxValue = Math.max(cfg.maxValue, d3.max(data, (d) => {
+              return d3.max(d.axes, (o) => {
+                return o.value;
+              });
             }));
+
             var allAxis = data[0].axes.map(function(i, j){ return i.axis; });
             var total = allAxis.length;
             var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
