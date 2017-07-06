@@ -58,6 +58,10 @@ gulp.task('webpack', ['clean'], (cb) => {
   // Phase is used by Bugsnag to know if the error happened on UAT (default) or PROD
   let phase = yargs.argv.phase || 'UAT';
 
+  if ( phase === 'PROD' ) {
+    gulp.start('pushTag');
+  }
+
   const config = require('./webpack.dist.config')(phase);
   config.entry.app = paths.entry;
 
@@ -208,6 +212,7 @@ gulp.task('clean', (cb) => {
   })
 });
 
+gulp.task('pre-commit', ['bumpVersion']);
 gulp.task('bumpVersion', () => {
   gutil.log('Bump package json version with minor patch');
 
@@ -217,22 +222,18 @@ gulp.task('bumpVersion', () => {
   .pipe(git.add());
 });
 
-gulp.task('bumpVersAndTagRepo', () => {
-  gutil.log('Bump package json version with minor patch, create a git Tag and push it to repo');
+gulp.task('tagRepo', () => {
+  gutil.log('create a git Tag');
   return gulp.src(['./package.json'])
-  // bump the version number in those files
-  .pipe(bump({type: 'patch'}))
-  // save it back to filesystem
-  .pipe(gulp.dest('./'))
-  // commit the changed version number
-  .pipe(git.commit('bumps package version'))
-  // **tag it in the repository**
   .pipe(tag_version());
 });
 
+// Push tag to current branch
+gulp.task('pushTag', ['tagRepo'], () => {
+  gutil.log('create a git Tag');
+  return git.push('origin', '', {args: ' --tags'}, function(err) { if (err) throw err;});
+});
 
-//gulp.task('pre-commit', ['bumpVersion']);
-gulp.task('pre-commit');
 
 
 gulp.task('default', ['watch']);
