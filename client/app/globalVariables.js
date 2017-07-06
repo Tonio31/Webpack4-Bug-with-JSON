@@ -1,6 +1,7 @@
 /* eslint-disable */
 import angular from 'angular';
 import 'c3-angular';
+import 'd3';
 
 let globalVariablesModule = angular.module('globalVariables', [
 ])

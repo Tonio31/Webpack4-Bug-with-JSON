@@ -42,7 +42,7 @@ describe('Navbar Directive', () => {
 
     it('Count the number of tags that have the class has-submenu', () => {
       let hasSubMenuTags = angular.element(template[0].querySelectorAll('.has-submenu'));
-      expect(hasSubMenuTags.length).to.eq(6);
+      expect(hasSubMenuTags.length).to.eq(7);
     });
 
     it('getBelowTitle() return the good title ', () => {

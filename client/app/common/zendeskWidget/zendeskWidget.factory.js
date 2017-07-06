@@ -34,8 +34,8 @@ let ZendeskWidgetFactory = function( $log,
    * https://developer.zendesk.com/embeddables/docs/widget/api#ze.hide
    */
   let hide = () => {
-    $log.warn('hide()');
     $window.zE( () => {
+      $log.log('hide()');
       $window.zE.hide();
     });
   };
@@ -45,16 +45,15 @@ let ZendeskWidgetFactory = function( $log,
    * https://developer.zendesk.com/embeddables/docs/widget/api#ze.show
    */
   let show = () => {
-    $log.warn('show()');
     $window.zE(() => {
-      $log.warn('inside windows.zE    show()');
+      $log.log('show()');
       $window.zE.show();
     });
   };
 
   let setLocale = (iLang) => {
-    $log.log('setLocale()  iLang=', iLang);
     $window.zE(() => {
+      $log.log('setLocale()  iLang=', iLang);
       $window.zE.setLocale(iLang);
     });
   };
@@ -68,9 +67,8 @@ let ZendeskWidgetFactory = function( $log,
    * https://developer.zendesk.com/embeddables/docs/widget/api#ze.identify
    */
   let identify = (iName, iEmail, iOrganization) => {
-    $log.log(`identify()  iName=${iName}, iEmail=${iEmail}, iOrganization=${iOrganization}`);
     $window.zE(() => {
-      $log.warn('inside windows.zE    identify()');
+      $log.log(`identify()  iName=${iName}, iEmail=${iEmail}, iOrganization=${iOrganization}`);
       $window.zE.identify({
         name: iName,
         email: iEmail,
@@ -86,8 +84,8 @@ let ZendeskWidgetFactory = function( $log,
    * https://developer.zendesk.com/embeddables/docs/widget/api#ze.activate
    */
   let activate = (iHideOnClose) => {
-    $log.log(`identify()  iHideOnClose=${iHideOnClose}`);
     $window.zE(() => {
+      $log.log(`activate()  iHideOnClose=${iHideOnClose}`);
       $window.zE.activate({
         hideOnClose: iHideOnClose
       });
