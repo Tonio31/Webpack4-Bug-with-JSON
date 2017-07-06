@@ -12,6 +12,7 @@ import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
 import del      from 'del';
 import rp       from 'request-promise';
+import tag_version          from 'gulp-tag-version';
 import protractorLib        from 'gulp-protractor';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -56,6 +57,10 @@ gulp.task('webpack', ['clean'], (cb) => {
 
   // Phase is used by Bugsnag to know if the error happened on UAT (default) or PROD
   let phase = yargs.argv.phase || 'UAT';
+
+  if ( phase === 'PROD' ) {
+    gulp.start('pushTag');
+  }
 
   const config = require('./webpack.dist.config')(phase);
   config.entry.app = paths.entry;
@@ -207,6 +212,7 @@ gulp.task('clean', (cb) => {
   })
 });
 
+gulp.task('pre-commit', ['bumpVersion']);
 gulp.task('bumpVersion', () => {
   gutil.log('Bump package json version with minor patch');
 
@@ -216,7 +222,18 @@ gulp.task('bumpVersion', () => {
   .pipe(git.add());
 });
 
-gulp.task('pre-commit', ['bumpVersion']);
+gulp.task('tagRepo', () => {
+  gutil.log('create a git Tag');
+  return gulp.src(['./package.json'])
+  .pipe(tag_version());
+});
+
+// Push tag to current branch
+gulp.task('pushTag', ['tagRepo'], () => {
+  gutil.log('create a git Tag');
+  return git.push('origin', '', {args: ' --tags'}, function(err) { if (err) throw err;});
+});
+
 
 
 gulp.task('default', ['watch']);
