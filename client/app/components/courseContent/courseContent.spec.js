@@ -30,7 +30,7 @@ describe('CourseContent Module', () => {
   let mockContentFactory = {
     updateInputFields: () => {},
     getInputFields: () => {
-      return { 'c1.m1.s1.story_2': 'This is "a" text' };
+      return { 'c1.m1.s1.story_2': 'This is a text' };
     },
     clearInputFields: () => {},
     getAdditionalData: () => {
@@ -246,20 +246,20 @@ describe('CourseContent Module', () => {
 
       expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.fullUrl);
       expect(updateStepPOSTRequest.status).to.equal('completed');
-      expect(updateStepPOSTRequest.programData).to.deep.equal( angular.toJson([
+      expect(updateStepPOSTRequest.programData).to.deep.equal( [
         {
           code: 'c1.m1.s1.story_2',
-          value: 'This is "a" text'
+          value: 'This is a text'
         },
         {
           code: 'token_survey',
           value: 'd!@#$%^&*()_+'
         },
-      ]) );
+      ] );
 
       sinon.assert.calledOnce(retrieveMenuAndReturnStatesSpy);
       sinon.assert.calledOnce(isMenuRetrievedSpy);
-      sinon.assert.calledWith(removeUserInputSpy, { 'c1.m1.s1.story_2': 'This is "a" text' });
+      sinon.assert.calledWith(removeUserInputSpy, { 'c1.m1.s1.story_2': 'This is a text' });
       sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryRegisterFn, stateNotLocked);
@@ -311,14 +311,14 @@ describe('CourseContent Module', () => {
 
 
       // Add inputs to be saved in local storage
-      controller.updateInputFields( 'c1.m1.s1.story_2', 'This is "a" text');
+      controller.updateInputFields( 'c1.m1.s1.story_2', 'This is a text');
 
       controller.$onInit();
       controller.nextStep(form);
 
       sinon.assert.notCalled(retrieveMenuAndReturnStatesSpy);
 
-      sinon.assert.calledWith( saveUserInputSpy, { 'c1.m1.s1.story_2': 'This is "a" text' } );
+      sinon.assert.calledWith( saveUserInputSpy, { 'c1.m1.s1.story_2': 'This is a text' } );
       expect(controller.banner.class).to.eq('banner-error');
 
 
@@ -342,16 +342,16 @@ describe('CourseContent Module', () => {
     it('convertInputFieldForPOST convert the user inputs for sending into the POST request', () => {
 
       let inputFields = {
-        'c1.m1.s1.story_2': 'This is "a" text',
+        'c1.m1.s1.story_2': 'This is a text',
         'c1.m1.s1.story_4': ['first value', 'second value']
       };
 
       let additionalData = mockContentFactory.getAdditionalData();
 
-      let expectedConvertedInputs = angular.toJson([
+      let expectedConvertedInputs = [
         {
           code: 'c1.m1.s1.story_2',
-          value: 'This is "a" text'
+          value: 'This is a text'
         },
         {
           code: 'c1.m1.s1.story_4',
@@ -361,7 +361,7 @@ describe('CourseContent Module', () => {
           code: 'token_survey',
           value: 'd!@#$%^&*()_+'
         }
-      ]);
+      ];
 
       let inputConverted = controller.convertInputFieldForPOST(inputFields, additionalData);
 
