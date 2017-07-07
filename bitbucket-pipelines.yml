@@ -17,4 +17,5 @@ pipelines:
     dev:
       - step:
         script:
+          - npm install
           - npm run test
