@@ -30,7 +30,7 @@ let loginModule = angular.module('login', [
 
   $stateProvider
     .state(STATES.LOGIN, {
-      url: `${STATES.LOGIN}?target`,
+      url: `${STATES.LOGIN}?target&username&pwd`,
       parent: STATES.LOGIN_ROOT,
       component: 'login',
       params: {

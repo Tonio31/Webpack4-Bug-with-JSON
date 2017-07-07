@@ -349,7 +349,9 @@ let appModule = angular.module('app', [
       $log.log(`User Auth expired, go to login, stateToRedirect=${firstStateRequested}`);
       $state.go(STATES.LOGIN, {
         stateToRedirect: firstStateRequested,
-        target: $location.search().target
+        target: $location.search().target,
+        username: $location.search().username,
+        pwd: $location.search().pwd
       });
     }
 
