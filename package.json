@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "2.1.18",
+  "version": "2.1.20",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -54,6 +54,7 @@
     "fs-walk": "0.0.1",
     "git-guppy": "^2.1.0",
     "gulp": "^3.9.1",
+    "gulp-awspublish": "^3.3.0",
     "gulp-bump": "^2.7.0",
     "gulp-git": "^2.4.1",
     "gulp-json-editor": "^2.2.1",
@@ -113,7 +114,8 @@
     "webpack": "gulp webpack",
     "protractortest": "node_modules/.bin/protractor protractor.conf.js --baseUrl=http://localhost:3000/",
     "protractor": "node_modules/.bin/protractor protractor.conf.js",
-    "e2e": "gulp e2e_test"
+    "e2e": "gulp e2e_test",
+    "test": "gulp Test"
   },
   "keywords": [
     "angular",

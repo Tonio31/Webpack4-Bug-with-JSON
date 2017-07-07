@@ -18,6 +18,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
+import awspublish           from 'gulp-awspublish';
 
 let root = 'client';
 
@@ -237,3 +238,43 @@ gulp.task('pushTag', ['tagRepo'], () => {
 
 
 gulp.task('default', ['watch']);
+
+gulp.task('deploy', () => {
+
+  let phase = yargs.argv.phase || 'UAT';
+
+  let localConfig = {
+    buildSrc: './dist/*',
+    getAwsConf: (environment) => {
+      let conf = require('../CONFIG_AWS_PROGRAM.json');
+      if (!conf[environment]) {
+        throw 'No aws conf for env: ' + environment;
+      }
+      if (!conf[environment].headers) {
+        throw 'No aws headers for env: ' + environment;
+      }
+      return { keys: conf[environment], headers: conf[environment].headers };
+    }
+  };
+
+
+  let awsConf = localConfig.getAwsConf(phase);
+  let publisher = awspublish.create(awsConf.keys);
+
+  gutil.log(`Deploy dist folder into ${phase} S3-Bucket: ${awsConf.keys.params.Bucket}`);
+  gutil.log('Headers to be added to the files: ', awsConf.headers);
+
+  return gulp.src(localConfig.buildSrc)
+  .pipe(awspublish.gzip({ ext: '' }))
+  .pipe(publisher.publish(awsConf.headers))
+  .pipe(publisher.cache())
+  //.pipe(publisher.sync())
+  .pipe(awspublish.reporter());
+});
+
+
+
+gulp.task('Test', () => {
+
+  gutil.log('This is a test to know if it works');
+});
