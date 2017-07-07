@@ -37,6 +37,13 @@ class LoginController {
         this.error = $filter('translate')($stateParams.displayErrorOnInit).toString();
       }
 
+      $log.warn('StateParams=', $stateParams);
+
+      if ( angular.isDefined($stateParams.username) && angular.isDefined($stateParams.pwd) ) {
+        this.username = $stateParams.username;
+        this.password = $stateParams.pwd;
+        this.loginOnProgram();
+      }
     };
 
     this.setInvalidLoginMessage = () => {
@@ -56,8 +63,6 @@ class LoginController {
       $log.log('login()');
 
       if ( iLoginForm.$valid ) {
-        SpinnerFactory.show(SPINNERS.TOP_LEVEL);
-        this.error = null;
         this.loginOnProgram();
       }
       else {
@@ -68,6 +73,8 @@ class LoginController {
 
     this.loginOnProgram = () => {
 
+      SpinnerFactory.show(SPINNERS.TOP_LEVEL);
+      this.error = null;
       if ( this.forceTargetWebsite === 'program' ) {
 
         // Default behaviour, try to login first on program and them on the other two website
