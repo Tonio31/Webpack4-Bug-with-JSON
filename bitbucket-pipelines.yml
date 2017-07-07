@@ -16,5 +16,5 @@ pipelines:
   branches:
     dev:
       - step:
-        scripts:
+        script:
           - npm run test
