@@ -13,3 +13,8 @@ pipelines:
           - npm run build
           - npm run setKarmaGlobals -- --browser PhantomJS
           - npm run test/phantomjs --silent
+  branches:
+    dev:
+      - step:
+        scripts:
+          - npm run test
