@@ -276,5 +276,21 @@ gulp.task('deploy', () => {
 
 gulp.task('Test', () => {
 
-  gutil.log('This is a test to know if it works');
+  let options = {
+    uri: 'https://apipl.ciprianspiridon.com/tonio-user',
+    headers: {
+      'User-Agent': 'Request-Promise'
+    },
+    json: true // Automatically parses the JSON string in the response
+  };
+
+  return rp(options)
+  .then( () => {
+    gutil.log('User successfully reseted to Cycle 1 - Module 1 - Step 2');
+  })
+  .catch( (err) => {
+    gutil.log('Error resetting User to Cycle 1 - Module 1 - Step 2 / Abort E2E testing');
+    // API call failed...
+    return err;
+  });
 });
