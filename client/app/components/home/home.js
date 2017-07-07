@@ -1,5 +1,5 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 import homeComponent from './home.component';
 import angularTranslate from 'angular-translate';
 import ResourceFactory from 'common/resourceFactory/resource';

@@ -1,5 +1,5 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import loginComponent from './login.component';
 import { plSubmit } from './login.directive';
@@ -30,7 +30,7 @@ let loginModule = angular.module('login', [
 
   $stateProvider
     .state(STATES.LOGIN, {
-      url: `${STATES.LOGIN}?target`,
+      url: `${STATES.LOGIN}?target&username&pwd`,
       parent: STATES.LOGIN_ROOT,
       component: 'login',
       params: {

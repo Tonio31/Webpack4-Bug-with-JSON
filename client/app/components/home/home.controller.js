@@ -1,7 +1,12 @@
 
 class HomeController {
 
-  constructor($log, $state, User, Menu, ZendeskWidget, $window) {
+  constructor( $log,
+               $state,
+               User,
+               Menu,
+               ZendeskWidget,
+               $window) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign

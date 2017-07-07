@@ -224,6 +224,18 @@
               "slug": "module-3",
               "order": 3,
               "status": "locked",
+              "children": [
+                {
+                  "id": 13,
+                  "title": "Step 7",
+                  "name": "Step 7",
+                  "description": "Exercise: Your energy diagnostic results",
+                  "slug": "step-7",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-1/module-3/step-7"
+                }
+              ],
               "fullUrl": "/potentialife-course/cycle-1/module-3"
             },
             {
