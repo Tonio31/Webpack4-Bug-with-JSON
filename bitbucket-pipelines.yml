@@ -7,9 +7,6 @@ pipelines:
           - git config --global user.email "Frankie@potentialife.com"
           - git config --global user.name "Frankie"
           - echo "bitbucket.org,104.192.143.2 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQC6uAgqZp3YJmgb5WNIhfgha0b1D6nCqDvM3EhGR6t5tHDCMwyHOmzZUHQczsbtwTYJ0TDaQrT5tAsAsN0n+hOlsd5lT4ESHVgPfUGcHYxQYW9s/qgDYFIthbXjuhIyLUzRMhnQaX8j7ZUyM33r28k2aVO7hIJmsFKA7diNio/WyQ==" >> /root/.ssh/known_hosts
-          - ssh-add -l
-          - ssh-add ~/.ssh/identity
-          - git config remote.origin.url https://x-token-auth:$REPOSITORY_OAUTH_ACCESS_TOKEN@bitbucket.org/Tonio31/program_2_0.git
           - ssh -T hg@bitbucket.org
           - npm install
           - npm install -g gulp
