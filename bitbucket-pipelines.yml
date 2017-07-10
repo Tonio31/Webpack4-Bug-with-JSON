@@ -6,7 +6,7 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - git config --global user.email "Frankie@potentialife.com"
           - git config --global user.name "Frankie"
-          - echo process.env
+          - echo $env
           - git tag -a v1.4 -m "my version 1.4"
           - git push origin v1.4
           - git remote set-url origin git@bitbucket.org:Tonio31/program_2_0.git
