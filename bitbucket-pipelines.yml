@@ -19,7 +19,6 @@ pipelines:
       - step:
           script:
             - npm install
-            - npm install -g gulp
             - npm run build
             - npm run deploy
 
