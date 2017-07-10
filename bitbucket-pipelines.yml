@@ -6,6 +6,7 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - git config --global user.email "Frankie@potentialife.com"
           - git config --global user.name "Frankie"
+          - ssh-add ~/.ssh/identity
           - npm install
           - npm install -g gulp
           - gulp pushTag
