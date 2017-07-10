@@ -243,28 +243,41 @@ gulp.task('deploy', () => {
 
   let phase = yargs.argv.phase || 'UAT';
 
-  let localConfig = {
+  let s3Bucket = ( phase === 'PROD' ) ? 'program.potentialife.com' : 'test.program.potentialife.com';
+
+  let awsConf = {
     buildSrc: './dist/*',
-    getAwsConf: (environment) => {
-      let conf = require('../CONFIG_AWS_PROGRAM.json');
-      if (!conf[environment]) {
-        throw 'No aws conf for env: ' + environment;
+    keys: {
+      accessKeyId: '',
+      secretAccessKey: '',
+      region: 'eu-west-2',
+      params: {
+        Bucket: s3Bucket
       }
-      if (!conf[environment].headers) {
-        throw 'No aws headers for env: ' + environment;
-      }
-      return { keys: conf[environment], headers: conf[environment].headers };
+    },
+    headers: {
+      'Cache-Control': 'max-age=315360000, no-transform, public'
     }
   };
 
+  if ( process.env.CI ) {
+    // BitBucket pipelines
+    awsConf.keys.accessKeyId = $S3_ACCESS_KEY_ID;
+    awsConf.keys.secretAccessKey = $S3_SECRET_ACCESS_KEY;
+  }
+  else {
+    // Run locally
+    let s3Access = require('../S3_ACCESS_KEY.json');
+    awsConf.keys.accessKeyId = s3Access.accessKeyId;
+    awsConf.keys.secretAccessKey = s3Access.secretAccessKey;
+  }
 
-  let awsConf = localConfig.getAwsConf(phase);
   let publisher = awspublish.create(awsConf.keys);
 
   gutil.log(`Deploy dist folder into ${phase} S3-Bucket: ${awsConf.keys.params.Bucket}`);
   gutil.log('Headers to be added to the files: ', awsConf.headers);
 
-  return gulp.src(localConfig.buildSrc)
+  return gulp.src(awsConf.buildSrc)
   .pipe(awspublish.gzip({ ext: '' }))
   .pipe(publisher.publish(awsConf.headers))
   .pipe(publisher.cache())
@@ -275,22 +288,6 @@ gulp.task('deploy', () => {
 
 
 gulp.task('Test', () => {
-
-  let options = {
-    uri: 'https://apipl.ciprianspiridon.com/tonio-user',
-    headers: {
-      'User-Agent': 'Request-Promise'
-    },
-    json: true // Automatically parses the JSON string in the response
-  };
-
-  return rp(options)
-  .then( () => {
-    gutil.log('User successfully reseted to Cycle 1 - Module 1 - Step 2');
-  })
-  .catch( (err) => {
-    gutil.log('Error resetting User to Cycle 1 - Module 1 - Step 2 / Abort E2E testing');
-    // API call failed...
-    return err;
-  });
+  gutil.log('gutil.env=', gutil.env);
+  gutil.log('process.env=', process.env);
 });
