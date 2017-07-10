@@ -6,6 +6,7 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - git config --global user.email "Frankie@potentialife.com"
           - git config --global user.name "Frankie"
+          - git config remote.origin.url https://x-token-auth:$REPOSITORY_OAUTH_ACCESS_TOKEN@bitbucket.org/Tonio31/program_2_0.git
           - ssh -T hg@bitbucket.org
           - npm install
           - npm install -g gulp
