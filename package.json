@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "2.1.29",
+  "version": "2.1.30",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -115,6 +115,7 @@
     "protractortest": "node_modules/.bin/protractor protractor.conf.js --baseUrl=http://localhost:3000/",
     "protractor": "node_modules/.bin/protractor protractor.conf.js",
     "e2e": "gulp e2e_test",
+    "test": "gulp Test",
     "deploy": "gulp deploy"
   },
   "keywords": [
