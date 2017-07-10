@@ -4,14 +4,9 @@ pipelines:
   default: # Pipelines that run automatically on a commit to a branch
     - step:
         script: # Modify the commands below to build your repository.
-          - git config --global user.email "Frankie@potentialife.com"
-          - git config --global user.name "Frankie"
-          - git tag -a v1.4 -m "my version 1.4"
-          - git push origin v1.4
-          - ssh -T git@bitbucket.org
           - npm install
           - npm install -g gulp
-          - gulp printVar
+          - gulp pushTag
           - npm run build
           - npm run setKarmaGlobals -- --browser PhantomJS
           - npm run test/phantomjs --silent
