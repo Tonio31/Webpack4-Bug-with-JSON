@@ -312,3 +312,8 @@ gulp.task('postToSlack', (done) => {
   slack(msg);
   done();
 });
+
+
+gulp.task('printVar', () => {
+  gutil.log(process.env);
+});
