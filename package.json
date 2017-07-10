@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "2.1.34",
+  "version": "2.1.38",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -108,7 +108,7 @@
     "setKarmaGlobals": "gulp setKarmaGlobals",
     "serve": "gulp serve",
     "start": "gulp serve",
-    "test": "gulp Test",
+    "test": "karma start",
     "test/phantomjs": "karma start --browsers=PhantomJS",
     "tdd": "karma start --auto-watch --no-single-run",
     "watch": "gulp serve",
