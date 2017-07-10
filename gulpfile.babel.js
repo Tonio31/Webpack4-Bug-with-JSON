@@ -305,9 +305,10 @@ gulp.task('deploy', ['postToSlack'], () => {
   .pipe(slack(`Finishing Deployment on ${phase}: ${deployUrl}`));
 });
 
-gulp.task('postToSlack', () => {
+gulp.task('postToSlack', (done) => {
   let phase = yargs.argv.phase || 'UAT';
   let msg = `Starting Deployment on ${phase}...`;
   gutil.log(msg);
-  return slack(msg);
+  slack(msg);
+  done();
 });
