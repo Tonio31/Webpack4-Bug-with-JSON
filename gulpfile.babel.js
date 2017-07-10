@@ -261,9 +261,6 @@ gulp.task('deploy', ['postToSlack'], () => {
       'Cache-Control': 'max-age=315360000, no-transform, public'
     };
     deployUrl = 'https://program.potentialife.com';
-
-    // Will create a Tag and push it to bitbucket
-    // gulp.start('pushTag');
   }
 
   let awsConf = {
@@ -311,9 +308,4 @@ gulp.task('postToSlack', (done) => {
   gutil.log(msg);
   slack(msg);
   done();
-});
-
-
-gulp.task('printVar', () => {
-  gutil.log(process.env);
 });
