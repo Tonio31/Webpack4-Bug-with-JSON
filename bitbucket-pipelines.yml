@@ -6,15 +6,12 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - git config --global user.email "Frankie@potentialife.com"
           - git config --global user.name "Frankie"
-          - npm install -g gulp
-          - gulp printVar
           - git tag -a v1.4 -m "my version 1.4"
           - git push origin v1.4
-          - git remote set-url origin git@bitbucket.org:Tonio31/program_2_0.git
-          - ssh-copy-id -i ~/.ssh/config frankie@bitbucket.org:Tonio31/program_2_0.git
           - ssh -T git@bitbucket.org
-          - ssh -T hg@bitbucket.org
           - npm install
+          - npm install -g gulp
+          - gulp printVar
           - npm run build
           - npm run setKarmaGlobals -- --browser PhantomJS
           - npm run test/phantomjs --silent
