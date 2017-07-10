@@ -263,7 +263,7 @@ gulp.task('deploy', ['postToSlack'], () => {
     deployUrl = 'https://program.potentialife.com';
 
     // Will create a Tag and push it to bitbucket
-    gulp.start('pushTag');
+    // gulp.start('pushTag');
   }
 
   let awsConf = {
