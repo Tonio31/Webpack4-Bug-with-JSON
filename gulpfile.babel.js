@@ -68,10 +68,6 @@ gulp.task('webpack', ['clean'], (cb) => {
   // Phase is used by Bugsnag to know if the error happened on UAT (default) or PROD
   let phase = yargs.argv.phase || 'UAT';
 
-  if ( phase === 'PROD' ) {
-    gulp.start('pushTag');
-  }
-
   const config = require('./webpack.dist.config')(phase);
   config.entry.app = paths.entry;
 
@@ -248,13 +244,27 @@ gulp.task('pushTag', ['tagRepo'], () => {
 
 gulp.task('default', ['watch']);
 
-gulp.task('deploy', () => {
+gulp.task('deploy', ['postToSlack'], () => {
 
   let phase = yargs.argv.phase || 'UAT';
 
-  slack(`Starting Deployment on ${phase}...`);
+  //Default UAT
+  let s3Bucket = 'test.program.potentialife.com';
+  let headersFiles =  {
+    'Cache-Control': 'max-age=30, no-transform, public'
+  };
+  let deployUrl = 'https://test-program.potentialife.com';
 
-  let s3Bucket = ( phase === 'PROD' ) ? 'program.potentialife.com' : 'test.program.potentialife.com';
+  if ( phase === 'PROD' ) {
+    s3Bucket = 'program.potentialife.com';
+    headersFiles =  {
+      'Cache-Control': 'max-age=315360000, no-transform, public'
+    };
+    deployUrl = 'https://program.potentialife.com';
+
+    // Will create a Tag and push it to bitbucket
+    gulp.start('pushTag');
+  }
 
   let awsConf = {
     buildSrc: './dist/*',
@@ -266,9 +276,7 @@ gulp.task('deploy', () => {
         Bucket: s3Bucket
       }
     },
-    headers: {
-      'Cache-Control': 'max-age=315360000, no-transform, public'
-    }
+    headers: headersFiles
   };
 
   if (process.env.CI) {
@@ -294,11 +302,12 @@ gulp.task('deploy', () => {
   .pipe(publisher.cache())
   //.pipe(publisher.sync())
   .pipe(awspublish.reporter())
-  .pipe(slack(`Finishing Deployment on ${phase}...`));
+  .pipe(slack(`Finishing Deployment on ${phase}: ${deployUrl}`));
 });
 
-gulp.task('Test', () => {
-  gutil.log('gutil.env=', gutil.env);
-  gutil.log('process.env=', process.env);
-
+gulp.task('postToSlack', () => {
+  let phase = yargs.argv.phase || 'UAT';
+  let msg = `Starting Deployment on ${phase}...`;
+  gutil.log(msg);
+  return slack(msg);
 });
