@@ -262,8 +262,8 @@ gulp.task('deploy', () => {
 
   if ( process.env.CI ) {
     // BitBucket pipelines
-    awsConf.keys.accessKeyId = $S3_ACCESS_KEY_ID;
-    awsConf.keys.secretAccessKey = $S3_SECRET_ACCESS_KEY;
+    awsConf.keys.accessKeyId = process.env.S3_ACCESS_KEY_ID;
+    awsConf.keys.secretAccessKey = process.env.S3_SECRET_ACCESS_KEY;
   }
   else {
     // Run locally
