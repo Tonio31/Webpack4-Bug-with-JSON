@@ -20,4 +20,8 @@ pipelines:
           script:
             - npm install
             - npm run build
+            - curl -X POST --data-urlencode 'payload={"channel": "#deployments", "username": "Frankie", "text": "Deploying ....", "icon_emoji": ":shipit:"}'  https://hooks.slack.com/services/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
             - npm run deploy
+            - SHA=$(git rev-parse --verify HEAD)
+            - SHA="https://bitbucket.org/Tonio31/program_2_0/commits/$SHA deployed to http://test-program.potentialife.com"
+            - curl -X POST --data-urlencode 'payload={"channel": "#deployments", "username": "Frankie", "text": "'"$SHA"'", "icon_emoji": ":shipit:"}'  https://hooks.slack.com/services/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
