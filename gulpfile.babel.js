@@ -20,6 +20,15 @@ import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
 import awspublish           from 'gulp-awspublish';
 
+let slack = require('gulp-slack')({
+  url: 'https://hooks.slack.com/services/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',
+  channel: '#deployments', // Optional
+  user: 'Frankie', // Optional
+  icon_emoji: ':shipit:' // Optional
+});
+
+
+
 let root = 'client';
 
 const protractor = protractorLib.protractor;
@@ -243,6 +252,8 @@ gulp.task('deploy', () => {
 
   let phase = yargs.argv.phase || 'UAT';
 
+  slack(`Starting Deployment on ${phase}...`);
+
   let s3Bucket = ( phase === 'PROD' ) ? 'program.potentialife.com' : 'test.program.potentialife.com';
 
   let awsConf = {
@@ -260,7 +271,7 @@ gulp.task('deploy', () => {
     }
   };
 
-  if ( process.env.CI ) {
+  if (process.env.CI) {
     // BitBucket pipelines
     awsConf.keys.accessKeyId = process.env.S3_ACCESS_KEY_ID;
     awsConf.keys.secretAccessKey = process.env.S3_SECRET_ACCESS_KEY;
@@ -278,16 +289,16 @@ gulp.task('deploy', () => {
   gutil.log('Headers to be added to the files: ', awsConf.headers);
 
   return gulp.src(awsConf.buildSrc)
-  .pipe(awspublish.gzip({ ext: '' }))
+  .pipe(awspublish.gzip({ext: ''}))
   .pipe(publisher.publish(awsConf.headers))
   .pipe(publisher.cache())
   //.pipe(publisher.sync())
-  .pipe(awspublish.reporter());
+  .pipe(awspublish.reporter())
+  .pipe(slack(`Finishing Deployment on ${phase}...`));
 });
-
-
 
 gulp.task('Test', () => {
   gutil.log('gutil.env=', gutil.env);
   gutil.log('process.env=', process.env);
+
 });
