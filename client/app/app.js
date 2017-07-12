@@ -263,10 +263,18 @@ let appModule = angular.module('app', [
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
       let error = trans.error();
 
-      if ( error.message === 'The transition has been superseded by a different transition' ) {
+      // error types:  SUPERSEDED = 2, ABORTED = 3, INVALID = 4, IGNORED = 5, ERROR = 6
+      // https://github.com/ui-router/core/blob/0b1e9ed/src/transition/rejectFactory.ts#L18
+      if ( error.type === 5 ||
+           error.type === 2 ) {
+        // SUPERSEDED
         // This error will be normal after the login if the user is redirected to another page than home
         // or if the user clicks super fast on menu items, then we won't have time to load one step before the user request another one.
-        $log.log('Transition from login to another page has been superseded, this could be normal error=', error);
+        //
+        // IGNORED
+        // For instance if the user clicks twice on a menu link super fast or twice on the home page link super fast, he will get here
+        // We don't want to throw an error here as an ignored transition should just be ignored
+        $log.log('Transition from anything to another page has failed because error=', error);
       }
       else if ( error.status === 401 ) {
         $log.warn(`$transitions.onError(matchFromAnyToParentWithMenu) - Error 401, user not authenticated or token expired, 
