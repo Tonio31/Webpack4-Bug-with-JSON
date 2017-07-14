@@ -251,17 +251,11 @@ gulp.task('deploy', ['postToSlack'], () => {
 
   //Default UAT
   let s3Bucket = 'test.program.potentialife.com';
-  let headersFiles =  {
-    'Cache-Control': 'max-age=30, no-transform, public'
-  };
   let deployUrl = 'https://test-program.potentialife.com';
   let cloudFronDistributionId = 'E3N0OB6AFVAPFJ';
 
   if ( phase === 'PROD' ) {
     s3Bucket = 'program.potentialife.com';
-    headersFiles =  {
-      'Cache-Control': 'max-age=315360000, no-transform, public'
-    };
     deployUrl = 'https://program.potentialife.com';
     cloudFronDistributionId = 'ELTZC5FGWC0Q';
   }
@@ -276,7 +270,9 @@ gulp.task('deploy', ['postToSlack'], () => {
         Bucket: s3Bucket
       }
     },
-    headers: headersFiles
+    headers: {
+      'Cache-Control': 'max-age=31536000, no-transform, public'
+    }
   };
 
   if (process.env.CI) {
@@ -291,12 +287,6 @@ gulp.task('deploy', ['postToSlack'], () => {
     awsConf.keys.secretAccessKey = s3Access.secretAccessKey;
   }
 
-  let publisher = awspublish.create(awsConf.keys);
-
-  gutil.log(`Deploy dist folder into ${phase} S3-Bucket: ${awsConf.keys.params.Bucket}`);
-  gutil.log('Headers to be added to the files: ', awsConf.headers);
-  gutil.log('Invalidate Files on CloudFront With Distribution ID=', cloudFronDistributionId);
-
   let cloudFrontSettings = {
     distribution: cloudFronDistributionId, // Cloudfront distribution ID
     accessKeyId: awsConf.keys.accessKeyId, // Optional AWS Access Key ID
@@ -304,6 +294,14 @@ gulp.task('deploy', ['postToSlack'], () => {
     wait: true,                     // Whether to wait until invalidation is completed (default: false)
     indexRootPath: true             // Invalidate index.html root paths (`foo/index.html` and `foo/`) (default: false)
   };
+
+
+
+  let publisher = awspublish.create(awsConf.keys);
+
+  gutil.log(`Deploy dist folder into ${phase} S3-Bucket: ${awsConf.keys.params.Bucket}`);
+  gutil.log('Headers to be added to the files: ', awsConf.headers);
+  gutil.log('Invalidate Files on CloudFront With Distribution ID=', cloudFronDistributionId);
 
   return gulp.src(awsConf.buildSrc)
   .pipe(awspublish.gzip({ext: ''}))
