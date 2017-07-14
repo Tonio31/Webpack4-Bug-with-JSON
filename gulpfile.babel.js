@@ -19,6 +19,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
 import awspublish           from 'gulp-awspublish';
+import cloudFront           from 'gulp-cloudfront-invalidate-aws-publish';
 
 let slack = require('gulp-slack')({
   url: 'https://hooks.slack.com/services/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',
@@ -254,6 +255,7 @@ gulp.task('deploy', ['postToSlack'], () => {
     'Cache-Control': 'max-age=30, no-transform, public'
   };
   let deployUrl = 'https://test-program.potentialife.com';
+  let cloudFronDistributionId = 'E3N0OB6AFVAPFJ';
 
   if ( phase === 'PROD' ) {
     s3Bucket = 'program.potentialife.com';
@@ -261,6 +263,7 @@ gulp.task('deploy', ['postToSlack'], () => {
       'Cache-Control': 'max-age=315360000, no-transform, public'
     };
     deployUrl = 'https://program.potentialife.com';
+    cloudFronDistributionId = 'ELTZC5FGWC0Q';
   }
 
   let awsConf = {
@@ -293,9 +296,20 @@ gulp.task('deploy', ['postToSlack'], () => {
   gutil.log(`Deploy dist folder into ${phase} S3-Bucket: ${awsConf.keys.params.Bucket}`);
   gutil.log('Headers to be added to the files: ', awsConf.headers);
 
+  let cloudFrontSettings = {
+    distribution: cloudFronDistributionId, // Cloudfront distribution ID
+    accessKeyId: awsConf.keys.accessKeyId,             // Optional AWS Access Key ID
+    secretAccessKey: awsConf.keys.secretAccessKey,         // Optional AWS Secret Access Key
+    wait: true,                     // Whether to wait until invalidation is completed (default: false)
+    indexRootPath: true             // Invalidate index.html root paths (`foo/index.html` and `foo/`) (default: false)
+  };
+
+
+
   return gulp.src(awsConf.buildSrc)
   .pipe(awspublish.gzip({ext: ''}))
   .pipe(publisher.publish(awsConf.headers))
+  .pipe(cloudFront(cloudFrontSettings))
   .pipe(publisher.cache())
   //.pipe(publisher.sync())
   .pipe(awspublish.reporter())
