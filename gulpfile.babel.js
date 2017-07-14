@@ -295,16 +295,15 @@ gulp.task('deploy', ['postToSlack'], () => {
 
   gutil.log(`Deploy dist folder into ${phase} S3-Bucket: ${awsConf.keys.params.Bucket}`);
   gutil.log('Headers to be added to the files: ', awsConf.headers);
+  gutil.log('Invalidate Files on CloudFront With Distribution ID=', cloudFronDistributionId);
 
   let cloudFrontSettings = {
     distribution: cloudFronDistributionId, // Cloudfront distribution ID
-    accessKeyId: awsConf.keys.accessKeyId,             // Optional AWS Access Key ID
-    secretAccessKey: awsConf.keys.secretAccessKey,         // Optional AWS Secret Access Key
+    accessKeyId: awsConf.keys.accessKeyId, // Optional AWS Access Key ID
+    secretAccessKey: awsConf.keys.secretAccessKey, // Optional AWS Secret Access Key
     wait: true,                     // Whether to wait until invalidation is completed (default: false)
     indexRootPath: true             // Invalidate index.html root paths (`foo/index.html` and `foo/`) (default: false)
   };
-
-
 
   return gulp.src(awsConf.buildSrc)
   .pipe(awspublish.gzip({ext: ''}))
