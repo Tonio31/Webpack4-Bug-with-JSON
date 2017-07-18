@@ -16,6 +16,7 @@ pipelines:
             - npm install
             - npm run build
             - npm run deploy
+            - ./bugsnag-deploy.sh UAT
     PROD:
       - step:
           script:
@@ -25,4 +26,5 @@ pipelines:
             - git config --global user.email "Frankie@potentialife.com"
             - git config --global user.name "Frankie"
             - npm run addGitTagToRepo
+            - ./bugsnag-deploy.sh PROD
 

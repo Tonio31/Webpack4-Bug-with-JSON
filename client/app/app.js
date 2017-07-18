@@ -240,7 +240,7 @@ let appModule = angular.module('app', [
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
       let error = trans.error();
 
-      if ( error.status === 402 ) {
+      if ( error.detail.status === 402 ) {
         $log.warn(`$transitions.onError(matchFromAnyToParentNoLogin) - Error 402, Invalid Token for state without login,
                    redirect to 500 page with specific error message`);
         $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_402' }, { reload: true });
@@ -276,7 +276,7 @@ let appModule = angular.module('app', [
         // We don't want to throw an error here as an ignored transition should just be ignored
         $log.log('Transition from anything to another page has failed because error=', error);
       }
-      else if ( error.status === 401 ) {
+      else if ( error.type === 6 && error.detail.status === 401 ) {
         $log.warn(`$transitions.onError(matchFromAnyToParentWithMenu) - Error 401, user not authenticated or token expired, 
                   redirect to login page.  stateToRedirect=`, toState);
         let params = {
