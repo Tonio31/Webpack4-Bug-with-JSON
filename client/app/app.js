@@ -350,11 +350,13 @@ let appModule = angular.module('app', [
       // after he logged in (infinite loop), hence the below check
       let firstStateRequested = STATES.HOME;
       if ( $location.path() !== $state.get(STATES.HOME).url &&
-        $location.path() !== $state.get(STATES.LOGIN).url ) {
+        $location.path() !== $state.get(STATES.LOGIN).url &&
+        $location.path() !== $state.get(STATES.ERROR_PAGE).url &&
+        $location.path() !== $state.get(STATES.ERROR_PAGE_NO_MENU).url ) {
         firstStateRequested = $location.path();
       }
 
-      $log.log(`User Auth expired, go to login, stateToRedirect=${firstStateRequested}`);
+      $log.log(`User Auth expired, go to login, stateToRedirect=${firstStateRequested}, $location.path()=${$location.path()}`);
       $state.go(STATES.LOGIN, {
         stateToRedirect: firstStateRequested,
         target: $location.search().target,
