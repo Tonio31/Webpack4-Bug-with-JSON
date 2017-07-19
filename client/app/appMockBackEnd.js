@@ -46,7 +46,7 @@ angular.module( 'appMockBackEnd', [
     return proxy;
   });
 })
-.run( ($log, $httpBackend, $timeout, User, Data, JwtFactory, STATES, TOKEN_SURVEY) => {
+.run( ($log, $httpBackend, $timeout, User, Data, JwtFactory) => {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -81,7 +81,7 @@ angular.module( 'appMockBackEnd', [
 
   let error401 = [ 401, { message: 'token_not_provided' }, {}, 'token_not_provided' ];
   let error401_tokenExpired = [ 401, { message: 'token_expired' }, {}, 'token_expired' ];
-  let error402 = [ 402, { error: 'Not Authorised' }, {} ];
+  let error401_tokenUsed = [ 401, { message: 'token_used' }, {}, 'token_used' ];
   let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
 
@@ -241,7 +241,7 @@ angular.module( 'appMockBackEnd', [
     let tokenSurvey = groups[2];
 
     if ( angular.isUndefined(tokenSurvey) ) {
-      return error402;
+      return error401_tokenUsed;
     }
 
     let survey = require(`./mockBackEndResponse/360_survey_page_${pageNumber}.json`);
@@ -262,16 +262,6 @@ angular.module( 'appMockBackEnd', [
     return error401;
   });
 
-  let isPropertyDefined = (iArray, iPropertyName) => {
-
-    for (let data of iArray) {
-      if (data.code === iPropertyName && data.value) {
-        return true;
-      }
-    }
-    return false;
-  };
-
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
     let dataObject = angular.fromJson(data);
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   dataObject=`, dataObject, '  headers=', headers);
@@ -287,14 +277,6 @@ angular.module( 'appMockBackEnd', [
 
     if ( dataObject.hasOwnProperty('fullUrl') && dataObject.fullUrl === 'genericContent' ) {
       return [ 200, responseContent, responseHeaders ];
-    }
-    else if ( dataObject.hasOwnProperty('fullUrl') && dataObject.fullUrl.includes(STATES.SURVEY) ) {
-      // For Firends submitting survey, no need for normal login but token_survey must always be attached
-      if ( isPropertyDefined(dataObject.programData, TOKEN_SURVEY) ) {
-        return [ 200, responseContent, responseHeaders ];
-      }
-
-      return error402;
     }
     else if ( !JwtFactory.isAuthExpired() ) {
       // Simulate a good answer

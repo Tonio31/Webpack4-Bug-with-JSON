@@ -240,10 +240,10 @@ let appModule = angular.module('app', [
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
       let error = trans.error();
 
-      if ( error.detail.status === 402 ) {
-        $log.warn(`$transitions.onError(matchFromAnyToParentNoLogin) - Error 402, Invalid Token for state without login,
-                   redirect to 500 page with specific error message`);
-        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_402' }, { reload: true });
+      if ( error.type === 6 && error.detail.status === 401 && error.detail.statusText === 'token_used' ) {
+        $log.warn(`$transitions.onError(matchFromAnyToParentNoLogin) - Error 401, token_used. It is probably the 360 survey
+                   token used a second time`);
+        $state.go(STATES.ERROR_PAGE_NO_MENU, { errorMsg: '360_TOKEN_USED' }, { reload: true });
       }
       else {
         $log.error('$transitions.onError(matchFromAnyToParentNoLogin) - fromState=', fromState,
@@ -350,11 +350,13 @@ let appModule = angular.module('app', [
       // after he logged in (infinite loop), hence the below check
       let firstStateRequested = STATES.HOME;
       if ( $location.path() !== $state.get(STATES.HOME).url &&
-        $location.path() !== $state.get(STATES.LOGIN).url ) {
+        $location.path() !== $state.get(STATES.LOGIN).url &&
+        $location.path() !== $state.get(STATES.ERROR_PAGE).url &&
+        $location.path() !== $state.get(STATES.ERROR_PAGE_NO_MENU).url ) {
         firstStateRequested = $location.path();
       }
 
-      $log.log(`User Auth expired, go to login, stateToRedirect=${firstStateRequested}`);
+      $log.log(`User Auth expired, go to login, stateToRedirect=${firstStateRequested}, $location.path()=${$location.path()}`);
       $state.go(STATES.LOGIN, {
         stateToRedirect: firstStateRequested,
         target: $location.search().target,
