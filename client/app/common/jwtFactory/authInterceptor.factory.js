@@ -55,7 +55,6 @@ let AuthInterceptorFactory = function( $log,
       });
     }
 
-
     return $q.reject(error);
   };
 
