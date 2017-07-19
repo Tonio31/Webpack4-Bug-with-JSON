@@ -49,7 +49,6 @@ let AuthInterceptorFactory = function( $log,
 
     if ( error.hasOwnProperty('config') && error.config.hasOwnProperty('url') && error.config.url.includes('program_data') &&
          error.status === 401 && error.statusText === 'token_expired' ) {
-      $log.error('just before state.go');
       $state.go(STATES.LOGIN, {
         stateToRedirect: $state.current.name,
         displayErrorOnInit: 'LOGIN_TOKEN_EXPIRED'
