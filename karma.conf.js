@@ -70,6 +70,7 @@ module.exports = function (config) {
       plugins: [
         new webpack.DefinePlugin({
           ENVIRONMENT: JSON.stringify('development'),
+          VERSION: JSON.stringify('99.99.99'),
           GOOGLE_TRACKING_CODE: JSON.stringify('Whatever'),
           BACK_END_API: JSON.stringify(`https://localhost.com`),
           VIA_SURVEY_APP_KEY: JSON.stringify('Whatever'),
