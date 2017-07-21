@@ -104,6 +104,7 @@ gulp.task('setKarmaGlobals', () => {
 gulp.task('e2e_test', () => {
 
   let baseUrl = yargs.argv.baseUrl || 'http://127.0.0.1:3000/';
+  gutil.log(`Launch e2e Test on: ${baseUrl}`);
 
   let launchE2ETesting = () => {
     return gulp.src([

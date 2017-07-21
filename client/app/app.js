@@ -90,6 +90,7 @@ let appModule = angular.module('app', [
           $stateRegistry,
           Menu,
           SpinnerFactory,
+          BugsnagUtils,
           $trace,
           $state,
           $location,
@@ -224,7 +225,9 @@ let appModule = angular.module('app', [
       $timeout( () => {
         $log.info('About to emit the event: stateChangeSuccess      toState=', toState);
         $rootScope.$emit('stateChangeSuccess', toState);
+        BugsnagUtils.addStateForHistory(toState);
       });
+
       return true;
     });
 

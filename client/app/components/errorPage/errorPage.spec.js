@@ -10,10 +10,16 @@ describe('ErrorPage', () => {
     return value;
   };
 
+  let mockBugsnag = {
+    notify: () => {},
+    getStatesHistoryAsString: () => { return '/Home'; }
+  };
+
   let ZendeskWidget;
   beforeEach(window.module(ErrorPageModule, ($provide) => {
     $provide.value('translateFilter', mockTranslateFilter );
     $provide.value('ZendeskWidget', ZendeskWidget);
+    $provide.value('BugsnagUtils', mockBugsnag);
   }));
 
   beforeEach(inject(($injector) => {
