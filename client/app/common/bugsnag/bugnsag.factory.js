@@ -11,10 +11,10 @@ let BugsnagFactory = function($log, User) {
 
   return (payload) => {
 
-    // if ( ENVIRONMENT === 'development' ) {
-    //   // Don't notify Bugsnag for localhost development
-    //   return false;
-    // }
+    if ( ENVIRONMENT === 'development' ) {
+      // Don't notify Bugsnag for localhost development
+      return false;
+    }
 
     payload.user = {
       id: User.getUserId(),
