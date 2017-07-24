@@ -1,6 +1,8 @@
 class ErrorPageController {
   constructor( $log,
+               $state,
                $stateParams,
+               BugsnagUtils,
                ZendeskWidget,
                $filter ) {
     'ngInject';
@@ -9,6 +11,12 @@ class ErrorPageController {
     $log = $log.getInstance( 'ErrorPageController' );
 
     $log.log('constructor - START');
+
+    this.sendErrorToBugsnag = () => {
+      let statesHistory = BugsnagUtils.getStatesHistoryAsString();
+      $log.error(`sendErrorToBUgsnag() - Send an error to Bugsnag statesHistory= ${statesHistory}`);
+      BugsnagUtils.notify('User on Error Page', `${$state.current.name}`, { 'STATES HISTORY': statesHistory });
+    };
 
     this.$onInit = () => {
       $log.log('$onInit - $stateParams=', $stateParams);
@@ -22,6 +30,8 @@ class ErrorPageController {
       }
 
       this.displayContactUsForm = $stateParams.displayMenu;
+
+      this.sendErrorToBugsnag();
     };
 
     this.openWendeskWidget = () => {
