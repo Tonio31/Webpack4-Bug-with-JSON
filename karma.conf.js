@@ -75,6 +75,11 @@ module.exports = function (config) {
           BACK_END_API: JSON.stringify(`https://localhost.com`),
           VIA_SURVEY_APP_KEY: JSON.stringify('Whatever'),
           BROCHURE_HOME_URL: JSON.stringify(`https://pl.dev`)
+        }),
+
+        new webpack.ProvidePlugin({
+          c3: 'c3',
+          Bugsnag: 'bugsnag-js'
         })
       ]
     },

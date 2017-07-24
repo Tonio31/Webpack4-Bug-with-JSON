@@ -1,5 +1,3 @@
-import 'bugsnag-js';
-
 import angular from 'angular';
 import angularResource from 'angular-resource';
 import ExceptionHandlerFactory from './bugnsag.factory';
