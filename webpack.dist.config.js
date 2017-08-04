@@ -9,7 +9,7 @@ const WebpackAutoInject = require('webpack-auto-inject-version');
 let websiteConfig = {
   UAT: {
     websiteUrl: '',
-    apiUrl: 'https://apipl.ciprianspiridon.com/',
+    apiUrl: 'https://test-api.potentialife.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-4',
     viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4', // Test key (same as localhost)
