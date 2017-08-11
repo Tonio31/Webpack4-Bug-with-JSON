@@ -1,0 +1,526 @@
+{
+  "data": {
+    "info": {
+      "title": "Life Acts - LEVEL 1 - MODULE 5",
+      "author": "Potentialife"
+    },
+    "content": [
+      {
+        "text": "LEVEL 1 - MODULE 5",
+        "style": "headerOrange"
+      },
+      {
+        "text": "LifeAct: Encounter Absorption",
+        "style": "h2"
+      },
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Mindfulness is a choice you make at every moment of the day.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea to improve mindfulness:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      " ",
+                      {
+                        "text": "{!! l1.m5.s7.text.idea_to_improve_mindfulness !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Put your idea into practice today. Note down how it went.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Discuss",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "\"What does everyday mindlessness means to you?\"",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Discuss this question with a colleague, friend or your buddy group. Note down your collective thoughts.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Your first mindfulness exercise is: "
+                      },
+                      {
+                        "text": "{!! l1.mindfulness_exercise.1 !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Take at least 5 minutes to practice your chosen exercise today.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "- Note: You can download the mindfulness exercise PDF from Step 10 of Module 5.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Observe",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                       "You're engaged ",
+                      {
+                        "text": "{!! l1.engaged.work !!}%",
+                        "style": "shortCode"
+                      },
+                      " of your time at work and ",
+                      {
+                        "text": "{!! l1.engaged.non-work !!}%",
+                        "style": "shortCode"
+                      },
+                      " of your time outside of work. As you go through your day today, try to notice the times that you are fully engaged or completely disengaged."
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "How did it go?",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Your second mindfulness exercise is: "
+                      },
+                      {
+                        "text": "{!! l1.mindfulness_exercise.2 !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Take at least 5 minutes to practice your chosen exercise today.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "- Note: You can download the mindfulness exercise PDF from Step 10 of Module 5.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+
+
+
+      {
+        "text": "LEVEL 1 - MODULE 5",
+        "style": "headerOrange",
+        "pageBreak": "before"
+      },
+
+      {
+        "text": "Summary: Encounter Absorption",
+        "style": "h2"
+      },
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key Data",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea to increase mindfulness:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m5.s7.text.idea_to_improve_mindfulness !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your chosen mindfulness exercises:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.mindfulness_exercise.1 !!}\n- {!! l1.mindfulness_exercise.2 !!}",
+                        "style": "shortCode"
+                      },
+                      "\n- Note: You can download the mindfulness exercise PDF from Step 10 of Module 5"
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your mindfulness diagnostic score:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.mindfulness_survey.average !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "LifeMap data",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.engaged.work !!}% - time spent engaged at work\n- {!! l1.engaged.non-work !!}% - time spent engaged outside of work",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key points",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "ol": [
+                  {
+                    "text" : "Today’s work environments tend to discourage engagement. This prevents us from realising our own and our organisations’ full potential.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "We need to train our minds to focus and be more present – more mindful.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "Mindfulness meditation – increasingly common in the business world, is one way to help achieve this.",
+                    "style": "textOrderedList"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      }
+
+
+    ]
+  }
+}

@@ -18,7 +18,160 @@
         "type": "PDF",
         "href": "LifeActsPdf/level-1/module-1",
         "color": "primary",
-        "label": "Download PDF",
+        "label": "Download PDF for level-1/module-1",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 22,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-2",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-2",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 23,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-3",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-3",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 24,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-4",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-4",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 25,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-5",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-5",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 26,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-6",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-6",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 27,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-7",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-7",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 28,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-8",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-8",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 29,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-9",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-9",
+        "position": "center"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
+      "id": 30,
+      "type": "static",
+      "element": "button",
+      "data": {
+        "type": "PDF",
+        "href": "LifeActsPdf/level-1/module-10",
+        "color": "primary",
+        "label": "Download PDF for level-1/module-10",
         "position": "center"
       },
       "pivot": {
