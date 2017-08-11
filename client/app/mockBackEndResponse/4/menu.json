@@ -564,6 +564,17 @@
                   "status": "current",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-9",
                   "hideStepInMenu": false
+                },
+                {
+                  "id": 3320,
+                  "title": "Step 10",
+                  "name": "Life Act PDF",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-10",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-10",
+                  "hideStepInMenu": false
                 }
               ]
             },

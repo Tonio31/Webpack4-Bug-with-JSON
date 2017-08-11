@@ -95,6 +95,18 @@ describe('Resource', () => {
       done();
     });
 
+    it('getLifeActPDF() returns a promise', (done) => {
+      let lifeAct = Data.getLifeActPDF();
+      expect(lifeAct.name).to.equal('Resource');
+      done();
+    });
+
+    it('getShortCodeListForPDF() returns a promise', (done) => {
+      let shortCodes = Data.getShortCodeListForPDF();
+      expect(shortCodes.name).to.equal('Resource');
+      done();
+    });
+
     it('getParticipantDetails() calls the server and stores user related data', sinon.test( (done) => {
 
       $httpBackend.whenGET(Data.buildApiUrl('participants', true)).respond( () => {

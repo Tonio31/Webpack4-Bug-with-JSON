@@ -30,7 +30,7 @@
       "element": "html",
       "program_data_code": null,
       "data": {
-        "value": "<p>The video highlights the importance of focusing on your strengths rather than your weaknesses to achieve greater levels of success and well-being. <\/p><p>When you have watched it and are ready to proceed, please mark this step as complete and move on to the next step.<\/p>"
+        "value": "<p class=\"fgcolour-active\">The video highlights the importance of focusing on your strengths rather than your weaknesses to achieve greater levels of success and well-being. <\/p><p>When you have watched it and are ready to proceed, please mark this step as complete and move on to the next step.<\/p>"
       },
       "pivot": {
         "step_id": 6,

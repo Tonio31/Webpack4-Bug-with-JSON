@@ -8,6 +8,7 @@ import 'angular-foundation';
 import 'common/fontello/css/fontello.css';
 import 'c3/c3.css';
 
+
 // Potentialife module
 import Global from './globalVariables';
 import Common from './common/common';

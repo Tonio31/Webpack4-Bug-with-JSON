@@ -262,6 +262,57 @@ angular.module( 'appMockBackEnd', [
     return error401;
   });
 
+  $httpBackend.whenGET(new RegExp(`LifeActsPdf(.*)`)).respond( (method, url, data, headers, params) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers, '  params=', params);
+
+    let fileName = url.replace(/\//g, '_');
+
+    let fullName = `/mockBackEndResponse/lifeActsPdf/${fileName}.json`;
+    let lifeActPDF = {};
+    if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json');
+    }
+
+    return [ 200, lifeActPDF, {} ];
+  });
+
+  // Get ShortCode for specific participant
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('program_data', false)}(.*)`))
+  .respond( (method, url, data, headers, params) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers, '  params=', params);
+
+    let response = {};
+    let shortCodeArray = angular.fromJson(params.shortcodes);
+
+
+    let randomValueForShortCode = [
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789'
+    ];
+
+    for ( let shortCode of shortCodeArray ) {
+
+      if ( shortCode === 'l1.m1.s9.textbox.idea_to_increase_strengths' ) {
+        // eslint-disable-next-line max-len
+        response[shortCode] = '1234 567890 123 4567 890 1234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 5dsasadsdasadd';
+      }
+      else {
+        response[shortCode] = randomValueForShortCode[Math.floor(Math.random() * randomValueForShortCode.length)];
+      }
+    }
+
+
+
+    $log.warn('TONIO response=', response);
+    return [ 200, response, {} ];
+  });
+
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
     let dataObject = angular.fromJson(data);
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   dataObject=`, dataObject, '  headers=', headers);
@@ -308,6 +359,8 @@ angular.module( 'appMockBackEnd', [
     return [ 200, authenticate[4], {} ];
   });
 
+  $httpBackend.whenGET(new RegExp('mockBackEndResponse')).passThrough();
+  // $httpBackend.whenGET('/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json').passThrough();
 
   $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/(.*)/).passThrough();
   $httpBackend.whenPOST(/https:\/\/my\.potentialife\.com\/api\/(.*)/).passThrough();

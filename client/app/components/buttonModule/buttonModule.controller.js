@@ -1,5 +1,5 @@
 class ButtonModuleController {
-  constructor($log, Utility) {
+  constructor($log, Utility, PdfGenerator) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -15,8 +15,17 @@ class ButtonModuleController {
       return `button-${this.data.position}`;
     };
 
-    this.goToButtonLink = (iUrl) => {
-      Utility.goToLink(iUrl);
+    this.goToButtonLink = (iType) => {
+
+      if ( iType && iType.toUpperCase() === 'PDF' ) {
+        $log.warn(`TONIO we want to print a PDF for ${this.data.href}`);
+
+        PdfGenerator.generatePDF(this.data.href);
+      }
+      else {
+        Utility.goToLink(this.data.href);
+      }
+
     };
 
   }
