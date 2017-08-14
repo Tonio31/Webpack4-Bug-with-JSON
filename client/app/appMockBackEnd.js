@@ -317,7 +317,6 @@ angular.module( 'appMockBackEnd', [
     let response = {};
     let shortCodeArray = angular.fromJson(params.shortcodes);
 
-
     let randomValueForShortCode = [
       '1234 567890 123 4567 890 123456789',
       '1234 567890 123 4567 890 123456789',
@@ -340,9 +339,6 @@ angular.module( 'appMockBackEnd', [
       }
     }
 
-
-
-    $log.warn('TONIO response=', response);
     return [ 200, response, {} ];
   });
 
