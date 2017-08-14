@@ -19,8 +19,6 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
   // margin/border: [ left, top, right, bottom ]
   let config = angular.fromJson(pdfMakeConfig);
 
-  $log.warn('tonio pdfMakeCOnfig=', config);
-
   let extractShortCodeFromTemplate = ( iTemplatePDFString ) => {
     let shortCodeList = [];
 
@@ -36,21 +34,17 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
 
   // Parse the template and get the list of shortcode used in this template to be able to replace them
   let getShortCodeList = ( iTemplatePDFString ) => {
-    $log.warn('iTemplatePDFString=', iTemplatePDFString);
 
     let shortCodeList = extractShortCodeFromTemplate(iTemplatePDFString);
 
     let deferred = $q.defer();
     Data.getShortCodeListForPDF().get( { shortcodes: angular.toJson(shortCodeList) },
       (shortCodeData) => {
-        $log.warn('Success retrieving shortcode data shortCodeData=', shortCodeData);
         deferred.resolve(shortCodeData);
       },
       (error) => {
         deferred.reject(error);
       });
-
-    $log.warn('shortCodeList= ', shortCodeList);
 
     return deferred.promise;
   };
@@ -83,8 +77,6 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
 
     Data.getLifeActPDF(iDocURL).get( {},
       (pdfTemplate) => {
-        $log.warn('pdfTemplate=', pdfTemplate);
-
         let pdfTemplateAsString = angular.toJson(pdfTemplate.data);
         getShortCodeList(pdfTemplateAsString).then(
           (shortCodeList) => {

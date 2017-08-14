@@ -37,8 +37,6 @@ class LoginController {
         this.error = $filter('translate')($stateParams.displayErrorOnInit).toString();
       }
 
-      $log.warn('StateParams=', $stateParams);
-
       if ( angular.isDefined($stateParams.username) && angular.isDefined($stateParams.pwd) ) {
         this.username = $stateParams.username;
         this.password = $stateParams.pwd;

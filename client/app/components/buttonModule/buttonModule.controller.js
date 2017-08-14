@@ -18,8 +18,6 @@ class ButtonModuleController {
     this.goToButtonLink = (iType) => {
 
       if ( iType && iType.toUpperCase() === 'PDF' ) {
-        $log.warn(`TONIO we want to print a PDF for ${this.data.href}`);
-
         PdfGenerator.generatePDF(this.data.href);
       }
       else {
