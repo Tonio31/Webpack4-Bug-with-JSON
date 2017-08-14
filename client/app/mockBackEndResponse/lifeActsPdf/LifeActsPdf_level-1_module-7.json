@@ -1,0 +1,525 @@
+{
+  "data": {
+    "info": {
+      "title": "Life Acts - LEVEL 1 - MODULE 7",
+      "author": "Potentialife"
+    },
+    "content": [
+      {
+        "text": "LEVEL 1 - MODULE 7",
+        "style": "headerOrange"
+      },
+      {
+        "text": "LifeAct: Encounter Relationships",
+        "style": "h2"
+      },
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Observe",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "You identified a \"best friend\" at work - take some time to appreciate this person today and if possible tell them how you feel.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your best friend at work:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      " ",
+                      {
+                        "text": "{!! l1.m7.s4.text.work_friend !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note down how it went.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Put your idea to improve your relationships into practice today.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      " ",
+                      {
+                        "text": "{!! l1.m7.s7.text.idea_improve_relationships !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note down how it went.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Discuss",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Relationship quality can be one of the greatest contributors to health and longevity.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Discuss this and the key points of this module with a friend, a colleague or your buddy group.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note down how it went.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Virtual relationships are no replacement for face-to-face interactions.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Reach out to someone outside of work, a friend or family member and arrange a time to meet them in person.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Observe",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Reflect on every interaction that you have today and ask yourself: how good is the relationship and what can I do to make it better?",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note down your thoughts.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+
+
+
+      {
+        "text": "LEVEL 1 - MODULE 7",
+        "style": "headerOrange",
+        "pageBreak": "before"
+      },
+
+      {
+        "text": "Summary: Encounter Relationships",
+        "style": "h2"
+      },
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key Data",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Your chosen friendship:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m7.s4.text.work_friend !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Idea to improve work with your friendship:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m7.s4.text.idea_improve_work_best_friend !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Idea to improve your relationships:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m7.s7.text.idea_improve_relationships !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Relationship survey results:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      "- Prioritization - ",
+                      {
+                        "text": "{!! l1.m7.relationship_survey.prioritization !!}%",
+                        "style": "shortCode"
+                      },
+                      "\n",
+                      "- Authenticity - ",
+                      {
+                        "text": "{!! l1.m7.relationship_survey.authenticity !!}%",
+                        "style": "shortCode"
+                      },
+                      "\n",
+                      "- Positivity - ",
+                      {
+                        "text": "{!! l1.m7.relationship_survey.positivity !!}%",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key points",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "ol": [
+                  {
+                    "text" : "Relationships matter. They contribute to our professional success as well as our physical health and happiness.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "Best friends at work, or positive connections with colleagues, contribute greatly to personal and organizational success.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "To make the most of our relationships, we have to make them a priority in our lives.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "Virtual relationships are not enough. We need to engage in real, face-to-face interactions.",
+                    "style": "textOrderedList"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      }
+
+
+    ]
+  }
+}

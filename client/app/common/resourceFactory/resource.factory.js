@@ -126,6 +126,14 @@ let ResourceFactory = function( $log,
     return getDynamicContentPromise( 'survey', false, ioGetParameters );
   };
 
+  let getLifeActPDF = (iUrl) => {
+    return $resource(iUrl);
+  };
+
+  let getShortCodeListForPDF = () => {
+    return $resource(buildApiUrl('program_data'));
+  };
+
   // **********************************  POST  *************************************** //
   // Theses resource are to be used with $save method only, because we return an instance
   // of the function, we can't use it to do get method
@@ -214,7 +222,9 @@ let ResourceFactory = function( $log,
     partialUpdateStep,
     buildApiUrl,
     viaSurvey,
-    checkAuthOnOtherPlWebsite
+    checkAuthOnOtherPlWebsite,
+    getLifeActPDF,
+    getShortCodeListForPDF
   };
 };
 
