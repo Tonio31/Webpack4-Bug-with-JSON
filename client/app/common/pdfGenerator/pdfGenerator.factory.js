@@ -100,9 +100,9 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
             finalPdfTemplate.images = config.images;
             finalPdfTemplate.pageMargins = config.pageMargins;
 
-            pdfMake.createPdf(finalPdfTemplate).open();
             let title = (finalPdfTemplate.info && finalPdfTemplate.info.title) ? finalPdfTemplate.info.title : 'Potentialife';
             pdfMake.createPdf(finalPdfTemplate).download(title);
+            pdfMake.createPdf(finalPdfTemplate).open();
           },
           (error) => {
             $log.error('Error while retrieving shortcode data error=', error);
