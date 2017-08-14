@@ -1,13 +1,14 @@
 import NavbarModule from './navbar';
 
 describe('Navbar', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope, $componentController, $compile, $state;
+  let Data, JwtFactory, ZendeskWidget, STATES;
 
   let mockTranslateFilter = (value) => {
     return value;
   };
 
-  let ZendeskWidget;
+  // let ZendeskWidget;
 
   let mockUser = {
     getCompanyBanner: () => {
@@ -21,16 +22,28 @@ describe('Navbar', () => {
     }
   };
 
+  let spies = {
+    Data: {},
+    JwtFactory: {},
+    ZendeskWidget: {},
+    $state: {}
+  };
+
   beforeEach(window.module(NavbarModule, ($provide) => {
     $provide.value('translateFilter', mockTranslateFilter );
     $provide.value('User', mockUser );
-    $provide.value('ZendeskWidget', ZendeskWidget);
+    // $provide.value('ZendeskWidget', ZendeskWidget);
   }));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    Data = $injector.get('Data');
+    JwtFactory = $injector.get('JwtFactory');
+    $state = $injector.get('$state');
+    ZendeskWidget = $injector.get('ZendeskWidget');
+    STATES = $injector.get('STATES');
   }));
 
   describe('Module', () => {
@@ -54,6 +67,21 @@ describe('Navbar', () => {
     it('has a Potentialife property', () => {
       expect(controller).to.have.property('Potentialife');
     });
+
+    it('logout() calls JWT factory, send a post request to server, hide zendesk and redirect to login page', sinon.test(() => {
+
+      spies.Data.logout = sinon.spy(Data, 'logout');
+      spies.JwtFactory.logout = sinon.spy(JwtFactory, 'logout');
+      spies.ZendeskWidget.hide = sinon.stub(ZendeskWidget, 'hide');
+      spies.$state.go = sinon.stub($state, 'go');
+
+      controller.logout();
+
+      sinon.assert.calledWith(spies.Data.logout);
+      sinon.assert.calledWith(spies.JwtFactory.logout);
+      sinon.assert.calledWith(spies.ZendeskWidget.hide);
+      sinon.assert.calledWith(spies.$state.go, STATES.LOGIN);
+    }));
   });
 
   describe('View <navbar display-menu="true"></navbar>', () => {

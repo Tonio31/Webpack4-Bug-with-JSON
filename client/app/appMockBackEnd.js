@@ -368,7 +368,11 @@ angular.module( 'appMockBackEnd', [
 
     // If the user is not logged in, returns error
     return error401_tokenExpired;
+  });
 
+  $httpBackend.whenPOST(Data.buildApiUrl('logout')).respond( (method, url, data, headers) => {
+    $log.log(`$httpBackend.whenPOST(${url}),  method=${method},   data=`, data, '  headers=', headers);
+    return [ 200, {}, {} ];
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
