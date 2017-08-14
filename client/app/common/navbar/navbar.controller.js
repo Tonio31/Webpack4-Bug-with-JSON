@@ -2,6 +2,7 @@ class NavbarController {
   constructor( $log,
                $state,
                $anchorScroll,
+               Data,
                STATES,
                SPINNERS,
                Menu,
@@ -26,9 +27,17 @@ class NavbarController {
     };
 
     this.logout = () => {
+      // Unvalidate Token on server side
+      Data.logout().$save();
+
+      // Remove Token from local Storage
       JwtFactory.logout();
-      $state.go(STATES.LOGIN);
+
+      // Hide Zendesk Widget
       ZendeskWidget.hide();
+
+      // Go to login state
+      $state.go(STATES.LOGIN);
     };
 
     this.toggleMenu = () => {

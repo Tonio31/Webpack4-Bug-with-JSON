@@ -153,6 +153,11 @@ let ResourceFactory = function( $log,
     return new ($resource(buildApiUrl('password/reset')))();
   };
 
+  let logout = () => {
+    $log.log('logout()');
+    return new ($resource(buildApiUrl('logout')))();
+  };
+
   // Will query http://change.potentialife.com/api/index_v2.php to get auth information
   // @params: iWebsite - String (change | my)
   // @params: iTypeOfCheck - String (local.check_username_email | local.check_credentials | reset_pass_curl)
@@ -214,6 +219,7 @@ let ResourceFactory = function( $log,
     getUserAuthData,
     sendRecoverPasswordEmail,
     resetPassword,
+    logout,
     getDynamicContentPromise,
     getFriendSurveyContent,
     saveUserData,
