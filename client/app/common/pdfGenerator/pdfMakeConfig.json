@@ -1,6 +1,7 @@
 {
   "global": {
     "tableNoteWidth": "[365, 150, 30]",
+    "tablePlaybookWidth": "[278, 277]",
     "cellHeaderBorder": "[true, true, true, false]",
     "cellContentTopBorder": "[true, false, true, true]"
   },

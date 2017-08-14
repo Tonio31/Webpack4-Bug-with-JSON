@@ -290,15 +290,21 @@ angular.module( 'appMockBackEnd', [
     else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-7.json' ) {
       lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-7.json');
     }
-    // else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-8.json' ) {
-    //   lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-8.json');
-    // }
-    // else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-9.json' ) {
-    //   lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-9.json');
-    // }
-    // else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-10.json' ) {
-    //   lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-10.json');
-    // }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-8.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-8.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-9.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-9.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-10.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-10.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-11-playbook.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-11-playbook.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-1.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-1.json');
+    }
 
     return [ 200, lifeActPDF, {} ];
   });

@@ -46,7 +46,7 @@ describe('Menu', () => {
 
       Menu.retrieveMenuAndReturnStates().then( (states) => {
         expect(Menu.isMenuRetrieved()).to.equal(true);
-        expect(states.length).to.eq(52);
+        expect(states.length).to.eq(53);
         expect(states[0].name).to.eq('/potentialife-course/cycle-1/lifemap');
 
         // The menu object has been instantiated if the promise from retrieveMenuAndReturnStates has been resolved

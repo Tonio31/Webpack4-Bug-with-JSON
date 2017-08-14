@@ -157,7 +157,7 @@ describe('pdfGenerator', () => {
         return {
           open: () => {},
           download: () => {}
-        }
+        };
       });
 
       PdfGenerator.generatePDF( 'urlOfTemplatehgfd' );
