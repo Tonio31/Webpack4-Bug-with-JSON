@@ -251,7 +251,7 @@ angular.module( 'appMockBackEnd', [
     return [ 200, survey, {} ];
   });
 
-  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('menu', false)}(.*)`)).respond( (method, url, data, headers) => {
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('menu')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     if ( !JwtFactory.isAuthExpired() ) {
@@ -312,7 +312,7 @@ angular.module( 'appMockBackEnd', [
   });
 
   // Get ShortCode for specific participant
-  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('program_data', false)}(.*)`))
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('program_data')}(.*)`))
   .respond( (method, url, data, headers, params) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers, '  params=', params);
 
@@ -430,7 +430,7 @@ angular.module( 'appMockBackEnd', [
   });
 
 
-  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants', false)}(.*)`)).respond( (method, url, data, headers) => {
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     // return error500;
