@@ -52,14 +52,14 @@ let ResourceFactory = function( $log,
   // **********************************  GET  *************************************** //
   let getMenu = () => {
     $log.log('getMenu()');
-    return $resource(buildApiUrl('menu', true));
+    return $resource(buildApiUrl('menu', false));
   };
 
   let getParticipantDetails = () => {
 
     let deferred = $q.defer();
     $log.log('getParticipantDetails()');
-    $resource(buildApiUrl('participants', true)).get( (userData) => {
+    $resource(buildApiUrl('participants', false)).get( (userData) => {
       $log.log('getParticipantDetails() retrieved successfully');
 
       saveUserData(userData.data);
