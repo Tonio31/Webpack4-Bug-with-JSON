@@ -14,7 +14,6 @@ let JwtFactory = function( $log,
     $localStorage[TOKEN] = iToken;
   };
 
-
   let saveUserId = (iUserId) => {
     $localStorage[USER_ID] = iUserId;
   };

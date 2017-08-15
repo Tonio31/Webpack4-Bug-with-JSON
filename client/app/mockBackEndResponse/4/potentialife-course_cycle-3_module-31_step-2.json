@@ -44,7 +44,8 @@
       "type": "static",
       "element": "button",
       "data": {
-        "href": "http://apipl.ciprianspiridon.com/pdf",
+        "type": "pdf",
+        "href": "LifeActsPdf/level-1/module-1",
         "color": "alert",
         "label": "Download PDF",
         "position": "center"

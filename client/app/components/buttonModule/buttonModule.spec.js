@@ -39,7 +39,7 @@ describe('ButtonModule', () => {
     // controller specs
     let controller;
     let bindings = {
-      block: buttonBlock
+      block: angular.fromJson(angular.toJson(buttonBlock)) // Deep Cloning
     };
     beforeEach(() => {
       controller = $componentController('buttonModule', {
@@ -63,16 +63,19 @@ describe('ButtonModule', () => {
     it('goToButtonLink calls PdfGenerator.generatePDF() for PDF links', sinon.test( () => {
 
       spies.PdfGenerator.generatePDF = sinon.spy(PdfGenerator, 'generatePDF');
-      controller.goToButtonLink('PDF');
+      controller.goToButtonLink('pdf');
 
       sinon.assert.calledWith(spies.PdfGenerator.generatePDF, buttonBlock.data.href);
     }));
-
 
     it('getPositionClass build correct class from input', sinon.test( () => {
       expect(controller.getPositionClass()).to.eq('button-center');
     }));
 
+    it('getPositionClass returns empty string if position is undefined', sinon.test( () => {
+      delete controller.data.position;
+      expect(controller.getPositionClass()).to.eq('');
+    }));
   });
 
   describe('View', () => {
@@ -93,6 +96,7 @@ describe('ButtonModule', () => {
 
       expect(template.find('button').hasClass('primary')).to.eq(true);
     });
+
   });
 
   describe('Component', () => {

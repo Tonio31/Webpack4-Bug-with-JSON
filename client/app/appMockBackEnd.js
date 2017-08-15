@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable angular/timeout-service */
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 
 // External Module
 import angular from 'angular';
@@ -82,6 +83,7 @@ angular.module( 'appMockBackEnd', [
   let error401 = [ 401, { message: 'token_not_provided' }, {}, 'token_not_provided' ];
   let error401_tokenExpired = [ 401, { message: 'token_expired' }, {}, 'token_expired' ];
   let error401_tokenUsed = [ 401, { message: 'token_used' }, {}, 'token_used' ];
+  let error429 = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
   let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
 
@@ -378,16 +380,18 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
+    // return error429;
+
     let dataObject = angular.fromJson(data);
     if ( dataObject.email === 'tonio1@gmail.com' ) {
-      // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
+      // Trick to be able to build the good regexp to match the incoming query as Data.buildApiUrl('menu', true) uses the ID of the current user
       User.setUser({ id: authenticate[ID_STEP_2].user.id });
       return [ 200, authenticate[ID_STEP_2], {} ];
     }
 
 
     // return error401;
-    // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
+    // Trick to be able to build the good regexp to match the incoming query as Data.buildApiUrl('menu', true) uses the ID of the current user
     User.setUser({ id: authenticate[4].user.id });
     return [ 200, authenticate[4], {} ];
   });

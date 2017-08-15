@@ -17,15 +17,8 @@
       <div class="y-center-child">
         <div ng-bind-html="$ctrl.data.text | unsafe"></div>
 
-        <button ng-if="$ctrl.data.button"
-                ng-class="$ctrl.data.button.color"
-                class="radius"
-                type="button"
-                ng-click="$ctrl.goToButtonLink($ctrl.data.button.href)">
-          {{ $ctrl.data.button.label }}
-        </button>
+        <button-module ng-if="$ctrl.data.button" block="$ctrl.buttonData"></button-module>
       </div>
-
 
     </div>
   </div>
