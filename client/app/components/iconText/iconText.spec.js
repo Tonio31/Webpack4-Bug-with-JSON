@@ -5,7 +5,6 @@ import IconTextTemplate from './iconText.html';
 
 describe('IconText', () => {
   let $rootScope, $componentController, $compile;
-  let Utility;
 
   let blocksBindingButton = {
     id: 51,
@@ -45,7 +44,6 @@ describe('IconText', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
-    Utility = $injector.get('Utility');
   }));
 
   describe('Module', () => {
@@ -61,11 +59,17 @@ describe('IconText', () => {
       });
     });
 
-    it('Redirect to external URL if url is of type http:// or https://', sinon.test( () => {
-      let goToLinkSpy = sinon.spy(Utility, 'goToLink');
-      controller.goToButtonLink('whatever');
+    it('isIconWider() - return true for icon-badge-lifemap and false otherwise', sinon.test( () => {
+      expect(controller.isIconWider('icon-badge-lifemap')).to.eq(true);
+      expect(controller.isIconWider('whatever else')).to.eq(false);
+    }));
 
-      sinon.assert.calledWith(goToLinkSpy, 'whatever');
+    it('isBorderPartOfIcon() - return true for some icons and false otherwise', sinon.test( () => {
+      expect(controller.isBorderPartOfIcon('icon-badge-lifemap')).to.eq(true);
+      expect(controller.isBorderPartOfIcon('icon-badge-self-discovery')).to.eq(true);
+      expect(controller.isBorderPartOfIcon('icon-badge-time-to-reflect')).to.eq(true);
+      expect(controller.isBorderPartOfIcon('icon-pl-logo')).to.eq(true);
+      expect(controller.isIconWider('whatever else')).to.eq(false);
     }));
   });
 

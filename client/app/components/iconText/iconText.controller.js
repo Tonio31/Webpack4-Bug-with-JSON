@@ -1,11 +1,18 @@
 class IconTextController {
-  constructor($log, $state, $window, Utility) {
+  constructor($log) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'IconTextController' );
 
     this.name = 'iconText';
+
+    this.$onInit = () => {
+      this.buttonData = {
+        data: this.data.button
+      };
+      $log.log('$onInit() - this.buttonData=', this.buttonData);
+    };
 
     this.isBorderPartOfIcon = (iIconType) => {
       switch (iIconType) {
@@ -25,11 +32,6 @@ class IconTextController {
       }
 
       return false;
-    };
-
-
-    this.goToButtonLink = (iUrl) => {
-      Utility.goToLink(iUrl);
     };
   }
 }

@@ -2,16 +2,16 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import iconTextComponent from './iconText.component';
-import UtilityFactory from 'common/utility/utility';
 import ConstantModule from 'common/constants';
 import filtersModule from 'common/filters/filters';
+import buttonModule from 'components/buttonModule/buttonModule';
 
 let iconTextModule = angular.module('iconText', [
   uiRouter,
   LogDecorator,
   filtersModule,
-  UtilityFactory,
-  ConstantModule
+  ConstantModule,
+  buttonModule
 ])
 
 .component('iconText', iconTextComponent)

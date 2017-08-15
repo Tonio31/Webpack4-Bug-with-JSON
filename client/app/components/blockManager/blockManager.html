@@ -73,11 +73,11 @@
     </div>
 
     <div ng-switch-when="ul">
-      <unordered-list block="$ctrl.block" />
+      <unordered-list block="$ctrl.block"></unordered-list>
     </div>
 
     <div ng-switch-when="button">
-      <button-module block="$ctrl.block" />
+      <button-module block="$ctrl.block"></button-module>
     </div>
 
     <div ng-switch-when="via_survey">
@@ -85,7 +85,8 @@
                   update-block-manager="$ctrl.onUpdate(blockManagerValue)"
                   is-step-completed="$ctrl.isStepCompleted"
                   navigation="$ctrl.navigation"
-                  is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted" />
+                  is-top-level-form-submitted="$ctrl.isTopLevelFormSubmitted">
+      </via-survey>
     </div>
 
 </div>
