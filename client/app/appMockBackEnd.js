@@ -419,14 +419,16 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('password/reset')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    let dataObject = angular.fromJson(data);
+    return error401_tokenExpired;
 
-    if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('password') ) {
-      return [ 200, authenticate[4], {} ];
-    }
-
-    // If token or user_id is not provided, simulate that the server will returns an error
-    return [ 400, { error: 'token_not_provided' }, {} ];
+    // let dataObject = angular.fromJson(data);
+    //
+    // if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('password') ) {
+    //   return [ 200, authenticate[4], {} ];
+    // }
+    //
+    // // If token or user_id is not provided, simulate that the server will returns an error
+    // return [ 400, { error: 'token_not_provided' }, {} ];
   });
 
 

@@ -72,6 +72,7 @@
   "ERROR_UNEXPECTED": "Unexpected error.",
   "360_TOKEN_USED": "It looks like you already submitted your feedback.",
 
+  "RESET_PASSWORD_TOKEN_EXPIRED": "The link in the reset password email has expired for security reasons, please re-enter your email address to receive a valid link",
   "ERROR_WITH_BACKEND": "Whoops, Unexpected error while changing your password.",
   "PLEASE_TRY_AGAIN": "Please try again",
   "PLEASE_EMAIL_SUPPORT": "Please contact support at support@potentialife.com, sorry for the inconvenience"
