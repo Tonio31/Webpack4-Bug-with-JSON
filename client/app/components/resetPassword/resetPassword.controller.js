@@ -69,8 +69,8 @@ class ResetPasswordController {
           }
           else {
             this.errorFromBackEnd += 1;
+            SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
           }
-          SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
         });
       }
     };
@@ -82,11 +82,6 @@ class ResetPasswordController {
 
       // Remove all url parameters from the URL
       $location.search({});
-    };
-
-    this.forgotCredentials = () => {
-      $log.log('forgotCredentials()');
-      $state.go(STATES.RETRIEVE_CREDENTIALS);
     };
   }
 }
