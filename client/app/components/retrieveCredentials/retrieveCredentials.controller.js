@@ -1,5 +1,5 @@
 class RetrieveCredentialsController {
-  constructor($log, $state, Data, STATES) {
+  constructor($log, $state, $stateParams, $filter, Data, STATES) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -7,6 +7,14 @@ class RetrieveCredentialsController {
 
     this.emailSent = false;
     this.errorDuringRequest = false;
+
+    this.$onInit = () => {
+      $log.log( '$onInit - START' );
+
+      if ( $stateParams.displayErrorOnInit ) {
+        this.errorOnInit = $filter( 'translate' )( $stateParams.displayErrorOnInit ).toString();
+      }
+    };
 
     this.backToLogin = () => {
       $state.go(STATES.LOGIN);
