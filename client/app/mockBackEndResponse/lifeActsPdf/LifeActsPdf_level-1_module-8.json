@@ -1,0 +1,552 @@
+{
+  "data": {
+    "info": {
+      "title": "Life Acts - LEVEL 1 - MODULE 8",
+      "author": "Potentialife"
+    },
+    "content": [
+      {
+        "text": "LEVEL 1 - MODULE 8",
+        "style": "headerOrange"
+      },
+      {
+        "text": "LifeAct: Experiment Relationships",
+        "style": "h2"
+      },
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Discuss",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Be yourself (authenticity) and be kind to others (positivity) and your relationships should thrive.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Discuss this statement with a friend, colleague or your buddy group. ",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "How did the discussion go?",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Observe",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "There are four main relationship \"archetypes\": the driver, the pleaser, the detached individual, and the benefactor.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Observe yourself today and identify when you are in each zone.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "You decided on your 'primary opportunity' to spend more time in your benefactor zone.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Reflect on your opportunity below, and the module summary, and try something different today.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your opportunity:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      " ",
+                      {
+                        "text": "{!! l1.m8.s8.radio.benefactor !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "You came up with an idea to increase your time in your benefactor zone, take some time to put that idea into practice today.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      " ",
+                      {
+                        "text": "{!! l1.m8.s8.text.benefactor_change !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Yesterday you tried to spend more time in your benefactor zone. Take what you learnt yesterday, what worked or not, and try again today",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      " ",
+                      {
+                        "text": "{!! l1.m8.s8.text.benefactor_change !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+
+
+
+      {
+        "text": "LEVEL 1 - MODULE 8",
+        "style": "headerOrange",
+        "pageBreak": "before"
+      },
+
+      {
+        "text": "Summary: Experiment Relationships",
+        "style": "h2"
+      },
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key Data",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea to spend more time in your benefactor zone:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m8.s8.text.benefactor_change !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your opportunity to spend more time in benefactor zone:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m8.s8.radio.benefactor !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Selected activities from benefactor zone:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.benefactor.chosen_activity_1 !!}",
+                        "style": "shortCode"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.benefactor.chosen_activity_2 !!}",
+                        "style": "shortCode"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.benefactor.chosen_activity_3 !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "LifeMap data:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.authentic.work !!}%",
+                        "style": "shortCode"
+                      },
+                      " - time spent in authentic interactions at work.",
+                      "\n",
+                      {
+                        "text": "- {!! l1.authentic.non-work !!}%",
+                        "style": "shortCode"
+                      },
+                      " - time spent in authentic interactions outside of work.",
+                      "\n",
+                      {
+                        "text": "- {!! l1.positive.work !!}%",
+                        "style": "shortCode"
+                      },
+                      " - time spent in positive interactions at work.",
+                      "\n",
+                      {
+                        "text": "- {!! l1.authentic.non-work !!}%",
+                        "style": "shortCode"
+                      },
+                      " - time spent in positive interactions outside of work."
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key points",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "ol": [
+                  {
+                    "text" : "Positivity and authenticity are the two most important ingredients for building healthy relationships, in and outside the workplace.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "Authenticity requires you both to know yourself and be yourself.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "Positivity is about being kind and nice.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "There are four main relationship \"archetypes\": the driver, the pleaser, the detached individual, and the benefactor.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "The benefactor zone – when you bring both positivity and authenticity into your relationships, is when we are at our best. Here we are as concerned about getting things done, as how they get done. The objective is to increase the amount of time you spend in the \"benefactor zone\".",
+                    "style": "textOrderedList"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      }
+
+
+    ]
+  }
+}

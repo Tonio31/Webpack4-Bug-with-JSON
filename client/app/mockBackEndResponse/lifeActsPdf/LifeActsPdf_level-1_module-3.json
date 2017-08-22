@@ -1,0 +1,506 @@
+{
+  "data": {
+    "info": {
+      "title": "Life Acts - LEVEL 1 - MODULE 3",
+      "author": "Potentialife"
+    },
+    "content": [
+      {
+        "text": "LEVEL 1 - MODULE 3",
+        "style": "headerOrange"
+      },
+      {
+        "text": "LifeAct: Encounter strengths",
+        "style": "h2"
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Observe",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "When do your energy levels typically feel lowest in the day? Watch yourself today!",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "What did you notice?",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Discuss",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "\"The problem is not stress - it's the lack of recovery from stress that's important\". Share this message with someone you care about. Do you both find this time for recovery, in your days, weeks and years?",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note your reflections.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Observe",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Reflect today on what you think affects your energy levels most: your diet, sleep or exercise? Think of a couple of examples.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note them down.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Discuss",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Have an honest discussion with someone you trust about the things that take away and give you energy. Which are the most important? Help your friend to reflect in same way.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note the most important factors.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Let's get practical! Put your idea to improve your energy into practice today.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea:",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      " ",
+                      {
+                        "text": " {!! l1.m3.s9.practical_change !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "How did it go?",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+
+      {
+        "text": "LEVEL 1 - MODULE 2",
+        "style": "headerOrange",
+        "pageBreak": "before"
+      },
+
+      {
+        "text": "Summary: Encounter strengths",
+        "style": "h2"
+      },
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key Data",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "One practical change",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m3.s9.practical_change !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Chosen level of recovery",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m3.s8.radio.three_types_recovery !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Chosen domain area from energy diagnostic",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m3.s7.energy_category !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "LifeMap: Chosen energizing activities",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.energized.chosen_activity_1 !!}\n- {!! l1.energized.chosen_activity_2 !!}\n- {!! l1.energized.chosen_activity_3 !!}",
+                        "style": "shortCode"
+                      }
+
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "LifeMap data",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.energized.work !!}% - of your time energized at work\n- {!! l1.energized.non-work !!}% - of your time energized outside of work",
+                        "style": "shortCode"
+                      }
+
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key points",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "ol": [
+                  {
+                    "text" : "Fatigue and stress lead to lower productivity, more errors, absenteeism, lower creativity, and poor interpersonal relationships",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "However, stress is not really the problem. A certain amount of stress is actually good for you. The real problem is the absence of recovery. Recovery can be enhanced by actively managing sources of energy",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "Successful people, who are also healthy and happy, manage their energy, they punctuate their day, their week, their year with periods of recovery. In many cases, less is more.",
+                    "style": "textOrderedList"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      }
+
+
+    ]
+  }
+}

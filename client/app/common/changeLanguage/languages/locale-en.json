@@ -43,6 +43,7 @@
   "LOGOUT": "Log out",
   "LOGIN_TOKEN_EXPIRED": "Your session has expired, please log in again to continue",
   "LOGIN_FAILED": "Login failed, please try again or click Forgot \"Login details?\" below",
+  "TOO_MANY_LOGIN_ERROR": "You tried to login and failed more than 5 times, your account has been blocked for 1 minute",
   "RESET_PASSWORD": "Reset your password",
   "RESET_PASSWORD_BUTTON": "Reset password",
   "BACK_TO_LOGIN": "Back to login",
@@ -71,6 +72,7 @@
   "ERROR_UNEXPECTED": "Unexpected error.",
   "360_TOKEN_USED": "It looks like you already submitted your feedback.",
 
+  "RESET_PASSWORD_TOKEN_EXPIRED": "The link in the reset password email has expired for security reasons, please re-enter your email address to receive a valid link",
   "ERROR_WITH_BACKEND": "Whoops, Unexpected error while changing your password.",
   "PLEASE_TRY_AGAIN": "Please try again",
   "PLEASE_EMAIL_SUPPORT": "Please contact support at support@potentialife.com, sorry for the inconvenience"

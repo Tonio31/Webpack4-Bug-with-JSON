@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable angular/timeout-service */
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 
 // External Module
 import angular from 'angular';
@@ -82,6 +83,7 @@ angular.module( 'appMockBackEnd', [
   let error401 = [ 401, { message: 'token_not_provided' }, {}, 'token_not_provided' ];
   let error401_tokenExpired = [ 401, { message: 'token_expired' }, {}, 'token_expired' ];
   let error401_tokenUsed = [ 401, { message: 'token_used' }, {}, 'token_used' ];
+  let error429 = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
   let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
 
@@ -249,7 +251,7 @@ angular.module( 'appMockBackEnd', [
     return [ 200, survey, {} ];
   });
 
-  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('menu', false)}(.*)`)).respond( (method, url, data, headers) => {
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('menu')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     if ( !JwtFactory.isAuthExpired() ) {
@@ -260,6 +262,89 @@ angular.module( 'appMockBackEnd', [
 
     // Return error by default
     return error401;
+  });
+
+  $httpBackend.whenGET(new RegExp(`LifeActsPdf(.*)`)).respond( (method, url, data, headers, params) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers, '  params=', params);
+
+    let fileName = url.replace(/\//g, '_');
+
+    let fullName = `/mockBackEndResponse/lifeActsPdf/${fileName}.json`;
+    let lifeActPDF = {};
+    if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-2.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-2.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-3.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-3.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-4.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-4.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-5.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-5.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-6.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-6.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-7.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-7.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-8.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-8.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-9.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-9.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-10.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-10.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-11-playbook.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-11-playbook.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-1.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-1.json');
+    }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-2.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-2.json');
+    }
+
+    return [ 200, lifeActPDF, {} ];
+  });
+
+  // Get ShortCode for specific participant
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('program_data')}(.*)`))
+  .respond( (method, url, data, headers, params) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers, '  params=', params);
+
+    let response = {};
+    let shortCodeArray = angular.fromJson(params.shortcodes);
+
+    let randomValueForShortCode = [
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789',
+      '1234 567890 123 4567 890 123456789'
+    ];
+
+    for ( let shortCode of shortCodeArray ) {
+
+      if ( shortCode === 'l1.m1.s9.textbox.idea_to_increase_strengths' ) {
+        // eslint-disable-next-line max-len
+        response[shortCode] = '1234 567890 123 4567 890 1234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 5dsasadsdasadd';
+      }
+      else {
+        response[shortCode] = randomValueForShortCode[Math.floor(Math.random() * randomValueForShortCode.length)];
+      }
+    }
+
+    return [ 200, response, {} ];
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
@@ -288,26 +373,34 @@ angular.module( 'appMockBackEnd', [
 
     // If the user is not logged in, returns error
     return error401_tokenExpired;
+  });
 
+  $httpBackend.whenPOST(Data.buildApiUrl('logout')).respond( (method, url, data, headers) => {
+    $log.log(`$httpBackend.whenPOST(${url}),  method=${method},   data=`, data, '  headers=', headers);
+    return [ 200, {}, {} ];
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
+    // return error429;
+
     let dataObject = angular.fromJson(data);
     if ( dataObject.email === 'tonio1@gmail.com' ) {
-      // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
+      // Trick to be able to build the good regexp to match the incoming query as Data.buildApiUrl('menu', true) uses the ID of the current user
       User.setUser({ id: authenticate[ID_STEP_2].user.id });
       return [ 200, authenticate[ID_STEP_2], {} ];
     }
 
 
     // return error401;
-    // Trick to be able to build the good regexp to match the incomming query as Data.buildApiUrl('menu', true) uses the ID of the current user
+    // Trick to be able to build the good regexp to match the incoming query as Data.buildApiUrl('menu', true) uses the ID of the current user
     User.setUser({ id: authenticate[4].user.id });
     return [ 200, authenticate[4], {} ];
   });
 
+  $httpBackend.whenGET(new RegExp('mockBackEndResponse')).passThrough();
+  // $httpBackend.whenGET('/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json').passThrough();
 
   $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/(.*)/).passThrough();
   $httpBackend.whenPOST(/https:\/\/my\.potentialife\.com\/api\/(.*)/).passThrough();
@@ -329,6 +422,8 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('password/reset')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
+    // return error401_tokenExpired;
+
     let dataObject = angular.fromJson(data);
 
     if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('password') ) {
@@ -340,7 +435,7 @@ angular.module( 'appMockBackEnd', [
   });
 
 
-  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants', false)}(.*)`)).respond( (method, url, data, headers) => {
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     // return error500;

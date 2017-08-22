@@ -16,14 +16,8 @@ let ResourceFactory = function( $log,
   // eslint-disable-next-line no-param-reassign
   $log = $log.getInstance('ResourceFactory');
 
-  let buildApiUrl = (iTypeOfApi, iUserId = false) => {
-    let apiUrl = `${WEBSITE_CONFIG.apiUrl}/${iTypeOfApi}`;
-
-    if ( iUserId ) {
-      apiUrl += `/${User.getUserId()}`;
-    }
-
-    return apiUrl;
+  let buildApiUrl = (iTypeOfApi) => {
+    return `${WEBSITE_CONFIG.apiUrl}/${iTypeOfApi}`;
   };
 
 
@@ -52,14 +46,14 @@ let ResourceFactory = function( $log,
   // **********************************  GET  *************************************** //
   let getMenu = () => {
     $log.log('getMenu()');
-    return $resource(buildApiUrl('menu', true));
+    return $resource(buildApiUrl('menu'));
   };
 
   let getParticipantDetails = () => {
 
     let deferred = $q.defer();
     $log.log('getParticipantDetails()');
-    $resource(buildApiUrl('participants', true)).get( (userData) => {
+    $resource(buildApiUrl('participants')).get( (userData) => {
       $log.log('getParticipantDetails() retrieved successfully');
 
       saveUserData(userData.data);
@@ -126,6 +120,14 @@ let ResourceFactory = function( $log,
     return getDynamicContentPromise( 'survey', false, ioGetParameters );
   };
 
+  let getLifeActPDF = (iUrl) => {
+    return $resource(iUrl);
+  };
+
+  let getShortCodeListForPDF = () => {
+    return $resource(buildApiUrl('program_data'));
+  };
+
   // **********************************  POST  *************************************** //
   // Theses resource are to be used with $save method only, because we return an instance
   // of the function, we can't use it to do get method
@@ -143,6 +145,11 @@ let ResourceFactory = function( $log,
   let resetPassword = () => {
     $log.log('resetPassword()');
     return new ($resource(buildApiUrl('password/reset')))();
+  };
+
+  let logout = () => {
+    $log.log('logout()');
+    return new ($resource(buildApiUrl('logout')))();
   };
 
   // Will query http://change.potentialife.com/api/index_v2.php to get auth information
@@ -206,6 +213,7 @@ let ResourceFactory = function( $log,
     getUserAuthData,
     sendRecoverPasswordEmail,
     resetPassword,
+    logout,
     getDynamicContentPromise,
     getFriendSurveyContent,
     saveUserData,
@@ -214,7 +222,9 @@ let ResourceFactory = function( $log,
     partialUpdateStep,
     buildApiUrl,
     viaSurvey,
-    checkAuthOnOtherPlWebsite
+    checkAuthOnOtherPlWebsite,
+    getLifeActPDF,
+    getShortCodeListForPDF
   };
 };
 

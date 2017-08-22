@@ -1,0 +1,500 @@
+{
+  "data": {
+    "info": {
+      "title": "LEVEL 1: IMPROVED WEEK PLAYBOOK",
+      "author": "Potentialife"
+    },
+    "content": [
+      {
+        "text": "LEVEL 1: IMPROVED WEEK PLAYBOOK",
+        "style": "headerOrange"
+      },
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tablePlaybookWidth !!}",
+          "body": [
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Strengths:",
+                        "style": [ "headerOrange" ]
+                      },
+                      " ",
+                      {
+                        "text": "Key messages",
+                        "style": [ "tableNoteHeader" ]
+                      }
+                    ]
+                  }
+                ],
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Key changes",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Focus on your strengths and passions to maximize performance.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Your PPZ is the overlap between your performance strengths and your passion strengths.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Aim to gradually increase your time in your PPZ.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "stack": [
+                  {
+                    "text": "Character strengths:",
+                    "style": "bold"
+                  },
+                  {
+                    "text": " - {!! l1.m1.s8.textbox.chosen_strength_1 !!}",
+                    "style": "shortCode"
+                  },
+                  {
+                    "text": " - {!! l1.m1.s8.textbox.chosen_strength_2 !!}",
+                    "style": "shortCode"
+                  },
+                  {
+                    "text": " - {!! l1.m1.s8.textbox.chosen_strength_3 !!}",
+                    "style": "shortCode"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}",
+                "style": [ "tableNote", "textTableNote" ]
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tablePlaybookWidth !!}",
+          "body": [
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Health:",
+                        "style": [ "headerOrange" ]
+                      },
+                      " ",
+                      {
+                        "text": "Key messages",
+                        "style": [ "tableNoteHeader" ]
+                      }
+                    ]
+                  }
+                ],
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Key changes",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Successful people actively managing your stress and recovery to maximize energy.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Focus on nutrition, being active and sleeping well for higher energy and longer life.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Remember small changes make a big difference",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Mindfulness:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m5.s7.text.idea_to_improve_mindfulness !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Flow:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m6.s11.text.flow_goal_1 !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}",
+                "style": "tableNote"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tablePlaybookWidth !!}",
+          "body": [
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Absorption:",
+                        "style": [ "headerOrange" ]
+                      },
+                      " ",
+                      {
+                        "text": "Key messages",
+                        "style": [ "tableNoteHeader" ]
+                      }
+                    ]
+                  }
+                ],
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Key changes",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Relationships matter, you have to make them a priority positive connections with colleagues contribute greatly to our success.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Meditation is one way to help achieve this.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Conditions for flow:",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "type": "circle",
+                    "ul": [
+                      "The activity is neither too difficult nor too easy",
+                      "The correct environmental conditions are in place",
+                      "You have a clear goal"
+                    ],
+                    "style": "textTableNote",
+                    "margin": [ 5, -2, 0, 5 ]
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Energy:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m3.s9.practical_change !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Nutrition:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m4.s4.idea_to_improve_nutrition !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Activity:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m4.s6.idea_increase_activity !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Sleep:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m4.s8.idea_to_increase_sleep !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}",
+                "style": "tableNote"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tablePlaybookWidth !!}",
+          "body": [
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Relationships:",
+                        "style": [ "headerOrange" ]
+                      },
+                      " ",
+                      {
+                        "text": "Key messages",
+                        "style": [ "tableNoteHeader" ]
+                      }
+                    ]
+                  }
+                ],
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Key changes",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Relationships matter, you have to make them a priority positive connections with colleagues contribute greatly to our success.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "The benefactor zone – when you bring both positivity and authenticity into your relationships, is when we are at our best.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Relationships:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m7.s7.text.idea_improve_relationships !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Benefactor:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m8.s8.radio.benefactor !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}",
+                "style": "tableNote"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tablePlaybookWidth !!}",
+          "body": [
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Purpose:",
+                        "style": [ "headerOrange" ]
+                      },
+                      " ",
+                      {
+                        "text": "Key messages",
+                        "style": [ "tableNoteHeader" ]
+                      }
+                    ]
+                  }
+                ],
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Key changes",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "The most successful companies and individuals are those driven by a sense of purpose.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "SMART goals can help us lead a purposeful life. You can build a more purposeful life by changing how you frame your work.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Purpose:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m9.s6.text.idea_purposeful_living_zone !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "SMART goal:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m10.s4.text.smart_goal !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Re-framing statement:",
+                        "style": "bold"
+                      },
+                      {
+                        "text": " {!! l1.m10.s6.text.reframing_activity_statement !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}",
+                "style": "tableNote"
+              }
+            ]
+          ]
+        }
+      }
+
+
+    ]
+  }
+}

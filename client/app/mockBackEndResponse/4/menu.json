@@ -564,6 +564,28 @@
                   "status": "current",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-9",
                   "hideStepInMenu": false
+                },
+                {
+                  "id": 3320,
+                  "title": "Step 10",
+                  "name": "Life Act PDF Level 1",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-10",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-10",
+                  "hideStepInMenu": false
+                },
+                {
+                  "id": 3321,
+                  "title": "Step 11",
+                  "name": "Life Act PDF level 2",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-11",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-11",
+                  "hideStepInMenu": false
                 }
               ]
             },

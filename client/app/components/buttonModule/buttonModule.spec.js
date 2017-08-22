@@ -5,9 +5,8 @@ import ButtonModuleTemplate from './buttonModule.html';
 
 describe('ButtonModule', () => {
   let $rootScope, $componentController, $compile;
-  let Utility;
 
-  let goToLinkSpy;
+  let Utility, PdfGenerator;
 
   let buttonBlock = {
     id: 21,
@@ -21,6 +20,11 @@ describe('ButtonModule', () => {
     }
   };
 
+  let spies = {
+    Utility: {},
+    PdfGenerator: {}
+  };
+
   beforeEach(window.module(ButtonModuleModule));
 
   beforeEach(inject(($injector) => {
@@ -28,13 +32,14 @@ describe('ButtonModule', () => {
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
     Utility = $injector.get('Utility');
+    PdfGenerator = $injector.get('PdfGenerator');
   }));
 
   describe('Controller', () => {
     // controller specs
     let controller;
     let bindings = {
-      block: buttonBlock
+      block: angular.fromJson(angular.toJson(buttonBlock)) // Deep Cloning
     };
     beforeEach(() => {
       controller = $componentController('buttonModule', {
@@ -44,18 +49,33 @@ describe('ButtonModule', () => {
     });
 
 
-    it('goToButtonLink calls Utility.goToLink()', sinon.test( () => {
+    it('goToButtonLink calls Utility.goToLink() for non-PDF links', sinon.test( () => {
 
-      goToLinkSpy = sinon.spy(Utility, 'goToLink');
-      controller.goToButtonLink('whatever');
+      spies.Utility.goToLink = sinon.spy(Utility, 'goToLink');
 
-      sinon.assert.calledWith(goToLinkSpy, 'whatever');
+      // type is undefined here, it can happens as we introduced button type after it was created
+      controller.goToButtonLink(buttonBlock.data.type);
+
+      sinon.assert.calledWith(spies.Utility.goToLink, buttonBlock.data.href);
+    }));
+
+
+    it('goToButtonLink calls PdfGenerator.generatePDF() for PDF links', sinon.test( () => {
+
+      spies.PdfGenerator.generatePDF = sinon.spy(PdfGenerator, 'generatePDF');
+      controller.goToButtonLink('pdf');
+
+      sinon.assert.calledWith(spies.PdfGenerator.generatePDF, buttonBlock.data.href);
     }));
 
     it('getPositionClass build correct class from input', sinon.test( () => {
       expect(controller.getPositionClass()).to.eq('button-center');
     }));
 
+    it('getPositionClass returns empty string if position is undefined', sinon.test( () => {
+      delete controller.data.position;
+      expect(controller.getPositionClass()).to.eq('');
+    }));
   });
 
   describe('View', () => {
@@ -76,6 +96,7 @@ describe('ButtonModule', () => {
 
       expect(template.find('button').hasClass('primary')).to.eq(true);
     });
+
   });
 
   describe('Component', () => {

@@ -74,17 +74,10 @@ describe('Resource', () => {
   describe('Resource Factory', () => {
       // Factory specs
 
-    it('buildApiUrl(\'reflexion\', false) build an url without the userId', () => {
+    it('buildApiUrl(\'reflexion\') build an url.', () => {
       let endPoint = 'reflexion';
 
-      expect(Data.buildApiUrl('reflexion', false)).to.deep.equal(`${WEBSITE_CONFIG.apiUrl}/${endPoint}`);
-    });
-
-
-    it('buildApiUrl(\'reflexion\', true) build an url with the userId', () => {
-      let endPoint = 'reflexion';
-
-      expect(Data.buildApiUrl('reflexion', true)).to.deep.equal(`${WEBSITE_CONFIG.apiUrl}/${endPoint}/${userId}`);
+      expect(Data.buildApiUrl('reflexion')).to.deep.equal(`${WEBSITE_CONFIG.apiUrl}/${endPoint}`);
     });
 
     // This will test the retrieval of the menuData and the convertMenuData function
@@ -92,6 +85,18 @@ describe('Resource', () => {
 
       let menu = Data.getMenu();
       expect(menu.name).to.equal('Resource');
+      done();
+    });
+
+    it('getLifeActPDF() returns a promise', (done) => {
+      let lifeAct = Data.getLifeActPDF();
+      expect(lifeAct.name).to.equal('Resource');
+      done();
+    });
+
+    it('getShortCodeListForPDF() returns a promise', (done) => {
+      let shortCodes = Data.getShortCodeListForPDF();
+      expect(shortCodes.name).to.equal('Resource');
       done();
     });
 

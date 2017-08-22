@@ -20,7 +20,10 @@ let retrieveCredentialsModule = angular.module('retrieveCredentials', [
     .state(STATES.RETRIEVE_CREDENTIALS, {
       url: STATES.RETRIEVE_CREDENTIALS,
       parent: STATES.LOGIN_ROOT,
-      component: 'retrieveCredentials'
+      component: 'retrieveCredentials',
+      params: {
+        displayErrorOnInit: null,
+      }
     });
 })
 .name;

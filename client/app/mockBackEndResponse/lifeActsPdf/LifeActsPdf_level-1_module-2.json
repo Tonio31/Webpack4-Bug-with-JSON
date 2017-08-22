@@ -1,0 +1,491 @@
+{
+  "data": {
+    "info": {
+      "title": "Life Acts - LEVEL 1 - MODULE 2",
+      "author": "Potentialife"
+    },
+    "content": [
+      {
+        "text": "LEVEL 1 - MODULE 2",
+        "style": "headerOrange"
+      },
+      {
+        "text": "LifeAct: Experiment strengths",
+        "style": "h2"
+      },
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Observe",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "You spent "
+                      },
+                      {
+                        "text": "{!! l1.strengths.work !!}%",
+                        "style": "shortCode"
+                      },
+                      " of your work time and ",
+                      {
+                        "text": "{!! l1.strengths.non-work !!}%",
+                        "style": "shortCode"
+                      },
+                      " of your non-work time in your peak potential zone. As you go about your day today, think about practical ways you could increase these percentages."
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note down your thoughts.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Do",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Let's get practical! Put your idea to increase your time in your peak potential zone into practice today.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea: ",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      " ",
+                      {
+                        "text": "{!! l1.m2.s7.textbox.one_change !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note down how you got on.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Discuss",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "\"What is the peak potential zone to you?\" Discuss what you've learnt and experimented with on this topic with a friend, colleague or your buddy group.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note down how the discussion went.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Observe",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Reflect on your selected activities from your peak potential zone. What strengths and passions do they draw on?",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "Note down your thoughts.",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "widths": "{!!config tableNoteWidth !!}",
+          "body": [
+            [
+              {
+                "text": "Discuss",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "text": "Make a note",
+                "style": "tableNoteHeader",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              },
+              {
+                "image": "tick",
+                "fit": [
+                  18,
+                  18
+                ],
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": "Tell a friend about the idea of the peak potential zone. Help them think through their own peak potential zone.",
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": "What did you both learn?",
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "text": "",
+                "border": "{!!config cellContentTopBorder !!}"
+              },
+              {
+                "image": "circleWithSpaceTopBottom",
+                "width": 30,
+                "style": "tickColumn",
+                "alignment": "center",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+
+      {
+        "text": "LEVEL 1 - MODULE 2",
+        "style": "headerOrange",
+        "pageBreak": "before"
+      },
+
+      {
+        "text": "Summary: Experiment strengths",
+        "style": "h2"
+      },
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key Data",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "stack": [
+                  {
+                    "text": [
+                      {
+                        "text": "Your idea to increase time in peak potential zone",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "{!! l1.m2.s7.textbox.one_change !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "LifeMap: Your selected activites from the peak potential zone",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.ppz.chosen_activity_1 !!}\n- {!! l1.ppz.chosen_activity_2 !!}\n- {!! l1.ppz.chosen_activity_3 !!}",
+                        "style": "shortCode"
+                      }
+                    ],
+                    "style": "textTableNote"
+                  },
+                  {
+                    "text": [
+                      {
+                        "text": "LifeMap data",
+                        "decoration": "underline",
+                        "style": "bold"
+                      },
+                      "\n",
+                      {
+                        "text": "- {!! l1.ppz.work !!}% - time spent in peak potential zone at work\n- {!! l1.ppz.non-work !!}% - time spent in peak potential zone outside of work",
+                        "style": "shortCode"
+                      }
+
+                    ],
+                    "style": "textTableNote"
+                  }
+                ],
+                "style": "tableNote",
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      },
+
+
+      {
+        "style": "tableNote",
+        "table": {
+          "dontBreakRows": true,
+          "widths": ["*"],
+          "headerRows": true,
+          "keepWithHeaderRows": true,
+          "body": [
+            [
+              {
+                "text": "Key points",
+                "style": "tableNoteHeader",
+                "border": "{!!config cellHeaderBorder !!}"
+              }
+            ],
+            [
+              {
+                "ol": [
+                  {
+                    "text" : "Your performance strengths are your talents and skills – where you’re a natural. To identify these strengths, ask yourself: “what am I good at, or could – with relative ease, become good at?”",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "Your passion strengths are those things that energize you, that you are passionate about. To identify these, ask yourself: “what gives me strength?” Or “what energizes me?”",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "Your peak potential zone is the area of overlap between your performance strengths and your passion strengths. It is the place where – for you, these two sets of strengths come together, and where you have the greatest potential for achieving success and happiness.",
+                    "style": "textOrderedList"
+                  },
+                  {
+                    "text" : "The key is to gradually increase the amount of time you spend in your peak potential zone – even small changes can make a big difference.",
+                    "style": "textOrderedList"
+                  }
+                ],
+                "border": "{!!config cellContentTopBorder !!}"
+              }
+            ]
+          ]
+        }
+      }
+
+
+    ]
+  }
+}

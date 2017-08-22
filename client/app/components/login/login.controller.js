@@ -37,8 +37,6 @@ class LoginController {
         this.error = $filter('translate')($stateParams.displayErrorOnInit).toString();
       }
 
-      $log.warn('StateParams=', $stateParams);
-
       if ( angular.isDefined($stateParams.username) && angular.isDefined($stateParams.pwd) ) {
         this.username = $stateParams.username;
         this.password = $stateParams.pwd;
@@ -46,8 +44,8 @@ class LoginController {
       }
     };
 
-    this.setInvalidLoginMessage = () => {
-      this.error = $filter('translate')('LOGIN_FAILED').toString();
+    this.setInvalidLoginMessage = ( iErrorMsg ) => {
+      this.error = $filter('translate')(iErrorMsg).toString();
       SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
     };
 
@@ -97,11 +95,17 @@ class LoginController {
         },
         (error) => {
           $log.error('error during authentification error=', error);
+          if ( error && error.status === 429 ) {
+            // User tried 5 times to login and enter wrong credentials, notify him he's locked for a min
+            this.setInvalidLoginMessage('TOO_MANY_LOGIN_ERROR');
+          }
+          else {
+            // If we have an error during login, it might be because the credentials are wrong but
+            // it can also be because the user tries to log in on http://my.potentialife.com/ or
+            // on http://change.potentialife.com as this login page is used to login to the three application
+            this.loginOnOtherPlWebsite(this.otherWebsitesToLoginIn);
+          }
 
-          // If we have an error during login, it might be because the credentials are wrong but
-          // it can also be because the user tries to log in on http://my.potentialife.com/ or
-          // on http://change.potentialife.com as this login page is used to login to the three application
-          this.loginOnOtherPlWebsite(this.otherWebsitesToLoginIn);
         });
       }
       else {
@@ -132,18 +136,18 @@ class LoginController {
           }
           else {
             $log.log(`Username/password NOT valid on ${apiUrl}  error=`, dataBackFromcheckCredentials.errors.incorrect_password[0]);
-            this.setInvalidLoginMessage();
+            this.setInvalidLoginMessage('LOGIN_FAILED');
           }
         },
         (error) => {
           $log.log(`Unexpected error while checking username/password on ${apiUrl} error=`, error);
-          this.setInvalidLoginMessage();
+          this.setInvalidLoginMessage('LOGIN_FAILED');
         });
       },
       (error) => {
 
         $log.log(`BEFORE this.setInvalidLoginMessage() error=`, error);
-        this.setInvalidLoginMessage();
+        this.setInvalidLoginMessage('LOGIN_FAILED');
       });
     };
 

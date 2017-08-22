@@ -62,8 +62,15 @@ class ResetPasswordController {
         },
         (error) => {
           $log.log('error when resetting password error=', error);
-          this.errorFromBackEnd += 1;
-          SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
+          if ( error.status === 401 && error.statusText === 'token_expired' ) {
+            $state.go(STATES.RETRIEVE_CREDENTIALS, {
+              displayErrorOnInit: 'RESET_PASSWORD_TOKEN_EXPIRED'
+            });
+          }
+          else {
+            this.errorFromBackEnd += 1;
+            SpinnerFactory.hide(SPINNERS.TOP_LEVEL);
+          }
         });
       }
     };
@@ -76,7 +83,6 @@ class ResetPasswordController {
       // Remove all url parameters from the URL
       $location.search({});
     };
-
   }
 }
 

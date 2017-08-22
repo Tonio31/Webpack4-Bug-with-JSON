@@ -9,6 +9,7 @@ const WebpackAutoInject = require('webpack-auto-inject-version');
 let websiteConfig = {
   UAT: {
     websiteUrl: '',
+    // apiUrl: 'https://test-api.potentialife.com/',
     apiUrl: 'https://apipl.ciprianspiridon.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-4',

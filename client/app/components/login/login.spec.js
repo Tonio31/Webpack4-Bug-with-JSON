@@ -71,7 +71,7 @@ describe('Login', () => {
 
       spies.spinnerFactory.hide = sinon.spy(SpinnerFactory, 'hide');
 
-      controller.setInvalidLoginMessage();
+      controller.setInvalidLoginMessage('LOGIN_FAILED');
       expect(controller.error).to.not.eq(null);
       sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.TOP_LEVEL);
     }));
