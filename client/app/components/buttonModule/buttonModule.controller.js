@@ -29,14 +29,14 @@ class ButtonModuleController {
     this.goToButtonLink = (iType) => {
 
       if ( iType ) {
-        if ( iType === BUTTON_TYPE.PDF ) {
+        if ( iType.toLowerCase() === BUTTON_TYPE.PDF ) {
           PdfGenerator.generatePDF(this.data.href);
         }
-        else if ( iType === BUTTON_TYPE.EXTERNAL_LINK ) {
+        else if ( iType.toLowerCase() === BUTTON_TYPE.EXTERNAL_LINK ) {
           $log.log('About to redirect to different URL: ', this.data.href);
           $window.open( this.data.href, '_blank' );
         }
-        else if ( iType === BUTTON_TYPE.STATE ) {
+        else if ( iType.toLowerCase() === BUTTON_TYPE.STATE ) {
           $log.log('About to change state to go to: ', this.data.href);
           $state.go(this.data.href);
         }
