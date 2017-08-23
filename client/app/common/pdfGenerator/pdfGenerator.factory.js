@@ -7,10 +7,12 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
   $log = $log.getInstance('PdfGenerator');
 
   pdfMake.fonts = {
-    Montserrat: {
-      normal: 'Montserrat-Regular.ttf',
-      bold: 'Montserrat-Bold.ttf'
-    },
+    Rubik: {
+      normal: 'Rubik-Regular.ttf',
+      bold: 'Rubik-Bold.ttf',
+      italics: 'Rubik-Regular.ttf',
+      bolditalics: 'Rubik-Bold.ttf'
+    }
   };
 
   // Regular expression to match shortcodes in PDF Template
@@ -38,9 +40,39 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
     let shortCodeList = extractShortCodeFromTemplate(iTemplatePDFString);
 
     let deferred = $q.defer();
-    Data.getShortCodeListForPDF().get( { shortcodes: angular.toJson(shortCodeList) },
+    Data.getShortCodeListForPDF().find( { shortcodes: angular.toJson(shortCodeList) },
       (shortCodeData) => {
-        deferred.resolve(shortCodeData);
+
+        try {
+
+          for ( let shortCodeId of Object.keys(shortCodeData) ) {
+            if ( angular.isString(shortCodeData[shortCodeId]) ) {
+              // As we will later on convert the whole pdfTemplate string back to a javascript object,
+              // the " will terminate JSON String too early and screw up the formatting, no it is necessary
+              // to escape them.
+              shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/((\\)*("|'))/g, (match) => {
+                let replaceString = '';
+                if ( match.includes('\'') ) {
+                  replaceString = '\'';
+                }
+                else if ( match.includes('\"') ) {
+                  replaceString = '\\"';
+                }
+                return replaceString;
+              });
+            }
+            else if ( angular.isUndefined(shortCodeData[shortCodeId]) || shortCodeData[shortCodeId] === null ) {
+              shortCodeData[shortCodeId] = '';
+            }
+          }
+
+          deferred.resolve(shortCodeData);
+        }
+        catch (error) {
+          $log.error('error replacing shortcodes');
+          deferred.reject(error);
+        }
+
       },
       (error) => {
         deferred.reject(error);
@@ -78,23 +110,33 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
     Data.getLifeActPDF(iDocURL).get( {},
       (pdfTemplate) => {
         let pdfTemplateAsString = angular.toJson(pdfTemplate.data);
+
         getShortCodeList(pdfTemplateAsString).then(
           (shortCodeList) => {
 
-            let pdfTemplateWithData = replaceShortCodeValue(pdfTemplateAsString, shortCodeList);
-            let pdfTemplateWithDataAndConfig = replaceConfigValue(pdfTemplateWithData, config.global);
+            let pdfTemplateWithDataAndConfig = '';
 
-            let finalPdfTemplate = angular.fromJson(pdfTemplateWithDataAndConfig);
+            try {
+              let pdfTemplateWithData = replaceShortCodeValue(pdfTemplateAsString, shortCodeList);
+              pdfTemplateWithDataAndConfig = replaceConfigValue(pdfTemplateWithData, config.global);
 
-            finalPdfTemplate.footer = config.footer;
-            finalPdfTemplate.styles = config.styles;
-            finalPdfTemplate.defaultStyle = config.defaultStyle;
-            finalPdfTemplate.images = config.images;
-            finalPdfTemplate.pageMargins = config.pageMargins;
+              let finalPdfTemplate = angular.fromJson(pdfTemplateWithDataAndConfig);
 
-            let title = (finalPdfTemplate.info && finalPdfTemplate.info.title) ? finalPdfTemplate.info.title : 'Potentialife';
-            pdfMake.createPdf(finalPdfTemplate).download(title);
-            pdfMake.createPdf(finalPdfTemplate).open();
+              finalPdfTemplate.footer = config.footer;
+              finalPdfTemplate.styles = config.styles;
+              finalPdfTemplate.defaultStyle = config.defaultStyle;
+              finalPdfTemplate.images = config.images;
+              finalPdfTemplate.pageMargins = config.pageMargins;
+
+              let title = (finalPdfTemplate.info && finalPdfTemplate.info.title) ? finalPdfTemplate.info.title : 'Potentialife';
+              pdfMake.createPdf(finalPdfTemplate).download(title);
+              pdfMake.createPdf(finalPdfTemplate).open();
+            }
+            catch (e) {
+              $log.log('pdfTemplateWithDataAndConfig=', pdfTemplateWithDataAndConfig);
+              $log.error(e);
+            }
+
           },
           (error) => {
             $log.error('Error while retrieving shortcode data error=', error);

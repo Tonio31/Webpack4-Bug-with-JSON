@@ -125,7 +125,18 @@ let ResourceFactory = function( $log,
   };
 
   let getShortCodeListForPDF = () => {
-    return $resource(buildApiUrl('program_data'));
+    return $resource(buildApiUrl('program_data'), {}, {
+      find: {
+        method: 'GET',
+        isArray: false,
+        interceptor: {
+          response: (response) => {
+            $log.warn('response=', response);
+            return response.data;
+          }
+        }
+      }
+    });
   };
 
   // **********************************  POST  *************************************** //

@@ -79,7 +79,7 @@ describe('pdfGenerator', () => {
     $scope = $rootScope.$new();
 
     let getShortCodeListForPDFGETRequest = {
-      get: (input, callback) => {
+      find: (input, callback) => {
         expect(input).to.deep.equal({
           shortcodes: angular.toJson([ 'l1.m1.s8.textbox.chosen_strength_1',
             'l1.m1.s8.textbox.chosen_strength_2',
