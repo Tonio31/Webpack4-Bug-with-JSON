@@ -38,18 +38,18 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
     let shortCodeList = extractShortCodeFromTemplate(iTemplatePDFString);
 
     let deferred = $q.defer();
-    Data.getShortCodeListForPDF().find( { shortcodes: angular.toJson(shortCodeList) } ).$promise.then(
+    Data.getShortCodeListForPDF().find( { shortcodes: angular.toJson(shortCodeList) },
       (shortCodeData) => {
 
         $log.warn('shortCodeData=', shortCodeData);
 
-        for (let shortCodeId of Object.keys(shortCodeData)) {
-
-          $log.warn('TONIO 0 shortCode=', shortCodeData[shortCodeId]);
-
-          shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
-
-        }
+        // for (let shortCodeId of Object.keys(shortCodeData)) {
+        //
+        //   $log.warn('TONIO 0 shortCode=', shortCodeData[shortCodeId]);
+        //
+        //   shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
+        //
+        // }
 
 
         $log.warn('BEFORE  deferred.resolve(shortCodeData)');
@@ -67,7 +67,8 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
 
     let templacePdfWithData = iTemplatePDFString.replace(reShortcode, (match, shortcode, test, test2) => {
       $log.warn('test=', test, 'test2=', test2 , '    match=', match, '    shortcode=', shortcode, '   iShortCodeList[shortcode]=',iShortCodeList[shortcode]);
-      return decodeURIComponent(iShortCodeList[shortcode]);
+      // return decodeURIComponent(iShortCodeList[shortcode]);
+      return iShortCodeList[shortcode];
     });
 
     $log.log('replaceShortCodeValue()  templacePdfWithData=', templacePdfWithData);
@@ -92,19 +93,22 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
 
     Data.getLifeActPDF(iDocURL).get( {},
       (pdfTemplate) => {
-        // let pdfTemplateAsString = angular.toJson(pdfTemplate.data);
+        let pdfTemplateAsString = angular.toJson(pdfTemplate.data);
 
-        // eslint-disable-next-line angular/json-functions
-        let pdfTemplateAsString = JSON.stringify(pdfTemplate.data);
         getShortCodeList(pdfTemplateAsString).then(
           (shortCodeList) => {
 
             let pdfTemplateWithData = replaceShortCodeValue(pdfTemplateAsString, shortCodeList);
             let pdfTemplateWithDataAndConfig = replaceConfigValue(pdfTemplateWithData, config.global);
 
-            // eslint-disable-next-line angular/json-functions
-            let finalPdfTemplate = JSON.parse(pdfTemplateWithDataAndConfig);
-            // let finalPdfTemplate = angular.fromJson(pdfTemplateWithDataAndConfig);
+            let finalPdfTemplate = {};
+            try {
+              finalPdfTemplate = angular.fromJson(pdfTemplateWithDataAndConfig);
+            }
+            catch (e) {
+              $log.error('pdfTemplateWithDataAndConfig=', pdfTemplateWithDataAndConfig);
+              $log.error(e);
+            }
 
             finalPdfTemplate.footer = config.footer;
             finalPdfTemplate.styles = config.styles;
