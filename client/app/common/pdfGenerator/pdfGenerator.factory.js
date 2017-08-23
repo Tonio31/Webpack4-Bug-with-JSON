@@ -49,7 +49,7 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
               // As we will later on convert the whole pdfTemplate string back to a javascript object,
               // the " will terminate JSON String too early and screw up the formatting, no it is necessary
               // to escape them.
-              shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/((\\)*("|'))|([\n\r])/g, (match) => {
+              shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/((\\)*("|'))|([\n\r\t])/g, (match) => {
                 let replaceString = '';
                 if ( match.includes('\'') ) {
                   replaceString = '\'';
@@ -58,7 +58,10 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
                   replaceString = '\\"';
                 }
                 else if ( match.includes('\n') || match.includes('\r') ) {
-                  replaceString = '. ';
+                  replaceString = '\\n';
+                }
+                else if ( match.includes('\t') ) {
+                  replaceString = ' ';
                 }
 
                 return replaceString;
