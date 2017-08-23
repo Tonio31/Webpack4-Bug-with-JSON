@@ -55,18 +55,17 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
         try {
           $log.warn('shortCodeData=', shortCodeData);
 
-          for (let shortCodeId of Object.keys(shortCodeData)) {
+          for ( let shortCodeId of Object.keys(shortCodeData) ) {
 
             $log.warn('TONIO 0 shortCode=', shortCodeData[shortCodeId]);
             $log.warn('TONIO 01 shortCode=', encodeURIComponent(shortCodeData[shortCodeId]));
-            // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
 
-            if ( shortCodeData[shortCodeId] ) {
+            if ( angular.isString(shortCodeData[shortCodeId]) ) {
               shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/"/g, (match, shortcode) => {
                 return '\\"';
               });
             }
-            else {
+            else if ( angular.isUndefined(shortCodeData[shortCodeId]) || shortCodeData[shortCodeId] === null ) {
               shortCodeData[shortCodeId] = '';
             }
 
