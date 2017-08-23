@@ -334,6 +334,9 @@ angular.module( 'appMockBackEnd', [
         // eslint-disable-next-line max-len
         response[shortCode] = '1234 567890 123 4567 890 1234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 5dsasadsdasadd';
       }
+      else if (  shortCode === 'l1.energized.chosen_activity_1' ) {
+        response[shortCode] = null;
+      }
       else {
         response[shortCode] = randomValueForShortCode[Math.floor(Math.random() * randomValueForShortCode.length)];
       }

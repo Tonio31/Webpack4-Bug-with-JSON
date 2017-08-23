@@ -52,26 +52,38 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
     Data.getShortCodeListForPDF().find( { shortcodes: angular.toJson(shortCodeList) },
       (shortCodeData) => {
 
-        $log.warn('shortCodeData=', shortCodeData);
+        try {
+          $log.warn('shortCodeData=', shortCodeData);
 
-        for (let shortCodeId of Object.keys(shortCodeData)) {
+          for (let shortCodeId of Object.keys(shortCodeData)) {
 
-          $log.warn('TONIO 0 shortCode=', shortCodeData[shortCodeId]);
-          $log.warn('TONIO 01 shortCode=', encodeURIComponent(shortCodeData[shortCodeId]));
-          // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
+            $log.warn('TONIO 0 shortCode=', shortCodeData[shortCodeId]);
+            $log.warn('TONIO 01 shortCode=', encodeURIComponent(shortCodeData[shortCodeId]));
+            // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
 
-          shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/"/g, (match, shortcode) => {
-            return '\\"';
-          });
+            if ( shortCodeData[shortCodeId] ) {
+              shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/"/g, (match, shortcode) => {
+                return '\\"';
+              });
+            }
+            else {
+              shortCodeData[shortCodeId] = '';
+            }
 
-          $log.warn('TONIO 1 shortCode=', shortCodeData[shortCodeId]);
-          // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
+            $log.warn('TONIO 1 shortCode=', shortCodeData[shortCodeId]);
+            // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
 
+          }
+
+
+          $log.warn('BEFORE  deferred.resolve(shortCodeData)');
+          deferred.resolve(shortCodeData);
+        }
+        catch (error) {
+          $log.error('error replacing shortcodes');
+          deferred.reject(error);
         }
 
-
-        $log.warn('BEFORE  deferred.resolve(shortCodeData)');
-        deferred.resolve(shortCodeData);
       },
       (error) => {
         deferred.reject(error);
