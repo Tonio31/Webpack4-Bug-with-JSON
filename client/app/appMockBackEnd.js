@@ -323,8 +323,9 @@ angular.module( 'appMockBackEnd', [
     let shortCodeArray = angular.fromJson(params.shortcodes);
 
     let randomValueForShortCode = [
-    //  '1 practical change saddas"sadsa\' \' \' \\" מה שלומך',
-      '\\"1 practical change saddas\"\"sadsa\' \' \' \"\" ___ _____\\"'
+     // '1 practical change saddas\"sadsa\' \' \' \"',
+      '1 practical change saddas\"sadsa\' \' \' \\" מה שלומך',
+    //  '\\"1 practical change saddas\\"\\"sadsa\' \' \' \\"\\" ___ _____\\"'
     ];
 
     for ( let shortCode of shortCodeArray ) {
@@ -332,9 +333,6 @@ angular.module( 'appMockBackEnd', [
       if ( shortCode === 'l1.m1.s9.textbox.idea_to_increase_strengths' ) {
         // eslint-disable-next-line max-len
         response[shortCode] = '1234 567890 123 4567 890 1234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 5dsasadsdasadd';
-      }
-      else if ( shortCode === '' ) {
-        response[shortCode] = '1 practical change saddas""sadsa\' \' \' "" ___ _____';
       }
       else {
         response[shortCode] = randomValueForShortCode[Math.floor(Math.random() * randomValueForShortCode.length)];

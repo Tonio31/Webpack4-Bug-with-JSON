@@ -6,10 +6,21 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
   // eslint-disable-next-line no-param-reassign
   $log = $log.getInstance('PdfGenerator');
 
+  // pdfMake.fonts = {
+  //   Montserrat: {
+  //     normal: 'Montserrat-Regular.ttf',
+  //     bold: 'Montserrat-Bold.ttf'
+  //   },
+  // };
+
   pdfMake.fonts = {
     Montserrat: {
       normal: 'Montserrat-Regular.ttf',
       bold: 'Montserrat-Bold.ttf'
+    },
+    Nehama: {
+      normal: 'Nehama.ttf',
+      bold: 'Nehama.ttf'
     },
   };
 
@@ -43,13 +54,20 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
 
         $log.warn('shortCodeData=', shortCodeData);
 
-        // for (let shortCodeId of Object.keys(shortCodeData)) {
-        //
-        //   $log.warn('TONIO 0 shortCode=', shortCodeData[shortCodeId]);
-        //
-        //   shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
-        //
-        // }
+        for (let shortCodeId of Object.keys(shortCodeData)) {
+
+          $log.warn('TONIO 0 shortCode=', shortCodeData[shortCodeId]);
+          $log.warn('TONIO 01 shortCode=', encodeURIComponent(shortCodeData[shortCodeId]));
+          // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
+
+          shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/\\"/g, (match, shortcode) => {
+            return '\\\\"';
+          });
+
+          $log.warn('TONIO 1 shortCode=', shortCodeData[shortCodeId]);
+          // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
+
+        }
 
 
         $log.warn('BEFORE  deferred.resolve(shortCodeData)');
@@ -66,7 +84,7 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
     $log.log('replaceShortCodeValue()  iShortCodeList=', iShortCodeList);
 
     let templacePdfWithData = iTemplatePDFString.replace(reShortcode, (match, shortcode, test, test2) => {
-      $log.warn('test=', test, 'test2=', test2 , '    match=', match, '    shortcode=', shortcode, '   iShortCodeList[shortcode]=',iShortCodeList[shortcode]);
+      // $log.warn('test=', test, 'test2=', test2 , '    match=', match, '    shortcode=', shortcode, '   iShortCodeList[shortcode]=',iShortCodeList[shortcode]);
       // return decodeURIComponent(iShortCodeList[shortcode]);
       return iShortCodeList[shortcode];
     });
@@ -98,27 +116,36 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
         getShortCodeList(pdfTemplateAsString).then(
           (shortCodeList) => {
 
-            let pdfTemplateWithData = replaceShortCodeValue(pdfTemplateAsString, shortCodeList);
-            let pdfTemplateWithDataAndConfig = replaceConfigValue(pdfTemplateWithData, config.global);
+            let pdfTemplateWithDataAndConfig = '';
 
-            let finalPdfTemplate = {};
             try {
-              finalPdfTemplate = angular.fromJson(pdfTemplateWithDataAndConfig);
+              let pdfTemplateWithData = replaceShortCodeValue(pdfTemplateAsString, shortCodeList);
+              pdfTemplateWithDataAndConfig = replaceConfigValue(pdfTemplateWithData, config.global);
+
+              let finalPdfTemplate = {};
+                finalPdfTemplate = angular.fromJson(pdfTemplateWithDataAndConfig);
+                //finalPdfTemplate = decodeURIComponent(finalPdfTemplate);
+
+
+
+              $log.log('generatePDF 0');
+              finalPdfTemplate.footer = config.footer;
+              finalPdfTemplate.styles = config.styles;
+              finalPdfTemplate.defaultStyle = config.defaultStyle;
+              finalPdfTemplate.images = config.images;
+              finalPdfTemplate.pageMargins = config.pageMargins;
+
+              $log.log('generatePDF 1');
+              let title = (finalPdfTemplate.info && finalPdfTemplate.info.title) ? finalPdfTemplate.info.title : 'Potentialife';
+              pdfMake.createPdf(finalPdfTemplate).download(title);
+              $log.log('generatePDF 2');
+              pdfMake.createPdf(finalPdfTemplate).open();
             }
             catch (e) {
-              $log.error('pdfTemplateWithDataAndConfig=', pdfTemplateWithDataAndConfig);
+              $log.log('pdfTemplateWithDataAndConfig=', pdfTemplateWithDataAndConfig);
               $log.error(e);
             }
 
-            finalPdfTemplate.footer = config.footer;
-            finalPdfTemplate.styles = config.styles;
-            finalPdfTemplate.defaultStyle = config.defaultStyle;
-            finalPdfTemplate.images = config.images;
-            finalPdfTemplate.pageMargins = config.pageMargins;
-
-            let title = (finalPdfTemplate.info && finalPdfTemplate.info.title) ? finalPdfTemplate.info.title : 'Potentialife';
-            pdfMake.createPdf(finalPdfTemplate).download(title);
-            pdfMake.createPdf(finalPdfTemplate).open();
           },
           (error) => {
             $log.error('Error while retrieving shortcode data error=', error);
