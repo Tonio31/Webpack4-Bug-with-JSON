@@ -323,10 +323,10 @@ angular.module( 'appMockBackEnd', [
     let shortCodeArray = angular.fromJson(params.shortcodes);
 
     let randomValueForShortCode = [
-     // '1 practical change saddas\"sadsa\' \' \' \"',
-      '1 practical change saddas"sadsa\' \' \' \" מה שלומך',
-    //  '\\"1 practical change saddas\\"\\"sadsa\' \' \' \\"\\" ___ _____\\"'
-      56
+      '1 practical \\\\\" \""" \\\'change "saddas\\\"sadsa\' \' \' \"HEBREW מה שלומך END OF HEBREW',
+      "2 \\\\\" \" \\\'2222 \"2222\"2222\' \\' \' \"",
+      56,
+      null
     ];
 
     for ( let shortCode of shortCodeArray ) {
@@ -335,7 +335,7 @@ angular.module( 'appMockBackEnd', [
         // eslint-disable-next-line max-len
         response[shortCode] = '1234 567890 123 4567 890 1234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 567890 123 4567 890 1234567891234567891234 5dsasadsdasadd';
       }
-      else if (  shortCode === 'l1.energized.chosen_activity_1' ) {
+      else if ( shortCode === 'l1.energized.chosen_activity_1' ) {
         response[shortCode] = null;
       }
       else {

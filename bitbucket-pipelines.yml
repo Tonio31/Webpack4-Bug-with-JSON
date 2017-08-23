@@ -17,13 +17,6 @@ pipelines:
             - npm run build
             - npm run deploy
             - ./bugsnag-deploy.sh UAT
-    bugfix/pdf:
-      - step:
-          script:
-            - npm install
-            - npm run build
-            - npm run deploy
-            - ./bugsnag-deploy.sh UAT
     PROD:
       - step:
           script:

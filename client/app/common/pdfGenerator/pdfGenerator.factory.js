@@ -6,22 +6,13 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
   // eslint-disable-next-line no-param-reassign
   $log = $log.getInstance('PdfGenerator');
 
-  // pdfMake.fonts = {
-  //   Montserrat: {
-  //     normal: 'Montserrat-Regular.ttf',
-  //     bold: 'Montserrat-Bold.ttf'
-  //   },
-  // };
-
   pdfMake.fonts = {
-    Montserrat: {
-      normal: 'Montserrat-Regular.ttf',
-      bold: 'Montserrat-Bold.ttf'
-    },
-    Nehama: {
-      normal: 'Nehama.ttf',
-      bold: 'Nehama.ttf'
-    },
+    Rubik: {
+      normal: 'Rubik-Regular.ttf',
+      bold: 'Rubik-Bold.ttf',
+      italics: 'Rubik-Regular.ttf',
+      bolditalics: 'Rubik-Bold.ttf'
+    }
   };
 
   // Regular expression to match shortcodes in PDF Template
@@ -53,29 +44,28 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
       (shortCodeData) => {
 
         try {
-          $log.warn('shortCodeData=', shortCodeData);
 
           for ( let shortCodeId of Object.keys(shortCodeData) ) {
-
-            $log.warn('TONIO 0 shortCode=', shortCodeData[shortCodeId]);
-            $log.warn('TONIO 01 shortCode=', encodeURIComponent(shortCodeData[shortCodeId]));
-
             if ( angular.isString(shortCodeData[shortCodeId]) ) {
-              shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/"/g, (match, shortcode) => {
-                return '\\"';
+              // As we will later on convert the whole pdfTemplate string back to a javascript object,
+              // the " will terminate JSON String too early and screw up the formatting, no it is necessary
+              // to escape them.
+              shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/((\\)*("|'))/g, (match) => {
+                let replaceString = '';
+                if ( match.includes('\'') ) {
+                  replaceString = '\'';
+                }
+                else if ( match.includes('\"') ) {
+                  replaceString = '\\"';
+                }
+                return replaceString;
               });
             }
             else if ( angular.isUndefined(shortCodeData[shortCodeId]) || shortCodeData[shortCodeId] === null ) {
               shortCodeData[shortCodeId] = '';
             }
-
-            $log.warn('TONIO 1 shortCode=', shortCodeData[shortCodeId]);
-            // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
-
           }
 
-
-          $log.warn('BEFORE  deferred.resolve(shortCodeData)');
           deferred.resolve(shortCodeData);
         }
         catch (error) {
@@ -94,13 +84,10 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
   let replaceShortCodeValue = ( iTemplatePDFString, iShortCodeList ) => {
     $log.log('replaceShortCodeValue()  iShortCodeList=', iShortCodeList);
 
-    let templacePdfWithData = iTemplatePDFString.replace(reShortcode, (match, shortcode, test, test2) => {
-      // $log.warn('test=', test, 'test2=', test2 , '    match=', match, '    shortcode=', shortcode, '   iShortCodeList[shortcode]=',iShortCodeList[shortcode]);
-      // return decodeURIComponent(iShortCodeList[shortcode]);
+    let templacePdfWithData = iTemplatePDFString.replace(reShortcode, (match, shortcode) => {
       return iShortCodeList[shortcode];
     });
 
-    $log.log('replaceShortCodeValue()  templacePdfWithData=', templacePdfWithData);
     return templacePdfWithData;
   };
 
@@ -133,23 +120,16 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
               let pdfTemplateWithData = replaceShortCodeValue(pdfTemplateAsString, shortCodeList);
               pdfTemplateWithDataAndConfig = replaceConfigValue(pdfTemplateWithData, config.global);
 
-              let finalPdfTemplate = {};
-                finalPdfTemplate = angular.fromJson(pdfTemplateWithDataAndConfig);
-                //finalPdfTemplate = decodeURIComponent(finalPdfTemplate);
+              let finalPdfTemplate = angular.fromJson(pdfTemplateWithDataAndConfig);
 
-
-
-              $log.log('generatePDF 0');
               finalPdfTemplate.footer = config.footer;
               finalPdfTemplate.styles = config.styles;
               finalPdfTemplate.defaultStyle = config.defaultStyle;
               finalPdfTemplate.images = config.images;
               finalPdfTemplate.pageMargins = config.pageMargins;
 
-              $log.log('generatePDF 1');
               let title = (finalPdfTemplate.info && finalPdfTemplate.info.title) ? finalPdfTemplate.info.title : 'Potentialife';
               pdfMake.createPdf(finalPdfTemplate).download(title);
-              $log.log('generatePDF 2');
               pdfMake.createPdf(finalPdfTemplate).open();
             }
             catch (e) {
