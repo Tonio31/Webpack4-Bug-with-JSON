@@ -26,7 +26,6 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
 
     let match = reShortcode.exec(iTemplatePDFString);
     while ( match !== null ) {
-      $log.log(match);
       shortCodeList.push(match[1]);
       match = reShortcode.exec(iTemplatePDFString);
     }
@@ -44,13 +43,13 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
       (shortCodeData) => {
 
         try {
-
+          $log.log('shortCodeData=', shortCodeData);
           for ( let shortCodeId of Object.keys(shortCodeData) ) {
             if ( angular.isString(shortCodeData[shortCodeId]) ) {
               // As we will later on convert the whole pdfTemplate string back to a javascript object,
               // the " will terminate JSON String too early and screw up the formatting, no it is necessary
               // to escape them.
-              shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/((\\)*("|'))/g, (match) => {
+              shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/((\\)*("|'))|([\n\r])/g, (match) => {
                 let replaceString = '';
                 if ( match.includes('\'') ) {
                   replaceString = '\'';
@@ -58,6 +57,10 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
                 else if ( match.includes('\"') ) {
                   replaceString = '\\"';
                 }
+                else if ( match.includes('\n') || match.includes('\r') ) {
+                  replaceString = '. ';
+                }
+
                 return replaceString;
               });
             }
