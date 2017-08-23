@@ -60,8 +60,8 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
           $log.warn('TONIO 01 shortCode=', encodeURIComponent(shortCodeData[shortCodeId]));
           // shortCodeData[shortCodeId] = encodeURIComponent(shortCodeData[shortCodeId]);
 
-          shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/\\"/g, (match, shortcode) => {
-            return '\\\\"';
+          shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/"/g, (match, shortcode) => {
+            return '\\"';
           });
 
           $log.warn('TONIO 1 shortCode=', shortCodeData[shortCodeId]);

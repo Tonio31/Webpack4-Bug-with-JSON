@@ -324,7 +324,7 @@ angular.module( 'appMockBackEnd', [
 
     let randomValueForShortCode = [
      // '1 practical change saddas\"sadsa\' \' \' \"',
-      '1 practical change saddas\"sadsa\' \' \' \\" מה שלומך',
+      '1 practical change saddas"sadsa\' \' \' \" מה שלומך',
     //  '\\"1 practical change saddas\\"\\"sadsa\' \' \' \\"\\" ___ _____\\"'
     ];
 
