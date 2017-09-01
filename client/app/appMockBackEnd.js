@@ -310,6 +310,9 @@ angular.module( 'appMockBackEnd', [
     else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-2.json' ) {
       lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-2.json');
     }
+    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-3.json' ) {
+      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-3.json');
+    }
 
     return [ 200, lifeActPDF, {} ];
   });
