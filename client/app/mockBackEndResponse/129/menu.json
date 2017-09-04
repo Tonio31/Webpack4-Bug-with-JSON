@@ -2863,8 +2863,31 @@
               "updated_at": "2017-04-25 19:28:25",
               "deleted_at": null,
               "fullUrl": "/potentialife-course/cycle-2/module-13",
-              "status": "locked",
-              "children": []
+              "status": "current",
+              "children": [
+                {
+                  "id": 119,
+                  "stepable_id": 13,
+                  "stepable_type": "modules",
+                  "title": "Step 5",
+                  "name": "Exercise: Understanding what energizes you!",
+                  "description": "2 minutes",
+                  "slug": "step-5",
+                  "content": null,
+                  "hideStepInMenu": 0,
+                  "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.</p>",
+                  "lft": 220,
+                  "rgt": 221,
+                  "depth": 1,
+                  "status": "current",
+                  "created_at": "2017-04-24 10:07:55",
+                  "updated_at": "2017-05-10 14:41:53",
+                  "deleted_at": null,
+                  "order": 0,
+                  "parent_id": null,
+                  "fullUrl": "/potentialife-course/cycle-2/module-13/step-5"
+                }
+              ]
             },
             {
               "id": 16,
