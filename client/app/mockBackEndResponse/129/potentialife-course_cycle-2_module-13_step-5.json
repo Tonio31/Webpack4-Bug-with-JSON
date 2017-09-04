@@ -1,0 +1,331 @@
+{
+  "id": 276,
+  "stepable_id": 15,
+  "stepable_type": "modules",
+  "title": "Step 5",
+  "name": "Exercise: Understanding what energizes you!",
+  "description": "3 minutes",
+  "slug": "step-5",
+  "content": null,
+  "hideStepInMenu": 0,
+  "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.<\/p>",
+  "lft": 10,
+  "rgt": 11,
+  "depth": 1,
+  "status": "current",
+  "created_at": "2017-07-20 11:35:28",
+  "updated_at": "2017-09-01 09:18:30",
+  "deleted_at": null,
+  "parent_id": null,
+  "breadcrumbs": "Level 2 &bull; Module 3 &bull; Step 5",
+  "prev_page_url": "\/potentialife-course\/cycle-2\/module-13\/step-4",
+  "next_page_url": "\/potentialife-course\/cycle-2\/module-13\/step-6",
+  "fullUrl": "\/potentialife-course\/cycle-2\/module-13\/step-5",
+  "blocks": [
+    {
+      "id": 1570,
+      "type": "dynamic",
+      "element": "icon_text",
+      "program_data_code": null,
+      "data": {
+        "value": null,
+        "icon": {
+          "type": "icon-badge-time-to-reflect",
+          "color": null
+        },
+        "text": "<p>To help you understand what your restorers and depletors are we want you to reflect on your LifeMap data from Level 1 and Level 2. <\/p>",
+        "type": "link"
+      },
+      "pivot": {
+        "step_id": 276,
+        "block_id": 1570
+      }
+    },
+    {
+      "id": 1571,
+      "type": "static",
+      "element": "bar_chart",
+      "program_data_code": null,
+      "data": {
+        "value": null,
+        "name": "bar_chart1571",
+        "title": "Time spent feeling energized - Work",
+        "bars": [
+          {
+            "title": "Level 1 - Work",
+            "color": "#64BED9",
+            "value": "63"
+          },
+          {
+            "title": "Level 2 - Work",
+            "color": "#008CBA",
+            "value": "100"
+          }
+        ],
+        "barWidth": 0.5
+      },
+      "pivot": {
+        "step_id": 276,
+        "block_id": 1571
+      }
+    },
+    {
+      "id": 1572,
+      "type": "static",
+      "element": "bar_chart",
+      "program_data_code": null,
+      "data": {
+        "value": null,
+        "name": "bar_chart1572",
+        "title": "Time spent feeling energized - Non-work",
+        "bars": [
+          {
+            "title": "Level 1 - Non-work",
+            "color": "#ffb685",
+            "value": "90"
+          },
+          {
+            "title": "Level 2 - Non-work",
+            "color": "#ec754e",
+            "value": "96"
+          }
+        ],
+        "barWidth": 0.5
+      },
+      "pivot": {
+        "step_id": 276,
+        "block_id": 1572
+      }
+    },
+    {
+      "id": 1573,
+      "type": "static",
+      "element": "ul",
+      "program_data_code": null,
+      "data": {
+        "config": {
+          "minItemsDisplayed": "5",
+          "showMoreButtonAtStart": "1"
+        },
+        "label": "Selected energized activities from Level 1",
+        "placeholder": null,
+        "name": null,
+        "value": null,
+        "items": [
+          {
+            "label": "Gym",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "Reading",
+            "sub_label": null,
+            "takeaways": null
+          },
+          {
+            "label": "Structuring",
+            "sub_label": null,
+            "takeaways": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 276,
+        "block_id": 1573
+      }
+    },
+    {
+      "id": 1574,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>With your energy data in mind, we\u2019d now like you to review the two lists below from your second round of LifeMap and select the 3 activities from each that represent those that give you energy and those that drain or take energy away. <\/p>"
+      },
+      "pivot": {
+        "step_id": 276,
+        "block_id": 1574
+      }
+    },
+    {
+      "id": 1575,
+      "type": "dynamic",
+      "element": "checkbox",
+      "program_data_code": "l2.m3.s5.checkbox.energy_chosen_activities",
+      "data": {
+        "name": "checkbox1575",
+        "label": "LifeMap - your energized activities",
+        "placeholder": null,
+        "value": null,
+        "config": {
+          "min_selected": "3",
+          "max_selected": "3"
+        },
+        "items": [
+          {
+            "label": "Reading",
+            "sub_label": "non-work",
+            "value": "Reading",
+            "checked": false
+          },
+          {
+            "label": "Gym",
+            "sub_label": "non-work",
+            "value": "Gym",
+            "checked": false
+          },
+          {
+            "label": "Dinner with Family",
+            "sub_label": "non-work",
+            "value": "Dinner with Family",
+            "checked": false
+          },
+          {
+            "label": "Watching cricket",
+            "sub_label": "non-work",
+            "value": "Watching cricket",
+            "checked": false
+          },
+          {
+            "label": "Deal Analysis",
+            "sub_label": "work",
+            "value": "Deal Analysis",
+            "checked": false
+          },
+          {
+            "label": "Breakfast",
+            "sub_label": "non-work",
+            "value": "Breakfast",
+            "checked": false
+          },
+          {
+            "label": "Social TV",
+            "sub_label": "non-work",
+            "value": "Social TV",
+            "checked": false
+          },
+          {
+            "label": "Stakeholder Discussion",
+            "sub_label": "work",
+            "value": "Stakeholder Discussion",
+            "checked": false
+          },
+          {
+            "label": "Cricket practice",
+            "sub_label": "non-work",
+            "value": "Cricket practice",
+            "checked": false
+          },
+          {
+            "label": "Planning and Preparation",
+            "sub_label": "work",
+            "value": "Planning and Preparation",
+            "checked": false
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 276,
+        "block_id": 1575
+      }
+    },
+    {
+      "id": 1576,
+      "type": "dynamic",
+      "element": "checkbox",
+      "program_data_code": "l2.m3.s5.checkbox.draining_chosen_activities",
+      "data": {
+        "name": "checkbox1576",
+        "label": "LifeMap - your draining activities",
+        "placeholder": null,
+        "value": null,
+        "config": {
+          "min_selected": "3",
+          "max_selected": "3"
+        },
+        "items": [
+          {
+            "label": "Reading",
+            "sub_label": "non-work",
+            "value": "Reading",
+            "checked": false
+          },
+          {
+            "label": "Lunch with the team",
+            "sub_label": "non-work",
+            "value": "Lunch with the team",
+            "checked": false
+          },
+          {
+            "label": "Social TV",
+            "sub_label": "non-work",
+            "value": "Social TV",
+            "checked": false
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 276,
+        "block_id": 1576
+      }
+    }
+  ],
+  "stepable": {
+    "id": 15,
+    "cycle_id": 2,
+    "title": "Module 3",
+    "name": "Pick Health",
+    "description": "10 steps",
+    "content": null,
+    "slug": "module-13",
+    "lft": 6,
+    "rgt": 7,
+    "depth": 1,
+    "parent_id": null,
+    "created_at": null,
+    "updated_at": "2017-07-11 16:51:04",
+    "deleted_at": null,
+    "fullUrl": "\/potentialife-course\/cycle-2\/module-13",
+    "status": "locked",
+    "cycle": {
+      "id": 2,
+      "course_id": 1,
+      "title": "Level 2",
+      "name": "Change",
+      "description": "10 Modules",
+      "slug": "cycle-2",
+      "content": "<p>das<\/p>",
+      "lft": 4,
+      "rgt": 5,
+      "depth": 1,
+      "parent_id": null,
+      "created_at": "2017-02-13 11:22:42",
+      "updated_at": "2017-04-06 17:13:50",
+      "deleted_at": null,
+      "fullUrl": "\/potentialife-course\/cycle-2",
+      "status": "locked",
+      "progress": {
+        "completed": 24,
+        "remaining": 76,
+        "total": 100,
+        "percent": "24"
+      },
+      "course": {
+        "id": 1,
+        "name": "Potentialife Course",
+        "slug": "potentialife-course",
+        "description": null,
+        "content": null,
+        "lft": 2,
+        "rgt": 3,
+        "depth": 1,
+        "parent_id": null,
+        "created_at": "2017-02-13 11:07:23",
+        "updated_at": "2017-02-13 11:09:39",
+        "deleted_at": null,
+        "fullUrl": "\/potentialife-course",
+        "status": "current"
+      }
+    }
+  }
+}

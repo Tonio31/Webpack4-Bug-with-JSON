@@ -15,12 +15,12 @@
 
       <ul class="no-list">
         <li ng-repeat="item in $ctrl.block.data.items | limitTo : $ctrl.limit" ng-class="{'selected': $ctrl.selection[item.value]}">
-          <label class="list-wrap" for="checkboxName-{{item.value}}">
+          <label class="list-wrap" for="checkboxName-{{$ctrl.FORM_NAME}}-{{item.value}}">
             <div class="checkbox-label">
               <span>{{item.label}}</span>
               <strong ng-if="item.sub_label">- {{item.sub_label}}</strong>
             </div>
-            <input id="checkboxName-{{item.value}}"
+            <input id="checkboxName-{{$ctrl.FORM_NAME}}-{{item.value}}"
                    type="checkbox"
                    name="{{$ctrl.CHECKBOX_GROUP_NAME}}"
                    value="{{item.value}}"
