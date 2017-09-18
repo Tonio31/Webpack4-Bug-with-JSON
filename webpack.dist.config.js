@@ -7,6 +7,14 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const WebpackAutoInject = require('webpack-auto-inject-version');
 
 let websiteConfig = {
+  DOCKER: {
+    websiteUrl: '',
+    apiUrl: 'http://api.pl.dev/',
+    apiVersion: 'v1',
+    googleTrackingCode: 'UA-57685355-4',
+    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4', // Test key (same as localhost)
+    brochureWebsiteUrl: 'https://pl.dev' // Will change as soon as we have UAT for this site
+  },
   UAT: {
     websiteUrl: '',
     apiUrl: 'https://test-api.potentialife.com/',
