@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "2.2.10",
+  "version": "2.2.11",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -11,6 +11,7 @@
     "@uirouter/angularjs": "^1.0.5",
     "angular": "^1.6.5",
     "angular-animate": "^1.6.5",
+    "angular-audio": "^1.7.3",
     "angular-bugsnag": "^0.2.1",
     "angular-cookies": "^1.6.5",
     "angular-foundation": "^0.8.0",
