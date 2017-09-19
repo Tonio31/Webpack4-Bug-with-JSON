@@ -10,6 +10,13 @@ pipelines:
           - npm run setKarmaGlobals -- --browser PhantomJS
           - npm run test/phantomjs --silent
   branches:
+    bugfix/reloading:
+      - step:
+          script:
+            - npm install
+            - npm run build
+            - npm run deploy
+            - ./bugsnag-deploy.sh UAT
     dev:
       - step:
           script:
