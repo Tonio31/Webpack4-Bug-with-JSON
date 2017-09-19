@@ -1,6 +1,6 @@
 {
   "id": 1,
-  "name": "Video",
+  "name": "Video & Audio",
   "fullUrl": "/potentialife-course/cycle-3/module-31/step-3",
   "slug": "step-3",
   "description": null,
@@ -16,7 +16,7 @@
       "element": "html",
       "program_data_code": null,
       "data": {
-        "value": "<h1>Block: video<\/h1>"
+        "value": "<h1>Block: video & audio<\/h1>"
       },
       "pivot": {
         "step_id": 5,
@@ -50,6 +50,33 @@
         "caption_default": "1",
         "caption_label": "English subtitles",
         "caption_lang": "en"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 144
+      }
+    },
+    {
+      "id": 69,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p class=\"fgcolour-active\">This is an audio block:<\/p>"
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 59
+      }
+    },
+    {
+      "id": 70,
+      "type": "static",
+      "element": "audio",
+      "program_data_code": null,
+      "data": {
+        "source": "\/\/dchai72lj2pqb.cloudfront.net\/level-2\/module-5\/1+Minute+Basic+Breath+Meditation.mp3",
+        "title": "How to Meditate"
       },
       "pivot": {
         "step_id": 5,

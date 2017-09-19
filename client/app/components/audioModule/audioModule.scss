@@ -1,0 +1,55 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+// @import '~client/app/common/_foundation-functions';
+
+
+$buttonXY: 8rem;
+$icon-size: 6rem;
+
+.audio-module {
+
+  display: flex;
+
+  .audio-big-play-button {
+    color: $logoColor;
+    cursor: pointer;
+    font-size: $icon-size;
+    max-width: $icon-size;
+    border: 2px solid $white;
+    border-radius: 50%;
+    //margin: 0;
+    //height: $buttonXY;
+    //width: $buttonXY;
+    //top: calc(50% - (#{$buttonXY} / 2));
+    //left: calc(50% - (#{$buttonXY} / 2));
+
+    &::before {
+      //display: flex;
+      //align-items: center;
+      //justify-content: center;
+      //font-size: rem_calc(120);
+      margin-left: 0;
+    }
+  }
+
+  .info-audio {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20px;
+
+    .progress-block {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .progress {
+        width: 100%;
+        .meter {
+          background-color: $logoColor;
+        }
+      }
+    }
+  }
+}
