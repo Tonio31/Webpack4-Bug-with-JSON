@@ -30,7 +30,6 @@ let MenuFactory = function( $log, $q, Data, STATES) {
       let resolveObject = {
         content: () => {
           'ngInject';
-          $log.warn(`TONIO resolve for  ${iMenu.fullUrl}`);
           return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
         }
       };

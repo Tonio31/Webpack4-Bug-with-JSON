@@ -31,7 +31,6 @@ let homeModule = angular.module('home', [
       resolve: {
         content: (Data, $log) => {
           'ngInject';
-          $log.warn(`TONIO HOME resolve`);
           return Data.getDynamicContentPromise('reflexion', false);
         }
       },
