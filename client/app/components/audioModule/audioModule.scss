@@ -1,7 +1,5 @@
 @import '~client/app/common/scss/_vars';
 @import '~client/app/common/_foundation-settings';
-// @import '~client/app/common/_foundation-functions';
-
 
 $buttonXY: 8rem;
 $icon-size: 6rem;
@@ -15,7 +13,6 @@ $untouched: #E5E5E5;
   padding: $default-padding;
 
   .audio-big-play-button {
-    // color: $logoColor;
     color: $untouched;
     cursor: pointer;
     font-size: $icon-size;
@@ -23,10 +20,6 @@ $untouched: #E5E5E5;
     border: 2px solid $white;
     border-radius: 50%;
     margin-rigth: 1rem;
-    //height: $buttonXY;
-    //width: $buttonXY;
-    //top: calc(50% - (#{$buttonXY} / 2));
-    //left: calc(50% - (#{$buttonXY} / 2));
 
     &.touched,
     &:hover {
@@ -34,16 +27,9 @@ $untouched: #E5E5E5;
     }
 
     &::before {
-      //display: flex;
-      //align-items: center;
-      //justify-content: center;
-      //font-size: rem_calc(120);
       margin-left: 0;
     }
   }
-
-
-
 
 
   .info-audio {
@@ -78,7 +64,6 @@ $untouched: #E5E5E5;
       $track-width: 100% !default;
       $track-height: 1.2rem !default;
       $track-shadow-size: 0px !default;
-      //$track-shadow-blur: 1px !default;
       $track-shadow-blur: 0px !default;
       $track-shadow-color: rgba(0, 0, 0, .2) !default;
       $track-border-width: 0.1rem !default;

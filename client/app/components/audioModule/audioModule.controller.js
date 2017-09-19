@@ -18,16 +18,12 @@ class AudioModuleController {
 
     this.play = () => {
 
-      $log.log('user click on button play/pause');
-
       this.userClickedPlay = true;
 
       if ( this.ngAudioObject.audio.paused || this.ngAudioObject.audio.played.length === 0 ) {
-        $log.log('calls play progress=', this.ngAudioObject.progress);
         this.ngAudioObject.play();
       }
       else {
-        $log.log('calls pause progress=', this.ngAudioObject.progress);
         this.ngAudioObject.pause();
       }
 
