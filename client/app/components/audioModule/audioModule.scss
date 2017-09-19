@@ -10,6 +10,9 @@ $untouched: #E5E5E5;
 .audio-module {
 
   display: flex;
+  border: 1px solid $untouched;
+  border-radius: $global-radius;
+  padding: $default-padding;
 
   .audio-big-play-button {
     // color: $logoColor;
@@ -25,7 +28,8 @@ $untouched: #E5E5E5;
     //top: calc(50% - (#{$buttonXY} / 2));
     //left: calc(50% - (#{$buttonXY} / 2));
 
-    &.touched {
+    &.touched,
+    &:hover {
       color: $logoColor;
     }
 
