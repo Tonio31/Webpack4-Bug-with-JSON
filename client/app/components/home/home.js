@@ -29,7 +29,7 @@ let homeModule = angular.module('home', [
       component: 'home',
       parent: STATES.MAIN,
       resolve: {
-        content: (Data, $log) => {
+        content: (Data) => {
           'ngInject';
           return Data.getDynamicContentPromise('reflexion', false);
         }
