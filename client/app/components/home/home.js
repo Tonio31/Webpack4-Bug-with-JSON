@@ -29,7 +29,7 @@ let homeModule = angular.module('home', [
       component: 'home',
       parent: STATES.MAIN,
       resolve: {
-        content: (Data) => {
+        content: (Data, $log) => {
           'ngInject';
           $log.warn(`TONIO HOME resolve`);
           return Data.getDynamicContentPromise('reflexion', false);
