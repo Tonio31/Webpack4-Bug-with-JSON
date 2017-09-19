@@ -89,6 +89,7 @@ let appModule = angular.module('app', [
           $timeout,
           $urlRouter,
           $stateRegistry,
+          $exceptionHandler,
           Menu,
           SpinnerFactory,
           BugsnagUtils,
@@ -105,6 +106,8 @@ let appModule = angular.module('app', [
           SPINNERS,
           WEBSITE_CONFIG ) => {
     'ngInject';
+
+    try {
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance('app::RUN()');
@@ -322,29 +325,25 @@ let appModule = angular.module('app', [
       User.setUser({ id: userId });
       Data.getParticipantDetails().then( () => {
         Menu.retrieveMenuAndReturnStates().then( (states) => {
-          $log.log('Menu retrieved successfully');
-
           try {
-            $log.log('Before states.forEach( (state) => {');
+            $log.log('Menu retrieved successfully');
+
             states.forEach( (state) => {
-              $log.log('states.forEach( state=', state);
               $stateProviderRef.state(state);
             });
 
-            $log.log('Before sync');
             // Will trigger an update; the same update that happens when the address bar url changes, aka $locationChangeSuccess.
             $urlRouter.sync();
 
-            $log.log('After sync, before listen');
             // This is needed because we create our state dynamically, this works with
             // $urlRouterProvider.deferIntercept(); defined in the config of this module.
             // Once we created our dynamic states, we have to make ui-router listen to route change in the URL
             // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
             $urlRouter.listen();
-            $log.log('After listen');
           }
           catch (error) {
-            $log.error('TONIO Im just trying to understadn here error=', error);
+            $exceptionHandler(error);
+            $state.go(STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' });
           }
 
         },
@@ -381,6 +380,10 @@ let appModule = angular.module('app', [
     }
 
     $log.log('END');
+    }
+    catch (error) {
+      $log.error('error=', error);
+    }
   })
   .component('app', AppComponent)
   .name;
