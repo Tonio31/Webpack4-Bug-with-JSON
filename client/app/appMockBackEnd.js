@@ -220,15 +220,6 @@ angular.module( 'appMockBackEnd', [
     return error401;
   });
 
-  let extractUserIdFromHttpHeaders = (iHttpHeaders) => {
-    if ( iHttpHeaders.hasOwnProperty('Authorization') ) {
-      let authHeader = iHttpHeaders.Authorization;
-
-      let token = authHeader.slice('Bearer '.length);
-      let tokenParsed = JwtFactory.parseJwt(token);
-      $log.warn('TONIO tokenParsed=', tokenParsed);
-    }
-  };
 
   // **************************************************************************************************** //
   //                                   API END POINTS                                                     //
@@ -460,8 +451,6 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
-
-    extractUserIdFromHttpHeaders(headers);
 
     // return error500;
     return [ 200, participant[headers.user_id], {} ];
