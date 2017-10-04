@@ -8,9 +8,9 @@ let BugsnagFactory = function($log, User) {
   // Modify payload below to alter the data you want to send to bugsnap
   //        Full list of options: https://docs.bugsnag.com/api/error-reporting/
   // modify metaData to add new tabs in Bugsnag (add metaData as parameter after payload if needed)
-
   return (payload) => {
 
+    $log.error('BUGSNAG report. payload=', payload);
     if ( ENVIRONMENT === 'development' ) {
       // Don't notify Bugsnag for localhost development
       return false;
@@ -22,7 +22,6 @@ let BugsnagFactory = function($log, User) {
       email: User.getEmail()
     };
 
-    $log.info('BUGSNAG report. payload=', payload);
     return true;
   };
 };
