@@ -86,6 +86,11 @@ angular.module( 'appMockBackEnd', [
   let error429 = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
   let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
+  // Set a userID by default if the user logs in with a token in the URL
+  if ( !JwtFactory.getUserId() ) {
+    $log.warn('No userID stored in Local Storage, use userId=4 by default');
+    JwtFactory.saveUserId(4);
+  }
 
   // will take an URL and return a file name
   // iFullUrlToServer: "https://localhost.com/step?slug=%5C%2Fpotentialife-course%5C%2Fcycle-1%5C%2Fmodule-1%5C%2Fstep-3"
@@ -214,6 +219,19 @@ angular.module( 'appMockBackEnd', [
 
     return error401;
   });
+
+  let extractUserIdFromHttpHeaders = (iHttpHeaders) => {
+    if ( iHttpHeaders.hasOwnProperty('Authorization') ) {
+      let authHeader = iHttpHeaders.Authorization;
+
+      let token = authHeader.slice('Bearer '.length);
+      let tokenParsed = JwtFactory.parseJwt(token);
+      $log.warn('TONIO tokenParsed=', tokenParsed);
+    }
+  };
+
+  // **************************************************************************************************** //
+  //                                   API END POINTS                                                     //
 
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
@@ -442,6 +460,8 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
+
+    extractUserIdFromHttpHeaders(headers);
 
     // return error500;
     return [ 200, participant[headers.user_id], {} ];
