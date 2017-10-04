@@ -67,9 +67,13 @@ let JwtFactory = function( $log,
     }
     else {
       let urlArgs = $location.search();
-      if ( urlArgs.hasOwnProperty('token') && urlArgs.hasOwnProperty('user_id') ) {
-        saveUserId(urlArgs.user_id);
+      if ( urlArgs.hasOwnProperty('token') ) {
         saveToken(urlArgs.token);
+
+        if ( urlArgs.hasOwnProperty('user_id') ) {
+          saveUserId(urlArgs.user_id);
+        }
+
         $location.search({});
         returnValue = true;
       }
