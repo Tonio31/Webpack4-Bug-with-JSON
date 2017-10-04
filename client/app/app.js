@@ -324,44 +324,40 @@ let appModule = angular.module( 'app', [
       let userId = JwtFactory.getUserId();
       User.setUser( { id: userId } );
       Data.getParticipantDetails().then( () => {
-        try {
-          $log.log( 'Participant details retrieved successfully' );
-          Menu.retrieveMenuAndReturnStates().then( ( states ) => {
-            try {
-              $log.log( 'Menu retrieved successfully' );
+        $log.log( 'Participant details retrieved successfully' );
+        Menu.retrieveMenuAndReturnStates().then( ( states ) => {
+          try {
+            $log.log( 'Menu retrieved successfully' );
 
-              states.forEach( ( state ) => {
-                $stateProviderRef.state( state );
-              } );
+            states.forEach( ( state ) => {
+              $stateProviderRef.state( state );
+            } );
 
-              // Will trigger an update; the same update that happens when the address bar url changes, aka $locationChangeSuccess.
-              $urlRouter.sync();
+            // Will trigger an update; the same update that happens when the address bar url changes, aka $locationChangeSuccess.
+            $urlRouter.sync();
 
-              // This is needed because we create our state dynamically, this works with
-              // $urlRouterProvider.deferIntercept(); defined in the config of this module.
-              // Once we created our dynamic states, we have to make ui-router listen to route change in the URL
-              // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
-              $urlRouter.listen();
-            }
-            catch (error) {
-              $exceptionHandler( error );
-              $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
-            }
+            // This is needed because we create our state dynamically, this works with
+            // $urlRouterProvider.deferIntercept(); defined in the config of this module.
+            // Once we created our dynamic states, we have to make ui-router listen to route change in the URL
+            // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
+            $urlRouter.listen();
+          }
+          catch (error) {
+            $exceptionHandler( error );
+            $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+          }
 
-          },
-          ( error ) => {
-            $log.log( 'error Retrieving menu error=', error );
-            $state.go( STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' } );
-          } );
-        }
-        catch (error) {
+        },
+        ( error ) => {
+          $log.error( 'error Retrieving menu' );
           $exceptionHandler( error );
           $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
-        }
+        } );
       },
       ( error ) => {
-        $log.log( 'error Retrieving Participant Data error=', error );
-        $state.go( STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' } );
+        $log.error( 'error Retrieving Participant Data' );
+        $exceptionHandler( error );
+        $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
       } );
     }
     else {
@@ -386,7 +382,8 @@ let appModule = angular.module( 'app', [
     $log.log( 'END' );
   }
   catch (error) {
-    $log.error( 'error=', error );
+    $exceptionHandler( error );
+    $state.go( STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' } );
   }
 } )
 .component( 'app', AppComponent )
