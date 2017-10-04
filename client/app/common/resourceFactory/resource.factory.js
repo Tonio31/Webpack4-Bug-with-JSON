@@ -54,11 +54,15 @@ let ResourceFactory = function( $log,
     let deferred = $q.defer();
     $log.log('getParticipantDetails()');
     $resource(buildApiUrl('participants')).get( (userData) => {
-      $log.log('getParticipantDetails() retrieved successfully');
-
-      saveUserData(userData.data);
-
-      deferred.resolve();
+      try {
+        $log.log('getParticipantDetails() retrieved successfully userData=', userData);
+        saveUserData(userData.data);
+        deferred.resolve();
+      }
+      catch (error) {
+        $log.error('getParticipantDetails() error=', error);
+        deferred.reject(error);
+      }
     },
     (error) => {
       $log.error('getParticipantDetails() error=', error);
