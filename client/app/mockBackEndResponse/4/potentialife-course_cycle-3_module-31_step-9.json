@@ -6,9 +6,9 @@
   "description": null,
   "content": null,
   "status": "current",
-  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 9 / 11",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 9 / 12",
   "next_page_url": "/potentialife-course/cycle-3/module-31/step-10",
-  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-8/1",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-8",
   "blocks": [
     {
       "id": 30,
@@ -18,7 +18,7 @@
       "config": {
         "match_strength_data_code": "c1.m1.s7.checkbox_1",
         "all_strengths": "c1.m1.s7.all_strength",
-        "nb_questions_per_page": 120
+        "nb_questions_per_page": 10
       },
       "data": {
         "intro_survey": {

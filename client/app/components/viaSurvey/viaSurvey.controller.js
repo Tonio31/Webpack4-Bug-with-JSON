@@ -87,7 +87,7 @@ class ViaSurveyController {
     };
 
     this.displayPrevPageSurvey = () => {
-      if ( this.currentPageNumber === 0 || this.currentPageNumber > this.nbPagesSurvey ) {
+      if ( this.currentPageNumber === 1 || this.currentPageNumber > this.nbPagesSurvey ) {
         $state.go(this.navigation.prevPage);
       }
       else {

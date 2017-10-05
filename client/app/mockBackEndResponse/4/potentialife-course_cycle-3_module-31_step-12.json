@@ -1,0 +1,91 @@
+{
+  "id": 1,
+  "name": "Via Survey Completed",
+  "fullUrl": "/potentialife-course/cycle-3/module-31/step-12",
+  "slug": "step-12",
+  "description": null,
+  "content": null,
+  "status": "completed",
+  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 12 / 12",
+  "next_page_url": "/home",
+  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-11",
+  "blocks": [
+    {
+      "id": 10,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h1>Results<\/h1><p>You can find below your strength pre-order a relevant order for you<\/p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but don't hesitate to check all the strength below to choose the ones that resonate the most with you<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 52,
+      "type": "dynamic",
+      "element": "checkbox",
+      "program_data_code": "c1.m1.s7.checkbox_1",
+      "data": {
+        "config": {
+          "min_selected": 3,
+          "max_selected": 3
+        },
+        "label": "label: this is the label",
+        "placeholder": "placeholder: this is the placholder",
+        "name": "name",
+        "items": [
+          {
+            "label": "Appreciation of Beauty \u0026 Excellence",
+            "sub_label": "\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.",
+            "value": "Appreciation of Beauty \u0026 Excellence",
+            "checked": true,
+            "feedback": null
+          },
+          {
+            "label": "Bravery",
+            "sub_label": "\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.",
+            "value": "Bravery",
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "Love",
+            "sub_label": "\r\nValuing close relations with others, in particular those in which sharing \u0026 caring are reciprocated; being close to people.",
+            "value": "Love",
+            "checked": true,
+            "feedback": null
+          },
+          {
+            "label": "Prudence",
+            "sub_label": "\r\nBeing careful about one\u0027s choices; not taking undue risks; not saying or doing things that might later be regretted.",
+            "value": "Prudence",
+            "checked": false,
+            "feedback": null
+          },
+          {
+            "label": "Teamwork",
+            "sub_label": "\r\nWorking well as a member of a group or team; being loyal to the group; doing one\u0027s share.",
+            "value": "Teamwork",
+            "checked": true,
+            "feedback": null
+          },
+          {
+            "label": "Creativity",
+            "sub_label": "\r\nThinking of novel and productive ways to conceptualize and do things; includes artistic achievement but is not limited to it.",
+            "value": "Creativity",
+            "checked": false,
+            "feedback": null
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 62
+      }
+    }
+  ]
+}

@@ -263,8 +263,8 @@ describe('ViaSurvey', () => {
       sinon.assert.called(registerUserSpy);
     });
 
-    it('displayPrevPageSurvey() - Change state if the current page is 0', () => {
-      controller.currentPageNumber = 0;
+    it('displayPrevPageSurvey() - Change state if the current page is 1', () => {
+      controller.currentPageNumber = 1;
       controller.displayPrevPageSurvey();
       sinon.assert.calledWith(spies.state.go, navigationBindings.prevPage);
     });
