@@ -586,6 +586,17 @@
                   "status": "current",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-11",
                   "hideStepInMenu": false
+                },
+                {
+                  "id": 3322,
+                  "title": "Step 12",
+                  "name": "Via Survey Completed",
+                  "description": "Approx. 9999 mins",
+                  "slug": "step-12",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-3/module-31/step-12",
+                  "hideStepInMenu": false
                 }
               ]
             },

@@ -11,7 +11,6 @@ class RadioListController {
     this.showMoreButtonDisplayed = true;
 
     this.updateLimit = (iIndexSelected) => {
-      $log.log('updateLimit() - iIndexSelected=', iIndexSelected);
       if (iIndexSelected >= ( this.block.data.items.length - 2 ) ) {
         this.limitStart = -this.MIN_NB_RADIO_BUTTON_DISPLAYED;
       }
