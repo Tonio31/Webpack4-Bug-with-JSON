@@ -88,13 +88,15 @@ describe('ViaSurvey', () => {
     id: 30,
     type: 'static',
     element: 'via_survey',
-    program_data_code: null,
-    config: {
-      match_strength_data_code: 'c1.m1.s7.checkbox_1',
-      all_strengths: 'c1.m1.s7.all_strength',
-      nb_questions_per_page: 20
-    },
+    program_data_code: 'c1.m1.s7.checkbox_1',
     data: {
+      config: {
+        all_strengths: 'c1.m1.s7.all_strength',
+        nb_questions_per_page: 20,
+        strength_list_min_selected: 3,
+        strength_list_max_selected: 3,
+        title_strength_list: 'Your list of strength'
+      },
       intro_survey: {
         value: '<h1>Via Survey<\/h1><p>This is a survey that will last 120 questions<\/p><p>It is to evaluate your strenght, click on the button below to start the survey<\/p>'
       },
@@ -116,34 +118,42 @@ describe('ViaSurvey', () => {
   };
 
   let simulateErrorDataBackFromServer = 'Error';
-
   let returnErrorFromViaSurvey = false;
+  let returnErrorFromUpdateStep = false;
 
   let mockData = {
-    partialUpdateStep : () => {
+    viaSurvey : () => {
       return {
-        $save: (callback, callbackError) => {
-          return callbackError();
+        $register: () => {
+          if (returnErrorFromViaSurvey) {
+            return $q.reject(simulateErrorDataBackFromServer);
+          }
+
+          return $q.resolve(simulateDataBackFromServer);
+        },
+        $call: () => {
+          if (returnErrorFromViaSurvey) {
+            return $q.reject(simulateErrorDataBackFromServer);
+          }
+
+          return $q.resolve(simulateDataBackFromServer);
         }
       };
     },
-    viaSurvey : () => {
+    updateStep: () => {
       return {
-        $register: (callback, callbackError) => {
-          if (returnErrorFromViaSurvey) {
-            return callbackError(simulateErrorDataBackFromServer);
+        $save: () => {
+          if (returnErrorFromUpdateStep) {
+            return $q.reject();
           }
-          return callback(simulateDataBackFromServer);
-        },
-        $call: (callback, callbackError) => {
-          if (returnErrorFromViaSurvey) {
-            return callbackError(simulateErrorDataBackFromServer);
-          }
-          return callback(simulateDataBackFromServer);
+
+          return $q.resolve();
         }
       };
     }
   };
+
+
 
   let mockContentFactory = {
     updateInputFields: () => {},
@@ -207,6 +217,7 @@ describe('ViaSurvey', () => {
 
     spies.state.go = sandbox.stub(mockState, 'go');
     spies.utilityFactory.saveUserInputToLocalStorage = sandbox.stub(mockUtility, 'saveUserInputToLocalStorage');
+
   }));
 
   afterEach( () => {
@@ -244,7 +255,7 @@ describe('ViaSurvey', () => {
       controller.$onInit();
       expect(controller.radioQuestions).to.deep.equal([]);
       expect(controller.tabToDisplay).to.equal('questions');
-      expect(controller.nbQuestionsDisplayed).to.equal(20);
+      expect(controller.config.nbQuestionsDisplayed).to.equal(20);
       expect(controller.numFirstQuestionDisplayed).to.equal(0);
       expect(controller.nbPagesSurvey).to.equal(6);
       expect(controller.currentPageNumber).to.equal(1);
@@ -375,20 +386,22 @@ describe('ViaSurvey', () => {
       sinon.assert.calledWith(spies.contentFactory.updateInputFields, questionID, value);
     });
 
-    it('transformResultsToCheckBoxBlock() - get an object ready to be injected into checkbox component from a list of strengths', () => {
+    it('transformResultsToCheckBoxBlock() - build a checkbox block form a list of strength', () => {
+
+      controller.$onInit();
 
       let checkboxBlock = controller.transformResultsToCheckBoxBlock(listStrength);
       expect(checkboxBlock).to.deep.eq({
         id: 52,
         type: 'dynamic',
         element: 'checkbox',
-        program_data_code: 'c1.m1.s7.checkbox_1',
+        program_data_code: blockBinding.program_data_code,
         data: {
           config: {
-            min_selected: 3,
-            max_selected: 3
+            min_selected: blockBinding.data.config.strength_list_min_selected,
+            max_selected: blockBinding.data.config.strength_list_max_selected,
           },
-          label: 'Your character strengths',
+          label: blockBinding.data.config.title_strength_list,
           placeholder: '',
           name: '',
           items: [{
@@ -409,12 +422,57 @@ describe('ViaSurvey', () => {
       });
     });
 
+    it('transformResultsToCheckBoxBlock() -  - build a checkbox block form a list of strength and select some of them', () => {
+
+      controller.$onInit();
+
+      let selectedStrengths = [
+        'Appreciation of Beauty & Excellence'
+      ];
+
+      let checkboxBlock = controller.transformResultsToCheckBoxBlock(listStrength, selectedStrengths);
+      expect(checkboxBlock).to.deep.eq({
+        id: 52,
+        type: 'dynamic',
+        element: 'checkbox',
+        program_data_code: blockBinding.program_data_code,
+        data: {
+          config: {
+            min_selected: blockBinding.data.config.strength_list_min_selected,
+            max_selected: blockBinding.data.config.strength_list_max_selected,
+          },
+          label: blockBinding.data.config.title_strength_list,
+          placeholder: '',
+          name: '',
+          items: [{
+            label: 'Appreciation of Beauty & Excellence',
+            sub_label: '\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.',
+            value: 'Appreciation of Beauty & Excellence',
+            checked: true,
+            feedback: null
+          },
+          {
+            label: 'Bravery',
+            sub_label: '\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.',
+            value: 'Bravery',
+            checked: false,
+            feedback: null
+          }]
+        }
+      });
+    });
+
     it('saveSurveyResultToBackEnd() - send a request to the back end to save the list of strengths and check that in case of error, we store data to send it to the back end later', () => {
+
+      returnErrorFromUpdateStep = true;
+
       controller.saveSurveyResultToBackEnd(listStrength);
 
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
       $rootScope.$digest();
 
-      sinon.assert.calledWith(spies.contentFactory.updateInputFields, controller.block.config.all_strengths, listStrength);
+      sinon.assert.calledWith(spies.contentFactory.updateInputFields, controller.block.data.config.all_strengths, listStrength);
     });
 
     it('getResults() - calls getResults API (success reply from GetResults)', () => {
@@ -426,6 +484,10 @@ describe('ViaSurvey', () => {
       };
 
       controller.getResults(listStrength);
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
 
       sinon.assert.calledWith(saveSurveyResultToBackEndSpy, simulateDataBackFromServer.data);
       expect(controller.listOfStrengthsForCheckBox).to.equal(simulateDataBackFromServer.data);
@@ -439,6 +501,11 @@ describe('ViaSurvey', () => {
 
       let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
       controller.getResults(listStrength);
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
+
       sinon.assert.calledOnce(goToErrorStateSpy);
     });
 
@@ -476,6 +543,11 @@ describe('ViaSurvey', () => {
     it('registerUser() - call loginUser in case of success', () => {
       let loginUserSpy = sandbox.stub(controller, 'loginUserRequest');
       controller.registerUser();
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
+
       sinon.assert.calledOnce(loginUserSpy);
     });
 
@@ -487,6 +559,11 @@ describe('ViaSurvey', () => {
       };
       let loginUserSpy = sandbox.stub(controller, 'loginUserRequest');
       controller.registerUser();
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
+
       sinon.assert.calledOnce(loginUserSpy);
     });
 
@@ -496,6 +573,11 @@ describe('ViaSurvey', () => {
       let loginUserSpy = sandbox.stub(controller, 'loginUserRequest');
       let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
       controller.registerUser();
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
+
       sinon.assert.notCalled(loginUserSpy);
       sinon.assert.calledOnce(goToErrorStateSpy);
     });
@@ -504,6 +586,11 @@ describe('ViaSurvey', () => {
       let getQuestionsRequestSpy = sandbox.stub(controller, 'getQuestionsRequest');
       simulateDataBackFromServer.data = 'Session Key';
       controller.registerUser();
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
+
       expect(controller.viaSurveyData.sessionKey).to.equal(simulateDataBackFromServer.data);
       sinon.assert.calledOnce(getQuestionsRequestSpy);
     });
@@ -513,6 +600,11 @@ describe('ViaSurvey', () => {
       let getQuestionsRequestSpy = sandbox.stub(controller, 'getQuestionsRequest');
       let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
       controller.registerUser();
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
+
       sinon.assert.notCalled(getQuestionsRequestSpy);
       sinon.assert.calledOnce(goToErrorStateSpy);
     });
@@ -532,7 +624,7 @@ describe('ViaSurvey', () => {
       ];
 
       // We display 2 questions per page
-      controller.nbQuestionsDisplayed = 2;
+      controller.config.nbQuestionsDisplayed = 2;
 
       controller.currentPageNumber = -1;
       controller.numFirstQuestionDisplayed = -1;
@@ -553,6 +645,11 @@ describe('ViaSurvey', () => {
       let calculateCurrentPageNumberSpy = sandbox.stub(controller, 'calculateCurrentPageNumber');
       simulateDataBackFromServer.data = 'Session Key';
       controller.registerUser();
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
+
       expect(controller.radioQuestions).to.equal(simulateDataBackFromServer.data);
       sinon.assert.calledOnce(calculateCurrentPageNumberSpy);
     });
@@ -561,7 +658,13 @@ describe('ViaSurvey', () => {
       returnErrorFromViaSurvey = true;
       let getQuestionsRequestSpy = sandbox.stub(controller, 'getQuestionsRequest');
       let goToErrorStateSpy = sandbox.stub(controller, 'goToErrorState');
+
       controller.registerUser();
+
+      // We have to call this here because we want promises to be resolved
+      // in order for the functions below to be called
+      $rootScope.$digest();
+
       sinon.assert.notCalled(getQuestionsRequestSpy);
       sinon.assert.calledOnce(goToErrorStateSpy);
     });

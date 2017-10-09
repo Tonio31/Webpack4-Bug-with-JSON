@@ -193,10 +193,7 @@ class CourseContentController {
 
         SpinnerFactory.show(SPINNERS.SAVING_STEP);
 
-        let postData = Data.updateStep();
-
-        postData.fullUrl = this.content.fullUrl;
-        postData.status = 'completed';
+        let postData = Data.updateStep(true);
         postData.programData = this.convertInputFieldForPOST(ContentFactory.getInputFields(), ContentFactory.getAdditionalData());
 
         postData.$save( (dataBackFromServer) => {

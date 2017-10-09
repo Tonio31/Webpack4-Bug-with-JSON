@@ -231,7 +231,7 @@ describe('CourseContent Module', () => {
         }
       };
 
-      sinon.stub(Data, 'updateStep', () => {
+      let updateStepSpy = sinon.stub(Data, 'updateStep', () => {
         return updateStepPOSTRequest;
       });
 
@@ -244,8 +244,6 @@ describe('CourseContent Module', () => {
 
       $rootScope.$digest();
 
-      expect(updateStepPOSTRequest.fullUrl).to.equal(controller.content.fullUrl);
-      expect(updateStepPOSTRequest.status).to.equal('completed');
       expect(updateStepPOSTRequest.programData).to.deep.equal( [
         {
           code: 'c1.m1.s1.story_2',
@@ -259,6 +257,7 @@ describe('CourseContent Module', () => {
 
       sinon.assert.calledOnce(retrieveMenuAndReturnStatesSpy);
       sinon.assert.calledOnce(isMenuRetrievedSpy);
+      sinon.assert.calledWith(updateStepSpy, true);
       sinon.assert.calledWith(removeUserInputSpy, { 'c1.m1.s1.story_2': 'This is a text' });
       sinon.assert.calledWith(stateRegistryGetFn, stateNotLocked.name);
       sinon.assert.calledWith(stateRegistryDeregisterFn, stateNotLocked.name);
