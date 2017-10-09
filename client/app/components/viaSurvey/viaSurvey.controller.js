@@ -60,20 +60,20 @@ class ViaSurveyController {
       $log.log('onInit() - BEGIN');
 
       this.radioQuestions = [];
-
+      this.questionIdSet = new Set();
 
       this.isListOfStrengthFormSubmitted = false;
 
 
       if ( this.block.data.config ) {
-        if ( this.block.data.config.nb_questions_per_page > 0 &&
-          this.block.data.config.nb_questions_per_page <= 120 ) {
-          this.config.nbQuestionsDisplayed = this.block.data.config.nb_questions_per_page;
+        let nbQuestionAsNumber = parseInt(this.block.data.config.nb_questions_per_page, 10);
+        if ( nbQuestionAsNumber > 0 && nbQuestionAsNumber <= 120 ) {
+          this.config.nbQuestionsDisplayed = nbQuestionAsNumber;
         }
 
         if ( this.block.data.config.strength_list_min_selected && this.block.data.config.strength_list_max_selected ) {
-          this.config.strengthListMaxChecked = this.block.data.config.strength_list_max_selected;
-          this.config.strengthListMinChecked = this.block.data.config.strength_list_min_selected;
+          this.config.strengthListMaxChecked = parseInt(this.block.data.config.strength_list_max_selected, 10);
+          this.config.strengthListMinChecked = parseInt(this.block.data.config.strength_list_min_selected, 10);
         }
 
         if ( this.block.data.config.title_strength_list ) {
@@ -278,10 +278,13 @@ class ViaSurveyController {
       };
 
       Object.entries(ContentFactory.getInputFields()).forEach( ([ key, value ]) => {
-        submitAnswerParams.answers.push({
-          questionID: key,
-          choiceID: value
-        });
+
+        if ( this.isInputFieldPartOfViaMeSurvey(key) ) {
+          submitAnswerParams.answers.push({
+            questionID: key,
+            choiceID: value
+          });
+        }
       });
 
       let submitAnswersPost = Data.viaSurvey('SubmitAnswers');
@@ -399,10 +402,35 @@ class ViaSurveyController {
 
     };
 
+    this.storeQuestionId = ( iQuestionId ) => {
+      this.questionIdSet.add(iQuestionId);
+    };
+
+    this.isInputFieldPartOfViaMeSurvey = (iQuestionId) => {
+
+      let questionIdAsNumber = iQuestionId;
+
+      // if the questionID is a string it could be because:
+      //  - User reloaded the page and the questionID stored in contentFactory comes from localStorage
+      //  - we have other inputs than the viaSurvey on the page and they will be stored as string in contentFactory
+      if ( !angular.isNumber(iQuestionId) ) {
+        questionIdAsNumber = parseInt(iQuestionId, 10);
+        if ( isNaN(questionIdAsNumber) ) {
+          // If the quesiton ID was something like "l1.m1.s8.textbox.chosen_strength_3",
+          // the conversion will return NaN for it and we don't want to send this to ViaMeSurvey
+          return false;
+        }
+      }
+
+      return this.questionIdSet.has(questionIdAsNumber);
+    };
 
     this.transformQuestionsToRadioBlock = (iQuestions) => {
       let radioListBlocks = [];
       for ( let question of iQuestions ) {
+
+        this.storeQuestionId(question.QuestionID);
+
         let radioBlock = {
           id: question.QuestionID,
           type: 'dynamic',
