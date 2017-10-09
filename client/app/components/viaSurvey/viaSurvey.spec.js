@@ -511,6 +511,7 @@ describe('ViaSurvey', () => {
 
     it('submitAnswers() - return a successful promise', (done) => {
       simulateDataBackFromServer.data = 'something';
+      controller.$onInit();
 
       controller.submitAnswers().then( () => {
         expect(true).to.equal(true);
@@ -527,6 +528,7 @@ describe('ViaSurvey', () => {
     it('submitAnswers() - return a rejected promise', (done) => {
       returnErrorFromViaSurvey = true;
       simulateDataBackFromServer.data = 'something';
+      controller.$onInit();
 
       controller.submitAnswers().then( () => {
         assert.fail( 0, 1, 'The promise from submitAnswers() should fail' );
@@ -671,6 +673,7 @@ describe('ViaSurvey', () => {
 
     it('transformQuestionsToRadioBlock() - get an object ready to be injected into radioBox component from a list of questions', () => {
 
+      controller.$onInit();
       let checkboxBlock = controller.transformQuestionsToRadioBlock(listQuestions);
       expect(checkboxBlock).to.deep.eq([
         {

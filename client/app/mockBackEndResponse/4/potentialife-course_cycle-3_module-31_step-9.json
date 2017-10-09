@@ -5,29 +5,132 @@
   "slug": "step-9",
   "description": null,
   "content": null,
-  "status": "current",
+  "status": "completed",
   "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 9 / 12",
   "next_page_url": "/potentialife-course/cycle-3/module-31/step-10",
   "prev_page_url": "/potentialife-course/cycle-3/module-31/step-8",
   "blocks": [
     {
-      "id": 30,
-      "type": "static",
-      "element": "via_survey",
-      "program_data_code": "c1.m1.s7.checkbox_1",
+      "id": 154,
+      "type": "dynamic",
+      "element": "icon_text",
+      "source_program_data_code": null,
+      "program_data_code": null,
       "data": {
-        "config": {
-          "all_strengths": "c1.m1.s7.all_strength",
-          "nb_questions_per_page": 60,
-          "strength_list_min_selected": 3,
-          "strength_list_max_selected": 3,
-          "title_strength_list": "Your list of strength"
+        "value": null,
+        "icon": {
+          "type": "icon-badge-self-discovery",
+          "color": null
         },
+        "text": "<p>You will now complete the VIA strengths finder, which will help you identify your unique character strengths. These are the strengths that you exercise when you are at your best. It should take about 15 minutes to complete.<\/p>",
+        "type": "link",
+        "button": {
+          "href": "https:\/\/www.viacharacter.org\/survey\/account\/register",
+          "color": "primary",
+          "label": "Go to ViaMe Survey"
+        }
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 154
+      }
+    },
+    {
+      "id": 155,
+      "type": "static",
+      "element": "html",
+      "source_program_data_code": null,
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Once you have completed the Via survey, please review your character strengths. Look at your top 5 strengths and choose the 3 that you identify with most.\r\n<\/p>"
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 155
+      }
+    },
+    {
+      "id": 176,
+      "type": "dynamic",
+      "element": "textbox",
+      "source_program_data_code": null,
+      "program_data_code": "l1.m1.s8.textbox.chosen_strength_1",
+      "data": {
+        "label": "Enter your chosen 3 strengths  below.",
+        "placeholder": "e.g. Love \/ Teamwork",
+        "value": null,
+        "name": "chosen_strength_1",
+        "config": {
+          "type": "text",
+          "required": "1"
+        }
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 176
+      }
+    },
+    {
+      "id": 177,
+      "type": "dynamic",
+      "element": "textbox",
+      "source_program_data_code": null,
+      "program_data_code": "l1.m1.s8.textbox.chosen_strength_2",
+      "data": {
+        "label": null,
+        "placeholder": "e.g. Love \/ Teamwork",
+        "value": null,
+        "name": "chosen_strength_2",
+        "config": {
+          "type": "text",
+          "required": "1"
+        }
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 177
+      }
+    },
+    {
+      "id": 178,
+      "type": "dynamic",
+      "element": "textbox",
+      "source_program_data_code": null,
+      "program_data_code": "l1.m1.s8.textbox.chosen_strength_3",
+      "data": {
+        "label": null,
+        "placeholder": "e.g. Love \/ Teamwork",
+        "value": null,
+        "name": "chosen_strength_3",
+        "config": {
+          "type": "text",
+          "required": "1"
+        }
+      },
+      "pivot": {
+        "step_id": 13,
+        "block_id": 178
+      }
+    },
+    {
+      "id": 1895,
+      "type": "dynamic",
+      "element": "via_survey",
+      "source_program_data_code": "c1.m1.s7.all_strength_TONIO",
+      "program_data_code": "c1.m1.s7.checkbox_1_TONIO",
+      "data": {
         "intro_survey": {
           "value": "<h1>Via Survey<\/h1><p>This is a survey that will last 120 questions<\/p><p>It is to evaluate your strenght, click on the button below to start the survey<\/p>"
         },
         "intro_results": {
           "value": "<h1>Results<\/h1><p>You can find below your strength pre-order a relevant order for you<\/p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but don't hesitate to check all the strength below to choose the ones that resonate the most with you<\/p>"
+        },
+        "config": {
+          "nb_questions_per_page": "40",
+          "title_strength_list": "Your list of strengths",
+          "strength_list_min_selected": "3",
+          "strength_list_max_selected": 3,
+          "all_strengths": "c1.m1.s7.all_strength_TONIO"
         },
         "value": [
           "Appreciation of Beauty \u0026 Excellence",
@@ -86,9 +189,8 @@
         ]
       },
       "pivot": {
-        "step_id": 5,
-        "block_id": 50,
-        "order": 0
+        "step_id": 13,
+        "block_id": 1895
       }
     }
   ]
