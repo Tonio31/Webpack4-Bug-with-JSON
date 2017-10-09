@@ -14,19 +14,76 @@
       "id": 30,
       "type": "static",
       "element": "via_survey",
-      "program_data_code": null,
-      "config": {
-        "match_strength_data_code": "c1.m1.s7.checkbox_1",
-        "all_strengths": "c1.m1.s7.all_strength",
-        "nb_questions_per_page": 10
-      },
+      "program_data_code": "c1.m1.s7.checkbox_1",
       "data": {
+        "config": {
+          "all_strengths": "c1.m1.s7.all_strength",
+          "nb_questions_per_page": 60,
+          "strength_list_min_selected": 3,
+          "strength_list_max_selected": 3,
+          "title_strength_list": "Your list of strength"
+        },
         "intro_survey": {
           "value": "<h1>Via Survey<\/h1><p>This is a survey that will last 120 questions<\/p><p>It is to evaluate your strenght, click on the button below to start the survey<\/p>"
         },
         "intro_results": {
           "value": "<h1>Results<\/h1><p>You can find below your strength pre-order a relevant order for you<\/p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but don't hesitate to check all the strength below to choose the ones that resonate the most with you<\/p>"
-        }
+        },
+        "value": [
+          "Appreciation of Beauty \u0026 Excellence",
+          "Bravery",
+          "Prudence"
+        ],
+        "items": [
+          {
+            "StrengthName": "Appreciation of Beauty \u0026 Excellence",
+            "StrengthDescription": "\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience."
+          },
+          {
+            "StrengthName": "Bravery",
+            "StrengthDescription": "\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it."
+          },
+          {
+            "StrengthName": "Love",
+            "StrengthDescription": "\r\nValuing close relations with others, in particular those in which sharing \u0026 caring are reciprocated; being close to people."
+          },
+          {
+            "StrengthName": "Prudence",
+            "StrengthDescription": "\r\nBeing careful about one\u0027s choices; not taking undue risks; not saying or doing things that might later be regretted."
+          },
+          {
+            "StrengthName": "Teamwork",
+            "StrengthDescription": "\r\nWorking well as a member of a group or team; being loyal to the group; doing one\u0027s share."
+          },
+          {
+            "StrengthName": "Creativity",
+            "StrengthDescription": "\r\nThinking of novel and productive ways to conceptualize and do things; includes artistic achievement but is not limited to it."
+          },
+          {
+            "StrengthName": "Curiosity",
+            "StrengthDescription": "\r\nTaking an interest in ongoing experience for its own sake; finding subjects and topics fascinating; exploring and discovering."
+          },
+          {
+            "StrengthName": "Fairness",
+            "StrengthDescription": "\r\nTreating all people the same according to notions of fairness and justice; not letting feelings bias decisions about others; giving everyone a fair chance."
+          },
+          {
+            "StrengthName": "Forgiveness",
+            "StrengthDescription": "Forgiving those who have done wrong; accepting others’ shortcomings; giving people a second chance; not being vengeful."
+          },
+          {
+            "StrengthName": "Gratitude",
+            "StrengthDescription": "Being aware of and thankful for the good things that happen; taking time to express thanks."
+          },
+          {
+            "StrengthName": "Honesty",
+            "StrengthDescription": "Speaking the truth but more broadly presenting oneself in a genuine way and acting in a sincere way; being without pretense; taking responsibility for one\u0027s feelings and actions."
+          },
+          {
+            "StrengthName": "Hope",
+            "StrengthDescription": "Expecting the best in the future and working to achieve it; believing that a good future is something that can be brought about."
+          }
+        ]
       },
       "pivot": {
         "step_id": 5,

@@ -60,6 +60,9 @@ describe('Resource', () => {
         [TOKEN_SURVEY]: 'ThisIsAToken'
       };
     };
+    $location.path = () => {
+      return 'potentialife-course/cycle-3/module-31/step-2';
+    };
 
     cleanMockObject(mockLocalStorage);
 
@@ -214,7 +217,10 @@ describe('Resource', () => {
         return [ 200, {}, {} ];
       });
 
-      let updateStepPOST = Data.updateStep();
+      let updateStepPOST = Data.updateStep(true);
+
+      expect(updateStepPOST.markStepAsCompleted).to.equal(true);
+      expect(updateStepPOST.fullUrl).to.equal('potentialife-course/cycle-3/module-31/step-2');
 
       updateStepPOST.$save( () => {
         assert(true, 'Positive response form the back end');
