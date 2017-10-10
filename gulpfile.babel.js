@@ -243,9 +243,9 @@ gulp.task('deploy', () => {
 
   let slack = require('gulp-slack')({
     url: 'https://hooks.slack.com/services/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',
-    channel: '#deployments', // Optional
-    user: 'Frankie Program', // Optional
-    icon_emoji: ':potentialife:' // Optional
+    channel: '#deployments',
+    user: 'Frankie Program',
+    icon_emoji: ':shipit:'
   });
 
   //Default UAT
