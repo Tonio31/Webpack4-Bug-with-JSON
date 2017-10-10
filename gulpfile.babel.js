@@ -21,15 +21,6 @@ import historyApiFallback   from 'connect-history-api-fallback';
 import awspublish           from 'gulp-awspublish';
 import cloudFront           from 'gulp-cloudfront-invalidate-aws-publish';
 
-let slack = require('gulp-slack')({
-  url: 'https://hooks.slack.com/services/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',
-  channel: '#deployments', // Optional
-  user: 'Frankie', // Optional
-  icon_emoji: ':shipit:' // Optional
-});
-
-
-
 let root = 'client';
 
 const protractor = protractorLib.protractor;
@@ -246,9 +237,16 @@ gulp.task('pushTag', ['tagRepo'], () => {
 
 gulp.task('default', ['watch']);
 
-gulp.task('deploy', ['postToSlack'], () => {
+gulp.task('deploy', () => {
 
   let phase = yargs.argv.phase || 'UAT';
+
+  let slack = require('gulp-slack')({
+    url: 'https://hooks.slack.com/services/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',
+    channel: '#deployments', // Optional
+    user: 'Frankie Program', // Optional
+    icon_emoji: ':potentialife:' // Optional
+  });
 
   //Default UAT
   let s3Bucket = 'test.program.potentialife.com';
@@ -305,19 +303,30 @@ gulp.task('deploy', ['postToSlack'], () => {
   gutil.log('Invalidate Files on CloudFront With Distribution ID=', cloudFronDistributionId);
 
   return gulp.src(awsConf.buildSrc)
-  .pipe(awspublish.gzip({ext: ''}))
-  .pipe(publisher.publish(awsConf.headers))
-  .pipe(cloudFront(cloudFrontSettings))
-  .pipe(publisher.cache())
-  //.pipe(publisher.sync())
-  .pipe(awspublish.reporter())
-  .pipe(slack(`Finishing Deployment on ${phase}: ${deployUrl}`));
+    .pipe(awspublish.gzip({ext: ''}))
+    .pipe(publisher.publish(awsConf.headers))
+    .pipe(cloudFront(cloudFrontSettings))
+    .pipe(publisher.cache())
+    //.pipe(publisher.sync())
+    .pipe(awspublish.reporter())
+    .pipe(slack(`PROGRAM: Deployment on ${phase}: ${deployUrl}`));
 });
 
-gulp.task('postToSlack', (done) => {
+
+gulp.task('notifyTicketsChanel', () => {
+
   let phase = yargs.argv.phase || 'UAT';
-  let msg = `Starting Deployment on ${phase}...`;
-  gutil.log(msg);
-  slack(msg);
-  done();
+
+  gutil.log('phase=', phase);
+
+  let slack = require('gulp-slack')({
+    url: 'https://hooks.slack.com/services/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',
+    channel: '#tickets', // Optional
+    user: 'Automating Deployment', // Optional
+    icon_emoji: ':potentialife:' // Optional
+  });
+
+  return slack(`A new version of the Front End has been pushed on ${phase}, be aware for incoming tickets`);
 });
+
+

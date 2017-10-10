@@ -26,5 +26,6 @@ pipelines:
             - git config --global user.email "Frankie@potentialife.com"
             - git config --global user.name "Frankie"
             - npm run addGitTagToRepo
+            - npm run notifyTicketsChanel -- --phase PROD
             - ./bugsnag-deploy.sh PROD
 

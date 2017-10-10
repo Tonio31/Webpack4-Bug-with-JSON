@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "2.2.33",
+  "version": "2.2.34",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -119,7 +119,8 @@
     "protractor": "node_modules/.bin/protractor protractor.conf.js",
     "e2e": "gulp e2e_test",
     "deploy": "gulp deploy",
-    "addGitTagToRepo": "gulp pushTag"
+    "addGitTagToRepo": "gulp pushTag",
+    "notifyTicketsChanel": "gulp notifyTicketsChanel"
   },
   "keywords": [
     "angular",
@@ -137,14 +138,17 @@
       "transform-runtime"
     ],
     "presets": [
-      [ "env", {
-        "targets": {
-          "browsers": [
-            "> 1%",
-            "last 2 versions"
-          ]
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "> 1%",
+              "last 2 versions"
+            ]
+          }
         }
-      }]
+      ]
     ]
   }
 }
