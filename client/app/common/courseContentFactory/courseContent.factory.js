@@ -13,15 +13,25 @@ let CourseContentFactory = function($log) {
   };
 
   let getInputFields = () => {
-    $log.log('getInputFields()');
+    $log.log('getInputFields()  inputs=', inputs);
     return inputs;
   };
 
-  let clearInputFields = () => {
-    $log.log('clearInputFields() BEFORE inputs =', inputs);
-    for ( let key of Object.keys(inputs) ) {
-      delete inputs[key];
+  let clearInputFields = (iKeysToDelete) => {
+    $log.log('clearInputFields() BEFORE iKeysToDelete=', iKeysToDelete, '     inputs =', inputs);
+
+    // If we have specific inputs to delete, we delete only those, otherwise, clear everything
+    if ( iKeysToDelete && iKeysToDelete.length > 0 ) {
+      for ( let key of iKeysToDelete ) {
+        delete inputs[key];
+      }
     }
+    else {
+      for ( let key of Object.keys(inputs) ) {
+        delete inputs[key];
+      }
+    }
+
     $log.log('clearInputFields() AFTER inputs =', inputs);
   };
 

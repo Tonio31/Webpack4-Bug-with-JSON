@@ -3,7 +3,6 @@ class ViaSurveyController {
                $q,
                $state,
                $anchorScroll,
-               $filter,
                User,
                Data,
                ContentFactory,
@@ -253,12 +252,16 @@ class ViaSurveyController {
         this.saveSurveyResultToBackEnd(dataBackFromGetResults.data);
 
         this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(dataBackFromGetResults.data);
-        ContentFactory.clearInputFields();
         this.tabToDisplay = 'results';
-
 
         // Remove the special action before saving step
         ContentFactory.setNextStepButtonPreSaveAction(undefined);
+
+        // Now that the answers have been submitted and we got the results, we can delete
+        // the data we stored in local storage related to the viaSurvey
+        // NB: [...this.questionIdSet] is to convert a Set to an Array
+        Utility.removeUserInputFromLocalStorage([ ...this.questionIdSet ]);
+        ContentFactory.clearInputFields([ ...this.questionIdSet ]);
 
         $log.log('getResults() - Success - Before Hiding spinner');
         SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
@@ -294,6 +297,7 @@ class ViaSurveyController {
         // If the SubmitAnswers service returns true, all answers have been submitted. If it returns false,
         // more questions remain to be answered and can be retrieved by a subsequent call to GetQuestions.
         $log.log('Success submitAnswer dataBackFromSubmitAnswers=', dataBackFromSubmitAnswers);
+
         deferred.resolve(dataBackFromSubmitAnswers);
       })
       .catch( (error) => {

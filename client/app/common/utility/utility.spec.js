@@ -85,16 +85,27 @@ describe('Utility', () => {
       expect(Utility.getUserInputFromLocalStorage('id2')).to.deep.eq([ 'value2', 'value2Bis' ]);
     });
 
-    it('removeUserInputFromLocalStorage(iInputs) remove data form localStorage', () => {
+    it('removeUserInputFromLocalStorage(iInputs) remove data form localStorage with an Object in parameters', () => {
       mockLocalStorage['12-id1'] = '"value1"';
       mockLocalStorage['12-id2'] = '["value2","value2Bis"]';
 
-      let inputs = {
+      let inputsObject = {
         id1: 'value1',
         id2: ['value2', 'value2Bis']
       };
 
-      Utility.removeUserInputFromLocalStorage(inputs);
+      Utility.removeUserInputFromLocalStorage(inputsObject);
+
+      expect(mockLocalStorage).to.deep.eq({});
+    });
+
+    it('removeUserInputFromLocalStorage(iInputs) remove data form localStorage with an Array of keys in parameters', () => {
+      mockLocalStorage['12-id1'] = '"value1"';
+      mockLocalStorage['12-id2'] = '["value2","value2Bis"]';
+
+      let inputsArray = [ 'id1', 'id2' ];
+
+      Utility.removeUserInputFromLocalStorage(inputsArray);
 
       expect(mockLocalStorage).to.deep.eq({});
     });

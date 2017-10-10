@@ -182,6 +182,7 @@ describe('ViaSurvey', () => {
 
   let mockUtility = {
     saveUserInputToLocalStorage: () => {},
+    removeUserInputFromLocalStorage: () => {},
     getUserInputFromLocalStorage: (iQuestionID) => {
       if ( iQuestionID === '99999' ) {
         return false;
@@ -217,6 +218,7 @@ describe('ViaSurvey', () => {
 
     spies.state.go = sandbox.stub(mockState, 'go');
     spies.utilityFactory.saveUserInputToLocalStorage = sandbox.stub(mockUtility, 'saveUserInputToLocalStorage');
+    spies.utilityFactory.removeUserInputFromLocalStorage = sandbox.stub(mockUtility, 'removeUserInputFromLocalStorage');
 
   }));
 
@@ -483,6 +485,7 @@ describe('ViaSurvey', () => {
         return iData;
       };
 
+      controller.$onInit();
       controller.getResults(listStrength);
 
       // We have to call this here because we want promises to be resolved
@@ -491,6 +494,7 @@ describe('ViaSurvey', () => {
 
       sinon.assert.calledWith(saveSurveyResultToBackEndSpy, simulateDataBackFromServer.data);
       expect(controller.listOfStrengthsForCheckBox).to.equal(simulateDataBackFromServer.data);
+      sinon.assert.calledOnce(spies.utilityFactory.removeUserInputFromLocalStorage);
       sinon.assert.calledOnce(spies.contentFactory.clearInputFields);
       sinon.assert.calledWith(spies.contentFactory.setNextStepButtonPreSaveAction, undefined);
       sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.COURSE_CONTENT);

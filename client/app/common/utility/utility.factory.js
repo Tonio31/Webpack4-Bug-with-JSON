@@ -45,8 +45,12 @@ let UtilityFactory = function( $log,
   // the data is safely saved on server side, we can remove the data form local storage
   let removeUserInputFromLocalStorage = (iInputFields) => {
 
-    // eslint-disable-next-line no-unused-vars
-    for ( let [ key, value ] of Object.entries(iInputFields)) {
+    let keyToDelete = iInputFields;
+    if ( !angular.isArray(iInputFields) ) {
+      keyToDelete = Object.keys(iInputFields);
+    }
+
+    for ( let key of keyToDelete) {
       $log.log(`deleting ${buildLocalStorageKey(key)} from local storage`);
       delete $localStorage[buildLocalStorageKey(key)];
     }

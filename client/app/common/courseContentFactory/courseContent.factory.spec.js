@@ -13,10 +13,16 @@ describe('CourseContentFactory', () => {
     expect(ContentFactory.getInputFields()).to.deep.equal({ 'c1.m1.s1.story_2': 'This is a text' });
   });
 
-  it('clearInputFields() - delete data inside inputs', () => {
+  it('clearInputFields() - delete all data inside inputs', () => {
     ContentFactory.updateInputFields( 'c1.m1.s1.story_2', 'This is a text' );
     ContentFactory.clearInputFields();
     expect(ContentFactory.getInputFields()).to.deep.equal({});
+  });
+  it('clearInputFields() - delete specific data (from array parameter) inside inputs', () => {
+    ContentFactory.updateInputFields( 'c1.m1.s1.story_1', 'This is a text 1' );
+    ContentFactory.updateInputFields( 'c2.m2.s2.story_2', 'This is a text 2' );
+    ContentFactory.clearInputFields(['c2.m2.s2.story_2']);
+    expect(ContentFactory.getInputFields()).to.deep.equal({ 'c1.m1.s1.story_1': 'This is a text 1' });
   });
 
   it('saveDataToSendLater() - Stores data correctly in additionalDataToSave', () => {
