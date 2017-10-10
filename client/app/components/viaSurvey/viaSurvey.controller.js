@@ -251,19 +251,17 @@ class ViaSurveyController {
         $log.log('getResults() - Success dataBackFromGetResults=', dataBackFromGetResults);
         this.saveSurveyResultToBackEnd(dataBackFromGetResults.data);
 
+        this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(dataBackFromGetResults.data);
+        this.tabToDisplay = 'results';
+
+        // Remove the special action before saving step
+        ContentFactory.setNextStepButtonPreSaveAction(undefined);
 
         // Now that the answers have been submitted and we got the results, we can delete
         // the data we stored in local storage related to the viaSurvey
         // NB: [...this.questionIdSet] is to convert a Set to an Array
         Utility.removeUserInputFromLocalStorage([ ...this.questionIdSet ]);
         ContentFactory.clearInputFields([ ...this.questionIdSet ]);
-
-        this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(dataBackFromGetResults.data);
-        this.tabToDisplay = 'results';
-
-
-        // Remove the special action before saving step
-        ContentFactory.setNextStepButtonPreSaveAction(undefined);
 
         $log.log('getResults() - Success - Before Hiding spinner');
         SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
