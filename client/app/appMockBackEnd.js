@@ -86,6 +86,11 @@ angular.module( 'appMockBackEnd', [
   let error429 = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
   let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
+  // Set a userID by default if the user logs in with a token in the URL
+  if ( !JwtFactory.getUserId() ) {
+    $log.warn('No userID stored in Local Storage, use userId=4 by default');
+    JwtFactory.saveUserId(4);
+  }
 
   // will take an URL and return a file name
   // iFullUrlToServer: "https://localhost.com/step?slug=%5C%2Fpotentialife-course%5C%2Fcycle-1%5C%2Fmodule-1%5C%2Fstep-3"
@@ -149,8 +154,6 @@ angular.module( 'appMockBackEnd', [
 
           if ( itModule.hasOwnProperty('children') ) {
             for ( let itStep of itModule.children ) {
-
-              $log.log('itStep=', itStep, '  updateStateToCurrent=', updateStateToCurrent);
               if (itStep.fullUrl === iUrlCompletedStep) {
                 itStep.status = 'completed';
                 $log.warn(`Setting Step (${itStep.fullUrl}) to completed`);
@@ -214,6 +217,10 @@ angular.module( 'appMockBackEnd', [
 
     return error401;
   });
+
+
+  // **************************************************************************************************** //
+  //                                   API END POINTS                                                     //
 
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
@@ -454,48 +461,48 @@ angular.module( 'appMockBackEnd', [
   });
 
   // Uncomment the line bellow to interact with the server
-  // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
-  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
-    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
-    let reply = '';
-    if ( url.includes('RegisterUser') ) {
-      $log.log('Register User, replying with an error');
-      reply = require('./mockBackEndResponse/viaSurvey/RegisterUser.html');
-      return [ 500, reply, {}, 'You have already registered a user with this email address' ];
-    }
-    else if ( url.includes('LoginUser') ) {
-      reply = '"276d51d7-10bf-4ff6-b5fe-9d0cd3ac5b3a"';
-      $log.log(`LoginUser, replying with login key: ${reply}`);
-      return [ 200, reply, {} ];
-    }
-    else if ( url.includes('StartSurvey') ) {
-      reply = '"872546c2-2a9b-4df2-8966-e2ba661163a2"';
-      $log.log(`StartSurvey, replying with session key: ${reply}`);
-      return [ 200, reply, {} ];
-    }
-    else if ( url.includes('GetQuestions') ) {
-      $log.log('GetQuestions, replying with the list of questions');
-      reply = require('./mockBackEndResponse/viaSurvey/GetQuestions.json');
-      return [ 200, reply, {} ];
-    }
-    else if ( url.includes('SubmitAnswers') ) {
-      let dataObject = angular.fromJson(data);
-      if ( dataObject.answers.length === 120 ) {
-        reply = '"true"';
-      }
-      else {
-        reply = '"false"';
-      }
-      $log.log(`SubmitAnswers, replying with ${reply} `);
-      return [ 200, reply, {} ];
-    }
-    else if ( url.includes('GetResults') ) {
-      $log.log('GetResults, replying with the list of 24 strengths');
-      reply = require('./mockBackEndResponse/viaSurvey/GetResults.json');
-      return [ 200, reply, {} ];
-    }
-
-    return error500;
-  });
+  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
+  // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
+  //   $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
+  //   let reply = '';
+  //   if ( url.includes('RegisterUser') ) {
+  //     $log.log('Register User, replying with an error');
+  //     reply = require('./mockBackEndResponse/viaSurvey/RegisterUser.html');
+  //     return [ 500, reply, {}, 'You have already registered a user with this email address' ];
+  //   }
+  //   else if ( url.includes('LoginUser') ) {
+  //     reply = '"276d51d7-10bf-4ff6-b5fe-9d0cd3ac5b3a"';
+  //     $log.log(`LoginUser, replying with login key: ${reply}`);
+  //     return [ 200, reply, {} ];
+  //   }
+  //   else if ( url.includes('StartSurvey') ) {
+  //     reply = '"872546c2-2a9b-4df2-8966-e2ba661163a2"';
+  //     $log.log(`StartSurvey, replying with session key: ${reply}`);
+  //     return [ 200, reply, {} ];
+  //   }
+  //   else if ( url.includes('GetQuestions') ) {
+  //     $log.log('GetQuestions, replying with the list of questions');
+  //     reply = require('./mockBackEndResponse/viaSurvey/GetQuestions.json');
+  //     return [ 200, reply, {} ];
+  //   }
+  //   else if ( url.includes('SubmitAnswers') ) {
+  //     let dataObject = angular.fromJson(data);
+  //     if ( dataObject.answers.length === 120 ) {
+  //       reply = '"true"';
+  //     }
+  //     else {
+  //       reply = '"false"';
+  //     }
+  //     $log.log(`SubmitAnswers, replying with ${reply} `);
+  //     return [ 200, reply, {} ];
+  //   }
+  //   else if ( url.includes('GetResults') ) {
+  //     $log.log('GetResults, replying with the list of 24 strengths');
+  //     reply = require('./mockBackEndResponse/viaSurvey/GetResults.json');
+  //     return [ 200, reply, {} ];
+  //   }
+  //
+  //   return error500;
+  // });
 
 });

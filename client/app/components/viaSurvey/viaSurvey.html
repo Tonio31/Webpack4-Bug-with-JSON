@@ -6,7 +6,7 @@
 
     <p class="text-center">{{$ctrl.currentPageNumber}} / {{$ctrl.nbPagesSurvey}}</p>
 
-    <div ng-repeat="question in $ctrl.radioQuestions | limitTo: $ctrl.nbQuestionsDisplayed : $ctrl.numFirstQuestionDisplayed">
+    <div ng-repeat="question in $ctrl.radioQuestions | limitTo: $ctrl.config.nbQuestionsDisplayed : $ctrl.numFirstQuestionDisplayed">
       <radio-list
         update-block-manager="$ctrl.onUpdate(question.program_data_code, blockManagerValue)"
         is-step-completed="$ctrl.isStepCompleted"
@@ -22,7 +22,7 @@
   <div ng-if="$ctrl.tabToDisplay === 'results'">
     <html-module data="$ctrl.block.data.intro_results"></html-module>
     <checkbox
-      update-block-manager="$ctrl.onUpdate($ctrl.results.program_data_code, blockManagerValue)"
+      update-block-manager="$ctrl.onUpdate($ctrl.block.program_data_code, blockManagerValue)"
       is-step-completed="$ctrl.isStepCompleted"
       is-top-level-form-submitted="$ctrl.isListOfStrengthFormSubmitted"
       block="$ctrl.listOfStrengthsForCheckBox">

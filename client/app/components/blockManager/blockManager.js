@@ -3,6 +3,7 @@ import uiRouter from '@uirouter/angularjs';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import blockManagerComponent from './blockManager.component';
 import constantModule from 'common/constants';
+import audioModule from 'components/audioModule/audioModule';
 import videoModule from 'components/videoModule/videoModule';
 import buttonModule from 'components/buttonModule/buttonModule';
 import textAreaModule from 'components/textArea/textArea';
@@ -26,6 +27,7 @@ let blockManagerModule = angular.module('blockManager', [
   LogDecorator,
   constantModule,
   videoModule,
+  audioModule,
   buttonModule,
   textAreaModule,
   textBoxModule,

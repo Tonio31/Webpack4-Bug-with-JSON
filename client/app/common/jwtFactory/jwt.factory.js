@@ -62,17 +62,20 @@ let JwtFactory = function( $log,
 
     let returnValue = false;
 
-    if ( !isAuthExpired() ) {
+    // If there is a token is the URL, it means we're trying remote login
+    let urlArgs = $location.search();
+    if ( urlArgs.hasOwnProperty('token') ) {
+      saveToken(urlArgs.token);
+
+      if ( urlArgs.hasOwnProperty('user_id') ) {
+        saveUserId(urlArgs.user_id);
+      }
+
+      $location.search({});
       returnValue = true;
     }
-    else {
-      let urlArgs = $location.search();
-      if ( urlArgs.hasOwnProperty('token') && urlArgs.hasOwnProperty('user_id') ) {
-        saveUserId(urlArgs.user_id);
-        saveToken(urlArgs.token);
-        $location.search({});
-        returnValue = true;
-      }
+    else if ( !isAuthExpired() ) {
+      returnValue = true;
     }
 
     return returnValue;

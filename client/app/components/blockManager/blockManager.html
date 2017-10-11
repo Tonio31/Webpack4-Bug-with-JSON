@@ -4,6 +4,10 @@
       <video-module data="$ctrl.block.data"></video-module>
     </div>
 
+    <div ng-switch-when="audio">
+      <audio-module data="$ctrl.block.data"></audio-module>
+    </div>
+
     <div ng-switch-when="module_overview">
       <module-overview block="$ctrl.block"></module-overview>
     </div>

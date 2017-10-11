@@ -54,11 +54,15 @@ let ResourceFactory = function( $log,
     let deferred = $q.defer();
     $log.log('getParticipantDetails()');
     $resource(buildApiUrl('participants')).get( (userData) => {
-      $log.log('getParticipantDetails() retrieved successfully');
-
-      saveUserData(userData.data);
-
-      deferred.resolve();
+      try {
+        $log.log('getParticipantDetails() retrieved successfully userData=', userData);
+        saveUserData(userData.data);
+        deferred.resolve();
+      }
+      catch (error) {
+        $log.error('getParticipantDetails() error=', error);
+        deferred.reject(error);
+      }
     },
     (error) => {
       $log.error('getParticipantDetails() error=', error);
@@ -184,15 +188,13 @@ let ResourceFactory = function( $log,
   };
 
   // Used to save data for a step and mark the step as completed for the current user.
-  let updateStep = () => {
-    $log.log('updateStep()');
-    return new ($resource(buildApiUrl('program_data')))();
-  };
+  let updateStep = ( iMarkStepAsCompleted ) => {
+    $log.log('updateStep() iMarkStepAsCompleted=', iMarkStepAsCompleted);
+    let postRequest = new ($resource(buildApiUrl('program_data')))();
+    postRequest.markStepAsCompleted = iMarkStepAsCompleted ? iMarkStepAsCompleted : false;
+    postRequest.fullUrl = $location.path();
 
-  // Used to save data for a step without setting the step as completed
-  let partialUpdateStep = () => {
-    $log.log('partialUpdateStep()');
-    return new ($resource(buildApiUrl('partial_save')))();
+    return postRequest;
   };
 
   // The following is used by ViaSurvey module
@@ -230,7 +232,6 @@ let ResourceFactory = function( $log,
     saveUserData,
     getParticipantDetails,
     updateStep,
-    partialUpdateStep,
     buildApiUrl,
     viaSurvey,
     checkAuthOnOtherPlWebsite,

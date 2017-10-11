@@ -3,7 +3,6 @@ class ViaSurveyController {
                $q,
                $state,
                $anchorScroll,
-               $filter,
                User,
                Data,
                ContentFactory,
@@ -43,6 +42,14 @@ class ViaSurveyController {
       password: this.createViaSurveyPassword(User.getFirstName(), User.getLastName())
     };
 
+    // Default value if the input is messed up
+    this.config = {
+      nbQuestionsDisplayed: 10,
+      strengthListMaxChecked: 3,
+      strengthListMinChecked: 3,
+      strengthListTitle: '',
+    };
+
     this.getRegisterFormData = () => {
       return registerFormData;
     };
@@ -52,22 +59,30 @@ class ViaSurveyController {
       $log.log('onInit() - BEGIN');
 
       this.radioQuestions = [];
-
-      this.tabToDisplay = 'questions';
+      this.questionIdSet = new Set();
 
       this.isListOfStrengthFormSubmitted = false;
 
-      if ( this.block.config.nb_questions_per_page &&
-        this.block.config.nb_questions_per_page > 0 &&
-        this.block.config.nb_questions_per_page <= 120 ) {
-        this.nbQuestionsDisplayed = this.block.config.nb_questions_per_page;
-      }
-      else {
-        this.nbQuestionsDisplayed = 10; // Default value if the input is messed up
+
+      if ( this.block.data.config ) {
+        let nbQuestionAsNumber = parseInt(this.block.data.config.nb_questions_per_page, 10);
+        if ( nbQuestionAsNumber > 0 && nbQuestionAsNumber <= 120 ) {
+          this.config.nbQuestionsDisplayed = nbQuestionAsNumber;
+        }
+
+        if ( this.block.data.config.strength_list_min_selected && this.block.data.config.strength_list_max_selected ) {
+          this.config.strengthListMaxChecked = parseInt(this.block.data.config.strength_list_max_selected, 10);
+          this.config.strengthListMinChecked = parseInt(this.block.data.config.strength_list_min_selected, 10);
+        }
+
+        if ( this.block.data.config.title_strength_list ) {
+          this.config.strengthListTitle = this.block.data.config.title_strength_list;
+        }
+
       }
 
       this.numFirstQuestionDisplayed = 0;
-      this.nbPagesSurvey = Math.floor( WEBSITE_CONFIG.viaSurvey.questionCount / this.nbQuestionsDisplayed );
+      this.nbPagesSurvey = Math.floor( WEBSITE_CONFIG.viaSurvey.questionCount / this.config.nbQuestionsDisplayed );
       this.currentPageNumber = 1;
 
       this.simulateTopLevelFormSubmitted = {};
@@ -75,24 +90,33 @@ class ViaSurveyController {
         this.simulateTopLevelFormSubmitted[page] = false;
       }
 
-      SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
 
-      ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted);
-      ContentFactory.setNextStepButtonPreSaveAction(this.displayNextPageSurvey);
-      ContentFactory.setPreviousStepButtonPreAction(this.displayPrevPageSurvey);
+      if ( this.isStepCompleted ) {
+        this.tabToDisplay = 'results';
+        this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(this.block.data.items, this.block.data.value);
 
-      this.registerUser();
+      }
+      else {
+        this.tabToDisplay = 'questions';
+        SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
+
+        ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted);
+        ContentFactory.setNextStepButtonPreSaveAction(this.displayNextPageSurvey);
+        ContentFactory.setPreviousStepButtonPreAction(this.displayPrevPageSurvey);
+
+        this.registerUser();
+      }
 
       $log.log('onInit() - END');
     };
 
     this.displayPrevPageSurvey = () => {
-      if ( this.currentPageNumber === 0 || this.currentPageNumber > this.nbPagesSurvey ) {
+      if ( this.currentPageNumber === 1 || this.currentPageNumber > this.nbPagesSurvey ) {
         $state.go(this.navigation.prevPage);
       }
       else {
         this.currentPageNumber -= 1;
-        this.numFirstQuestionDisplayed -= this.nbQuestionsDisplayed;
+        this.numFirstQuestionDisplayed -= this.config.nbQuestionsDisplayed;
       }
     };
 
@@ -117,7 +141,7 @@ class ViaSurveyController {
       $log.log( `displayNextPageSurvey this.currentPageNumber=${this.currentPageNumber},   this.nbPagesSurvey=${this.nbPagesSurvey}` );
 
       if ( this.currentPageNumber <= this.nbPagesSurvey ) {
-        this.numFirstQuestionDisplayed += this.nbQuestionsDisplayed;
+        this.numFirstQuestionDisplayed += this.config.nbQuestionsDisplayed;
         this.currentPageNumber += 1;
         Utility.saveUserInputToLocalStorage(ContentFactory.getInputFields());
       }
@@ -146,19 +170,20 @@ class ViaSurveyController {
       ContentFactory.updateInputFields(iQuestionId, iValue);
     };
 
-    this.transformResultsToCheckBoxBlock = (iListStrengths) => {
-      $log.log('transformResultsToCheckBoxBlock() - iListStrengths=', iListStrengths);
+    this.transformResultsToCheckBoxBlock = (iListStrengths, iSelectedStrength) => {
+
+      $log.log('transformResultsToCheckBoxBlock() - iListStrengths=', iListStrengths, '   iSelectedStrength=', iSelectedStrength);
       let checkboxBlock = {
         id: 52,
         type: 'dynamic',
         element: 'checkbox',
-        program_data_code: this.block.config.match_strength_data_code, // eslint-disable-line camelcase
+        program_data_code: this.block.program_data_code, // eslint-disable-line camelcase
         data: {
           config: {
-            min_selected: 3, // eslint-disable-line camelcase
-            max_selected: 3 // eslint-disable-line camelcase
+            min_selected: this.config.strengthListMinChecked, // eslint-disable-line camelcase
+            max_selected: this.config.strengthListMaxChecked // eslint-disable-line camelcase
           },
-          label: $filter('translate')('YOUR_CHARACTER_STRENGTHS').toString(),
+          label: this.config.strengthListTitle,
           placeholder: '',
           name: '',
           items: []
@@ -173,6 +198,14 @@ class ViaSurveyController {
           checked: false,
           feedback: null
         };
+
+        // iSelectedStrength will be null when the data is coming from viaMe API
+        // But if it is coming from the backend (once the step is completed), we need
+        // to select what the user previously chose
+        if ( iSelectedStrength && iSelectedStrength.indexOf(strength.StrengthName) > -1 ) {
+          item.checked = true;
+        }
+
         checkboxBlock.data.items.push(item);
       }
 
@@ -183,20 +216,24 @@ class ViaSurveyController {
     };
 
     this.saveSurveyResultToBackEnd = (iListOfStrength) => {
+      $log.log('saveSurveyResultToBackEnd  iListOfStrength=', iListOfStrength);
 
-      let saveSurveyResultsPost = Data.partialUpdateStep();
-      saveSurveyResultsPost[this.block.config.all_strengths] = iListOfStrength;
+      let saveSurveyResultsPost = Data.updateStep(false);
+      saveSurveyResultsPost[this.block.data.config.all_strengths] = iListOfStrength;
 
-      saveSurveyResultsPost.$save( (dataBackFromServer) => {
+      saveSurveyResultsPost.$save().then( (dataBackFromServer) => {
         $log.log('Success saving list of Strength to the back end.  dataBackFromServer=', dataBackFromServer);
-      },
-      (error) => {
+      })
+      .catch( (error) => {
+
         $log.error('Error while saving list of Strength error=', error);
 
         // Saving the list of strength to the server is not mandatory at this stage
         // If this fail now, we will try to add it to the list of fields to be saved later as part of the normal process within courceController.nextStep()
-        ContentFactory.updateInputFields(this.block.config.all_strengths, iListOfStrength);
-      });
+        ContentFactory.updateInputFields(this.block.data.config.all_strengths, iListOfStrength);
+      } );
+
+      $log.log('saveSurveyResultToBackEnd - END()');
 
     };
 
@@ -209,21 +246,27 @@ class ViaSurveyController {
 
       let getResultsPost = Data.viaSurvey('GetResults');
       Object.assign(getResultsPost, getResultsParams);
-      getResultsPost.$call( (dataBackFromGetResults) => {
+
+      getResultsPost.$call().then( (dataBackFromGetResults) => {
         $log.log('getResults() - Success dataBackFromGetResults=', dataBackFromGetResults);
         this.saveSurveyResultToBackEnd(dataBackFromGetResults.data);
 
         this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(dataBackFromGetResults.data);
-        ContentFactory.clearInputFields();
         this.tabToDisplay = 'results';
-
 
         // Remove the special action before saving step
         ContentFactory.setNextStepButtonPreSaveAction(undefined);
 
+        // Now that the answers have been submitted and we got the results, we can delete
+        // the data we stored in local storage related to the viaSurvey
+        // NB: [...this.questionIdSet] is to convert a Set to an Array
+        Utility.removeUserInputFromLocalStorage([ ...this.questionIdSet ]);
+        ContentFactory.clearInputFields([ ...this.questionIdSet ]);
+
         $log.log('getResults() - Success - Before Hiding spinner');
         SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
-      }, (error) => {
+      })
+      .catch( (error) => {
         this.goToErrorState('GetResults', error);
       });
     };
@@ -238,20 +281,26 @@ class ViaSurveyController {
       };
 
       Object.entries(ContentFactory.getInputFields()).forEach( ([ key, value ]) => {
-        submitAnswerParams.answers.push({
-          questionID: key,
-          choiceID: value
-        });
+
+        if ( this.isInputFieldPartOfViaMeSurvey(key) ) {
+          submitAnswerParams.answers.push({
+            questionID: key,
+            choiceID: value
+          });
+        }
       });
 
       let submitAnswersPost = Data.viaSurvey('SubmitAnswers');
       Object.assign(submitAnswersPost, submitAnswerParams);
-      submitAnswersPost.$call( (dataBackFromSubmitAnswers) => {
+      submitAnswersPost.$call().then( (dataBackFromSubmitAnswers) => {
+
         // If the SubmitAnswers service returns true, all answers have been submitted. If it returns false,
         // more questions remain to be answered and can be retrieved by a subsequent call to GetQuestions.
         $log.log('Success submitAnswer dataBackFromSubmitAnswers=', dataBackFromSubmitAnswers);
+
         deferred.resolve(dataBackFromSubmitAnswers);
-      }, (error) => {
+      })
+      .catch( (error) => {
         this.goToErrorState('SubmitAnswers', error);
         deferred.reject(error);
       });
@@ -266,11 +315,12 @@ class ViaSurveyController {
 
       $log.warn('registerUserPost=', registerUserPost);
 
-      registerUserPost.$register( (dataBackFromRegister) => {
+      registerUserPost.$register().then( (dataBackFromRegister) => {
         $log.log('Success registering dataBackFromRegister=', dataBackFromRegister);
 
         this.loginUserRequest();
-      }, (error) => {
+      })
+      .catch( (error) => {
 
         // The user might have been already registered on the website, try to login if that's the case
         if ( error.status === 500 &&
@@ -287,13 +337,14 @@ class ViaSurveyController {
     this.loginUserRequest = () => {
       let loginUserPost = Data.viaSurvey('LoginUser');
       Object.assign(loginUserPost, this.getRegisterFormData());
-      loginUserPost.$call( (dataBackFromLogin) => {
+      loginUserPost.$call().then( (dataBackFromLogin) => {
         $log.log('Success login dataBackFromLogin=', dataBackFromLogin);
 
         this.viaSurveyData.loginKey = dataBackFromLogin.data;
 
         this.startSurveyRequest();
-      }, (error) => {
+      })
+      .catch( (error) => {
         this.goToErrorState('Login', error);
       });
     };
@@ -309,12 +360,13 @@ class ViaSurveyController {
 
       let startSurveyPost = Data.viaSurvey('StartSurvey');
       Object.assign(startSurveyPost, startSurveyParams);
-      startSurveyPost.$call( (dataBackFromStartSurvey) => {
+      startSurveyPost.$call().then( (dataBackFromStartSurvey) => {
         $log.log('Success StartSurvey dataBackFromStartSurvey=', dataBackFromStartSurvey);
 
         this.viaSurveyData.sessionKey = dataBackFromStartSurvey.data;
         this.getQuestionsRequest();
-      }, (error) => {
+      })
+      .catch( (error) => {
         this.goToErrorState('StartSurvey', error);
       });
     };
@@ -325,8 +377,8 @@ class ViaSurveyController {
         let questionId = this.radioQuestions[questionIndex].program_data_code;
         if ( !Utility.getUserInputFromLocalStorage(questionId) ) {
           // We found the first unanswered question
-          this.currentPageNumber = Math.floor( questionIndex / this.nbQuestionsDisplayed ) + 1;
-          this.numFirstQuestionDisplayed = (this.currentPageNumber - 1) * this.nbQuestionsDisplayed;
+          this.currentPageNumber = Math.floor( questionIndex / this.config.nbQuestionsDisplayed ) + 1;
+          this.numFirstQuestionDisplayed = (this.currentPageNumber - 1) * this.config.nbQuestionsDisplayed;
           $log.log( `First Unanswered question at index=${questionIndex},  this.currentPageNumber=${this.currentPageNumber},    this.numFirstQuestionDisplayed=${this.numFirstQuestionDisplayed}`);
           return;
         }
@@ -342,21 +394,47 @@ class ViaSurveyController {
 
       let getQuestionsPost = Data.viaSurvey('GetQuestions');
       Object.assign(getQuestionsPost, getQuestionsParams);
-      getQuestionsPost.$call( (dataBackFromGetQuestions) => {
+      getQuestionsPost.$call().then( (dataBackFromGetQuestions) => {
         $log.log('Success GetQuestions dataBackFromGetQuestions=', dataBackFromGetQuestions);
         this.radioQuestions = this.transformQuestionsToRadioBlock(dataBackFromGetQuestions.data);
         this.calculateCurrentPageNumber();
         SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
-      }, (error) => {
+      })
+      .catch( (error) => {
         this.goToErrorState('GetQuestions', error);
       });
 
     };
 
+    this.storeQuestionId = ( iQuestionId ) => {
+      this.questionIdSet.add(iQuestionId);
+    };
+
+    this.isInputFieldPartOfViaMeSurvey = (iQuestionId) => {
+
+      let questionIdAsNumber = iQuestionId;
+
+      // if the questionID is a string it could be because:
+      //  - User reloaded the page and the questionID stored in contentFactory comes from localStorage
+      //  - we have other inputs than the viaSurvey on the page and they will be stored as string in contentFactory
+      if ( !angular.isNumber(iQuestionId) ) {
+        questionIdAsNumber = parseInt(iQuestionId, 10);
+        if ( isNaN(questionIdAsNumber) ) {
+          // If the quesiton ID was something like "l1.m1.s8.textbox.chosen_strength_3",
+          // the conversion will return NaN for it and we don't want to send this to ViaMeSurvey
+          return false;
+        }
+      }
+
+      return this.questionIdSet.has(questionIdAsNumber);
+    };
 
     this.transformQuestionsToRadioBlock = (iQuestions) => {
       let radioListBlocks = [];
       for ( let question of iQuestions ) {
+
+        this.storeQuestionId(question.QuestionID);
+
         let radioBlock = {
           id: question.QuestionID,
           type: 'dynamic',

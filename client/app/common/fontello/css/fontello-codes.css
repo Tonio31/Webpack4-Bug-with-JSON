@@ -4,11 +4,12 @@
 .icon-pl-gt:before { content: '\3e'; } /* '&gt;' */
 .icon-badge-self-discovery:before { content: '\44'; } /* 'D' */
 .icon-badge-lifemap:before { content: '\4d'; } /* 'M' */
+.icon-play:before { content: '\50'; } /* 'P' */
 .icon-badge-time-to-reflect:before { content: '\52'; } /* 'R' */
 .icon-pl-eye:before { content: '\65'; } /* 'e' */
 .icon-pl-lock:before { content: '\6c'; } /* 'l' */
 .icon-pl-pdf:before { content: '\70'; } /* 'p' */
-.icon-badge-strengths:before { content: '\73'; } /* 's' */
+.icon-pause:before { content: '\72'; } /* 'r' */
 .icon-pl-tick:before { content: '\74'; } /* 't' */
 .icon-pl-logo:before { content: '\75'; } /* 'u' */
-.icon-logout:before { content: '\e815'; } /* '' */
+.icon-badge-strengths:before { content: '\e800'; } /* '' */
