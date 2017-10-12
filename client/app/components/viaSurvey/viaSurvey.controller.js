@@ -219,7 +219,12 @@ class ViaSurveyController {
       $log.log('saveSurveyResultToBackEnd  iListOfStrength=', iListOfStrength);
 
       let saveSurveyResultsPost = Data.updateStep(false);
-      saveSurveyResultsPost[this.block.data.config.all_strengths] = iListOfStrength;
+      saveSurveyResultsPost.programData = [
+        {
+          code: this.block.data.config.all_strengths,
+          value: iListOfStrength
+        }
+      ];
 
       saveSurveyResultsPost.$save().then( (dataBackFromServer) => {
         $log.log('Success saving list of Strength to the back end.  dataBackFromServer=', dataBackFromServer);
