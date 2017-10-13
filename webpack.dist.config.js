@@ -20,7 +20,7 @@ let websiteConfig = {
     apiUrl: 'https://test-api.potentialife.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-4',
-    viaSurveyAppKey: 'F1206FA8-6CEA-4E67-97CE-611B925D50C4', // Test key (same as localhost)
+    viaSurveyAppKey: 'F9C66D59-4551-4564-AFD5-31384735A4B8', // Production key for testing, to be reverted to test key
     brochureWebsiteUrl: 'https://potentialife.com' // Will change as soon as we have UAT for this site
   },
   PROD: {
