@@ -9,7 +9,7 @@
       <div class="columns medium-4" ng-class="{'show-for-medium-up': cycle.status !== 'current'}" ng-repeat="cycle in $ctrl.menu.data.children track by cycle.id">
         <div ng-class="{'not-locked': cycle.status !== 'locked'}" class="cycle text-center">
           <div>
-            <c3chart bindto-id="_{{cycle.slug}}" sort-data="null">
+            <c3chart bindto-id="_{{cycle.id}}_homeProgressDonut" sort-data="null">
               <chart-column column-id="remaining"
                             column-values="{{cycle.progress.remaining}}"
                             column-type="donut"/>
@@ -25,6 +25,10 @@
           <div ng-class="{'locked': cycle.status === 'locked'}" class="cycle-title">
             <h4>{{cycle.title | uppercase }}</h4>
             <h3>{{cycle.name}}</h3>
+          </div>
+          <div>
+            <p>TONIO</p>
+            <p>TONIO</p>
           </div>
         </div>
       </div>
