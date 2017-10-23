@@ -1,91 +1,209 @@
 {
-  "id": 1,
-  "name": "Via Survey Completed",
-  "fullUrl": "/potentialife-course/cycle-3/module-31/step-12",
+  "id": 13,
+  "stepable_id": 1,
+  "stepable_type": "modules",
+  "title": "Step 12",
+  "name": "Exercise: Identifying your strengths",
+  "description": "15 minutes",
   "slug": "step-12",
-  "description": null,
-  "content": null,
-  "status": "completed",
-  "breadcrumbs": "Cycle 3 &bull; Module 31 &bull; Step 12 / 12",
-  "next_page_url": "/home",
-  "prev_page_url": "/potentialife-course/cycle-3/module-31/step-11",
+  "content": "<p>this is not shown anywhere atm<\/p>",
+  "hideStepInMenu": 0,
+  "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.<\/p>",
+  "lft": 16,
+  "rgt": 17,
+  "depth": 1,
+  "status": "current",
+  "created_at": "2017-03-28 15: 27: 55",
+  "updated_at": "2017-10-06 13:43:06",
+  "deleted_at": null,
+  "parent_id": null,
+  "breadcrumbs": "Level 1 &bull; Module 1 &bull; Step 12",
+  "prev_page_url": "\/potentialife-course\/cycle-1\/module-1\/step-11",
+  "next_page_url": "\/home",
+  "fullUrl": "\/potentialife-course\/cycle-1\/module-1\/step-12",
   "blocks": [
     {
-      "id": 10,
-      "type": "static",
-      "element": "html",
-      "program_data_code": null,
-      "data": {
-        "value": "<h1>Results<\/h1><p>You can find below your strength pre-order a relevant order for you<\/p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but don't hesitate to check all the strength below to choose the ones that resonate the most with you<\/p>"
-      },
-      "pivot": {
-        "step_id": 5,
-        "block_id": 50,
-        "order": 0
-      }
-    },
-    {
-      "id": 52,
+      "id": 1896,
       "type": "dynamic",
-      "element": "checkbox",
-      "program_data_code": "c1.m1.s7.checkbox_1",
+      "element": "via_survey",
+      "program_data_code": "chosen_strengths",
       "data": {
-        "config": {
-          "min_selected": 3,
-          "max_selected": 3
+        "intro_survey": {
+          "value": "<h2>Via Survey<\/h2><p>You will now complete the VIA Survey of Character Strengths, which will help you identify your unique character strengths. These are the strengths that you exercise when you are at your best. There are 120 questions and it should take about 15 minutes to complete and you should complete it in one sitting.<\/p>\r\n<p>Created under the direction of Dr. Martin Seligman, the \"father of Positive Psychology\" and author of Authentic Happiness and Flourish, and Dr. Christopher Peterson, distinguished scientist at the University of Michigan and author of A Primer in Positive Psychology, and validated by Robert McGrath, Ph.D., the VIA Survey is regarded as a central tool of positive psychology and has been used in hundreds of research studies and taken by over 5 million people in over 190 countries resulting in better workplaces... schools... teams...LIVES the world over.<\/p>"
         },
-        "label": "label: this is the label",
-        "placeholder": "placeholder: this is the placholder",
-        "name": "name",
+        "intro_results": {
+          "value": "<h1>Your results<\/h1><p>Please review your character strengths below, your strengths are played back to you in order.  Look at your list of strengths and choose the 3 that you identify with most from the top of the list.<\/p>"
+        },
+        "config": {
+          "nb_questions_per_page": 20,
+          "title_strength_list": "Your list of strengths",
+          "strength_list_min_selected": 3,
+          "strength_list_max_selected": 3,
+          "all_strengths": "test_tonio_all_strenght"
+        },
         "items": [
           {
-            "label": "Appreciation of Beauty \u0026 Excellence",
-            "sub_label": "\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.",
-            "value": "Appreciation of Beauty \u0026 Excellence",
-            "checked": true,
-            "feedback": null
+            "StrengthName": "Fairness",
+            "StrengthDescription": "Treating all people the same according to notions of fairness and justice; not letting feelings bias decisions about others; giving everyone a fair chance."
           },
           {
-            "label": "Bravery",
-            "sub_label": "\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.",
-            "value": "Bravery",
-            "checked": false,
-            "feedback": null
+            "StrengthName": "Creativity",
+            "StrengthDescription": "Thinking of novel and productive ways to conceptualize and do things; includes artistic achievement but is not limited to it."
           },
           {
-            "label": "Love",
-            "sub_label": "\r\nValuing close relations with others, in particular those in which sharing \u0026 caring are reciprocated; being close to people.",
-            "value": "Love",
-            "checked": true,
-            "feedback": null
+            "StrengthName": "Curiosity",
+            "StrengthDescription": "Taking an interest in ongoing experience for its own sake; finding subjects and topics fascinating; exploring and discovering."
           },
           {
-            "label": "Prudence",
-            "sub_label": "\r\nBeing careful about one\u0027s choices; not taking undue risks; not saying or doing things that might later be regretted.",
-            "value": "Prudence",
-            "checked": false,
-            "feedback": null
+            "StrengthName": "Judgment",
+            "StrengthDescription": "Thinking things through and examining them from all sides; not jumping to conclusions; being able to change one’s mind in light of evidence; weighing all evidence fairly."
           },
           {
-            "label": "Teamwork",
-            "sub_label": "\r\nWorking well as a member of a group or team; being loyal to the group; doing one\u0027s share.",
-            "value": "Teamwork",
-            "checked": true,
-            "feedback": null
+            "StrengthName": "Appreciation of Beauty & Excellence",
+            "StrengthDescription": "Noticing and appreciating beauty, excellence, and\/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience."
           },
           {
-            "label": "Creativity",
-            "sub_label": "\r\nThinking of novel and productive ways to conceptualize and do things; includes artistic achievement but is not limited to it.",
-            "value": "Creativity",
-            "checked": false,
-            "feedback": null
+            "StrengthName": "Bravery",
+            "StrengthDescription": "Not shrinking from threat, challenge, difficulty, or pain; speaking up for what\u2019s right even if there\u2019s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it."
+          },
+          {
+            "StrengthName": "Love",
+            "StrengthDescription": "Valuing close relations with others, in particular those in which sharing & caring are reciprocated; being close to people."
+          },
+          {
+            "StrengthName": "Prudence",
+            "StrengthDescription": "Being careful about one’s choices; not taking undue risks; not saying or doing things that might later be regretted."
+          },
+          {
+            "StrengthName": "Forgiveness",
+            "StrengthDescription": "Forgiving those who have done wrong; accepting others\u2019 shortcomings; giving people a second chance; not being vengeful."
+          },
+          {
+            "StrengthName": "Gratitude",
+            "StrengthDescription": "Being aware of and thankful for the good things that happen; taking time to express thanks."
+          },
+          {
+            "StrengthName": "Honesty",
+            "StrengthDescription": "Speaking the truth but more broadly presenting oneself in a genuine way and acting in a sincere way; being without pretense; taking responsibility for one’s feelings and actions."
+          },
+          {
+            "StrengthName": "Hope",
+            "StrengthDescription": "Expecting the best in the future and working to achieve it; believing that a good future is something that can be brought about."
+          },
+          {
+            "StrengthName": "Humor",
+            "StrengthDescription": "Liking to laugh and tease; bringing smiles to other people; seeing the light side; making (not necessarily telling) jokes."
+          },
+          {
+            "StrengthName": "Perseverance",
+            "StrengthDescription": "Finishing what one starts; persevering in a course of action in spite of obstacles; \u201cgetting it out the door\u201d; taking pleasure in completing tasks."
+          },
+          {
+            "StrengthName": "Kindness",
+            "StrengthDescription": "Doing favors and good deeds for others; helping them; taking care of them."
+          },
+          {
+            "StrengthName": "Leadership",
+            "StrengthDescription": "Encouraging a group of which one is a member to get things done and at the same time maintain good relations within the group; organizing group activities and seeing that they happen."
+          },
+          {
+            "StrengthName": "Love of Learning",
+            "StrengthDescription": "Mastering new skills, topics, and bodies of knowledge, whether on one’s own or formally; related to the strength of curiosity but goes beyond it to describe the tendency to add systematically to what one knows."
+          },
+          {
+            "StrengthName": "Humility",
+            "StrengthDescription": "Letting one’s accomplishments speak for themselves; not regarding oneself as more special than one is."
+          },
+          {
+            "StrengthName": "Self-Regulation",
+            "StrengthDescription": "Regulating what one feels and does; being disciplined; controlling one’s appetites and emotions."
+          },
+          {
+            "StrengthName": "Zest",
+            "StrengthDescription": "Approaching life with excitement and energy; not doing things halfway or halfheartedly; living life as an adventure; feeling alive and activated."
+          },
+          {
+            "StrengthName": "Teamwork",
+            "StrengthDescription": "Working well as a member of a group or team; being loyal to the group; doing one’s share."
+          },
+          {
+            "StrengthName": "Spirituality",
+            "StrengthDescription": "Having coherent beliefs about the higher purpose and meaning of the universe; knowing where one fits within the larger scheme; having beliefs about the meaning of life that shape conduct and provide comfort."
+          },
+          {
+            "StrengthName": "Social Intelligence",
+            "StrengthDescription": "Being aware of the motives\/feelings of others and oneself; knowing what to do to fit into different social situations; knowing what makes other people tick."
+          },
+          {
+            "StrengthName": "Perspective",
+            "StrengthDescription": "Being able to provide wise counsel to others; having ways of looking at the world that make sense to oneself\/others."
           }
         ]
       },
       "pivot": {
-        "step_id": 6,
-        "block_id": 62
+        "step_id": 13,
+        "block_id": 1896
       }
     }
-  ]
+  ],
+  "stepable": {
+    "id": 1,
+    "cycle_id": 1,
+    "title": "Module 1",
+    "name": "Encounter Strengths",
+    "description": "11 steps",
+    "content": null,
+    "slug": "module-1",
+    "lft": 6,
+    "rgt": 7,
+    "depth": 1,
+    "parent_id": null,
+    "created_at": null,
+    "updated_at": "2017-10-16 13:13:56",
+    "deleted_at": null,
+    "fullUrl": "\/potentialife-course\/cycle-1\/module-1",
+    "status": "current",
+    "cycle": {
+      "id": 1,
+      "course_id": 1,
+      "title": "Level 1",
+      "name": "Unfreeze",
+      "description": "11 Modules",
+      "slug": "cycle-1",
+      "content": "<p>content<\/p>",
+      "lft": 2,
+      "rgt": 3,
+      "depth": 1,
+      "parent_id": null,
+      "created_at": "2017-02-13 11: 20: 50",
+      "updated_at": "2017-10-13 15: 04: 03",
+      "deleted_at": null,
+      "description_overridden": 0,
+      "custom_description": "",
+      "fullUrl": "\/potentialife-course\/cycle-1",
+      "status": "current",
+      "progress": {
+        "completed": 116,
+        "remaining": 5,
+        "total": 121,
+        "percent": "96"
+      },
+      "course": {
+        "id": 1,
+        "name": "Potentialife Course",
+        "slug": "potentialife-course",
+        "description": null,
+        "content": null,
+        "lft": 2,
+        "rgt": 3,
+        "depth": 1,
+        "parent_id": null,
+        "created_at": "2017-02-13 11: 07: 23",
+        "updated_at": "2017-02-13 11: 09: 39",
+        "deleted_at": null,
+        "fullUrl": "\/potentialife-course",
+        "status": "current"
+      }
+    }
+  }
 }
