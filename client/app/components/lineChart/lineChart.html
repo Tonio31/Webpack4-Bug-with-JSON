@@ -1,0 +1,34 @@
+<div class="line-chart">
+  <p class="chart-title text-center">{{ $ctrl.block.data.title }}</p>
+
+  <c3chart bindto-id="lineChart-{{$ctrl.block.id}}"
+           chart-data="$ctrl.chartData"
+           chart-columns="$ctrl.chartColumns" >
+
+    <chart-axes values-x="{{$ctrl.xLabels}}"/>
+    <chart-axis>
+      <chart-axis-x axis-position="outer-center"
+                    axis-label=""
+                    axis-type="category">
+        <chart-axis-x-tick
+          tick-outer="false"
+          tick-fit="true" />
+      </chart-axis-x>
+      <chart-axis-y axis-id="y"
+                    axis-position="outer-top"
+                    axis-label="{{ $ctrl.block.data.y_label_title}}"
+                    padding-top="10"
+                    padding-bottom="0"
+                    axis-min="{{ $ctrl.block.data.y_min}}"
+                    axis-max="{{ $ctrl.block.data.y_max}}">
+        <chart-axis-y-tick
+          tick-format-function="$ctrl.formatYLabel"
+          tick-outer="false" />
+      </chart-axis-y>
+    </chart-axis>
+    <chart-legend
+      legend-position="bottom">
+    </chart-legend>
+  </c3chart>
+
+</div>

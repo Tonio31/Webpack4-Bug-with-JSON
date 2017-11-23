@@ -72,6 +72,10 @@
       <spider-chart block="$ctrl.block"></spider-chart>
     </div>
 
+    <div ng-switch-when="line_chart">
+      <line-chart block="$ctrl.block"></line-chart>
+    </div>
+
     <div ng-switch-when="word_cloud">
       <word-cloud block="$ctrl.block"></word-cloud>
     </div>
