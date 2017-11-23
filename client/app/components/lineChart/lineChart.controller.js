@@ -42,9 +42,7 @@ class LineChartController {
       }
     };
 
-
     this.formatYLabel = ( iLabel ) => {
-      $log.log( 'formatYLabel iLabel=', iLabel, '  block=', this.block.data );
       return `${iLabel}${this.block.data.y_label_suffix}`;
     };
   }
