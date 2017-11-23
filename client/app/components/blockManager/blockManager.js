@@ -13,6 +13,7 @@ import barChartModule from 'components/barChart/barChart';
 import pieChartModule from 'components/pieChart/pieChart';
 import gaugeChartModule from 'components/gaugeChart/gaugeChart';
 import spiderChartModule from 'components/spiderChart/spiderChart';
+import lineChartModule from 'components/lineChart/lineChart';
 import wordCloudModule from 'components/wordCloud/wordCloud';
 import checkbox from 'components/checkbox/checkbox';
 import radioList from 'components/radioList/radioList';
@@ -36,6 +37,7 @@ let blockManagerModule = angular.module('blockManager', [
   pieChartModule,
   gaugeChartModule,
   spiderChartModule,
+  lineChartModule,
   wordCloudModule,
   checkbox,
   radioList,
