@@ -1,0 +1,95 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+// @import '~client/app/common/_foundation-functions';
+
+.line-chart {
+
+  $mobile-legend-big: $h4-14px;
+  $mobile-legend-small: 0.750rem;
+
+  $desktop-legend-big: $h4-18px;
+  $desktop-legend-small: $h4-14px;
+
+  .c3-axis {
+    tspan {
+      fill: $simon-black;
+      font: $defaultFont;
+    }
+
+    // x-axis and y-axis line + tick
+    path, line {
+      stroke-width: 2px;
+    }
+  }
+
+  // label for x tick (eg: 'LifeMap 1', 'LifeMap 2')
+  .c3-axis-x {
+    tspan {
+      @media #{$medium-up} {
+        font-size: $h3-18px;
+      }
+
+      @media #{$small-only} {
+        font-size: 0.675rem;
+      }
+    }
+  }
+
+  // label for the tick on y axis (eg: 10%)
+  .c3-axis-y {
+    tspan {
+      @media #{$medium-up} {
+        font-size: $desktop-legend-small;
+      }
+
+      @media #{$small-only} {
+        font-size:  $mobile-legend-small;
+      }
+    }
+  }
+
+
+  // label for y axis (eg: 'Label for Y')
+  .c3-axis-y {
+   & > text {
+      transform: rotate(-90deg) translate3d(-4rem, -6px, 0);
+      fill: $simon-black;
+      font: $defaultFont;
+      @media #{$medium-up} {
+        font-size: $desktop-legend-big;
+      }
+
+      @media #{$small-only} {
+        font-size:  $mobile-legend-big;
+      }
+    }
+  }
+
+  // Line in the middle of the chart
+  .c3-line {
+    stroke-width: 4px;
+  }
+
+  // point on the line in the middle
+  .c3-circles {
+    circle {
+      r: 6;
+    }
+  }
+
+  // Size of the legend located at the bottom of the chart
+  .c3-legend-item {
+    text {
+      fill: $simon-black;
+      font: $defaultFont;
+      @media #{$medium-up} {
+        font-size: $desktop-legend-big;
+      }
+
+      @media #{$small-only} {
+        font-size:  $mobile-legend-big;
+      }
+    }
+  }
+
+}

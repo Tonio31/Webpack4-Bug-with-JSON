@@ -47,10 +47,6 @@ describe('BarChart', () => {
     COLUMN_ID = $injector.get('COLUMN_ID');
   }));
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-  });
-
   describe('Controller', () => {
     // controller specs
     let controller;

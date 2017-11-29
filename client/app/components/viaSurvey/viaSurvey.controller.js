@@ -90,8 +90,7 @@ class ViaSurveyController {
         this.simulateTopLevelFormSubmitted[page] = false;
       }
 
-
-      if ( this.isStepCompleted ) {
+      if ( this.isStepCompleted || ( this.block.data.hasOwnProperty('items') && this.block.data.items.length > 0 ) ) {
         this.tabToDisplay = 'results';
         this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(this.block.data.items, this.block.data.value);
 

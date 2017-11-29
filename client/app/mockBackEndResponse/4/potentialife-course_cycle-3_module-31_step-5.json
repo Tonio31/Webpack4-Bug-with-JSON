@@ -25,6 +25,32 @@
       }
     },
     {
+      "id": 1032,
+      "type": "static",
+      "element": "line_chart",
+      "program_data_code": "",
+      "data": {
+        "title": "Line Chart Title",
+        "y_label_title": "Label for Y",
+        "y_label_suffix": "%",
+        "y_min": 0,
+        "y_max": 100,
+        "x_column_names": ["LifeMap 1","LifeMap 2","LifeMap 3"],
+        "lines": [
+          {
+            "title": "Sleep",
+            "color": "red",
+            "values": [100,40,60]
+          },
+          {
+            "title": "Work",
+            "color": "blue",
+            "values": [60,70,95]
+          }
+        ]
+      }
+    },
+    {
       "id": 52,
       "type":"static",
       "element":"bar_chart",
