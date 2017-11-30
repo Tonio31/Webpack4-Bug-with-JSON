@@ -20,6 +20,7 @@ dist/
 .idea/codeStyleSettings.xml
 .idea/deployment.xml
 .idea/cssxfire.xml
+.idea/codeStyles
 
 # Sensitive or high-churn files:
 .idea/dataSources/
