@@ -32,7 +32,7 @@
       "data": {
         "title": "Line Chart Title",
         "y_label_title": "Label for Y",
-        "y_label_suffix": "%",
+        "y_label_suffix": null,
         "y_min": 0,
         "y_max": 100,
         "x_column_names": ["LifeMap 1","LifeMap 2","LifeMap 3"],
