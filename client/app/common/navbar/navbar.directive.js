@@ -213,6 +213,7 @@ let menuButton = function($log) {
       // update our menu inside menuFactory and the changes are propagated automatically
       $scope.$watch('data.status', (newStatus, oldStatus) => {
         if ( newStatus !== oldStatus ) {
+
           angular.element(element).removeClass(oldStatus);
           angular.element(element).addClass(newStatus);
 

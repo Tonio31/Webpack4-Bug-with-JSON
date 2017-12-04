@@ -19,44 +19,71 @@ let MenuFactory = function( $log, $q, Data, STATES) {
 
 
   let findFinalState = ( iMenu, oStates ) => {
+
+    // Recursive call
     if ( iMenu.hasOwnProperty('children') ) {
+
+      let previousStepNotHidden = null;
+
       for ( let child of iMenu.children ) {
-        findFinalState(child, oStates);
-      }
-    }
-    else {
+        let isFinalState = findFinalState(child, oStates);
 
-      let componentName = 'courseContent';
-      let resolveObject = {
-        content: () => {
-          'ngInject';
-          return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
+        // For Hidden steps: we need to hack the status of the previous step not hidden
+        // to display the good icon in the menu.
+        if ( isFinalState ) {
+          if ( child.hasOwnProperty('hideStepInMenu') && child.hideStepInMenu ) {
+            if ( previousStepNotHidden ) {
+              if ( child.status === 'current' || child.status === 'completed' ) {
+                previousStepNotHidden.status = child.status;
+              }
+            }
+            else {
+              $log.warn(`A hidden step(${child.fullUrl}) should always be preceded by a nonHidden step, problem with the structure of the menu`);
+            }
+          }
+          else {
+            previousStepNotHidden = child;
+          }
         }
-      };
-
-      if ( iMenu.status === 'locked' ) {
-        componentName = 'lockedPage';
-        resolveObject = {};
       }
 
-      let state = {
-        name: iMenu.fullUrl,
-        url: iMenu.fullUrl,
-        parent: STATES.MAIN,
-        component: componentName,
-        resolve: resolveObject,
-        params: {
-          hideStepInMenu: iMenu.hideStepInMenu
-        }
-      };
-
-      oStates.push(state);
+      return false;
     }
+
+    // Build state object from a menu Item
+    let componentName = 'courseContent';
+    let resolveObject = {
+      content: () => {
+        'ngInject';
+        return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
+      }
+    };
+
+    if ( iMenu.status === 'locked' ) {
+      componentName = 'lockedPage';
+      resolveObject = {};
+    }
+
+    let state = {
+      name: iMenu.fullUrl,
+      url: iMenu.fullUrl,
+      parent: STATES.MAIN,
+      component: componentName,
+      resolve: resolveObject,
+      params: {
+        hideStepInMenu: iMenu.hideStepInMenu
+      }
+    };
+
+    oStates.push(state);
+
+    return true;
   };
 
-  // ********************************************************************************************************
+
+  // *****************************************************************************************
   //                                           Public Interface
-  // ********************************************************************************************************
+  // *****************************************************************************************
 
   let isMenuRetrieved = () => {
     if ( Object.keys(menu.data).length === 0 ) {
@@ -84,6 +111,7 @@ let MenuFactory = function( $log, $q, Data, STATES) {
 
         $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully menu=', menu);
 
+        // Will get a list of states and modify the menu for hidden steps
         let states = [];
         findFinalState(menu.data, states);
 
@@ -109,7 +137,8 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     getMenu,
     retrieveMenuAndReturnStates,
     isMenuRetrieved,
-    getCurrentProgression
+    getCurrentProgression,
+    findFinalState
   };
 };
 

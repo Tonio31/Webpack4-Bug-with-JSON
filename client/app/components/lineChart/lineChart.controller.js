@@ -19,6 +19,9 @@ class LineChartController {
     this.$onInit = () => {
       $log.log( '$onInit - BEGIN this.data' );
 
+      if ( this.block.data.y_label_suffix === null ) {
+        this.block.data.y_label_suffix = '';
+      }
 
       this.block.data.x_column_names.forEach( ( xColumnName, index ) => {
         this.chartData[index] = {
