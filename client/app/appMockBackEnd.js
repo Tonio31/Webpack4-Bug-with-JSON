@@ -450,7 +450,7 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    // return error500;
+    // return error401;
     return [ 200, participant[headers.user_id], {} ];
   });
 

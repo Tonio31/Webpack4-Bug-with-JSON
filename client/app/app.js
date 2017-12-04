@@ -131,7 +131,7 @@ let appModule = angular.module( 'app', [
     //     the user to the good step
     let matchFromLoginToHome = {
       from: ( state ) => {
-        return ( state.name === STATES.LOGIN || state.name === STATES.RESET_PASSWORD );
+        return (state.name === STATES.LOGIN || state.name === STATES.RESET_PASSWORD);
       },
       to: STATES.HOME
     };
@@ -180,7 +180,7 @@ let appModule = angular.module( 'app', [
           }
           else {
             $log.log( `Redirect to 404 PageNotFound because stateToRedirect=${stateToRedirect}
-                      $state.href(stateToRedirect)=${$state.href( stateToRedirect )}` );
+                    $state.href(stateToRedirect)=${$state.href( stateToRedirect )}` );
             deferred.resolve( $state.target( STATES.PAGE_NOT_FOUND, { intendedUrl: stateToRedirect } ) );
           }
         }
@@ -190,17 +190,17 @@ let appModule = angular.module( 'app', [
         }
 
       },
-        ( error ) => {
-          $log.log( 'error Retrieving menu error=', error );
-          deferred.reject();
-        });
+      ( error ) => {
+        $log.log( 'error Retrieving menu error=', error );
+        deferred.reject();
+      } );
 
       return deferred.promise;
-    });
+    } );
 
     let matchFromInternalToAny = {
       from: ( state ) => {
-        return ( state.name !== '' );
+        return (state.name !== '');
       }
     };
     $transitions.onStart( matchFromInternalToAny, ( trans ) => {
@@ -238,8 +238,8 @@ let appModule = angular.module( 'app', [
 
     let matchFromAnyToParentNoLogin = {
       to: ( state ) => {
-        return ( state.parent.name === STATES.MAIN_NO_MENU ||
-          state.parent.name === STATES.LOGIN_ROOT );
+        return (state.parent.name === STATES.MAIN_NO_MENU ||
+          state.parent.name === STATES.LOGIN_ROOT);
       }
     };
     $transitions.onError( matchFromAnyToParentNoLogin, ( trans ) => {
@@ -262,7 +262,7 @@ let appModule = angular.module( 'app', [
 
     let matchFromAnyToParentWithMenu = {
       to: ( state ) => {
-        return ( state.parent.name === STATES.MAIN );
+        return (state.parent.name === STATES.MAIN);
       }
     };
     $transitions.onError( matchFromAnyToParentWithMenu, ( trans ) => {
@@ -343,21 +343,47 @@ let appModule = angular.module( 'app', [
             $urlRouter.listen();
           }
           catch (error) {
-            $exceptionHandler( error );
-            $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+
+            if ( JwtFactory.isAuthError( error ) ) {
+              $state.go( STATES.LOGIN, {
+                displayErrorOnInit: 'AUTH_ERROR'
+              } );
+            }
+            else {
+              $exceptionHandler( error );
+              $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+            }
           }
 
         },
         ( error ) => {
           $log.error( 'error Retrieving menu' );
-          $exceptionHandler( error );
-          $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+
+          if ( JwtFactory.isAuthError( error ) ) {
+            $state.go( STATES.LOGIN, {
+              displayErrorOnInit: 'AUTH_ERROR'
+            } );
+          }
+          else {
+            $exceptionHandler( error );
+            $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+          }
+
         } );
       },
       ( error ) => {
         $log.error( 'error Retrieving Participant Data' );
-        $exceptionHandler( error );
-        $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+
+        if ( JwtFactory.isAuthError( error ) ) {
+          $state.go( STATES.LOGIN, {
+            displayErrorOnInit: 'AUTH_ERROR'
+          } );
+        }
+        else {
+          $exceptionHandler( error );
+          $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+        }
+
       } );
     }
     else {

@@ -81,6 +81,17 @@ let JwtFactory = function( $log,
     return returnValue;
   };
 
+
+  let isAuthError = (iError) => {
+    if ( iError.status === 401 ) {
+      $log.warn('isAuthError - receive a 401 error=', iError);
+      return true;
+    }
+
+    return false;
+  };
+
+
   return {
     saveToken,
     saveUserId,
@@ -88,6 +99,7 @@ let JwtFactory = function( $log,
     getUserId,
     parseJwt,
     isAuthExpired,
+    isAuthError,
     isLoginInfoAvailable,
     logout
   };
