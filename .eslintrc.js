@@ -152,7 +152,7 @@ module.exports = exports = {
     "array-bracket-spacing": [WARN, "always"],
     "block-spacing": [WARN, "always"],
     "brace-style": [WARN, "stroustrup", {"allowSingleLine": true}],
-    "camelcase": WARN,
+    "camelcase": [WARN, { "properties": "never" }],
     "comma-spacing": [WARN, {"before": false, "after": true}],
     "comma-style": [WARN, "last"],
     "computed-property-spacing": [WARN, "never"],

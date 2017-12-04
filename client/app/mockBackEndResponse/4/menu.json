@@ -539,7 +539,7 @@
                   "description": "Approx. 9999 mins",
                   "slug": "step-8/2",
                   "order": 0,
-                  "status": "current",
+                  "status": "locked",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/2",
                   "hideStepInMenu": true
                 },
@@ -550,7 +550,7 @@
                   "description": "Approx. 9999 mins",
                   "slug": "step-8/3",
                   "order": 0,
-                  "status": "current",
+                  "status": "locked",
                   "fullUrl": "/potentialife-course/cycle-3/module-31/step-8/3",
                   "hideStepInMenu": true
                 },
