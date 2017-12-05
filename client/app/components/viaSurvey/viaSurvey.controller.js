@@ -90,6 +90,8 @@ class ViaSurveyController {
         this.simulateTopLevelFormSubmitted[page] = false;
       }
 
+
+      ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted);
       if ( this.isStepCompleted || ( this.block.data.hasOwnProperty('items') && this.block.data.items.length > 0 ) ) {
         this.tabToDisplay = 'results';
         this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(this.block.data.items, this.block.data.value);
@@ -99,7 +101,6 @@ class ViaSurveyController {
         this.tabToDisplay = 'questions';
         SpinnerFactory.show(SPINNERS.COURSE_CONTENT);
 
-        ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted);
         ContentFactory.setNextStepButtonPreSaveAction(this.displayNextPageSurvey);
         ContentFactory.setPreviousStepButtonPreAction(this.displayPrevPageSurvey);
 
