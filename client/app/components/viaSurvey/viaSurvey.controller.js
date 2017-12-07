@@ -3,6 +3,7 @@ class ViaSurveyController {
                $q,
                $state,
                $anchorScroll,
+               $window,
                User,
                Data,
                ContentFactory,
@@ -19,8 +20,8 @@ class ViaSurveyController {
 
     $log.log('constructor - START');
 
-    this.createViaSurveyPassword = (iFirstName, iLastName) => {
-      return `${iFirstName}!@#$%${iLastName}`;
+    this.createViaSurveyPassword = (iFirstName) => {
+      return `${iFirstName}!@#$%asdf248t`;
     };
 
     this.viaSurveyData = {
@@ -35,11 +36,11 @@ class ViaSurveyController {
     let registerFormData = {
       appKey: this.viaSurveyData.appKey,
       sendWelcomeEmailToUser: false,
-      email: User.getUserId(), // We use the user id here in case the user email changes in the future, the userID will never change
-      firstName: User.getFirstName(),
-      lastName: User.getLastName(),
+      email: `${User.getUserId()}`, // We use the user id here in case the user email changes in the future, the userID will never change
+      firstName: 'Jeremy', // Random name to don't send the real first name to via survey
+      lastName: 'Suliver', // Random name to don't send the real last name to via survey
       gender: User.getGender(),
-      password: this.createViaSurveyPassword(User.getFirstName(), User.getLastName())
+      password: this.createViaSurveyPassword(User.getFirstName())
     };
 
     // Default value if the input is messed up
@@ -92,9 +93,21 @@ class ViaSurveyController {
 
 
       ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted);
-      if ( this.isStepCompleted || ( this.block.data.hasOwnProperty('items') && this.block.data.items.length > 0 ) ) {
+      if ( this.isStepCompleted ||
+        ( this.block.data.hasOwnProperty('items') && this.block.data.items.length > 0 ) ||
+        ( Utility.getUserInputFromLocalStorage(this.block.data.config.all_strengths) ) ) {
         this.tabToDisplay = 'results';
-        this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(this.block.data.items, this.block.data.value);
+
+        let strengthList = {};
+        if ( this.block.data.hasOwnProperty('items') && this.block.data.items.length > 0 ) {
+          strengthList = this.block.data.items;
+        }
+        else {
+          strengthList = Utility.getUserInputFromLocalStorage(this.block.data.config.all_strengths);
+          ContentFactory.updateInputFields(this.block.data.config.all_strengths, strengthList);
+        }
+
+        this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(strengthList, this.block.data.value);
 
       }
       else {
@@ -228,14 +241,21 @@ class ViaSurveyController {
 
       saveSurveyResultsPost.$save().then( (dataBackFromServer) => {
         $log.log('Success saving list of Strength to the back end.  dataBackFromServer=', dataBackFromServer);
+
       })
       .catch( (error) => {
 
         $log.error('Error while saving list of Strength error=', error);
 
         // Saving the list of strength to the server is not mandatory at this stage
-        // If this fail now, we will try to add it to the list of fields to be saved later as part of the normal process within courceController.nextStep()
+        // If this fail now, we will try to add it to the list of fields to be saved later as part of the normal process within courseController.nextStep()
         ContentFactory.updateInputFields(this.block.data.config.all_strengths, iListOfStrength);
+
+        // Save to local storage in case the user refresh the page
+        Utility.saveUserInputToLocalStorage( {
+          [this.block.data.config.all_strengths]: iListOfStrength
+        } );
+
       } );
 
       $log.log('saveSurveyResultToBackEnd - END()');
@@ -255,6 +275,14 @@ class ViaSurveyController {
       getResultsPost.$call().then( (dataBackFromGetResults) => {
         $log.log('getResults() - Success dataBackFromGetResults=', dataBackFromGetResults);
         this.saveSurveyResultToBackEnd(dataBackFromGetResults.data);
+
+        // User got final results from VIa Survey, increment counter
+        $window.ga('send', {
+          hitType: 'event',
+          eventCategory: 'CompletedViaSurvey',
+          eventAction: ENVIRONMENT,
+          eventLabel: `User-${User.getUserId()} completed Via Survey using their API`
+        });
 
         this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(dataBackFromGetResults.data);
         this.tabToDisplay = 'results';

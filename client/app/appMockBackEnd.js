@@ -361,7 +361,7 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
     let dataObject = angular.fromJson(data);
-    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   dataObject=`, dataObject, '  headers=', headers);
+    $log.log(`$httpBackend.whenPOST(${url}),  method=${method},   dataObject=`, dataObject, '  headers=', headers);
 
     let responseHeaders = {
       stepId: dataObject.stepId,
@@ -374,6 +374,9 @@ angular.module( 'appMockBackEnd', [
 
     if ( dataObject.hasOwnProperty('fullUrl') && dataObject.fullUrl === 'genericContent' ) {
       return [ 200, responseContent, responseHeaders ];
+    }
+    else if ( dataObject.hasOwnProperty('markStepAsCompleted') && dataObject.markStepAsCompleted === false ) {
+      return error500;
     }
     else if ( !JwtFactory.isAuthExpired() ) {
       // Simulate a good answer
