@@ -23,99 +23,85 @@
   "fullUrl": "\/potentialife-course\/cycle-1\/module-1\/step-8",
   "blocks": [
     {
-      "id": 154,
+      "id": 1895,
       "type": "dynamic",
-      "element": "icon_text",
-      "program_data_code": null,
+      "element": "via_survey",
+      "source_program_data_code": "c1.m1.s7.all_strength_TONIO",
+      "program_data_code": "c1.m1.s7.checkbox_1_TONIO",
       "data": {
-        "value": null,
-        "icon": {
-          "type": "icon-badge-self-discovery",
-          "color": null
+        "intro_survey": {
+          "value": "<h1>Via Survey<\/h1><p>This is a survey that will last 120 questions<\/p><p>It is to evaluate your strenght, click on the button below to start the survey<\/p>"
         },
-        "text": "<p>You will now complete the VIA strengths finder, which will help you identify your unique character strengths. These are the strengths that you exercise when you are at your best. It should take about 15 minutes to complete.<\/p>",
-        "button": {
-          "href": "https:\/\/www.viacharacter.org\/survey\/account\/register",
-          "color": "primary",
-          "label": "Go to ViaMe Survey"
-        }
-      },
-      "pivot": {
-        "step_id": 13,
-        "block_id": 154
-      }
-    },
-    {
-      "id": 155,
-      "type": "static",
-      "element": "html",
-      "program_data_code": null,
-      "data": {
-        "value": "<p>Once you have completed the Via survey, please review your character strengths. Look at your top 5 strengths and choose the 3 that you identify with most.\r\n<\/p>"
-      },
-      "pivot": {
-        "step_id": 13,
-        "block_id": 155
-      }
-    },
-    {
-      "id": 176,
-      "type": "dynamic",
-      "element": "textbox",
-      "program_data_code": "l1.m1.s8.textbox.chosen_strength_1",
-      "data": {
-        "label": "Enter your chosen 3 strengths  below.",
-        "placeholder": "e.g. Love \/ Teamwork",
-        "value": null,
-        "name": "chosen_strength_1",
+        "intro_results": {
+          "value": "<h1>Results<\/h1><p>You can find below your strength pre-order a relevant order for you<\/p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but don't hesitate to check all the strength below to choose the ones that resonate the most with you<\/p>"
+        },
         "config": {
-          "type": "text",
-          "required": "1"
-        }
+          "nb_questions_per_page": "40",
+          "title_strength_list": "Your list of strengths",
+          "strength_list_min_selected": "3",
+          "strength_list_max_selected": 3,
+          "all_strengths": "c1.m1.s7.all_strength_TONIO"
+        },
+
+        "value": [
+          "Appreciation of Beauty \u0026 Excellence",
+          "Bravery",
+          "Prudence"
+        ],
+        "items": [
+          {
+            "StrengthName": "Appreciation of Beauty \u0026 Excellence",
+            "StrengthDescription": "\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience."
+          },
+          {
+            "StrengthName": "Bravery",
+            "StrengthDescription": "\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it."
+          },
+          {
+            "StrengthName": "Love",
+            "StrengthDescription": "\r\nValuing close relations with others, in particular those in which sharing \u0026 caring are reciprocated; being close to people."
+          },
+          {
+            "StrengthName": "Prudence",
+            "StrengthDescription": "\r\nBeing careful about one\u0027s choices; not taking undue risks; not saying or doing things that might later be regretted."
+          },
+          {
+            "StrengthName": "Teamwork",
+            "StrengthDescription": "\r\nWorking well as a member of a group or team; being loyal to the group; doing one\u0027s share."
+          },
+          {
+            "StrengthName": "Creativity",
+            "StrengthDescription": "\r\nThinking of novel and productive ways to conceptualize and do things; includes artistic achievement but is not limited to it."
+          },
+          {
+            "StrengthName": "Curiosity",
+            "StrengthDescription": "\r\nTaking an interest in ongoing experience for its own sake; finding subjects and topics fascinating; exploring and discovering."
+          },
+          {
+            "StrengthName": "Fairness",
+            "StrengthDescription": "\r\nTreating all people the same according to notions of fairness and justice; not letting feelings bias decisions about others; giving everyone a fair chance."
+          },
+          {
+            "StrengthName": "Forgiveness",
+            "StrengthDescription": "Forgiving those who have done wrong; accepting others’ shortcomings; giving people a second chance; not being vengeful."
+          },
+          {
+            "StrengthName": "Gratitude",
+            "StrengthDescription": "Being aware of and thankful for the good things that happen; taking time to express thanks."
+          },
+          {
+            "StrengthName": "Honesty",
+            "StrengthDescription": "Speaking the truth but more broadly presenting oneself in a genuine way and acting in a sincere way; being without pretense; taking responsibility for one\u0027s feelings and actions."
+          },
+          {
+            "StrengthName": "Hope",
+            "StrengthDescription": "Expecting the best in the future and working to achieve it; believing that a good future is something that can be brought about."
+          }
+        ]
       },
       "pivot": {
         "step_id": 13,
-        "block_id": 176
-      }
-    },
-    {
-      "id": 177,
-      "type": "dynamic",
-      "element": "textbox",
-      "program_data_code": "l1.m1.s8.textbox.chosen_strength_2",
-      "data": {
-        "label": null,
-        "placeholder": "e.g. Love \/ Teamwork",
-        "value": null,
-        "name": "chosen_strength_2",
-        "config": {
-          "type": "text",
-          "required": "1"
-        }
-      },
-      "pivot": {
-        "step_id": 13,
-        "block_id": 177
-      }
-    },
-    {
-      "id": 178,
-      "type": "dynamic",
-      "element": "textbox",
-      "program_data_code": "l1.m1.s8.textbox.chosen_strength_3",
-      "data": {
-        "label": null,
-        "placeholder": "e.g. Love \/ Teamwork",
-        "value": null,
-        "name": "chosen_strength_3",
-        "config": {
-          "type": "text",
-          "required": "1"
-        }
-      },
-      "pivot": {
-        "step_id": 13,
-        "block_id": 178
+        "block_id": 1895
       }
     }
   ],
