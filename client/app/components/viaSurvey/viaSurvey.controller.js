@@ -20,8 +20,8 @@ class ViaSurveyController {
 
     $log.log('constructor - START');
 
-    this.createViaSurveyPassword = (iFirstName, iLastName) => {
-      return `${iFirstName}!@#$%${iLastName}`;
+    this.createViaSurveyPassword = (iFirstName) => {
+      return `${iFirstName}!@#$%asdf248t`;
     };
 
     this.viaSurveyData = {
@@ -36,11 +36,11 @@ class ViaSurveyController {
     let registerFormData = {
       appKey: this.viaSurveyData.appKey,
       sendWelcomeEmailToUser: false,
-      email: `${User.getUserId()}1`, // We use the user id here in case the user email changes in the future, the userID will never change
-      firstName: User.getFirstName(),
-      lastName: User.getLastName(),
+      email: `${User.getUserId()}`, // We use the user id here in case the user email changes in the future, the userID will never change
+      firstName: 'Jeremy', // Random name to don't send the real first name to via survey
+      lastName: 'Suliver', // Random name to don't send the real last name to via survey
       gender: User.getGender(),
-      password: this.createViaSurveyPassword(User.getFirstName(), User.getLastName())
+      password: this.createViaSurveyPassword(User.getFirstName())
     };
 
     // Default value if the input is messed up
@@ -280,7 +280,7 @@ class ViaSurveyController {
         $window.ga('send', {
           hitType: 'event',
           eventCategory: 'CompletedViaSurvey',
-          eventAction: 'Via Survey has been completed',
+          eventAction: ENVIRONMENT,
           eventLabel: `User-${User.getUserId()} completed Via Survey using their API`
         });
 

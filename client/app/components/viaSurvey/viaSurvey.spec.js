@@ -339,6 +339,11 @@ describe('ViaSurvey', () => {
       expect(controller.numFirstQuestionDisplayed).to.equal(50);
     });
 
+    it('createViaSurveyPassword() - Create a password for this user', () => {
+      let password = controller.createViaSurveyPassword('myName');
+      expect(password).to.eq('myName!@#$%asdf248t');
+    });
+
     it('goToErrorState() - hide the spinner and change state', () => {
       controller.goToErrorState();
       sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.COURSE_CONTENT);
