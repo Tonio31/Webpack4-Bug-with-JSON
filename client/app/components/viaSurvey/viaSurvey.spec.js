@@ -345,9 +345,21 @@ describe('ViaSurvey', () => {
     });
 
     it('goToErrorState() - hide the spinner and change state', () => {
-      controller.goToErrorState();
+      let error = 'This is an error';
+      controller.goToErrorState(error);
       sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.COURSE_CONTENT);
-      sinon.assert.calledWith(spies.state.go, STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
+      sinon.assert.calledWith(
+        spies.state.go,
+        STATES.ERROR_PAGE,
+        {
+          errorMsg: 'ERROR_UNEXPECTED',
+          bugsnagErrorName: error,
+          bugsnagMetaData : {
+            'What Happened?': `${error}`,
+            'Error': 'Unknown Error'
+          }
+        },
+        { reload: true });
     });
 
     it('setTopLevelFormSubmitted() - update the fake submittedForm object if this.tabToDisplay === \'questions\'', () => {
