@@ -33,6 +33,7 @@ let BugsnagUtilsFactory = function( $log,
   };
 
   let notify = (iName, iMessage, iMetaData, iSeverity) => {
+    $log.log('notify - iName=', iName, '   iMessage=', iMessage, '   iMetaData=', iMetaData, '   iSeverity=', iSeverity);
     bugsnag.notify(iName, iMessage, iMetaData, iSeverity);
   };
 

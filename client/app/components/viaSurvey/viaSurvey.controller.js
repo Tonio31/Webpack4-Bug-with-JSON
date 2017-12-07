@@ -20,6 +20,8 @@ class ViaSurveyController {
 
     $log.log('constructor - START');
 
+    const VIA_SURVEY_API = 'VIA SURVEY API';
+
     this.createViaSurveyPassword = (iFirstName) => {
       return `${iFirstName}!@#$%asdf248t`;
     };
@@ -136,7 +138,15 @@ class ViaSurveyController {
     this.goToErrorState = (iApiInError, iError) => {
       $log.error(`Error during ${iApiInError}. error=`, iError);
       SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
-      $state.go(STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
+      $state.go(STATES.ERROR_PAGE,
+        {
+          errorMsg: 'ERROR_UNEXPECTED',
+          bugsnagErrorName: iApiInError,
+          bugsnagMetaData : {
+            'What Happened?': `${iApiInError}`,
+            'Error': iError ? iError.message : 'Unknown Error'
+          }
+        }, { reload: true });
     };
 
     // This function will be called every time the user clicks on "Next Step" button at the bottom of the page
@@ -170,7 +180,9 @@ class ViaSurveyController {
           }
           else {
             $log.log('Not all answer have been submitted, this should never happen');
-            this.goToErrorState('submitAnswers - reply false');
+
+            // eslint-disable-next-line max-len
+            this.goToErrorState(`${VIA_SURVEY_API} - submitAnswers - reply false, it should not happens as we only submitAnswers when survey is complete`);
           }
         });
       }
@@ -300,7 +312,7 @@ class ViaSurveyController {
         SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
       })
       .catch( (error) => {
-        this.goToErrorState('GetResults', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - GetResults returns an error`, error);
       });
     };
 
@@ -334,7 +346,7 @@ class ViaSurveyController {
         deferred.resolve(dataBackFromSubmitAnswers);
       })
       .catch( (error) => {
-        this.goToErrorState('SubmitAnswers', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - SubmitAnswers returns an error`, error);
         deferred.reject(error);
       });
 
@@ -362,7 +374,7 @@ class ViaSurveyController {
           this.loginUserRequest();
         }
         else {
-          this.goToErrorState('Register', error);
+          this.goToErrorState(`${VIA_SURVEY_API} - Register returns an error`, error);
         }
       });
     };
@@ -378,7 +390,7 @@ class ViaSurveyController {
         this.startSurveyRequest();
       })
       .catch( (error) => {
-        this.goToErrorState('Login', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - Login returns an error`, error);
       });
     };
 
@@ -400,7 +412,7 @@ class ViaSurveyController {
         this.getQuestionsRequest();
       })
       .catch( (error) => {
-        this.goToErrorState('StartSurvey', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - StartSurvey returns an error`, error);
       });
     };
 
@@ -434,7 +446,7 @@ class ViaSurveyController {
         SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
       })
       .catch( (error) => {
-        this.goToErrorState('GetQuestions', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - GetQuestions returns an error`, error);
       });
 
     };
