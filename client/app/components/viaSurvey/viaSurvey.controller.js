@@ -215,23 +215,25 @@ class ViaSurveyController {
         }
       };
 
-      for (let strength of iListStrengths) {
-        let item = {
-          label: strength.StrengthName,
-          sub_label: strength.StrengthDescription, // eslint-disable-line camelcase
-          value: strength.StrengthName,
-          checked: false,
-          feedback: null
-        };
+      if ( iListStrengths ) {
+        for (let strength of iListStrengths) {
+          let item = {
+            label: strength.StrengthName,
+            sub_label: strength.StrengthDescription, // eslint-disable-line camelcase
+            value: strength.StrengthName,
+            checked: false,
+            feedback: null
+          };
 
-        // iSelectedStrength will be null when the data is coming from viaMe API
-        // But if it is coming from the backend (once the step is completed), we need
-        // to select what the user previously chose
-        if ( iSelectedStrength && iSelectedStrength.indexOf(strength.StrengthName) > -1 ) {
-          item.checked = true;
+          // iSelectedStrength will be null when the data is coming from viaMe API
+          // But if it is coming from the backend (once the step is completed), we need
+          // to select what the user previously chose
+          if ( iSelectedStrength && iSelectedStrength.indexOf(strength.StrengthName) > -1 ) {
+            item.checked = true;
+          }
+
+          checkboxBlock.data.items.push(item);
         }
-
-        checkboxBlock.data.items.push(item);
       }
 
       $log.log('transformResultsToCheckBoxBlock() - checkboxBlock=', checkboxBlock);
