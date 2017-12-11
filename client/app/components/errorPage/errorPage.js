@@ -18,7 +18,9 @@ let errorPageModule = angular.module('errorPage', [
       parent: STATES.MAIN_NO_MENU,
       component: 'errorPage',
       params: {
-        errorMsg: null
+        errorMsg: null,
+        bugsnagMetaData: null,
+        bugsnagErrorName: null
       }
     })
     .state(STATES.ERROR_PAGE, {
@@ -26,7 +28,9 @@ let errorPageModule = angular.module('errorPage', [
       parent: STATES.MAIN,
       component: 'errorPage',
       params: {
-        errorMsg: null
+        errorMsg: null,
+        bugsnagMetaData: null,
+        bugsnagErrorName: null
       }
     });
 })

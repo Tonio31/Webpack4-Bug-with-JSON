@@ -184,7 +184,11 @@ describe('ViaSurvey', () => {
     saveUserInputToLocalStorage: () => {},
     removeUserInputFromLocalStorage: () => {},
     getUserInputFromLocalStorage: (iQuestionID) => {
+
       if ( iQuestionID === '99999' ) {
+        return false;
+      }
+      else if ( iQuestionID === blockBinding.data.config.all_strengths ) {
         return false;
       }
       return true;
@@ -219,6 +223,7 @@ describe('ViaSurvey', () => {
     spies.state.go = sandbox.stub(mockState, 'go');
     spies.utilityFactory.saveUserInputToLocalStorage = sandbox.stub(mockUtility, 'saveUserInputToLocalStorage');
     spies.utilityFactory.removeUserInputFromLocalStorage = sandbox.stub(mockUtility, 'removeUserInputFromLocalStorage');
+    spies.utilityFactory.getUserInputFromLocalStorage = sandbox.spy(mockUtility, 'getUserInputFromLocalStorage');
 
   }));
 
@@ -269,11 +274,46 @@ describe('ViaSurvey', () => {
         5: false,
         6: false,
       });
+      sinon.assert.calledWith(spies.utilityFactory.getUserInputFromLocalStorage, blockBinding.data.config.all_strengths);
       sinon.assert.calledWith(spies.spinnerFactory.show, SPINNERS.COURSE_CONTENT);
       sinon.assert.calledWith(spies.contentFactory.setBeforeNextStepValidation, controller.setTopLevelFormSubmitted);
       sinon.assert.calledWith(spies.contentFactory.setNextStepButtonPreSaveAction, controller.displayNextPageSurvey);
       sinon.assert.calledWith(spies.contentFactory.setPreviousStepButtonPreAction, controller.displayPrevPageSurvey);
       sinon.assert.called(registerUserSpy);
+    });
+
+
+    it('$onInit() - if the list of strength are in Local storage, she should we directly to the result tab', () => {
+
+      spies.utilityFactory.getUserInputFromLocalStorage.restore();
+
+      let test = () => {
+        return listStrength;
+      };
+
+      spies.utilityFactory.getUserInputFromLocalStorage = sandbox.stub(mockUtility, 'getUserInputFromLocalStorage', test);
+
+
+      controller.$onInit();
+      expect(controller.radioQuestions).to.deep.equal([]);
+      expect(controller.tabToDisplay).to.equal('results');
+      expect(controller.config.nbQuestionsDisplayed).to.equal(20);
+      expect(controller.numFirstQuestionDisplayed).to.equal(0);
+      expect(controller.nbPagesSurvey).to.equal(6);
+      expect(controller.currentPageNumber).to.equal(1);
+      expect(controller.simulateTopLevelFormSubmitted).to.deep.equal({
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+        6: false,
+      });
+
+
+      sinon.assert.calledWith(spies.utilityFactory.getUserInputFromLocalStorage, blockBinding.data.config.all_strengths);
+      sinon.assert.calledWith(spies.contentFactory.updateInputFields, blockBinding.data.config.all_strengths, listStrength);
+      sinon.assert.calledWith(spies.contentFactory.setBeforeNextStepValidation, controller.setTopLevelFormSubmitted);
     });
 
     it('displayPrevPageSurvey() - Change state if the current page is 1', () => {
@@ -299,10 +339,27 @@ describe('ViaSurvey', () => {
       expect(controller.numFirstQuestionDisplayed).to.equal(50);
     });
 
+    it('createViaSurveyPassword() - Create a password for this user', () => {
+      let password = controller.createViaSurveyPassword('myName');
+      expect(password).to.eq('myName!@#$%asdf248t');
+    });
+
     it('goToErrorState() - hide the spinner and change state', () => {
-      controller.goToErrorState();
+      let error = 'This is an error';
+      controller.goToErrorState(error);
       sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.COURSE_CONTENT);
-      sinon.assert.calledWith(spies.state.go, STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
+      sinon.assert.calledWith(
+        spies.state.go,
+        STATES.ERROR_PAGE,
+        {
+          errorMsg: 'ERROR_UNEXPECTED',
+          bugsnagErrorName: error,
+          bugsnagMetaData : {
+            'What Happened?': `${error}`,
+            'Error': 'Unknown Error'
+          }
+        },
+        { reload: true });
     });
 
     it('setTopLevelFormSubmitted() - update the fake submittedForm object if this.tabToDisplay === \'questions\'', () => {

@@ -3,6 +3,7 @@ class ViaSurveyController {
                $q,
                $state,
                $anchorScroll,
+               $window,
                User,
                Data,
                ContentFactory,
@@ -19,8 +20,10 @@ class ViaSurveyController {
 
     $log.log('constructor - START');
 
-    this.createViaSurveyPassword = (iFirstName, iLastName) => {
-      return `${iFirstName}!@#$%${iLastName}`;
+    const VIA_SURVEY_API = 'VIA SURVEY API';
+
+    this.createViaSurveyPassword = (iFirstName) => {
+      return `${iFirstName}!@#$%asdf248t`;
     };
 
     this.viaSurveyData = {
@@ -35,11 +38,11 @@ class ViaSurveyController {
     let registerFormData = {
       appKey: this.viaSurveyData.appKey,
       sendWelcomeEmailToUser: false,
-      email: User.getUserId(), // We use the user id here in case the user email changes in the future, the userID will never change
-      firstName: User.getFirstName(),
-      lastName: User.getLastName(),
+      email: `${User.getUserId()}`, // We use the user id here in case the user email changes in the future, the userID will never change
+      firstName: 'Jeremy', // Random name to don't send the real first name to via survey
+      lastName: 'Suliver', // Random name to don't send the real last name to via survey
       gender: User.getGender(),
-      password: this.createViaSurveyPassword(User.getFirstName(), User.getLastName())
+      password: this.createViaSurveyPassword(User.getFirstName())
     };
 
     // Default value if the input is messed up
@@ -92,9 +95,21 @@ class ViaSurveyController {
 
 
       ContentFactory.setBeforeNextStepValidation(this.setTopLevelFormSubmitted);
-      if ( this.isStepCompleted || ( this.block.data.hasOwnProperty('items') && this.block.data.items.length > 0 ) ) {
+      if ( this.isStepCompleted ||
+        ( this.block.data.hasOwnProperty('items') && this.block.data.items.length > 0 ) ||
+        ( Utility.getUserInputFromLocalStorage(this.block.data.config.all_strengths) ) ) {
         this.tabToDisplay = 'results';
-        this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(this.block.data.items, this.block.data.value);
+
+        let strengthList = {};
+        if ( this.block.data.hasOwnProperty('items') && this.block.data.items.length > 0 ) {
+          strengthList = this.block.data.items;
+        }
+        else {
+          strengthList = Utility.getUserInputFromLocalStorage(this.block.data.config.all_strengths);
+          ContentFactory.updateInputFields(this.block.data.config.all_strengths, strengthList);
+        }
+
+        this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(strengthList, this.block.data.value);
 
       }
       else {
@@ -123,7 +138,15 @@ class ViaSurveyController {
     this.goToErrorState = (iApiInError, iError) => {
       $log.error(`Error during ${iApiInError}. error=`, iError);
       SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
-      $state.go(STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true });
+      $state.go(STATES.ERROR_PAGE,
+        {
+          errorMsg: 'ERROR_UNEXPECTED',
+          bugsnagErrorName: iApiInError,
+          bugsnagMetaData : {
+            'What Happened?': `${iApiInError}`,
+            'Error': iError ? iError.message : 'Unknown Error'
+          }
+        }, { reload: true });
     };
 
     // This function will be called every time the user clicks on "Next Step" button at the bottom of the page
@@ -157,7 +180,9 @@ class ViaSurveyController {
           }
           else {
             $log.log('Not all answer have been submitted, this should never happen');
-            this.goToErrorState('submitAnswers - reply false');
+
+            // eslint-disable-next-line max-len
+            this.goToErrorState(`${VIA_SURVEY_API} - submitAnswers - reply false, it should not happens as we only submitAnswers when survey is complete`);
           }
         });
       }
@@ -190,23 +215,25 @@ class ViaSurveyController {
         }
       };
 
-      for (let strength of iListStrengths) {
-        let item = {
-          label: strength.StrengthName,
-          sub_label: strength.StrengthDescription, // eslint-disable-line camelcase
-          value: strength.StrengthName,
-          checked: false,
-          feedback: null
-        };
+      if ( iListStrengths ) {
+        for (let strength of iListStrengths) {
+          let item = {
+            label: strength.StrengthName,
+            sub_label: strength.StrengthDescription, // eslint-disable-line camelcase
+            value: strength.StrengthName,
+            checked: false,
+            feedback: null
+          };
 
-        // iSelectedStrength will be null when the data is coming from viaMe API
-        // But if it is coming from the backend (once the step is completed), we need
-        // to select what the user previously chose
-        if ( iSelectedStrength && iSelectedStrength.indexOf(strength.StrengthName) > -1 ) {
-          item.checked = true;
+          // iSelectedStrength will be null when the data is coming from viaMe API
+          // But if it is coming from the backend (once the step is completed), we need
+          // to select what the user previously chose
+          if ( iSelectedStrength && iSelectedStrength.indexOf(strength.StrengthName) > -1 ) {
+            item.checked = true;
+          }
+
+          checkboxBlock.data.items.push(item);
         }
-
-        checkboxBlock.data.items.push(item);
       }
 
       $log.log('transformResultsToCheckBoxBlock() - checkboxBlock=', checkboxBlock);
@@ -228,14 +255,21 @@ class ViaSurveyController {
 
       saveSurveyResultsPost.$save().then( (dataBackFromServer) => {
         $log.log('Success saving list of Strength to the back end.  dataBackFromServer=', dataBackFromServer);
+
       })
       .catch( (error) => {
 
         $log.error('Error while saving list of Strength error=', error);
 
         // Saving the list of strength to the server is not mandatory at this stage
-        // If this fail now, we will try to add it to the list of fields to be saved later as part of the normal process within courceController.nextStep()
+        // If this fail now, we will try to add it to the list of fields to be saved later as part of the normal process within courseController.nextStep()
         ContentFactory.updateInputFields(this.block.data.config.all_strengths, iListOfStrength);
+
+        // Save to local storage in case the user refresh the page
+        Utility.saveUserInputToLocalStorage( {
+          [this.block.data.config.all_strengths]: iListOfStrength
+        } );
+
       } );
 
       $log.log('saveSurveyResultToBackEnd - END()');
@@ -256,6 +290,14 @@ class ViaSurveyController {
         $log.log('getResults() - Success dataBackFromGetResults=', dataBackFromGetResults);
         this.saveSurveyResultToBackEnd(dataBackFromGetResults.data);
 
+        // User got final results from VIa Survey, increment counter
+        $window.ga('send', {
+          hitType: 'event',
+          eventCategory: 'CompletedViaSurvey',
+          eventAction: ENVIRONMENT,
+          eventLabel: `User-${User.getUserId()} completed Via Survey using their API`
+        });
+
         this.listOfStrengthsForCheckBox = this.transformResultsToCheckBoxBlock(dataBackFromGetResults.data);
         this.tabToDisplay = 'results';
 
@@ -272,7 +314,7 @@ class ViaSurveyController {
         SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
       })
       .catch( (error) => {
-        this.goToErrorState('GetResults', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - GetResults returns an error`, error);
       });
     };
 
@@ -306,7 +348,7 @@ class ViaSurveyController {
         deferred.resolve(dataBackFromSubmitAnswers);
       })
       .catch( (error) => {
-        this.goToErrorState('SubmitAnswers', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - SubmitAnswers returns an error`, error);
         deferred.reject(error);
       });
 
@@ -334,7 +376,7 @@ class ViaSurveyController {
           this.loginUserRequest();
         }
         else {
-          this.goToErrorState('Register', error);
+          this.goToErrorState(`${VIA_SURVEY_API} - Register returns an error`, error);
         }
       });
     };
@@ -350,7 +392,7 @@ class ViaSurveyController {
         this.startSurveyRequest();
       })
       .catch( (error) => {
-        this.goToErrorState('Login', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - Login returns an error`, error);
       });
     };
 
@@ -372,7 +414,7 @@ class ViaSurveyController {
         this.getQuestionsRequest();
       })
       .catch( (error) => {
-        this.goToErrorState('StartSurvey', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - StartSurvey returns an error`, error);
       });
     };
 
@@ -406,7 +448,7 @@ class ViaSurveyController {
         SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
       })
       .catch( (error) => {
-        this.goToErrorState('GetQuestions', error);
+        this.goToErrorState(`${VIA_SURVEY_API} - GetQuestions returns an error`, error);
       });
 
     };

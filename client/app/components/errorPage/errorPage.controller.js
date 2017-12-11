@@ -12,10 +12,20 @@ class ErrorPageController {
 
     $log.log('constructor - START');
 
-    this.sendErrorToBugsnag = () => {
+    this.sendErrorToBugsnag = (iCustomData, iErrorName) => {
       let statesHistory = BugsnagUtils.getStatesHistoryAsString();
-      $log.error(`sendErrorToBUgsnag() - Send an error to Bugsnag statesHistory= ${statesHistory}`);
-      BugsnagUtils.notify('User on Error Page', `${$state.current.name}`, { 'STATES HISTORY': statesHistory });
+
+
+      let customData = iCustomData;
+      customData['STATES HISTORY'] = statesHistory;
+
+      $log.error(`sendErrorToBugsnag() - Send an error to Bugsnag customData=`, customData);
+
+      BugsnagUtils.notify(
+        iErrorName,
+        `${$state.current.name}`,
+        customData
+      );
     };
 
     this.$onInit = () => {
@@ -31,7 +41,10 @@ class ErrorPageController {
 
       this.displayContactUsForm = $stateParams.displayMenu;
 
-      this.sendErrorToBugsnag();
+      let customData = Object.assign({}, $stateParams.bugsnagMetaData);
+      let errorName = $stateParams.bugsnagErrorName || 'User on Error Page';
+
+      this.sendErrorToBugsnag(customData, errorName);
     };
 
     this.openWendeskWidget = () => {

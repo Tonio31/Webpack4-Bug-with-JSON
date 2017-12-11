@@ -6,6 +6,7 @@ class HomeController {
                User,
                Menu,
                ZendeskWidget,
+               STATES,
                $window) {
     'ngInject';
 
