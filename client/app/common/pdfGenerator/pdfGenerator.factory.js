@@ -137,6 +137,8 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
               let title = (finalPdfTemplate.info && finalPdfTemplate.info.title) ? finalPdfTemplate.info.title : 'Potentialife';
               pdfMake.createPdf(finalPdfTemplate).download(title);
               pdfMake.createPdf(finalPdfTemplate).open();
+
+              $log.log('generatePDF - END');
             }
             catch (e) {
               $log.log('pdfTemplateWithDataAndConfig=', pdfTemplateWithDataAndConfig);
@@ -152,6 +154,7 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
       (error) => {
         $log.error('Error retrieving iDocURL=', iDocURL, '    error=', error);
       });
+
   };
 
 
