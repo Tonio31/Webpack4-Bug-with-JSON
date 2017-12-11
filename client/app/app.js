@@ -250,7 +250,10 @@ let appModule = angular.module( 'app', [
       if ( error.type === 6 && error.detail.status === 401 && error.detail.statusText === 'token_used' ) {
         $log.warn( `$transitions.onError(matchFromAnyToParentNoLogin) - Error 401, token_used. It is probably the 360 survey
                      token used a second time` );
-        $state.go( STATES.ERROR_PAGE_NO_MENU, { errorMsg: '360_TOKEN_USED' }, { reload: true } );
+        $state.go( STATES.ERROR_PAGE_NO_MENU, {
+          errorMsg: '360_TOKEN_USED',
+          bugsnagErrorName: '360_TOKEN_USED'
+        }, { reload: true } );
       }
       else {
         $log.error( '$transitions.onError(matchFromAnyToParentNoLogin) - fromState=', fromState,
