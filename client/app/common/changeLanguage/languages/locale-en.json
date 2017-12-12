@@ -48,6 +48,7 @@
   "LOGIN_FAILED": "Login failed, please try again or click Forgot \"Login details?\" below",
   "TOO_MANY_LOGIN_ERROR": "You tried to login and failed more than 5 times, your account has been blocked for 1 minute",
   "RESET_PASSWORD": "Reset your password",
+  "CREATE_PASSWORD": "Create your password",
   "RESET_PASSWORD_BUTTON": "Reset password",
   "BACK_TO_LOGIN": "Back to login",
   "KEEP_ME_LOGGED_IN": "Keep me logged in",

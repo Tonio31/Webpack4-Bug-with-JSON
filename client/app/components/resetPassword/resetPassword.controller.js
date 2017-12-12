@@ -2,6 +2,7 @@ class ResetPasswordController {
   constructor( $log,
                $state,
                $stateParams,
+               $filter,
                $location,
                JwtFactory,
                SpinnerFactory,
@@ -79,6 +80,17 @@ class ResetPasswordController {
       $log.log('$onInit $stateParams=', $stateParams);
       this.token = $stateParams.token;
       this.userId = $stateParams.user_id;
+      this.labelAction = '';
+
+      if ( $stateParams.action === 'creation' ) {
+        this.labelAction = $filter('translate')('CREATE_PASSWORD');
+      }
+      else if ( $stateParams.action === 'reset' ) {
+        this.labelAction = $filter('translate')('RESET_PASSWORD');
+      }
+      else {
+        throw new Error(`Action (${$stateParams.action}) parameter unknown`);
+      }
 
       // Remove all url parameters from the URL
       $location.search({});

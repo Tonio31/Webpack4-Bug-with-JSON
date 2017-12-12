@@ -74,15 +74,22 @@ describe('ResetPassword', () => {
       spies.spinnerFactory.show = sinon.spy(SpinnerFactory, 'show');
     });
 
-    it('remove the url Parameters from the URL', () => { // erase if removing this.name from the controller
-      $location.url(`${STATES.RESET_PASSWORD}?token=${token}&user_id=${userId}`);
+    it('remove the url Parameters from the URL', () => {
+      $location.url(`${STATES.RESET_PASSWORD}?token=${token}`);
       $rootScope.$digest();
       controller.$onInit();
       expect($location.url()).to.equal(STATES.RESET_PASSWORD);
       expect(controller.token).to.equal(token);
-      expect(controller.userId).to.equal(userId);
+      expect(controller.labelAction).to.equal('RESET_PASSWORD');
     });
 
+    it('onInit() test state parameter', () => {
+      $location.url(`${STATES.CREATION_PASSWORD}?token=${token}`);
+      $rootScope.$digest();
+      controller.$onInit();
+      expect($location.url()).to.equal(STATES.CREATION_PASSWORD);
+      expect(controller.labelAction).to.equal('CREATE_PASSWORD');
+    });
 
     it('comparePassword set the field in the form to invalid if the password match', sinon.test( () => {
       controller.password = 'abc';
