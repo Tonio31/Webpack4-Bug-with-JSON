@@ -84,7 +84,7 @@ angular.module( 'appMockBackEnd', [
   let error401_tokenExpired = [ 401, { message: 'token_expired' }, {}, 'token_expired' ];
   let error401_tokenUsed = [ 401, { message: 'token_used' }, {}, 'token_used' ];
   let error429 = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
-  let error500 = [ 500, { error: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
+  let error500 = [ 500, { message: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
 
   // Set a userID by default if the user logs in with a token in the URL
   if ( !JwtFactory.getUserId() ) {
@@ -453,8 +453,8 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    // return error401;
-    return [ 200, participant[headers.user_id], {} ];
+    return error500;
+    // return [ 200, participant[headers.user_id], {} ];
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('partial_save')).respond( (method, url) => {
