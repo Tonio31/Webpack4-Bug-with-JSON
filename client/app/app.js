@@ -250,12 +250,18 @@ let appModule = angular.module( 'app', [
       if ( error.type === 6 && error.detail.status === 401 && error.detail.statusText === 'token_used' ) {
         $log.warn( `$transitions.onError(matchFromAnyToParentNoLogin) - Error 401, token_used. It is probably the 360 survey
                      token used a second time` );
-        $state.go( STATES.ERROR_PAGE_NO_MENU, { errorMsg: '360_TOKEN_USED' }, { reload: true } );
+        $state.go( STATES.ERROR_PAGE_NO_MENU, {
+          errorMsg: '360_TOKEN_USED',
+          bugsnagErrorName: '360_TOKEN_USED'
+        }, { reload: true } );
       }
       else {
         $log.error( '$transitions.onError(matchFromAnyToParentNoLogin) - fromState=', fromState,
           '  toState=', toState, '  error=', error );
-        $state.go( STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true } );
+        $state.go( STATES.ERROR_PAGE_NO_MENU, {
+          errorMsg: 'ERROR_UNEXPECTED',
+          bugsnagErrorName: 'Error Transition not logged in'
+        }, { reload: true } );
       }
     } );
 
@@ -295,7 +301,10 @@ let appModule = angular.module( 'app', [
       else {
         $log.error( '$transitions.onError(matchFromAnyToParentWithMenu) - fromState=', fromState,
           '  toState=', toState, '  error=', error );
-        $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' }, { reload: true } );
+        $state.go( STATES.ERROR_PAGE, {
+          errorMsg: 'ERROR_UNEXPECTED',
+          bugsnagErrorName: 'Error Transition logged in'
+        }, { reload: true } );
       }
     } );
 
@@ -352,7 +361,10 @@ let appModule = angular.module( 'app', [
             }
             else {
               $exceptionHandler( error );
-              $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+              $state.go( STATES.ERROR_PAGE, {
+                errorMsg: 'ERROR_UNEXPECTED',
+                bugsnagErrorName: 'Error processing Menu'
+              } );
             }
           }
 
@@ -367,7 +379,10 @@ let appModule = angular.module( 'app', [
           }
           else {
             $exceptionHandler( error );
-            $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+            $state.go( STATES.ERROR_PAGE, {
+              errorMsg: 'ERROR_UNEXPECTED',
+              bugsnagErrorName: 'Error retrieving Menu'
+            } );
           }
 
         } );
@@ -382,7 +397,10 @@ let appModule = angular.module( 'app', [
         }
         else {
           $exceptionHandler( error );
-          $state.go( STATES.ERROR_PAGE, { errorMsg: 'ERROR_UNEXPECTED' } );
+          $state.go( STATES.ERROR_PAGE, {
+            errorMsg: 'ERROR_UNEXPECTED',
+            bugsnagErrorName: 'Error retrieving Participant Data'
+          } );
         }
 
       } );
@@ -410,7 +428,10 @@ let appModule = angular.module( 'app', [
   }
   catch (error) {
     $exceptionHandler( error );
-    $state.go( STATES.ERROR_PAGE_NO_MENU, { errorMsg: 'ERROR_UNEXPECTED' } );
+    $state.go( STATES.ERROR_PAGE_NO_MENU, {
+      errorMsg: 'ERROR_UNEXPECTED',
+      bugsnagErrorName: 'Error APP::RUN()'
+    } );
   }
 } )
 .component( 'app', AppComponent )

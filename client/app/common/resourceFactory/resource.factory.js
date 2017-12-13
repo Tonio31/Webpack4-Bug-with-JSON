@@ -60,12 +60,12 @@ let ResourceFactory = function( $log,
         deferred.resolve();
       }
       catch (error) {
-        $log.error('getParticipantDetails() error=', error);
+        $log.error(`getParticipantDetails() error:[${error.status},${error.statusText}]`);
         deferred.reject(error);
       }
     },
     (error) => {
-      $log.error('getParticipantDetails() error=', error);
+      $log.error(`getParticipantDetails() error:[${error.status},${error.statusText}]`);
       deferred.reject(error);
     });
 
@@ -83,7 +83,7 @@ let ResourceFactory = function( $log,
         deferred.resolve(data);
       },
       (error) => {
-        $log.error('getDynamicContentPromise error=', error);
+        $log.error(`getDynamicContentPromise() error:[${error.status},${error.statusText}]`);
 
         deferred.reject(error);
       });
@@ -93,7 +93,7 @@ let ResourceFactory = function( $log,
         deferred.resolve(data);
       },
       (error) => {
-        $log.error('getDynamicContentPromise error=', error);
+        $log.error(`getDynamicContentPromise() error:[${error.status},${error.statusText}]`);
 
         deferred.reject(error);
       });
@@ -115,7 +115,7 @@ let ResourceFactory = function( $log,
       tokenSurvey = $localStorage[TOKEN_SURVEY];
     }
 
-    $log.warn('getFriendSurveyContent() - tokenSurvey=', tokenSurvey);
+    $log.log('getFriendSurveyContent() - tokenSurvey=', tokenSurvey);
 
     if ( tokenSurvey ) {
       ioGetParameters[TOKEN_SURVEY] = tokenSurvey;
