@@ -131,14 +131,14 @@ let appModule = angular.module( 'app', [
     //     the user to the good step
     let matchFromLoginToHome = {
       from: ( state ) => {
-        return (state.name === STATES.LOGIN || state.name === STATES.RESET_PASSWORD);
+        return (state.name === STATES.LOGIN || state.name === STATES.RESET_PASSWORD || state.name === STATES.CREATION_PASSWORD);
       },
       to: STATES.HOME
     };
 
     $transitions.onStart( matchFromLoginToHome, ( trans ) => {
 
-      $log.log( 'Coming From login Page or reset password state' );
+      $log.log( 'Coming From login Page or reset/create password state' );
 
       let deferred = $q.defer();
 
