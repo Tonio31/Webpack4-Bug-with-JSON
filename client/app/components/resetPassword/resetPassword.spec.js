@@ -74,7 +74,7 @@ describe('ResetPassword', () => {
       spies.spinnerFactory.show = sinon.spy(SpinnerFactory, 'show');
     });
 
-    it('remove the url Parameters from the URL', () => {
+    it('onInit() - test reset password state & removing token form URL', () => {
       $location.url(`${STATES.RESET_PASSWORD}?token=${token}`);
       $rootScope.$digest();
       controller.$onInit();
@@ -83,7 +83,7 @@ describe('ResetPassword', () => {
       expect(controller.labelAction).to.equal('RESET_PASSWORD');
     });
 
-    it('onInit() test state parameter', () => {
+    it('onInit() - test creation password state', () => {
       $location.url(`${STATES.CREATION_PASSWORD}?token=${token}`);
       $rootScope.$digest();
       controller.$onInit();
