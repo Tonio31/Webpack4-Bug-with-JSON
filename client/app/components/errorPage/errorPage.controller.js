@@ -19,7 +19,7 @@ class ErrorPageController {
       let customData = iCustomData;
       customData['STATES HISTORY'] = statesHistory;
 
-      $log.error(`sendErrorToBugsnag() - Send an error to Bugsnag customData=`, customData);
+      $log.error(`sendErrorToBugsnag() - Send an error to Bugsnag customData=${angular.toJson(customData)}`);
 
       BugsnagUtils.notify(
         iErrorName,
@@ -29,7 +29,7 @@ class ErrorPageController {
     };
 
     this.$onInit = () => {
-      $log.log('$onInit - $stateParams=', $stateParams);
+      $log.log(`$onInit - $stateParams=${angular.toJson($stateParams)}`);
       this.errorMsg = '';
       let errorCodeToTranslate = $stateParams.errorMsg;
       if ( errorCodeToTranslate ) {

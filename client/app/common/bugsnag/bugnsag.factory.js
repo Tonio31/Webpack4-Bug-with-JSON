@@ -10,7 +10,7 @@ let BugsnagFactory = function($log, User) {
   // modify metaData to add new tabs in Bugsnag (add metaData as parameter after payload if needed)
   return (payload) => {
 
-    $log.error('BUGSNAG report. payload=', payload);
+    $log.error(`BUGSNAG report. error=${payload.name},   payload=`, payload);
     if ( ENVIRONMENT === 'development' ) {
       // Don't notify Bugsnag for localhost development
       return false;
