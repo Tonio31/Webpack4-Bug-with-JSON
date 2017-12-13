@@ -7,25 +7,37 @@ import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 import ConstantModule from 'common/constants';
 
 
-let resetPasswordModule = angular.module('resetPassword', [
+let resetPasswordModule = angular.module( 'resetPassword', [
   uiRouter,
   LogDecorator,
   ResourceFactory,
   LoadingSpinnerModule,
   ConstantModule
-])
-.config(($stateProvider, STATES) => {
+] )
+.config( ( $stateProvider, STATES ) => {
   'ngInject';
 
   $stateProvider
-    .state(STATES.RESET_PASSWORD, {
-      url: `${STATES.RESET_PASSWORD}?token&user_id`,
-      parent: STATES.LOGIN_ROOT,
-      component: 'resetPassword',
-      reloadOnSearch : false,
-    });
-})
-.component('resetPassword', resetPasswordComponent)
+  .state( STATES.RESET_PASSWORD, {
+    url: `${STATES.RESET_PASSWORD}?token`,
+    parent: STATES.LOGIN_ROOT,
+    component: 'resetPassword',
+    params: {
+      action: 'reset'
+    },
+    reloadOnSearch: false,
+  } )
+  .state( STATES.CREATION_PASSWORD, {
+    url: `${STATES.CREATION_PASSWORD}?token`,
+    parent: STATES.LOGIN_ROOT,
+    component: 'resetPassword',
+    params: {
+      action: 'creation'
+    },
+    reloadOnSearch: false,
+  } );
+} )
+.component( 'resetPassword', resetPasswordComponent )
 
 .name;
 

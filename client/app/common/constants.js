@@ -12,6 +12,7 @@ let constantModule = angular.module('app.common.constant', [
     HOME: '/home',
     LOGIN: '/login',
     RESET_PASSWORD: '/password/reset',
+    CREATION_PASSWORD: '/password/creation',
     RETRIEVE_CREDENTIALS: '/retrieve_credentials',
     PAGE_NOT_FOUND: '/404',
     PAGE_NOT_FOUND_NO_MENU: '/PageNotFound', // This needs to be different than PAGE_NOT_FOUND
