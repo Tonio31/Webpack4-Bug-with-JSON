@@ -142,7 +142,6 @@ class CourseContentController {
 
     this.convertInputFieldForPOST = (iInputFields, iAdditionalData) => {
 
-      $log.warn('convertInputFieldForPOST    iInputFields=', iInputFields, '      iAdditionalData=', iAdditionalData);
       let programData = [];
 
       Object.entries(iInputFields).forEach( ([ key, value ]) => {
@@ -163,7 +162,6 @@ class CourseContentController {
         }
       });
 
-      $log.warn('convertInputFieldForPOST    programData=', programData);
       return programData;
     };
 
