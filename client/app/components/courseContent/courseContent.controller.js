@@ -142,22 +142,28 @@ class CourseContentController {
 
     this.convertInputFieldForPOST = (iInputFields, iAdditionalData) => {
 
+      $log.warn('convertInputFieldForPOST    iInputFields=', iInputFields, '      iAdditionalData=', iAdditionalData);
       let programData = [];
 
       Object.entries(iInputFields).forEach( ([ key, value ]) => {
-        programData.push({
-          code: key,
-          value: value
-        });
+        if ( value ) {
+          programData.push({
+            code: key,
+            value: value
+          });
+        }
       });
 
       Object.entries(iAdditionalData).forEach( ([ key, value ]) => {
-        programData.push({
-          code: key,
-          value: value
-        });
+        if ( value ) {
+          programData.push({
+            code: key,
+            value: value
+          });
+        }
       });
 
+      $log.warn('convertInputFieldForPOST    programData=', programData);
       return programData;
     };
 
