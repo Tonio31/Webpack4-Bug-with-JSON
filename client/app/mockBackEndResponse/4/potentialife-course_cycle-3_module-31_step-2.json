@@ -81,7 +81,7 @@
         },
         "label": "Label: Story 1:",
         "placeholder": "placeholder: Please fill in the first story",
-        "value": "something",
+        "value": "",
         "name": "name: story_1"
       },
       "pivot": {
@@ -112,7 +112,7 @@
       "data": {
         "config": {
           "type": "text",
-          "required": true
+          "required": false
         },
         "label": "Label: This is the label for the text box common_theme_1",
         "placeholder": "placeholder: Enter some data here",

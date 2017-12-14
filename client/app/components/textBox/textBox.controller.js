@@ -18,8 +18,12 @@ class TextBoxController {
       }
       else {
         this.text = Utility.getUserInputFromLocalStorage(this.block.program_data_code);
-        this.updateBlockManager({ blockManagerValue: this.text });
+
+        if ( this.text ) {
+          this.updateBlockManager({ blockManagerValue: this.text });
+        }
       }
+
     };
 
     this.actionOnUserInput = () => {
