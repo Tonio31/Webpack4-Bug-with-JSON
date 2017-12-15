@@ -373,6 +373,7 @@ let appModule = angular.module( 'app', [
           }
           catch (error) {
 
+            $log.error('TONIO error=', error);
             if ( JwtFactory.isAuthError( error ) ) {
               $state.go( STATES.LOGIN, {
                 displayErrorOnInit: 'AUTH_ERROR'
@@ -384,7 +385,7 @@ let appModule = angular.module( 'app', [
                 errorMsg: 'ERROR_UNEXPECTED',
                 bugsnagErrorName: 'Error processing Menu',
                 bugsnagMetaData: {
-                  'Error Message': error.message,
+                  'Error Message': error.data.message,
                   'Error Type': error.type,
                   'Error Status': error.status,
                   'Error StatusText': error.statusText
@@ -408,7 +409,7 @@ let appModule = angular.module( 'app', [
               errorMsg: 'ERROR_UNEXPECTED',
               bugsnagErrorName: 'Error retrieving Menu',
               bugsnagMetaData: {
-                'Error Message': error.message,
+                'Error Message': error.data.message,
                 'Error Type': error.type,
                 'Error Status': error.status,
                 'Error StatusText': error.statusText
@@ -432,7 +433,7 @@ let appModule = angular.module( 'app', [
             errorMsg: 'ERROR_UNEXPECTED',
             bugsnagErrorName: 'Error retrieving Participant Data',
             bugsnagMetaData: {
-              'Error Message': error.message,
+              'Error Message': error.data.message,
               'Error Type': error.type,
               'Error Status': error.status,
               'Error StatusText': error.statusText
@@ -469,7 +470,7 @@ let appModule = angular.module( 'app', [
       errorMsg: 'ERROR_UNEXPECTED',
       bugsnagErrorName: 'Error APP::RUN()',
       bugsnagMetaData: {
-        'Error Message': error.message,
+        'Error Message': error.data.message,
         'Error Type': error.type,
         'Error Status': error.status,
         'Error StatusText': error.statusText

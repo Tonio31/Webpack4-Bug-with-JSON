@@ -261,14 +261,17 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('menu')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    if ( !JwtFactory.isAuthExpired() ) {
+    // Simulate an Internal server error
+    return error500;
 
-      // Simulate the menu for a user that is logged in
-      return [ 200, menu[headers.user_id], {} ];
-    }
-
-    // Return error by default
-    return error401;
+    // if ( !JwtFactory.isAuthExpired() ) {
+    //
+    //   // Simulate the menu for a user that is logged in
+    //   return [ 200, menu[headers.user_id], {} ];
+    // }
+    //
+    // // Return error by default
+    // return error401;
   });
 
   $httpBackend.whenGET(new RegExp(`LifeActsPdf(.*)`)).respond( (method, url, data, headers, params) => {
