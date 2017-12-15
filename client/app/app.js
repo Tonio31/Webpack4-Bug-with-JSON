@@ -247,12 +247,19 @@ let appModule = angular.module( 'app', [
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
       let error = trans.error();
 
+      // error types:  SUPERSEDED = 2, ABORTED = 3, INVALID = 4, IGNORED = 5, ERROR = 6
       if ( error.type === 6 && error.detail.status === 401 && error.detail.statusText === 'token_used' ) {
         $log.warn( `$transitions.onError(matchFromAnyToParentNoLogin) - Error 401, token_used. It is probably the 360 survey
                      token used a second time` );
         $state.go( STATES.ERROR_PAGE_NO_MENU, {
           errorMsg: '360_TOKEN_USED',
-          bugsnagErrorName: '360_TOKEN_USED'
+          bugsnagErrorName: '360_TOKEN_USED',
+          bugsnagMetaData: {
+            'Error Message': error.message,
+            'Error Type': error.type,
+            'Error Status': error.detail.status,
+            'Error StatusText': error.detail.statusText
+          }
         }, { reload: true } );
       }
       else {
@@ -260,7 +267,13 @@ let appModule = angular.module( 'app', [
           '  toState=', toState, '  error=', error );
         $state.go( STATES.ERROR_PAGE_NO_MENU, {
           errorMsg: 'ERROR_UNEXPECTED',
-          bugsnagErrorName: 'Error Transition not logged in'
+          bugsnagErrorName: 'Error Transition not logged in',
+          bugsnagMetaData: {
+            'Error Message': error.message,
+            'Error Type': error.type,
+            'Error Status': error.detail.status,
+            'Error StatusText': error.detail.statusText
+          }
         }, { reload: true } );
       }
     } );
@@ -303,7 +316,13 @@ let appModule = angular.module( 'app', [
           '  toState=', toState, '  error=', error );
         $state.go( STATES.ERROR_PAGE, {
           errorMsg: 'ERROR_UNEXPECTED',
-          bugsnagErrorName: 'Error Transition logged in'
+          bugsnagErrorName: 'Error Transition logged in',
+          bugsnagMetaData: {
+            'Error Message': error.message,
+            'Error Type': error.type,
+            'Error Status': error.detail.status,
+            'Error StatusText': error.detail.statusText
+          }
         }, { reload: true } );
       }
     } );
@@ -354,6 +373,7 @@ let appModule = angular.module( 'app', [
           }
           catch (error) {
 
+            $log.error('TONIO error=', error);
             if ( JwtFactory.isAuthError( error ) ) {
               $state.go( STATES.LOGIN, {
                 displayErrorOnInit: 'AUTH_ERROR'
@@ -363,7 +383,13 @@ let appModule = angular.module( 'app', [
               $exceptionHandler( error );
               $state.go( STATES.ERROR_PAGE, {
                 errorMsg: 'ERROR_UNEXPECTED',
-                bugsnagErrorName: 'Error processing Menu'
+                bugsnagErrorName: 'Error processing Menu',
+                bugsnagMetaData: {
+                  'Error Message': error.data.message,
+                  'Error Type': error.type,
+                  'Error Status': error.status,
+                  'Error StatusText': error.statusText
+                }
               } );
             }
           }
@@ -381,7 +407,13 @@ let appModule = angular.module( 'app', [
             $exceptionHandler( error );
             $state.go( STATES.ERROR_PAGE, {
               errorMsg: 'ERROR_UNEXPECTED',
-              bugsnagErrorName: 'Error retrieving Menu'
+              bugsnagErrorName: 'Error retrieving Menu',
+              bugsnagMetaData: {
+                'Error Message': error.data.message,
+                'Error Type': error.type,
+                'Error Status': error.status,
+                'Error StatusText': error.statusText
+              }
             } );
           }
 
@@ -399,7 +431,13 @@ let appModule = angular.module( 'app', [
           $exceptionHandler( error );
           $state.go( STATES.ERROR_PAGE, {
             errorMsg: 'ERROR_UNEXPECTED',
-            bugsnagErrorName: 'Error retrieving Participant Data'
+            bugsnagErrorName: 'Error retrieving Participant Data',
+            bugsnagMetaData: {
+              'Error Message': error.data.message,
+              'Error Type': error.type,
+              'Error Status': error.status,
+              'Error StatusText': error.statusText
+            }
           } );
         }
 
@@ -430,7 +468,13 @@ let appModule = angular.module( 'app', [
     $exceptionHandler( error );
     $state.go( STATES.ERROR_PAGE_NO_MENU, {
       errorMsg: 'ERROR_UNEXPECTED',
-      bugsnagErrorName: 'Error APP::RUN()'
+      bugsnagErrorName: 'Error APP::RUN()',
+      bugsnagMetaData: {
+        'Error Message': error.data.message,
+        'Error Type': error.type,
+        'Error Status': error.status,
+        'Error StatusText': error.statusText
+      }
     } );
   }
 } )
