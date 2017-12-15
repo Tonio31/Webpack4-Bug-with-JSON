@@ -62,7 +62,7 @@ describe('TextArea', () => {
       expect(controller.text).to.equal(bindings.block.data.value);
       expect(controller.FORM_NAME).to.equal(`${FORM_NAME_PREFIX}${bindings.block.id}`);
 
-      sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: 'Something' });
+      sinon.assert.callCount(updateBlockManagerSpy, 0);
     });
 
 
