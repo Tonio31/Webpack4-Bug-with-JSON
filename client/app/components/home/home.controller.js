@@ -3,6 +3,7 @@ class HomeController {
 
   constructor( $log,
                $state,
+               $filter,
                User,
                Menu,
                ZendeskWidget,
@@ -18,9 +19,13 @@ class HomeController {
 
     this.firstName = User.getFirstName();
 
-
     this.currentProgression = Menu.getCurrentProgression();
+    this.resumeProgressButtonText = '';
+
     this.menu = Menu.getMenu();
+
+    this.isProgramCompleted = false;
+
 
     this.getDonutTitle = (iCycle) => {
 
@@ -42,13 +47,31 @@ class HomeController {
     };
 
     this.resumeProgress = () => {
-      let currentStepStateName = Menu.getCurrentProgression().data.current_step.fullUrl;
-      $log.log(`Resume Progress, change state to current step: ${currentStepStateName}`);
-      $state.go(currentStepStateName);
+      if ( this.isProgramCompleted ) {
+        $log.log('resumeProgress() - Program is completed, open left hand menu');
+      }
+      else {
+        let currentStepStateName = this.currentProgression.data.current_step.fullUrl;
+        $log.log(`resumeProgress() - change state to current step: ${currentStepStateName}`);
+        $state.go(currentStepStateName);
+      }
     };
 
     this.$onInit = () => {
       $log.log('constructor()::$onInit - BEGIN');
+
+      if ( this.currentProgression.data.current_step.status === 'completed' ) {
+        this.isProgramCompleted = true;
+        this.resumeProgressButtonText = $filter('translate')('OPEN_MENU').toUpperCase();
+      }
+      else {
+        let stepName = this.currentProgression.data.current_step.name;
+        if ( stepName.length >= 25 ) {
+          stepName = `${stepName.slice(0, 25)}...`;
+        }
+
+        this.resumeProgressButtonText = `${this.currentProgression.data.current_step.title} • ${stepName}`.toUpperCase();
+      }
 
       $log.log('dynamicContent=', this.content);
 

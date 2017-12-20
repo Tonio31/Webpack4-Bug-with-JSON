@@ -35,7 +35,7 @@
       "description": "Approx. 5 mins",
       "slug": "step-9",
       "order": 3,
-      "status": "current",
+      "status": "completed",
       "fullUrl": "/potentialife-course/cycle-1/module-1/step-9"
     }
   },
@@ -109,7 +109,7 @@
                   "slug": "step-3",
                   "order": 2,
                   "status": "completed",
-                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-2"
+                  "fullUrl": "/potentialife-course/cycle-1/module-1/step-3"
                 },
                 {
                   "id": 4,
