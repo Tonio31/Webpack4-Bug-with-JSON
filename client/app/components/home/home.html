@@ -30,20 +30,32 @@
       </div>
     </div>
 
-
     <div class="row bgcolour-grey panel collapse text-center">
       <div class="columns small-12">
-        <h4>{{'GO_TO_NEXT_STEP' | translate }}:</h4>
-        <div class="show-for-small-only">
-          <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}</h3>
-          <h3>{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
+        <div ng-if="$ctrl.isProgramCompleted">
+          <h3>{{'REVIEW_PAST_MODULES' | translate | uppercase}}</h3>
+          <button class="button radius success left-off-canvas-toggle"
+                  type="submit">
+            {{$ctrl.resumeProgressButtonText}}
+          </button>
         </div>
-        <div class="show-for-medium-up">
-          <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}&nbsp;<span>&bull;</span>&nbsp;{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
+
+        <div ng-if="!$ctrl.isProgramCompleted">
+          <h4>{{'GO_TO_NEXT_STEP' | translate }}:</h4>
+          <div class="show-for-small-only">
+            <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}</h3>
+            <h3>{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
+          </div>
+          <div class="show-for-medium-up">
+            <h3>{{$ctrl.currentProgression.data.current_module.title | uppercase}}&nbsp;<span>&bull;</span>&nbsp;{{$ctrl.currentProgression.data.current_module.name | uppercase}}</h3>
+          </div>
+          <button class="button radius success"
+                  type="submit"
+                  ng-click="$ctrl.resumeProgress()">
+            {{$ctrl.resumeProgressButtonText}}
+          </button>
         </div>
-        <button class="button radius success" type="submit" ng-click="$ctrl.resumeProgress()">
-          {{$ctrl.currentProgression.data.current_step.title | uppercase}} &bull; {{$ctrl.currentProgression.data.current_step.name | uppercase | limitTo: 25 }}<span ng-if="$ctrl.currentProgression.data.current_step.name.length > 25">...</span>
-        </button>
+
 
       </div>
     </div>
