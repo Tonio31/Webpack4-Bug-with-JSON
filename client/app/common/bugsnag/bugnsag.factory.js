@@ -13,6 +13,7 @@ let BugsnagFactory = function($log, User) {
     $log.error(`BUGSNAG report. error=${payload.name},   payload=`, payload);
     if ( ENVIRONMENT === 'development' ) {
       // Don't notify Bugsnag for localhost development
+      $log.warn('The report won\'t be sent to bugsnag because it\'s in local');
       return false;
     }
 

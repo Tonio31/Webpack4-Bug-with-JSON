@@ -7,7 +7,7 @@ import LogDecorator from 'common/logDecorator/logDecorator';
 import angularBugsnag from 'angular-bugsnag';
 import constantModule from 'common/constants';
 
-let exceptionOverrideModule = angular.module('bugsnagModule', [
+let bugsnagModule = angular.module('bugsnagModule', [
   angularResource,
   angularBugsnag,
   LogDecorator,
@@ -28,4 +28,4 @@ let exceptionOverrideModule = angular.module('bugsnagModule', [
   })
   .name;
 
-export default exceptionOverrideModule;
+export default bugsnagModule;

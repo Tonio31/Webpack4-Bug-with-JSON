@@ -3,6 +3,7 @@ class ViaSurveyController {
                $q,
                $state,
                $anchorScroll,
+               $exceptionHandler,
                $window,
                User,
                Data,

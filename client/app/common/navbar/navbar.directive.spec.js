@@ -3,7 +3,7 @@ import NavbarModule from './navbar';
 describe('Navbar Directive', () => {
   let $rootScope, $compile, ZendeskWidget;
 
-  let menuJson = require('app/mockBackEndResponse/4/menu.json');
+  let menuJson = require('app/mockBackEndResponse/51/menu.json');
 
   let mockTranslateFilter = (value) => {
     return value;

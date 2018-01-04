@@ -2,6 +2,7 @@ class ErrorPageController {
   constructor( $log,
                $state,
                $stateParams,
+               JwtFactory,
                BugsnagUtils,
                ZendeskWidget,
                $filter ) {
@@ -39,7 +40,8 @@ class ErrorPageController {
         this.errorMsg = $filter('translate')('ERROR_UNEXPECTED').toString();
       }
 
-      this.displayContactUsForm = $stateParams.displayMenu;
+
+      this.displayContactUsForm = $stateParams.displayMenu && JwtFactory.isLoginInfoAvailable();
 
       let customData = Object.assign({}, $stateParams.bugsnagMetaData);
       let errorName = $stateParams.bugsnagErrorName || 'User on Error Page';

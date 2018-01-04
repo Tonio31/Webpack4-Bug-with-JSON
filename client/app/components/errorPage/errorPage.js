@@ -1,13 +1,15 @@
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import LogDecorator from 'common/logDecorator/logDecorator';
+import JwtServiceModule from 'common/jwtFactory/jwt';
 import errorPageComponent from './errorPage.component';
 import constantModule from 'common/constants';
 
 let errorPageModule = angular.module('errorPage', [
   uiRouter,
   constantModule,
-  LogDecorator
+  LogDecorator,
+  JwtServiceModule
 ])
 .config(($stateProvider, STATES) => {
   'ngInject';
