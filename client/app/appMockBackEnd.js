@@ -57,7 +57,7 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(/(.*)\.mp4/).passThrough();
   $httpBackend.whenGET(/(.*)\.jpg/).passThrough();
 
-  const ID_FIRST_USER = '4';
+  const ID_FIRST_USER = '51';
   const ID_STEP_2 = '129';
 
 
@@ -413,8 +413,8 @@ angular.module( 'appMockBackEnd', [
 
     // return error401;
     // Trick to be able to build the good regexp to match the incoming query as Data.buildApiUrl('menu', true) uses the ID of the current user
-    User.setUser({ id: authenticate[4].user.id });
-    return [ 200, authenticate[4], {} ];
+    User.setUser({ id: authenticate[51].user.id });
+    return [ 200, authenticate[51], {} ];
   });
 
   $httpBackend.whenGET(new RegExp('mockBackEndResponse')).passThrough();
