@@ -24,6 +24,7 @@
           "value": "<h1>Results<\/h1><p>You can find below your strength pre-order a relevant order for you<\/p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but don't hesitate to check all the strength below to choose the ones that resonate the most with you<\/p>"
         },
         "config": {
+          "nb_questions_per_page": "40",
           "title_strength_list": "Your list of strengths",
           "strength_list_min_selected": "3",
           "strength_list_max_selected": 3,
