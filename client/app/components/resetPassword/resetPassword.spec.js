@@ -12,7 +12,6 @@ describe('ResetPassword', () => {
   let STATES, SPINNERS, Data, SpinnerFactory;
 
   let token = 'ngjkahdgjkhfshdb';
-  let userId = '12';
 
   let spies = {
     spinnerFactory: {}
@@ -38,8 +37,8 @@ describe('ResetPassword', () => {
   }));
 
   describe('Module', () => {
-    it(`About component should be visible when navigates to /reset_password?token=ngjkahdgjkhfshdb&user_id=12`, () => {
-      $location.url(`${STATES.RESET_PASSWORD}?token=${token}&user_id=${userId}`);
+    it(`About component should be visible when navigates to /reset_password?token=ngjkahdgjkhfshdb`, () => {
+      $location.url(`${STATES.RESET_PASSWORD}?token=${token}`);
       $rootScope.$digest();
       expect($state.current.component).to.eq('resetPassword');
     });
@@ -74,11 +73,11 @@ describe('ResetPassword', () => {
       spies.spinnerFactory.show = sinon.spy(SpinnerFactory, 'show');
     });
 
-    it('onInit() - test reset password state & removing token form URL', () => {
+    it('onInit() - test reset password state', () => {
       $location.url(`${STATES.RESET_PASSWORD}?token=${token}`);
       $rootScope.$digest();
       controller.$onInit();
-      expect($location.url()).to.equal(STATES.RESET_PASSWORD);
+      expect($location.url()).to.equal(`${STATES.RESET_PASSWORD}?token=${token}`);
       expect(controller.token).to.equal(token);
       expect(controller.labelAction).to.equal('RESET_PASSWORD');
     });
@@ -87,7 +86,7 @@ describe('ResetPassword', () => {
       $location.url(`${STATES.CREATION_PASSWORD}?token=${token}`);
       $rootScope.$digest();
       controller.$onInit();
-      expect($location.url()).to.equal(STATES.CREATION_PASSWORD);
+      expect($location.url()).to.equal(`${STATES.CREATION_PASSWORD}?token=${token}`);
       expect(controller.labelAction).to.equal('CREATE_PASSWORD');
     });
 
@@ -153,7 +152,6 @@ describe('ResetPassword', () => {
       };
 
       controller.token = token;
-      controller.userId = userId;
       controller.password = 'abc';
       controller.changePassword(formReset);
 
