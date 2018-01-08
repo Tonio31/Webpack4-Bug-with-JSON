@@ -4,10 +4,10 @@ import ExceptionHandlerFactory from './bugnsag.factory';
 import BugsnagUtilsFactory from './bugsnag.utils.factory';
 import UserDataFactory from 'common/userDataFactory/userData';
 import LogDecorator from 'common/logDecorator/logDecorator';
-import angularBugsnag from 'angular-bugsnag';
+import angularBugsnag from './angular-bugsnag';
 import constantModule from 'common/constants';
 
-let exceptionOverrideModule = angular.module('bugsnagModule', [
+let bugsnagModule = angular.module('bugsnagModule', [
   angularResource,
   angularBugsnag,
   LogDecorator,
@@ -22,10 +22,11 @@ let exceptionOverrideModule = angular.module('bugsnagModule', [
     bugsnagProvider
       .noConflict()
       .apiKey('b9056a2472100fb8471f4d10f264047e')
+      .setBreadcrumbLimit(30)
       .releaseStage(ENVIRONMENT)
       .appVersion(VERSION)
       .beforeNotify( 'bugsnagFactory' );
   })
   .name;
 
-export default exceptionOverrideModule;
+export default bugsnagModule;

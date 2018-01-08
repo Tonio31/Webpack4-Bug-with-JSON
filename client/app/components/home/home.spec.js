@@ -25,7 +25,7 @@ describe('Home', () => {
     }
   };
   let menuObject = {
-    data: require('app/mockBackEndResponse/4/menu.json').menudata[0]
+    data: require('app/mockBackEndResponse/51/menu.json').menudata[0]
   };
   let firstName = 'Tonio';
 

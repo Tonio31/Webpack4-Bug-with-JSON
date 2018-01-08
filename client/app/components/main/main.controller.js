@@ -15,7 +15,6 @@ class MainController {
       ZendeskWidget.show();
     }
 
-    $log.log('$stateParams=', $stateParams);
     this.displayMenu = $stateParams.displayMenu;
   }
 }

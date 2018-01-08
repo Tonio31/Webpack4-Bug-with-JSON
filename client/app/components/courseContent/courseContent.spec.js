@@ -10,7 +10,7 @@ describe('CourseContent Module', () => {
   let goFn, retrieveMenuAndReturnStatesSpy, isMenuRetrievedSpy, removeUserInputSpy, saveUserInputSpy, spinnerShowSpy, spinnerHideSpy;
   let stateRegistryGetFn, stateRegistryDeregisterFn, stateRegistryRegisterFn;
 
-  let contentBindings = require('app/mockBackEndResponse/4/potentialife-course_cycle-3_module-31_step-2.json');
+  let contentBindings = require('app/mockBackEndResponse/51/potentialife-course_cycle-3_module-31_step-2.json');
 
   let stateNotLocked = {
     name: '/potentialife-course/cycle-1/module-1/step-9',
