@@ -260,6 +260,29 @@ describe('Resource', () => {
 
       done();
     }));
+
+    it('changePassword(\'creation\') return a promise', sinon.test( (done) => {
+
+      $httpBackend.whenPOST(Data.buildApiUrl('password/creation')).respond( () => {
+        return [ 200, {}, {} ];
+      });
+
+      let changePasswordPOST = Data.changePassword('creation');
+
+      changePasswordPOST.$save( () => {
+        assert(true, 'Positive response form the back end');
+        done();
+      })
+      .catch( () => {
+        assert.fail(0, 1, 'We should not return an error if the server returns positive response');
+        done();
+      });
+
+      $httpBackend.flush();
+
+      done();
+    }));
+
   });
 
 
