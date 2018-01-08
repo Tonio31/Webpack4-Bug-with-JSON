@@ -49,19 +49,19 @@ class ResetPasswordController {
       }
     };
 
-    this.resetPassword = (iResetPasswordForm) => {
+    this.changePassword = (iResetPasswordForm) => {
 
       if ( iResetPasswordForm.$valid ) {
         $log.log('iResetPasswordForm is Valid');
 
         SpinnerFactory.show(SPINNERS.TOP_LEVEL);
 
-        let resetPasswordPOSTRequest = Data.resetPassword();
+        let changePasswordPOSTRequest = Data.changePassword($stateParams.action);
 
-        resetPasswordPOSTRequest.token = this.token;
-        resetPasswordPOSTRequest.password = this.password;
+        changePasswordPOSTRequest.token = this.token;
+        changePasswordPOSTRequest.password = this.password;
 
-        resetPasswordPOSTRequest.$save( (dataBackFromServer) => {
+        changePasswordPOSTRequest.$save( (dataBackFromServer) => {
           $log.log('The password change was successful, redirecting to home page');
 
           // Save to local Storage
