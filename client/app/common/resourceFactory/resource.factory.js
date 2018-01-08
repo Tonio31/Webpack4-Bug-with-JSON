@@ -157,9 +157,16 @@ let ResourceFactory = function( $log,
     return new ($resource(buildApiUrl('password/email')))();
   };
 
-  let resetPassword = () => {
-    $log.log('resetPassword()');
-    return new ($resource(buildApiUrl('password/reset')))();
+  let changePassword = (iAction) => {
+    let action = 'reset';
+
+    $log.log(`changePassword() iAction=${iAction}`);
+
+    if (iAction === 'creation') {
+      action = 'creation';
+    }
+
+    return new ($resource(buildApiUrl(`password/${action}`)))();
   };
 
   let logout = () => {
@@ -225,7 +232,7 @@ let ResourceFactory = function( $log,
     getMenu,
     getUserAuthData,
     sendRecoverPasswordEmail,
-    resetPassword,
+    changePassword,
     logout,
     getDynamicContentPromise,
     getFriendSurveyContent,
