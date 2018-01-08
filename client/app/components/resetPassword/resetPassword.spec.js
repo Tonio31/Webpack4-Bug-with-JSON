@@ -138,14 +138,14 @@ describe('ResetPassword', () => {
         }
       };
 
-      let resetPasswordPOSTRequest = {
+      let changePasswordPOSTRequest = {
         $save: (callback) => {
           return callback(authDataBackFromServer);
         }
       };
 
-      sinon.stub(Data, 'resetPassword', () => {
-        return resetPasswordPOSTRequest;
+      sinon.stub(Data, 'changePassword', () => {
+        return changePasswordPOSTRequest;
       });
 
       let formReset = {
@@ -155,10 +155,10 @@ describe('ResetPassword', () => {
       controller.token = token;
       controller.userId = userId;
       controller.password = 'abc';
-      controller.resetPassword(formReset);
+      controller.changePassword(formReset);
 
-      expect(resetPasswordPOSTRequest.token).to.equal(controller.token);
-      expect(resetPasswordPOSTRequest.password).to.equal(controller.password);
+      expect(changePasswordPOSTRequest.token).to.equal(controller.token);
+      expect(changePasswordPOSTRequest.password).to.equal(controller.password);
       sinon.assert.calledWith(goSpy, STATES.HOME);
       sinon.assert.calledWith(spies.spinnerFactory.show, SPINNERS.TOP_LEVEL);
 
