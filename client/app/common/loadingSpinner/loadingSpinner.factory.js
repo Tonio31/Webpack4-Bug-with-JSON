@@ -10,7 +10,6 @@ let SpinnerFactory = function($log) {
 
 
   let createNewSpinner = (iSpinnerName) => {
-    $log.log('createNewSpinner() - name=', iSpinnerName);
 
     spinners[iSpinnerName] = {
       name: iSpinnerName,
@@ -22,7 +21,6 @@ let SpinnerFactory = function($log) {
 
 
   let getSpinner = (name) => {
-    $log.log('getSpinner() - name=', name);
     let spinner = spinners[name];
     if (!spinner) {
       spinner = createNewSpinner(name);
@@ -33,7 +31,6 @@ let SpinnerFactory = function($log) {
 
 
   let show = (name) => {
-    $log.log('show() - name=', name);
     let spinner = spinners[name];
 
     if (!spinner) {
@@ -44,7 +41,6 @@ let SpinnerFactory = function($log) {
   };
 
   let hide = (name) => {
-    $log.log('hide() - name=', name);
     let spinner = spinners[name];
 
     if (!spinner) {

@@ -15,15 +15,10 @@ class NavbarController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance('NavbarController');
 
-    $log.log('constructor() - BEGIN');
-
     this.homeState = STATES.HOME;
 
     this.$onInit = () => {
-      $log.log('constructor()::$onInit - BEGIN');
       this.courseContentSpinner = SpinnerFactory.getSpinner(SPINNERS.COURSE_CONTENT);
-
-      $log.log('constructor()::$onInit - END');
     };
 
     this.logout = () => {
@@ -54,8 +49,6 @@ class NavbarController {
     this.menu = Menu.getMenu();
 
     this.Potentialife = 'Potentialife';
-
-    $log.log('constructor() - END');
   }
 }
 
