@@ -12,9 +12,20 @@ describe('Home', () => {
     reflection: 'Nostrum culpa illo excepturi ipsa. Possimus quo natus est quam. Error ut natus non similique numquam et. Ut id inventore est.'
   };
 
-  let currentProgressionObject = 'current Progression Object';
+  let currentProgressionObject = {
+    data: {
+      current_cycle: {
+      },
+      current_module: {
+      },
+      current_step: {
+        status: 'completed',
+        fullUrl: '/potentialife-course/cycle-1/module-1/step-9'
+      }
+    }
+  };
   let menuObject = {
-    data: require('app/mockBackEndResponse/4/menu.json').menudata[0]
+    data: require('app/mockBackEndResponse/51/menu.json').menudata[0]
   };
   let firstName = 'Tonio';
 
@@ -102,7 +113,15 @@ describe('Home', () => {
     beforeEach(() => {
       scope = $rootScope.$new();
       scope.content = contentBindings;
-      template = $compile('<home content="content"></home>')(scope);
+
+      let offCanvasWrapCtrl = {
+        hide: () => {}
+      };
+
+      let element = angular.element('<home content="content"></home>');
+      element.data('$offCanvasWrapController', offCanvasWrapCtrl);
+
+      template = $compile(element)(scope);
       scope.$apply();
     });
 

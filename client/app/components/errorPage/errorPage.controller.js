@@ -2,6 +2,7 @@ class ErrorPageController {
   constructor( $log,
                $state,
                $stateParams,
+               JwtFactory,
                BugsnagUtils,
                ZendeskWidget,
                $filter ) {
@@ -10,16 +11,11 @@ class ErrorPageController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'ErrorPageController' );
 
-    $log.log('constructor - START');
-
     this.sendErrorToBugsnag = (iCustomData, iErrorName) => {
       let statesHistory = BugsnagUtils.getStatesHistoryAsString();
 
-
       let customData = iCustomData;
       customData['STATES HISTORY'] = statesHistory;
-
-      $log.error(`sendErrorToBugsnag() - Send an error to Bugsnag customData=${angular.toJson(customData)}`);
 
       BugsnagUtils.notify(
         iErrorName,
@@ -29,7 +25,6 @@ class ErrorPageController {
     };
 
     this.$onInit = () => {
-      $log.log(`$onInit - $stateParams=${angular.toJson($stateParams)}`);
       this.errorMsg = '';
       let errorCodeToTranslate = $stateParams.errorMsg;
       if ( errorCodeToTranslate ) {
@@ -39,7 +34,8 @@ class ErrorPageController {
         this.errorMsg = $filter('translate')('ERROR_UNEXPECTED').toString();
       }
 
-      this.displayContactUsForm = $stateParams.displayMenu;
+
+      this.displayContactUsForm = $stateParams.displayMenu && JwtFactory.isLoginInfoAvailable();
 
       let customData = Object.assign({}, $stateParams.bugsnagMetaData);
       let errorName = $stateParams.bugsnagErrorName || 'User on Error Page';

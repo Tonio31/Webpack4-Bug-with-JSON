@@ -25,6 +25,18 @@ class ResetPasswordController {
 
     this.comparePassword = (ioResetPasswordForm) => {
 
+      // At least 8 characters, one uppercase, one lowercase, one number
+      // let regExpPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+      // At least 8 characeters, no space
+      let regExpPass = /^[^\s]{8,}$/;
+      if ( regExpPass.test(this.password) ) {
+        ioResetPasswordForm.password.$setValidity('complexity', true);
+      }
+      else {
+        ioResetPasswordForm.password.$setValidity('complexity', false);
+      }
+
       if ( this.password !== this.passwordConfirmation ) {
         $log.log('Passwords do not match');
         ioResetPasswordForm.password.$setValidity('nomatch', false);
@@ -37,19 +49,19 @@ class ResetPasswordController {
       }
     };
 
-    this.resetPassword = (iResetPasswordForm) => {
+    this.changePassword = (iResetPasswordForm) => {
 
       if ( iResetPasswordForm.$valid ) {
         $log.log('iResetPasswordForm is Valid');
 
         SpinnerFactory.show(SPINNERS.TOP_LEVEL);
 
-        let resetPasswordPOSTRequest = Data.resetPassword();
+        let changePasswordPOSTRequest = Data.changePassword($stateParams.action);
 
-        resetPasswordPOSTRequest.token = this.token;
-        resetPasswordPOSTRequest.password = this.password;
+        changePasswordPOSTRequest.token = this.token;
+        changePasswordPOSTRequest.password = this.password;
 
-        resetPasswordPOSTRequest.$save( (dataBackFromServer) => {
+        changePasswordPOSTRequest.$save( (dataBackFromServer) => {
           $log.log('The password change was successful, redirecting to home page');
 
           // Save to local Storage
@@ -91,9 +103,6 @@ class ResetPasswordController {
       else {
         throw new Error(`Action (${$stateParams.action}) parameter unknown`);
       }
-
-      // Remove all url parameters from the URL
-      $location.search({});
     };
   }
 }

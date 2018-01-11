@@ -1,7 +1,7 @@
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2p3dC1pZHAuZXhhbXBsZS5jb20iLCJzdWIiOiI0IiwibmJmIjoxNDg4NTQzOTQwLCJleHAiOjE3NTY0MjU1OTksImlhdCI6MTQ4ODU0Mzk0MCwianRpIjoiaWQxMjM0NTYifQ.N7xkSMlHPhfwxaG5Ibs-WUBJIc7aMAmq82sLG6fKfRE",
-  "user": {
-    "id": 4,
+  "success": true,
+  "data": {
+    "id": 51,
     "email": "tonio.mandela26@usertest.com",
     "username": "tonio1234",
     "first_name": "tonio",
@@ -10,7 +10,6 @@
     "company": "Barclays",
     "division": "Sales",
     "cohort": "BAC001",
-    "remember_token": null,
     "created_at": "2017-02-28 15:17:11",
     "updated_at": "2017-02-28 15:17:11",
     "deleted_at": null,
@@ -21,5 +20,6 @@
       "bgColor": "#f2f2f2",
       "textColor": "white"
     }
-  }
+  },
+  "message": "Participant retrieved successfully"
 }

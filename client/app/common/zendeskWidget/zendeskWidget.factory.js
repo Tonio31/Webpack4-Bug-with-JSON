@@ -8,8 +8,6 @@ let ZendeskWidgetFactory = function( $log,
   const POTENTIALIFE_ACCOUNT_URL = 'potentialifehelp.zendesk.com';
 
   let init = () => {
-    $log.log('init()');
-
     /*eslint-disable */
     $window.zEmbed || function(e, t) {
       var n, o, d, i, s, a = [], r = document.createElement("iframe");
@@ -35,7 +33,6 @@ let ZendeskWidgetFactory = function( $log,
    */
   let hide = () => {
     $window.zE( () => {
-      $log.log('hide()');
       $window.zE.hide();
     });
   };
@@ -46,14 +43,12 @@ let ZendeskWidgetFactory = function( $log,
    */
   let show = () => {
     $window.zE(() => {
-      $log.log('show()');
       $window.zE.show();
     });
   };
 
   let setLocale = (iLang) => {
     $window.zE(() => {
-      $log.log('setLocale()  iLang=', iLang);
       $window.zE.setLocale(iLang);
     });
   };
@@ -68,7 +63,7 @@ let ZendeskWidgetFactory = function( $log,
    */
   let identify = (iName, iEmail, iOrganization) => {
     $window.zE(() => {
-      $log.log(`identify()  iName=${iName}, iEmail=${iEmail}, iOrganization=${iOrganization}`);
+      // $log.log(`identify()  iName=${iName}, iEmail=${iEmail}, iOrganization=${iOrganization}`);
       $window.zE.identify({
         name: iName,
         email: iEmail,

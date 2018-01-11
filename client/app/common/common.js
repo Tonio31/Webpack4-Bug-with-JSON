@@ -8,6 +8,7 @@ import ZendeskWidgetFactory from './zendeskWidget/zendeskWidget';
 import UserDataFactory from './userDataFactory/userData';
 import JwtFactory from './jwtFactory/jwt';
 import BugsnagModule from './bugsnag/bugsnag';
+import ExceptionOverwriteModule from './exceptionOverwrite/exceptionOverwrite';
 import MenuService from './menuFactory/menu';
 import LoadingSpinner from './loadingSpinner/loadingSpinner';
 import LogDecorator from './logDecorator/logDecorator';
@@ -26,6 +27,7 @@ let commonModule = angular.module('app.common', [
   UserDataFactory,
   ZendeskWidgetFactory,
   BugsnagModule,
+  ExceptionOverwriteModule,
   ConstantModule
 ])
 .name;

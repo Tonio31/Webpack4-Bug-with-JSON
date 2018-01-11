@@ -25,7 +25,7 @@ let websiteConfig = {
   },
   PROD: {
     websiteUrl: '',
-    apiUrl: 'https://apiv2.potentialife.com/',
+    apiUrl: 'https://api.potentialife.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-5',
     viaSurveyAppKey: 'F9C66D59-4551-4564-AFD5-31384735A4B8',

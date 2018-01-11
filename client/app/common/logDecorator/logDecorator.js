@@ -11,7 +11,6 @@ let resourceServiceModule = angular.module('logDecorator', [
 
       let enchanceLoggerFn = ( $log ) => {
 
-
         let _$log = ( ( $log ) => {
           return {
             log   : $log.log,
