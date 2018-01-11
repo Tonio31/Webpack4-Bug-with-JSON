@@ -1,12 +1,8 @@
 /* eslint-disable no-shadow */
 
 import angular from 'angular';
-// import BugsnagModule from '../bugsnag/bugsnag';
-// import constantModule from 'common/constants';
-// import logStorageModule from './logStorage';
 
 let resourceServiceModule = angular.module('logDecorator', [
-  // logStorageModule
 ])
   .config( ($provide) => {
     'ngInject';
@@ -15,7 +11,6 @@ let resourceServiceModule = angular.module('logDecorator', [
 
       let enchanceLoggerFn = ( $log ) => {
 
-        /* eslint-disable */
         let _$log = ( ( $log ) => {
           return {
             log   : $log.log,
