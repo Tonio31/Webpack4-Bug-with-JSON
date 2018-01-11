@@ -60,7 +60,7 @@ class HomeController {
     this.$onInit = () => {
       $log.log('constructor()::$onInit - BEGIN');
 
-      if ( this.currentProgression.data.current_step.status === 'completed' ) {
+      if ( !this.currentProgression.data.current_step ) {
         this.isProgramCompleted = true;
         this.resumeProgressButtonText = $filter('translate')('OPEN_MENU').toUpperCase();
       }

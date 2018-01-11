@@ -1,5 +1,7 @@
 import HomeModule from './home';
 import Main from 'components/main/main';
+import LoginRoot from "app/components/loginRoot/loginRoot";
+import ResetPasswordModule from "app/components/resetPassword/resetPassword";
 
 
 describe('Home', () => {
@@ -31,9 +33,13 @@ describe('Home', () => {
 
   let ZendeskWidget;
 
+  let mockTranslateFilter = (value) => {
+    return value;
+  };
 
   beforeEach(window.module(Main, HomeModule, ($provide) => {
     $provide.value('ZendeskWidget', ZendeskWidget);
+    $provide.value('translateFilter', mockTranslateFilter );
   }));
 
   beforeEach(inject(($injector) => {
@@ -77,23 +83,36 @@ describe('Home', () => {
         $scope: $rootScope.$new()
       }, bindings);
 
+    });
+
+    it('$onInit() - test value of variable if program is completed', () => {
+      controller.currentProgression.data.current_step = null;
+
       controller.$onInit();
+
+      expect(controller.isProgramCompleted).to.equal(true);
+      expect(controller.resumeProgressButtonText).to.equal('OPEN_MENU');
     });
 
     it('has the current progression from Menu Factory', () => {
+      controller.$onInit();
       expect(controller.currentProgression).to.equal(currentProgressionObject);
     });
 
     it('has the menu from Menu Factory', () => {
+      controller.$onInit();
       expect(controller.menu).to.equal(menuObject);
     });
 
 
     it('has a name from User factory', () => {
+      controller.$onInit();
       expect(controller.firstName).to.equal(firstName);
     });
 
     it('test getDonutTitle() function', () => {
+      controller.$onInit();
+
       // Cycle1 is not locked
       let cycle1 = menuObject.data.children[0];
 
