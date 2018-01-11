@@ -373,7 +373,6 @@ let appModule = angular.module( 'app', [
           }
           catch (error) {
 
-            $log.error('TONIO error=', error);
             if ( JwtFactory.isAuthError( error ) ) {
               $state.go( STATES.LOGIN, {
                 displayErrorOnInit: 'AUTH_ERROR'
