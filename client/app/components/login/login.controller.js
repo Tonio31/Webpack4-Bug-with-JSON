@@ -54,7 +54,7 @@ class LoginController {
       $state.go(STATES.RETRIEVE_CREDENTIALS);
     };
 
-    this.otherWebsitesToLoginIn = [ 'change', 'my' ];
+    this.otherWebsitesToLoginIn = [ 'my', 'change' ];
 
 
     this.login = (iLoginForm) => {
