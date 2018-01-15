@@ -402,6 +402,7 @@ angular.module( 'appMockBackEnd', [
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     // return error429;
+    // return error401;
 
     let dataObject = angular.fromJson(data);
     if ( dataObject.email === 'tonio1@gmail.com' ) {
@@ -411,7 +412,6 @@ angular.module( 'appMockBackEnd', [
     }
 
 
-    // return error401;
     // Trick to be able to build the good regexp to match the incoming query as Data.buildApiUrl('menu', true) uses the ID of the current user
     User.setUser({ id: authenticate[51].user.id });
     return [ 200, authenticate[51], {} ];
@@ -445,7 +445,7 @@ angular.module( 'appMockBackEnd', [
     let dataObject = angular.fromJson(data);
 
     if ( dataObject.hasOwnProperty('token') && dataObject.hasOwnProperty('password') ) {
-      return [ 200, authenticate[4], {} ];
+      return [ 200, authenticate[51], {} ];
     }
 
     // If token or user_id is not provided, simulate that the server will returns an error
@@ -456,8 +456,9 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
+    return error401;
     // return error500;
-    return [ 200, participant[headers.user_id], {} ];
+    // return [ 200, participant[headers.user_id], {} ];
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('partial_save')).respond( (method, url) => {
