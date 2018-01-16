@@ -109,7 +109,7 @@ describe('ResetPassword', () => {
     }));
 
 
-    it('sends an reset Password request when user click on resetPassword button', sinon.test( (done) => {
+    it('sends an reset Password request when user click on resetPassword button', sinon.test((done) => {
 
       let authDataBackFromServer = {
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2p3dC1pZHAuZXhhbXBsZS5jb20iLCJzdWIiOiI0IiwibmJmIjoxNDg4NTQzOTQwLCJleHAiOjE3NTY0MjU1OTksImlhdCI6MTQ4ODU0Mzk0MCwianRpIjoiaWQxMjM0NTYifQ.N7xkSMlHPhfwxaG5Ibs-WUBJIc7aMAmq82sLG6fKfRE',
@@ -126,14 +126,7 @@ describe('ResetPassword', () => {
           remember_token: null,
           created_at: '2017-02-28 15:17:11',
           updated_at: '2017-02-28 15:17:11',
-          deleted_at: null,
-          companyBanner: {
-            logo: 'https://logos.keycdn.com/keycdn-logo.png',
-            header: 'Inspiring Leadership',
-            subHeader: 'BE YOUR BEST, BE THE DIFFERENCE',
-            bgColor: 'orange',
-            textColor: 'white'
-          }
+          deleted_at: null
         }
       };
 
@@ -162,6 +155,35 @@ describe('ResetPassword', () => {
 
       done();
     }));
+
+    it('should redirect to the retrive credentials page when change password failed', sinon.test((done) => {
+
+      let changePasswordPOSTRequestFail = {
+        $save: (callback, errorCallback) => {
+          return errorCallback({
+            status: 404,
+            statusText: 'token_not_found'
+          });
+        }
+      };
+
+      sinon.stub(Data, 'changePassword', () => {
+        return changePasswordPOSTRequestFail;
+      });
+
+      let formReset = {
+        $valid: true
+      };
+
+      controller.token = token;
+      controller.password = 'abc';
+      controller.changePassword(formReset);
+
+      sinon.assert.calledWith(goSpy, STATES.RETRIEVE_CREDENTIALS);
+
+      done();
+    }));
+
   });
 
 
