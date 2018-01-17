@@ -1,7 +1,7 @@
 import ResourceModule from './resource';
 
 describe('Resource', () => {
-  let User, Data, WEBSITE_CONFIG, TOKEN_SURVEY;
+  let User, Data, WEBSITE_CONFIG, SURVEY_360;
   let $httpBackend, $location, $window;
 
   let participant = {
@@ -51,13 +51,13 @@ describe('Resource', () => {
     User = $injector.get('User');
     Data = $injector.get('Data');
     WEBSITE_CONFIG = $injector.get('WEBSITE_CONFIG');
-    TOKEN_SURVEY = $injector.get('TOKEN_SURVEY');
+    SURVEY_360 = $injector.get('SURVEY_360');
 
     $window.ga = () => {};
 
     $location.search = () => {
       return {
-        [TOKEN_SURVEY]: 'ThisIsAToken'
+        [SURVEY_360.TOKEN]: 'ThisIsAToken'
       };
     };
     $location.path = () => {
@@ -182,7 +182,7 @@ describe('Resource', () => {
 
       Data.getFriendSurveyContent({});
 
-      expect(mockLocalStorage).to.deep.eq({ token_survey: 'ThisIsAToken' });
+      expect(mockLocalStorage).to.deep.eq({ [SURVEY_360.TOKEN]: 'ThisIsAToken' });
 
       $httpBackend.flush();
       done();

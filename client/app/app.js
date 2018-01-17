@@ -103,6 +103,7 @@ let appModule = angular.module( 'app', [
         JwtFactory,
         Data,
         STATES,
+        SURVEY_360,
         SPINNERS,
         WEBSITE_CONFIG ) => {
   'ngInject';
@@ -248,12 +249,14 @@ let appModule = angular.module( 'app', [
       let error = trans.error();
 
       // error types:  SUPERSEDED = 2, ABORTED = 3, INVALID = 4, IGNORED = 5, ERROR = 6
-      if ( error.type === 6 && error.detail.status === 401 && error.detail.statusText === 'token_used' ) {
-        $log.warn( `$transitions.onError(matchFromAnyToParentNoLogin) - Error 401, token_used. It is probably the 360 survey
-                     token used a second time` );
+      if ( error.type === 6 && error.detail.status === 401 &&
+        ( error.detail.statusText === SURVEY_360.ERROR_TOKEN_ALREADY_USED ||
+          error.detail.statusText === SURVEY_360.ERROR_NO_TOKEN_IN_URL ) ) {
+        $log.warn( `$transitions.onError(matchFromAnyToParentNoLogin) - Error 401, ${error.detail.statusText}. 
+                    It is probably the 360 survey token used a second time` );
         $state.go( STATES.ERROR_PAGE_NO_MENU, {
           errorMsg: '360_TOKEN_USED',
-          bugsnagErrorName: '360_TOKEN_USED',
+          bugsnagErrorName: error.detail.statusText,
           bugsnagMetaData: {
             'Error Message': error.message,
             'Error Type': error.type,

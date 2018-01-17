@@ -5,7 +5,7 @@ import FriendsSurveyTemplate from './friendsSurvey.html';
 
 describe('FriendsSurvey', () => {
   let $rootScope, $componentController, $location, $state;
-  let ContentFactory, TOKEN_SURVEY, STATES;
+  let ContentFactory, SURVEY_360, STATES;
 
   let clearAdditionalDataSpy, saveDataToSendLaterSpy;
 
@@ -27,7 +27,7 @@ describe('FriendsSurvey', () => {
     $componentController = $injector.get('$componentController');
     $location = $injector.get('$location');
     $state = $injector.get('$state');
-    TOKEN_SURVEY = $injector.get('TOKEN_SURVEY');
+    SURVEY_360 = $injector.get('SURVEY_360');
     STATES = $injector.get('STATES');
     ContentFactory = $injector.get('ContentFactory');
 
@@ -58,15 +58,15 @@ describe('FriendsSurvey', () => {
 
     it('$onInit() - current state  = /360-Survey/2 - Store the token in CourseContent to send it later', () => {
 
-      mockLocalStorage[TOKEN_SURVEY] = 'A Token';
+      mockLocalStorage[SURVEY_360.TOKEN] = 'A Token';
       $state.current.name = `${STATES.SURVEY}/2`;
       controller.$onInit();
 
-      sinon.assert.calledWith(saveDataToSendLaterSpy, TOKEN_SURVEY, 'A Token');
+      sinon.assert.calledWith(saveDataToSendLaterSpy, SURVEY_360.TOKEN, 'A Token');
     });
 
     it('$onInit() - current state  = /360-Survey/3  - delete local storage data and remove token from course Content', () => {
-      mockLocalStorage[TOKEN_SURVEY] = 'A Token';
+      mockLocalStorage[SURVEY_360.TOKEN] = 'A Token';
       $state.current.name = `${STATES.SURVEY}/3`;
       controller.$onInit();
 

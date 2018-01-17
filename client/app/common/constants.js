@@ -4,7 +4,11 @@ let constantModule = angular.module('app.common.constant', [
 ])
   .constant( 'TOKEN', 'token' )
   .constant( 'USER_ID', 'user_id' )
-  .constant( 'TOKEN_SURVEY', 'token_survey' )
+  .constant( 'SURVEY_360', {
+    TOKEN: 'token_survey',
+    ERROR_TOKEN_ALREADY_USED: 'token_used',
+    ERROR_NO_TOKEN_IN_URL: '360_survey_token_not_found_in_URL',
+  })
   .constant( 'STATES', {
     MAIN: 'main',
     MAIN_NO_MENU: 'main_no_menu',
