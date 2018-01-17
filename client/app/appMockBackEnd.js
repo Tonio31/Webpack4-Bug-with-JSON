@@ -88,8 +88,8 @@ angular.module( 'appMockBackEnd', [
 
   // Set a userID by default if the user logs in with a token in the URL
   if ( !JwtFactory.getUserId() ) {
-    $log.warn('No userID stored in Local Storage, use userId=4 by default');
-    JwtFactory.saveUserId(4);
+    $log.warn('No userID stored in Local Storage, use userId=51 by default');
+    JwtFactory.saveUserId(51);
   }
 
   // will take an URL and return a file name
@@ -375,7 +375,8 @@ angular.module( 'appMockBackEnd', [
       congrats: '<p>Congratulations for finishing this step, you\'re a star<\/p>'
     };
 
-    if ( dataObject.hasOwnProperty('fullUrl') && dataObject.fullUrl === 'genericContent' ) {
+    if ( dataObject.hasOwnProperty('fullUrl') &&
+      ( dataObject.fullUrl === 'genericContent' || dataObject.fullUrl.includes('360-Survey') ) ) {
       return [ 200, responseContent, responseHeaders ];
     }
     else if ( dataObject.hasOwnProperty('markStepAsCompleted') && dataObject.markStepAsCompleted === false ) {
@@ -456,9 +457,9 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('participants')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    return error401;
+    // return error401;
     // return error500;
-    // return [ 200, participant[headers.user_id], {} ];
+    return [ 200, participant[headers.user_id], {} ];
   });
 
   $httpBackend.whenPOST(Data.buildApiUrl('partial_save')).respond( (method, url) => {
