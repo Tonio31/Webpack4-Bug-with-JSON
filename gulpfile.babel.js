@@ -212,7 +212,7 @@ gulp.task('clean', (cb) => {
 });
 
 // gulp.task('pre-commit', ['bumpVersion']);
-gulp.task('pre-commit', ['bumpVersion']);
+gulp.task('pre-commit', []);
 gulp.task('bumpVersion', () => {
   gutil.log('Bump package json version with minor patch');
 
