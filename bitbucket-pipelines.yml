@@ -16,7 +16,7 @@ pipelines:
             - npm install
             - git config --global user.email "Frankie@potentialife.com"
             - git config --global user.name "Frankie"
-            - npm run incrementVersionNumber
+            - npm run bumpAndTagVersionNumber
     dev:
       - step:
           script:

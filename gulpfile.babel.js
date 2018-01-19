@@ -212,7 +212,7 @@ gulp.task('clean', (cb) => {
 });
 
 // gulp.task('pre-commit', ['bumpVersion']);
-gulp.task('pre-commit', []);
+gulp.task('pre-commit', ['bumpVersion']);
 gulp.task('bumpVersion', () => {
   gutil.log('Bump package json version with minor patch');
 
@@ -234,19 +234,23 @@ gulp.task('pushTag', ['tagRepo'], () => {
   return git.push('origin', '', {args: ' --tags'}, function(err) { if (err) throw err;});
 });
 
-gulp.task('incrementVersion', [], () => {
-  gutil.log('Increment package.json version, commit and push');
+gulp.task('bumpAndTagVersionNumber', () => {
+  gutil.log('bumpAndTagVersionNumber');
   return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
+  .pipe(tag_version())
   .pipe(git.add())
-  .pipe(git.commit('Bump package.json version'))
-  .on('end', function () {
-    git.push('origin', '', function (err) {
-      if (err) throw err;
-    });
-  });
+  .pipe(git.commit('Bump adn tag package.json version'));
 });
+
+gulp.task('gitPush', ['bumpAndTagVersionNumber'], () => {
+  gutil.log('gitPush will Increment package.json version, tag it, commit and push');
+  return git.push('origin', '', {args: ''}, function(err) { if (err) throw err;});
+});
+
+
+
 
 
 
