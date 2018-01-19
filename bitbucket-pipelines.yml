@@ -12,6 +12,7 @@ pipelines:
   branches:
     feature/incrementVersion:
       - step:
+          script:
             - npm install
             - npm run incrementVersion
     dev:
