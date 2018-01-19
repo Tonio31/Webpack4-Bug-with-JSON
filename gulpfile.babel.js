@@ -211,7 +211,8 @@ gulp.task('clean', (cb) => {
   })
 });
 
-gulp.task('pre-commit', ['bumpVersion']);
+// gulp.task('pre-commit', ['bumpVersion']);
+gulp.task('pre-commit', []);
 gulp.task('bumpVersion', () => {
   gutil.log('Bump package json version with minor patch');
 
@@ -229,8 +230,22 @@ gulp.task('tagRepo', () => {
 
 // Push tag to current branch
 gulp.task('pushTag', ['tagRepo'], () => {
-  gutil.log('create a git Tag');
+  gutil.log('push a git Tag');
   return git.push('origin', '', {args: ' --tags'}, function(err) { if (err) throw err;});
+});
+
+gulp.task('incrementVersion', [], () => {
+  gutil.log('Increment package.json version, commit and push');
+  return gulp.src('./package.json')
+  .pipe(bump({type:'patch'}))
+  .pipe(gulp.dest('./'))
+  .pipe(git.add())
+  .pipe(git.commit('Bump package.json version'))
+  .on('end', function () {
+    git.push('origin', '', function (err) {
+      if (err) throw err;
+    });
+  });
 });
 
 
