@@ -14,7 +14,7 @@ pipelines:
       - step:
           script:
             - npm install
-            - npm run incrementVersion
+            - npm run incrementVersionNumber
     dev:
       - step:
           script:
