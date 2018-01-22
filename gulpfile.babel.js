@@ -239,8 +239,8 @@ gulp.task('bumpAndTagVersionNumber', () => {
   return gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
-  .pipe(tag_version())
-  .pipe(git.add('.'))
+ // .pipe(tag_version())
+  .pipe(git.add())
   .pipe(git.commit('Bump adn tag package.json version'));
 });
 
