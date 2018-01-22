@@ -211,17 +211,6 @@ gulp.task('clean', (cb) => {
   })
 });
 
-// gulp.task('pre-commit', ['bumpVersion']);
-gulp.task('pre-commit', []);
-gulp.task('bumpVersion', () => {
-  gutil.log('Bump package json version with minor patch');
-
-  return gulp.src('./package.json')
-  .pipe(bump({type:'patch'}))
-  .pipe(gulp.dest('./'))
-  .pipe(git.add());
-});
-
 gulp.task('tagRepo', () => {
   gutil.log('create a git Tag');
   return gulp.src(['./package.json'])
