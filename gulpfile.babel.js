@@ -237,6 +237,7 @@ gulp.task('pushVersionNumber', ['bumpVersionNumber'], () => {
 });
 
 
+gulp.task('pre-push', ['bumpVersionNumber']);
 
 
 
