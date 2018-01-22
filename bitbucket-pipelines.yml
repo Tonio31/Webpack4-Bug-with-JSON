@@ -14,9 +14,6 @@ pipelines:
       - step:
           script:
             - npm install
-            - git config --global user.email "Frankie@potentialife.com"
-            - git config --global user.name "Frankie"
-            - npm run bumpVersionNumber
             - npm run build
             - npm run deploy
             - ./bugsnag-deploy.sh UAT
