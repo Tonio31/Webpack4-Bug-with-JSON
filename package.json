@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "2.3.50",
+  "version": "2.3.52",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -150,6 +150,5 @@
         }
       ]
     ]
-  },
-  "pre-push": []
+  }
 }
