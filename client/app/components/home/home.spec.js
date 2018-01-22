@@ -1,8 +1,5 @@
 import HomeModule from './home';
 import Main from 'components/main/main';
-import LoginRoot from "app/components/loginRoot/loginRoot";
-import ResetPasswordModule from "app/components/resetPassword/resetPassword";
-
 
 describe('Home', () => {
   let $rootScope, $state, $location, $componentController, $compile;

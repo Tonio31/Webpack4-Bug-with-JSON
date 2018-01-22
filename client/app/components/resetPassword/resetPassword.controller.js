@@ -75,7 +75,9 @@ class ResetPasswordController {
         },
         (error) => {
           $log.log('error when resetting password error=', error);
-          if ( error.status === 401 && error.statusText === 'token_expired' ) {
+          if ( error.status === 401 && error.statusText === 'token_expired' ||
+          error.status === 404 && error.statusText === 'token_not_found') {
+
             $state.go(STATES.RETRIEVE_CREDENTIALS, {
               displayErrorOnInit: 'RESET_PASSWORD_TOKEN_EXPIRED'
             });

@@ -10,7 +10,7 @@ let ResourceFactory = function( $log,
                                 User,
                                 STATES,
                                 WEBSITE_CONFIG,
-                                TOKEN_SURVEY ) {
+                                SURVEY_360 ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -107,21 +107,25 @@ let ResourceFactory = function( $log,
     let urlParameters = $location.search();
     let tokenSurvey = '';
 
-    if ( urlParameters.hasOwnProperty(TOKEN_SURVEY) ) {
-      tokenSurvey = urlParameters[TOKEN_SURVEY];
-      $localStorage[TOKEN_SURVEY] = tokenSurvey;
+    if ( urlParameters.hasOwnProperty(SURVEY_360.TOKEN) ) {
+      tokenSurvey = urlParameters[SURVEY_360.TOKEN];
+      $localStorage[SURVEY_360.TOKEN] = tokenSurvey;
     }
-    else if ( angular.isDefined($localStorage[TOKEN_SURVEY]) ) {
-      tokenSurvey = $localStorage[TOKEN_SURVEY];
+    else if ( angular.isDefined($localStorage[SURVEY_360.TOKEN]) ) {
+      tokenSurvey = $localStorage[SURVEY_360.TOKEN];
     }
 
     $log.log('getFriendSurveyContent() - tokenSurvey=', tokenSurvey);
 
     if ( tokenSurvey ) {
-      ioGetParameters[TOKEN_SURVEY] = tokenSurvey;
+      ioGetParameters[SURVEY_360.TOKEN] = tokenSurvey;
+      return getDynamicContentPromise( 'survey', false, ioGetParameters );
     }
 
-    return getDynamicContentPromise( 'survey', false, ioGetParameters );
+    return $q.reject({
+      status: 401,
+      statusText: SURVEY_360.ERROR_NO_TOKEN_IN_URL
+    });
   };
 
   let getLifeActPDF = (iUrl) => {
