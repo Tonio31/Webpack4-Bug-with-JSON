@@ -21,10 +21,11 @@ pipelines:
       - step:
           script:
             - npm install
-            - npm run build -- --phase PROD
-            - npm run deploy -- --phase PROD
             - git config --global user.email "Frankie@potentialife.com"
             - git config --global user.name "Frankie"
+            - npm run bumpVersionNumber
+            - npm run build -- --phase PROD
+            - npm run deploy -- --phase PROD
             - npm run addGitTagToRepo
             - npm run notifyTicketsChanel -- --phase PROD
             - ./bugsnag-deploy.sh PROD
