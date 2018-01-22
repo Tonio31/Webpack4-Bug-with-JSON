@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "2.2.103",
+  "version": "2.3.1",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -117,7 +117,7 @@
     "protractor": "node_modules/.bin/protractor protractor.conf.js",
     "e2e": "gulp e2e_test",
     "deploy": "gulp deploy",
-    "bumpAndTagVersionNumber": "gulp gitPush",
+    "bumpVersionNumber": "gulp pushVersionNumber",
     "addGitTagToRepo": "gulp pushTag",
     "notifyTicketsChanel": "gulp notifyTicketsChanel"
   },
