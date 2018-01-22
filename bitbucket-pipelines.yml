@@ -23,7 +23,6 @@ pipelines:
             - npm install
             - git config --global user.email "Frankie@potentialife.com"
             - git config --global user.name "Frankie"
-            - npm run bumpVersionNumber
             - npm run build -- --phase PROD
             - npm run deploy -- --phase PROD
             - npm run addGitTagToRepo
