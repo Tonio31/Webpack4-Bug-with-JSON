@@ -84,6 +84,7 @@
   "ERROR_RETRY": "Whoops, we are sorry, there was an error please refresh the page and retry or contact support if error persists.",
   "ERROR_UNEXPECTED": "Unexpected error.",
   "360_TOKEN_USED": "It looks like you already submitted your feedback.",
+  "ERROR_WORDCLOUD_EMPTY": "Error: Not enough words have been entered in the previous step to display a wordcloud. If you would like to go back and enter differnt text, please contact support@potentialife.com.",
 
   "RESET_PASSWORD_TOKEN_EXPIRED": "The link in the reset password email has expired for security reasons, please re-enter your email address to receive a valid link",
   "ERROR_WITH_BACKEND": "Whoops, Unexpected error while changing your password.",
