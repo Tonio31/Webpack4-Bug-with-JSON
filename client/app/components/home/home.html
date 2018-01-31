@@ -6,7 +6,7 @@
     <h4 class="text-center">{{ 'WATCH_YOURSELF_PROGRESS' | translate }}</h4>
 
     <div id="cycles" class="row collapse">
-      <div class="columns medium-4" ng-class="{'show-for-medium-up': cycle.status !== 'current'}" ng-repeat="cycle in $ctrl.menu.data.children track by cycle.id">
+      <div class="columns medium-4" ng-class="{'show-for-medium-up': !$ctrl.isCycleDisplayedForSmallScreen(cycle)}" ng-repeat="cycle in $ctrl.menu.data.children track by cycle.id">
         <div ng-class="{'not-locked': cycle.status !== 'locked'}" class="cycle text-center">
           <div>
             <c3chart bindto-id="_{{cycle.id}}_homeProgressDonut" sort-data="null">

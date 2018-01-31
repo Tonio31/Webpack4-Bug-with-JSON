@@ -107,6 +107,25 @@ describe('Home', () => {
       expect(controller.firstName).to.equal(firstName);
     });
 
+    it('isCycleDisplayedForSmallScreen() - program is completed, returns true ony for latest cycle', () => {
+
+      controller.isProgramCompleted = true;
+
+      expect(controller.isCycleDisplayedForSmallScreen(menuObject.data.children[0])).to.equal(false);
+      expect(controller.isCycleDisplayedForSmallScreen(menuObject.data.children[1])).to.equal(false);
+      expect(controller.isCycleDisplayedForSmallScreen(menuObject.data.children[2])).to.equal(true);
+    });
+
+
+    it('isCycleDisplayedForSmallScreen() - program is NOT completed, returns true ony for current cycle', () => {
+
+      controller.isProgramCompleted = false;
+
+      expect(controller.isCycleDisplayedForSmallScreen(menuObject.data.children[0])).to.equal(true);
+      expect(controller.isCycleDisplayedForSmallScreen(menuObject.data.children[1])).to.equal(false);
+      expect(controller.isCycleDisplayedForSmallScreen(menuObject.data.children[2])).to.equal(false);
+    });
+
     it('test getDonutTitle() function', () => {
       controller.$onInit();
 
