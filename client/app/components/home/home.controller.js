@@ -90,6 +90,22 @@ class HomeController {
       ZendeskWidget.activate();
     };
 
+    // For small screens, we only want to display the current cycle
+    // If the user completed the program, there is no current cycle, we then display the last one
+    this.isCycleDisplayedForSmallScreen = (iCycle) => {
+
+      let isCycleDisplayed = false;
+
+      if ( this.isProgramCompleted ) {
+        let lastCycleIndex = this.menu.data.children.length - 1;
+        isCycleDisplayed = iCycle.id === this.menu.data.children[lastCycleIndex].id;
+      }
+      else {
+        isCycleDisplayed = ( iCycle.status === 'current' );
+      }
+
+      return isCycleDisplayed;
+    };
   }
 
 }

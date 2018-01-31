@@ -126,6 +126,7 @@ describe('WordCloud', () => {
           title: 'Empty Word Cloud',
           wordData: []
         }
+      }
     };
 
     beforeEach(() => {
@@ -135,9 +136,9 @@ describe('WordCloud', () => {
     });
 
 
-    it(`$onInit display an error message if the wordCloud data is empty` , () => {
+    it(`$onInit display an error message if the wordCloud data is empty`, () => {
       controller.$onInit();
-      expect(controller.wordData).to.deep.eq([]);
+      expect(controller.wordData).to.be.an('undefined');
       expect(controller.isWordCloudEmpty).to.eq(true);
     });
   });
