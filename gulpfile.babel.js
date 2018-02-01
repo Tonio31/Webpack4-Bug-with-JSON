@@ -25,6 +25,19 @@ let root = 'client';
 
 const protractor = protractorLib.protractor;
 
+const CONFIG_DEPLOY = {
+  UAT: {
+    s3Bucket: 'test.program.potentialife.com',
+    deployUrl: 'https://test-program.potentialife.com',
+    cloudFronDistributionId: 'E3N0OB6AFVAPFJ'
+  },
+  PROD: {
+    s3Bucket: 'program.potentialife.com',
+    deployUrl: 'https://program.potentialife.com',
+    cloudFronDistributionId: 'ELTZC5FGWC0Q'
+
+  }
+};
 
 // helper method for resolving paths
 let resolveToApp = (glob = '') => {
@@ -244,37 +257,48 @@ gulp.task('deploy', () => {
 
   let phase = yargs.argv.phase || 'UAT';
 
+  let versionNumber = require('./package.json').version;
+
+  let deployIndex = yargs.argv.index;
+  gutil.log(`Deploy deployIndex: ${deployIndex}`);
+  let filesTodeploy = [];
+  let httpHeaders = {};
+  if ( deployIndex ) {
+    filesTodeploy = ['./dist/index.html'];
+    httpHeaders = {
+      'Cache-Control': 'no-cache, no-store, must-revalidate'
+    };
+  }
+  else {
+    filesTodeploy = [
+      './dist/*',
+      '!./dist/index.html'
+    ];
+    httpHeaders = {
+      'Cache-Control': 'max-age=31536000, no-transform, public'
+    };
+  }
+
   let slack = require('gulp-slack')({
     url: 'https://hooks.slack.com/services/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',
     channel: '#deployments',
     user: 'Frankie Program',
     icon_emoji: ':shipit:'
   });
+  let slackMessage = `PROGRAM: Deployment on ${phase} - v${versionNumber}: ${CONFIG_DEPLOY[phase].deployUrl}`;
 
-  //Default UAT
-  let s3Bucket = 'test.program.potentialife.com';
-  let deployUrl = 'https://test-program.potentialife.com';
-  let cloudFronDistributionId = 'E3N0OB6AFVAPFJ';
-
-  if ( phase === 'PROD' ) {
-    s3Bucket = 'program.potentialife.com';
-    deployUrl = 'https://program.potentialife.com';
-    cloudFronDistributionId = 'ELTZC5FGWC0Q';
-  }
 
   let awsConf = {
-    buildSrc: './dist/*',
+    buildSrc: filesTodeploy,
     keys: {
       accessKeyId: '',
       secretAccessKey: '',
       region: 'eu-west-2',
       params: {
-        Bucket: s3Bucket
+        Bucket: CONFIG_DEPLOY[phase].s3Bucket
       }
     },
-    headers: {
-      'Cache-Control': 'max-age=31536000, no-transform, public'
-    }
+    headers: httpHeaders
   };
 
   if (process.env.CI) {
@@ -290,29 +314,32 @@ gulp.task('deploy', () => {
   }
 
   let cloudFrontSettings = {
-    distribution: cloudFronDistributionId, // Cloudfront distribution ID
+    distribution: CONFIG_DEPLOY[phase].cloudFronDistributionId, // Cloudfront distribution ID
     accessKeyId: awsConf.keys.accessKeyId, // Optional AWS Access Key ID
     secretAccessKey: awsConf.keys.secretAccessKey, // Optional AWS Secret Access Key
     wait: true,                     // Whether to wait until invalidation is completed (default: false)
     indexRootPath: true             // Invalidate index.html root paths (`foo/index.html` and `foo/`) (default: false)
   };
 
-
-
   let publisher = awspublish.create(awsConf.keys);
 
-  gutil.log(`Deploy dist folder into ${phase} S3-Bucket: ${awsConf.keys.params.Bucket}`);
+  gutil.log(`Deploy ${phase}: ${deployIndex ? 'dist/index.html' : 'dist/** except index.html' } in S3-Bucket: ${awsConf.keys.params.Bucket}`);
   gutil.log('Headers to be added to the files: ', awsConf.headers);
-  gutil.log('Invalidate Files on CloudFront With Distribution ID=', cloudFronDistributionId);
+  gutil.log('Invalidate Files on CloudFront With Distribution ID=', CONFIG_DEPLOY[phase].cloudFronDistributionId);
 
-  return gulp.src(awsConf.buildSrc)
-    .pipe(awspublish.gzip({ext: ''}))
-    .pipe(publisher.publish(awsConf.headers))
-    .pipe(cloudFront(cloudFrontSettings))
-    .pipe(publisher.cache())
-    //.pipe(publisher.sync())
-    .pipe(awspublish.reporter())
-    .pipe(slack(`PROGRAM: Deployment on ${phase}: ${deployUrl}`));
+  let stream = gulp.src(awsConf.buildSrc)
+  .pipe(awspublish.gzip({ext: ''}))
+  .pipe(publisher.publish(awsConf.headers))
+  .pipe(cloudFront(cloudFrontSettings))
+  .pipe(publisher.cache())
+  //.pipe(publisher.sync())
+  .pipe(awspublish.reporter());
+
+  if ( deployIndex ) {
+    stream.pipe(slack(slackMessage));
+  }
+
+  return stream;
 });
 
 
