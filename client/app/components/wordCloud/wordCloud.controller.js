@@ -36,7 +36,6 @@ class WordCloudController {
             '#F78AE0'
           ]);
 
-
           let layout = cloud()
           .size([ wordCloudIdWidth, 300 ])
           .words(this.wordData.map((d) => {
