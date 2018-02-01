@@ -114,7 +114,36 @@ describe('WordCloud', () => {
     // top-level specs: i.e., routes, injection, naming
   });
 
-  describe('Controller', () => {
+  describe('Controller when wordCloud IS empty', () => {
+    // controller specs
+    let controller;
+    let bindings = {
+      block: {
+        id: 64,
+        type: 'static',
+        element: 'word_cloud',
+        data: {
+          title: 'Empty Word Cloud',
+          wordData: []
+        }
+      }
+    };
+
+    beforeEach(() => {
+      controller = $componentController('wordCloud', {
+        $scope: $rootScope.$new()
+      }, bindings);
+    });
+
+
+    it(`$onInit display an error message if the wordCloud data is empty`, () => {
+      controller.$onInit();
+      expect(controller.wordData).to.be.an('undefined');
+      expect(controller.isWordCloudEmpty).to.eq(true);
+    });
+  });
+
+  describe('Controller when wordCloud IS NOT empty', () => {
     // controller specs
     let controller;
     let bindings = {
@@ -130,6 +159,7 @@ describe('WordCloud', () => {
 
     it('$onInit creates the data needed for displaying the bar chart', () => {
       controller.$onInit();
+      expect(controller.isWordCloudEmpty).to.eq(false);
       expect(controller.wordData).to.deep.eq([
         {
           text: 'hello',

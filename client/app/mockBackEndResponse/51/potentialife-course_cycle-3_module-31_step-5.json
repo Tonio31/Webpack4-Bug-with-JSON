@@ -277,6 +277,7 @@
       "element": "word_cloud",
       "program_data_code": "l1.word_cloud",
       "data": {
+        "title": "Word Cloud with lots of words",
         "wordData": [
           {
             "text": "lead",
@@ -619,6 +620,30 @@
             "power": 1
           }
         ]
+      }
+    },
+    {
+      "id": 130,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<h3>Empty world cloud below<\/h3>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
+      "id": 1033,
+      "type": "static",
+      "element": "word_cloud",
+      "program_data_code": "l1.word_cloud",
+      "data": {
+        "title": "Empty world Cloud",
+        "wordData": []
       }
     }
   ]

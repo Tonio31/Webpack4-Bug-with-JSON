@@ -3,5 +3,7 @@
 // @import '~client/app/common/_foundation-functions';
 
 .word-cloud {
-  color: red;
+  p.error {
+    color: $alert-color;
+  }
 }
