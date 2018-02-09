@@ -55,6 +55,17 @@ $tick-size: 3rem;
     }
   }
 
+  .step-title {
+    font-size: rem_calc(36px);
+    line-height: 1.5;
+    margin-bottom: rem_calc(20px);
+
+    @media #{$small-only} {
+      font-size: rem_calc(24px);
+      margin-bottom: rem_calc(10px);
+    }
+  }
+
   // We have to override the default (which is 100vh) because the saving step spinner
   // needs to be positioned precisely at the bottom of the content and not at half
   // of the size of the screen
