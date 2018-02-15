@@ -31,8 +31,7 @@
 
   @media #{$small-only} {
     p {
-      // margin-bottom: rem_calc(0px);
-      font-size: 1rem;
+      font-size: $font-size-mobile;
     }
 
     img {

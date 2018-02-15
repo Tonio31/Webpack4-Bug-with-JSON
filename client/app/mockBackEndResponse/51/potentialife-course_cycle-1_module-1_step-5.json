@@ -11,23 +11,99 @@
   "prev_page_url": "/potentialife-course/cycle-1/module-1/step-4",
   "blocks": [
     {
-      "id": 47,
-      "type": "static",
-      "element": "video",
+      "id": 358,
+      "element": "icon_text",
+      "source_program_data_code": null,
       "program_data_code": null,
       "data": {
-        "poster": "https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_poster.jpg",
-        "source_sd": "https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/L01_M01_V3_weblo.mp4",
-        "source_hd": "https:\/\/www.quirksmode.org\/html5\/videos\/big_buck_bunny.mp4",
-        "caption_src": "https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_text.vtt",
-        "caption_lang": "en",
-        "caption_label": "English subtitles",
-        "caption_default": true
-      },
-      "pivot": {
-        "step_id": 4,
-        "block_id": 47,
-        "order": 0
+        "value": null,
+        "icon": {
+          "type": "icon-badge-time-to-reflect",
+          "color": null
+        },
+        "text": "<p>How is your diet? The answer to this question is nearly always \u2018It could be better\u2019!<\/p>\r\n\r\n<p>The key to a healthier diet is small steps \u2013 we can all start by making small changes, feeling the benefits, and then making more small changes. This is the formula!<\/p>"
+      }
+    },
+    {
+      "id": 359,
+      "element": "html",
+      "source_program_data_code": null,
+      "program_data_code": null,
+      "data": {
+        "value": "<p>What small change can you make next week? Take a look at the list of simple ideas below and then decide on 1 thing, from this list or elsewhere, to improve your energy through improved nutrition in the coming week.<\/p>"
+      }
+    },
+    {
+      "id": 360,
+      "element": "ul",
+      "source_program_data_code": null,
+      "program_data_code": null,
+      "data": {
+        "config": {
+          "minItemsDisplayed": "5",
+          "showMoreButtonAtStart": "1"
+        },
+        "label": "Nutrition thought-starters",
+        "placeholder": null,
+        "name": "nutrition_hought_starters",
+        "value": null,
+        "items": [
+          {
+            "label": "Drink more water",
+            "sub_label": "Staying hydrated is important for your health, mood, concentration and overall performance. Try to drink at least 8 glasses per day.",
+            "takeaways": null
+          },
+          {
+            "label": "Eat less processed food",
+            "sub_label": "They are often high in  sugar, \"bad fats\", refined carbohydrates and artificial additives, and at the same time low on energy, fiber and good nutrients!",
+            "takeaways": null
+          },
+          {
+            "label": "Plan your meals ahead of time",
+            "sub_label": "Decide what you will be eating before you get hungry. Hungry decisions are often poor decisions.",
+            "takeaways": null
+          },
+          {
+            "label": "Eat out less",
+            "sub_label": "Eating in restaurants is not only expensive but can also be less healthy than cooking at home. If you eat out a lot, try reducing this and see how you feel.",
+            "takeaways": null
+          },
+          {
+            "label": "Reduce alcohol consumption",
+            "sub_label": "This will improve your health, sleep, energy, mood and concentration.",
+            "takeaways": null
+          },
+          {
+            "label": "Eat more fruits and vegetables",
+            "sub_label": "The WHO recommends at least 5 portions of fruit and veg per day",
+            "takeaways": null
+          },
+          {
+            "label": "Consume less caffeine",
+            "sub_label": "Caffeine can cause anxiety, restlessness and trouble sleeping.",
+            "takeaways": null
+          },
+          {
+            "label": "Improve snacking habits",
+            "sub_label": "Remove unhealthy temptations and replace with healthy snacks",
+            "takeaways": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 362,
+      "element": "textarea",
+      "source_program_data_code": null,
+      "program_data_code": "l1.m4.s4.idea_to_improve_nutrition",
+      "data": {
+        "label": "Write down an actionable idea to improve your energy levels through nutrition next week",
+        "placeholder": null,
+        "value": "l1.m1.s4 nutrition idea",
+        "name": "idea_to_improve_nutrition",
+        "config": {
+          "required": "1"
+        }
       }
     }
   ]

@@ -11,6 +11,18 @@
   }
 
   h3 {
-    margin-bottom: 0;
+    margin-bottom: 2 * $default-padding;
   }
+
+  @media #{$small-only} {
+    textarea {
+      font-size: $font-size-mobile;
+    }
+
+    h3 {
+      margin-bottom: $default-padding;
+      font-size: $font-size-mobile;
+    }
+  }
+
 }

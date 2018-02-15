@@ -22,15 +22,6 @@
       }
     },
     {
-      "id": 200,
-      "element": "html",
-      "source_program_data_code": null,
-      "program_data_code": null,
-      "data": {
-        "value": null
-      }
-    },
-    {
       "id": 201,
       "element": "bar_chart",
       "source_program_data_code": null,
