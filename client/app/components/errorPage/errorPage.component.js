@@ -4,9 +4,7 @@ import './errorPage.scss';
 
 let errorPageComponent = {
   restrict: 'E',
-  bindings: {
-    data: '<'
-  },
+  bindings: {},
   template,
   controller
 };

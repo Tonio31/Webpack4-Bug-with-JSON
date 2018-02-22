@@ -3,12 +3,12 @@ class ViaSurveyController {
                $q,
                $state,
                $anchorScroll,
+               $exceptionHandler,
                $window,
                User,
                Data,
                ContentFactory,
                SpinnerFactory,
-               ErrorNotifierFactory,
                Utility,
                LanguageFactory,
                SPINNERS,
@@ -139,16 +139,15 @@ class ViaSurveyController {
     this.goToErrorState = (iApiInError, iError) => {
       $log.error(`Error during ${iApiInError}. error=`, iError);
       SpinnerFactory.hide(SPINNERS.COURSE_CONTENT);
-
-      ErrorNotifierFactory.displayErrorPage({
-        errorMsg: 'ERROR_UNEXPECTED',
-        displayContactUsForm: true,
-        bugsnagErrorName: iApiInError,
-        bugsnagMetaData: {
-          'What Happened?': `${iApiInError}`,
-          'Error': iError ? iError.message : 'Unknown Error'
-        }
-      });
+      $state.go(STATES.ERROR_PAGE,
+        {
+          errorMsg: 'ERROR_UNEXPECTED',
+          bugsnagErrorName: iApiInError,
+          bugsnagMetaData : {
+            'What Happened?': `${iApiInError}`,
+            'Error': iError ? iError.message : 'Unknown Error'
+          }
+        }, { reload: true });
     };
 
     // This function will be called every time the user clicks on "Next Step" button at the bottom of the page
