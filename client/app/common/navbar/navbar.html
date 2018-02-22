@@ -57,7 +57,6 @@
         <company-banner ng-if="$ctrl.isBannerExist()"></company-banner>
         <spinner name="$ctrl.courseContentSpinner.name" show="false"></spinner>
         <div ng-show="!$ctrl.courseContentSpinner.show" id="content" class="content">
-          {{ $ctrl.errorPage | json }}
           <error-page ng-if="$ctrl.errorPage.displayErrorPage" data="$ctrl.errorPage">
             THIS IS THE ERRROR PAGE
           </error-page>
