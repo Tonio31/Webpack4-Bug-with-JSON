@@ -38,13 +38,10 @@
         "items": [
           {
             "label": "Power",
-            "sub_label": "Sub Label",
             "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
           },
           {
-            "label": "Reflexion",
-            "sub_label": "Sub Label",
-            "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            "label": "Reflexion"
           },
           {
             "label": "Love",
@@ -373,6 +370,15 @@
             "takeaways": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
           }
         ]
+      }
+    },
+    {
+      "id": 1532,
+      "element": "html",
+      "source_program_data_code": null,
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Think of\u00a0someone\u00a0who has been important in your life \u2013 someone who saw the\u00a0seed of greatness\u00a0in you, and helped you develop your strengths. A parent, teacher, former boss or colleague, a friend or partner. Ask yourself the questions below:<\/p><ol><li>Who was that person in your life? What did they\u00a0represent?<\/li>\r\n<li>What types of thing did this person\u00a0do for you? How did they behave towards you?<\/li>\r\n<li>How did they help\u00a0cultivate\u00a0your strengths?<\/li><\/ol><ul><li>Who was that person in your life? What did they\u00a0represent?<\/li>\r\n<li>What types of thing did this person\u00a0do for you? How did they behave towards you?<\/li>\r\n<li>How did they help\u00a0cultivate\u00a0your strengths?<\/li><\/ul><ol><li>Who was that person in your life? What did they\u00a0represent?<\/li>\r\n<li>What types of thing did this person\u00a0do for you? How did they behave towards you?<\/li>\r\n<li>How did they help\u00a0cultivate\u00a0your strengths?<\/li><\/ol>"
       }
     }
   ]

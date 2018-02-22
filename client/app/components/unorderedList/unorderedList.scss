@@ -21,6 +21,14 @@
     .takeaway {
       padding: $default-padding 0;
     }
+
+    p {
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .bold {
+    font-weight: $font-weight-bold;
   }
 
   ul li {

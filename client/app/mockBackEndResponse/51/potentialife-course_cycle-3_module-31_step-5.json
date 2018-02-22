@@ -25,6 +25,20 @@
       }
     },
     {
+      "id": 31,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>This is a nice piece of text above the chart<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
       "id": 1032,
       "type": "static",
       "element": "line_chart",
@@ -51,11 +65,26 @@
       }
     },
     {
+      "id": 33,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>This is a nice piece of text below the chart and above an other chart<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
+      }
+    },
+    {
       "id": 52,
       "type":"static",
       "element":"bar_chart",
       "data": {
         "title":"Your strengths breakdown",
+        "barWidth": null,
         "bars":[
           {
             "title": "Work",
@@ -78,6 +107,20 @@
             "value": 100
           }
         ]
+      }
+    },
+    {
+      "id": 35,
+      "type": "static",
+      "element": "html",
+      "program_data_code": null,
+      "data": {
+        "value": "<p>This is a nice piece of text below the chart and above an other chart<\/p>"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 50,
+        "order": 0
       }
     },
     {

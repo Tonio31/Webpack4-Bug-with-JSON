@@ -21,18 +21,13 @@ $tick-size: 3rem;
 
   fieldset {
     border: none;
-    margin: 1rem 0 0;
+    margin: 0;
     padding: 0;
   }
 
   .block {
     padding-top: $default-padding;
     padding-bottom: $default-padding * 2;
-
-    @media #{$small-only} {
-      padding: $default-padding 0;
-    }
-
   }
 
   .banner {
@@ -69,7 +64,7 @@ $tick-size: 3rem;
   }
 
   .step-title {
-    font-size: rem_calc(36px);
+    font-size: 2rem;
     line-height: 1.5;
     margin-bottom: rem_calc(20px);
 
