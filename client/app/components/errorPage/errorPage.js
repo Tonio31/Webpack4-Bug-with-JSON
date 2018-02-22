@@ -11,31 +11,6 @@ let errorPageModule = angular.module('errorPage', [
   LogDecorator,
   JwtServiceModule
 ])
-.config(($stateProvider, STATES) => {
-  'ngInject';
-
-  $stateProvider
-    .state(STATES.ERROR_PAGE_NO_MENU, {
-      url: STATES.ERROR_PAGE_NO_MENU,
-      parent: STATES.MAIN_NO_MENU,
-      component: 'errorPage',
-      params: {
-        errorMsg: null,
-        bugsnagMetaData: null,
-        bugsnagErrorName: null
-      }
-    })
-    .state(STATES.ERROR_PAGE, {
-      url: STATES.ERROR_PAGE,
-      parent: STATES.MAIN,
-      component: 'errorPage',
-      params: {
-        errorMsg: null,
-        bugsnagMetaData: null,
-        bugsnagErrorName: null
-      }
-    });
-})
 .component('errorPage', errorPageComponent)
 
 .name;

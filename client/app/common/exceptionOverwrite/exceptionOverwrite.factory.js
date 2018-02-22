@@ -1,4 +1,4 @@
-let ExceptionOverwriteFactory = function( $log, $state, STATES ) {
+let ExceptionOverwriteFactory = function( $log, $state, STATES, ErrorNotifierFactory ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -7,13 +7,22 @@ let ExceptionOverwriteFactory = function( $log, $state, STATES ) {
   let myExceptionHandler = (exception, cause) => {
     $log.error(exception, cause);
 
-    $state.go(STATES.ERROR_PAGE,
-      {
-        errorMsg: 'ERROR_UNEXPECTED',
-        bugsnagMetaData : {
-          Error: exception ? exception.message : 'Unknown Error'
-        }
-      }, { reload: true });
+    ErrorNotifierFactory.displayErrorPage({
+      errorMsg: 'ERROR_UNEXPECTED',
+      displayContactUsForm: true,
+      bugsnagErrorName: 'User on Error Page',
+      bugsnagMetaData: {
+        Error: exception ? exception.message : 'Unknown Error'
+      }
+    });
+
+    // $state.go(STATES.ERROR_PAGE,
+    //   {
+    //     errorMsg: 'ERROR_UNEXPECTED',
+    //     bugsnagMetaData : {
+    //       Error: exception ? exception.message : 'Unknown Error'
+    //     }
+    //   }, { reload: true });
   };
 
 

@@ -86,7 +86,6 @@ class CourseContentController {
     };
 
     this.$onInit = () => {
-      $log.log('$onInit - BEGIN');
       this.skipShowingBanner = this.content.skipShowingBanner;
       this.isStepCompleted = ( this.content.status === 'completed' );
       this.calculateButtonInfo( this.isStepCompleted,
@@ -103,8 +102,6 @@ class CourseContentController {
         prevPage: this.content.prev_page_url,
         nextPage: this.content.next_page_url
       };
-
-      $log.log('$onInit - END');
     };
 
     this.updateInputFields = (iIdentifier, iNewValue) => {
