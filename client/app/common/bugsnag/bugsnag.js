@@ -22,7 +22,7 @@ let bugsnagModule = angular.module('bugsnagModule', [
     bugsnagProvider
       .noConflict()
       .apiKey('b9056a2472100fb8471f4d10f264047e')
-      .setBreadcrumbLimit(30)
+      .setBreadcrumbLimit(25)
       .releaseStage(ENVIRONMENT)
       .appVersion(VERSION)
       .beforeNotify( 'bugsnagFactory' );
