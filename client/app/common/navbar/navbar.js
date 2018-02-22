@@ -4,6 +4,7 @@ import globalVariable from 'app/globalVariables';
 import navbarComponent from './navbar.component';
 import ResourceFactory from 'common/resourceFactory/resource';
 import LogDecorator from 'common/logDecorator/logDecorator';
+import ErrorNotifierFactory from 'common/errorNotifier/errorNotifier';
 import MenuService from 'common/menuFactory/menu';
 import constantModule from 'common/constants';
 import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
@@ -18,6 +19,7 @@ let navbarModule = angular.module('navbar', [
   MenuService,
   LoadingSpinnerModule,
   LogDecorator,
+  ErrorNotifierFactory,
   ZendeskWidgetFactory,
   globalVariable,
   constantModule,
