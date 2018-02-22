@@ -56,12 +56,8 @@
       <section class="main-section">
         <company-banner ng-if="$ctrl.isBannerExist()"></company-banner>
         <spinner name="$ctrl.courseContentSpinner.name" show="false"></spinner>
-        <div ng-show="!$ctrl.courseContentSpinner.show" id="content" class="content">
-          <error-page ng-if="$ctrl.errorPage.displayErrorPage" data="$ctrl.errorPage">
-            THIS IS THE ERRROR PAGE
-          </error-page>
-          <div ng-if="!$ctrl.errorPage.displayErrorPage" ui-view></div>
-        </div>
+
+        <div ng-show="!$ctrl.courseContentSpinner.show" id="content" class="content" ui-view></div>
       </section>
 
       <!-- close the off-canvas menu -->
