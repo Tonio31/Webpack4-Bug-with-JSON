@@ -5,16 +5,14 @@ import ViaSurveyTemplate from './viaSurvey.html';
 
 describe('ViaSurvey', () => {
   let $rootScope, $componentController, $q;
-  let SPINNERS;
+  let SPINNERS, STATES;
   let SpinnerFactory;
-  let ErrorNotifierFactory;
 
   let spies = {
     spinnerFactory: {},
     contentFactory: {},
     state: {},
-    utilityFactory: {},
-    errorNotifierFactory: {}
+    utilityFactory: {}
   };
 
   let listStrength = [
@@ -209,8 +207,8 @@ describe('ViaSurvey', () => {
     $componentController = $injector.get('$componentController');
     $q = $injector.get('$q');
     SpinnerFactory = $injector.get('SpinnerFactory');
-    ErrorNotifierFactory = $injector.get('ErrorNotifierFactory');
     SPINNERS = $injector.get('SPINNERS');
+    STATES = $injector.get('STATES');
 
     spies.spinnerFactory.show = sandbox.stub(SpinnerFactory, 'show');
     spies.spinnerFactory.hide = sandbox.stub(SpinnerFactory, 'hide');
@@ -221,8 +219,6 @@ describe('ViaSurvey', () => {
     spies.contentFactory.updateInputFields = sandbox.stub(mockContentFactory, 'updateInputFields');
     spies.contentFactory.clearInputFields = sandbox.stub(mockContentFactory, 'clearInputFields');
     spies.contentFactory.getInputFields = sandbox.spy(mockContentFactory, 'getInputFields');
-
-    spies.errorNotifierFactory.displayErrorPage = sandbox.stub(ErrorNotifierFactory, 'displayErrorPage');
 
     spies.state.go = sandbox.stub(mockState, 'go');
     spies.utilityFactory.saveUserInputToLocalStorage = sandbox.stub(mockUtility, 'saveUserInputToLocalStorage');
@@ -348,21 +344,22 @@ describe('ViaSurvey', () => {
       expect(password).to.eq('myName!@#$%asdf248t');
     });
 
-    it('goToErrorState() - hide the spinner and change display error page', () => {
+    it('goToErrorState() - hide the spinner and change state', () => {
       let error = 'This is an error';
       controller.goToErrorState(error);
       sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.COURSE_CONTENT);
       sinon.assert.calledWith(
-        spies.errorNotifierFactory.displayErrorPage,
+        spies.state.go,
+        STATES.ERROR_PAGE,
         {
           errorMsg: 'ERROR_UNEXPECTED',
-          displayContactUsForm: true,
           bugsnagErrorName: error,
           bugsnagMetaData : {
             'What Happened?': `${error}`,
             'Error': 'Unknown Error'
           }
-        });
+        },
+        { reload: true });
     });
 
     it('setTopLevelFormSubmitted() - update the fake submittedForm object if this.tabToDisplay === \'questions\'', () => {

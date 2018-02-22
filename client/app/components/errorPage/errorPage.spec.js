@@ -4,7 +4,7 @@ import ErrorPageComponent from './errorPage.component';
 import ErrorPageTemplate from './errorPage.html';
 
 describe('ErrorPage', () => {
-  let $rootScope, $componentController, $compile;
+  let $rootScope, $componentController, $compile, $stateParams;
 
   let mockTranslateFilter = (value) => {
     return value;
@@ -26,6 +26,7 @@ describe('ErrorPage', () => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    $stateParams = $injector.get('$stateParams');
   }));
 
   describe('Module', () => {
@@ -35,25 +36,20 @@ describe('ErrorPage', () => {
   describe('Controller', () => {
     // controller specs
     let controller;
-    let bindings = {
-      data: {
-        errorMsg: 'ERROR_402'
-      }
-    };
-
     beforeEach(() => {
       controller = $componentController('errorPage', {
         $scope: $rootScope.$new()
-      }, bindings);
+      });
     });
 
-    it('$onInit() - display specific error message if it is in the input', () => {
+    it('$onInit() - display specific error message if it is in the $stateParams', () => {
+      $stateParams.errorMsg = 'ERROR_402';
       controller.$onInit();
       expect(controller.errorMsg).to.eq('ERROR_402');
     });
 
-    it('$onInit() - display generic error message ERROR_UNEXPECTED if input data is empty', () => {
-      controller.data.errorMsg = null;
+    it('$onInit() - display generic error message ERROR_UNEXPECTED if $stateParams is empty', () => {
+      $stateParams.errorMsg = null;
       controller.$onInit();
       expect(controller.errorMsg).to.eq('ERROR_UNEXPECTED');
     });
@@ -65,16 +61,13 @@ describe('ErrorPage', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      scope.data = {
-        errorMsg: 'ERROR_402'
-      };
-      template = $compile('<error-page data="data"></error-page>')(scope);
+      template = $compile('<error-page></error-page>')(scope);
       scope.$apply();
     });
 
 
-    it('the h1 tag has the good content (ERROR_402)', () => {
-      expect(template.find('h1').html()).to.eq('ERROR_402');
+    it('the h1 tag has the good content (ERROR_UNEXPECTED)', () => {
+      expect(template.find('h1').html()).to.eq('ERROR_UNEXPECTED');
     });
   });
 

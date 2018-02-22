@@ -90,7 +90,6 @@ let appModule = angular.module( 'app', [
         $urlRouter,
         $stateRegistry,
         $exceptionHandler,
-        ErrorNotifierFactory,
         Menu,
         SpinnerFactory,
         BugsnagUtils,
@@ -213,14 +212,13 @@ let appModule = angular.module( 'app', [
     } );
 
     // On every route change, we need to update the menu in order to display the good page
-    // The event we emit here is catch by the directive sync-state
+    // The event we emit here is catched by the directive sync-state
     $transitions.onSuccess( {}, ( trans ) => {
 
       let fromState = trans.from().name; // Example of fromState: /home
       let toState = trans.to().name; // Example of toState: /potentialife-course/cycle-1/module-1/step-2
 
       SpinnerFactory.hideAll();
-      ErrorNotifierFactory.hideErrorPage();
 
       $log.log( '$transitions.onSuccess - fromAnyToAny - fromState=', fromState, '  toState=', toState );
 
@@ -256,10 +254,8 @@ let appModule = angular.module( 'app', [
           error.detail.statusText === SURVEY_360.ERROR_NO_TOKEN_IN_URL ) ) {
         $log.warn( `$transitions.onError(matchFromAnyToParentNoLogin) - Error 401, ${error.detail.statusText}. 
                     It is probably the 360 survey token used a second time` );
-
-        ErrorNotifierFactory.displayErrorPage({
+        $state.go( STATES.ERROR_PAGE_NO_MENU, {
           errorMsg: '360_TOKEN_USED',
-          displayContactUsForm: false,
           bugsnagErrorName: error.detail.statusText,
           bugsnagMetaData: {
             'Error Message': error.message,
@@ -267,15 +263,13 @@ let appModule = angular.module( 'app', [
             'Error Status': error.detail.status,
             'Error StatusText': error.detail.statusText
           }
-        });
+        }, { reload: true } );
       }
       else {
         $log.error( '$transitions.onError(matchFromAnyToParentNoLogin) - fromState=', fromState,
           '  toState=', toState, '  error=', error );
-
-        ErrorNotifierFactory.displayErrorPage({
+        $state.go( STATES.ERROR_PAGE_NO_MENU, {
           errorMsg: 'ERROR_UNEXPECTED',
-          displayContactUsForm: false,
           bugsnagErrorName: 'Error Transition not logged in',
           bugsnagMetaData: {
             'Error Message': error.message,
@@ -283,7 +277,7 @@ let appModule = angular.module( 'app', [
             'Error Status': error.detail.status,
             'Error StatusText': error.detail.statusText
           }
-        });
+        }, { reload: true } );
       }
     } );
 
@@ -323,10 +317,8 @@ let appModule = angular.module( 'app', [
       else {
         $log.error( '$transitions.onError(matchFromAnyToParentWithMenu) - fromState=', fromState,
           '  toState=', toState, '  error=', error );
-
-        ErrorNotifierFactory.displayErrorPage({
+        $state.go( STATES.ERROR_PAGE, {
           errorMsg: 'ERROR_UNEXPECTED',
-          displayContactUsForm: true,
           bugsnagErrorName: 'Error Transition logged in',
           bugsnagMetaData: {
             'Error Message': error.message,
@@ -334,14 +326,16 @@ let appModule = angular.module( 'app', [
             'Error Status': error.detail.status,
             'Error StatusText': error.detail.statusText
           }
-        });
+        }, { reload: true } );
       }
     } );
+
 
     // Registers a OnInvalidCallback function to be invoked when StateService.transitionTo has been called with an invalid state reference parameter
     $state.onInvalid( ( to, from ) => {
       $log.info( 'Invalid transition from ', from, '  to ', to );
     } );
+
 
     $log.log( 'Start - $location.path()=', $location.path() );
 
@@ -379,8 +373,6 @@ let appModule = angular.module( 'app', [
             // Once we created our dynamic states, we have to make ui-router listen to route change in the URL
             // See here for more details: http://stackoverflow.com/questions/24727042/angularjs-ui-router-how-to-configure-dynamic-views
             $urlRouter.listen();
-
-            throw new Error('APP JS');
           }
           catch (error) {
 
@@ -390,37 +382,17 @@ let appModule = angular.module( 'app', [
               } );
             }
             else {
-
-              // HACK: if there is an exception while processing the menu, we need $timeout to give time
-              // for the transition to finish ($transition.onSuccess() hide the error page)
-              // But if there is an exception, it is likely that $urlRouter.sync(); and $urlRouter.listen();
-              // won't be called and it won't work anyway, the import thing is to report to bugsnag so we can fix the issue
-              // (reporting to bugsnag is done via $exceptionHandler( error )
               $exceptionHandler( error );
-
-              $timeout( () => {
-
-                let bugsnagErrorMsg = '';
-                if ( error.hasOwnProperty('message') ) {
-                  bugsnagErrorMsg = error.message;
+              $state.go( STATES.ERROR_PAGE, {
+                errorMsg: 'ERROR_UNEXPECTED',
+                bugsnagErrorName: 'Error processing Menu',
+                bugsnagMetaData: {
+                  'Error Message': error.data.message,
+                  'Error Type': error.type,
+                  'Error Status': error.status,
+                  'Error StatusText': error.statusText
                 }
-                else if ( error.hasOwnProperty('data') && error.data.hasOwnProperty('message') ) {
-                  bugsnagErrorMsg = error.data.message;
-                }
-
-                ErrorNotifierFactory.displayErrorPage({
-                  errorMsg: 'ERROR_UNEXPECTED',
-                  displayContactUsForm: true,
-                  bugsnagErrorName: 'Error processing Menu',
-                  bugsnagMetaData: {
-                    'Error Message': bugsnagErrorMsg,
-                    'Error Type': error.type,
-                    'Error Status': error.status,
-                    'Error StatusText': error.statusText
-                  }
-                });
-              }, 100 );
-
+              } );
             }
           }
 
@@ -434,37 +406,17 @@ let appModule = angular.module( 'app', [
             } );
           }
           else {
-
-            // HACK: if there is an exception while processing the menu, we need $timeout to give time
-            // for the transition to finish ($transition.onSuccess() hide the error page)
-            // But if there is an exception, it is likely that $urlRouter.sync(); and $urlRouter.listen();
-            // won't be called and it won't work anyway, the import thing is to report to bugsnag so we can fix the issue
-            // (reporting to bugsnag is done via $exceptionHandler( error )
             $exceptionHandler( error );
-
-            $timeout( () => {
-
-              let bugsnagErrorMsg = '';
-              if ( error.hasOwnProperty('message') ) {
-                bugsnagErrorMsg = error.message;
+            $state.go( STATES.ERROR_PAGE, {
+              errorMsg: 'ERROR_UNEXPECTED',
+              bugsnagErrorName: 'Error retrieving Menu',
+              bugsnagMetaData: {
+                'Error Message': error.data.message,
+                'Error Type': error.type,
+                'Error Status': error.status,
+                'Error StatusText': error.statusText
               }
-              else if ( error.hasOwnProperty('data') && error.data.hasOwnProperty('message') ) {
-                bugsnagErrorMsg = error.data.message;
-              }
-
-              ErrorNotifierFactory.displayErrorPage({
-                errorMsg: 'ERROR_UNEXPECTED',
-                displayContactUsForm: true,
-                bugsnagErrorName: 'Error retrieving Menu',
-                bugsnagMetaData: {
-                  'Error Message': bugsnagErrorMsg,
-                  'Error Type': error.type,
-                  'Error Status': error.status,
-                  'Error StatusText': error.statusText
-                }
-              });
-            }, 100 );
-
+            } );
           }
 
         } );
@@ -478,35 +430,17 @@ let appModule = angular.module( 'app', [
           } );
         }
         else {
-          // HACK: if there is an exception while processing the menu, we need $timeout to give time
-          // for the transition to finish ($transition.onSuccess() hide the error page)
-          // But if there is an exception, it is likely that $urlRouter.sync(); and $urlRouter.listen();
-          // won't be called and it won't work anyway, the import thing is to report to bugsnag so we can fix the issue
-          // (reporting to bugsnag is done via $exceptionHandler( error )
           $exceptionHandler( error );
-
-          $timeout( () => {
-
-            let bugsnagErrorMsg = '';
-            if ( error.hasOwnProperty('message') ) {
-              bugsnagErrorMsg = error.message;
+          $state.go( STATES.ERROR_PAGE, {
+            errorMsg: 'ERROR_UNEXPECTED',
+            bugsnagErrorName: 'Error retrieving Participant Data',
+            bugsnagMetaData: {
+              'Error Message': error.data.message,
+              'Error Type': error.type,
+              'Error Status': error.status,
+              'Error StatusText': error.statusText
             }
-            else if ( error.hasOwnProperty('data') && error.data.hasOwnProperty('message') ) {
-              bugsnagErrorMsg = error.data.message;
-            }
-
-            ErrorNotifierFactory.displayErrorPage({
-              errorMsg: 'ERROR_UNEXPECTED',
-              displayContactUsForm: true,
-              bugsnagErrorName: 'Error retrieving Menu',
-              bugsnagMetaData: {
-                'Error Message': bugsnagErrorMsg,
-                'Error Type': error.type,
-                'Error Status': error.status,
-                'Error StatusText': error.statusText
-              }
-            });
-          }, 100 );
+          } );
         }
 
       } );
@@ -516,7 +450,9 @@ let appModule = angular.module( 'app', [
       // after he logged in (infinite loop), hence the below check
       let firstStateRequested = STATES.HOME;
       if ( $location.path() !== $state.get( STATES.HOME ).url &&
-        $location.path() !== $state.get( STATES.LOGIN ).url ) {
+        $location.path() !== $state.get( STATES.LOGIN ).url &&
+        $location.path() !== $state.get( STATES.ERROR_PAGE ).url &&
+        $location.path() !== $state.get( STATES.ERROR_PAGE_NO_MENU ).url ) {
         firstStateRequested = $location.path();
       }
 
@@ -531,37 +467,17 @@ let appModule = angular.module( 'app', [
     $log.log( 'END' );
   }
   catch (error) {
-
-    // HACK: if there is an exception while processing the menu, we need $timeout to give time
-    // for the transition to finish ($transition.onSuccess() hide the error page)
-    // But if there is an exception, it is likely that $urlRouter.sync(); and $urlRouter.listen();
-    // won't be called and it won't work anyway, the import thing is to report to bugsnag so we can fix the issue
-    // (reporting to bugsnag is done via $exceptionHandler( error )
     $exceptionHandler( error );
-
-    $timeout( () => {
-
-      let bugsnagErrorMsg = '';
-      if ( error.hasOwnProperty('message') ) {
-        bugsnagErrorMsg = error.message;
+    $state.go( STATES.ERROR_PAGE_NO_MENU, {
+      errorMsg: 'ERROR_UNEXPECTED',
+      bugsnagErrorName: 'Error APP::RUN()',
+      bugsnagMetaData: {
+        'Error Message': error.data.message,
+        'Error Type': error.type,
+        'Error Status': error.status,
+        'Error StatusText': error.statusText
       }
-      else if ( error.hasOwnProperty('data') && error.data.hasOwnProperty('message') ) {
-        bugsnagErrorMsg = error.data.message;
-      }
-
-      ErrorNotifierFactory.displayErrorPage({
-        errorMsg: 'ERROR_UNEXPECTED',
-        displayContactUsForm: false,
-        bugsnagErrorName: 'Error APP::RUN()',
-        bugsnagMetaData: {
-          'Error Message': bugsnagErrorMsg,
-          'Error Type': error.type,
-          'Error Status': error.status,
-          'Error StatusText': error.statusText
-        }
-      });
-    }, 100 );
-
+    } );
   }
 } )
 .component( 'app', AppComponent )
