@@ -3,7 +3,9 @@ image: node:7.4.0
 pipelines:
   default: # Pipelines that run automatically on a commit to a branch
     - step:
-        script: # Modify the commands below to build your repository.
+        caches:
+          - node
+        script:
           - npm install
           - npm install -g gulp
           - npm run build
@@ -12,6 +14,8 @@ pipelines:
   branches:
     dev:
       - step:
+          name: Build and deploy on UAT
+          deployment: test
           script:
             - npm install
             - npm run build -- --phase UAT
@@ -20,6 +24,8 @@ pipelines:
             - ./bugsnag-deploy.sh UAT
     PROD:
       - step:
+          name: Build and deploy on PROD
+          deployment: production
           script:
             - npm install
             - git config --global user.email "Frankie@potentialife.com"

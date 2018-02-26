@@ -301,17 +301,9 @@ gulp.task('deploy', () => {
     headers: httpHeaders
   };
 
-  if (process.env.CI) {
-    // BitBucket pipelines
-    awsConf.keys.accessKeyId = process.env.S3_ACCESS_KEY_ID;
-    awsConf.keys.secretAccessKey = process.env.S3_SECRET_ACCESS_KEY;
-  }
-  else {
-    // Run locally
-    let s3Access = require('../S3_ACCESS_KEY.json');
-    awsConf.keys.accessKeyId = s3Access.accessKeyId;
-    awsConf.keys.secretAccessKey = s3Access.secretAccessKey;
-  }
+  // BitBucket pipelines
+  awsConf.keys.accessKeyId = process.env.S3_ACCESS_KEY_ID;
+  awsConf.keys.secretAccessKey = process.env.S3_SECRET_ACCESS_KEY;
 
   let cloudFrontSettings = {
     distribution: CONFIG_DEPLOY[phase].cloudFronDistributionId, // Cloudfront distribution ID

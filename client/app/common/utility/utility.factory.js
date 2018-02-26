@@ -27,6 +27,9 @@ let UtilityFactory = function( $log,
     return `${User.getUserId()}-${iKey}`;
   };
 
+  let saveToLocalStorage = (iKey, iValue) => {
+    $localStorage[buildLocalStorageKey(iKey)] = angular.toJson(iValue, false);
+  };
 
   // This function is used when the server returns an error when saving the data from a courseContent
   // We save the user input to local storage so we can restore it when they refresh the page
@@ -41,6 +44,14 @@ let UtilityFactory = function( $log,
     return angular.fromJson($localStorage[buildLocalStorageKey(iKey)]);
   };
 
+  let getFromLocalStorage = (iKey) => {
+    return getUserInputFromLocalStorage(iKey);
+  };
+
+  let removeFromLocalStorage = (iKey) => {
+    delete $localStorage[buildLocalStorageKey(iKey)];
+  };
+
   // If there was an error before, user inputs will have been saved to local storage, if user refresh and retry
   // the data is safely saved on server side, we can remove the data form local storage
   let removeUserInputFromLocalStorage = (iInputFields) => {
@@ -52,7 +63,7 @@ let UtilityFactory = function( $log,
 
     for ( let key of keyToDelete) {
       $log.log(`deleting ${buildLocalStorageKey(key)} from local storage`);
-      delete $localStorage[buildLocalStorageKey(key)];
+      removeFromLocalStorage(key);
     }
   };
 
@@ -105,8 +116,11 @@ let UtilityFactory = function( $log,
 
   return {
     saveUserInputToLocalStorage,
+    saveToLocalStorage,
     getUserInputFromLocalStorage,
+    getFromLocalStorage,
     removeUserInputFromLocalStorage,
+    removeFromLocalStorage,
     buildLocalStorageKey,
     goToLink,
     getUserTargetWebsite

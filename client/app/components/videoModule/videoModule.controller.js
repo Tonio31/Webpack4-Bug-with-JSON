@@ -1,12 +1,17 @@
 
 class VideoController {
-  constructor($log, $scope, $window) {
+  constructor( $log,
+               $scope,
+               Utility ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance( 'VideoController' );
 
-    let ua = $window.navigator.userAgent;
+    const KEY_RES = `video-resolution`;
+
+    const LOW_RES = 'low';
+    const HIGH_RES = 'high';
 
     this.$onInit = () => {
 
@@ -27,8 +32,8 @@ class VideoController {
       this.mediaOptions = {
         plugins: {
           videoJsResolutionSwitcher: {
-            // Default resolution [{Number}, 'low', 'high'], (low == the lower of the numbers in data.player.res)
-            default: 'low',
+            // Default resolution [{Number}, 'low', 'high'], (low = the lowest of the numbers in data.player.res)
+            default: LOW_RES,
             // Display dynamic labels or gear symbol
             dynamicLabel: true
           }
@@ -36,16 +41,22 @@ class VideoController {
         playbackRates: [ 0.75, 1.0, 1.25, 1.5 ]
       };
 
-      // basic check for mobile User Agent:
-      if (ua.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i)) {
-        $log.info('navigator is probably mobile - provide SD video by default');
-        this.mediaOptions.plugins.videoJsResolutionSwitcher.default = 'low';
-      }
-      else {
-        $log.info('navigator is probably desktop - provide HD video by default');
-        this.mediaOptions.plugins.videoJsResolutionSwitcher.default = 'high';
+      let userCustomResolution = Utility.getFromLocalStorage(KEY_RES);
+      if ( userCustomResolution ) {
+        $log.info(`User previously manually changed the resolution to ${userCustomResolution}`);
+        this.mediaOptions.plugins.videoJsResolutionSwitcher.default = userCustomResolution;
       }
 
+    };
+
+    this.onResolutionChange = (iVideoPlayer) => {
+      let resolution = iVideoPlayer.currentResolution();
+      if ( resolution.label === 'SD' ) {
+        Utility.saveToLocalStorage(KEY_RES, LOW_RES);
+      }
+      else if ( resolution.label === 'HD' ) {
+        Utility.saveToLocalStorage(KEY_RES, HIGH_RES);
+      }
     };
 
     // listen for the vjsVideoReady event
@@ -68,9 +79,8 @@ class VideoController {
       ]);
 
       // callback after resolution switched
-      // eslint-disable-next-line prefer-arrow-callback
       data.player.on('resolutionchange', () => {
-        $log.info('Source changed to %s', data.player.src());
+        this.onResolutionChange(data.player);
       });
 
       // This will prevent the user form right-click on the video (prevent form downloading easily)
