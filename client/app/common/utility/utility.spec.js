@@ -67,6 +67,29 @@ describe('Utility', () => {
       expect(Utility.buildLocalStorageKey('some_id')).to.eq(`${mockUser.getUserId()}-some_id`);
     });
 
+    it('saveToLocalStorage() save key/value to local storage', () => {
+      let key = 'key';
+      let value = 'value';
+
+      Utility.saveToLocalStorage(key, value);
+
+      expect(mockLocalStorage).to.deep.eq({ '12-key': '"value"' });
+    });
+
+    it('getFromLocalStorage() save key/value to local storage', () => {
+      mockLocalStorage['12-key'] = '"value1"';
+
+      expect(Utility.getFromLocalStorage('key')).to.deep.eq('value1');
+    });
+
+    it('removeFromLocalStorage(key) remove data form localStorage with a key (string) in parameter', () => {
+      mockLocalStorage['12-id1'] = '"value1"';
+
+      Utility.removeFromLocalStorage('id1');
+
+      expect(mockLocalStorage).to.deep.eq({});
+    });
+
     it('saveUserInputToLocalStorage(iInputs) save to local storage', () => {
       let inputs = {
         id1: 'value1',
