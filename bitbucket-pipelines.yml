@@ -18,6 +18,9 @@ pipelines:
           deployment: test
           script:
             - npm install
+            - git config --global user.email "Frankie@potentialife.com"
+            - git config --global user.name "Frankie"
+            - npm run increaseVersionNumber
             - npm run build -- --phase UAT
             - npm run deploy -- --phase UAT
             - npm run deploy -- --phase UAT --index

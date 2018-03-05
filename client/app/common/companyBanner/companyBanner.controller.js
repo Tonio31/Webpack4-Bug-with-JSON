@@ -3,9 +3,7 @@ class CompanyBannerController {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
-    $log = $log.getInstance( 'CompanyBannerController' );
-
-    $log.log('constructor - START');
+    // $log = $log.getInstance( 'CompanyBannerController' );
 
     this.data = User.getCompanyBanner();
 

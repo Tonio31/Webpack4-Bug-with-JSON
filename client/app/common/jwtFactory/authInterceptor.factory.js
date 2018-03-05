@@ -45,7 +45,7 @@ let AuthInterceptorFactory = function( $log,
 
     $log.log('There was an error during the last communication with the server error.status=', error.status);
 
-    $log.error('error=', error);
+    $log.error('error=', angular.toJson(error));
 
     if ( error.hasOwnProperty('config') && error.config.hasOwnProperty('url') && error.config.url.includes('program_data') &&
          error.status === 401 && error.statusText === 'token_expired' ) {
