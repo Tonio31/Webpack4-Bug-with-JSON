@@ -197,25 +197,25 @@ angular.module( 'appMockBackEnd', [
 
 
     // Simulate an Internal server error
-    return error500;
+    // return error500;
 
-    // if ( !JwtFactory.isAuthExpired() ) {
-    //   let content = {};
-    //   try {
-    //     content = getStepContent(url, headers.user_id);
-    //   }
-    //   catch (error) {
-    //     $log.log(error);
-    //     if ( error.message.includes('Cannot find module') ) {
-    //       // The json for this step is not yet imported in the project return the generic content
-    //       $log.log('No json found for the specific step, returning generic content');
-    //       content = require('./mockBackEndResponse/genericContent.json');
-    //     }
-    //   }
-    //   return [ 200, content, {} ];
-    // }
-    //
-    // return error401;
+    if ( !JwtFactory.isAuthExpired() ) {
+      let content = {};
+      try {
+        content = getStepContent(url, headers.user_id);
+      }
+      catch (error) {
+        $log.log(error);
+        if ( error.message.includes('Cannot find module') ) {
+          // The json for this step is not yet imported in the project return the generic content
+          $log.log('No json found for the specific step, returning generic content');
+          content = require('./mockBackEndResponse/genericContent.json');
+        }
+      }
+      return [ 200, content, {} ];
+    }
+
+    return error401;
   });
 
 
