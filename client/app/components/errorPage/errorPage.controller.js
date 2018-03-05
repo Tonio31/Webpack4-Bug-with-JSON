@@ -17,11 +17,16 @@ class ErrorPageController {
       let customData = iCustomData;
       customData['STATES HISTORY'] = statesHistory;
 
-      BugsnagUtils.notify(
-        iErrorName,
-        `${$state.current.name}`,
-        customData
-      );
+      try {
+        BugsnagUtils.notify(
+          iErrorName,
+          `${$state.current.name}`,
+          customData
+        );
+      }
+      catch (error) {
+        $log.warn('TONIO ERROR error=', error);
+      }
     };
 
     this.$onInit = () => {
