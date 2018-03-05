@@ -40,7 +40,7 @@ h3 {
 h4 {
   color: #F06334;
   font-size: $h4-14px;
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   line-height: $h4-18px;
   text-transform: uppercase;
 }
@@ -67,7 +67,7 @@ ul {
 .quote {
   font-style: italic;
   font-family: 'Open Sans', serif;
-  font-weight: 600;
+  font-weight: $font-weight-bold;
   text-transform: none;
   line-height: rem_calc(24px);
   padding-top: rem_calc(10px);

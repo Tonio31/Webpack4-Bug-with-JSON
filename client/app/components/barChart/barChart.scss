@@ -34,8 +34,8 @@
     transform: translate3d(0, -.1rem, 0);
     fill: $simon-black !important;
     font: $defaultFont;
-    font-size: $h1-34px;
-    font-weight: 500;
+    font-size: $h1-30px;
+    font-weight: $font-weight-bold;
 
     @media #{$small-only} {
       font-size: $h3-28px;
