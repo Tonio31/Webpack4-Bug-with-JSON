@@ -291,38 +291,35 @@ class SpiderChartController {
       $timeout(() => {
         // set up chart
         let chartEl = angular.element($document[0].querySelector('.spider-chart'));
+        let chartElWidth = chartEl[0].clientWidth;
+        let svg = d3.select(`#chart-spider-${this.block.id}`).append('svg')
+        .attr('width', `${chartElWidth}px`)
+        .attr('height', chartHeight);
+        svg.append('g')
+        .attr('transform', `translate(${(chartElWidth / 2) - (chartWidth / 2)},0)`)
+        .classed('single', 1)
+        .datum(this.userSpiderData).call(chart);
 
-        if ( chartEl.length ) {
-          let chartElWidth = chartEl[0].clientWidth;
-          let svg = d3.select(`#chart-spider-${this.block.id}`).append('svg')
-          .attr('width', `${chartElWidth}px`)
-          .attr('height', chartHeight);
-          svg.append('g')
-          .attr('transform', `translate(${(chartElWidth / 2) - (chartWidth / 2)},0)`)
-          .classed('single', 1)
-          .datum(this.userSpiderData).call(chart);
+        // when screen resizes update svg attributes
+        angular.element($window).bind('resize', () => {
+          chartElWidth = chartEl[0].clientWidth;
+          svg.attr('width', `${chartElWidth}px`);
+          d3.select(`#chart-spider-${this.block.id} svg g`)
+          .attr('transform', `translate(${(chartElWidth / 2) - (chartHeight / 2)},0)`);
+        });
 
-          // when screen resizes update svg attributes
-          angular.element($window).bind('resize', () => {
-            chartElWidth = chartEl[0].clientWidth;
-            svg.attr('width', `${chartElWidth}px`);
-            d3.select(`#chart-spider-${this.block.id} svg g`)
-            .attr('transform', `translate(${(chartElWidth / 2) - (chartHeight / 2)},0)`);
-          });
+        // add data and render chart
+        // eslint-disable-next-line angular/module-getter
+        chart.config({
+          w: cfg.w / 4,
+          h: cfg.h / 4,
+          axisText: false,
+          levels: 0,
+          circles: false
+        });
+        cfg = chart.config();
 
-          // add data and render chart
-          // eslint-disable-next-line angular/module-getter
-          chart.config({
-            w: cfg.w / 4,
-            h: cfg.h / 4,
-            axisText: false,
-            levels: 0,
-            circles: false
-          });
-          cfg = chart.config();
-        }
-
-      }, 0);
+      }, 0); // 500ms
 
     };
 

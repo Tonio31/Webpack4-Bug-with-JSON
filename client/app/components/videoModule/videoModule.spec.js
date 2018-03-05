@@ -5,6 +5,11 @@ import VideoTemplate from './videoModule.html';
 
 describe('Video', () => {
   let $rootScope, $componentController, $compile;
+  let Utility;
+
+  let spies = {
+    Utility: {},
+  };
 
   let videoDataBindings = {
     poster: 'https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_poster.jpg',
@@ -15,12 +20,19 @@ describe('Video', () => {
     caption_default: 'caption_default'
   };
 
+
+  let sandbox = sinon.sandbox.create();
+
   beforeEach(window.module(VideoModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
     $componentController = $injector.get('$componentController');
     $compile = $injector.get('$compile');
+    Utility = $injector.get('Utility');
+
+
+
   }));
 
   describe('Module', () => {
@@ -38,16 +50,52 @@ describe('Video', () => {
         $scope: $rootScope.$new()
       }, bindings);
 
+      // Make sure nothing is in local storage
+      Utility.removeFromLocalStorage(`video-resolution`);
+    });
+
+    afterEach( () => {
+      sandbox.restore();
+    });
+
+    it('Default to SD', () => {
+
+      spies.Utility.getFromLocalStorage = sandbox.spy( Utility, 'getFromLocalStorage');
+
       controller.$onInit();
+      expect(controller.mediaOptions.plugins.videoJsResolutionSwitcher.default).to.eq('low');
+      sinon.assert.calledWith(spies.Utility.getFromLocalStorage, `video-resolution`);
     });
 
+    it('If user preferences stored in local storage, update resolution', () => {
+      spies.Utility.getFromLocalStorage = sandbox.stub( Utility, 'getFromLocalStorage', () => {
+        return 'high';
+      } );
 
-    it('has a mediaInfo property', () => {
-      expect(controller).to.have.property('mediaInfo');
+      controller.$onInit();
+      expect(controller.mediaOptions.plugins.videoJsResolutionSwitcher.default).to.eq('high');
+      sinon.assert.calledWith(spies.Utility.getFromLocalStorage, `video-resolution`);
     });
 
-    it('media info to be populated with the bindings form data', () => {
+    it('onResolutionChange() callback save the resolution in local storage', () => {
+      spies.Utility.saveToLocalStorage = sandbox.spy( Utility, 'saveToLocalStorage');
 
+      let videoPlayer = {
+        currentResolution: () => {
+          return {
+            label: 'HD'
+          };
+        }
+      };
+
+      controller.onResolutionChange(videoPlayer);
+
+      sinon.assert.calledWith(spies.Utility.saveToLocalStorage, `video-resolution`, 'high');
+    });
+
+    it('mediaInfo to be populated with input data', () => {
+
+      controller.$onInit();
       let expectedMediaInfo = {
 
         tracks: [

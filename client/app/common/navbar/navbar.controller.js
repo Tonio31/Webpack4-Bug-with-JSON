@@ -6,7 +6,6 @@ class NavbarController {
                STATES,
                SPINNERS,
                Menu,
-               ErrorNotifierFactory,
                SpinnerFactory,
                ZendeskWidget,
                JwtFactory,
@@ -17,11 +16,6 @@ class NavbarController {
     $log = $log.getInstance('NavbarController');
 
     this.homeState = STATES.HOME;
-
-    // This is a reference to "displayErrorPage" stored in ErrorNotifierFactory,
-    // we use it to display or not the error page
-    this.errorPage = ErrorNotifierFactory.isErrorPageDisplayed();
-    // ErrorNotifierFactory.displayErrorPage();
 
     this.$onInit = () => {
       this.courseContentSpinner = SpinnerFactory.getSpinner(SPINNERS.COURSE_CONTENT);
