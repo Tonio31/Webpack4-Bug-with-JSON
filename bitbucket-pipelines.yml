@@ -12,19 +12,6 @@ pipelines:
           - npm run setKarmaGlobals -- --browser PhantomJS
           - npm run test/phantomjs --silent
   branches:
-    POT-938-removing-error-state:
-      - step:
-          name: Build and deploy on UAT
-          deployment: test
-          script:
-            - npm install
-            - git config --global user.email "Frankie@potentialife.com"
-            - git config --global user.name "Frankie"
-            - npm run increaseVersionNumber
-            - npm run build -- --phase UAT
-            - npm run deploy -- --phase UAT
-            - npm run deploy -- --phase UAT --index
-            - ./bugsnag-deploy.sh UAT
     dev:
       - step:
           name: Build and deploy on UAT
