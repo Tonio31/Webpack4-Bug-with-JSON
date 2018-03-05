@@ -249,7 +249,7 @@ gulp.task('pushVersionNumber', ['bumpVersionNumber'], () => {
   return git.push('origin', '', {args: ''}, function(err) { if (err) throw err;});
 });
 
-gulp.task('pre-push', ['pushVersionNumber']);
+gulp.task('pre-push', ['bumpVersionNumber']);
 
 gulp.task('default', ['watch']);
 
