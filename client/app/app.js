@@ -261,7 +261,9 @@ let appModule = angular.module( 'app', [
             'Error Message': error.message,
             'Error Type': error.type,
             'Error Status': error.detail.status,
-            'Error StatusText': error.detail.statusText
+            'Error StatusText': error.detail.statusText,
+            'From State': fromState,
+            'To State': toState
           }
         }, { reload: true } );
       }
@@ -275,7 +277,9 @@ let appModule = angular.module( 'app', [
             'Error Message': error.message,
             'Error Type': error.type,
             'Error Status': error.detail.status,
-            'Error StatusText': error.detail.statusText
+            'Error StatusText': error.detail.statusText,
+            'From State': fromState,
+            'To State': toState
           }
         }, { reload: true } );
       }
@@ -324,7 +328,9 @@ let appModule = angular.module( 'app', [
             'Error Message': error.message,
             'Error Type': error.type,
             'Error Status': error.detail.status,
-            'Error StatusText': error.detail.statusText
+            'Error StatusText': error.detail.statusText,
+            'From State': fromState,
+            'To State': toState
           }
         }, { reload: true } );
       }
