@@ -241,15 +241,13 @@ gulp.task('bumpVersionNumber', () => {
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'))
   .pipe(git.add())
-  .pipe(git.commit('Bump and tag package.json version'));
+  .pipe(git.commit('[skip ci] - Bump and tag package.json version'));
 });
 
 gulp.task('pushVersionNumber', ['bumpVersionNumber'], () => {
   gutil.log('gitPush will Increment package.json version, commit and push');
   return git.push('origin', '', {args: ''}, function(err) { if (err) throw err;});
 });
-
-gulp.task('pre-push', ['bumpVersionNumber']);
 
 gulp.task('default', ['watch']);
 

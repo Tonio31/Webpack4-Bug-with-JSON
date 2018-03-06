@@ -94,17 +94,17 @@ let angularBugsnag = angular.module('angular-bugsnag', [])
           $exceptionHandler: function () {
               this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
                   return function (exception, cause) {
-                      $log.error.apply($log, arguments);
-                      try {
-                          bugsnag.fixContext();
-                          if (angular.isString(exception)) {
-                              bugsnag.notify(exception);
-                          } else {
-                              bugsnag.notifyException(exception);
-                          }
-                      } catch (e) {
-                          $log.error(e);
-                      }
+                    $log.error.apply($log, arguments);
+                    try {
+                        bugsnag.fixContext();
+                        if (angular.isString(exception)) {
+                            bugsnag.notify(exception);
+                        } else {
+                            bugsnag.notifyException(exception);
+                        }
+                    } catch (e) {
+                        $log.error(e);
+                    }
                   };
               }];
           }
