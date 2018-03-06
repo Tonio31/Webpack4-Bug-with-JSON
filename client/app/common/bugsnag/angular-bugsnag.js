@@ -94,7 +94,6 @@ let angularBugsnag = angular.module('angular-bugsnag', [])
           $exceptionHandler: function () {
               this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
                   return function (exception, cause) {
-                    $log.warn('TONIO');
                     $log.error.apply($log, arguments);
                     try {
                         bugsnag.fixContext();
