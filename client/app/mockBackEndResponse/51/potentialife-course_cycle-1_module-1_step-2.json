@@ -45,18 +45,13 @@
       "program_data_code": "c1.m1.s1.story_1",
       "data": {
         "config": {
-          "type": "email",
+          "class": "large-height",
           "required": true
         },
         "label": "Story 1:",
         "placeholder": "Please fill in the first story",
         "value": "the first story",
         "name": "story_1"
-      },
-      "pivot": {
-        "step_id": 5,
-        "block_id": 51,
-        "order": 0
       }
     },
     {
