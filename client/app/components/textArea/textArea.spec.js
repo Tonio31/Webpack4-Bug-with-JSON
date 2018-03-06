@@ -15,6 +15,10 @@ describe('TextArea', () => {
     program_data_code: 'c1.m1.s1.story_1',
     required: true,
     data: {
+      config: {
+        class: 'large-height',
+        required: true
+      },
       label: 'Label: Story 1:',
       placeholder: 'placeholder: Please fill in the first story',
       value: 'Something',
@@ -98,6 +102,11 @@ describe('TextArea', () => {
     it('has a h3 title', () => {
       let labelText = angular.element(template[0].querySelector('h3 label'));
       expect(labelText.html()).to.eq(blockBinding.data.label);
+    });
+
+    it('textarea Tag has the class from bindings when it is specified in input', () => {
+      let textAreaTag = angular.element(template[0].querySelector('textarea'));
+      expect(textAreaTag.hasClass(blockBinding.data.config.class)).to.eq(true);
     });
 
     it('has a textarea with properties', () => {

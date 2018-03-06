@@ -91,6 +91,27 @@
       }
     },
     {
+      "id": 32,
+      "type": "dynamic",
+      "element": "textarea",
+      "program_data_code": "c1.m1.s1.story_1",
+      "data": {
+        "config": {
+          "required": true,
+          "class": "large-height"
+        },
+        "label": "Label: Extended text area",
+        "placeholder": "placeholder: Please fill in the first story",
+        "value": "",
+        "name": "name: story_1"
+      },
+      "pivot": {
+        "step_id": 5,
+        "block_id": 51,
+        "order": 0
+      }
+    },
+    {
       "id": 40,
       "type": "static",
       "element": "html",

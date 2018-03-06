@@ -1,13 +1,18 @@
 @import '~client/app/common/scss/_vars';
 @import '~client/app/common/_foundation-settings';
 
+$default-height: 9.375rem;
+
 .textArea {
 
   textarea {
-    border-radius: $global-radius;
-    min-height: rem_calc(150px);
+    min-height: $default-height;
     width: calc(100% - (#{$validation-icon-right} + #{$default-padding}));
     @include inputsBorderStyling();
+
+    &.large-height {
+      min-height: $default-height * 2;
+    }
   }
 
   h3 {
