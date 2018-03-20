@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -89,6 +90,11 @@ module.exports = {
     new webpack.ProvidePlugin({
       c3: 'c3',
       Bugsnag: 'bugsnag-js'
-    })
+    }),
+
+    new CopyWebpackPlugin([
+      { from: './config/manifest.json', to: path.resolve(__dirname, 'dist/') },
+      { from: './assets/**/*', to: path.resolve(__dirname, 'dist/') },
+    ]),
   ]
 };
