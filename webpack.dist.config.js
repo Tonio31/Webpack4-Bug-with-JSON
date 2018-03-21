@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const WebpackAutoInject = require('webpack-auto-inject-version');
 
+
 let websiteConfig = {
   DOCKER: {
     websiteUrl: '',
@@ -90,7 +91,7 @@ module.exports = (iPhase) => {
       components: {
         AutoIncreaseVersion: false
       }
-    })
+    }),
 
   ]);
 

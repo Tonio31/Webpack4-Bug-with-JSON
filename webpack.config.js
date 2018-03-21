@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -89,6 +90,19 @@ module.exports = {
     new webpack.ProvidePlugin({
       c3: 'c3',
       Bugsnag: 'bugsnag-js'
-    })
+    }),
+
+    // This is used to have a banner shown to the user to "Add to home screen"
+    // It works with the service-worker called in app.js
+    new CopyWebpackPlugin([
+      {
+        from: './config',
+        to: path.resolve(__dirname, 'dist/')
+      },
+      {
+        from: './assets/**/*',
+        to: path.resolve(__dirname, 'dist/')
+      },
+    ]),
   ]
 };
