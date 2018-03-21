@@ -93,7 +93,7 @@ module.exports = {
     }),
 
     new CopyWebpackPlugin([
-      { from: './config/manifest.json', to: path.resolve(__dirname, 'dist/') },
+      { from: './config/**/*', to: path.resolve(__dirname, 'dist/') },
       { from: './assets/**/*', to: path.resolve(__dirname, 'dist/') },
     ]),
   ]
