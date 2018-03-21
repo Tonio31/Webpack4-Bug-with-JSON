@@ -3,28 +3,8 @@
   "name": "Potentialife Program",
   "icons": [
     {
-      "src": "/assets/android-chrome-70x70.png",
-      "sizes": "70x70",
-      "type": "image/png"
-    },
-    {
-      "src": "/assets/android-chrome-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/assets/android-chrome-150x150.png",
-      "sizes": "150x150",
-      "type": "image/png"
-    },
-    {
       "src": "/assets/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/assets/android-chrome-310x310.png",
-      "sizes": "310x310",
       "type": "image/png"
     },
     {
@@ -34,7 +14,7 @@
     }
   ],
   "start_url": "/?utm_source=homescreen",
-  "theme_color": "#ffffff",
+  "theme_color": "#ff8534",
   "background_color": "#ffffff",
   "display": "standalone"
 }
