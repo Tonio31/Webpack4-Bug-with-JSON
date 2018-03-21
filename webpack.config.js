@@ -92,6 +92,8 @@ module.exports = {
       Bugsnag: 'bugsnag-js'
     }),
 
+    // This is used to have a banner shown to the user to "Add to home screen"
+    // It works with the service-worker called in app.js
     new CopyWebpackPlugin([
       {
         from: './config',
