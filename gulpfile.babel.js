@@ -269,7 +269,7 @@ gulp.task('deploy', () => {
   }
   else {
     filesTodeploy = [
-      './dist/*',
+      './dist/**/*',
       '!./dist/index.html'
     ];
     httpHeaders = {
@@ -299,7 +299,6 @@ gulp.task('deploy', () => {
     headers: httpHeaders
   };
 
-  // BitBucket pipelines
   awsConf.keys.accessKeyId = process.env.S3_ACCESS_KEY_ID;
   awsConf.keys.secretAccessKey = process.env.S3_SECRET_ACCESS_KEY;
 

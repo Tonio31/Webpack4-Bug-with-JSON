@@ -68,8 +68,8 @@ let appModule = angular.module( 'app', [
   if ( !$httpProvider.defaults.headers.get ) {
     $httpProvider.defaults.headers.get = {};
   }
-  $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Sat, 1 Jan 2000 00:00:00 GMT';
-  $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+  $httpProvider.defaults.headers.get[ 'If-Modified-Since' ] = 'Sat, 1 Jan 2000 00:00:00 GMT';
+  $httpProvider.defaults.headers.get[ 'Cache-Control' ] = 'no-cache';
   $httpProvider.defaults.headers.get.Pragma = 'no-cache';
 
   $qProvider.errorOnUnhandledRejections( false );
@@ -122,6 +122,21 @@ let appModule = angular.module( 'app', [
 
     // Activate logging of transitions in console
     $trace.enable( 'TRANSITION' );
+
+
+    // The code here is to enable banner to Add to home screen: https://developers.google.com/web/fundamentals/app-install-banners/
+    // it works with the /config and /assets folder that are copied into the dist folder using copyWebpackPlugin
+    // The banner does not work in local development as we don't use webpack-dev-server (so copyWebpackPlugin plugin does not work for local)
+    if ( 'serviceWorker' in $window.navigator ) {
+      $log.log( 'Attempting to register the service worker register...' );
+      $window.navigator.serviceWorker.register( 'service-worker.js', { scope: './' } )
+      .then( ( reg ) => {
+        $log.log( 'Service worker registered, reg=', reg );
+      } )
+      .catch( ( err ) => {
+        $log.log( 'Service worker NOT registered, err=', err );
+      } );
+    }
 
     // If we're coming from the login page to the home page, it could be for 2 reason:
     //  1) We wanted to access the home page but got redirected to the login page
@@ -181,7 +196,7 @@ let appModule = angular.module( 'app', [
           }
           else {
             $log.log( `Redirect to 404 PageNotFound because stateToRedirect=${stateToRedirect}
-                    $state.href(stateToRedirect)=${$state.href( stateToRedirect )}` );
+                  $state.href(stateToRedirect)=${$state.href( stateToRedirect )}` );
             deferred.resolve( $state.target( STATES.PAGE_NOT_FOUND, { intendedUrl: stateToRedirect } ) );
           }
         }
@@ -250,8 +265,8 @@ let appModule = angular.module( 'app', [
 
       // error types:  SUPERSEDED = 2, ABORTED = 3, INVALID = 4, IGNORED = 5, ERROR = 6
       if ( error.type === 6 && error.detail.status === 401 &&
-        ( error.detail.statusText === SURVEY_360.ERROR_TOKEN_ALREADY_USED ||
-          error.detail.statusText === SURVEY_360.ERROR_NO_TOKEN_IN_URL ) ) {
+        (error.detail.statusText === SURVEY_360.ERROR_TOKEN_ALREADY_USED ||
+          error.detail.statusText === SURVEY_360.ERROR_NO_TOKEN_IN_URL) ) {
         $log.warn( `$transitions.onError(matchFromAnyToParentNoLogin) - Error 401, ${error.detail.statusText}. 
                     It is probably the 360 survey token used a second time` );
         $state.go( STATES.ERROR_PAGE_NO_MENU, {
@@ -425,7 +440,7 @@ let appModule = angular.module( 'app', [
             } );
           }
 
-        } );
+        });
       },
       ( error ) => {
         $log.error( 'error Retrieving Participant Data' );

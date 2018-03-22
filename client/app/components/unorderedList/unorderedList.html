@@ -8,15 +8,13 @@
     <li ng-repeat="item in $ctrl.blockData.items | limitTo : $ctrl.limit track by $index ">
       <div class="list-wrap child-item">
         <div>
-          <span>{{item.label}}</span>
-          <strong ng-if="item.sub_label">- {{item.sub_label}}</strong>
+          <p ng-class="{'bold': item.sub_label || item.takeaways}">{{item.label}}</p>
+          <span ng-if="item.sub_label">{{item.sub_label}}</span>
         </div>
       </div>
       <div class="takeaways child-item" ng-if="item.takeaways">
         <p class="fgcolour-active title">{{ 'YOUR_NOTES' | translate }}</p>
-        <div class="takeaways">
-          <p class="fgcolour-active">{{item.takeaways}}</p>
-        </div>
+        <p class="fgcolour-active takeaway">{{item.takeaways}}</p>
       </div>
     </li>
   </ul>

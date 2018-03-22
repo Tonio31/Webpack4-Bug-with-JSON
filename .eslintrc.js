@@ -155,7 +155,7 @@ module.exports = exports = {
     "camelcase": [WARN, { "properties": "never" }],
     "comma-spacing": [WARN, {"before": false, "after": true}],
     "comma-style": [WARN, "last"],
-    "computed-property-spacing": [WARN, "never"],
+    "computed-property-spacing": OFF,
     "consistent-this": [WARN, "self"],
     "eol-last": WARN,
     "func-names": OFF,

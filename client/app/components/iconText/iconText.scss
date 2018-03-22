@@ -23,6 +23,10 @@
 
     .icon-container {
 
+      @media #{$small-only} {
+        padding-bottom: 1.5rem;
+      }
+
       min-width: $icon-size;
       width: $icon-size;
 
@@ -80,12 +84,19 @@
     }
 
     .text-content {
-      padding-left: 1rem;
+      padding-left: 1.5rem;
+
+      @media #{$small-only} {
+        padding-left: 0;
+
+        p {
+          font-size: $font-size-mobile;
+        }
+      }
+
       &.y-center-parent {
-        text-align: center;
         @media #{$medium-up} {
           padding-top: 1rem;
-          text-align: left;
         }
 
       }

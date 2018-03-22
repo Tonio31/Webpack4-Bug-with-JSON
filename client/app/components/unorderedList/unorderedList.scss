@@ -8,9 +8,39 @@
   }
   .takeaways {
     background-color: lighten($light-grey, 3);
-    padding: .625rem;
+    padding: 0 2*$default-padding $default-padding 2*$default-padding;
+
+    @media #{$small-only} {
+      padding: 0 $default-padding $default-padding/2 $default-padding;
+    }
+
     .title {
       margin-bottom: 0;
     }
+
+    .takeaway {
+      padding: $default-padding 0;
+    }
+
+    p {
+      font-weight: $font-weight-bold;
+    }
   }
+
+  .bold {
+    font-weight: $font-weight-bold;
+  }
+
+  ul li {
+    // padding-left: 40px;
+  }
+
+  .list-wrap span {
+    padding: $default-padding 0;
+
+    @media #{$small-only} {
+      font-size: $font-size-mobile;
+    }
+  }
+
 }
