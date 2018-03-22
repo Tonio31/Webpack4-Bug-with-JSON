@@ -19,6 +19,26 @@
     padding-bottom: $default-padding;
   }
 
+  p {
+    margin-bottom: rem_calc(25px);
+  }
+
+  img {
+    margin: rem_calc(10px) 0 rem_calc(20px) 0;
+
+  }
+
+
+  @media #{$small-only} {
+    p, li {
+      font-size: $font-size-mobile;
+    }
+
+    img {
+      margin-bottom: rem_calc(20px);
+    }
+  }
+
 }
 
 .no-bg-padding {

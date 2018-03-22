@@ -12,14 +12,22 @@ $tick-size: 3rem;
   flex-direction: column;
   justify-content: space-between;
 
+  .course-content-blocks {
+    @media #{$small-only} {
+      padding-left: $default-padding;
+      padding-right: $default-padding;
+    }
+  }
+
   fieldset {
     border: none;
-    margin: 1rem 0 0;
+    margin: 0;
     padding: 0;
   }
 
   .block {
-    padding: $default-padding 0;
+    padding-top: $default-padding;
+    padding-bottom: $default-padding * 2;
   }
 
   .banner {
@@ -55,6 +63,17 @@ $tick-size: 3rem;
     }
   }
 
+  .step-title {
+    font-size: 2rem;
+    line-height: 1.5;
+    margin-bottom: rem_calc(20px);
+
+    @media #{$small-only} {
+      font-size: rem_calc(24px);
+      margin-bottom: rem_calc(10px);
+    }
+  }
+
   // We have to override the default (which is 100vh) because the saving step spinner
   // needs to be positioned precisely at the bottom of the content and not at half
   // of the size of the screen
@@ -62,25 +81,37 @@ $tick-size: 3rem;
     height: 100%;
   }
 
-  .navigation {
-    background-color: $light-grey;
-    height: $height-navigation-banner;
+  .bottom-navigation {
 
-    button {
-      height: $height-button-banner;
-      padding: 0;
-      margin: 0.5rem 0;
-      font-size: $h3-18px;
-      font-weight: bold;
-      width: rem_calc(136px);
+    padding-top: rem_calc(40px);
+
+    @media #{$small-only} {
+      padding-top: rem_calc(20px);
     }
 
-    button:focus {
-      outline: none;
+
+    .navigation {
+      background-color: $light-grey;
+      height: $height-navigation-banner;
+
+      button {
+        height: $height-button-banner;
+        padding: 0;
+        margin: 0.5rem 0;
+        font-size: $h3-18px;
+        font-weight: bold;
+        width: rem_calc(136px);
+      }
+
+      button:focus {
+        outline: none;
+      }
     }
+
+    .saving-step-spinner {
+      height: 5rem;
+    }
+
   }
 
-  .saving-step-spinner {
-    height: 5rem;
-  }
 }

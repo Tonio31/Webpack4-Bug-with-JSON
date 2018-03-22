@@ -153,19 +153,19 @@ describe('UnorderedList', () => {
 
     it('has a list item with the correct data in the label', () => {
       let obj = blockBinding.data.items;
-      let listItem = angular.element(template[0].querySelector('li .list-wrap span'));
+      let listItem = angular.element(template[0].querySelector('li .list-wrap p'));
       expect(listItem.html()).to.eq(obj[0].label);
     });
 
     it('has a list item with the correct data in the sub_label', () => {
       let obj = blockBinding.data.items;
-      let listItem = angular.element(template[0].querySelector('li .list-wrap strong'));
+      let listItem = angular.element(template[0].querySelector('li .list-wrap span'));
       expect(listItem.html()).to.contain(obj[0].sub_label);
     });
 
     it('has a list item with the correct data in the takeaways', () => {
       let obj = blockBinding.data.items;
-      let listItem = angular.element(template[0].querySelector('li .takeaways .takeaways .fgcolour-active'));
+      let listItem = angular.element(template[0].querySelector('li .takeaways .takeaway.fgcolour-active'));
       expect(listItem.html()).to.eq(obj[0].takeaways);
     });
 

@@ -1,3 +1,5 @@
+@import '~client/app/common/scss/_vars';
+
 .no-list {
   margin: 0;
   padding: 0;
@@ -23,7 +25,12 @@
 
     .header-inner {
       width: calc(100% - #{$validation-icon-right} - #{$default-padding});
-      padding: rem_calc(10px) 0;
+      padding: $default-padding;
+      font-size: rem_calc(20px);
+
+      @media #{$small-only} {
+        padding: 0;
+      }
 
       p:last-child {
         margin-bottom: 0;
@@ -36,9 +43,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: rem_calc(10px);
+    padding: $default-padding 2*$default-padding;
     transition: background-color $speed3;
     min-height: rem_calc(88px);
+
+    @media #{$small-only} {
+      padding: $default-padding/2 $default-padding;
+    }
 
     span, strong {
       display: block;
@@ -96,7 +107,11 @@
     }
     background-color: $light-grey;
     margin: 0;
-    padding: $default-padding;
+    padding: $default-padding 2*$default-padding;
+
+    @media #{$small-only} {
+      padding: $default-padding/2 $default-padding;
+    }
 
     .button {
       font-size: rem_calc(16px);

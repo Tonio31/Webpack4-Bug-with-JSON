@@ -11,10 +11,6 @@
       transform: translate3d(0, 0, 0);
       fill: $simon-black !important;
       padding-right: 2rem;
-
-      @media #{$small-only} {
-        font-size: $h3-28px;
-      }
     }
   }
   .c3-chart-arc text {
