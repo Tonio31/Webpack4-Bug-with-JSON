@@ -18,14 +18,14 @@ let MenuFactory = function( $log, $q, Data, STATES) {
   };
 
 
-  let findFinalState = ( iMenu, oStates ) => {
+  let findFinalState = ( ioMenu, oStates ) => {
 
     // Recursive call
-    if ( iMenu.hasOwnProperty('children') ) {
+    if ( ioMenu.hasOwnProperty('children') ) {
 
       let previousStepNotHidden = null;
 
-      for ( let child of iMenu.children ) {
+      for ( let child of ioMenu.children ) {
         let isFinalState = findFinalState(child, oStates);
 
         // For Hidden steps: we need to hack the status of the previous step not hidden
@@ -55,29 +55,66 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     let resolveObject = {
       content: () => {
         'ngInject';
-        return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
+        return Data.getDynamicContentPromise('step', false, { slug: ioMenu.fullUrl });
       }
     };
 
-    if ( iMenu.status === 'locked' ) {
+    if ( ioMenu.status === 'locked' ) {
       componentName = 'lockedPage';
       resolveObject = {};
     }
 
     let state = {
-      name: iMenu.fullUrl,
-      url: iMenu.fullUrl,
+      name: ioMenu.fullUrl,
+      url: ioMenu.fullUrl,
       parent: STATES.MAIN,
       component: componentName,
       resolve: resolveObject,
       params: {
-        hideStepInMenu: iMenu.hideStepInMenu
+        hideStepInMenu: ioMenu.hideStepInMenu
       }
     };
 
     oStates.push(state);
 
     return true;
+  };
+
+  let addLevelInfoIntoModule = (ioMenu) => {
+    for ( let cycle of ioMenu.children ) {
+      if ( cycle.hasOwnProperty('children') ) {
+        cycle.children.forEach( (module) => {
+          module.levelTitle = cycle.title;
+        });
+      }
+    }
+  };
+
+  let tempFuncitonToTransformMenu = (myMenu) => {
+    $log.warn('TONIO tempFuncitonToTransformMenu menu=', myMenu);
+    for ( let cycle of myMenu.children ) {
+      cycle.type = 'LEVEL';
+      $log.warn('TONIO cycle.name=', cycle.name);
+      if ( cycle.hasOwnProperty('children') ) {
+
+        cycle.children.forEach( (module) => {
+          module.type = 'MODULE';
+          $log.warn('TONIO module.name=', module.name);
+
+          if ( module.hasOwnProperty('children') ) {
+            module.children.forEach( (step) => {
+
+              step.type = 'STEP';
+              $log.warn('TONIO step.name=', step.name);
+            });
+          }
+
+        });
+      }
+
+    }
+
+    $log.warn('TONIO myMenu=', myMenu);
   };
 
 
@@ -109,11 +146,16 @@ let MenuFactory = function( $log, $q, Data, STATES) {
         // For now, we only have one Potentialife course, so we pick the first item in the list
         menu.data = menuData.menudata[0];
 
+        // tempFuncitonToTransformMenu(menu.data);
+
         $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully menu=', menu);
 
         // Will get a list of states and modify the menu for hidden steps
         let states = [];
         findFinalState(menu.data, states);
+
+        // Add Level Title into Module block within menu to be able to display Level topTitle for the back button of the menu at step level
+        addLevelInfoIntoModule(menu.data);
 
         currentProgression.data = menuData.current_progression;
 

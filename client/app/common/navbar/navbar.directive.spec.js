@@ -3,8 +3,6 @@ import NavbarModule from './navbar';
 describe('Navbar Directive', () => {
   let $rootScope, $compile, ZendeskWidget;
 
-  let menuJson = require('app/mockBackEndResponse/51/menu.json');
-
   let mockTranslateFilter = (value) => {
     return value;
   };
@@ -18,84 +16,6 @@ describe('Navbar Directive', () => {
     $rootScope = $injector.get('$rootScope');
     $compile = $injector.get('$compile');
   }));
-
-  describe('Entire Menu <menu-item></menu-item>', () => {
-    // view layer specs.
-    let scope, template;
-
-    beforeEach(() => {
-      scope = $rootScope.$new();
-      scope.menu = menuJson.menudata[0];
-
-      let offCanvasWrapCtrl = {
-        hide: () => {}
-      };
-
-      sinon.spy(offCanvasWrapCtrl, 'hide');
-
-      let element = angular.element('<div><menu-item item="menu"></menu-item></div>');
-      element.data('$offCanvasWrapController', offCanvasWrapCtrl);
-
-      template = $compile(element)(scope);
-      scope.$apply();
-    });
-
-    it('Count the number of tags that have the class has-submenu', () => {
-      let hasSubMenuTags = angular.element(template[0].querySelectorAll('.has-submenu'));
-      expect(hasSubMenuTags.length).to.eq(7);
-    });
-
-    it('getBelowTitle() return the good title ', () => {
-      let belowTitle = angular.element(template[0].querySelectorAll('.below-title'));
-      expect(belowTitle.html()).to.eq('10 / 10 Modules');
-    });
-
-
-    it('Count the number of element that have .menu-button class', () => {
-      let module1 = angular.element(template[0].querySelector('#\\/potentialife-course\\/cycle-1\\/module-1'));
-      expect(module1.hasClass('menu-item')).to.eq(true);
-
-      let menuButtonClass = angular.element(module1[0].querySelectorAll('.menu-button'));
-      expect(menuButtonClass.length).to.eq(13);
-    });
-
-  });
-
-
-  describe('<menu-button data="child"></menu-button>', () => {
-    // view layer specs.
-    let scope, template;
-
-    beforeEach(() => {
-      scope = $rootScope.$new();
-      scope.menuData = menuJson.menudata[0].children[0].children[1].children[0];
-      template = $compile('<menu-button data="menuData"></menu-button>')(scope);
-      scope.$apply();
-    });
-
-    it('has a 3 <p> tags with correct values from the input', () => {
-      let pTags = angular.element(template[0].querySelectorAll('p'));
-      expect(pTags.length).to.eq(3);
-      expect(pTags[0].textContent).to.contain(scope.menuData.title);
-      expect(pTags[1].textContent).to.contain(scope.menuData.name);
-      expect(pTags[2].textContent).to.contain(scope.menuData.description);
-    });
-
-
-    it('CSS class is added depending on the menu item status (current, locked, completed)', () => {
-      expect(template.hasClass(scope.menuData.status)).to.eq(true);
-    });
-
-    it('CSS class (current, locked, completed) is modified if the status of the menu change', () => {
-      let oldStatus = scope.menuData.status; // completed
-
-      scope.menuData.status = 'locked';
-      scope.$apply();
-      expect(template.hasClass(oldStatus)).to.eq(false);
-      expect(template.hasClass(scope.menuData.status)).to.eq(true);
-    });
-  });
-
 
   describe('sync-state - SyncMenuAndState', () => {
     // view layer specs.

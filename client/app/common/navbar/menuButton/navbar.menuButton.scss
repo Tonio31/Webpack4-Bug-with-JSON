@@ -1,0 +1,223 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+
+$orangeColorTitle: #ff8534;
+$mainTitleMenuColor: #a0a0a0;
+$buttonBorder: 1px solid #C4C4C4;
+
+$fontSizeLevelTitle: 1.5rem;
+$fontSizeStepTitle: 1rem;
+$fontSizeSmallTitle: 0.75rem;
+
+navbar-menu-button {
+  width: 100%;
+  padding: 0;
+
+  .menu-button {
+    width: 100%;
+    height: auto;
+    border-bottom: $buttonBorder;
+    color: transparentize($white, .3);
+    display: flex;
+    padding: .66667rem;
+    transition: background-color $speed3 ease;
+
+    &:hover,
+    &:active {
+      background-color: $onyx;
+    }
+
+    .button-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .button-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &.LEVEL {
+      .bottom-title {
+        color: $orangeColorTitle;
+      }
+    }
+
+    &.STEP {
+
+      .top-title {
+        display: none;
+      }
+
+      .bottom-title {
+        text-transform: none;
+        font-size: $fontSizeStepTitle;
+        white-space: normal;
+        overflow: visible;
+      }
+    }
+
+
+    p {
+      margin-bottom: 0;
+      line-height: 1.25rem;
+
+      &.top-title {
+        color: $white;
+        font-size: $fontSizeLevelTitle;
+      }
+
+      &.bottom-title {
+        text-transform: uppercase;
+        font-size: $fontSizeSmallTitle;
+        margin-top: 5px;
+        color: $white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+      }
+    }
+
+    &.home,
+    &.back {
+      height: rem_calc(93px);
+      background-color: $onyx;
+      border-top: $buttonBorder;
+      p.top-title {
+        color: $white;
+      }
+
+      p.bottom-title {
+        color: $orangeColorTitle;
+      }
+    }
+
+    .pl-menu-button {
+      width: 50%;
+      height: 50px;
+      background-size: contain;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      display: block;
+    }
+
+    &.current {
+
+      &.LEVEL,
+      &.MODULE {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-current-eye-solid.svg');
+        }
+      }
+
+      &.STEP {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-current-eye-no-background.svg');
+        }
+      }
+
+    }
+
+    &.locked {
+      &.LEVEL,
+      &.MODULE {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-locked.svg');
+        }
+      }
+
+      &.STEP {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-locked-no-background.svg');
+          width: 30%;
+        }
+      }
+    }
+
+    &.completed {
+
+      &.LEVEL,
+      &.MODULE {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-completed-tick-solid.svg');
+        }
+      }
+
+      &.STEP {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-completed-tick-no-background.svg');
+        }
+      }
+
+    }
+
+    &.back {
+      .pl-menu-button {
+        &::after {
+          content: '\3c';
+          height: 30px;
+          position: absolute;
+          top: calc(50% - 10px);
+          right: 10px;
+          color: $white;
+          font-family: "fontello";
+          font-style: normal;
+          font-weight: normal;
+          speak: none;
+          display: inline-block;
+          text-decoration: inherit;
+          width: 1em;
+          margin-right: .2em;
+          text-align: center;
+          text-transform: none;
+          line-height: 1em;
+          margin-left: .2em;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      }
+    }
+
+    &.home {
+      .pl-menu-button {
+        width: 85%;
+        background-image: url('../assets/menu-item-home.svg');
+      }
+    }
+
+    &.logout {
+      background-color: $ship-grey;
+      position: absolute;
+    }
+
+
+    &.stepActive {
+      background-color: $black;
+      border-top: 1px solid $white;
+      border-bottom: 1px solid $white;
+      position: relative;
+
+      p {
+        &.bottom-title {
+          color: $white;
+        }
+      }
+    }
+
+    .fontello-icon-right {
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+
+      color: $white;
+      font-family: "fontello";
+      speak: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+}

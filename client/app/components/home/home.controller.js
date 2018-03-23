@@ -34,7 +34,7 @@ class HomeController {
       if ( iCycle.status === 'locked' ) {
         // I use a homefont (fontello) that will display a lock icon when we try to display
         // the character 'l' and the font is 'fontello'
-        // I had to do this trick because it was impossible to insert an image for the donut title
+        // I had to do this trick because it was impossible to insert an image for the donut topTitle
         // As we could only put text, we created our own font that contains only one character
         // http://fontello.com/
         donutTitle = 'l';

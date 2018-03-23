@@ -12,4 +12,5 @@
 .icon-pause:before { content: '\72'; } /* 'r' */
 .icon-pl-tick:before { content: '\74'; } /* 't' */
 .icon-pl-logo:before { content: '\75'; } /* 'u' */
+.icon-videocam:before { content: '\76'; } /* 'v' */
 .icon-badge-strengths:before { content: '\e800'; } /* '' */

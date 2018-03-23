@@ -47,6 +47,7 @@ let constantModule = angular.module('app.common.constant', [
     LIFE_MAP: 'M',
     PLAY: 'P', // P: Play
     PAUSE: 'r', // r: resume
+    VIDEO: 'v',
   })
   .constant('SPINNERS', {
     COURSE_CONTENT: 'courseContentSpinner',

@@ -29,27 +29,10 @@
 
       <aside ng-if="$ctrl.displayMenu" class="left-off-canvas-menu">
         <ul class="off-canvas-list-bugfix">
-          <li class="home btn-back-home menu-button" ui-sref="{{$ctrl.homeState}}">
-            <div class="small-2 columns">
-              <span class="pl-menu-button"></span>
-            </div>
-            <div class="small-10 columns">
-              <p class="top-title">Potentialife</p>
-              <p class="main-title">{{ 'HOME' | translate }}</p>
-              <p class="below-title"></p>
-            </div>
+          <li class="btn-back-home menu-button" ui-sref="{{$ctrl.homeState}}">
+            <navbar-menu-button data="$ctrl.homeButtonData"></navbar-menu-button>
           </li>
           <menu-item item="$ctrl.menu.data"></menu-item>
-          <li class="logout menu-button row small-collapse" ng-click="$ctrl.logout()">
-            <div class="small-2 columns">
-              <span class="pl-menu-button icon-logout"></span>
-            </div>
-            <div class="small-10 columns">
-              <p class="top-title">&nbsp;</p>
-              <p class="main-title">{{'LOGOUT' | translate}}</p>
-              <p class="below-title">&nbsp;</p>
-            </div>
-          </li>
         </ul>
       </aside>
 

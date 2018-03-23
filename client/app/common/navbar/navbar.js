@@ -2,13 +2,15 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import globalVariable from 'app/globalVariables';
 import navbarComponent from './navbar.component';
+import navbarMenuButtonComponent from './menuButton/navbar.menuButton.component';
 import ResourceFactory from 'common/resourceFactory/resource';
 import LogDecorator from 'common/logDecorator/logDecorator';
 import MenuService from 'common/menuFactory/menu';
 import constantModule from 'common/constants';
 import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 import ZendeskWidgetFactory from 'common/zendeskWidget/zendeskWidget';
-import { syncMenuAndState, menuItem, menuButton, plDisableLink } from './navbar.directive';
+import { syncMenuAndState, plDisableLink } from './navbar.directive';
+import MenuItemDirective from './menuItem/navbar.menuItem.directive';
 
 require('angular-foundation');
 
@@ -24,8 +26,8 @@ let navbarModule = angular.module('navbar', [
   'mm.foundation'
 ])
   .component('navbar', navbarComponent)
-  .directive('menuItem', menuItem )
-  .directive('menuButton', menuButton )
+  .component('navbarMenuButton', navbarMenuButtonComponent)
+  .directive('menuItem', MenuItemDirective )
   .directive('syncState', syncMenuAndState )
   .directive('plDisableLink', plDisableLink )
   .name;

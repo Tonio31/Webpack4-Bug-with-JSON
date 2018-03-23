@@ -201,6 +201,12 @@
       "search": [
         "pause"
       ]
+    },
+    {
+      "uid": "0f99ab40ab0b4d64a74f2d0deeb03e42",
+      "css": "videocam",
+      "code": 118,
+      "src": "fontawesome"
     }
   ]
 }

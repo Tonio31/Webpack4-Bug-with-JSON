@@ -207,7 +207,7 @@ gulp.task('component', () => {
 
   return gulp.src(paths.blankTemplates)
     .pipe(template({
-      name: name,
+      bottomTitle: name,
       dashCaseName: name.replace(reDetectUpperCase, convertUppercase),
       upCaseName: cap(name)
     }))
