@@ -15,14 +15,6 @@ class NavbarController {
     // eslint-disable-next-line no-param-reassign
     $log = $log.getInstance('NavbarController');
 
-    this.homeButtonData = {
-      homeState: STATES.HOME,
-      title: 'Potentialife',
-      name: 'Home', // TONIO to translate
-      description: '',
-      status: 'home'
-    };
-
     this.logoutButtonData = {
       title: ' ',
       name: 'Log out', // TONIO to translate

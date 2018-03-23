@@ -181,13 +181,6 @@ navbar-menu-button {
       }
     }
 
-    &.home {
-      .pl-menu-button {
-        width: 85%;
-        background-image: url('../assets/menu-item-home.svg');
-      }
-    }
-
     &.logout {
       background-color: $ship-grey;
       position: absolute;
