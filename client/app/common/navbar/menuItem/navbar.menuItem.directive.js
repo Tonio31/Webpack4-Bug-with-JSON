@@ -61,19 +61,6 @@ let menuItem = function($window, $filter, $state) {
             return iObject.hasOwnProperty('children');
           };
 
-          // Used to know if the current state is the one pointed by this button link
-          // For hidden steps, we need to highlight the button even if the full url don't match
-          $scope.isStepActive = (iMenuItem) => {
-            if ( iMenuItem.fullUrl === $state.current.name ) {
-              return true;
-            }
-            else if ( $state.params.hideStepInMenu && $state.current.name.includes(iMenuItem.fullUrl) ) {
-              return true;
-            }
-
-            return false;
-          };
-
           $scope.test = 'active';
 
           $scope.hideCanvas = () => {
