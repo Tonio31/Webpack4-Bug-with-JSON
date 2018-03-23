@@ -76,7 +76,7 @@
             },
             {
               "id": 5,
-              "title": "MODULE 1",
+              "title": "Module 1",
               "name": "Encounter Strengths",
               "description": "Approx. 30 mins",
               "slug": "module-1",
@@ -135,7 +135,7 @@
                   "description": "Approx. 3 mins",
                   "slug": "step-5",
                   "order": 4,
-                  "status": "completed",
+                  "status": "locked",
                   "fullUrl": "/potentialife-course/cycle-1/module-1/step-5",
                   "type": "STEP"
                 },
@@ -201,7 +201,7 @@
             },
             {
               "id": 6,
-              "title": "MODULE 2",
+              "title": "Module 2",
               "name": "eXperiment Strengths",
               "description": "Approx. 3 mins",
               "slug": "module-2",
@@ -236,7 +236,7 @@
             },
             {
               "id": 7,
-              "title": "MODULE 3",
+              "title": "Module 3",
               "name": "Encounter Health",
               "description": "Approx. 3 mins",
               "slug": "module-3",
@@ -260,7 +260,7 @@
             },
             {
               "id": 8,
-              "title": "MODULE 4",
+              "title": "Module 4",
               "name": "eXperiment Health",
               "description": "Approx. 3 mins",
               "slug": "module-4",

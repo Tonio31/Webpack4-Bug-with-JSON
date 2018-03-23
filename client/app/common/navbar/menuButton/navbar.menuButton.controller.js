@@ -1,5 +1,11 @@
 class NavbarMenuButtonController {
-  constructor( $log, $filter, $state, ICON_FONTELLO ) {
+  constructor( $log,
+               $filter,
+               $state,
+               JwtFactory,
+               ZendeskWidget,
+               STATES,
+               ICON_FONTELLO ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -84,6 +90,19 @@ class NavbarMenuButtonController {
       }
 
       return '';
+    };
+
+    this.menuButtonClick = () => {
+      if ( this.status === 'logout' ) {
+        $log.log('LOGOUT Clicked!!');
+        this.logout();
+      }
+    };
+
+    this.logout = () => {
+      JwtFactory.logout();
+      $state.go(STATES.LOGIN);
+      ZendeskWidget.hide();
     };
 
   }

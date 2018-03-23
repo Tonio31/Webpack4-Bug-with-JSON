@@ -2,7 +2,7 @@
 @import '~client/app/common/_foundation-settings';
 
 $orangeColorTitle: #ff8534;
-$mainTitleMenuColor: #a0a0a0;
+$lockedTextColor: #a0a0a0;
 $buttonBorder: 1px solid #C4C4C4;
 
 $fontSizeLevelTitle: 1.5rem;
@@ -121,6 +121,20 @@ navbar-menu-button {
       p.bottom-title {
         color: $orangeColorTitle;
       }
+
+      &.MODULE {
+
+        p.top-title {
+          font-size: $fontSizeStepTitle;
+        }
+
+        p.bottom-title {
+          color: $white;
+          text-transform: none;
+          font-size: $fontSizeLevelTitle;
+          font-weight: $font-weight-bold;
+        }
+      }
     }
 
     .pl-menu-button {
@@ -150,6 +164,15 @@ navbar-menu-button {
     }
 
     &.locked {
+
+      p {
+        color: $lockedTextColor;
+      }
+
+      .fontello-icon-right {
+        color: $lockedTextColor;
+      }
+
       &.LEVEL,
       &.MODULE {
         .pl-menu-button {
