@@ -207,6 +207,12 @@
       "css": "videocam",
       "code": 118,
       "src": "fontawesome"
+    },
+    {
+      "uid": "2d76f2c8d13be40694ecadfea7fb83c3",
+      "css": "logout",
+      "code": 111,
+      "src": "entypo"
     }
   ]
 }

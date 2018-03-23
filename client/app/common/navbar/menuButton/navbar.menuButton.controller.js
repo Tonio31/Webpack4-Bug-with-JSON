@@ -1,5 +1,5 @@
 class NavbarMenuButtonController {
-  constructor( $log, $filter, $state ) {
+  constructor( $log, $filter, $state, ICON_FONTELLO ) {
     'ngInject';
 
     // eslint-disable-next-line no-param-reassign
@@ -77,10 +77,10 @@ class NavbarMenuButtonController {
     this.getIconValue = () => {
 
       if ( this.isStepActive() ) {
-        return '>';
+        return ICON_FONTELLO.ARROW_RIGHT;
       }
       else if ( this.isVideoStep() ) {
-        return 'v';
+        return ICON_FONTELLO.VIDEO;
       }
 
       return '';

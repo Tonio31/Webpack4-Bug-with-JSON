@@ -1,5 +1,5 @@
 
-let menuItem = function($window, $filter, $state) {
+let menuItem = function($window, $filter) {
   'ngInject';
   return {
     require: '^offCanvasWrap',
@@ -13,55 +13,18 @@ let menuItem = function($window, $filter, $state) {
       return {
         pre: function($scope) {
           $scope.logoutButtonData = {
-            title: ' ',
-            name: 'Log out', // TONIO to translate
-            description: ' ',
-            status: 'icon-logout'
+            title: $filter('translate')('LOGOUT').toString(), // TONIO to translate
+            name: '',
+            status: 'logout'
           };
         },
         post: function($scope, iElem, iAttrs, offCanvasWrap) {
-
-          let screenWidth = $window.innerWidth;
-
-
-
-          $scope.testTonioFuck = () => {
-            return '';
-          };
-
-          // $scope.getbackButtonData = (iChild) => {
-          //   return {
-          //     topTitle: iChild.topTitle,
-          //     name: iChild.name,
-          //     // description: $scope.getBelowTitle(iChild),
-          //     description: 'TEST TONIO',
-          //     status: 'back'
-          //   };
-          // };
-
-          // $scope.getbackButtonData = (iChild) => {
-          //   return {
-          //     topTitle: 'TONIO',
-          //     name: 'TONIO TEST',
-          //     // description: $scope.getBelowTitle(iChild),
-          //     description: 'TEST TONIO',
-          //     status: 'back'
-          //   };
-          // };
-
-          $scope.testTonio = {
-            title: 'tonio',
-            name: 'tonio',
-            // description: $scope.getBelowTitle(iChild),
-            description: 'TEST TONIO',
-            status: 'back'
-          };
 
           $scope.hasChildren = (iObject) => {
             return iObject.hasOwnProperty('children');
           };
 
-          $scope.test = 'active';
+          let screenWidth = $window.innerWidth;
 
           $scope.hideCanvas = () => {
             // prevent large screens from closing menu automatically after clicking a menuitem

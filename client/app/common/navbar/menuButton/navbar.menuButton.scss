@@ -9,9 +9,27 @@ $fontSizeLevelTitle: 1.5rem;
 $fontSizeStepTitle: 1rem;
 $fontSizeSmallTitle: 0.75rem;
 
+
+@mixin leftIconSettings() {
+  height: 30px;
+  position: absolute;
+  top: calc(50% - 10px);
+  right: 10px;
+  color: $white;
+  font-family: "fontello";
+  speak: none;
+  width: 1em;
+  margin-right: .2em;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
 navbar-menu-button {
   width: 100%;
   padding: 0;
+  cursor: pointer;
 
   .menu-button {
     width: 100%;
@@ -25,6 +43,16 @@ navbar-menu-button {
     &:hover,
     &:active {
       background-color: $onyx;
+    }
+
+
+    // Left Align Logout text with the rest (some css properties of foundation
+    // insert space on the left otherwise
+    &.row {
+      &::before,
+      &::after {
+        content: none;
+      }
     }
 
     .button-icon {
@@ -158,32 +186,20 @@ navbar-menu-button {
       .pl-menu-button {
         &::after {
           content: '\3c';
-          height: 30px;
-          position: absolute;
-          top: calc(50% - 10px);
-          right: 10px;
-          color: $white;
-          font-family: "fontello";
-          font-style: normal;
-          font-weight: normal;
-          speak: none;
-          display: inline-block;
-          text-decoration: inherit;
-          width: 1em;
-          margin-right: .2em;
-          text-align: center;
-          text-transform: none;
-          line-height: 1em;
-          margin-left: .2em;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
+          @include leftIconSettings();
         }
       }
     }
 
     &.logout {
       background-color: $ship-grey;
-      // position: absolute;
+
+      .pl-menu-button {
+        &::after {
+          content: '\6f';
+          @include leftIconSettings();
+        }
+      }
     }
 
 
