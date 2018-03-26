@@ -4,22 +4,28 @@
       <nav class="tab-bar" data-offcanvas>
 
         <section class="left tab-bar-section">
+
+          <div ng-if="$ctrl.displayMenu">
+            <div class="menu-toggle-button left-off-canvas-toggle" ng-click="$ctrl.toggleMenu()">
+              <span class="line-wrap">
+                <i></i>
+                <i></i>
+                <i></i>
+              </span>
+              <!--<span class="text text-menu">menu</span>-->
+              <!--<span class="text text-hide">hide</span>-->
+            </div>
+          </div>
+
           <h1 class="title logo-potential-life">
             <a pl-disable-link="!$ctrl.displayMenu" ui-sref="{{$ctrl.homeState}}">{{$ctrl.Potentialife}}</a>
           </h1>
+
           <a href="#content" class="accessible-link">Skip to content</a>
         </section>
 
-        <div ng-if="$ctrl.displayMenu" class="right-small">
-          <div class="menu-toggle-button left-off-canvas-toggle" ng-click="$ctrl.toggleMenu()">
-            <span class="line-wrap">
-              <i></i>
-              <i></i>
-              <i></i>
-            </span>
-            <span class="text text-menu">menu</span>
-            <span class="text text-hide">hide</span>
-          </div>
+        <div class="right-small">
+          {{$ctrl.getUserFullName()}}
         </div>
 
       </nav>

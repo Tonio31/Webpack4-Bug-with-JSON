@@ -8,25 +8,42 @@ $fullHeight: 100%;
 $topTitleMenuColor: #ff8534;
 $mainTitleMenuColor: #a0a0a0;
 
+$marginTopBar: 1rem;
+
 .header {
   .tab-bar {
     background-color: $onyx;
 
+    .tab-bar-section {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+
+      .logo-potential-life {
+        margin-left: $marginTopBar;
+
+        a {
+          display: inline-block;
+          background-image: url('./assets/logo-potential-life.svg');
+          background-repeat: no-repeat;
+          background-position: center left;
+          background-size: auto 60%;
+          text-indent: -9999em;
+          height: auto;
+          width: 270px;
+        }
+      }
+
+    }
+
     .right-small {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
+      width: 30rem;
+      margin-right: $marginTopBar;
     }
-  }
-  .logo-potential-life a {
-    display: inline-block;
-    background-image: url('./assets/logo-potential-life.svg');
-    background-repeat: no-repeat;
-    background-position: center left;
-    background-size: auto 60%;
-    text-indent: -9999em;
-    height: auto;
-    width: 270px;
   }
 }
 
@@ -36,25 +53,26 @@ menu-item {
 
 .menu-toggle-button {
 
-  $menu-size: 45px;
+  $menu-width: 45px;
+  $menu-height: 30px;
   $radius: 4px;
   $speed: 500ms;
 
   @include noSelect();
 
-  border: 1px solid $white;
-  border-radius: $radius;
+  //border: 1px solid $white;
+  //border-radius: $radius;
   cursor: pointer;
-  width: $menu-size;
-  height: $menu-size;
+  width: $menu-width;
+  height: $menu-height;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
 
   .line-wrap {
     display: block;
-    width: $menu-size - 14px;
-    height: $menu-size - 15px;
+    width: $menu-height;
+    height: $menu-height;
     position: absolute;
     top: 6px;
     left: 6px;

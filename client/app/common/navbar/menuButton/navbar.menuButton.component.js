@@ -7,7 +7,6 @@ let navbarMenuButtonComponent = {
   bindings: {
     data: '<',
     category: '<',
-    menuItemNumber: '<'
   },
   template,
   controller

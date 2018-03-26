@@ -1,5 +1,4 @@
-
-let menuItem = function($window, $filter) {
+let menuItem = function( $window, $filter ) {
   'ngInject';
   return {
     require: '^offCanvasWrap',
@@ -8,27 +7,31 @@ let menuItem = function($window, $filter) {
     scope: {
       item: '='
     },
-    template: require('./navbar.menuItem.template.html'),
+    template: require( './navbar.menuItem.template.html' ),
     compile: function() {
       return {
-        pre: function($scope) {
+        pre: function( $scope ) {
           $scope.logoutButtonData = {
-            title: $filter('translate')('LOGOUT').toString(), // TONIO to translate
+            title: $filter( 'translate' )( 'LOGOUT' ).toString(), // TONIO to translate
             name: '',
             status: 'logout'
           };
         },
-        post: function($scope, iElem, iAttrs, offCanvasWrap) {
+        post: function( $scope, iElem, iAttrs, offCanvasWrap ) {
 
-          $scope.hasChildren = (iObject) => {
-            return iObject.hasOwnProperty('children');
+          $scope.hasChildren = ( iObject ) => {
+            return iObject.hasOwnProperty( 'children' );
+          };
+
+          $scope.hideMenuItem = ( iObject ) => {
+            return iObject.hasOwnProperty( 'hideStepInMenu' ) && iObject.hideStepInMenu;
           };
 
           let screenWidth = $window.innerWidth;
 
           $scope.hideCanvas = () => {
             // prevent large screens from closing menu automatically after clicking a menuitem
-            if (screenWidth <= 1024) {
+            if ( screenWidth <= 1024 ) {
               offCanvasWrap.hide();
             }
           };

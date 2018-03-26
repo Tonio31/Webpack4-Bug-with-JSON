@@ -23,28 +23,9 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     // Recursive call
     if ( ioMenu.hasOwnProperty('children') ) {
 
-      let previousStepNotHidden = null;
-
+      $log.warn('TONIO findFinalState');
       for ( let child of ioMenu.children ) {
-        let isFinalState = findFinalState(child, oStates);
-
-        // For Hidden steps: we need to hack the status of the previous step not hidden
-        // to display the good icon in the menu.
-        if ( isFinalState ) {
-          if ( child.hasOwnProperty('hideStepInMenu') && child.hideStepInMenu ) {
-            if ( previousStepNotHidden ) {
-              if ( child.status === 'current' || child.status === 'completed' ) {
-                previousStepNotHidden.status = child.status;
-              }
-            }
-            else {
-              $log.warn(`A hidden step(${child.fullUrl}) should always be preceded by a nonHidden step, problem with the structure of the menu`);
-            }
-          }
-          else {
-            previousStepNotHidden = child;
-          }
-        }
+        findFinalState(child, oStates);
       }
 
       return false;
@@ -80,43 +61,56 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     return true;
   };
 
-  let addLevelInfoIntoModule = (ioMenu) => {
-    for ( let cycle of ioMenu.children ) {
-      if ( cycle.hasOwnProperty('children') ) {
-        cycle.children.forEach( (module) => {
-          module.levelTitle = cycle.title;
-        });
-      }
-    }
-  };
 
-  let tempFuncitonToTransformMenu = (myMenu) => {
-    $log.warn('TONIO tempFuncitonToTransformMenu menu=', myMenu);
-    for ( let cycle of myMenu.children ) {
-      cycle.type = 'LEVEL';
-      $log.warn('TONIO cycle.name=', cycle.name);
-      if ( cycle.hasOwnProperty('children') ) {
-
-        cycle.children.forEach( (module) => {
-          module.type = 'MODULE';
-          $log.warn('TONIO module.name=', module.name);
+  /**
+   * computeMenuForDisplay:
+   *   - Add level title at module level (to diplay level title on the back button of steps
+   *   - Count visible steps and add their number
+   *   - HiddenSteps: hack the status the the first non-hidden steps status reflect the status of the hidden steps (so the good icon is displayed on the menu)
+   * @param ioMenu: menu object to modify
+   */
+  let computeMenuForDisplay = (ioMenu) => {
+    for ( let level of ioMenu.children ) {
+      if ( level.hasOwnProperty('children') ) {
+        level.children.forEach( (module) => {
+          module.levelTitle = level.title;
 
           if ( module.hasOwnProperty('children') ) {
+
+            let previousStepNotHidden = null;
+            let stepNumber = 0;
+
             module.children.forEach( (step) => {
 
-              step.type = 'STEP';
               $log.warn('TONIO step.name=', step.name);
+
+              // For Hidden steps: we need to hack the status of the previous step not hidden
+              // to display the good icon in the menu.
+              if ( step.hideStepInMenu ) {
+                if ( previousStepNotHidden ) {
+                  if ( step.status === 'current' || step.status === 'completed' ) {
+                    previousStepNotHidden.status = step.status;
+                  }
+                }
+                else {
+                  $log.warn(`A hidden step(${step.fullUrl}) should always be preceded by a nonHidden step, problem with the structure of the menu`);
+                }
+              }
+              else {
+                // Add a step number that will be displayed in the menu at step level
+                previousStepNotHidden = step;
+                stepNumber += 1;
+              }
+
+              step.stepNumber = stepNumber;
+
             });
           }
 
         });
       }
-
     }
-
-    $log.warn('TONIO myMenu=', myMenu);
   };
-
 
   // *****************************************************************************************
   //                                           Public Interface
@@ -146,16 +140,14 @@ let MenuFactory = function( $log, $q, Data, STATES) {
         // For now, we only have one Potentialife course, so we pick the first item in the list
         menu.data = menuData.menudata[0];
 
-        // tempFuncitonToTransformMenu(menu.data);
-
         $log.log('retrieveMenuAndReturnStates() - Menu Retrieved successfully menu=', menu);
 
         // Will get a list of states and modify the menu for hidden steps
         let states = [];
         findFinalState(menu.data, states);
 
-        // Add Level Title into Module block within menu to be able to display Level topTitle for the back button of the menu at step level
-        addLevelInfoIntoModule(menu.data);
+        // Modify the menu object to have all the info needed for display
+        computeMenuForDisplay(menu.data);
 
         currentProgression.data = menuData.current_progression;
 
@@ -180,7 +172,8 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     retrieveMenuAndReturnStates,
     isMenuRetrieved,
     getCurrentProgression,
-    findFinalState
+    findFinalState,
+    computeMenuForDisplay
   };
 };
 

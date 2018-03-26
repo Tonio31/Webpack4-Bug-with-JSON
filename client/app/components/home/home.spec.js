@@ -167,12 +167,12 @@ describe('Home', () => {
     it('has a 3 cycles', () => {
       let cycles = angular.element(template[0].querySelectorAll('.cycle'));
       expect(cycles.length).to.eq(3);
-      expect(cycles[0].textContent).to.contain('CYCLE 1');
-      expect(cycles[1].textContent).to.contain('CYCLE 2');
-      expect(cycles[2].textContent).to.contain('CYCLE 3');
+      expect(cycles[0].textContent).to.contain('LEVEL 1');
+      expect(cycles[1].textContent).to.contain('LEVEL 2');
+      expect(cycles[2].textContent).to.contain('LEVEL 3');
 
       let cycle1 = angular.element(template[0].querySelector('.cycle'));
-      expect(cycle1.html()).to.contain('<h4 class="ng-binding">CYCLE 1</h4>');
+      expect(cycle1.html()).to.contain('<h4 class="ng-binding">LEVEL 1</h4>');
     });
 
     it('has a PARTICIPANT_REFLECTION section', () => {

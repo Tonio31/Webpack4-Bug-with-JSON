@@ -45,18 +45,12 @@ describe('Navbar MenuItem Directive', () => {
       expect(hasSubMenuTags.length).to.eq(7);
     });
 
-    it('getBelowTitle() return the good title ', () => {
-      let belowTitle = angular.element(template[0].querySelectorAll('.below-title'));
-      expect(belowTitle.html()).to.eq('10 / 10 Modules');
-    });
-
-
-    it('Count the number of element that have .menu-button class', () => {
+    it('Count the number of element that have .menu-button class in module 1', () => {
       let module1 = angular.element(template[0].querySelector('#\\/potentialife-course\\/cycle-1\\/module-1'));
       expect(module1.hasClass('menu-item')).to.eq(true);
 
       let menuButtonClass = angular.element(module1[0].querySelectorAll('.menu-button'));
-      expect(menuButtonClass.length).to.eq(13);
+      expect(menuButtonClass.length).to.eq(15);
     });
 
   });

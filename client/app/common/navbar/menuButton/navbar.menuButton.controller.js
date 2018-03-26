@@ -2,6 +2,7 @@ class NavbarMenuButtonController {
   constructor( $log,
                $filter,
                $state,
+               Data,
                JwtFactory,
                ZendeskWidget,
                STATES,
@@ -27,8 +28,8 @@ class NavbarMenuButtonController {
         this.topTitle = this.data.title;
 
         // For steps, we want to add the step number in front
-        if ( this.type === 'STEP' && this.menuItemNumber ) {
-          this.bottomTitle = `${this.menuItemNumber}. `;
+        if ( this.type === 'STEP' && this.data.stepNumber ) {
+          this.bottomTitle = `${this.data.stepNumber}. `;
         }
         this.bottomTitle += this.data.name;
 
@@ -45,7 +46,7 @@ class NavbarMenuButtonController {
 
       }
       else {
-        $log.error('WTF data=', this.data);
+        $log.error('Input data is undefined, this should never happens');
       }
 
     };
@@ -63,13 +64,8 @@ class NavbarMenuButtonController {
     // Used to know if the current state is the one pointed by this button link
     // For hidden steps, we need to highlight the button even if the full url don't match
     this.isStepActive = () => {
-      if ( this.data.fullUrl === $state.current.name ) {
-        return true;
-      }
-      else if ( $state.params.hideStepInMenu && $state.current.name.includes(this.data.fullUrl) ) {
-        return true;
-      }
-      else if ( this.status !== 'back' && $state.current.name.includes(this.data.fullUrl) ) {
+
+      if ( this.category !== 'back-button' && $state.current.name.includes(this.data.fullUrl) ) {
         return true;
       }
 
@@ -100,9 +96,17 @@ class NavbarMenuButtonController {
     };
 
     this.logout = () => {
+      // Unvalidate Token on server side
+      Data.logout().$save();
+
+      // Remove Token from local Storage
       JwtFactory.logout();
-      $state.go(STATES.LOGIN);
+
+      // Hide Zendesk Widget
       ZendeskWidget.hide();
+
+      // Go to login state
+      $state.go(STATES.LOGIN);
     };
 
   }

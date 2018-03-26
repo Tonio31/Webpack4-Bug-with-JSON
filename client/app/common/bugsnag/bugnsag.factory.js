@@ -19,7 +19,7 @@ let BugsnagFactory = function($log, User) {
 
     payload.user = {
       id: User.getUserId(),
-      name: `${User.getFirstName()} ${User.getLastName()}`,
+      name: User.getFullName(),
       email: User.getEmail()
     };
 

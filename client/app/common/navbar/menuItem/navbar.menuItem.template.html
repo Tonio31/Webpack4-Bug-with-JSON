@@ -14,7 +14,9 @@
   <li ng-if="!hasChildren(child) && !hideMenuItem(child)"
       ng-click="hideCanvas()"
       class="menu-item">
-    <a ui-sref="{{child.fullUrl}}"><navbar-menu-button data="child" menu-item-number="$index + 1"></navbar-menu-button></a>
+    <a ui-sref="{{child.fullUrl}}">
+      <navbar-menu-button data="child"></navbar-menu-button>
+    </a>
   </li>
 </div>
 <li class="logout menu-button row small-collapse"> <!-- logout class is watched by sync-state directive to logout -->
