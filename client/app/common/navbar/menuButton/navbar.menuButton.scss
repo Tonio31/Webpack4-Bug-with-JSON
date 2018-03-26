@@ -35,6 +35,7 @@ navbar-menu-button {
     width: 100%;
     height: auto;
     border-bottom: $buttonBorder;
+    border-top: $buttonBorder;
     color: transparentize($white, .3);
     display: flex;
     padding: .66667rem;
