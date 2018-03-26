@@ -60,8 +60,6 @@ menu-item {
 
   @include noSelect();
 
-  //border: 1px solid $white;
-  //border-radius: $radius;
   cursor: pointer;
   width: $menu-width;
   height: $menu-height;
@@ -126,7 +124,6 @@ menu-item {
   company-banner {
     display: block;
 
-   // ~ .content + div {
     ~ .content .content-body {
       min-height: calc(100vh - #{$height-footer-nav-banner} - #{$height-company-banner});
     }
@@ -215,54 +212,6 @@ menu-item {
 
   }
 
-  .menu-button {
-    //width: 100%;
-    //height: auto;
-    //border-bottom: 2px solid $onyx;
-    //color: transparentize($white, .3);
-    //display: flex;
-    //padding: .66667rem;
-    //transition: background-color $speed3 ease;
-    //
-    //&:hover,
-    //&:active {
-    //  background-color: $onyx;
-    //}
-    //
-    //&.row {
-    //  &::before,
-    //  &::after {
-    //    content: none;
-    //  }
-    //}
-    //
-    //p {
-    //  margin-bottom: 0;
-    //  line-height: 1.25rem;
-    //
-    //  &.top-topTitle {
-    //    font-size: 10px;
-    //    color: $topTitleMenuColor;
-    //    text-transform: uppercase;
-    //  }
-    //
-    //  &.main-topTitle {
-    //    font-size: 18px;
-    //    -webkit-font-smoothing: subpixel-antialiased;
-    //    color: $mainTitleMenuColor;
-    //    white-space: nowrap;
-    //    overflow: hidden;
-    //    text-overflow: ellipsis;
-    //    max-width: 180px;
-    //  }
-    //
-    //  &.below-topTitle {
-    //    font-size: 10px;
-    //    color: $mainTitleMenuColor;
-    //  }
-    //}
-  }
-
   .nav-links,
   .logo {
     display: inline-block;
@@ -283,30 +232,6 @@ menu-item {
 
   .left-submenu {
     height: 100%;
-
-    //.back {
-    //  display: block;
-    //  a {
-    //    align-items: center;
-    //    background-color: $onyx;
-    //    border-bottom: 2px solid $onyx;
-    //    padding: 1.25rem .6667rem .6667rem rem_calc(5px);
-    //    display: flex;
-    //    &::before {
-    //      display: none;
-    //    }
-    //    &:hover {
-    //      border-bottom: 2px solid $onyx;
-    //    }
-    //    .small-2 {
-    //      width: 19%;
-    //    }
-    //  }
-    //  .main-topTitle,
-    //  .below-topTitle {
-    //    color: $white;
-    //  }
-    //}
   }
 
   .menu-item {

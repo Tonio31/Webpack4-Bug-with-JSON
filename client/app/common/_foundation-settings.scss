@@ -1030,14 +1030,14 @@ $off-canvas-width: rem-calc(278);
 // We use this to control the bottom margin of the pricing table
 // $price-table-margin-bottom: rem-calc(20);
 
-// We use these to control the topTitle styles
-// $price-topTitle-bg: $oil;
-// $price-topTitle-padding: rem-calc(15 20);
-// $price-topTitle-align: center;
-// $price-topTitle-color: $smoke;
-// $price-topTitle-weight: $font-weight-normal;
-// $price-topTitle-size: rem-calc(16);
-// $price-topTitle-font-family: $body-font-family;
+// We use these to control the title styles
+// $price-title-bg: $oil;
+// $price-title-padding: rem-calc(15 20);
+// $price-title-align: center;
+// $price-title-color: $smoke;
+// $price-title-weight: $font-weight-normal;
+// $price-title-size: rem-calc(16);
+// $price-title-font-family: $body-font-family;
 
 // We use these to control the price styles
 // $price-money-bg: $vapor;
@@ -1420,9 +1420,9 @@ $off-canvas-width: rem-calc(278);
 // $topbar-height: rem-calc(45);
 // $topbar-margin-bottom: 0;
 
-// Controlling the styles for the topTitle in the top bar
-// $topbar-topTitle-weight: $font-weight-normal;
-// $topbar-topTitle-font-size: rem-calc(17);
+// Controlling the styles for the title in the top bar
+// $topbar-title-weight: $font-weight-normal;
+// $topbar-title-font-size: rem-calc(17);
 
 // Set the link colors and styles for top-level nav
 // $topbar-link-color: $white;

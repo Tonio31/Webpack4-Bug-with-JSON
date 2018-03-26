@@ -23,7 +23,6 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     // Recursive call
     if ( ioMenu.hasOwnProperty('children') ) {
 
-      $log.warn('TONIO findFinalState');
       for ( let child of ioMenu.children ) {
         findFinalState(child, oStates);
       }
@@ -81,8 +80,6 @@ let MenuFactory = function( $log, $q, Data, STATES) {
             let stepNumber = 0;
 
             module.children.forEach( (step) => {
-
-              $log.warn('TONIO step.name=', step.name);
 
               // For Hidden steps: we need to hack the status of the previous step not hidden
               // to display the good icon in the menu.

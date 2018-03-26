@@ -1,7 +1,7 @@
 {
-  "bottomTitle": "Program-Potentialife",
+  "name": "Program-Potentialife",
   "version": "2.4.13",
-  "bottomTitle": "Potentialife 2.0",
+  "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
     "> 1%",

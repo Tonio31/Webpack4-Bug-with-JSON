@@ -17,10 +17,8 @@ class NavbarMenuButtonController {
     this.status = '';
 
     this.$onInit = () => {
-      $log.warn('TONIO $onInit menuItemNumber=', this.menuItemNumber, '   data=', this.data);
 
       if ( this.data ) {
-        $log.log('TONIO inside this.data');
 
         this.type = this.data.type;
         this.status = this.data.status;
@@ -40,8 +38,6 @@ class NavbarMenuButtonController {
             this.topTitle = this.data.levelTitle;
             this.bottomTitle = this.data.title;
           }
-
-          $log.warn('A type has been defined type=', this.type);
         }
 
       }
@@ -53,7 +49,6 @@ class NavbarMenuButtonController {
 
 
     this.$onChanges = () => {
-      $log.warn('TONIO $onChanges data=', this.data);
 
       if ( this.category !== 'back-button' && this.status !== this.data.status ) {
         $log.log('$onChanges updating oldStatus=', this.status, '   newStatus=', this.data.status);
