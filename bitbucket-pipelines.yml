@@ -3,14 +3,12 @@ image: node:7.4.0
 pipelines:
   default: # Pipelines that run automatically on a commit to a branch
     - step:
+        image: weltn24/up-docker-node-chrome-headless
         caches:
           - node
         script:
           - npm install
-          - npm install -g gulp
-          - npm run build
-          - npm run setKarmaGlobals -- --browser PhantomJS
-          - npm run test/phantomjs --silent
+          - npm run test/ChromeHeadless
   branches:
     dev:
       - step:

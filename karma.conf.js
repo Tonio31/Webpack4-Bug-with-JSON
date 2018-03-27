@@ -115,6 +115,19 @@ module.exports = function (config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
 
+    customLaunchers: {
+      ChromeHeadless: {
+        base: 'Chrome',
+        flags: [
+          '--no-sandbox',
+          '--headless',
+          '--disable-gpu',
+          // Without a remote debugging port, Google Chrome exits immediately.
+          ' --remote-debugging-port=9222',
+        ]
+      }
+    },
+
     // if true, Karma runs tests once and exits
     singleRun: true
   });
