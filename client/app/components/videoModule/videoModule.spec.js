@@ -68,7 +68,7 @@ describe('Video', () => {
     });
 
     it('If user preferences stored in local storage, update resolution', () => {
-      spies.Utility.getFromLocalStorage = sandbox.stub( Utility, 'getFromLocalStorage', () => {
+      spies.Utility.getFromLocalStorage = sandbox.stub( Utility, 'getFromLocalStorage').callsFake( () => {
         return 'high';
       } );
 

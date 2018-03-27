@@ -15,11 +15,11 @@ describe( 'Menu', () => {
     Data = $injector.get( 'Data' );
     User = $injector.get( 'User' );
 
-    sinon.stub( User, 'getUserId', () => {
+    sinon.stub( User, 'getUserId').callsFake( () => {
       return 12;
     } );
 
-    sinon.stub( Data, 'getMenu', () => {
+    sinon.stub( Data, 'getMenu').callsFake( () => {
 
       let myObj = {
         get: function( input, callback ) {
@@ -75,7 +75,7 @@ describe( 'Menu', () => {
       let errorMessage = 'There was an error retrieving the menu';
 
       Data.getMenu.restore();
-      sinon.stub( Data, 'getMenu', () => {
+      sinon.stub( Data, 'getMenu').callsFake( () => {
         return {
           get: function( input, callback, errorCallBack ) {
             return errorCallBack( errorMessage );

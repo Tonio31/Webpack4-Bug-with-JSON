@@ -111,10 +111,10 @@ describe('Navbar menuButton', () => {
     });
 
     it('getIconValue() - returns "" if not active & not video', () => {
-      sinon.stub(controller, 'isStepActive', () => {
+      sinon.stub(controller, 'isStepActive').callsFake( () => {
         return false;
       });
-      sinon.stub(controller, 'isVideoStep', () => {
+      sinon.stub(controller, 'isVideoStep').callsFake( () => {
         return false;
       });
 
@@ -122,7 +122,7 @@ describe('Navbar menuButton', () => {
     });
 
     it('getIconValue() - returns arrow right for the active step', () => {
-      sinon.stub(controller, 'isStepActive', () => {
+      sinon.stub(controller, 'isStepActive').callsFake( () => {
         return true;
       });
 
@@ -130,11 +130,11 @@ describe('Navbar menuButton', () => {
     });
 
     it('getIconValue() - returns video if the step is not active and category=video', () => {
-      sinon.stub(controller, 'isStepActive', () => {
+      sinon.stub(controller, 'isStepActive').callsFake( () => {
         return false;
       });
 
-      sinon.stub(controller, 'isVideoStep', () => {
+      sinon.stub(controller, 'isVideoStep').callsFake( () => {
         return true;
       });
 
@@ -149,7 +149,7 @@ describe('Navbar menuButton', () => {
       sinon.assert.calledWith(logoutSpy);
     });
 
-    it('logout() calls JWT factory, send a post request to server, hide zendesk and redirect to login page', sinon.test(() => {
+    it('logout() calls JWT factory, send a post request to server, hide zendesk and redirect to login page', () => {
 
       spies.Data.logout = sinon.spy(Data, 'logout');
       spies.JwtFactory.logout = sinon.spy(JwtFactory, 'logout');
@@ -162,7 +162,7 @@ describe('Navbar menuButton', () => {
       sinon.assert.calledWith(spies.JwtFactory.logout);
       sinon.assert.calledWith(spies.ZendeskWidget.hide);
       sinon.assert.calledWith(spies.$state.go, STATES.LOGIN);
-    }));
+    });
   });
 
   describe('View <navbar-menu-button data="dataButton"></navbar-menu-button>', () => {

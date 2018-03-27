@@ -50,7 +50,7 @@ describe('AudioModule', () => {
     ngAudio = $injector.get('ngAudio');
 
 
-    spies.ngAudio.load = sinon.stub(ngAudio, 'load', () => {
+    spies.ngAudio.load = sinon.stub(ngAudio, 'load').callsFake( () => {
       return mockNgAudioObject;
     });
   }));
@@ -74,19 +74,19 @@ describe('AudioModule', () => {
     });
 
 
-    it('onInit() - Checks that we load the audio file during onInit', sinon.test( () => {
+    it('onInit() - Checks that we load the audio file during onInit', () => {
       expect(controller.userClickedPlay).to.equal(false);
       sinon.assert.calledWith(spies.ngAudio.load, audioDataBindings.source);
-    } ));
+    });
 
-    it('play() - Calls play for the first time', sinon.test( () => {
+    it('play() - Calls play for the first time', () => {
       spies.mockNgAudioObject.play = sinon.spy(mockNgAudioObject, 'play');
       controller.play();
       sinon.assert.called(spies.mockNgAudioObject.play);
       expect(controller.userClickedPlay).to.equal(true);
-    } ));
+    });
 
-    it('play() - Calls pause if user clicked on play before', sinon.test( () => {
+    it('play() - Calls pause if user clicked on play before', () => {
       spies.mockNgAudioObject.pause = sinon.spy(mockNgAudioObject, 'pause');
 
       // Fake that the user click on play before
@@ -96,7 +96,7 @@ describe('AudioModule', () => {
       controller.play();
       sinon.assert.called(spies.mockNgAudioObject.pause);
       expect(controller.userClickedPlay).to.equal(true);
-    } ));
+    });
   });
 
   describe('View', () => {
