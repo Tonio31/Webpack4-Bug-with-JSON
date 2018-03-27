@@ -104,11 +104,9 @@
   "scripts": {
     "build": "gulp webpack",
     "component": "gulp component",
-    "serve": "gulp serve",
     "start": "gulp serve",
     "test": "karma start",
     "test/chromeHeadless": "karma start --browsers=ChromeHeadless",
-    "test/phantomjs": "karma start --browsers=PhantomJS",
     "tdd": "karma start --auto-watch --no-single-run",
     "watch": "gulp serve",
     "webpack": "gulp webpack",
