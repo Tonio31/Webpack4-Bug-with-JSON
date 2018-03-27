@@ -8,7 +8,7 @@ pipelines:
           - node
         script:
           - npm install
-          - npm run test/ChromeHeadless
+          - npm run test/chromeHeadless
   branches:
     dev:
       - step:
