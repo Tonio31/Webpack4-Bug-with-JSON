@@ -98,20 +98,6 @@ gulp.task('webpack', gulp.series('clean', (cb) => {
   });
 }));
 
-gulp.task('setKarmaGlobals', () => {
-
-  let browser = yargs.argv.browser || 'Chrome';
-
-  gutil.log("browser=", browser);
-
-  gulp.src("./karmaGlobals.json")
-    .pipe(jeditor({
-      'browser': browser
-    }))
-    .pipe(gulp.dest("."));
-});
-
-
 gulp.task('e2e_test', () => {
 
   let baseUrl = yargs.argv.baseUrl || 'http://127.0.0.1:3000/';
