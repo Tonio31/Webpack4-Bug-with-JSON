@@ -27,7 +27,7 @@
     "d3-cloud": "^1.2.5",
     "foundation-sites": "^5.5.3",
     "ngstorage-webpack": "^2.2.2",
-    "normalize.css": "^3.0.3",
+    "normalize.css": "^8.0.0",
     "pdfmake": "^0.1.34",
     "videojs-resolution-switcher": "^0.4.2",
     "vjs-video": "^0.1.11"

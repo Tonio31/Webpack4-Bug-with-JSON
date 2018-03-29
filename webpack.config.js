@@ -60,6 +60,10 @@ module.exports = {
         test: /\.eot$/,
         loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]'
       }
+    ],
+    // This will only works when I migrate to webpack 3
+    noParse: [
+      '/node_modules/d3-cloud/build/d3.layout.cloud.js',
     ]
   },
   sassLoader: {
