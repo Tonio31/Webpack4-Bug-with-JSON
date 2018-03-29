@@ -13,14 +13,52 @@ module.exports = () => {
     path: path.resolve(__dirname, 'client')
   };
 
-  config.module.loaders = config.module.loaders.concat([
+  // config.module.loaders = config.module.loaders.concat([
+  //   {
+  //     test: /\.css$/,
+  //     loader: 'style!css!postcss'
+  //   },
+  //   {
+  //     test: /\.(scss|sass)$/,
+  //     loader: 'style!css!postcss!sass'
+  //   }
+  // ]);
+
+  config.module.rules = config.module.rules.concat([
     {
       test: /\.css$/,
-      loader: 'style!css!postcss'
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader',
+      ]
     },
     {
-      test: /\.(scss|sass)$/,
-      loader: 'style!css!postcss!sass'
+      test: /\.(scss|sass)/,
+      use: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
+          }
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            includePaths: [ path.resolve(__dirname, './client/app') ],
+            sourceMap: true
+          }
+        },
+      ]
     }
   ]);
 
