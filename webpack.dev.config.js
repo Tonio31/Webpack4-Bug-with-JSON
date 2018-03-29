@@ -13,17 +13,6 @@ module.exports = () => {
     path: path.resolve(__dirname, 'client')
   };
 
-  // config.module.loaders = config.module.loaders.concat([
-  //   {
-  //     test: /\.css$/,
-  //     loader: 'style!css!postcss'
-  //   },
-  //   {
-  //     test: /\.(scss|sass)$/,
-  //     loader: 'style!css!postcss!sass'
-  //   }
-  // ]);
-
   config.module.rules = config.module.rules.concat([
     {
       test: /\.css$/,

@@ -41,17 +41,6 @@ module.exports = (iPhase) => {
     path: path.resolve(__dirname, 'dist')
   };
 
-  // config.module.loaders = config.module.loaders.concat([
-  //   {
-  //     test: /\.css$/,
-  //     loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
-  //   },
-  //   {
-  //     test: /\.(scss|sass)$/,
-  //     loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader")
-  //   },
-  // ]);
-
   config.module.rules = config.module.rules.concat([
     {
       test: /\.css$/,
