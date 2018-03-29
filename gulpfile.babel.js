@@ -66,9 +66,16 @@ let paths = {
 };
 
 
+gulp.task('clean', (cb) => {
+  del([paths.dest]).then(function (paths) {
+    gutil.log("[clean]", paths);
+    cb();
+  })
+});
+
 
 // use webpack.config.js to build modules
-gulp.task('webpack', ['clean'], (cb) => {
+gulp.task('webpack', gulp.series('clean', (cb) => {
 
   // Phase is used by Bugsnag to know if the error happened on UAT (default) or PROD
   let phase = yargs.argv.phase || 'UAT';
@@ -89,7 +96,7 @@ gulp.task('webpack', ['clean'], (cb) => {
 
     cb();
   });
-});
+}));
 
 gulp.task('setKarmaGlobals', () => {
 
@@ -184,7 +191,7 @@ gulp.task('serve', () => {
   });
 });
 
-gulp.task('watch', ['serve']);
+gulp.task('watch', gulp.series('serve'));
 
 gulp.task('component', () => {
   const cap = (val) => {
@@ -217,13 +224,6 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
-gulp.task('clean', (cb) => {
-  del([paths.dest]).then(function (paths) {
-    gutil.log("[clean]", paths);
-    cb();
-  })
-});
-
 gulp.task('tagRepo', () => {
   gutil.log('create a git Tag');
   return gulp.src(['./package.json'])
@@ -231,10 +231,10 @@ gulp.task('tagRepo', () => {
 });
 
 // Push tag to current branch
-gulp.task('pushTag', ['tagRepo'], () => {
+gulp.task('pushTag', gulp.series('tagRepo', () => {
   gutil.log('push a git Tag');
   return git.push('origin', '', {args: ' --tags'}, function(err) { if (err) throw err;});
-});
+}));
 
 gulp.task('bumpVersionNumber', () => {
   return gulp.src('./package.json')
@@ -244,12 +244,12 @@ gulp.task('bumpVersionNumber', () => {
   .pipe(git.commit('[skip ci] - Bump and tag package.json version'));
 });
 
-gulp.task('pushVersionNumber', ['bumpVersionNumber'], () => {
+gulp.task('pushVersionNumber', gulp.series('bumpVersionNumber'), () => {
   gutil.log('gitPush will Increment package.json version, commit and push');
   return git.push('origin', '', {args: ''}, function(err) { if (err) throw err;});
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', gulp.series('watch'));
 
 gulp.task('deploy', () => {
 
