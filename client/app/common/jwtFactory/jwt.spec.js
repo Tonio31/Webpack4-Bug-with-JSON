@@ -57,14 +57,14 @@ describe('JSON Web Token', () => {
     let saveTokenSpy, saveUserIdSpy;
 
     beforeEach(() => {
-      sinon.stub(JwtFactory, 'getToken', () => { return authDetails.token; });
-      sinon.stub(JwtFactory, 'getUserId', () => { return authDetails.user_id; });
+      sinon.stub(JwtFactory, 'getToken').callsFake(() => { return authDetails.token; });
+      sinon.stub(JwtFactory, 'getUserId').callsFake(() => { return authDetails.user_id; });
 
       saveTokenSpy = sinon.spy(JwtFactory, 'saveToken');
       saveUserIdSpy = sinon.spy(JwtFactory, 'saveUserId');
     });
 
-    it('request interceptor adds token ID and UserID (if they are valid) to every request to the back end', sinon.test( () => {
+    it('request interceptor adds token ID and UserID (if they are valid) to every request to the back end', () => {
 
       let config = {
         headers: {},
@@ -75,9 +75,9 @@ describe('JSON Web Token', () => {
 
       expect(configModified.headers.Authorization).to.eq(`Bearer ${authDetails.token}`);
       expect(configModified.headers.user_id).to.eq(authDetails.user_id);
-    }));
+    });
 
-    it('request interceptor doesnt add token ID and UserID to request to the outside world', sinon.test( () => {
+    it('request interceptor doesnt add token ID and UserID to request to the outside world', () => {
 
       let config = {
         headers: {},
@@ -88,9 +88,9 @@ describe('JSON Web Token', () => {
 
       expect(configModified.headers.Authorization).to.eq(undefined);
       expect(configModified.headers.user_id).to.eq(undefined);
-    }));
+    });
 
-    it('response interceptor (no error) save the token if the server sends it back', sinon.test( () => {
+    it('response interceptor (no error) save the token if the server sends it back', () => {
 
       let response = {
         data: {
@@ -102,9 +102,9 @@ describe('JSON Web Token', () => {
       AuthInterceptorFactory.response(response);
       sinon.assert.calledWith(saveTokenSpy, response.data.token);
       sinon.assert.callCount(saveUserIdSpy, 0);
-    }));
+    });
 
-    it('response interceptor (no error) dont save the token if the server dont send it back', sinon.test( () => {
+    it('response interceptor (no error) dont save the token if the server dont send it back', () => {
 
       let response = {
         data: {}
@@ -113,10 +113,10 @@ describe('JSON Web Token', () => {
       AuthInterceptorFactory.response(response);
       sinon.assert.callCount(saveTokenSpy, 0);
       sinon.assert.callCount(saveUserIdSpy, 0);
-    }));
+    });
 
 
-    it('responseError interceptor redirect to login page if the error is 401 ', sinon.test( () => {
+    it('responseError interceptor redirect to login page if the error is 401 ', () => {
 
       let responseError = {
         status: 401
@@ -126,7 +126,7 @@ describe('JSON Web Token', () => {
       let something = AuthInterceptorFactory.responseError(responseError);
 
       expect(something).to.deep.eq($q.reject(responseError));
-    }));
+    });
 
   });
 
@@ -189,7 +189,7 @@ describe('JSON Web Token', () => {
       expect(isExpired).to.equal(false);
     });
 
-    it('isAuthExpired() - Simulate parsing error', sinon.test( () => {
+    it('isAuthExpired() - Simulate parsing error', () => {
 
       mockLocalStorage[TOKEN] = 'something that will break on parsing';
 
@@ -197,18 +197,18 @@ describe('JSON Web Token', () => {
       expect(isExpired).to.equal(true);
       expect(mockLocalStorage[TOKEN]).to.equal(undefined);
       expect(mockLocalStorage[USER_ID]).to.equal(undefined);
-    }));
+    });
 
-    it('isLoginInfoAvailable() - returns true if isAuthExpired returns false', sinon.test( () => {
+    it('isLoginInfoAvailable() - returns true if isAuthExpired returns false', () => {
 
       JwtFactory.isAuthExpired = () => {
         return false;
       };
 
       expect(JwtFactory.isLoginInfoAvailable()).to.equal(true);
-    }));
+    });
 
-    it('isLoginInfoAvailable() - returns true token and user_id are in the URL', sinon.test( () => {
+    it('isLoginInfoAvailable() - returns true token and user_id are in the URL', () => {
 
       JwtFactory.isAuthExpired = () => {
         return true;
@@ -219,7 +219,7 @@ describe('JSON Web Token', () => {
       expect(mockLocalStorage[TOKEN]).to.equal('token');
       expect(mockLocalStorage[USER_ID]).to.equal(4);
       expect(loginInfo).to.equal(true);
-    }));
+    });
 
 
     it('logout removes USER_ID and TOKEN form localStorage', () => {

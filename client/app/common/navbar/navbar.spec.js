@@ -65,7 +65,7 @@ describe('Navbar', () => {
       expect(controller).to.have.property('Potentialife');
     });
 
-    it('logout() calls JWT factory, send a post request to server, hide zendesk and redirect to login page', sinon.test(() => {
+    it('logout() calls JWT factory, send a post request to server, hide zendesk and redirect to login page', () => {
 
       spies.Data.logout = sinon.spy(Data, 'logout');
       spies.JwtFactory.logout = sinon.spy(JwtFactory, 'logout');
@@ -78,7 +78,7 @@ describe('Navbar', () => {
       sinon.assert.calledWith(spies.JwtFactory.logout);
       sinon.assert.calledWith(spies.ZendeskWidget.hide);
       sinon.assert.calledWith(spies.$state.go, STATES.LOGIN);
-    }));
+    });
   });
 
   describe('View <navbar display-menu="true"></navbar>', () => {

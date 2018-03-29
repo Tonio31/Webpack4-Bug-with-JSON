@@ -23,7 +23,7 @@ describe('LockedPage', () => {
     $compile = $injector.get('$compile');
     Menu = $injector.get('Menu');
 
-    sinon.stub(Menu, 'getCurrentProgression', () => {
+    sinon.stub(Menu, 'getCurrentProgression').callsFake( () => {
       return {
         data: {
           current_step: {

@@ -49,7 +49,7 @@ describe('ButtonModule', () => {
     });
 
 
-    it('goToButtonLink calls Utility.goToLink() for non-PDF links', sinon.test( () => {
+    it('goToButtonLink calls Utility.goToLink() for non-PDF links', () => {
 
       spies.Utility.goToLink = sinon.spy(Utility, 'goToLink');
 
@@ -57,25 +57,25 @@ describe('ButtonModule', () => {
       controller.goToButtonLink(buttonBlock.data.type);
 
       sinon.assert.calledWith(spies.Utility.goToLink, buttonBlock.data.href);
-    }));
+    });
 
 
-    it('goToButtonLink calls PdfGenerator.generatePDF() for PDF links', sinon.test( () => {
+    it('goToButtonLink calls PdfGenerator.generatePDF() for PDF links', () => {
 
       spies.PdfGenerator.generatePDF = sinon.spy(PdfGenerator, 'generatePDF');
       controller.goToButtonLink('pdf');
 
       sinon.assert.calledWith(spies.PdfGenerator.generatePDF, buttonBlock.data.href);
-    }));
+    });
 
-    it('getPositionClass build correct class from input', sinon.test( () => {
+    it('getPositionClass build correct class from input', () => {
       expect(controller.getPositionClass()).to.eq('button-center');
-    }));
+    });
 
-    it('getPositionClass returns empty string if position is undefined', sinon.test( () => {
+    it('getPositionClass returns empty string if position is undefined', () => {
       delete controller.data.position;
       expect(controller.getPositionClass()).to.eq('');
-    }));
+    });
   });
 
   describe('View', () => {

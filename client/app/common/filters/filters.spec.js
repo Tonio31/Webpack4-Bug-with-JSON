@@ -23,11 +23,11 @@ describe('Filters', () => {
       expect(unsafe).not.to.be.a('null');
     });
 
-    it('Unsafe filter strips the HTML tags', sinon.test( () => {
+    it('Unsafe filter strips the HTML tags', () => {
       let textToTest = '<p>Testing<\/p>';
       unsafe(textToTest);
       sinon.assert.calledWith(trustAsHtmlSpy, textToTest);
-    }));
+    });
   });
 
   describe('secondsToTime', () => {

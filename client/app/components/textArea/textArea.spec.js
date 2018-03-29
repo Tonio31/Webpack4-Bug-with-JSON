@@ -73,7 +73,7 @@ describe('TextArea', () => {
     it('$onInit() - initialise text & FORM_NAME from the local storage', () => {
 
       bindings.block.data.value = '';
-      let getUserInputFromLocalStorageStub = sinon.stub(Utility, 'getUserInputFromLocalStorage', () => {
+      let getUserInputFromLocalStorageStub = sinon.stub(Utility, 'getUserInputFromLocalStorage').callsFake( () => {
         return 'Some Text';
       });
 

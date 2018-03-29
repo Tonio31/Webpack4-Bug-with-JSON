@@ -287,11 +287,9 @@ describe('ViaSurvey', () => {
 
       spies.utilityFactory.getUserInputFromLocalStorage.restore();
 
-      let test = () => {
+      spies.utilityFactory.getUserInputFromLocalStorage = sandbox.stub(mockUtility, 'getUserInputFromLocalStorage').callsFake( () => {
         return listStrength;
-      };
-
-      spies.utilityFactory.getUserInputFromLocalStorage = sandbox.stub(mockUtility, 'getUserInputFromLocalStorage', test);
+      });
 
 
       controller.$onInit();
@@ -392,7 +390,7 @@ describe('ViaSurvey', () => {
 
     it('displayNextPageSurvey() - Submit Answers if its the last page and call GetResults is submitAnswers returns true', () => {
 
-      sinon.stub(controller, 'submitAnswers', () => {
+      sinon.stub(controller, 'submitAnswers').callsFake( () => {
         let deferred = $q.defer();
         deferred.resolve({
           data: true
@@ -415,7 +413,7 @@ describe('ViaSurvey', () => {
 
     it('displayNextPageSurvey() - Submit Answers if its the last page and call goToErrorState is submitAnswers returns false', () => {
 
-      sinon.stub(controller, 'submitAnswers', () => {
+      sinon.stub(controller, 'submitAnswers').callsFake( () => {
         let deferred = $q.defer();
         deferred.resolve({
           data: false

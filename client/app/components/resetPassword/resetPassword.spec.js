@@ -90,26 +90,26 @@ describe('ResetPassword', () => {
       expect(controller.labelAction).to.equal('CREATE_PASSWORD');
     });
 
-    it('comparePassword set the field in the form to invalid if the password match', sinon.test( () => {
+    it('comparePassword set the field in the form to invalid if the password match', () => {
       controller.password = 'abc';
       controller.passwordConfirmation = 'abc';
       controller.comparePassword(form);
 
       sinon.assert.calledWith(setValidityPasswordSpy, 'nomatch', true);
       sinon.assert.calledWith(setValiditPasswordConfirmationySpy, 'nomatch', true);
-    }));
+    });
 
-    it('comparePassword set the field in the form to invalid if the password DONT match', sinon.test( () => {
+    it('comparePassword set the field in the form to invalid if the password DONT match', () => {
       controller.password = 'abcdef';
       controller.passwordConfirmation = 'abc';
       controller.comparePassword(form);
 
       sinon.assert.calledWith(setValidityPasswordSpy, 'nomatch', false);
       sinon.assert.calledWith(setValiditPasswordConfirmationySpy, 'nomatch', false);
-    }));
+    });
 
 
-    it('sends an reset Password request when user click on resetPassword button', sinon.test((done) => {
+    it('sends an reset Password request when user click on resetPassword button', (done) => {
 
       let authDataBackFromServer = {
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2p3dC1pZHAuZXhhbXBsZS5jb20iLCJzdWIiOiI0IiwibmJmIjoxNDg4NTQzOTQwLCJleHAiOjE3NTY0MjU1OTksImlhdCI6MTQ4ODU0Mzk0MCwianRpIjoiaWQxMjM0NTYifQ.N7xkSMlHPhfwxaG5Ibs-WUBJIc7aMAmq82sLG6fKfRE',
@@ -136,7 +136,7 @@ describe('ResetPassword', () => {
         }
       };
 
-      sinon.stub(Data, 'changePassword', () => {
+      sinon.stub(Data, 'changePassword').callsFake( () => {
         return changePasswordPOSTRequest;
       });
 
@@ -154,9 +154,9 @@ describe('ResetPassword', () => {
       sinon.assert.calledWith(spies.spinnerFactory.show, SPINNERS.TOP_LEVEL);
 
       done();
-    }));
+    });
 
-    it('should redirect to the retrive credentials page when change password failed', sinon.test((done) => {
+    it('should redirect to the retrive credentials page when change password failed', (done) => {
 
       let changePasswordPOSTRequestFail = {
         $save: (callback, errorCallback) => {
@@ -167,7 +167,7 @@ describe('ResetPassword', () => {
         }
       };
 
-      sinon.stub(Data, 'changePassword', () => {
+      sinon.stub(Data, 'changePassword').callsFake( () => {
         return changePasswordPOSTRequestFail;
       });
 
@@ -182,7 +182,7 @@ describe('ResetPassword', () => {
       sinon.assert.calledWith(goSpy, STATES.RETRIEVE_CREDENTIALS);
 
       done();
-    }));
+    });
 
   });
 
