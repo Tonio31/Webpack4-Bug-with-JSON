@@ -15,9 +15,9 @@ describe('Menu', () => {
     Data = $injector.get('Data');
     User = $injector.get('User');
 
-    sinon.stub(User, 'getUserId', () => { return 12; } );
+    sinon.stub(User, 'getUserId').callsFake( () => { return 12; } );
 
-    sinon.stub(Data, 'getMenu', () => {
+    sinon.stub(Data, 'getMenu').callsFake( () => {
 
       let myObj = {
         get: function(input, callback) {
@@ -31,7 +31,7 @@ describe('Menu', () => {
   }));
 
   describe('Menu Factory', () => {
-      // Factory specs
+    // Factory specs
 
     it('getMenu returns an empty object', () => {
       expect(Menu.getMenu()).to.deep.equal({ data: {} });
@@ -74,7 +74,7 @@ describe('Menu', () => {
       let errorMessage = 'There was an error retrieving the menu';
 
       Data.getMenu.restore();
-      sinon.stub(Data, 'getMenu', () => {
+      sinon.stub(Data, 'getMenu').callsFake( () => {
         return {
           get: function(input, callback, errorCallBack) {
             return errorCallBack(errorMessage);

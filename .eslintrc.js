@@ -6,15 +6,19 @@ module.exports = exports = {
     "es6": true,
     "mocha": true
   },
-  "esversion": 6,
 
-  "ecmaFeatures": {
-    "modules": true
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: "module"
   },
   "extends": [
     "eslint:recommended",
-    "angular"
+    "plugin:angular/johnpapa"
   ],
+
+  settings: {
+    angular: 1,
+  },
 
   "parserOptions": {
     "sourceType": "module",
@@ -31,6 +35,10 @@ module.exports = exports = {
     "GOOGLE_TRACKING_CODE": true
   },
   "rules": {
+    "angular/file-name": OFF,
+    "angular/function-type": OFF,
+    "angular/no-run-logic": OFF,
+
     "accessor-pairs": [
       ERROR, {
         "getWithoutSet": false,
@@ -162,7 +170,15 @@ module.exports = exports = {
     "func-style": [WARN, "expression"],
     "id-length": [WARN, {"min": 1, "max": 36}],
     "indent": [WARN, 2, {
-      "SwitchCase": 1
+      "SwitchCase": 1,
+      "MemberExpression": "off",
+      "FunctionDeclaration": { "parameters": "first" },
+      "FunctionExpression": { "parameters": "first" },
+      "CallExpression": { "arguments": "off" },
+      "ArrayExpression": "first",
+      "ObjectExpression": "first",
+      ImportDeclaration: "first"
+
     }],
     "linebreak-style": OFF, // git fixes this for us on checkin
     "lines-around-comment": OFF,

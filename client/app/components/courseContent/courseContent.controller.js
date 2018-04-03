@@ -90,9 +90,9 @@ class CourseContentController {
       this.skipShowingBanner = this.content.skipShowingBanner;
       this.isStepCompleted = ( this.content.status === 'completed' );
       this.calculateButtonInfo( this.isStepCompleted,
-                                this.skipShowingBanner,
-                                this.content.next_page_url,
-                                this.content.prev_page_url );
+        this.skipShowingBanner,
+        this.content.next_page_url,
+        this.content.prev_page_url );
 
       ContentFactory.clearInputFields();
       ContentFactory.setBeforeNextStepValidation();

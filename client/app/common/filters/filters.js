@@ -7,8 +7,8 @@ let filtersModule = angular.module('filters', [
   uiRouter,
   LogDecorator
 ])
-  .filter('unsafe', unsafeFilter)
-  .filter('secondsToTime', secondsToTimeFilter)
+.filter('unsafe', unsafeFilter)
+.filter('secondsToTime', secondsToTimeFilter)
 
 .name;
 

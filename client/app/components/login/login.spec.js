@@ -67,14 +67,14 @@ describe('Login', () => {
       });
     });
 
-    it('setInvalidLoginMessage() - display error message and hide spinner', sinon.test( () => {
+    it('setInvalidLoginMessage() - display error message and hide spinner', () => {
 
       spies.spinnerFactory.hide = sinon.spy(SpinnerFactory, 'hide');
 
       controller.setInvalidLoginMessage('LOGIN_FAILED');
       expect(controller.error).to.not.eq(null);
       sinon.assert.calledWith(spies.spinnerFactory.hide, SPINNERS.TOP_LEVEL);
-    }));
+    });
 
     it('forgotCredentials() - change state when we click on Forgot Login Details', () => {
       controller.forgotCredentials();
@@ -101,11 +101,11 @@ describe('Login', () => {
         }
       };
 
-      sinon.stub(Data, 'getUserAuthData', () => {
+      sinon.stub(Data, 'getUserAuthData').callsFake( () => {
         return authPOSTRequestResource;
       });
 
-      sinon.stub(Data, 'getParticipantDetails', () => {
+      sinon.stub(Data, 'getParticipantDetails').callsFake( () => {
         let deferred = $q.defer();
 
         deferred.resolve();
@@ -121,7 +121,7 @@ describe('Login', () => {
       sinon.assert.calledWith(goFn, STATES.HOME, { forceRedirect: stateParams.stateToRedirect });
     });
 
-    it('loginOnOtherPlWebsite() - auth request fail on program but succeed on my', sinon.test(() => {
+    it('loginOnOtherPlWebsite() - auth request fail on program but succeed on my', () => {
 
       let authPOSTRequestResourceFail = {
         $save: (callback, callbackError) => {
@@ -129,7 +129,7 @@ describe('Login', () => {
         }
       };
 
-      sinon.stub(Data, 'getUserAuthData', () => {
+      sinon.stub(Data, 'getUserAuthData').callsFake( () => {
         return authPOSTRequestResourceFail;
       });
 
@@ -159,7 +159,7 @@ describe('Login', () => {
 
       expect(controller.triggerSubmitFrom).to.eq(true);
       expect(controller.externalWebsite).to.eq(WEBSITE_CONFIG.OTHER_PL_SITES_API.my.loginUrl);
-    }));
+    });
 
   });
 

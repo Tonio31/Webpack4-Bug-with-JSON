@@ -10,8 +10,8 @@ class LockedPageController {
         type: 'icon-pl-lock',
         color: ''
       },
-      text: `<h1>${$filter('translate')('CONTENT_LOCKED')}<\/h1>
-             <h3>${$filter('translate')('CONTENT_LOCKED_DETAILS')}<\/h3>`,
+      text: `<h1>${$filter('translate')('CONTENT_LOCKED')}</h1>
+             <h3>${$filter('translate')('CONTENT_LOCKED_DETAILS')}</h3>`,
       button: {
         href: Menu.getCurrentProgression().data.current_step.fullUrl,
         color: 'primary',

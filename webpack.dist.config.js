@@ -41,20 +41,55 @@ module.exports = (iPhase) => {
     path: path.resolve(__dirname, 'dist')
   };
 
-  config.module.loaders = config.module.loaders.concat([
+  config.module.rules = config.module.rules.concat([
     {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          'css-loader',
+          'postcss-loader',
+        ]
+      })
+
     },
     {
-      test: /\.(scss|sass)$/,
-      loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader")
-    },
+      test: /\.(scss|sass)/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [ path.resolve(__dirname, './client/app') ],
+              sourceMap: true
+            }
+          },
+        ]
+      })
+    }
   ]);
+
 
   config.plugins = config.plugins.concat([
 
-    new ExtractTextPlugin("[name].css", {allChunks: false}),
+
+    new ExtractTextPlugin({
+      filename: "[name].css",
+      allChunks: false
+    }),
 
     // Injects bundles in your index.html instead of wiring all manually.
     // It also adds hash to all injected assets so we don't have problems
@@ -77,6 +112,8 @@ module.exports = (iPhase) => {
 
     // Reduces bundles total size
     new webpack.optimize.UglifyJsPlugin({
+      // prevent version info to be removed from bundle.js
+      comments: /\[AIV\]/,
       mangle: {
 
         // You can specify all variables that should not be mangled.

@@ -26,7 +26,7 @@ describe('PageNotFound', () => {
     $state = $injector.get('$state');
     Menu = $injector.get('Menu');
 
-    sinon.stub(Menu, 'getCurrentProgression', () => {
+    sinon.stub(Menu, 'getCurrentProgression').callsFake( () => {
       return {
         data: {
           current_step: {
@@ -36,7 +36,7 @@ describe('PageNotFound', () => {
       };
     });
 
-    sinon.stub(Menu, 'isMenuRetrieved', () => {
+    sinon.stub(Menu, 'isMenuRetrieved').callsFake( () => {
       return true;
     });
 
@@ -62,15 +62,15 @@ describe('PageNotFound', () => {
       });
     });
 
-    it('change state when we click on Resume Progress', sinon.test( () => {
+    it('change state when we click on Resume Progress', () => {
       controller.resumeProgress();
 
       sinon.assert.calledWith(goSpy, currentStepUrl);
-    }));
+    });
 
-    it('displayResumeProgress gets its value from Menu.isMenuRetrieved()', sinon.test( () => {
+    it('displayResumeProgress gets its value from Menu.isMenuRetrieved()', () => {
       expect(controller.displayResumeProgress).to.eq(true);
-    }));
+    });
 
   });
 

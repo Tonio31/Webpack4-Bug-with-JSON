@@ -6,8 +6,11 @@ module.exports = {
   devtool: 'source-map',
   entry: {},
   resolve: {
-    root: path.resolve(__dirname),
-    extensions: [ '', '.js' ],
+    modules: [
+      path.resolve(__dirname),
+      path.resolve(__dirname, 'node_modules')
+    ],
+    extensions: [ '.js' ],
     alias: {
       app: 'client/app',
       common: 'client/app/common',
@@ -15,62 +18,95 @@ module.exports = {
     }
   },
   module: {
-    preLoaders: [
+
+    rules : [
       {
         test: /\.js$/,
-        loader: 'eslint',
-        exclude: [ /app\/lib/, /node_modules/]
-      }
-    ],
-    loaders: [
+        exclude: [ /app\/lib/, /node_modules/],
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'eslint-loader',
+            options: {
+              failOnWarning: false,
+              failOnError: true
+            }
+          },
+        ],
+      },
       {
         test: /\.js$/,
-        exclude: [ /app\/lib/, /node_modules/ ],
-        loader: 'ng-annotate?add=true&single_quotes=true!babel'
+        exclude: [ /app\/lib/, /node_modules/],
+        use: [
+          {
+            loader: 'ng-annotate-loader?add=true&single_quotes=true'
+          },
+          {
+            loader: 'babel-loader'
+          }
+        ]
       },
       {
         test: /\.html$/,
-        loader: 'raw'
+        use: [
+          {
+            loader: 'raw-loader'
+          }
+        ]
       },
       {
         test: /\.svg/,
-        loader: 'svg-url-loader'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+        use: [
+          {
+            loader: 'svg-url-loader'
+          }
+        ]
       },
       {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=1024'
+        use: [
+          {
+            loader: 'url-loader?limit=1024'
+          }
+        ]
       },
       {
         test: /\.woff$/,
-        loader: 'url?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]'
+        use: [
+          {
+            loader: 'url-loader?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]'
+          }
+        ]
       },
       {
         test: /\.woff2$/,
-        loader: 'url?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]'
+        use: [
+          {
+            loader: 'url-loader?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]'
+          }
+        ]
       },
       {
         test: /\.[ot]tf$/,
-        loader: 'url?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]'
+        use: [
+          {
+            loader: 'url-loader?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]'
+          }
+        ]
       },
       {
         test: /\.eot$/,
-        loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]'
+        use: [
+          {
+            loader: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]'
+          }
+        ]
       }
+    ],
+
+    noParse: [
+      '/node_modules/d3-cloud/build/d3.layout.cloud.js',
     ]
-  },
-  sassLoader: {
-    includePaths: [ path.resolve(__dirname, './client/app') ],
-    options: {
-      sourceMap: true
-    }
-  },
-  eslint: {
-    failOnWarning: false,
-    failOnError: true
   },
   plugins: [
 
@@ -78,6 +114,7 @@ module.exports = {
     // If you are using more complicated project structure, consider to specify common chunks manually.
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
+      description: 'vendor',
       minChunks: function (module, count) {
         return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
       }
@@ -91,6 +128,8 @@ module.exports = {
       c3: 'c3',
       Bugsnag: 'bugsnag-js'
     }),
+
+    new webpack.optimize.ModuleConcatenationPlugin(),
 
     // This is used to have a banner shown to the user to "Add to home screen"
     // It works with the service-worker called in app.js

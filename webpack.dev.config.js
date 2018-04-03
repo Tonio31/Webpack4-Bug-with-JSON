@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = () => {
@@ -13,14 +12,41 @@ module.exports = () => {
     path: path.resolve(__dirname, 'client')
   };
 
-  config.module.loaders = config.module.loaders.concat([
+  config.module.rules = config.module.rules.concat([
     {
       test: /\.css$/,
-      loader: 'style!css!postcss'
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader',
+      ]
     },
     {
-      test: /\.(scss|sass)$/,
-      loader: 'style!css!postcss!sass'
+      test: /\.(scss|sass)/,
+      use: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
+          }
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            includePaths: [ path.resolve(__dirname, './client/app') ],
+            sourceMap: true
+          }
+        },
+      ]
     }
   ]);
 
@@ -50,8 +76,6 @@ module.exports = () => {
     // reloading page after webpack rebuilt modules.
     // It also updates stylesheets and inline assets without page reloading.
     new webpack.HotModuleReplacementPlugin(),
-
-    new CssSourcemapPlugin(),
 
     // displays desktop notifications on MacOS
     new WebpackNotifierPlugin(),

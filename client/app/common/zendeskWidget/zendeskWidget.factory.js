@@ -24,7 +24,7 @@ let ZendeskWidgetFactory = function( $log,
         n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o)
       }, o.write('<' + 'body onload="document._l();">'), o.close();
     }("https://assets.zendesk.com/embeddable_framework/main.js", POTENTIALIFE_ACCOUNT_URL);
-    /*eslint-enable */
+    /* eslint-enable */
   };
 
   /**

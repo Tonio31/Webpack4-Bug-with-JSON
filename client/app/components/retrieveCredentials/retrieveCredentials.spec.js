@@ -60,7 +60,7 @@ describe('RetrieveCredentials', () => {
         }
       };
 
-      sinon.stub(Data, 'sendRecoverPasswordEmail', () => {
+      sinon.stub(Data, 'sendRecoverPasswordEmail').callsFake( () => {
         return sendRecoverPasswordEmailPOST;
       });
 

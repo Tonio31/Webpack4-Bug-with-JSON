@@ -72,24 +72,24 @@ describe('CourseContent Module', () => {
     $window.ga = () => {};
 
     goFn = sandbox.stub($state, 'go');
-    retrieveMenuAndReturnStatesSpy = sandbox.stub(Menu, 'retrieveMenuAndReturnStates', () => {
+    retrieveMenuAndReturnStatesSpy = sandbox.stub(Menu, 'retrieveMenuAndReturnStates').callsFake( () => {
       let deferred = $q.defer();
 
       deferred.resolve([stateNotLocked]);
       return deferred.promise;
     });
 
-    isMenuRetrievedSpy = sandbox.stub(Menu, 'isMenuRetrieved', () => {
+    isMenuRetrievedSpy = sandbox.stub(Menu, 'isMenuRetrieved').callsFake( () => {
       return true;
     });
 
-    stateRegistryGetFn = sandbox.stub($stateRegistry, 'get', () => {
+    stateRegistryGetFn = sandbox.stub($stateRegistry, 'get').callsFake( () => {
       let stateLocked = angular.copy(stateNotLocked);
       stateLocked.component = 'lockedPage';
       return stateLocked;
     });
 
-    stateRegistryDeregisterFn = sandbox.stub( $stateRegistry, 'deregister', () => {} );
+    stateRegistryDeregisterFn = sandbox.stub( $stateRegistry, 'deregister').callsFake( () => {} );
     stateRegistryRegisterFn = sandbox.spy($stateRegistry, 'register');
 
     removeUserInputSpy = sandbox.spy(Utility, 'removeUserInputFromLocalStorage');
@@ -124,7 +124,7 @@ describe('CourseContent Module', () => {
     });
 
 
-    it('onInit() initialise the ContentFactory', sinon.test(() => {
+    it('onInit() initialise the ContentFactory', () => {
       let clearInputFieldsSpy = sandbox.spy(mockContentFactory, 'clearInputFields');
       let setBeforeNextStepValidationSpy = sandbox.spy(mockContentFactory, 'setBeforeNextStepValidation');
       let setNextStepButtonPreSaveActionSpy = sandbox.spy(mockContentFactory, 'setNextStepButtonPreSaveAction');
@@ -134,7 +134,7 @@ describe('CourseContent Module', () => {
       sinon.assert.called(setBeforeNextStepValidationSpy);
       sinon.assert.called(setNextStepButtonPreSaveActionSpy);
       sinon.assert.called(setPreviousStepButtonPreActionSpy);
-    }));
+    });
 
 
     it('test the onInit Function when the current status of the state is \'current\'', () => {
@@ -161,21 +161,21 @@ describe('CourseContent Module', () => {
       });
     });
 
-    it('previousStep() triggers a change of state using this.content.prev_page_url if No PreAciton is defined', sinon.test( () => {
+    it('previousStep() triggers a change of state using this.content.prev_page_url if No PreAciton is defined', () => {
       controller.previousStep();
       sinon.assert.calledWith(goFn, controller.content.prev_page_url);
-    }));
+    });
 
-    it('previousStep() calls ContentFactory.previousStepButtonPreSaveAction()', sinon.test( () => {
+    it('previousStep() calls ContentFactory.previousStepButtonPreSaveAction()', () => {
       mockContentFactory.isPreviousButtonPreAction = () => { return true; };
       let previousStepButtonPreSaveActionSpy = sandbox.spy(mockContentFactory, 'previousStepButtonPreSaveAction');
 
       controller.previousStep();
       sinon.assert.called(previousStepButtonPreSaveActionSpy);
       sinon.assert.callCount(goFn, 0);
-    }));
+    });
 
-    it('nextStep() calls goToFieldInError() if the form is invalid', sinon.test( (done) => {
+    it('nextStep() calls goToFieldInError() if the form is invalid', (done) => {
 
       let beforeNextStepValidationSpy = sandbox.spy(mockContentFactory, 'beforeNextStepValidation');
 
@@ -196,9 +196,9 @@ describe('CourseContent Module', () => {
       sinon.assert.calledWith(goToFieldInErrorSpy, topLevelForm);
       sinon.assert.calledOnce(beforeNextStepValidationSpy);
       done();
-    }));
+    });
 
-    it('nextStep() calls ContentFactory.nextStepButtonPreSaveAction()', sinon.test( (done) => {
+    it('nextStep() calls ContentFactory.nextStepButtonPreSaveAction()', (done) => {
 
       let form = {
         $invalid: false
@@ -217,12 +217,12 @@ describe('CourseContent Module', () => {
       sinon.assert.calledOnce(nextStepButtonPreSaveActionSpy);
 
       done();
-    }));
+    });
 
-    it('nextStep() sends a POST to save current step if it is not yet marked as completed', sinon.test( (done) => {
+    it('nextStep() sends a POST to save current step if it is not yet marked as completed', (done) => {
 
       let dataBackFromServer = {
-        congrats: '<p>Congratulations for finishing this module, you\'re a star<\/p>'
+        congrats: '<p>Congratulations for finishing this module, you\'re a star</p>'
       };
 
       let updateStepPOSTRequest = {
@@ -231,7 +231,7 @@ describe('CourseContent Module', () => {
         }
       };
 
-      let updateStepSpy = sinon.stub(Data, 'updateStep', () => {
+      let updateStepSpy = sinon.stub(Data, 'updateStep').callsFake( () => {
         return updateStepPOSTRequest;
       });
 
@@ -266,13 +266,13 @@ describe('CourseContent Module', () => {
       sinon.assert.calledWith(spinnerHideSpy, SPINNERS.SAVING_STEP);
       expect(controller.nextStepButton.label).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
-      expect(controller.banner.text).to.eq('<p>Congratulations for finishing this module, you\'re a star<\/p>');
+      expect(controller.banner.text).to.eq('<p>Congratulations for finishing this module, you\'re a star</p>');
 
       // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();
-    }));
+    });
 
-    it('actionsAfterSaveSuccessful() dont show banner and change state if skipShowingBanner is true', sinon.test( (done) => {
+    it('actionsAfterSaveSuccessful() dont show banner and change state if skipShowingBanner is true', (done) => {
 
 
       controller.$onInit();
@@ -286,9 +286,9 @@ describe('CourseContent Module', () => {
       expect(controller.banner.text).to.eq('');
 
       done();
-    }));
+    });
 
-    it('nextStep() sends a POST to save current step but we simulate error on back end side', sinon.test( (done) => {
+    it('nextStep() sends a POST to save current step but we simulate error on back end side', (done) => {
 
       let error = {
         error: 'token_not_provided'
@@ -300,7 +300,7 @@ describe('CourseContent Module', () => {
         }
       };
 
-      sinon.stub(Data, 'updateStep', () => {
+      sinon.stub(Data, 'updateStep').callsFake( () => {
         return updateStepPOSTRequest;
       });
 
@@ -323,10 +323,10 @@ describe('CourseContent Module', () => {
 
       // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();
-    }));
+    });
 
 
-    it('nextStep() triggers a change of state using this.content.next_page_url if the step is already completed', sinon.test( () => {
+    it('nextStep() triggers a change of state using this.content.next_page_url if the step is already completed', () => {
       controller.content.status = 'completed';
       controller.$onInit();
 
@@ -336,7 +336,7 @@ describe('CourseContent Module', () => {
 
       controller.nextStep(form);
       sinon.assert.calledWith(goFn, controller.content.next_page_url);
-    }));
+    });
 
     it('convertInputFieldForPOST convert the user inputs for sending into the POST request', () => {
 

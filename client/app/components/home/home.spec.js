@@ -49,11 +49,11 @@ describe('Home', () => {
     Data = $injector.get('Data');
     Menu = $injector.get('Menu');
 
-    sinon.stub(Menu, 'getCurrentProgression', () => { return currentProgressionObject; } );
-    sinon.stub(Menu, 'getMenu', () => { return menuObject; } );
-    sinon.stub(User, 'getFirstName', () => { return firstName; } );
+    sinon.stub(Menu, 'getCurrentProgression').callsFake( () => { return currentProgressionObject; } );
+    sinon.stub(Menu, 'getMenu').callsFake( () => { return menuObject; } );
+    sinon.stub(User, 'getFirstName').callsFake( () => { return firstName; } );
 
-    sinon.stub(Data, 'getDynamicContentPromise', () => { return contentBindings; } );
+    sinon.stub(Data, 'getDynamicContentPromise').callsFake( () => { return contentBindings; } );
   }));
 
   describe('Module', () => {

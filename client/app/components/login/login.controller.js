@@ -123,7 +123,7 @@ class LoginController {
         // User exists, check if the credentials are correct
         let checkCredentialsApi = WEBSITE_CONFIG.OTHER_PL_SITES_API.api.checkCredentialsApi;
         let checkCredentialsPOSTRequest = Data.checkAuthOnOtherPlWebsite(targetWebsite, checkCredentialsApi);
-        checkCredentialsPOSTRequest.user_login = this.username;  // eslint-disable-line camelcase
+        checkCredentialsPOSTRequest.user_login = this.username; // eslint-disable-line camelcase
         checkCredentialsPOSTRequest.pass = this.password;
         checkCredentialsPOSTRequest.$check( (dataBackFromcheckCredentials) => {
           if ( dataBackFromcheckCredentials.hasOwnProperty('user') ) {
