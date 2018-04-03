@@ -75,7 +75,7 @@ describe('Resource', () => {
   });
 
   describe('Resource Factory', () => {
-      // Factory specs
+    // Factory specs
 
     it('buildApiUrl(\'reflexion\') build an url.', () => {
       let endPoint = 'reflexion';
@@ -137,7 +137,7 @@ describe('Resource', () => {
 
     it('getDynamicContentPromise() return a resolved promise if the server returns no error', (done) => {
 
-      let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
+      let regexpStep = new RegExp('https://localhost.com/step?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 200, { data: 'some data' }, {} ];
       });
@@ -157,7 +157,7 @@ describe('Resource', () => {
 
     it('getDynamicContentPromise() return a rejected promise if the server returns an error', (done) => {
 
-      let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
+      let regexpStep = new RegExp('https://localhost.com/step?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 404, { data: 'some data' }, {} ];
       });
@@ -175,7 +175,7 @@ describe('Resource', () => {
 
     it('getFriendSurveyContent() return a rejected promise if the server returns an error', (done) => {
 
-      let regexpStep = new RegExp('https:\/\/localhost\.com\/survey\?.*');
+      let regexpStep = new RegExp('https://localhost.com/survey?.*');
       $httpBackend.whenGET(regexpStep).respond( () => {
         return [ 200, { data: 'some data' }, {} ];
       });

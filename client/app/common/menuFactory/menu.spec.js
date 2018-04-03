@@ -31,7 +31,7 @@ describe('Menu', () => {
   }));
 
   describe('Menu Factory', () => {
-      // Factory specs
+    // Factory specs
 
     it('getMenu returns an empty object', () => {
       expect(Menu.getMenu()).to.deep.equal({ data: {} });

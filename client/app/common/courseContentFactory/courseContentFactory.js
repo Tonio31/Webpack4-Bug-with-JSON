@@ -8,8 +8,8 @@ let userDataModule = angular.module('courseContentFactory', [
   LogDecorator
 ])
 
-  .factory('ContentFactory', CourseContentFactory)
+.factory('ContentFactory', CourseContentFactory)
 
-  .name;
+.name;
 
 export default userDataModule;

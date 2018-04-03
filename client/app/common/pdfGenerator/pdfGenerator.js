@@ -12,8 +12,8 @@ let pdfGeneratorModule = angular.module('pdfGenerator', [
   globalVariable
 ])
 
-  .factory('PdfGenerator', PdfGeneratorFactory)
+.factory('PdfGenerator', PdfGeneratorFactory)
 
-  .name;
+.name;
 
 export default pdfGeneratorModule;

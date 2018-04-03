@@ -2,6 +2,8 @@
 /* eslint-disable angular/timeout-service */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-escape */
+/* eslint-disable angular/no-run-logic */
 
 // External Module
 import angular from 'angular';
@@ -239,7 +241,7 @@ angular.module( 'appMockBackEnd', [
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     // Simulate an Internal server error
-//    return error500;
+    // return error500;
 
     if ( !JwtFactory.isAuthExpired() ) {
       let reflexion = cache[`./${headers.user_id}/reflexion.json`];
@@ -307,13 +309,13 @@ angular.module( 'appMockBackEnd', [
     let shortCodeArray = angular.fromJson(params.shortcodes);
 
     let randomValueForShortCode = [
-     // '1 practical \\\\\" \""" \\\'change "saddas\\\"sadsa\' \' \' \"HEBREW מה שלומך END OF HEBREW',
-     // "2 \\\\\" \" \\\'2222 \"2222\"2222\' \\' \' \"",
-    //  56,
+      // '1 practical \\\\\" \""" \\\'change "saddas\\\"sadsa\' \' \' \"HEBREW מה שלומך END OF HEBREW',
+      // "2 \\\\\" \" \\\'2222 \"2222\"2222\' \\' \' \"",
+      //  56,
       '\t',
       '\n\n\n',
       "1 practical change saddas\"sadsa' ' ' \" \n\u05de\u05d4 \u05e9\u05dc\u05d5\u05de\u05da",
-    //  null
+      //  null
     ];
 
     for ( let shortCode of shortCodeArray ) {

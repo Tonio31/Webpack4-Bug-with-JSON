@@ -24,7 +24,7 @@ describe('Filters', () => {
     });
 
     it('Unsafe filter strips the HTML tags', () => {
-      let textToTest = '<p>Testing<\/p>';
+      let textToTest = '<p>Testing</p>';
       unsafe(textToTest);
       sinon.assert.calledWith(trustAsHtmlSpy, textToTest);
     });

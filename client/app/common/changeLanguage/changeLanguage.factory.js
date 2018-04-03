@@ -12,8 +12,8 @@ let LanguageFactory = function($log, $translate) {
     let currentLanguage = $translate.use() || $translate.proposedLanguage();
 
     $log.log( 'getCurrentLanguage() currentLanguage=', currentLanguage,
-              '   $translate.use()=', $translate.use(),
-              '   $translate.proposedLanguage()=', $translate.proposedLanguage() );
+      '   $translate.use()=', $translate.use(),
+      '   $translate.proposedLanguage()=', $translate.proposedLanguage() );
 
     return currentLanguage;
   };

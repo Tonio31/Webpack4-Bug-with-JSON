@@ -10,7 +10,7 @@ describe('HtmlModule', () => {
     config: {
       bgColor: 'dark-grey'
     },
-    value: '<h1>Block: HTML with background<\/h1><p>This is a HTML block with a personalised background<\/p>'
+    value: '<h1>Block: HTML with background</h1><p>This is a HTML block with a personalised background</p>'
   };
 
   beforeEach(window.module(HtmlModuleModule));
