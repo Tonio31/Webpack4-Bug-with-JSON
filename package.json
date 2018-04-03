@@ -1,6 +1,6 @@
 {
   "name": "Program-Potentialife",
-  "version": "2.4.13",
+  "version": "3.0.1",
   "description": "Potentialife 2.0",
   "main": "index.js",
   "browserslist": [
@@ -92,7 +92,7 @@
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.21.0",
     "webpack-notifier": "^1.6.0",
-    "yargs": "^3.9.0"
+    "yargs": "^11.0.0"
   },
   "scripts": {
     "build": "gulp webpack",
