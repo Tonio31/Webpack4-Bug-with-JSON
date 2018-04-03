@@ -58,26 +58,39 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(/(.*)\.jpg/).passThrough();
 
   const ID_FIRST_USER = '51';
-  const ID_STEP_2 = '129';
+  const ID_TONIO_USER = '129';
+
+  // Import all the json files at once
+  // See https://webpack.js.org/guides/dependency-management/
+  let cache = {};
+
+  let importAll = (r) => {
+    r.keys().forEach( (key) => {
+      cache[key] = r(key);
+      return;
+    });
+  };
+
+  importAll(require.context('./mockBackEndResponse/', true, /\.json$/));
 
 
   let menu = {
-    [ID_FIRST_USER]: require(`./mockBackEndResponse/${ID_FIRST_USER}/menu.json`),
-    [ID_STEP_2]: require(`./mockBackEndResponse/${ID_STEP_2}/menu.json`)
+    [ID_FIRST_USER]: cache[`./${ID_FIRST_USER}/menu.json`],
+    [ID_TONIO_USER]: cache[`./${ID_TONIO_USER}/menu.json`]
   };
 
   let authenticate = {
-    [ID_FIRST_USER]: require(`./mockBackEndResponse/${ID_FIRST_USER}/authenticate.json`),
-    [ID_STEP_2]: require(`./mockBackEndResponse/${ID_STEP_2}/authenticate.json`)
+    [ID_FIRST_USER]: cache[`./${ID_FIRST_USER}/authenticate.json`],
+    [ID_TONIO_USER]: cache[`./${ID_TONIO_USER}/authenticate.json`]
   };
   let participant = {
-    [ID_FIRST_USER]: require(`./mockBackEndResponse/${ID_FIRST_USER}/participants.json`),
-    [ID_STEP_2]: require(`./mockBackEndResponse/${ID_STEP_2}/participants.json`)
+    [ID_FIRST_USER]: cache[`./${ID_FIRST_USER}/participants.json`],
+    [ID_TONIO_USER]: cache[`./${ID_TONIO_USER}/participants.json`]
   };
 
   let stepContent = {
     [ID_FIRST_USER] : {},
-    [ID_STEP_2] : {}
+    [ID_TONIO_USER] : {}
   };
 
   let error401 = [ 401, { message: 'token_not_provided' }, {}, 'token_not_provided' ];
@@ -111,7 +124,7 @@ angular.module( 'appMockBackEnd', [
 
     $log.log(`getStepContent - iFullUrl=${iFullUrl}  fileName=${fileName}  iUserID=${iUserID}`);
     if ( !stepContent[iUserID].hasOwnProperty(fileName) ) {
-      stepContent[iUserID][fileName] = require(`./mockBackEndResponse/${iUserID}/${fileName}.json`);
+      stepContent[iUserID][fileName] = cache[`./${iUserID}/${fileName}.json`];
     }
 
     return stepContent[iUserID][fileName];
@@ -124,7 +137,7 @@ angular.module( 'appMockBackEnd', [
 
     // Update current step to Completed
     if ( !stepContent[iUserId].hasOwnProperty(fileNameCurrentStep) ) {
-      stepContent[iUserId][fileNameCurrentStep] = require(`./mockBackEndResponse/${iUserId}/${fileNameCurrentStep}.json`);
+      stepContent[iUserId][fileNameCurrentStep] = cache[`./${iUserId}/${fileNameCurrentStep}.json`];
     }
     stepContent[iUserId][fileNameCurrentStep].status = 'completed';
 
@@ -133,7 +146,7 @@ angular.module( 'appMockBackEnd', [
     if ( nextStepFullUrl !== '/home' ) {
       let fileNameNextStep = nextStepFullUrl.substring(1).replace(/\//g, '_');
       if ( !stepContent[iUserId].hasOwnProperty(fileNameNextStep) ) {
-        stepContent[iUserId][fileNameNextStep] = require(`./mockBackEndResponse/${iUserId}/${fileNameNextStep}.json`);
+        stepContent[iUserId][fileNameNextStep] = cache[`./${iUserId}/${fileNameNextStep}.json`];
       }
       stepContent[iUserId][fileNameNextStep].status = 'current';
     }
@@ -209,7 +222,7 @@ angular.module( 'appMockBackEnd', [
         if ( error.message.includes('Cannot find module') ) {
           // The json for this step is not yet imported in the project return the generic content
           $log.log('No json found for the specific step, returning generic content');
-          content = require('./mockBackEndResponse/genericContent.json');
+          content = cache['./genericContent.json'];
         }
       }
       return [ 200, content, {} ];
@@ -229,7 +242,7 @@ angular.module( 'appMockBackEnd', [
 //    return error500;
 
     if ( !JwtFactory.isAuthExpired() ) {
-      let reflexion = require(`./mockBackEndResponse/${headers.user_id}/reflexion.json`);
+      let reflexion = cache[`./${headers.user_id}/reflexion.json`];
       return [ 200, reflexion, {} ];
     }
 
@@ -253,7 +266,7 @@ angular.module( 'appMockBackEnd', [
       return error401_tokenUsed;
     }
 
-    let survey = require(`./mockBackEndResponse/360_survey_page_${pageNumber}.json`);
+    let survey = cache[`./360_survey_page_${pageNumber}.json`];
 
     return [ 200, survey, {} ];
   });
@@ -279,50 +292,8 @@ angular.module( 'appMockBackEnd', [
 
     let fileName = url.replace(/\//g, '_');
 
-    let fullName = `/mockBackEndResponse/lifeActsPdf/${fileName}.json`;
-    let lifeActPDF = {};
-    if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-2.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-2.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-3.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-3.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-4.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-4.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-5.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-5.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-6.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-6.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-7.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-7.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-8.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-8.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-9.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-9.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-10.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-10.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-11-playbook.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-11-playbook.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-1.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-1.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-2.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-2.json');
-    }
-    else if ( fullName === '/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-3.json' ) {
-      lifeActPDF = require('./mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-2_module-3.json');
-    }
+    let fullName = `/lifeActsPdf/${fileName}.json`;
+    let lifeActPDF = cache[fullName];
 
     return [ 200, lifeActPDF, {} ];
   });
@@ -408,8 +379,8 @@ angular.module( 'appMockBackEnd', [
     let dataObject = angular.fromJson(data);
     if ( dataObject.email === 'tonio1@gmail.com' ) {
       // Trick to be able to build the good regexp to match the incoming query as Data.buildApiUrl('menu', true) uses the ID of the current user
-      User.setUser({ id: authenticate[ID_STEP_2].user.id });
-      return [ 200, authenticate[ID_STEP_2], {} ];
+      User.setUser({ id: authenticate[ID_TONIO_USER].user.id });
+      return [ 200, authenticate[ID_TONIO_USER], {} ];
     }
 
 
@@ -418,7 +389,7 @@ angular.module( 'appMockBackEnd', [
     return [ 200, authenticate[51], {} ];
   });
 
-  $httpBackend.whenGET(new RegExp('mockBackEndResponse')).passThrough();
+  // $httpBackend.whenGET(new RegExp('mockBackEndResponse')).passThrough();
   // $httpBackend.whenGET('/mockBackEndResponse/lifeActsPdf/LifeActsPdf_level-1_module-1.json').passThrough();
 
   $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/(.*)/).passThrough();
@@ -475,7 +446,7 @@ angular.module( 'appMockBackEnd', [
   //   let reply = '';
   //   if ( url.includes('RegisterUser') ) {
   //     $log.log('Register User, replying with an error');
-  //     reply = require('./mockBackEndResponse/viaSurvey/RegisterUser.html');
+  //     reply = cache['./viaSurvey/RegisterUser.html'];
   //     return [ 500, reply, {}, 'You have already registered a user with this email address' ];
   //   }
   //   else if ( url.includes('LoginUser') ) {
@@ -490,7 +461,7 @@ angular.module( 'appMockBackEnd', [
   //   }
   //   else if ( url.includes('GetQuestions') ) {
   //     $log.log('GetQuestions, replying with the list of questions');
-  //     reply = require('./mockBackEndResponse/viaSurvey/GetQuestions.json');
+  //     reply = cache['./viaSurvey/GetQuestions.json'];
   //     return [ 200, reply, {} ];
   //   }
   //   else if ( url.includes('SubmitAnswers') ) {
@@ -506,7 +477,7 @@ angular.module( 'appMockBackEnd', [
   //   }
   //   else if ( url.includes('GetResults') ) {
   //     $log.log('GetResults, replying with the list of 24 strengths');
-  //     reply = require('./mockBackEndResponse/viaSurvey/GetResults.json');
+  //     reply = cache['./viaSurvey/GetResults.json'];
   //     return [ 200, reply, {} ];
   //   }
   //
