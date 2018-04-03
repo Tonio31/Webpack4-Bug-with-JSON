@@ -51,8 +51,6 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-angular": "^3.3.0",
     "extract-text-webpack-plugin": "^2.1.2",
-    "fs-walk": "0.0.1",
-    "git-guppy": "^2.1.0",
     "gulp": "^4.0.0",
     "gulp-awspublish": "^3.3.0",
     "gulp-bump": "^2.8.0",

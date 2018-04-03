@@ -1,6 +1,5 @@
 import gulp     from 'gulp';
 import git      from 'gulp-git';
-let guppy = require('git-guppy')(gulp);
 import bump     from 'gulp-bump';
 import webpack  from 'webpack';
 import path     from 'path';
