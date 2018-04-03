@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = () => {
@@ -77,8 +76,6 @@ module.exports = () => {
     // reloading page after webpack rebuilt modules.
     // It also updates stylesheets and inline assets without page reloading.
     new webpack.HotModuleReplacementPlugin(),
-
-    new CssSourcemapPlugin(),
 
     // displays desktop notifications on MacOS
     new WebpackNotifierPlugin(),

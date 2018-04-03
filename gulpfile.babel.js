@@ -6,7 +6,6 @@ import webpack  from 'webpack';
 import path     from 'path';
 import rename   from 'gulp-rename';
 import template from 'gulp-template';
-import jeditor  from 'gulp-json-editor';
 import yargs    from 'yargs';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
@@ -35,7 +34,6 @@ const CONFIG_DEPLOY = {
     s3Bucket: 'program.potentialife.com',
     deployUrl: 'https://program.potentialife.com',
     cloudFronDistributionId: 'ELTZC5FGWC0Q'
-
   }
 };
 
