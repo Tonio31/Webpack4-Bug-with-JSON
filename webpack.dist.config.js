@@ -85,6 +85,7 @@ module.exports = (iPhase) => {
 
   config.plugins = config.plugins.concat([
 
+
     new ExtractTextPlugin({
       filename: "[name].css",
       allChunks: false
@@ -111,6 +112,8 @@ module.exports = (iPhase) => {
 
     // Reduces bundles total size
     new webpack.optimize.UglifyJsPlugin({
+      // prevent version info to be removed from bundle.js
+      comments: /\[AIV\]/,
       mangle: {
 
         // You can specify all variables that should not be mangled.
