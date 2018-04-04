@@ -8,9 +8,12 @@ module.exports = () => {
 
   config.output = {
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: '/',
     path: path.resolve(__dirname, 'client')
   };
+
+  config.mode = 'development';
 
   config.module.rules = config.module.rules.concat([
     {
@@ -47,7 +50,18 @@ module.exports = () => {
           }
         },
       ]
-    }
+    },
+    {
+      test: /\.html$/,
+      use: [
+        {
+          loader: 'raw-loader',
+          options: {
+            minimize: false
+          }
+        }
+      ]
+    },
   ]);
 
   config.plugins = config.plugins.concat([
