@@ -17,6 +17,7 @@ module.exports = {
       components: 'client/app/components'
     }
   },
+
   module: {
 
     rules : [
@@ -43,14 +44,6 @@ module.exports = {
           },
           {
             loader: 'babel-loader'
-          }
-        ]
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'raw-loader'
           }
         ]
       },
@@ -110,16 +103,6 @@ module.exports = {
   },
   plugins: [
 
-    // Automatically move all modules defined outside of application directory to vendor bundle.
-    // If you are using more complicated project structure, consider to specify common chunks manually.
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      description: 'vendor',
-      minChunks: function (module, count) {
-        return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
-      }
-    }),
-
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(require("./package.json").version)
     }),
@@ -128,8 +111,6 @@ module.exports = {
       c3: 'c3',
       Bugsnag: 'bugsnag-js'
     }),
-
-    new webpack.optimize.ModuleConcatenationPlugin(),
 
     // This is used to have a banner shown to the user to "Add to home screen"
     // It works with the service-worker called in app.js
@@ -143,5 +124,14 @@ module.exports = {
         to: path.resolve(__dirname, 'dist/')
       },
     ]),
-  ]
+  ],
+
+  optimization: {
+    namedModules: true, // NamedModulesPlugin()
+    splitChunks: {
+      chunks: "all"
+    },
+    runtimeChunk: true,
+    concatenateModules: true //ModuleConcatenationPlugin
+  }
 };

@@ -35,6 +35,7 @@ module.exports = function (config) {
     preprocessors: { 'spec.bundle.js': ['webpack', 'sourcemap'] },
 
     webpack: {
+      mode: 'development',
       devtool: 'inline-source-map',
       resolve: {
         modules: [
