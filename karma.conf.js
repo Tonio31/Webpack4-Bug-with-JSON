@@ -35,10 +35,14 @@ module.exports = function (config) {
     preprocessors: { 'spec.bundle.js': ['webpack', 'sourcemap'] },
 
     webpack: {
+      mode: 'development',
       devtool: 'inline-source-map',
       resolve: {
-        root: path.resolve(__dirname),
-        extensions: ['', '.js'],
+        modules: [
+          path.resolve(__dirname),
+          path.resolve(__dirname, 'node_modules')
+        ],
+        extensions: [ '.js' ],
         alias: {
           app: 'client/app',
           common: 'client/app/common',
@@ -46,25 +50,130 @@ module.exports = function (config) {
         }
       },
       module: {
-        preLoaders: [
-          { test: /\.js$/, loader: 'eslint?{ configFile: ".eslintrc.spec.js" }', exclude: [/app\/lib/, /node_modules/] }
+
+        rules : [
+          {
+            test: /\.js$/,
+            exclude: [ /app\/lib/, /node_modules/],
+            enforce: 'pre',
+            use: [
+              {
+                loader: 'eslint-loader',
+                options: {
+                  failOnWarning: false,
+                  failOnError: true,
+                  configFile: ".eslintrc.spec.js"
+                }
+              },
+            ],
+          },
+          {
+            test: /\.js$/,
+            exclude: [ /app\/lib/, /node_modules/],
+            use: [
+              {
+                loader: 'ng-annotate-loader?add=true&single_quotes=true'
+              },
+              {
+                loader: 'babel-loader'
+              }
+            ]
+          },
+          {
+            test: /\.html$/,
+            use: [
+              {
+                loader: 'raw-loader'
+              }
+            ]
+          },
+          {
+            test: /\.svg/,
+            use: [
+              {
+                loader: 'svg-url-loader'
+              }
+            ]
+          },
+          {
+            test: /\.(png|jpg)$/,
+            use: [
+              {
+                loader: 'url-loader?limit=1024'
+              }
+            ]
+          },
+          {
+            test: /\.woff$/,
+            use: [
+              {
+                loader: 'url-loader?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]'
+              }
+            ]
+          },
+          {
+            test: /\.woff2$/,
+            use: [
+              {
+                loader: 'url-loader?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]'
+              }
+            ]
+          },
+          {
+            test: /\.[ot]tf$/,
+            use: [
+              {
+                loader: 'url-loader?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]'
+              }
+            ]
+          },
+          {
+            test: /\.eot$/,
+            use: [
+              {
+                loader: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]'
+              }
+            ]
+          },
+          {
+            test: /\.css$/,
+            use: [
+              'style-loader',
+              'css-loader',
+              'postcss-loader',
+            ]
+          },
+          {
+            test: /\.(scss|sass)/,
+            use: [
+              {
+                loader: 'style-loader',
+              },
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: true
+                }
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: true
+                }
+              },
+              {
+                loader: 'sass-loader',
+                options: {
+                  includePaths: [ path.resolve(__dirname, './client/app') ],
+                  sourceMap: true
+                }
+              },
+            ]
+          }
         ],
-        loaders: [
-          { test: /\.js/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
-          { test: /\.html$/, loader: 'raw' },
-          { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
-          { test: /\.css$/, loader: 'style!css' },
-          { test: /\.svg/, loader: 'svg-url-loader' },
-          { test: /\.json$/, loader: 'json-loader' },
-          { test: /\.(png|jpg)$/, loader: 'url-loader?limit=1024' },
-          { test: /\.woff$/, loader: 'url?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]' },
-          { test: /\.woff2$/, loader: 'url?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]' },
-          { test: /\.[ot]tf$/, loader: 'url?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]' },
-          { test: /\.eot$/, loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]' }
+        noParse: [
+          '/node_modules/d3-cloud/build/d3.layout.cloud.js',
         ]
-      },
-      sassLoader: {
-        includePaths: [path.resolve(__dirname, "./client/app")]
       },
       plugins: [
         new webpack.DefinePlugin({

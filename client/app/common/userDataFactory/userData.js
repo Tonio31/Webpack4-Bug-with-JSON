@@ -6,8 +6,8 @@ let userDataModule = angular.module('userData', [
   angularResource
 ])
 
-  .factory('User', UserDataFactory)
+.factory('User', UserDataFactory)
 
-  .name;
+.name;
 
 export default userDataModule;

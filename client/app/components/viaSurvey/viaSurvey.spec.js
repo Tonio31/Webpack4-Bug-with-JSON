@@ -98,10 +98,10 @@ describe('ViaSurvey', () => {
         title_strength_list: 'Your list of strength'
       },
       intro_survey: {
-        value: '<h1>Via Survey<\/h1><p>This is a survey that will last 120 questions<\/p><p>It is to evaluate your strenght, click on the button below to start the survey<\/p>'
+        value: '<h1>Via Survey</h1><p>This is a survey that will last 120 questions</p><p>It is to evaluate your strenght, click on the button below to start the survey</p>'
       },
       intro_results: {
-        value: '<h1>Results<\/h1><p>You can find below your strength pre-order a relevant order for you<\/p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but dont hesitate to check all the strength below to choose the ones that resonate the most with you<\/p>'
+        value: '<h1>Results</h1><p>You can find below your strength pre-order a relevant order for you</p><p>Choose the 3 that resonates the most with you, these 3 will most likely be at the top of the list but dont hesitate to check all the strength below to choose the ones that resonate the most with you</p>'
       }
     }
   };
@@ -461,20 +461,22 @@ describe('ViaSurvey', () => {
           label: blockBinding.data.config.title_strength_list,
           placeholder: '',
           name: '',
-          items: [{
-            label: 'Appreciation of Beauty & Excellence',
-            sub_label: '\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.',
-            value: 'Appreciation of Beauty & Excellence',
-            checked: false,
-            feedback: null
-          },
-          {
-            label: 'Bravery',
-            sub_label: '\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.',
-            value: 'Bravery',
-            checked: false,
-            feedback: null
-          }]
+          items: [
+            {
+              label: 'Appreciation of Beauty & Excellence',
+              sub_label: '\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.',
+              value: 'Appreciation of Beauty & Excellence',
+              checked: false,
+              feedback: null
+            },
+            {
+              label: 'Bravery',
+              sub_label: '\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.',
+              value: 'Bravery',
+              checked: false,
+              feedback: null
+            }
+          ]
         }
       });
     });
@@ -501,20 +503,22 @@ describe('ViaSurvey', () => {
           label: blockBinding.data.config.title_strength_list,
           placeholder: '',
           name: '',
-          items: [{
-            label: 'Appreciation of Beauty & Excellence',
-            sub_label: '\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.',
-            value: 'Appreciation of Beauty & Excellence',
-            checked: true,
-            feedback: null
-          },
-          {
-            label: 'Bravery',
-            sub_label: '\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.',
-            value: 'Bravery',
-            checked: false,
-            feedback: null
-          }]
+          items: [
+            {
+              label: 'Appreciation of Beauty & Excellence',
+              sub_label: '\r\nNoticing and appreciating beauty, excellence, and/or skilled performance in various domains of life, from nature to art to mathematics to science to everyday experience.',
+              value: 'Appreciation of Beauty & Excellence',
+              checked: true,
+              feedback: null
+            },
+            {
+              label: 'Bravery',
+              sub_label: '\r\nNot shrinking from threat, challenge, difficulty, or pain; speaking up for what’s right even if there’s opposition; acting on convictions even if unpopular; includes physical bravery but is not limited to it.',
+              value: 'Bravery',
+              checked: false,
+              feedback: null
+            }
+          ]
         }
       });
     });

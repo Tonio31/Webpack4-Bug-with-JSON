@@ -13,8 +13,8 @@ let lockedPageModule = angular.module('lockedPage', [
   iconTextModule,
   LogDecorator
 ])
-  .component('lockedPage', lockedPageComponent)
+.component('lockedPage', lockedPageComponent)
 
-  .name;
+.name;
 
 export default lockedPageModule;

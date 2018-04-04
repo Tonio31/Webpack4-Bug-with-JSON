@@ -22,7 +22,7 @@ describe('Composed', () => {
               type: 'icon-pl-lock',
               color: 'success'
             },
-            text: '<h1>This content is locked!<\/p>',
+            text: '<h1>This content is locked!</p>',
             button: {
               href: '/potentialife-course/cycle-1/module-1/step-9',
               color: 'primary',

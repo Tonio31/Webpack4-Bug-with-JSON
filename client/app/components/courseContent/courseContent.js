@@ -26,7 +26,7 @@ let courseContentModule = angular.module('courseContent', [
   filtersModule,
   LogDecorator
 ])
-  .component('courseContent', courseContentComponent)
-  .name;
+.component('courseContent', courseContentComponent)
+.name;
 
 export default courseContentModule;

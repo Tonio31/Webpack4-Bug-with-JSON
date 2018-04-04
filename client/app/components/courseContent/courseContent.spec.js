@@ -222,7 +222,7 @@ describe('CourseContent Module', () => {
     it('nextStep() sends a POST to save current step if it is not yet marked as completed', (done) => {
 
       let dataBackFromServer = {
-        congrats: '<p>Congratulations for finishing this module, you\'re a star<\/p>'
+        congrats: '<p>Congratulations for finishing this module, you\'re a star</p>'
       };
 
       let updateStepPOSTRequest = {
@@ -266,7 +266,7 @@ describe('CourseContent Module', () => {
       sinon.assert.calledWith(spinnerHideSpy, SPINNERS.SAVING_STEP);
       expect(controller.nextStepButton.label).to.eq('NEXT');
       expect(controller.isStepCompleted).to.eq(true);
-      expect(controller.banner.text).to.eq('<p>Congratulations for finishing this module, you\'re a star<\/p>');
+      expect(controller.banner.text).to.eq('<p>Congratulations for finishing this module, you\'re a star</p>');
 
       // We have to call done() at the end of the test to notify chai that the test is done (because we have async code in this test)
       done();

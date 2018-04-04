@@ -12,10 +12,10 @@ describe('Video', () => {
   };
 
   let videoDataBindings = {
-    poster: 'https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_poster.jpg',
-    source_sd: 'https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/L01_M01_V3_weblo.mp4',
+    poster: 'https://dchai72lj2pqb.cloudfront.net/level-1/module-1/video-3/l01_m01_v03_poster.jpg',
+    source_sd: 'https://dchai72lj2pqb.cloudfront.net/level-1/module-1/video-3/L01_M01_V3_weblo.mp4',
     caption_label: 'caption_label',
-    caption_src: 'https:\/\/dchai72lj2pqb.cloudfront.net\/level-1\/module-1\/video-3\/l01_m01_v03_text.vtt',
+    caption_src: 'https://dchai72lj2pqb.cloudfront.net/level-1/module-1/video-3/l01_m01_v03_text.vtt',
     caption_lang: 'caption_lang',
     caption_default: 'caption_default'
   };
