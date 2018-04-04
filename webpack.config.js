@@ -18,7 +18,6 @@ module.exports = {
     }
   },
 
-  cache: true, // better performance for the AggressiveSplittingPlugin
   module: {
 
     rules : [
