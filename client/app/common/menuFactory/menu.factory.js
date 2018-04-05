@@ -18,33 +18,13 @@ let MenuFactory = function( $log, $q, Data, STATES) {
   };
 
 
-  let findFinalState = ( iMenu, oStates ) => {
+  let findFinalState = ( ioMenu, oStates ) => {
 
     // Recursive call
-    if ( iMenu.hasOwnProperty('children') ) {
+    if ( ioMenu.hasOwnProperty('children') ) {
 
-      let previousStepNotHidden = null;
-
-      for ( let child of iMenu.children ) {
-        let isFinalState = findFinalState(child, oStates);
-
-        // For Hidden steps: we need to hack the status of the previous step not hidden
-        // to display the good icon in the menu.
-        if ( isFinalState ) {
-          if ( child.hasOwnProperty('hideStepInMenu') && child.hideStepInMenu ) {
-            if ( previousStepNotHidden ) {
-              if ( child.status === 'current' || child.status === 'completed' ) {
-                previousStepNotHidden.status = child.status;
-              }
-            }
-            else {
-              $log.warn(`A hidden step(${child.fullUrl}) should always be preceded by a nonHidden step, problem with the structure of the menu`);
-            }
-          }
-          else {
-            previousStepNotHidden = child;
-          }
-        }
+      for ( let child of ioMenu.children ) {
+        findFinalState(child, oStates);
       }
 
       return false;
@@ -55,23 +35,23 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     let resolveObject = {
       content: () => {
         'ngInject';
-        return Data.getDynamicContentPromise('step', false, { slug: iMenu.fullUrl });
+        return Data.getDynamicContentPromise('step', false, { slug: ioMenu.fullUrl });
       }
     };
 
-    if ( iMenu.status === 'locked' ) {
+    if ( ioMenu.status === 'locked' ) {
       componentName = 'lockedPage';
       resolveObject = {};
     }
 
     let state = {
-      name: iMenu.fullUrl,
-      url: iMenu.fullUrl,
+      name: ioMenu.fullUrl,
+      url: ioMenu.fullUrl,
       parent: STATES.MAIN,
       component: componentName,
       resolve: resolveObject,
       params: {
-        hideStepInMenu: iMenu.hideStepInMenu
+        hideStepInMenu: ioMenu.hideStepInMenu
       }
     };
 
@@ -80,6 +60,54 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     return true;
   };
 
+
+  /**
+   * computeMenuForDisplay:
+   *   - Add level title at module level (to diplay level title on the back button of steps
+   *   - Count visible steps and add their number
+   *   - HiddenSteps: hack the status the the first non-hidden steps status reflect the status of the hidden steps (so the good icon is displayed on the menu)
+   * @param ioMenu: menu object to modify
+   */
+  let computeMenuForDisplay = (ioMenu) => {
+    for ( let level of ioMenu.children ) {
+      if ( level.hasOwnProperty('children') ) {
+        level.children.forEach( (module) => {
+          module.levelTitle = level.title;
+
+          if ( module.hasOwnProperty('children') ) {
+
+            let previousStepNotHidden = null;
+            let stepNumber = 0;
+
+            module.children.forEach( (step) => {
+
+              // For Hidden steps: we need to hack the status of the previous step not hidden
+              // to display the good icon in the menu.
+              if ( step.hideStepInMenu ) {
+                if ( previousStepNotHidden ) {
+                  if ( step.status === 'current' || step.status === 'completed' ) {
+                    previousStepNotHidden.status = step.status;
+                  }
+                }
+                else {
+                  $log.warn(`A hidden step(${step.fullUrl}) should always be preceded by a nonHidden step, problem with the structure of the menu`);
+                }
+              }
+              else {
+                // Add a step number that will be displayed in the menu at step level
+                previousStepNotHidden = step;
+                stepNumber += 1;
+              }
+
+              step.stepNumber = stepNumber;
+
+            });
+          }
+
+        });
+      }
+    }
+  };
 
   // *****************************************************************************************
   //                                           Public Interface
@@ -115,6 +143,9 @@ let MenuFactory = function( $log, $q, Data, STATES) {
         let states = [];
         findFinalState(menu.data, states);
 
+        // Modify the menu object to have all the info needed for display
+        computeMenuForDisplay(menu.data);
+
         currentProgression.data = menuData.current_progression;
 
         deferred.resolve(states);
@@ -138,7 +169,8 @@ let MenuFactory = function( $log, $q, Data, STATES) {
     retrieveMenuAndReturnStates,
     isMenuRetrieved,
     getCurrentProgression,
-    findFinalState
+    findFinalState,
+    computeMenuForDisplay
   };
 };
 

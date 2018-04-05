@@ -99,8 +99,6 @@
   "scripts": {
     "build": "gulp webpack",
     "component": "gulp component",
-    "setKarmaGlobals": "gulp setKarmaGlobals",
-    "serve": "gulp serve",
     "start": "gulp serve",
     "test": "karma start",
     "test/chromeHeadless": "karma start --browsers=ChromeHeadless",

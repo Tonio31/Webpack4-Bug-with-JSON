@@ -236,7 +236,6 @@ module.exports = function (config) {
       }
     },
 
-
     // if true, Karma runs tests once and exits
     singleRun: true
   });

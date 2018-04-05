@@ -8,25 +8,42 @@ $fullHeight: 100%;
 $topTitleMenuColor: #ff8534;
 $mainTitleMenuColor: #a0a0a0;
 
+$marginTopBar: 1rem;
+
 .header {
   .tab-bar {
     background-color: $onyx;
 
+    .tab-bar-section {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+
+      .logo-potential-life {
+        margin-left: $marginTopBar;
+
+        a {
+          display: inline-block;
+          background-image: url('./assets/logo-potential-life.svg');
+          background-repeat: no-repeat;
+          background-position: center left;
+          background-size: auto 60%;
+          text-indent: -9999em;
+          height: auto;
+          width: 270px;
+        }
+      }
+
+    }
+
     .right-small {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
+      width: 30rem;
+      margin-right: $marginTopBar;
     }
-  }
-  .logo-potential-life a {
-    display: inline-block;
-    background-image: url('./assets/logo-potential-life.svg');
-    background-repeat: no-repeat;
-    background-position: center left;
-    background-size: auto 60%;
-    text-indent: -9999em;
-    height: auto;
-    width: 270px;
   }
 }
 
@@ -36,25 +53,24 @@ menu-item {
 
 .menu-toggle-button {
 
-  $menu-size: 45px;
+  $menu-width: 45px;
+  $menu-height: 30px;
   $radius: 4px;
   $speed: 500ms;
 
   @include noSelect();
 
-  border: 1px solid $white;
-  border-radius: $radius;
   cursor: pointer;
-  width: $menu-size;
-  height: $menu-size;
+  width: $menu-width;
+  height: $menu-height;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
 
   .line-wrap {
     display: block;
-    width: $menu-size - 14px;
-    height: $menu-size - 15px;
+    width: $menu-height;
+    height: $menu-height;
     position: absolute;
     top: 6px;
     left: 6px;
@@ -108,7 +124,6 @@ menu-item {
   company-banner {
     display: block;
 
-   // ~ .content + div {
     ~ .content .content-body {
       min-height: calc(100vh - #{$height-footer-nav-banner} - #{$height-company-banner});
     }
@@ -136,77 +151,6 @@ menu-item {
     a {
       display: block;
       color: $canvasMenuLinkTextColor;
-    }
-
-    .home {
-      display: flex;
-      background-color: $onyx;
-      border-top: 1px solid #5e5e5e;
-      cursor: pointer;
-      padding: 1.25rem .6667rem .6667rem .6667rem;
-      .columns {
-        padding: 0;
-      }
-      .main-title,
-      .below-title {
-        color: $white;
-      }
-    }
-
-    .pl-menu-button {
-      width: 80%;
-      height: 50px;
-      background-size: contain;
-      background-position: 50%;
-      background-repeat: no-repeat;
-      display: block;
-    }
-
-    .current {
-      .pl-menu-button {
-        background-image: url('./assets/menu-item-current.svg');
-      }
-    }
-
-    .locked {
-      .pl-menu-button {
-        background-image: url('./assets/menu-item-locked.svg');
-      }
-    }
-
-    .completed {
-      .pl-menu-button {
-        background-image: url('./assets/menu-item-completed.svg');
-      }
-    }
-
-    .back {
-      .pl-menu-button {
-        background-image: url('./assets/menu-item-back.svg');
-        width: 85%;
-      }
-    }
-
-    .home {
-      .pl-menu-button {
-        width: 85%;
-        background-image: url('./assets/menu-item-home.svg');
-      }
-    }
-
-    .logout {
-      background-color: $ship-grey;
-      border-bottom: 0;
-      cursor: pointer;
-      position: absolute;
-      padding-top: .3334rem;
-      padding-bottom: .3334rem;
-      .pl-menu-button {
-        font-size: rem_calc(30);
-        &::before {
-          margin-top: rem_calc(15px);
-        }
-      }
     }
   }
 
@@ -268,54 +212,6 @@ menu-item {
 
   }
 
-  .menu-button {
-    width: 100%;
-    height: auto;
-    border-bottom: 2px solid $onyx;
-    color: transparentize($white, .3);
-    display: flex;
-    padding: .66667rem;
-    transition: background-color $speed3 ease;
-
-    &:hover,
-    &:active {
-      background-color: $onyx;
-    }
-
-    &.row {
-      &::before,
-      &::after {
-        content: none;
-      }
-    }
-
-    p {
-      margin-bottom: 0;
-      line-height: 1.25rem;
-
-      &.top-title {
-        font-size: 10px;
-        color: $topTitleMenuColor;
-        text-transform: uppercase;
-      }
-
-      &.main-title {
-        font-size: 18px;
-        -webkit-font-smoothing: subpixel-antialiased;
-        color: $mainTitleMenuColor;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 180px;
-      }
-
-      &.below-title {
-        font-size: 10px;
-        color: $mainTitleMenuColor;
-      }
-    }
-  }
-
   .nav-links,
   .logo {
     display: inline-block;
@@ -336,30 +232,6 @@ menu-item {
 
   .left-submenu {
     height: 100%;
-
-    .back {
-      display: block;
-      a {
-        align-items: center;
-        background-color: $onyx;
-        border-bottom: 2px solid $onyx;
-        padding: 1.25rem .6667rem .6667rem rem_calc(5px);
-        display: flex;
-        &::before {
-          display: none;
-        }
-        &:hover {
-          border-bottom: 2px solid $onyx;
-        }
-        .small-2 {
-          width: 19%;
-        }
-      }
-      .main-title,
-      .below-title {
-        color: $white;
-      }
-    }
   }
 
   .menu-item {
@@ -367,46 +239,6 @@ menu-item {
 
     a {
       width: 100%;
-    }
-
-    &.stepActive {
-      .menu-button {
-        background-color: $black;
-        border-top: 1px solid $white;
-        border-bottom: 1px solid $white;
-        position: relative;
-
-        &::after {
-          content: '\3e';
-          height: 30px;
-          position: absolute;
-          top: calc(50% - 10px);
-          right: 10px;
-          color: $white;
-          font-family: "fontello";
-          font-style: normal;
-          font-weight: normal;
-          speak: none;
-          display: inline-block;
-          text-decoration: inherit;
-          width: 1em;
-          margin-right: .2em;
-          text-align: center;
-          font-variant: normal;
-          text-transform: none;
-          line-height: 1em;
-          margin-left: .2em;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-        }
-
-        p {
-          &.main-title,
-          &.below-title {
-            color: $white;
-          }
-        }
-      }
     }
   }
 

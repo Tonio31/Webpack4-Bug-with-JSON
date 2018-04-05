@@ -9,9 +9,7 @@ class MainController {
     $log = $log.getInstance( 'MainController' );
 
     if ( User.isUserDefined() ) {
-      let userFullName = `${User.getFirstName()} ${User.getLastName()}`;
-      ZendeskWidget.identify( userFullName, User.getEmail() );
-
+      ZendeskWidget.identify( User.getFullName(), User.getEmail() );
       ZendeskWidget.show();
     }
 

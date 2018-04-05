@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../font/fontello.eot');
-  src: url('../font/fontello.woff2') format('woff2'),
+  src: url('../font/fontello.eot'),
+       url('../font/fontello.woff2') format('woff2'),
        url('../font/fontello.woff') format('woff'),
        url('../font/fontello.ttf') format('truetype'),
        url('../font/fontello.svg') format('svg');
@@ -14,46 +14,46 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?22916920#fontello') format('svg');
+    src: url('../font/fontello.svg?72987426#fontello') format('svg');
   }
 }
 */
-
+ 
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
   speak: none;
-
+ 
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
-
+ 
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
-
+ 
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
-
+ 
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
-
+ 
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
-
+ 
   /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+ 
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
-
+ 
 .icon-pl-exclamation:before { content: '\21'; } /* '!' */
 .icon-pl-lt:before { content: '\3c'; } /* '&lt;' */
 .icon-pl-gt:before { content: '\3e'; } /* '&gt;' */
@@ -63,8 +63,10 @@
 .icon-badge-time-to-reflect:before { content: '\52'; } /* 'R' */
 .icon-pl-eye:before { content: '\65'; } /* 'e' */
 .icon-pl-lock:before { content: '\6c'; } /* 'l' */
+.icon-logout:before { content: '\6f'; } /* 'o' */
 .icon-pl-pdf:before { content: '\70'; } /* 'p' */
 .icon-pause:before { content: '\72'; } /* 'r' */
 .icon-pl-tick:before { content: '\74'; } /* 't' */
 .icon-pl-logo:before { content: '\75'; } /* 'u' */
+.icon-videocam:before { content: '\76'; } /* 'v' */
 .icon-badge-strengths:before { content: '\e800'; } /* '' */
