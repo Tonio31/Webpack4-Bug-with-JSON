@@ -280,9 +280,10 @@ gulp.task('bumpVersionNumber', () => {
   .pipe(git.commit('[skip ci] - Bump and tag package.json version'));
 });
 
-gulp.task('pushVersionNumber', gulp.series('bumpVersionNumber', () => {
+gulp.task('pushVersionNumber', gulp.series('bumpVersionNumber', (done) => {
   gutil.log('gitPush will Increment package.json version, commit and push');
-  return git.push('origin', '', {args: ''}, function(err) { if (err) throw err;});
+  git.push('origin', '', {args: ''}, function(err) { if (err) throw err;});
+  done();
 }));
 
 gulp.task('default', gulp.series('watch'));
