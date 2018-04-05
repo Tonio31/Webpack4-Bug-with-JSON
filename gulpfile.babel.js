@@ -23,16 +23,69 @@ let root = 'client';
 
 const protractor = protractorLib.protractor;
 
-const CONFIG_DEPLOY = {
+let commonAwsConf = {
+  buildSrc: {
+    index: [ './dist/index.html' ],
+    allButIndex: [
+      './dist/**/*',
+      '!./dist/index.html'
+    ]
+  },
+  headers: {
+    index: {
+      'Cache-Control': 'no-cache, no-store, must-revalidate'
+    },
+    allButIndex: {
+      'Cache-Control': 'max-age=31536000, no-transform, public'
+    },
+  },
+  region: 'eu-west-2',
+};
+
+let awsConf = {
   UAT: {
-    s3Bucket: 'test.program.potentialife.com',
     deployUrl: 'https://test-program.potentialife.com',
-    cloudFronDistributionId: 'E3N0OB6AFVAPFJ'
+    s3: {
+      buildSrc: commonAwsConf.buildSrc,
+      keys: {
+        accessKeyId: process.env.S3_ACCESS_KEY_ID,
+        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        region: commonAwsConf.region,
+        params: {
+          Bucket: 'test.program.potentialife.com'
+        }
+      },
+      headers: commonAwsConf.headers
+    },
+    cloudFront: {
+      distribution: 'E3N0OB6AFVAPFJ', // Cloudfront distribution ID
+      accessKeyId: process.env.S3_ACCESS_KEY_ID, // Optional AWS Access Key ID
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY, // Optional AWS Secret Access Key
+      wait: true,                     // Whether to wait until invalidation is completed (default: false)
+      indexRootPath: true             // Invalidate index.html root paths (`foo/index.html` and `foo/`) (default: false)
+    }
   },
   PROD: {
-    s3Bucket: 'program.potentialife.com',
     deployUrl: 'https://program.potentialife.com',
-    cloudFronDistributionId: 'ELTZC5FGWC0Q'
+    s3: {
+      buildSrc: commonAwsConf.buildSrc,
+      keys: {
+        accessKeyId: process.env.S3_ACCESS_KEY_ID,
+        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        region: commonAwsConf.region,
+        params: {
+          Bucket: 'program.potentialife.com'
+        }
+      },
+      headers: commonAwsConf.headers
+    },
+    cloudFront: {
+      distribution: 'ELTZC5FGWC0Q', // Cloudfront distribution ID
+      accessKeyId: process.env.S3_ACCESS_KEY_ID, // Optional AWS Access Key ID
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY, // Optional AWS Secret Access Key
+      wait: true,                     // Whether to wait until invalidation is completed (default: false)
+      indexRootPath: true             // Invalidate index.html root paths (`foo/index.html` and `foo/`) (default: false)
+    }
   }
 };
 
@@ -227,38 +280,57 @@ gulp.task('bumpVersionNumber', () => {
   .pipe(git.commit('[skip ci] - Bump and tag package.json version'));
 });
 
-gulp.task('pushVersionNumber', gulp.series('bumpVersionNumber'), () => {
+gulp.task('pushVersionNumber', gulp.series('bumpVersionNumber', () => {
   gutil.log('gitPush will Increment package.json version, commit and push');
   return git.push('origin', '', {args: ''}, function(err) { if (err) throw err;});
-});
+}));
 
 gulp.task('default', gulp.series('watch'));
 
-gulp.task('deploy', () => {
+gulp.task('deployAllButIndex', gulp.series( () => {
 
   let phase = yargs.argv.phase || 'UAT';
 
-  let versionNumber = require('./package.json').version;
+  let conf = awsConf[ phase ];
 
-  let deployIndex = yargs.argv.index;
-  gutil.log(`Deploy deployIndex: ${deployIndex}`);
-  let filesTodeploy = [];
-  let httpHeaders = {};
-  if ( deployIndex ) {
-    filesTodeploy = ['./dist/index.html'];
-    httpHeaders = {
-      'Cache-Control': 'no-cache, no-store, must-revalidate'
-    };
-  }
-  else {
-    filesTodeploy = [
-      './dist/**/*',
-      '!./dist/index.html'
-    ];
-    httpHeaders = {
-      'Cache-Control': 'max-age=31536000, no-transform, public'
-    };
-  }
+  let publisher = awspublish.create( conf.s3.keys );
+
+  gutil.log( `Deploy dist(all but index.html) folder into ${phase} S3-Bucket: ${conf.s3.keys.params.Bucket}` );
+  gutil.log( 'Headers to be added to the files: ', conf.s3.headers.allButIndex );
+
+  return gulp.src( conf.s3.buildSrc.allButIndex )
+  .pipe( awspublish.gzip( { ext: '' } ) )
+  .pipe( publisher.publish( conf.s3.headers.allButIndex ) )
+  .pipe( publisher.sync() )
+  .pipe( publisher.cache() )
+  .pipe( awspublish.reporter() );
+
+}));
+
+gulp.task('deployIndex', gulp.series( 'deployAllButIndex', () => {
+
+  let phase = yargs.argv.phase || 'UAT';
+
+  let conf = awsConf[ phase ];
+
+  let publisher = awspublish.create( conf.s3.keys );
+
+  gutil.log( `Deploy dist/index.html file into ${phase} S3-Bucket: ${conf.s3.keys.params.Bucket}` );
+  gutil.log( 'Headers to be added to index.html: ', conf.s3.headers.index );
+  gutil.log( 'Invalidate Files on CloudFront With Distribution ID=', conf.cloudFront.distribution );
+
+  return gulp.src( conf.s3.buildSrc.index )
+  .pipe( awspublish.gzip( { ext: '' } ) )
+  .pipe( publisher.publish( conf.s3.headers.index ) )
+  .pipe( cloudFront( conf.cloudFront ) )
+  .pipe( publisher.cache() )
+  .pipe( awspublish.reporter() );
+}));
+
+gulp.task('deploy', gulp.series( 'deployIndex', (done) => {
+  let phase = yargs.argv.phase || 'UAT';
+
+  let versionNumber = require( './package.json' ).version;
 
   let slack = require('gulp-slack')({
     url: 'https://hooks.slack.com/services/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',
@@ -266,54 +338,10 @@ gulp.task('deploy', () => {
     user: 'Frankie Program',
     icon_emoji: ':shipit:'
   });
-  let slackMessage = `PROGRAM: Deployment on ${phase} - v${versionNumber}: ${CONFIG_DEPLOY[phase].deployUrl}`;
 
-
-  let awsConf = {
-    buildSrc: filesTodeploy,
-    keys: {
-      accessKeyId: '',
-      secretAccessKey: '',
-      region: 'eu-west-2',
-      params: {
-        Bucket: CONFIG_DEPLOY[phase].s3Bucket
-      }
-    },
-    headers: httpHeaders
-  };
-
-  awsConf.keys.accessKeyId = process.env.S3_ACCESS_KEY_ID;
-  awsConf.keys.secretAccessKey = process.env.S3_SECRET_ACCESS_KEY;
-
-  let cloudFrontSettings = {
-    distribution: CONFIG_DEPLOY[phase].cloudFronDistributionId, // Cloudfront distribution ID
-    accessKeyId: awsConf.keys.accessKeyId, // Optional AWS Access Key ID
-    secretAccessKey: awsConf.keys.secretAccessKey, // Optional AWS Secret Access Key
-    wait: true,                     // Whether to wait until invalidation is completed (default: false)
-    indexRootPath: true             // Invalidate index.html root paths (`foo/index.html` and `foo/`) (default: false)
-  };
-
-  let publisher = awspublish.create(awsConf.keys);
-
-  gutil.log(`Deploy ${phase}: ${deployIndex ? 'dist/index.html' : 'dist/** except index.html' } in S3-Bucket: ${awsConf.keys.params.Bucket}`);
-  gutil.log('Headers to be added to the files: ', awsConf.headers);
-  gutil.log('Invalidate Files on CloudFront With Distribution ID=', CONFIG_DEPLOY[phase].cloudFronDistributionId);
-
-  let stream = gulp.src(awsConf.buildSrc)
-  .pipe(awspublish.gzip({ext: ''}))
-  .pipe(publisher.publish(awsConf.headers))
-  .pipe(cloudFront(cloudFrontSettings))
-  .pipe(publisher.cache())
-  //.pipe(publisher.sync())
-  .pipe(awspublish.reporter());
-
-  if ( deployIndex ) {
-    stream.pipe(slack(slackMessage));
-  }
-
-  return stream;
-});
-
+  slack( `PROGRAM: Deployment on ${phase} - v${versionNumber}: ${awsConf[ phase ].deployUrl}` );
+  done();
+}));
 
 gulp.task('notifyTicketsChanel', () => {
 
