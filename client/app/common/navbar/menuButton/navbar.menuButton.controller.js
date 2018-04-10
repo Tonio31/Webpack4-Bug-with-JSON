@@ -51,7 +51,6 @@ class NavbarMenuButtonController {
     this.$onChanges = () => {
 
       if ( this.category !== 'back-button' && this.status !== this.data.status ) {
-        $log.log('$onChanges updating oldStatus=', this.status, '   newStatus=', this.data.status);
         this.status = this.data.status;
       }
     };
