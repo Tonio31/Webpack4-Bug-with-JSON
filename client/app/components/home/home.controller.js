@@ -75,6 +75,24 @@ class HomeController {
 
       $log.log('dynamicContent=', this.content);
 
+
+      // The code here is to enable banner to Add to home screen: https://developers.google.com/web/fundamentals/app-install-banners/
+      // it works with the /config and /assets folder that are copied into the dist folder using copyWebpackPlugin
+      // The banner does not work in local development as we don't use webpack-dev-server (so copyWebpackPlugin plugin does not work for local)
+      if ( $window.navigator.hasOwnProperty('serviceWorker') &&
+           $window.navigator.serviceWorker.hasOwnProperty('register') &&
+           typeof $window.navigator.serviceWorker.register === 'function' ) {
+        $log.log( 'Attempting to register the service worker register...' );
+
+        $window.navigator.serviceWorker.register( 'service-worker.js', { scope: './' } )
+        .then( ( reg ) => {
+          $log.log( 'Service worker registered, reg=', reg );
+        } )
+        .catch( ( err ) => {
+          $log.log( 'Service worker NOT registered, err=', err );
+        } );
+      }
+
       $log.log('constructor()::$onInit - END');
     };
 

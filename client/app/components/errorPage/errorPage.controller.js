@@ -5,6 +5,7 @@ class ErrorPageController {
                JwtFactory,
                BugsnagUtils,
                ZendeskWidget,
+               SpinnerFactory,
                $filter ) {
     'ngInject';
 
@@ -25,6 +26,8 @@ class ErrorPageController {
     };
 
     this.$onInit = () => {
+
+      SpinnerFactory.hideAll();
 
       this.errorMsg = '';
       let errorCodeToTranslate = $stateParams.errorMsg;

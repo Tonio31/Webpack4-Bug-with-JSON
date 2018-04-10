@@ -123,21 +123,6 @@ let appModule = angular.module( 'app', [
     // Activate logging of transitions in console
     $trace.enable( 'TRANSITION' );
 
-
-    // The code here is to enable banner to Add to home screen: https://developers.google.com/web/fundamentals/app-install-banners/
-    // it works with the /config and /assets folder that are copied into the dist folder using copyWebpackPlugin
-    // The banner does not work in local development as we don't use webpack-dev-server (so copyWebpackPlugin plugin does not work for local)
-    if ( 'serviceWorker' in $window.navigator ) {
-      $log.log( 'Attempting to register the service worker register...' );
-      $window.navigator.serviceWorker.register( 'service-worker.js', { scope: './' } )
-      .then( ( reg ) => {
-        $log.log( 'Service worker registered, reg=', reg );
-      } )
-      .catch( ( err ) => {
-        $log.log( 'Service worker NOT registered, err=', err );
-      } );
-    }
-
     // If we're coming from the login page to the home page, it could be for 2 reason:
     //  1) We wanted to access the home page but got redirected to the login page
     //  2) We wanted to access any other page than the home but got redirected to the home page
@@ -488,15 +473,11 @@ let appModule = angular.module( 'app', [
     $log.log( 'END' );
   }
   catch (error) {
-    $exceptionHandler( error );
     $state.go( STATES.ERROR_PAGE_NO_MENU, {
       errorMsg: 'ERROR_UNEXPECTED',
       bugsnagErrorName: 'Error APP::RUN()',
       bugsnagMetaData: {
-        'Error Message': error.data.message,
-        'Error Type': error.type,
-        'Error Status': error.status,
-        'Error StatusText': error.statusText
+        'Error Message': error,
       }
     } );
   }
