@@ -2,6 +2,7 @@
 /* eslint-disable angular/timeout-service */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-unreachable */
 /* eslint-disable no-useless-escape */
 /* eslint-disable angular/no-run-logic */
 
@@ -98,8 +99,10 @@ angular.module( 'appMockBackEnd', [
   let error401 = [ 401, { message: 'token_not_provided' }, {}, 'token_not_provided' ];
   let error401_tokenExpired = [ 401, { message: 'token_expired' }, {}, 'token_expired' ];
   let error401_tokenUsed = [ 401, { message: 'token_used' }, {}, 'token_used' ];
-  let error429 = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
-  let error500 = [ 500, { message: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
+  let error401_Unauthorised = [ 401, { message: 'Unauthorized' }, {}, 'Unauthorized' ];
+  let error429_too_many_invalid = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
+  let error500 = [ 500, { message: 'Internal Server Error' }, {} ];
+  let error503 = [ 503, { message: 'Maintenance in progress' }, {} ];
 
   // Set a userID by default if the user logs in with a token in the URL
   if ( !JwtFactory.getUserId() ) {
@@ -205,14 +208,22 @@ angular.module( 'appMockBackEnd', [
     updateMenu(iFullUrlStepCompleted, nextStepFullUrl, iUserId);
   };
 
+
+
+  // **************************************************************************************************** //
+  //                                   API END POINTS                                                     //
+
   let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
   $httpBackend.whenGET(regexpStep).respond( (method, url, data, headers) => {
 
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-
-    // Simulate an Internal server error
+    // Simulate an error form the server
     // return error500;
+    // return error401;
+    // return error401_tokenExpired;
+    // return error401_Unauthorised;
+    // return error503;
 
     if ( !JwtFactory.isAuthExpired() ) {
       let content = {};
@@ -233,14 +244,11 @@ angular.module( 'appMockBackEnd', [
     return error401;
   });
 
-
-  // **************************************************************************************************** //
-  //                                   API END POINTS                                                     //
-
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    // Simulate an Internal server error
+    // return error401_tokenExpired;
+    // return error503;
     // return error500;
 
     if ( !JwtFactory.isAuthExpired() ) {
@@ -255,6 +263,13 @@ angular.module( 'appMockBackEnd', [
   let regexpSurvey = new RegExp('https:\/\/localhost\.com\/survey\?.*');
   $httpBackend.whenGET(regexpSurvey).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
+
+    // Simulate an error form the server
+    // return error500;
+    // return error401_tokenUsed;
+    // return error401_tokenExpired;
+    // return error401_Unauthorised;
+    // return error503;
 
     // find the page number and token_survey
     let regexp = new RegExp('^.*page=(\\d)(?:&token_survey=(.*))?');
@@ -276,8 +291,9 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('menu')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    // Simulate an Internal server error
     // return error500;
+    // return error401_tokenExpired;
+    // return error401_Unauthorised;
 
     if ( !JwtFactory.isAuthExpired() ) {
 
@@ -294,7 +310,7 @@ angular.module( 'appMockBackEnd', [
 
     let fileName = url.replace(/\//g, '_');
 
-    let fullName = `/lifeActsPdf/${fileName}.json`;
+    let fullName = `./lifeActsPdf/${fileName}.json`;
     let lifeActPDF = cache[fullName];
 
     return [ 200, lifeActPDF, {} ];
@@ -304,6 +320,11 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('program_data')}(.*)`))
   .respond( (method, url, data, headers, params) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers, '  params=', params);
+
+    // return error500;
+    // return error401_Unauthorised;
+    // return error401_tokenExpired;
+    // return error503;
 
     let response = {};
     let shortCodeArray = angular.fromJson(params.shortcodes);
@@ -338,6 +359,11 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
     let dataObject = angular.fromJson(data);
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method},   dataObject=`, dataObject, '  headers=', headers);
+
+    // return error401_tokenExpired;
+    // return error401_Unauthorised;
+    // return error503;
+    // return error500;
 
     let responseHeaders = {
       stepId: dataObject.stepId,
@@ -375,7 +401,9 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    // return error429;
+    // return error503;
+    // return error429_too_many_invalid;
+    // return error401_Unauthorised;
     // return error401;
 
     let dataObject = angular.fromJson(data);
@@ -396,14 +424,14 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/(.*)/).passThrough();
   $httpBackend.whenPOST(/https:\/\/my\.potentialife\.com\/api\/(.*)/).passThrough();
-  // $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/index_v2\.php\?section=local\.check_username_email(.*)/).respond( (method, url, data, headers) => {
-  //
-  //   let notFound = {
-  //     status: 'not_found'
-  //   };
-  //
-  //   return [ 200, notFound, {} ];
-  // });
+  $httpBackend.whenPOST(/(.*)check-auth\/change(.*)/).respond( (method, url, data, headers) => {
+
+    let notFound = {
+      status: 'not_found'
+    };
+
+    return [ 200, notFound, {} ];
+  });
 
   $httpBackend.whenPOST(Data.buildApiUrl('password/email')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
@@ -435,6 +463,13 @@ angular.module( 'appMockBackEnd', [
     return [ 200, participant[headers.user_id], {} ];
   });
 
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('isMaintenanceDisabled')}`)).respond( ( method, url, data, headers) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
+
+    // return error503;
+    return [ 200, {}, {} ];
+  });
+
   $httpBackend.whenPOST(Data.buildApiUrl('partial_save')).respond( (method, url) => {
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
 
@@ -442,48 +477,48 @@ angular.module( 'appMockBackEnd', [
   });
 
   // Uncomment the line bellow to interact with the server
-  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
-  // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
-  //   $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
-  //   let reply = '';
-  //   if ( url.includes('RegisterUser') ) {
-  //     $log.log('Register User, replying with an error');
-  //     reply = cache['./viaSurvey/RegisterUser.html'];
-  //     return [ 500, reply, {}, 'You have already registered a user with this email address' ];
-  //   }
-  //   else if ( url.includes('LoginUser') ) {
-  //     reply = '"276d51d7-10bf-4ff6-b5fe-9d0cd3ac5b3a"';
-  //     $log.log(`LoginUser, replying with login key: ${reply}`);
-  //     return [ 200, reply, {} ];
-  //   }
-  //   else if ( url.includes('StartSurvey') ) {
-  //     reply = '"872546c2-2a9b-4df2-8966-e2ba661163a2"';
-  //     $log.log(`StartSurvey, replying with session key: ${reply}`);
-  //     return [ 200, reply, {} ];
-  //   }
-  //   else if ( url.includes('GetQuestions') ) {
-  //     $log.log('GetQuestions, replying with the list of questions');
-  //     reply = cache['./viaSurvey/GetQuestions.json'];
-  //     return [ 200, reply, {} ];
-  //   }
-  //   else if ( url.includes('SubmitAnswers') ) {
-  //     let dataObject = angular.fromJson(data);
-  //     if ( dataObject.answers.length === 120 ) {
-  //       reply = '"true"';
-  //     }
-  //     else {
-  //       reply = '"false"';
-  //     }
-  //     $log.log(`SubmitAnswers, replying with ${reply} `);
-  //     return [ 200, reply, {} ];
-  //   }
-  //   else if ( url.includes('GetResults') ) {
-  //     $log.log('GetResults, replying with the list of 24 strengths');
-  //     reply = cache['./viaSurvey/GetResults.json'];
-  //     return [ 200, reply, {} ];
-  //   }
-  //
-  //   return error500;
-  // });
+  // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
+  $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
+    let reply = '';
+    if ( url.includes('RegisterUser') ) {
+      $log.log('Register User, replying with an error');
+      reply = cache['./viaSurvey/RegisterUser.html'];
+      return [ 500, reply, {}, 'You have already registered a user with this email address' ];
+    }
+    else if ( url.includes('LoginUser') ) {
+      reply = '"276d51d7-10bf-4ff6-b5fe-9d0cd3ac5b3a"';
+      $log.log(`LoginUser, replying with login key: ${reply}`);
+      return [ 200, reply, {} ];
+    }
+    else if ( url.includes('StartSurvey') ) {
+      reply = '"872546c2-2a9b-4df2-8966-e2ba661163a2"';
+      $log.log(`StartSurvey, replying with session key: ${reply}`);
+      return [ 200, reply, {} ];
+    }
+    else if ( url.includes('GetQuestions') ) {
+      $log.log('GetQuestions, replying with the list of questions');
+      reply = cache['./viaSurvey/GetQuestions.json'];
+      return [ 200, reply, {} ];
+    }
+    else if ( url.includes('SubmitAnswers') ) {
+      let dataObject = angular.fromJson(data);
+      if ( dataObject.answers.length === 120 ) {
+        reply = '"true"';
+      }
+      else {
+        reply = '"false"';
+      }
+      $log.log(`SubmitAnswers, replying with ${reply} `);
+      return [ 200, reply, {} ];
+    }
+    else if ( url.includes('GetResults') ) {
+      $log.log('GetResults, replying with the list of 24 strengths');
+      reply = cache['./viaSurvey/GetResults.json'];
+      return [ 200, reply, {} ];
+    }
+
+    return error500;
+  });
 
 });

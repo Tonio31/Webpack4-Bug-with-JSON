@@ -23,6 +23,7 @@ let errorPageModule = angular.module('errorPage', [
       component: 'errorPage',
       params: {
         errorMsg: null,
+        subErrorMsg: null,
         bugsnagMetaData: null,
         bugsnagErrorName: null
       }
@@ -33,6 +34,7 @@ let errorPageModule = angular.module('errorPage', [
       component: 'errorPage',
       params: {
         errorMsg: null,
+        subErrorMsg: null,
         bugsnagMetaData: null,
         bugsnagErrorName: null
       }

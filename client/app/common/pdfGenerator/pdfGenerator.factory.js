@@ -1,6 +1,6 @@
 import pdfMakeConfig from './pdfMakeConfig.json';
 
-let PdfGenerator = function($log, $q, Data, pdfMake) {
+let PdfGenerator = function($log, $q, $state, Data, pdfMake, STATES) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -47,7 +47,7 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
           for ( let shortCodeId of Object.keys(shortCodeData) ) {
             if ( angular.isString(shortCodeData[shortCodeId]) ) {
               // As we will later on convert the whole pdfTemplate string back to a javascript object,
-              // the " will terminate JSON String too early and screw up the formatting, no it is necessary
+              // the " will terminate JSON String too early and screw up the formatting, so it is necessary
               // to escape them.
               shortCodeData[shortCodeId] = shortCodeData[shortCodeId].replace(/((\\)*("|'))|([\n\r\t])/g, (match) => {
                 let replaceString = '';
@@ -140,18 +140,48 @@ let PdfGenerator = function($log, $q, Data, pdfMake) {
               $log.log('generatePDF - END');
             }
             catch (e) {
-              $log.log('pdfTemplateWithDataAndConfig=', pdfTemplateWithDataAndConfig);
-              $log.error(e);
+              $log.log('pdfTemplateWithDataAndConfig=', pdfTemplateWithDataAndConfig, '  e=', e);
+              $state.go( STATES.ERROR_PAGE, {
+                errorMsg: 'ERROR_UNEXPECTED',
+                bugsnagErrorName: 'Error while building PDF',
+                bugsnagMetaData: {
+                  'Error Message': e.message
+                }
+              } );
             }
 
           },
           (error) => {
             $log.error('Error while retrieving shortcode data error=', error);
+            if ( error.status === 500 ) {
+              $state.go( STATES.ERROR_PAGE, {
+                errorMsg: 'ERROR_UNEXPECTED',
+                bugsnagErrorName: 'Error while retrieving shortcode',
+                bugsnagMetaData: {
+                  'Error Message': error.data.message,
+                  'Error Type': error.type,
+                  'Error Status': error.status,
+                  'Error StatusText': error.statusText
+                }
+              } );
+            }
           }
         );
       },
       (error) => {
         $log.error('Error retrieving iDocURL=', iDocURL, '    error=', error);
+        if ( error.status === 500 ) {
+          $state.go( STATES.ERROR_PAGE, {
+            errorMsg: 'ERROR_UNEXPECTED',
+            bugsnagErrorName: `Error while retrieving json for PDF: ${iDocURL}`,
+            bugsnagMetaData: {
+              'Error Message': error.data.message,
+              'Error Type': error.type,
+              'Error Status': error.status,
+              'Error StatusText': error.statusText
+            }
+          } );
+        }
       });
 
   };
