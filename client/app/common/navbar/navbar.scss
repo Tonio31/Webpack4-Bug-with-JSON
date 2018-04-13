@@ -13,6 +13,8 @@ $marginTopBar: 1rem;
 .header {
   .tab-bar {
     background-color: $onyx;
+    display: flex;
+    justify-content: space-between;
 
     .tab-bar-section {
       display: flex;
@@ -37,12 +39,11 @@ $marginTopBar: 1rem;
 
     }
 
-    .right-small {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      width: 30rem;
-      margin-right: $marginTopBar;
+    .user-full-name {
+
+      @media #{$small-only} {
+        display: none;
+      }
     }
   }
 }
