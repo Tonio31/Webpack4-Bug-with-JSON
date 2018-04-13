@@ -40,6 +40,7 @@ navbar-menu-button {
     display: flex;
     padding: .66667rem;
     transition: background-color $speed3 ease;
+    z-index: 1;
 
     &:hover,
     &:active {
