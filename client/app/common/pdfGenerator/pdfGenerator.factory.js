@@ -55,7 +55,7 @@ let PdfGenerator = function($log, $q, $state, Data, pdfMake, STATES) {
                   replaceString = '\'';
                 }
                 else if ( match.includes('"') ) {
-                  replaceString = '"';
+                  replaceString = '\\"';
                 }
                 else if ( match.includes('\n') || match.includes('\r') ) {
                   replaceString = '\\n';
