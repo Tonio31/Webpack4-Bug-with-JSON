@@ -20,7 +20,6 @@ let ResourceFactory = function( $log,
     return `${WEBSITE_CONFIG.apiUrl}/${iTypeOfApi}`;
   };
 
-
   let saveUserData = (iUserDataFromServer) => {
     let userToSave = {
       id: iUserDataFromServer.id,
@@ -44,35 +43,6 @@ let ResourceFactory = function( $log,
   };
 
   // **********************************  GET  *************************************** //
-  let getMenu = () => {
-    $log.log('getMenu()');
-    return $resource(buildApiUrl('menu'));
-  };
-
-  let getParticipantDetails = () => {
-
-    let deferred = $q.defer();
-    $log.log('getParticipantDetails()');
-    $resource(buildApiUrl('participants')).get( (userData) => {
-      try {
-        $log.log('getParticipantDetails() retrieved successfully userData=', userData);
-        saveUserData(userData.data);
-        deferred.resolve();
-      }
-      catch (error) {
-        $log.error(`getParticipantDetails() error:[${error.status},${error.statusText}]`);
-        deferred.reject(error);
-      }
-    },
-    (error) => {
-      $log.error(`getParticipantDetails() error:[${error.status},${error.statusText}]`);
-      deferred.reject(error);
-    });
-
-    return deferred.promise;
-  };
-
-
   let getDynamicContentPromise = ( iEndPointUrl, iIsArray, iOptionalParameters = {} ) => {
     $log.log('getDynamicContentPromise iEndPointUrl=', iEndPointUrl, '  iIsArray=', iIsArray, '  iOptionalParameters=', iOptionalParameters);
 
@@ -132,6 +102,34 @@ let ResourceFactory = function( $log,
     return $resource(iUrl);
   };
 
+  let getMenu = () => {
+    $log.log('getMenu()');
+    return $resource(buildApiUrl('menu'));
+  };
+
+  let getParticipantDetails = () => {
+
+    let deferred = $q.defer();
+    $log.log('getParticipantDetails()');
+    $resource(buildApiUrl('participants')).get( (userData) => {
+      try {
+        $log.log('getParticipantDetails() retrieved successfully userData=', userData);
+        saveUserData(userData.data);
+        deferred.resolve();
+      }
+      catch (error) {
+        $log.error(`getParticipantDetails() error:[${error.status},${error.statusText}]`);
+        deferred.reject(error);
+      }
+    },
+    (error) => {
+      $log.error(`getParticipantDetails() error:[${error.status},${error.statusText}]`);
+      deferred.reject(error);
+    });
+
+    return deferred.promise;
+  };
+
   let getShortCodeListForPDF = () => {
     return $resource(buildApiUrl('program_data'), {}, {
       find: {
@@ -147,9 +145,51 @@ let ResourceFactory = function( $log,
     });
   };
 
+  let isMaintenanceDisabled = () => {
+    $log.log('isMaintenanceDisabled()');
+
+    let deferred = $q.defer();
+
+    if ( $location.search().overwriteMaintenanceMode ) {
+      $log.warn('Overwrite MaintenanceMode, attempt to load the login page or home page');
+      deferred.resolve();
+    }
+    else {
+      $resource(buildApiUrl('isMaintenanceDisabled')).get( () => {
+        deferred.resolve();
+      },
+      (error) => {
+        // http Interceptor will redirect to error page if this endpoint returns 503
+        $log.error('Website is in Maintenance Mode error=', error);
+      });
+    }
+
+    return deferred.promise;
+  };
+
   // **********************************  POST  *************************************** //
   // Theses resource are to be used with $save method only, because we return an instance
   // of the function, we can't use it to do get method
+
+  // Will query http://change.potentialife.com/api/index_v2.php to get auth information
+  // @params: iWebsite - String (change | my)
+  // @params: iTypeOfCheck - String (local.check_username_email | local.check_credentials | reset_pass_curl)
+  let checkAuthOnOtherPlWebsite = (iWebsite, iTypeOfCheck) => {
+    $log.log('checkAuthOnOtherPlWebsite() iWebsite=', iWebsite, '   iTypeOfCheck=', iTypeOfCheck);
+    return new ($resource('', {}, {
+      check: {
+        method: 'POST',
+        headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
+        url: WEBSITE_CONFIG.OTHER_PL_SITES_API[iWebsite].apiUrl,
+        params: {
+          section: iTypeOfCheck
+        },
+        transformRequest: function(data) {
+          return $httpParamSerializer(data);
+        }
+      }
+    }))();
+  };
 
   let getUserAuthData = () => {
     $log.log('getUserAuthData()');
@@ -176,26 +216,6 @@ let ResourceFactory = function( $log,
   let logout = () => {
     $log.log('logout()');
     return new ($resource(buildApiUrl('logout')))();
-  };
-
-  // Will query http://change.potentialife.com/api/index_v2.php to get auth information
-  // @params: iWebsite - String (change | my)
-  // @params: iTypeOfCheck - String (local.check_username_email | local.check_credentials | reset_pass_curl)
-  let checkAuthOnOtherPlWebsite = (iWebsite, iTypeOfCheck) => {
-    $log.log('checkAuthOnOtherPlWebsite() iWebsite=', iWebsite, '   iTypeOfCheck=', iTypeOfCheck);
-    return new ($resource('', {}, {
-      check: {
-        method: 'POST',
-        headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
-        url: WEBSITE_CONFIG.OTHER_PL_SITES_API[iWebsite].apiUrl,
-        params: {
-          section: iTypeOfCheck
-        },
-        transformRequest: function(data) {
-          return $httpParamSerializer(data);
-        }
-      }
-    }))();
   };
 
   // Used to save data for a step and mark the step as completed for the current user.
@@ -233,21 +253,22 @@ let ResourceFactory = function( $log,
   };
 
   return {
-    getMenu,
-    getUserAuthData,
-    sendRecoverPasswordEmail,
+    buildApiUrl,
     changePassword,
-    logout,
+    checkAuthOnOtherPlWebsite,
     getDynamicContentPromise,
     getFriendSurveyContent,
-    saveUserData,
-    getParticipantDetails,
-    updateStep,
-    buildApiUrl,
-    viaSurvey,
-    checkAuthOnOtherPlWebsite,
     getLifeActPDF,
-    getShortCodeListForPDF
+    getMenu,
+    getParticipantDetails,
+    getShortCodeListForPDF,
+    getUserAuthData,
+    isMaintenanceDisabled,
+    logout,
+    saveUserData,
+    sendRecoverPasswordEmail,
+    updateStep,
+    viaSurvey,
   };
 };
 

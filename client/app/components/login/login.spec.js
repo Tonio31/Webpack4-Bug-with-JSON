@@ -125,7 +125,9 @@ describe('Login', () => {
 
       let authPOSTRequestResourceFail = {
         $save: (callback, callbackError) => {
-          return callbackError();
+          return callbackError({
+            status: 401
+          });
         }
       };
 
@@ -139,8 +141,6 @@ describe('Login', () => {
       expect(authPOSTRequestResourceFail.password).to.equal(controller.password);
 
       sinon.assert.callCount(goFn, 0);
-
-
 
       let authOK = {
         user: '1'
