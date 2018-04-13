@@ -29,21 +29,36 @@ class ErrorPageController {
 
       SpinnerFactory.hideAll();
 
-      this.errorMsg = '';
-      let errorCodeToTranslate = $stateParams.errorMsg;
-      if ( errorCodeToTranslate ) {
-        this.errorMsg = $filter('translate')(errorCodeToTranslate).toString();
+      this.isMaintenanceMode = false;
 
+      this.subErrorMsg = '';
+
+      this.errorMsg = '';
+      if ( $stateParams.errorMsg ) {
+
+
+        if ( $stateParams.subErrorMsg ) {
+          this.subErrorMsg = $filter('translate')($stateParams.subErrorMsg).toString();
+        }
+
+        if ( $stateParams.errorMsg === 'DOWN_FOR_MAINTENANCE' ) {
+          this.isMaintenanceMode = true;
+          this.subErrorMsg = $filter('translate')('MAINTENANCE_BACK_SHORTLY').toString();
+        }
+
+        this.errorMsg = $filter('translate')($stateParams.errorMsg).toString();
         this.displayContactUsForm = $stateParams.displayMenu && JwtFactory.isLoginInfoAvailable();
 
         let customData = Object.assign({}, $stateParams.bugsnagMetaData);
         let errorName = $stateParams.bugsnagErrorName || 'User on Error Page';
 
         this.sendErrorToBugsnag(customData, errorName);
+
       }
       else {
         this.errorMsg = $filter('translate')('ERROR_UNEXPECTED').toString();
       }
+
 
     };
 
