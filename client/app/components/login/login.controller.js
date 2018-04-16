@@ -94,12 +94,12 @@ class LoginController {
           $state.go(STATES.HOME, { forceRedirect: $stateParams.stateToRedirect } );
         },
         (error) => {
-          $log.error('error during authentification error=', error);
+          $log.error('error during authentication - error=', error);
           if ( error && error.status === 429 ) {
             // User tried 5 times to login and enter wrong credentials, notify him he's locked for a min
             this.setInvalidLoginMessage('TOO_MANY_LOGIN_ERROR');
           }
-          else {
+          else if ( error && error.status !== 503 ) {
             // If we have an error during login, it might be because the credentials are wrong but
             // it can also be because the user tries to log in on http://my.potentialife.com/ or
             // on http://change.potentialife.com as this login page is used to login to the three application

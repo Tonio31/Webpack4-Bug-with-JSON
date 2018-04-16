@@ -11,6 +11,7 @@ import BugsnagModule from './bugsnag/bugsnag';
 import ExceptionOverwriteModule from './exceptionOverwrite/exceptionOverwrite';
 import MenuService from './menuFactory/menu';
 import LoadingSpinner from './loadingSpinner/loadingSpinner';
+import TransitionsHandlerModule from './transitionsHandler/transitionsHandler';
 import LogDecorator from './logDecorator/logDecorator';
 import ConstantModule from './constants';
 
@@ -28,6 +29,7 @@ let commonModule = angular.module('app.common', [
   ZendeskWidgetFactory,
   BugsnagModule,
   ExceptionOverwriteModule,
+  TransitionsHandlerModule,
   ConstantModule
 ])
 .name;

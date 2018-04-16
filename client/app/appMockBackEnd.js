@@ -2,6 +2,9 @@
 /* eslint-disable angular/timeout-service */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-unreachable */
+/* eslint-disable no-useless-escape */
+/* eslint-disable angular/no-run-logic */
 
 // External Module
 import angular from 'angular';
@@ -83,8 +86,10 @@ angular.module( 'appMockBackEnd', [
   let error401 = [ 401, { message: 'token_not_provided' }, {}, 'token_not_provided' ];
   let error401_tokenExpired = [ 401, { message: 'token_expired' }, {}, 'token_expired' ];
   let error401_tokenUsed = [ 401, { message: 'token_used' }, {}, 'token_used' ];
-  let error429 = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
-  let error500 = [ 500, { message: 'Internal Server Error' }, {} ]; // eslint-disable-line no-unused-vars
+  let error401_Unauthorised = [ 401, { message: 'Unauthorized' }, {}, 'Unauthorized' ];
+  let error429_too_many_invalid = [ 429, { message: 'too_many_invalid_credentials' }, {}, 'too_many_invalid_credentials' ];
+  let error500 = [ 500, { message: 'Internal Server Error' }, {} ];
+  let error503 = [ 503, { message: 'Maintenance in progress' }, {} ];
 
   // Set a userID by default if the user logs in with a token in the URL
   if ( !JwtFactory.getUserId() ) {
@@ -190,14 +195,22 @@ angular.module( 'appMockBackEnd', [
     updateMenu(iFullUrlStepCompleted, nextStepFullUrl, iUserId);
   };
 
+
+
+  // **************************************************************************************************** //
+  //                                   API END POINTS                                                     //
+
   let regexpStep = new RegExp('https:\/\/localhost\.com\/step\?.*');
   $httpBackend.whenGET(regexpStep).respond( (method, url, data, headers) => {
 
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-
-    // Simulate an Internal server error
+    // Simulate an error form the server
     // return error500;
+    // return error401;
+    // return error401_tokenExpired;
+    // return error401_Unauthorised;
+    // return error503;
 
     if ( !JwtFactory.isAuthExpired() ) {
       let content = {};
@@ -218,15 +231,13 @@ angular.module( 'appMockBackEnd', [
     return error401;
   });
 
-
-  // **************************************************************************************************** //
-  //                                   API END POINTS                                                     //
-
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
     // Simulate an Internal server error
-//    return error500;
+    // return error401_tokenExpired;
+    // return error503;
+    // return error500;
 
     if ( !JwtFactory.isAuthExpired() ) {
       let reflexion = require(`./mockBackEndResponse/${headers.user_id}/reflexion.json`);
@@ -240,6 +251,13 @@ angular.module( 'appMockBackEnd', [
   let regexpSurvey = new RegExp('https:\/\/localhost\.com\/survey\?.*');
   $httpBackend.whenGET(regexpSurvey).respond( (method, url) => {
     $log.log(`$httpBackend.whenGET(${url})`);
+
+    // Simulate an error form the server
+    // return error500;
+    // return error401_tokenUsed;
+    // return error401_tokenExpired;
+    // return error401_Unauthorised;
+    // return error503;
 
     // find the page number and token_survey
     let regexp = new RegExp('^.*page=(\\d)(?:&token_survey=(.*))?');
@@ -261,8 +279,9 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('menu')}(.*)`)).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    // Simulate an Internal server error
     // return error500;
+    // return error401_tokenExpired;
+    // return error401_Unauthorised;
 
     if ( !JwtFactory.isAuthExpired() ) {
 
@@ -332,6 +351,11 @@ angular.module( 'appMockBackEnd', [
   .respond( (method, url, data, headers, params) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers, '  params=', params);
 
+    // return error500;
+    // return error401_Unauthorised;
+    // return error401_tokenExpired;
+    // return error503;
+
     let response = {};
     let shortCodeArray = angular.fromJson(params.shortcodes);
 
@@ -365,6 +389,11 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('program_data')).respond( (method, url, data, headers) => {
     let dataObject = angular.fromJson(data);
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method},   dataObject=`, dataObject, '  headers=', headers);
+
+    // return error401_tokenExpired;
+    // return error401_Unauthorised;
+    // return error503;
+    // return error500;
 
     let responseHeaders = {
       stepId: dataObject.stepId,
@@ -402,7 +431,9 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenPOST(Data.buildApiUrl('authenticate')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
-    // return error429;
+    // return error503;
+    // return error429_too_many_invalid;
+    // return error401_Unauthorised;
     // return error401;
 
     let dataObject = angular.fromJson(data);
@@ -423,14 +454,14 @@ angular.module( 'appMockBackEnd', [
 
   $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/(.*)/).passThrough();
   $httpBackend.whenPOST(/https:\/\/my\.potentialife\.com\/api\/(.*)/).passThrough();
-  // $httpBackend.whenPOST(/http:\/\/change\.potentialife\.com\/api\/index_v2\.php\?section=local\.check_username_email(.*)/).respond( (method, url, data, headers) => {
-  //
-  //   let notFound = {
-  //     status: 'not_found'
-  //   };
-  //
-  //   return [ 200, notFound, {} ];
-  // });
+  $httpBackend.whenPOST(/(.*)check-auth\/change(.*)/).respond( (method, url, data, headers) => {
+
+    let notFound = {
+      status: 'not_found'
+    };
+
+    return [ 200, notFound, {} ];
+  });
 
   $httpBackend.whenPOST(Data.buildApiUrl('password/email')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
@@ -462,6 +493,13 @@ angular.module( 'appMockBackEnd', [
     return [ 200, participant[headers.user_id], {} ];
   });
 
+  $httpBackend.whenGET(new RegExp(`${Data.buildApiUrl('isMaintenanceDisabled')}`)).respond( ( method, url, data, headers) => {
+    $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
+
+    // return error503;
+    return [ 200, {}, {} ];
+  });
+
   $httpBackend.whenPOST(Data.buildApiUrl('partial_save')).respond( (method, url) => {
     $log.log(`$httpBackend.whenPOST(${url}),  method=${method}`);
 
@@ -469,6 +507,7 @@ angular.module( 'appMockBackEnd', [
   });
 
   // Uncomment the line bellow to interact with the server
+
   $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).passThrough();
   // $httpBackend.whenPOST(/https:\/\/www\.viacharacter\.org\/survey\/api1\/(.*)/).respond( (method, url, data, headers) => {
   //   $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);

@@ -89,5 +89,9 @@
   "RESET_PASSWORD_TOKEN_EXPIRED": "The link in the reset password email has expired for security reasons, please re-enter your email address to receive a valid link",
   "ERROR_WITH_BACKEND": "Whoops, Unexpected error while changing your password.",
   "PLEASE_TRY_AGAIN": "Please try again",
-  "PLEASE_EMAIL_SUPPORT": "Please contact support at support@potentialife.com, sorry for the inconvenience"
+  "PLEASE_EMAIL_SUPPORT": "Please contact support at support@potentialife.com, sorry for the inconvenience",
+
+  "DOWN_FOR_MAINTENANCE": "Temporarily down for maintenance.",
+  "MAINTENANCE_BACK_SHORTLY": "We are performing scheduled maintenance, sorry for the inconvenience, we will be back online in less than 15min."
+
 }
