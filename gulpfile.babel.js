@@ -267,9 +267,10 @@ gulp.task('tagRepo', () => {
 });
 
 // Push tag to current branch
-gulp.task('pushTag', gulp.series('tagRepo', () => {
+gulp.task('pushTag', gulp.series('tagRepo', (done) => {
   gutil.log('push a git Tag');
-  return git.push('origin', '', {args: ' --tags'}, function(err) { if (err) throw err;});
+  git.push('origin', '', {args: ' --tags'}, function(err) { if (err) throw err;});
+  done();
 }));
 
 gulp.task('bumpVersionNumber', () => {
