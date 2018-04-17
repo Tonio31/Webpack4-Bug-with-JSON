@@ -40,26 +40,26 @@ describe('Loading Spinner', () => {
 
   describe('Factory', () => {
 
-    it('getSpinner create and returns the spinner', sinon.test( () => {
+    it('getSpinner create and returns the spinner', () => {
       let mySpinner = SpinnerFactory.getSpinner(SPINNER_NAME);
 
       expect(mySpinner).to.deep.eq({
         name: SPINNER_NAME,
         show: false
       });
-    }));
+    });
 
-    it('show change the property show of the spinner to true', sinon.test( () => {
+    it('show change the property show of the spinner to true', () => {
       SpinnerFactory.show(SPINNER_NAME);
 
       expect(SpinnerFactory.getSpinner(SPINNER_NAME).show).to.eq( true );
-    }));
+    });
 
-    it('show change the property show of the spinner to true', sinon.test( () => {
+    it('show change the property show of the spinner to true', () => {
       SpinnerFactory.hide(SPINNER_NAME);
 
       expect(SpinnerFactory.getSpinner(SPINNER_NAME).show).to.eq( false );
-    }));
+    });
 
   });
 

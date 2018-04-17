@@ -16,7 +16,7 @@ let PdfGenerator = function($log, $q, $state, Data, pdfMake, STATES) {
   };
 
   // Regular expression to match shortcodes in PDF Template
-  const reShortcode = /\{\!\!\s?([a-zA-Z0-9\.\-\_]+)\s?\!\!\}/g;
+  const reShortcode = /{!!\s?([a-zA-Z0-9.\-_]+)\s?!!}/g;
 
   // margin/border: [ left, top, right, bottom ]
   let config = angular.fromJson(pdfMakeConfig);
@@ -54,7 +54,7 @@ let PdfGenerator = function($log, $q, $state, Data, pdfMake, STATES) {
                 if ( match.includes('\'') ) {
                   replaceString = '\'';
                 }
-                else if ( match.includes('\"') ) {
+                else if ( match.includes('"') ) {
                   replaceString = '\\"';
                 }
                 else if ( match.includes('\n') || match.includes('\r') ) {
@@ -100,7 +100,7 @@ let PdfGenerator = function($log, $q, $state, Data, pdfMake, STATES) {
   let replaceConfigValue = ( iTemplatePDFString, iGlobalConfig ) => {
     $log.log('replaceConfigValue()  iGlobalConfig=', iGlobalConfig);
 
-    const reConfig = /"\{\!\!config\s?([a-zA-Z0-9\.\-\_]+)\s?\!\!\}"/g;
+    const reConfig = /"{!!config\s?([a-zA-Z0-9.\-_]+)\s?!!}"/g;
     let templacePdfWithConfig = iTemplatePDFString.replace(reConfig, (match, configStr) => {
       return iGlobalConfig[configStr];
     });

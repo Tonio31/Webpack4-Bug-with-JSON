@@ -4,11 +4,13 @@ import LogDecorator from 'common/logDecorator/logDecorator';
 import JwtServiceModule from 'common/jwtFactory/jwt';
 import errorPageComponent from './errorPage.component';
 import constantModule from 'common/constants';
+import LoadingSpinnerModule from 'common/loadingSpinner/loadingSpinner';
 
 let errorPageModule = angular.module('errorPage', [
   uiRouter,
   constantModule,
   LogDecorator,
+  LoadingSpinnerModule,
   JwtServiceModule
 ])
 .config(($stateProvider, STATES) => {

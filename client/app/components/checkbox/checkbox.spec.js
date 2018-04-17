@@ -167,9 +167,9 @@ describe('Checkbox', () => {
     });
 
 
-    it('$onInit() - this.selection is initialised from localStorage  if input DOESN\'T have checked checkbox', sinon.test( () => {
+    it('$onInit() - this.selection is initialised from localStorage  if input DOESN\'T have checked checkbox', () => {
 
-      let getUserInputFromLocalStorageStub = sinon.stub(Utility, 'getUserInputFromLocalStorage', () => {
+      let getUserInputFromLocalStorageStub = sinon.stub(Utility, 'getUserInputFromLocalStorage').callsFake( () => {
         return ['dan1'];
       });
 
@@ -194,7 +194,7 @@ describe('Checkbox', () => {
       sinon.assert.calledWith(getUserInputFromLocalStorageStub, controller.block.program_data_code);
       sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: ['dan1'] });
 
-    }));
+    });
 
     it('nbCheckBoxSelected() - test the function', () => {
       controller.selection = {
@@ -273,7 +273,7 @@ describe('Checkbox', () => {
       expect(oListChecked).to.deep.eq([ 'dan', 'alien' ]);
     });
 
-    it('actionOnUserInput() will set the HTML input element to VALID and call updateBlockManager()', sinon.test( () => {
+    it('actionOnUserInput() will set the HTML input element to VALID and call updateBlockManager()', () => {
       controller.NB_MIN_CHECKBOX_SELECTED = 2;
       controller.NB_MAX_CHECKBOX_SELECTED = 2;
 
@@ -293,9 +293,9 @@ describe('Checkbox', () => {
 
       sinon.assert.calledWith($setValiditySpy, 'nbOptionSelected', true);
       sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: ['dan', 'alien'] });
-    }));
+    });
 
-    it('actionOnUserInput() will set the HTML input element to INVALID and call updateBlockManager()', sinon.test( () => {
+    it('actionOnUserInput() will set the HTML input element to INVALID and call updateBlockManager()', () => {
       controller.NB_MIN_CHECKBOX_SELECTED = 2;
       controller.NB_MAX_CHECKBOX_SELECTED = 2;
 
@@ -314,7 +314,7 @@ describe('Checkbox', () => {
 
       sinon.assert.calledWith($setValiditySpy, 'nbOptionSelected', false);
       sinon.assert.calledWith(updateBlockManagerSpy, { blockManagerValue: ['dan'] });
-    }));
+    });
 
 
   });

@@ -46,12 +46,12 @@ describe('Utility', () => {
   describe('Utility Factory', () => {
 
 
-    it('Redirect to external URL if url is of type http:// or https://', sinon.test( () => {
+    it('Redirect to external URL if url is of type http:// or https://', () => {
       let url = 'http://iamtestingifthisworks.com';
       Utility.goToLink(url);
 
       sinon.assert.calledWith(openSpy, url, '_blank');
-    }));
+    });
 
 
     it('Change State if the url is not an external URL', () => {
@@ -133,7 +133,7 @@ describe('Utility', () => {
       expect(mockLocalStorage).to.deep.eq({});
     });
 
-    it("getUserTargetWebsite() - auth succeed on 'my'", sinon.test( (done) => {
+    it("getUserTargetWebsite() - auth succeed on 'my'", (done) => {
 
       let authDataBackFromServer = {
         status: 'ok'
@@ -145,7 +145,7 @@ describe('Utility', () => {
         }
       };
 
-      sinon.stub(Data, 'checkAuthOnOtherPlWebsite', () => {
+      sinon.stub(Data, 'checkAuthOnOtherPlWebsite').callsFake( () => {
         return checkAuthOnOtherPlWebsitePOST;
       });
 
@@ -158,9 +158,9 @@ describe('Utility', () => {
         done();
       });
       $rootScope.$digest();
-    }));
+    });
 
-    it("getUserTargetWebsite() - auth failed on 'my' but succeed on 'change'", sinon.test( (done) => {
+    it("getUserTargetWebsite() - auth failed on 'my' but succeed on 'change'", (done) => {
 
       let authUserNotFoundReply = {
         status: 'User not found'
@@ -196,7 +196,7 @@ describe('Utility', () => {
         done();
       });
       $rootScope.$digest();
-    }));
+    });
   });
 
 });

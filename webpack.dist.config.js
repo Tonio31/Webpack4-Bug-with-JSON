@@ -10,6 +10,7 @@ const WebpackAutoInject = require('webpack-auto-inject-version');
 let websiteConfig = {
   DOCKER: {
     websiteUrl: '',
+    mode: 'development',
     apiUrl: 'http://api.pl.localhost/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-4',
@@ -18,6 +19,7 @@ let websiteConfig = {
   },
   UAT: {
     websiteUrl: '',
+    mode: 'production',
     apiUrl: 'https://test-api.potentialife.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-4',
@@ -26,6 +28,7 @@ let websiteConfig = {
   },
   PROD: {
     websiteUrl: '',
+    mode: 'production',
     apiUrl: 'https://api.potentialife.com/',
     apiVersion: 'v1',
     googleTrackingCode: 'UA-57685355-5',
@@ -37,24 +40,73 @@ let websiteConfig = {
 module.exports = (iPhase) => {
   config.output = {
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: websiteConfig[iPhase].websiteUrl,
     path: path.resolve(__dirname, 'dist')
   };
 
-  config.module.loaders = config.module.loaders.concat([
+  config.mode = websiteConfig[iPhase].mode;
+
+  config.module.rules = config.module.rules.concat([
     {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          'css-loader',
+          'postcss-loader',
+        ]
+      })
+
     },
     {
-      test: /\.(scss|sass)$/,
-      loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader")
+      test: /\.(scss|sass)/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [ path.resolve(__dirname, './client/app') ],
+              sourceMap: true
+            }
+          },
+        ]
+      })
+    },
+    {
+      test: /\.html$/,
+      use: [
+        {
+          loader: 'raw-loader',
+          options: {
+            minimize: true
+          }
+        }
+      ]
     },
   ]);
 
+
   config.plugins = config.plugins.concat([
 
-    new ExtractTextPlugin("[name].css", {allChunks: false}),
+
+    new ExtractTextPlugin({
+      filename: "[name].css",
+      allChunks: false
+    }),
 
     // Injects bundles in your index.html instead of wiring all manually.
     // It also adds hash to all injected assets so we don't have problems
@@ -73,18 +125,6 @@ module.exports = (iPhase) => {
       BACK_END_API: JSON.stringify(`${websiteConfig[iPhase].apiUrl}${websiteConfig[iPhase].apiVersion}`),
       VIA_SURVEY_APP_KEY: JSON.stringify(websiteConfig[iPhase].viaSurveyAppKey),
       BROCHURE_HOME_URL: JSON.stringify(websiteConfig[iPhase].brochureWebsiteUrl)
-    }),
-
-    // Reduces bundles total size
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: {
-
-        // You can specify all variables that should not be mangled.
-        // For example if your vendor dependency doesn't use modules
-        // and relies on global variables. Most of angular modules relies on
-        // angular global variable, so we should keep it unchanged
-        except: ['$super', '$', 'exports', 'require', 'angular']
-      }
     }),
 
     new WebpackAutoInject({

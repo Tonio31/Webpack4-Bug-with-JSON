@@ -81,15 +81,17 @@ describe('pdfGenerator', () => {
     let getShortCodeListForPDFGETRequest = {
       find: (input, callback) => {
         expect(input).to.deep.equal({
-          shortcodes: angular.toJson([ 'l1.m1.s8.textbox.chosen_strength_1',
+          shortcodes: angular.toJson([
+            'l1.m1.s8.textbox.chosen_strength_1',
             'l1.m1.s8.textbox.chosen_strength_2',
-            'l1.m1.s8.textbox.chosen_strength_3' ])
+            'l1.m1.s8.textbox.chosen_strength_3'
+          ])
         });
         return callback(shortCodeListFromServer);
       }
     };
 
-    sinon.stub(Data, 'getShortCodeListForPDF', () => {
+    sinon.stub(Data, 'getShortCodeListForPDF').callsFake( () => {
       return getShortCodeListForPDFGETRequest;
     });
 
@@ -97,7 +99,7 @@ describe('pdfGenerator', () => {
 
   describe('pdfGenerator Factory', () => {
 
-    it('getShortCodeList() calls the server and returns a promise with the list of shortcodes', sinon.test( (done) => {
+    it('getShortCodeList() calls the server and returns a promise with the list of shortcodes', (done) => {
 
       PdfGenerator.getShortCodeList(templatePDFString).then( (shortcodeList) => {
         expect(shortcodeList).to.equal(shortCodeListFromServer);
@@ -109,7 +111,7 @@ describe('pdfGenerator', () => {
       });
 
       $scope.$digest();
-    }));
+    });
 
     it('extractShortCodeFromTemplate() extract a list of shortcode from a string', ( () => {
       let shortCodeList = PdfGenerator.extractShortCodeFromTemplate( templatePDFString );
@@ -139,7 +141,7 @@ describe('pdfGenerator', () => {
       expect(templateWithConfig).to.equal('"text": "{!! l1.m1.s8.textbox.chosen_strength_1 !!}, {!! l1.m1.s8.textbox.chosen_strength_2 !!}, [ 30, 10, 25 ],');
     }));
 
-    it('generatePDF() calls all the functions to generate a PDF', ( sinon.test(() => {
+    it('generatePDF() calls all the functions to generate a PDF', () => {
       let templateFromServer = angular.fromJson(templatePDFString);
 
       let getLifeActPDFGETRequest = {
@@ -149,11 +151,11 @@ describe('pdfGenerator', () => {
         }
       };
 
-      sinon.stub(Data, 'getLifeActPDF', () => {
+      sinon.stub(Data, 'getLifeActPDF').callsFake( () => {
         return getLifeActPDFGETRequest;
       });
 
-      spies.pdfMake.createPdf = sinon.stub(pdfMake, 'createPdf', () => {
+      spies.pdfMake.createPdf = sinon.stub(pdfMake, 'createPdf').callsFake( () => {
         return {
           open: () => {},
           download: () => {}
@@ -165,7 +167,7 @@ describe('pdfGenerator', () => {
       $scope.$digest();
 
       sinon.assert.calledWith(spies.pdfMake.createPdf);
-    })));
+    });
 
   });
 

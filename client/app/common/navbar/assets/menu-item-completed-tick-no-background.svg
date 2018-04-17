@@ -1,0 +1,14 @@
+<svg width="16" height="12" viewBox="0 0 16 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Grreen tick only</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(21411 2417)">
+<g id="Grreen tick only">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(-21411 -2417)" fill="#6CAD58"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 15.5955 1.07691L 14.8699 0.370334C 14.3639 -0.122354 13.5443 -0.123632 13.0395 0.367635L 5.66943 7.54463L 2.93629 4.8832C 2.43178 4.3918 1.61223 4.39322 1.10597 4.88619L 0.380497 5.59262C -0.125614 6.08545 -0.127073 6.8835 0.37758 7.37491L 4.75012 11.6324C 5.00405 11.8797 5.33732 12.002 5.67045 12C 6.00285 12.0015 6.3354 11.879 6.58889 11.6321L 15.5984 2.85905C 16.1029 2.36764 16.102 1.56988 15.5955 1.07691Z"/>
+</defs>
+</svg>

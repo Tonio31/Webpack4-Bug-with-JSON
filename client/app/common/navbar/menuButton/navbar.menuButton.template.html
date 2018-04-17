@@ -1,0 +1,19 @@
+<div class='menu-button row small-collapse'
+     ng-click="$ctrl.menuButtonClick()"
+     ng-class="[
+       $ctrl.status,
+       $ctrl.type,
+       {
+         'stepActive': $ctrl.isStepActive(),
+       }]">
+  <div class='small-2 columns button-icon'>
+    <span class='pl-menu-button'></span>
+  </div>
+  <div class='small-9 columns button-content'>
+    <p class='top-title'>{{$ctrl.topTitle}}</p>
+    <p class='bottom-title'>{{$ctrl.bottomTitle}}</p>
+  </div>
+  <div class='small-1 columns fontello-icon-right'>
+    <span ng-if="$ctrl.getIconValue()">{{$ctrl.getIconValue()}}</span>
+  </div>
+</div>

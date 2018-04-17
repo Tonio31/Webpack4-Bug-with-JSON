@@ -8,7 +8,6 @@
       top: 0;
       right: -20px;
       width: 20px;
-      // height: 20px;
       height: 100%;
       border-top: 40px solid transparent;
       border-bottom: 40px solid transparent;
@@ -16,18 +15,4 @@
       z-index: 100;
     }
   }
-  // .current {
-  //   position: relative;
-  //   display: block;
-  //   .arrow {
-  //     border: 1px solid red;
-  //     display: block;
-  //     position: absolute;
-  //     top: -0.66667rem;
-  //     right: -20px;
-  //     width: 20px;
-  //     height: calc(100% + (0.66667rem * 2));
-  //     z-index: auto;
-  //   }
-  // }
 }

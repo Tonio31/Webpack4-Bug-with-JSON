@@ -1,0 +1,262 @@
+@import '~client/app/common/scss/_vars';
+@import '~client/app/common/_foundation-settings';
+
+$orangeColorTitle: #ff8534;
+$lockedTextColor: #a0a0a0;
+$buttonBorder: 1px solid #C4C4C4;
+
+$fontSizeLevelTitle: 1.5rem;
+$fontSizeStepTitle: 1rem;
+$fontSizeSmallTitle: 0.75rem;
+
+
+@mixin leftIconSettings() {
+  height: 30px;
+  position: absolute;
+  top: calc(50% - 10px);
+  right: 10px;
+  color: $white;
+  font-family: "fontello";
+  speak: none;
+  width: 1em;
+  margin-right: .2em;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+navbar-menu-button {
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+
+  .menu-button {
+    width: 100%;
+    height: auto;
+    border-bottom: $buttonBorder;
+    border-top: $buttonBorder;
+    color: transparentize($white, .3);
+    display: flex;
+    padding: .66667rem;
+    transition: background-color $speed3 ease;
+    z-index: 1;
+
+    &:hover,
+    &:active {
+      background-color: $onyx;
+    }
+
+
+    // Left Align Logout text with the rest (some css properties of foundation
+    // insert space on the left otherwise
+    &.row {
+      &::before,
+      &::after {
+        content: none;
+      }
+    }
+
+    .button-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .button-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &.LEVEL {
+      .bottom-title {
+        color: $orangeColorTitle;
+      }
+    }
+
+    &.STEP {
+
+      .top-title {
+        display: none;
+      }
+
+      .bottom-title {
+        text-transform: none;
+        font-size: $fontSizeStepTitle;
+        white-space: normal;
+        overflow: visible;
+      }
+    }
+
+
+    p {
+      margin-bottom: 0;
+      line-height: 1.25rem;
+
+      &.top-title {
+        color: $white;
+        font-size: $fontSizeLevelTitle;
+      }
+
+      &.bottom-title {
+        text-transform: uppercase;
+        font-size: $fontSizeSmallTitle;
+        margin-top: 5px;
+        color: $white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+      }
+    }
+
+    &.home,
+    &.back {
+      height: rem_calc(93px);
+      background-color: $onyx;
+      border-top: $buttonBorder;
+      p.top-title {
+        color: $white;
+      }
+
+      p.bottom-title {
+        color: $orangeColorTitle;
+      }
+
+      &.MODULE {
+
+        p.top-title {
+          font-size: $fontSizeStepTitle;
+        }
+
+        p.bottom-title {
+          color: $white;
+          text-transform: none;
+          font-size: $fontSizeLevelTitle;
+          font-weight: $font-weight-bold;
+        }
+      }
+    }
+
+    .pl-menu-button {
+      width: 50%;
+      height: 50px;
+      background-size: contain;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      display: block;
+    }
+
+    &.current {
+
+      &.LEVEL,
+      &.MODULE {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-current-eye-solid.svg');
+        }
+      }
+
+      &.STEP {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-current-eye-no-background.svg');
+        }
+      }
+
+    }
+
+    &.locked {
+
+      p {
+        color: $lockedTextColor;
+      }
+
+      .fontello-icon-right {
+        color: $lockedTextColor;
+      }
+
+      &.LEVEL,
+      &.MODULE {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-locked.svg');
+        }
+      }
+
+      &.STEP {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-locked-no-background.svg');
+          width: 30%;
+        }
+      }
+    }
+
+    &.completed {
+
+      &.LEVEL,
+      &.MODULE {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-completed-tick-solid.svg');
+        }
+      }
+
+      &.STEP {
+        .pl-menu-button {
+          background-image: url('../assets/menu-item-completed-tick-no-background.svg');
+        }
+      }
+
+    }
+
+    &.back {
+      .pl-menu-button {
+        &::after {
+          content: '\3c';
+          @include leftIconSettings();
+        }
+      }
+    }
+
+    &.logout {
+      background-color: $ship-grey;
+
+      &:hover,
+      &:active {
+        background-color: $onyx;
+      }
+
+      .pl-menu-button {
+        &::after {
+          content: '\6f';
+          @include leftIconSettings();
+        }
+      }
+    }
+
+
+    &.stepActive {
+      background-color: $black;
+      border-top: 1px solid $white;
+      border-bottom: 1px solid $white;
+      position: relative;
+
+      p {
+        &.bottom-title {
+          color: $white;
+        }
+      }
+    }
+
+    .fontello-icon-right {
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+
+      color: $white;
+      font-family: "fontello";
+      speak: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+}

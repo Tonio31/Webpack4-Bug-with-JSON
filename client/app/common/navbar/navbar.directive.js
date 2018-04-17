@@ -1,9 +1,5 @@
 let syncMenuAndState = function( $rootScope,
-                                 $log,
-                                 $state,
-                                 JwtFactory,
-                                 ZendeskWidget,
-                                 STATES) {
+                                 $log ) {
   'ngInject';
 
   // eslint-disable-next-line no-param-reassign
@@ -91,139 +87,14 @@ let syncMenuAndState = function( $rootScope,
       });
 
       // If we click on Back button, we need to hide the menu
-      angular.element(element[0].getElementsByClassName('back')[0]).on('click', (event) => {
+      angular.element(element[0].getElementsByClassName('btn-back-home')[0]).on('click', (event) => {
         event.stopPropagation();
         hideMenuPanel(element[0], true);
         $log.log('BACK Clicked!! element=', element[0].id, '   event=', event);
       });
-
-      angular.element(element[0].getElementsByClassName('logout')[0]).on('click', (event) => {
-        event.stopPropagation();
-        JwtFactory.logout();
-        $state.go(STATES.LOGIN);
-        ZendeskWidget.hide();
-      });
-
     }
   };
 };
-
-
-let menuItem = function($window, $filter, $state) {
-  'ngInject';
-  return {
-    require: '^offCanvasWrap',
-    restrict: 'E',
-    replace: false,
-    scope: {
-      item: '='
-    },
-    template: require('./navbar.menuItem.template.html'),
-    compile: function() {
-      return {
-        post: function($scope, iElem, iAttrs, offCanvasWrap) {
-
-          let screenWidth = $window.innerWidth;
-
-          $scope.hasChildren = (iObject) => {
-            return iObject.hasOwnProperty('children');
-          };
-
-          $scope.hideMenuItem = (iObject) => {
-            return iObject.hasOwnProperty('hideStepInMenu') && iObject.hideStepInMenu;
-          };
-
-          // Used to know if the current state is the one pointed by this button link
-          // For hidden steps, we need to highlight the button even if the full url don't match
-          $scope.isStepActive = (iMenuItem) => {
-            if ( iMenuItem.fullUrl === $state.current.name ) {
-              return true;
-            }
-            else if ( $state.params.hideStepInMenu && $state.current.name.includes(iMenuItem.fullUrl) ) {
-              return true;
-            }
-
-            return false;
-          };
-
-          $scope.test = 'active';
-
-          $scope.getBelowTitle = (iObject) => {
-            let nbMenuChilds = 0;
-            if ( iObject.hasOwnProperty('children') ) {
-              for ( let subMenuItem of iObject.children ) {
-                if ( !$scope.hideMenuItem(subMenuItem) ) {
-                  nbMenuChilds += 1;
-                }
-              }
-            }
-
-            let type = '';
-            if ( iObject.hasOwnProperty('progress') ) {
-              type = $filter('translate')('MODULES').toString();
-            }
-            else {
-              type = $filter('translate')('STEPS').toString();
-            }
-
-            let belowTitle = `${$filter('translate')('TOTAL').toString()} - ${nbMenuChilds} ${type}`;
-            return belowTitle;
-          };
-
-          $scope.hideCanvas = () => {
-            // prevent large screens from closing menu automatically after clicking a menuitem
-            if (screenWidth <= 1024) {
-              offCanvasWrap.hide();
-            }
-          };
-
-        }
-      };
-    }
-  };
-};
-
-
-let menuButton = function($log) {
-  'ngInject';
-  return {
-    restrict: 'E',
-    replace: true,
-    scope: {
-      data: '='
-    },
-    template: `
-      <div class='menu-button row small-collapse'>
-        <div class='small-2 columns'>
-          <span class='pl-menu-button'></span>
-
-        </div>
-        <div class='small-10 columns'>
-            <p class='top-title'>{{data.title}}</p>
-            <p class='main-title'>{{data.name}}</p>
-            <p class='below-title'>{{data.description}}</p>
-          </div>
-          <i class='arrow'></i>
-      </div>
-    `,
-    link: function($scope, element) {
-
-      angular.element(element).addClass($scope.data.status);
-      // This will be used to change the icon on the left side of the menu, this way we just need to
-      // update our menu inside menuFactory and the changes are propagated automatically
-      $scope.$watch('data.status', (newStatus, oldStatus) => {
-        if ( newStatus !== oldStatus ) {
-
-          angular.element(element).removeClass(oldStatus);
-          angular.element(element).addClass(newStatus);
-
-          $log.log('The value has changed, oldStatus=', oldStatus, '   newStatus=', newStatus);
-        }
-      }, false);
-    }
-  };
-};
-
 
 let plDisableLink = function() {
   'ngInject';
@@ -244,7 +115,5 @@ let plDisableLink = function() {
 
 export {
   syncMenuAndState,
-  menuItem,
-  menuButton,
   plDisableLink
 };

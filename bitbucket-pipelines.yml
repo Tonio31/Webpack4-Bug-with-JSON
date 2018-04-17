@@ -3,14 +3,12 @@ image: node:7.4.0
 pipelines:
   default: # Pipelines that run automatically on a commit to a branch
     - step:
+        image: weltn24/up-docker-node-chrome-headless
         caches:
           - node
         script:
           - npm install
-          - npm install -g gulp
-          - npm run build
-          - npm run setKarmaGlobals -- --browser PhantomJS
-          - npm run test/phantomjs --silent
+          - npm run test/chromeHeadless
   branches:
     mergingFeature/deployment:
       - step:
@@ -36,7 +34,6 @@ pipelines:
             - npm run increaseVersionNumber
             - npm run build -- --phase UAT
             - npm run deploy -- --phase UAT
-            - npm run deploy -- --phase UAT --index
             - ./bugsnag-deploy.sh UAT
     PROD:
       - step:
@@ -48,7 +45,6 @@ pipelines:
             - git config --global user.name "Frankie"
             - npm run build -- --phase PROD
             - npm run deploy -- --phase PROD
-            - npm run deploy -- --phase PROD --index
             - npm run addGitTagToRepo
             - npm run notifyTicketsChanel -- --phase PROD
             - ./bugsnag-deploy.sh PROD

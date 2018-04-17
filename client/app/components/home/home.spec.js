@@ -49,11 +49,11 @@ describe('Home', () => {
     Data = $injector.get('Data');
     Menu = $injector.get('Menu');
 
-    sinon.stub(Menu, 'getCurrentProgression', () => { return currentProgressionObject; } );
-    sinon.stub(Menu, 'getMenu', () => { return menuObject; } );
-    sinon.stub(User, 'getFirstName', () => { return firstName; } );
+    sinon.stub(Menu, 'getCurrentProgression').callsFake( () => { return currentProgressionObject; } );
+    sinon.stub(Menu, 'getMenu').callsFake( () => { return menuObject; } );
+    sinon.stub(User, 'getFirstName').callsFake( () => { return firstName; } );
 
-    sinon.stub(Data, 'getDynamicContentPromise', () => { return contentBindings; } );
+    sinon.stub(Data, 'getDynamicContentPromise').callsFake( () => { return contentBindings; } );
   }));
 
   describe('Module', () => {
@@ -167,12 +167,12 @@ describe('Home', () => {
     it('has a 3 cycles', () => {
       let cycles = angular.element(template[0].querySelectorAll('.cycle'));
       expect(cycles.length).to.eq(3);
-      expect(cycles[0].textContent).to.contain('CYCLE 1');
-      expect(cycles[1].textContent).to.contain('CYCLE 2');
-      expect(cycles[2].textContent).to.contain('CYCLE 3');
+      expect(cycles[0].textContent).to.contain('LEVEL 1');
+      expect(cycles[1].textContent).to.contain('LEVEL 2');
+      expect(cycles[2].textContent).to.contain('LEVEL 3');
 
       let cycle1 = angular.element(template[0].querySelector('.cycle'));
-      expect(cycle1.html()).to.contain('<h4 class="ng-binding">CYCLE 1</h4>');
+      expect(cycle1.html()).to.contain('<h4 class="ng-binding">LEVEL 1</h4>');
     });
 
     it('has a PARTICIPANT_REFLECTION section', () => {

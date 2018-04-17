@@ -225,15 +225,11 @@ let appModule = angular.module( 'app', [
 
   }
   catch (error) {
-    $exceptionHandler( error );
     $state.go( STATES.ERROR_PAGE_NO_MENU, {
       errorMsg: 'ERROR_UNEXPECTED',
       bugsnagErrorName: 'Error APP::RUN()',
       bugsnagMetaData: {
-        'Error Message': error.data.message,
-        'Error Type': error.type,
-        'Error Status': error.status,
-        'Error StatusText': error.statusText
+        'Error Message': error,
       }
     } );
   }

@@ -59,18 +59,18 @@ describe('IconText', () => {
       });
     });
 
-    it('isIconWider() - return true for icon-badge-lifemap and false otherwise', sinon.test( () => {
+    it('isIconWider() - return true for icon-badge-lifemap and false otherwise', () => {
       expect(controller.isIconWider('icon-badge-lifemap')).to.eq(true);
       expect(controller.isIconWider('whatever else')).to.eq(false);
-    }));
+    });
 
-    it('isBorderPartOfIcon() - return true for some icons and false otherwise', sinon.test( () => {
+    it('isBorderPartOfIcon() - return true for some icons and false otherwise', () => {
       expect(controller.isBorderPartOfIcon('icon-badge-lifemap')).to.eq(true);
       expect(controller.isBorderPartOfIcon('icon-badge-self-discovery')).to.eq(true);
       expect(controller.isBorderPartOfIcon('icon-badge-time-to-reflect')).to.eq(true);
       expect(controller.isBorderPartOfIcon('icon-pl-logo')).to.eq(true);
       expect(controller.isIconWider('whatever else')).to.eq(false);
-    }));
+    });
   });
 
   describe('View', () => {

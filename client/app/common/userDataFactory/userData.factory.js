@@ -64,6 +64,10 @@ let UserData = function() {
     return user.lastName;
   };
 
+  let getFullName = () => {
+    return `${getFirstName()} ${getLastName()}`;
+  };
+
   let getCompany = () => {
     return user.company;
   };
@@ -113,6 +117,7 @@ let UserData = function() {
     setUser,
     getFirstName,
     getLastName,
+    getFullName,
     getCompany,
     getDivision,
     getCohort,
