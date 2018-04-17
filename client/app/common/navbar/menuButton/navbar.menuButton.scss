@@ -219,6 +219,11 @@ navbar-menu-button {
     &.logout {
       background-color: $ship-grey;
 
+      &:hover,
+      &:active {
+        background-color: $onyx;
+      }
+
       .pl-menu-button {
         &::after {
           content: '\6f';

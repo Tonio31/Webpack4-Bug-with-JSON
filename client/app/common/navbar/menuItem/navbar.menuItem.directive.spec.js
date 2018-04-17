@@ -50,7 +50,7 @@ describe('Navbar MenuItem Directive', () => {
       expect(module1.hasClass('menu-item')).to.eq(true);
 
       let menuButtonClass = angular.element(module1[0].querySelectorAll('.menu-button'));
-      expect(menuButtonClass.length).to.eq(15);
+      expect(menuButtonClass.length).to.eq(13);
     });
 
   });
