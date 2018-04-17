@@ -4,8 +4,8 @@ class ErrorPageController {
                $stateParams,
                JwtFactory,
                BugsnagUtils,
-               ZendeskWidget,
                SpinnerFactory,
+               ZendeskWidget,
                $filter ) {
     'ngInject';
 

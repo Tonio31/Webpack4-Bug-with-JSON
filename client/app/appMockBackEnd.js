@@ -247,6 +247,7 @@ angular.module( 'appMockBackEnd', [
   $httpBackend.whenGET(Data.buildApiUrl('reflexion')).respond( (method, url, data, headers) => {
     $log.log(`$httpBackend.whenGET(${url}),  method=${method},   data=`, data, '  headers=', headers);
 
+    // Simulate an Internal server error
     // return error401_tokenExpired;
     // return error503;
     // return error500;
