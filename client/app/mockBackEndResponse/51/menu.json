@@ -64,17 +64,6 @@
           },
           "children": [
             {
-              "id": 47,
-              "title": "LIFEMAP",
-              "name": "Tips for life mapping",
-              "description": "7 DAYS",
-              "slug": "lifemap",
-              "order": 0,
-              "status": "completed",
-              "fullUrl": "/potentialife-course/cycle-1/lifemap",
-              "type": "MODULE"
-            },
-            {
               "id": 5,
               "title": "Module 1",
               "name": "Encounter Strengths",

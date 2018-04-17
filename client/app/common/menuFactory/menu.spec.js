@@ -48,12 +48,12 @@ describe( 'Menu', () => {
 
       Menu.retrieveMenuAndReturnStates().then( ( states ) => {
         expect( Menu.isMenuRetrieved() ).to.equal( true );
-        expect( states.length ).to.eq( 54 );
-        expect( states[ 0 ].name ).to.eq( '/potentialife-course/cycle-1/lifemap' );
+        expect( states.length ).to.eq( 53 );
+        expect( states[ 0 ].name ).to.eq( '/potentialife-course/cycle-1/module-1/step-1' );
 
         // The menu object has been instantiated if the promise from retrieveMenuAndReturnStates has been resolved
         let menu = Menu.getMenu();
-        expect( menu.data.children[ 0 ].children[ 0 ].fullUrl ).to.equal( '/potentialife-course/cycle-1/lifemap' );
+        expect( menu.data.children[ 0 ].children[ 0 ].fullUrl ).to.equal( '/potentialife-course/cycle-1/module-1' );
 
         expect( menu.data.children.length ).to.equal( 3 );
 

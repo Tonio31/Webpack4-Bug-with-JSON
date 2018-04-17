@@ -40,7 +40,7 @@ $marginTopBar: 1rem;
     }
 
     .user-full-name {
-
+      padding-right: 1rem;
       @media #{$small-only} {
         display: none;
       }
