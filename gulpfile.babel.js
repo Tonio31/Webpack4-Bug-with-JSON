@@ -347,7 +347,7 @@ gulp.task('deploy', gulp.series( 'deployIndex', (done) => {
   done();
 }));
 
-gulp.task('notifyTicketsChanel', () => {
+gulp.task('notifyTicketsChanel', (done) => {
 
   let phase = yargs.argv.phase || 'UAT';
 
@@ -360,7 +360,8 @@ gulp.task('notifyTicketsChanel', () => {
     icon_emoji: ':potentialife:' // Optional
   });
 
-  return slack(`A new version of the Front End has been pushed on ${phase}, be aware for incoming tickets`);
+  slack(`A new version of the Front End has been pushed on ${phase}, be aware for incoming tickets`);
+  done();
 });
 
 
