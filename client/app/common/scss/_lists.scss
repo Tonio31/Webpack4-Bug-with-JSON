@@ -38,6 +38,10 @@
     }
   }
 
+  span, p, strong {
+    white-space: pre-line;
+  }
+
   .list-wrap {
     background-color: lighten($light-grey, 3);
     display: flex;

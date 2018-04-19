@@ -194,7 +194,7 @@ gulp.task('e2e_test', () => {
 
 });
 
-gulp.task('serve', () => {
+gulp.task('serve', (done) => {
   const config = require('./webpack.dev.config')();
   config.entry.app = [
     // this modules required to make HRM working
@@ -225,6 +225,8 @@ gulp.task('serve', () => {
       })
     ]
   });
+
+  done();
 });
 
 gulp.task('watch', gulp.series('serve'));

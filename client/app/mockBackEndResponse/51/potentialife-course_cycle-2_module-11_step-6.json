@@ -1,0 +1,262 @@
+{
+  "id": 257,
+  "title": "Step 6",
+  "name": "Explore your 360 strengths stories",
+  "description": "5 minutes",
+  "congrats": "<p>Well done, your progress has been saved. Continue to your next step below.</p>",
+  "hideStepInMenu": false,
+  "breadcrumbs": "Level 2 &bull; Module 1 &bull; Step 6",
+  "prev_page_url": "/potentialife-course/cycle-2/module-11/step-5",
+  "next_page_url": "/potentialife-course/cycle-2/module-11/step-7",
+  "fullUrl": "/potentialife-course/cycle-2/module-11/step-6",
+  "slug": "step-6",
+  "status": "current",
+  "blocks": [
+    {
+      "id": 1488,
+      "element": "icon_text",
+      "source_program_data_code": null,
+      "program_data_code": null,
+      "data": {
+        "value": null,
+        "icon": {
+          "type": "icon-badge-time-to-reflect",
+          "color": null
+        },
+        "text": "<p>Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al†”</p>",
+        "type": "link"
+      }
+    },
+    {
+      "id": 1489,
+      "element": "html",
+      "source_program_data_code": null,
+      "program_data_code": null,
+      "data": {
+        "value": "<p>Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at all†”</p>"
+      }
+    },
+    {
+      "id": 1490,
+      "element": "ul",
+      "source_program_data_code": null,
+      "program_data_code": null,
+      "data": {
+        "config": {
+          "minItemsDisplayed": "5",
+          "showMoreButtonAtStart": "1"
+        },
+        "label": "Your strengths stories",
+        "placeholder": null,
+        "name": null,
+        "value": null,
+        "items": [
+          {
+            "label": "Story 1",
+            "sub_label": "A good feedback for a good guy",
+            "takeaways": null
+          },
+          {
+            "label": "Story 2",
+            "sub_label": "nhgdgf",
+            "takeaways": null
+          },
+          {
+            "label": "Story 3",
+            "sub_label": "Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al†",
+            "takeaways": null
+          },
+          {
+            "label": "Story 4",
+            "sub_label": "Not submited yet",
+            "takeaways": null
+          },
+          {
+            "label": "Story 5",
+            "sub_label": "Not submited yet",
+            "takeaways": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 1491,
+      "element": "html",
+      "source_program_data_code": null,
+      "program_data_code": null,
+      "data": {
+        "value": "<p>When we are at our best we often find ourselves doing the same types of things, and although we may not see these strengths ourselves, others do - hence the value of this exercise. </p>\r\n<p>Read carefully the stories and look for common themes. </p>"
+      }
+    },
+    {
+      "id": 1492,
+      "element": "textarea",
+      "source_program_data_code": null,
+      "program_data_code": "l2.m1.s6.text.thoughts_on_stories",
+      "data": {
+        "label": "In the light of these stories, how would you summarize what is being said about your strengths?",
+        "placeholder": null,
+        "value": "Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al†",
+        "name": "thoughts_on_stories",
+        "config": {
+          "required": "1"
+        }
+      }
+    },
+    {
+      "id": 52,
+      "type": "dynamic",
+      "element": "checkbox",
+      "program_data_code": "c1.m1.s1.checkbox_1",
+      "data": {
+        "config": {
+          "min_selected": 1,
+          "max_selected": 1
+        },
+        "label": "label: this is the label",
+        "placeholder": "placeholder: this is the placholder",
+        "name": "name",
+        "items": [
+          {
+            "label": "Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al††",
+            "sub_label": "Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al††",
+            "value": "Con",
+            "checked": false,
+            "feedback": "Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al††"
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 62
+      }
+    },
+    {
+      "id": 63,
+      "type": "dynamic",
+      "element": "radiobox",
+      "program_data_code": "c1.m1.s1.radio_1",
+      "data": {
+        "config": {
+          "required": true,
+          "minRadioBoxDisplayed": 6
+        },
+        "label": "this is the label",
+        "placeholder": "this is the placholder",
+        "name": "this is the name",
+        "items": [
+          {
+            "label": "Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al††",
+            "value": "this_is_the_label_1",
+            "sub_label": "Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al††",
+            "selected": false,
+            "feedback": "Working /\\code \\/at last!\u2028Tidying up \tleads\t to fail 💀\nWhåt the fuck happened?\bOh //I \\\\just \\suck.\n{“foo”: “bar\t\t”}\n{\"foo\": \"bar\"}\n`different’ quotes be' “different\"\n\t•\tlists\n\t•\tof stuff\n\t•\tis a thing\n\n\t✓\t\\r\\n \\r\\n \\r\\n \\r\\n\n+≠ &nbsp; +±\n$%^&*#\n~ ¬ ¤ § © ® «¼ ƒoobar»\ndid you know that there's lots of types of space? This is a really long line it is worth checking what that will do to have a super long line without any breaks at al††"
+          }
+        ]
+      },
+      "pivot": {
+        "step_id": 6,
+        "block_id": 63
+      }
+    }
+  ],
+  "stepable": {
+    "id": 13,
+    "cycle_id": 2,
+    "title": "Module 1",
+    "name": "Pick Strengths",
+    "description": "11 steps",
+    "content": null,
+    "slug": "module-11",
+    "lft": 2,
+    "rgt": 3,
+    "depth": 1,
+    "parent_id": null,
+    "created_at": null,
+    "updated_at": "2017-10-06 13:44:46",
+    "deleted_at": null,
+    "description_overridden": 0,
+    "custom_description": null,
+    "fullUrl": "/potentialife-course/cycle-2/module-11",
+    "cycle": {
+      "id": 2,
+      "course_id": 1,
+      "title": "Level 2",
+      "name": "Change",
+      "description": "11 Modules",
+      "slug": "cycle-2",
+      "content": "<p>das</p>",
+      "lft": 4,
+      "rgt": 5,
+      "depth": 1,
+      "parent_id": null,
+      "created_at": "2017-02-13 11:22:42",
+      "updated_at": "2017-10-16 12:51:08",
+      "deleted_at": null,
+      "description_overridden": 0,
+      "custom_description": "",
+      "fullUrl": "/potentialife-course/cycle-2",
+      "progress": {
+        "completed": 107,
+        "remaining": 0,
+        "total": 107,
+        "percent": 100
+      },
+      "course": {
+        "id": 1,
+        "name": "Potentialife Course",
+        "slug": "potentialife-course",
+        "description": null,
+        "content": null,
+        "lft": 2,
+        "rgt": 3,
+        "depth": 1,
+        "parent_id": null,
+        "created_at": "2017-02-13 11:07:23",
+        "updated_at": "2017-02-13 11:09:39",
+        "deleted_at": null,
+        "fullUrl": "/potentialife-course"
+      }
+    }
+  },
+  "cycle": {
+    "id": 2,
+    "course_id": 1,
+    "title": "Level 2",
+    "name": "Change",
+    "description": "11 Modules",
+    "slug": "cycle-2",
+    "content": "<p>das</p>",
+    "lft": 4,
+    "rgt": 5,
+    "depth": 1,
+    "parent_id": null,
+    "created_at": "2017-02-13 11:22:42",
+    "updated_at": "2017-10-16 12:51:08",
+    "deleted_at": null,
+    "description_overridden": 0,
+    "custom_description": "",
+    "fullUrl": "/potentialife-course/cycle-2",
+    "progress": {
+      "completed": 107,
+      "remaining": 0,
+      "total": 107,
+      "percent": 100
+    },
+    "course": {
+      "id": 1,
+      "name": "Potentialife Course",
+      "slug": "potentialife-course",
+      "description": null,
+      "content": null,
+      "lft": 2,
+      "rgt": 3,
+      "depth": 1,
+      "parent_id": null,
+      "created_at": "2017-02-13 11:07:23",
+      "updated_at": "2017-02-13 11:09:39",
+      "deleted_at": null,
+      "fullUrl": "/potentialife-course"
+    }
+  }
+}
