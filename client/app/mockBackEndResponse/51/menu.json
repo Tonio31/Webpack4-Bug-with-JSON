@@ -349,9 +349,22 @@
               "description": null,
               "slug": "module-11",
               "order": 0,
-              "status": "locked",
+              "status": "current",
               "fullUrl": "/potentialife-course/cycle-2/module-11",
-              "type": "MODULE"
+              "type": "MODULE",
+              "children": [
+                {
+                  "id": 1,
+                  "title": "Step 6",
+                  "name": "Explore your 360 strengths stories",
+                  "description": "5 mins",
+                  "slug": "step-6",
+                  "order": 0,
+                  "status": "current",
+                  "fullUrl": "/potentialife-course/cycle-2/module-11/step-6",
+                  "type": "STEP"
+                }
+              ]
             },
             {
               "id": 16,
@@ -477,7 +490,7 @@
               "description": null,
               "slug": "module-21",
               "order": 0,
-              "status": "locked",
+              "status": "current",
               "fullUrl": "/potentialife-course/cycle-3/module-31",
               "children": [
                 {

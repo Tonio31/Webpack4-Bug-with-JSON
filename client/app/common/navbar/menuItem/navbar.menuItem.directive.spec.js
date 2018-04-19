@@ -42,7 +42,7 @@ describe('Navbar MenuItem Directive', () => {
 
     it('Count the number of tags that have the class has-submenu', () => {
       let hasSubMenuTags = angular.element(template[0].querySelectorAll('.has-submenu'));
-      expect(hasSubMenuTags.length).to.eq(7);
+      expect(hasSubMenuTags.length).to.eq(8);
     });
 
     it('Count the number of element that have .menu-button class in module 1', () => {
