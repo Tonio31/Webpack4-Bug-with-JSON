@@ -1,9 +1,0 @@
-<div class="word-cloud">
-  <div ng-if="$ctrl.isWordCloudEmpty">
-    <p class="error">{{ 'ERROR_WORDCLOUD_EMPTY' | translate }}</p>
-  </div>
-  <div ng-if="!$ctrl.isWordCloudEmpty">
-    <p class="chart-title text-center">{{ $ctrl.block.data.title }}</p>
-    <div id="word-cloud-{{$ctrl.block.id}}"></div>
-  </div>
-</div>

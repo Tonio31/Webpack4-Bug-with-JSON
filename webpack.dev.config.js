@@ -74,7 +74,6 @@ module.exports = () => {
       //template: 'client/index.html',
       inject: 'body',
       hash: true,
-      favicon: 'client/app/common/favicon/favicon.ico'
     }),
 
 

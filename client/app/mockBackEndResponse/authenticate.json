@@ -13,13 +13,6 @@
     "remember_token": null,
     "created_at": "2017-02-28 15:17:11",
     "updated_at": "2017-02-28 15:17:11",
-    "deleted_at": null,
-    "companyBanner": {
-      "logo": "https://admin.potentialife.com/uploads/case_studies/01cfd43fd3d4e52048b8c74430a06c90.jpg",
-      "header": "",
-      "subHeader": "",
-      "bgColor": "#f2f2f2",
-      "textColor": "white"
-    }
+    "deleted_at": null
   }
 }
